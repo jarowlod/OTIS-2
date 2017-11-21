@@ -215,6 +215,14 @@ begin
   ZQOsInfo.ReadOnly    := ReadOnlyOs;
   ZQOsNotatki.ReadOnly := ReadOnlyOs;
 
+  // jeśli DM.Wychowawca = Kierownik
+  if (DM.Wychowawca = 'Kierownik')and(DM.Dzial = 'Penit') then
+  begin
+    lblKomunikat.Caption := 'Kierownik - niezbędna edycja';
+    ZQOsInfo.ReadOnly    := false;
+  end;
+  //--------------------------------
+
   // otwieramy tabele osadzeni, wybranego osadzonego
   ZQOs.Close;
   ZQOs.ParamByName('IDO').AsInteger := SelectIDO;

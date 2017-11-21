@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="438"/>
-        <CursorPos X="14" Y="449"/>
+        <TopLine Value="414"/>
+        <CursorPos Y="422"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,8 +33,9 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <TopLine Value="100"/>
-        <CursorPos X="21" Y="116"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="107"/>
+        <CursorPos X="25" Y="117"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -164,8 +165,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="136"/>
-        <CursorPos X="37" Y="153"/>
+        <TopLine Value="299"/>
+        <CursorPos X="43" Y="220"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -177,8 +178,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="637"/>
-        <CursorPos X="5" Y="655"/>
+        <TopLine Value="290"/>
+        <CursorPos X="57" Y="280"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -314,7 +315,7 @@
         <EditorIndex Value="12"/>
         <TopLine Value="26"/>
         <CursorPos X="28" Y="381"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="199"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit26>
@@ -327,7 +328,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="35"/>
         <CursorPos X="40" Y="62"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="169"/>
       </Unit27>
       <Unit28>
         <Filename Value="UZatWniosekUrlopowy.pas"/>
@@ -338,7 +339,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="283"/>
         <CursorPos X="46" Y="297"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="120"/>
       </Unit28>
       <Unit29>
         <Filename Value="UStawkiPlac.pas"/>
@@ -348,7 +349,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23" Y="79"/>
-        <UsageCount Value="85"/>
+        <UsageCount Value="88"/>
       </Unit29>
       <Unit30>
         <Filename Value="UZatStatystyka.pas"/>
@@ -359,7 +360,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="116"/>
         <CursorPos Y="122"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="76"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit30>
@@ -372,7 +373,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="83"/>
         <CursorPos X="20" Y="89"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="64"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit31>
@@ -385,7 +386,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="11"/>
         <CursorPos X="47" Y="161"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit32>
@@ -395,11 +396,10 @@
         <ComponentName Value="NieZatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="79"/>
-        <CursorPos X="36" Y="82"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="119"/>
+        <CursorPos X="67" Y="140"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit33>
@@ -1015,128 +1015,137 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="UZatNiezatrudnieni.pas"/>
-        <Caret Line="9" Column="76"/>
-      </Position1>
-      <Position2>
-        <Filename Value="UZatNiezatrudnieni.pas"/>
-        <Caret Line="21" Column="32"/>
-      </Position2>
-      <Position3>
-        <Filename Value="UZatStatystyka.pas"/>
-        <Caret Line="130" Column="45" TopLine="118"/>
-      </Position3>
-      <Position4>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="863" Column="63" TopLine="849"/>
-      </Position4>
-      <Position5>
-        <Filename Value="UStanowiska.pas"/>
-        <Caret Line="393" Column="3" TopLine="385"/>
-      </Position5>
-      <Position6>
-        <Filename Value="UStanowiska.pas"/>
-        <Caret Line="433" Column="35" TopLine="415"/>
-      </Position6>
-      <Position7>
-        <Filename Value="UStanowiska.pas"/>
-        <Caret Line="368" Column="58" TopLine="354"/>
-      </Position7>
-      <Position8>
-        <Filename Value="UStanowiska.pas"/>
-        <Caret Line="349" TopLine="339"/>
-      </Position8>
-      <Position9>
         <Filename Value="UStanowiska.pas"/>
         <Caret Line="351" TopLine="341"/>
-      </Position9>
-      <Position10>
+      </Position1>
+      <Position2>
         <Filename Value="UStanowiska.pas"/>
         <Caret Line="475" Column="3" TopLine="473"/>
-      </Position10>
-      <Position11>
+      </Position2>
+      <Position3>
         <Filename Value="UStanowiska.pas"/>
         <Caret Line="425" TopLine="423"/>
-      </Position11>
-      <Position12>
+      </Position3>
+      <Position4>
         <Filename Value="UStanowiska.pas"/>
         <Caret Line="156" Column="32" TopLine="142"/>
-      </Position12>
-      <Position13>
+      </Position4>
+      <Position5>
         <Filename Value="UZatrudnieni.pas"/>
         <Caret Line="861" Column="78" TopLine="851"/>
-      </Position13>
-      <Position14>
+      </Position5>
+      <Position6>
         <Filename Value="UZatrudnieni.pas"/>
         <Caret Line="862" Column="78" TopLine="852"/>
-      </Position14>
-      <Position15>
+      </Position6>
+      <Position7>
         <Filename Value="UZatrudnieni.pas"/>
         <Caret Line="864" Column="78" TopLine="854"/>
-      </Position15>
-      <Position16>
+      </Position7>
+      <Position8>
         <Filename Value="UAddZatrudnienie.pas"/>
         <Caret Line="432" Column="102" TopLine="177"/>
-      </Position16>
-      <Position17>
+      </Position8>
+      <Position9>
         <Filename Value="UAddZatrudnienie.pas"/>
         <Caret Line="434" Column="102" TopLine="401"/>
-      </Position17>
-      <Position18>
+      </Position9>
+      <Position10>
         <Filename Value="UAddZatrudnienie.pas"/>
         <Caret Line="538" Column="58" TopLine="462"/>
-      </Position18>
-      <Position19>
+      </Position10>
+      <Position11>
         <Filename Value="UAddZatrudnienie.pas"/>
         <Caret Line="212" Column="97" TopLine="182"/>
-      </Position19>
-      <Position20>
+      </Position11>
+      <Position12>
         <Filename Value="UZatrudnieni.pas"/>
         <Caret Line="864" Column="78" TopLine="854"/>
-      </Position20>
-      <Position21>
+      </Position12>
+      <Position13>
         <Filename Value="UZatNiezatrudnieni.pas"/>
         <Caret Line="21" Column="32"/>
+      </Position13>
+      <Position14>
+        <Filename Value="UZatNiezatrudnieni.pas"/>
+        <Caret Line="23" Column="32"/>
+      </Position14>
+      <Position15>
+        <Filename Value="UZatNiezatrudnieni.pas"/>
+        <Caret Line="24" Column="32"/>
+      </Position15>
+      <Position16>
+        <Filename Value="UZatNiezatrudnieni.pas"/>
+        <Caret Line="25" Column="32"/>
+      </Position16>
+      <Position17>
+        <Filename Value="UZatNiezatrudnieni.pas"/>
+        <Caret Line="49" Column="34" TopLine="21"/>
+      </Position17>
+      <Position18>
+        <Filename Value="UZatNiezatrudnieni.pas"/>
+        <Caret Line="51" Column="26" TopLine="21"/>
+      </Position18>
+      <Position19>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="762" Column="58" TopLine="735"/>
+      </Position19>
+      <Position20>
+        <Filename Value="UZatNiezatrudnieni.pas"/>
+        <Caret Line="33" Column="23" TopLine="14"/>
+      </Position20>
+      <Position21>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="820" Column="116" TopLine="799"/>
       </Position21>
       <Position22>
         <Filename Value="UZatNiezatrudnieni.pas"/>
-        <Caret Line="23" Column="32"/>
+        <Caret Line="101" Column="74" TopLine="77"/>
       </Position22>
       <Position23>
-        <Filename Value="UZatNiezatrudnieni.pas"/>
-        <Caret Line="24" Column="32"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="655" Column="5" TopLine="637"/>
       </Position23>
       <Position24>
         <Filename Value="UZatNiezatrudnieni.pas"/>
-        <Caret Line="25" Column="32"/>
+        <Caret Line="101" Column="77" TopLine="71"/>
       </Position24>
       <Position25>
         <Filename Value="UZatNiezatrudnieni.pas"/>
-        <Caret Line="49" Column="34" TopLine="21"/>
+        <Caret Line="111" Column="28" TopLine="81"/>
       </Position25>
       <Position26>
-        <Filename Value="UZatNiezatrudnieni.pas"/>
-        <Caret Line="51" Column="26" TopLine="21"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="449" Column="14" TopLine="438"/>
       </Position26>
       <Position27>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="762" Column="58" TopLine="735"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="384" Column="13" TopLine="382"/>
       </Position27>
       <Position28>
-        <Filename Value="UZatNiezatrudnieni.pas"/>
-        <Caret Line="33" Column="23" TopLine="14"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="321" Column="3" TopLine="319"/>
       </Position28>
       <Position29>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="820" Column="116" TopLine="799"/>
+        <Filename Value="UZatNiezatrudnieni.pas"/>
+        <Caret Line="46" Column="17" TopLine="29"/>
       </Position29>
       <Position30>
         <Filename Value="UZatNiezatrudnieni.pas"/>
-        <Caret Line="101" Column="74" TopLine="77"/>
+        <Caret Line="90" TopLine="70"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="UPenitForm.pas"/>
+        <Line Value="218"/>
+      </Item1>
+    </BreakPoints>
     <Watches Count="1">
       <Item1>
         <Expression Value="st"/>

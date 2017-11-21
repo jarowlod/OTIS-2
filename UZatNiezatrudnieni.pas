@@ -29,6 +29,8 @@ type
     ZQZatrudnieni: TZQuery;
     procedure BitBtn17Click(Sender: TObject);
     procedure BitBtn18Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure RxDBGrid1DblClick(Sender: TObject);
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
   private
@@ -41,7 +43,7 @@ var
   NieZatrudnieni: TNieZatrudnieni;
 
 implementation
-
+uses UPenitForm;
 {$R *.lfm}
 
 { TNieZatrudnieni }
@@ -76,10 +78,44 @@ begin
   ZQZatrudnieni.EnableControls;
 end;
 
+procedure TNieZatrudnieni.FormCreate(Sender: TObject);
+begin
+  ZQZatrudnieni.Open;
+end;
+
+procedure TNieZatrudnieni.RxDBGrid1DblClick(Sender: TObject);
+begin
+  if ZQZatrudnieni.IsEmpty then exit;
+
+  with TPenitForm.Create(Self) do
+  begin
+       SetIDO( ZQZatrudnieni.FieldByName('ido').AsInteger );
+       ShowModal;
+       Free;
+  end;
+end;
+
 procedure TNieZatrudnieni.RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor);
 begin
-  if Field.FieldName = 'Autoryzacja';
+  if not Assigned(Field) then exit;
+
+  if Field.FieldName = 'data_autoryzacji' then
+    begin
+      if (Field.AsDateTime < ZQZatrudnieni.FieldByName('PRZYJ').AsDateTime) then
+      begin
+        Background := clRed;
+      end;
+    end;
+
+  if Field.FieldName = 'Autoryzacja' then
+    begin
+      if (Field.AsString <> ZQZatrudnieni.FieldByName('Wychowawca').AsString) then
+      begin
+        Background := clRed;
+      end;
+    end;
+
 end;
 
 function TNieZatrudnieni.ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
@@ -89,7 +125,8 @@ begin
   // jeśli to pierwszy wiersz to uzupełniamy o nagłówek
   if ZQPom.RecNo = 1 then
     s:= 'Nr'+#09+'IDO'+#09+'POC'+#09+'Nazwisko'+#09+'Imię'+#09+'Ojciec'+#09+'Klasyfikacja'+#09+'Uwagi'+#09+'GR'+#09+
-        'Przyjęty'+#09+'Koniec Kary'+#09+'Archiwalne'+#09+'Wywiad'+#09+'WPZ'+#09+'ułamek'+#09+'Autoryzacja'+#09+'Data autoryzacji'+#09;
+        'Przyjęty'+#09+'Koniec Kary'+#09+'Archiwalne'+#09+'Wywiad'+#09+'WPZ'+#09+'ułamek'+#09+
+        'Wychowawca'+#09+'Autoryzacja'+#09+'Data autoryzacji'+#09;
   // --------------------------------------------------
 
   s:= s+ ZQPom.RecNo.ToString;   // nr w arkuszu
@@ -107,6 +144,7 @@ begin
   s:= s+ #09 +ZQPom.FieldByName('Wywiad').AsString;
   s:= s+ #09 +ZQPom.FieldByName('twpz').AsString;
   s:= s+ #09 +ZQPom.FieldByName('ulamek_wpz').AsString;
+  s:= s+ #09 +ZQPom.FieldByName('Wychowawca').AsString;
   s:= s+ #09 +ZQPom.FieldByName('Autoryzacja').AsString;
   s:= s+ #09 +ZQPom.FieldByName('Data_autoryzacji').AsString;
   Result:= s;

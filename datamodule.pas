@@ -38,6 +38,7 @@ type
 
     Wychowawca  : string;
     ZastepcyWych: string;
+    Dzial       : string;
 
     Station_Name_For_Widzenia: string;
     TimerInterval            : integer;
@@ -113,7 +114,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.0.46';
+  wersja = '0.0.0.47';
 
 const
   sp_Aktualny = 'Aktualny';
@@ -300,6 +301,7 @@ begin
 
       Wychowawca  := ZQ.FieldByName('Wychowawca').AsString;
       ZastepcyWych:= ZQ.FieldByName('ZastepstwaWych').AsString;
+      Dzial       := ZQ.FieldByName('Dzial').AsString;
       Podpis      := ZQ.FieldByName('Podpis').AsString;
       LastLogin   := ZQ.FieldByName('Last').AsDateTime;
       IleRazy     := ZQ.FieldByName('IleRazy').AsInteger;

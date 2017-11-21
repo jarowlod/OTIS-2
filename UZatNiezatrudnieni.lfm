@@ -1,11 +1,12 @@
 object NieZatrudnieni: TNieZatrudnieni
-  Left = 258
-  Height = 580
-  Top = 171
+  Left = 215
+  Height = 692
+  Top = 85
   Width = 1389
   Caption = 'Wykaz osadzonych niezatrudnionych'
-  ClientHeight = 580
+  ClientHeight = 692
   ClientWidth = 1389
+  OnCreate = FormCreate
   Position = poOwnerFormCenter
   LCLVersion = '5.9'
   object Panel5: TPanel
@@ -73,7 +74,7 @@ object NieZatrudnieni: TNieZatrudnieni
   object Panel1: TPanel
     Left = 0
     Height = 36
-    Top = 544
+    Top = 656
     Width = 1389
     Align = alBottom
     BevelOuter = bvNone
@@ -175,7 +176,7 @@ object NieZatrudnieni: TNieZatrudnieni
   end
   object RxDBGrid1: TRxDBGrid
     Left = 0
-    Height = 494
+    Height = 606
     Top = 50
     Width = 1389
     ColumnDefValues.BlobText = '(blob)'
@@ -565,6 +566,7 @@ object NieZatrudnieni: TNieZatrudnieni
     ShowHint = True
     TabOrder = 2
     TitleStyle = tsNative
+    OnDblClick = RxDBGrid1DblClick
   end
   object frReport1: TfrReport
     Dataset = frDBDataSet1
@@ -582,7 +584,6 @@ object NieZatrudnieni: TNieZatrudnieni
   end
   object ZQZatrudnieni: TZQuery
     Connection = DM.ZConnection1
-    Active = True
     SQL.Strings = (
       'SELECT '
       'os.IDO, '
