@@ -1,0 +1,8 @@
+# Delphi compiler-generated binaries (safe to delete)
+*.exe
+
+# Delphi history and backups
+lib/
+#__history/
+#__recovery/
+*.~*

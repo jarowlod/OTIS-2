@@ -1,0 +1,52 @@
+delimiter |
+
+CREATE DEFINER=`153202jwlo`@`%` EVENT `czyscik092017`
+	ON SCHEDULE
+		EVERY 1 DAY STARTS '2017-09-21 03:00:00'
+	ON COMPLETION PRESERVE
+	ENABLE
+	COMMENT ''
+	DO 
+	
+BEGIN
+
+INSERT INTO arch_osadzeni (Data_ubycia, IDO, Nazwisko, Imie, Ojciec, POC, Urodz, Klasyf) SELECT CURDATE(), o.ido, o.nazwisko, o.imie, o.ojciec, o.poc, o.urodz, o.klasyf FROM osadzeni o WHERE poc="ubył";
+DELETE FROM osadzeni WHERE POC="ubył";
+
+#przedawniamy prosby starsze niz 2msc
+UPDATE prosby SET Zrealizowana=2 WHERE (Zrealizowana=0)AND((Data_DD + interval 6 MONTH) < CURDATE());
+
+INSERT INTO arch_paczki (ID,IDO,WYDANO,WYDAL,RODZAJ,WAGA,UWAGI,DODATKOWA,KANTYNA,NADAWCA,ADRES,Data_ubycia) SELECT ID,IDO,WYDANO,WYDAL,RODZAJ,WAGA,UWAGI,DODATKOWA,KANTYNA,NADAWCA,ADRES,CURDATE() FROM paczki where IDO not in (select ido from osadzeni);
+DELETE FROM paczki where IDO not in (select ido from osadzeni);
+
+INSERT INTO arch_prosby (ID,IDO,ID_Katalog,Data_W,WPISAL,OPIS,Data_DD,ZREALIZOWANA,Data_Realizacji,KTO_Zrealizowal,Data_ubycia) SELECT ID,IDO,ID_Katalog,Data_W,WPISAL,OPIS,Data_DD,ZREALIZOWANA,Data_Realizacji,KTO_Zrealizowal,CURDATE() FROM prosby where IDO not in (select ido from osadzeni);
+DELETE FROM prosby where IDO not in (select ido from osadzeni);
+
+INSERT INTO arch_wnioski (ID,IDO,ID_Katalog,Data_W,WPISAL,OPIS,Data_DD,Data_KK,ZREALIZOWANA,Data_Realizacji,KTO_Zrealizowal,Data_ubycia) SELECT ID,IDO,ID_Katalog,Data_W,WPISAL,OPIS,Data_DD,Data_KK,ZREALIZOWANA,Data_Realizacji,KTO_Zrealizowal,CURDATE() FROM wnioski where IDO not in (select ido from osadzeni);
+DELETE FROM wnioski where IDO not in (select ido from osadzeni);
+
+#czyscimy widzenia niezrealizowane
+DELETE FROM widzenia WHERE (Etap<=2);
+DELETE FROM widzenia_upr where ID_widzenia not in (select ID from widzenia);
+
+INSERT INTO arch_uprawnione (ID,IDO,Nazwisko,Imie,Adres,Data_DD,Skreslona,Data_Skreslenia,Data_W,Pokrew,WPISAL,Skreslil,Uwagi,Data_ubycia) SELECT ID,IDO,Nazwisko,Imie,Adres,Data_DD,Skreslona,Data_Skreslenia,Data_W,Pokrew,WPISAL,Skreslil,Uwagi,CURDATE() FROM uprawnione where IDO not in (select ido from osadzeni);
+DELETE FROM uprawnione where IDO not in (select ido from osadzeni);
+
+INSERT INTO arch_widzenia (ID,IDO,Etap,Data_Oczekuje,Data_Stolik,Data_Widzenie,Czas_widzenia,Sposob,Nadzor,Uwagi,Dodatkowe,Stolik,Czas_reg,Czas_dod,Data_Dod,Data_ubycia) SELECT ID,IDO,Etap,Data_Oczekuje,Data_Stolik,Data_Widzenie,Czas_widzenia,Sposob,Nadzor,Uwagi,Dodatkowe,Stolik,Czas_reg,Czas_dod,Data_Dod,CURDATE() FROM widzenia where IDO not in (select ido from osadzeni);
+DELETE FROM widzenia where IDO not in (select ido from osadzeni);
+
+INSERT INTO arch_widzenia_upr (ID_widzenia,ID_uprawnione) SELECT ID_widzenia,ID_uprawnione FROM widzenia_upr where ID_widzenia not in (select ID from widzenia);
+DELETE FROM widzenia_upr where ID_widzenia not in (select ID from widzenia);
+
+#przedawniamy art110 po 180 dniach od przeludnienia
+UPDATE art110 SET data_od=null, data_do=null WHERE (not isnull(data_do)) AND ((data_do + interval 180 DAY)<CURDATE());
+INSERT INTO arch_art110 (IDO,status,opis,data_od,data_do,kto,kiedy,Data_ubycia) SELECT IDO,status,opis,data_od,data_do,kto,kiedy,CURDATE() FROM art110 where IDO not in (select IDO from osadzeni);
+DELETE FROM art110 where IDO not in (select IDO from osadzeni);
+
+#archiwizacja komunikatów starszych niż 6 miesięcy
+INSERT INTO arch_komunikaty (ID,odbiorca,dataNadania,nadawca,komunikat,status,dataOdebrania) SELECT ID,odbiorca,dataNadania,nadawca,komunikat,status,dataOdebrania FROM komunikaty WHERE (dataNadania + interval 6 MONTH) < CURDATE();
+DELETE FROM komunikaty WHERE (dataNadania + interval 6 MONTH) < CURDATE();
+
+END |
+
+delimiter ;

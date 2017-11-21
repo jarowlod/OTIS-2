@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="10"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="OTIS 2"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <BuildNr Value="47"/>
+      <Language Value="0415"/>
+      <StringTable CompanyName="ZK Kłodzko" LegalCopyright="Włodarczyk Jarosław" ProductVersion="0.0.0.0"/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <CommandLineParams Value="&quot;153202jwlo&quot; &quot;molibden&quot;"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="28">
+      <Item1>
+        <PackageName Value="pl_richview"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="lz_fpweb"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="pl_pascalscada"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="pl_fortesreport"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="lz_reportofficeimport"/>
+      </Item5>
+      <Item6>
+        <PackageName Value="lz_reportpdfexport"/>
+      </Item6>
+      <Item7>
+        <PackageName Value="lz_reportimgexport"/>
+      </Item7>
+      <Item8>
+        <PackageName Value="lz_reportSpreadSheetExport"/>
+      </Item8>
+      <Item9>
+        <PackageName Value="pl_aggpasvs"/>
+      </Item9>
+      <Item10>
+        <PackageName Value="pl_cindy"/>
+      </Item10>
+      <Item11>
+        <PackageName Value="lz_rtticontrols"/>
+      </Item11>
+      <Item12>
+        <PackageName Value="pl_KControls"/>
+      </Item12>
+      <Item13>
+        <PackageName Value="YearPlan"/>
+      </Item13>
+      <Item14>
+        <PackageName Value="pl_richmemo"/>
+      </Item14>
+      <Item15>
+        <PackageName Value="pl_spktoolbar"/>
+      </Item15>
+      <Item16>
+        <PackageName Value="pl_excontrols"/>
+      </Item16>
+      <Item17>
+        <PackageName Value="lz_memds"/>
+      </Item17>
+      <Item18>
+        <PackageName Value="lz_reportzeosdb"/>
+      </Item18>
+      <Item19>
+        <PackageName Value="lz_report"/>
+      </Item19>
+      <Item20>
+        <PackageName Value="pl_solutions"/>
+      </Item20>
+      <Item21>
+        <PackageName Value="pl_fzcontrols"/>
+      </Item21>
+      <Item22>
+        <PackageName Value="pl_luicontrols"/>
+      </Item22>
+      <Item23>
+        <PackageName Value="lz_datetimectrls"/>
+      </Item23>
+      <Item24>
+        <PackageName Value="pl_rx"/>
+      </Item24>
+      <Item25>
+        <PackageName Value="pl_bgracontrols"/>
+      </Item25>
+      <Item26>
+        <PackageName Value="FCL"/>
+      </Item26>
+      <Item27>
+        <PackageName Value="pl_zeosdbo"/>
+      </Item27>
+      <Item28>
+        <PackageName Value="LCL"/>
+      </Item28>
+    </RequiredPackages>
+    <Units Count="34">
+      <Unit0>
+        <Filename Value="project1.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unit1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="datamodule.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="ULogowanie.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Logowanie"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="UStanowiska.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Stanowiska"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="UAddStanowiska.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AddStanowiska"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="UZatrudnieni.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Zatrudnieni"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="UAddZatrudnienie.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AddZatrudnienie"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="UOsadzeni.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Osadzeni"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="UUprawnienia.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Uprawnienia"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="UZatrudnienieGrafik.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ZatrudnienieGrafik"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="URozmieszczenie.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Rozmieszczenie"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="UUpdPodkultury.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="UpdPodkultury"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="UPenitForm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="PenitForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="PenitTerminarz"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="UPenitAktaArch.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="PenitAktaArch"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="UAdresyJednostek.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AdresyJednostek"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="UPenitWywiad.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="PenitWywiad"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="UAktualizacjaOs.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AktualizacjaOs"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="UAktualizacjaRejestr.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AktualizacjaRejestr"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="URejestrProsbOs.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RejestrProsbOs"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="URejestrProsbDodaj.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RejestrProsbDodaj"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="URejestrProsbAll.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RejestrProsbAll"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="UOknoKomunikatu.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OknoKomunikatu"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="UZatZaswiadczenie.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ZatZaswiadczenie"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="UKomunikator.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Komunikator"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="UKomunikatorNowaWiad.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="KomunikatorNowaWiad"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="UUpr_ZmianaHasla.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Upr_ZmianaHasla"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="UZatWniosekUrlopowy.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ZatWniosekUrolopowy"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="UStawkiPlac.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="StawkiPlac"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="UZatStatystyka.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ZatStatystyka"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="UPenitWydarzenia.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="PenitWydarzenia"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="USaper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SaperForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="UZatNiezatrudnieni.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="NieZatrudnieni"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit33>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="Otis2"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
