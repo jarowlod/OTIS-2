@@ -176,7 +176,7 @@ object NieZatrudnieni: TNieZatrudnieni
   end
   object RxDBGrid1: TRxDBGrid
     Left = 0
-    Height = 606
+    Height = 468
     Top = 50
     Width = 1389
     ColumnDefValues.BlobText = '(blob)'
@@ -555,18 +555,215 @@ object NieZatrudnieni: TNieZatrudnieni
     FixedHotColor = clNone
     SelectedColor = clHighlight
     GridLineStyle = psSolid
-    DataSource = DSZatrudnieni
+    DataSource = DSBezrobotni
     DefaultRowHeight = 24
     FixedColor = clNone
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
     ParentColor = False
     ParentShowHint = False
-    PopupMenu = PopupMenu1
     ReadOnly = True
     ShowHint = True
     TabOrder = 2
     TitleStyle = tsNative
     OnDblClick = RxDBGrid1DblClick
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 133
+    Top = 523
+    Width = 1389
+    Align = alBottom
+    BevelOuter = bvLowered
+    ClientHeight = 133
+    ClientWidth = 1389
+    TabOrder = 3
+    object RxDBGrid2: TRxDBGrid
+      Left = 1
+      Height = 131
+      Top = 1
+      Width = 1387
+      ColumnDefValues.BlobText = '(blob)'
+      TitleButtons = True
+      AutoSort = True
+      Columns = <      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Status'
+          Width = 90
+          FieldName = 'status_zatrudnienia'
+          EditButtons = <>
+          Filter.IsNull = False
+          Filter.IsAll = True
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footer.ValueType = fvtCount
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Nazwa grupy'
+          Width = 400
+          FieldName = 'nazwa'
+          EditButtons = <>
+          Filter.IsNull = False
+          Filter.IsAll = True
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Font.Color = clMaroon
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'zat_od'
+          Width = 80
+          FieldName = 'zat_od'
+          EditButtons = <>
+          Filter.IsNull = False
+          Filter.IsAll = True
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Font.Color = clMaroon
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'zat_do'
+          Width = 80
+          FieldName = 'zat_do'
+          EditButtons = <>
+          Filter.IsNull = False
+          Filter.IsAll = True
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Powód wycofania'
+          Width = 500
+          FieldName = 'powod_wycofania'
+          EditButtons = <>
+          Filter.IsNull = False
+          Filter.IsAll = True
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end>
+      KeyStrokes = <      
+        item
+          Command = rxgcShowFindDlg
+          ShortCut = 16454
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowColumnsDlg
+          ShortCut = 16471
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowFilterDlg
+          ShortCut = 16468
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowSortDlg
+          ShortCut = 16467
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowQuickFilter
+          ShortCut = 16465
+          Enabled = True
+        end      
+        item
+          Command = rxgcHideQuickFilter
+          ShortCut = 16456
+          Enabled = True
+        end      
+        item
+          Command = rxgcSelectAll
+          ShortCut = 16449
+          Enabled = True
+        end      
+        item
+          Command = rxgcDeSelectAll
+          ShortCut = 16429
+          Enabled = True
+        end      
+        item
+          Command = rxgcInvertSelection
+          ShortCut = 16426
+          Enabled = True
+        end      
+        item
+          Command = rxgcOptimizeColumnsWidth
+          ShortCut = 16427
+          Enabled = True
+        end      
+        item
+          Command = rxgcCopyCellValue
+          ShortCut = 16451
+          Enabled = True
+        end>
+      FooterOptions.Active = True
+      FooterOptions.RowCount = 1
+      FooterOptions.Style = tsNative
+      FooterOptions.DrawFullLine = False
+      OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+      FooterRowCount = 1
+      Align = alClient
+      AlternateColor = 16055807
+      AutoAdvance = aaNone
+      AutoEdit = False
+      Color = clWindow
+      DrawFullLine = False
+      FocusColor = clHighlight
+      FixedHotColor = clNone
+      SelectedColor = clHighlight
+      GridLineStyle = psSolid
+      DataSource = DSZatrudnieni
+      DefaultRowHeight = 24
+      FixedColor = clNone
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
+      ParentColor = False
+      ParentShowHint = False
+      ReadOnly = True
+      ShowHint = True
+      TabOrder = 0
+      TitleStyle = tsNative
+    end
+  end
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 5
+    Top = 518
+    Width = 1389
+    Align = alBottom
+    ResizeAnchor = akBottom
   end
   object frReport1: TfrReport
     Dataset = frDBDataSet1
@@ -578,11 +775,11 @@ object NieZatrudnieni: TNieZatrudnieni
     top = 167
   end
   object frDBDataSet1: TfrDBDataSet
-    DataSet = ZQZatrudnieni
+    DataSet = ZQBezrobotni
     left = 639
     top = 167
   end
-  object ZQZatrudnieni: TZQuery
+  object ZQBezrobotni: TZQuery
     Connection = DM.ZConnection1
     SQL.Strings = (
       'SELECT '
@@ -614,17 +811,34 @@ object NieZatrudnieni: TNieZatrudnieni
     left = 96
     top = 167
   end
-  object DSZatrudnieni: TDataSource
-    DataSet = ZQZatrudnieni
+  object DSBezrobotni: TDataSource
+    DataSet = ZQBezrobotni
     left = 96
     top = 232
   end
-  object PopupMenu1: TPopupMenu
-    left = 420
-    top = 192
+  object ZQZatrudnieni: TZQuery
+    Connection = DM.ZConnection1
+    SQL.Strings = (
+      'SELECT '
+      'zat.IDO, '
+      'zat.status_zatrudnienia, '
+      'sta.nazwa,'
+      'zat.zat_od,'
+      'zat.zat_do,'
+      'zat.powod_wycofania'
+      'FROM zat_zatrudnieni as zat'
+      '  LEFT JOIN zat_stanowiska as sta ON sta.id = zat.id_stanowiska'
+    )
+    Params = <>
+    MasterFields = 'IDO'
+    MasterSource = DSBezrobotni
+    LinkedFields = 'IDO'
+    left = 192
+    top = 440
   end
-  object frCheckBoxObject1: TfrCheckBoxObject
-    left = 728
-    top = 167
+  object DSZatrudnieni: TDataSource
+    DataSet = ZQZatrudnieni
+    left = 288
+    top = 440
   end
 end

@@ -22,6 +22,7 @@ type
     BitBtn5: TBitBtn;
     CheckBox1: TCheckBox;
     cbNazwaGrupy: TCheckBox;
+    cbZatNaDzien: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
     CheckBox5: TCheckBox;
@@ -30,6 +31,7 @@ type
     DateTimePicker1: TDateTimePicker;
     DateTimePicker2: TDateTimePicker;
     DateTimePicker3: TDateTimePicker;
+    dtZatNaDzien: TDateTimePicker;
     DBCheckBox1: TDBCheckBox;
     DBCheckBox2: TDBCheckBox;
     DBCheckBox3: TDBCheckBox;
@@ -259,6 +261,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
+    procedure cbZatNaDzienChange(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure cbNazwaGrupyChange(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
@@ -267,6 +270,7 @@ type
     procedure cyHotLabel1Click(Sender: TObject);
     procedure DateTimePicker1Change(Sender: TObject);
     procedure DateTimePicker2Change(Sender: TObject);
+    procedure dtZatNaDzienChange(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
@@ -299,14 +303,13 @@ type
     { private declarations }
     DisableNewSelect: Boolean;
     ShowOsIDO: integer; // jeśli wchodzimy poprzez ShowZatrudnienieOsadzonego to zapisujemy jego IDO
+    Function ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
   public
     { public declarations }
     SQLZatrudnieni: string;       // ładujemy podczas Create z kontrolki ZQZatrudnieni.SQL
     Procedure NewSelect;
     Procedure ShowZatrudnienieOsadzonego(ido: integer; nazwisko: string);
   end;
-
-  Function ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
 
 var
   Zatrudnieni: TZatrudnieni;
@@ -323,17 +326,18 @@ begin
   BitBtn1.Enabled:= DM.uprawnienia[15];  // zatrudnienie
   BitBtn2.Enabled:= DM.uprawnienia[15];  // zatrudnienie
   BitBtn3.Enabled:= DM.uprawnienia[15];  // zatrudnienie
-  MenuItemDodaj.Enabled:= DM.uprawnienia[15];
-  MenuItemModyfikuj.Enabled:= DM.uprawnienia[15];
-  MenuItemUsun.Enabled:= DM.uprawnienia[15];
+  MenuItemDodaj.Enabled     := DM.uprawnienia[15];
+  MenuItemModyfikuj.Enabled := DM.uprawnienia[15];
+  MenuItemUsun.Enabled      := DM.uprawnienia[15];
 
-  ZQZatrudnieni.ReadOnly:= not DM.uprawnienia[15];  // zatrudnienie; prawo do edycji notatki
+  ZQZatrudnieni.ReadOnly    := not DM.uprawnienia[15];  // zatrudnienie; prawo do edycji notatki
 
-  DisableNewSelect:= False;
-  SQLZatrudnieni:= ZQZatrudnieni.SQL.Text; // podstawa zapytania
+  DisableNewSelect := False;
+  SQLZatrudnieni   := ZQZatrudnieni.SQL.Text; // podstawa zapytania
   NewSelect;
   DateTimePicker1.Date:= IncMonth(Date(), -1);
   DateTimePicker2.Date:= Date();
+  dtZatNaDzien.Date   := Date();
 
   ShowOsIDO:=0;
   DateTimePicker3.Date:= Date;  // Data dla wydruku Kart Pracy
@@ -580,6 +584,26 @@ begin
   NewSelect; // odświerzamy widok
 end;
 
+procedure TZatrudnieni.cbZatNaDzienChange(Sender: TObject);
+begin
+  DisableNewSelect:= true;  // wyłączamy działeanie kontrolek NewSelect;
+
+  if cbZatNaDzien.Checked then
+      begin
+        RadioGroup1.ItemIndex:= 3;    // status zatrudnienia na wszystkie
+        RadioGroup2.ItemIndex:= 2;    // pobyty na wszystkie
+
+        dtZatNaDzien.Enabled:= true;
+      end
+  else
+      begin
+        dtZatNaDzien.Enabled:= false;
+      end;
+
+  DisableNewSelect:= false;     //Włączamy kontrolki
+  NewSelect;
+end;
+
 // DODAJ OSADZONEGO DO ZATRUDNIENIA
 procedure TZatrudnieni.BitBtn1Click(Sender: TObject);
 begin
@@ -615,6 +639,11 @@ end;
 procedure TZatrudnieni.DateTimePicker2Change(Sender: TObject);
 begin
   if CheckBox1.Checked then NewSelect;
+end;
+
+procedure TZatrudnieni.dtZatNaDzienChange(Sender: TObject);
+begin
+  if cbZatNaDzien.Checked then NewSelect;
 end;
 
 procedure TZatrudnieni.ComboBox1Change(Sender: TObject);
@@ -678,6 +707,13 @@ begin
         ZQZatrudnieni.SQL.Add(' ('+sFindData+' BETWEEN :data_od AND :data_do) AND');
         ZQZatrudnieni.ParamByName('data_od').AsDate:= DateTimePicker1.Date;
         ZQZatrudnieni.ParamByName('data_do').AsDate:= DateTimePicker2.Date;
+      end;
+
+  // ZATRUDNIENI NA DANY DZIEŃ
+  if cbZatNaDzien.Checked then
+      begin
+        ZQZatrudnieni.SQL.Add(' (:data_na_dzien BETWEEN zat.zat_od AND IFNULL(zat.zat_do, CURDATE() ) ) AND');
+        ZQZatrudnieni.ParamByName('data_na_dzien').AsDate:= dtZatNaDzien.Date;
       end;
 
   //Zmienili Celę
@@ -910,7 +946,7 @@ end;
 
 // ============== END Action Link
 
-function ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
+function TZatrudnieni.ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
 var s: string;
 begin
   s:= ZQPom.FieldByName('POC').AsString; // nr w arkuszu, doraźnie POC

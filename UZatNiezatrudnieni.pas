@@ -16,16 +16,19 @@ type
   TNieZatrudnieni = class(TForm)
     BitBtn17: TBitBtn;
     BitBtn18: TBitBtn;
+    DSBezrobotni: TDataSource;
     DSZatrudnieni: TDataSource;
-    frCheckBoxObject1: TfrCheckBoxObject;
     frDBDataSet1: TfrDBDataSet;
     frReport1: TfrReport;
     Image1: TImage;
     Label1: TLabel;
     Panel1: TPanel;
+    Panel2: TPanel;
     Panel5: TPanel;
-    PopupMenu1: TPopupMenu;
     RxDBGrid1: TRxDBGrid;
+    RxDBGrid2: TRxDBGrid;
+    Splitter1: TSplitter;
+    ZQBezrobotni: TZQuery;
     ZQZatrudnieni: TZQuery;
     procedure BitBtn17Click(Sender: TObject);
     procedure BitBtn18Click(Sender: TObject);
@@ -43,7 +46,7 @@ var
   NieZatrudnieni: TNieZatrudnieni;
 
 implementation
-uses UPenitForm;
+uses UPenitForm, rxdbutils;
 {$R *.lfm}
 
 { TNieZatrudnieni }
@@ -60,38 +63,40 @@ var bookmark: TBookMark;
     schowek: string;
 begin
   // do schowka wszyscy zatrudnieni
-  if ZQZatrudnieni.IsEmpty then exit;
-  bookmark:= ZQZatrudnieni.GetBookmark;
-  ZQZatrudnieni.DisableControls;
-  ZQZatrudnieni.First;
+  if ZQBezrobotni.IsEmpty then exit;
+  bookmark:= ZQBezrobotni.GetBookmark;
+  ZQBezrobotni.DisableControls;
+  ZQBezrobotni.First;
   schowek:= '';
-  while not ZQZatrudnieni.EOF do
+  while not ZQBezrobotni.EOF do
   begin
     if schowek<>'' then schowek:= schowek + LineEnding;
-    schowek:= schowek + ZatrudnieniFieldsToString(ZQZatrudnieni);
-    ZQZatrudnieni.Next;
+    schowek:= schowek + ZatrudnieniFieldsToString(ZQBezrobotni);
+    ZQBezrobotni.Next;
   end;
 
   Clipboard.AsText:= schowek;
 
-  ZQZatrudnieni.GotoBookmark(bookmark);
-  ZQZatrudnieni.EnableControls;
+  ZQBezrobotni.GotoBookmark(bookmark);
+  ZQBezrobotni.EnableControls;
 end;
 
 procedure TNieZatrudnieni.FormCreate(Sender: TObject);
 begin
+  ZQBezrobotni.Open;
   ZQZatrudnieni.Open;
 end;
 
 procedure TNieZatrudnieni.RxDBGrid1DblClick(Sender: TObject);
 begin
-  if ZQZatrudnieni.IsEmpty then exit;
+  if ZQBezrobotni.IsEmpty then exit;
 
   with TPenitForm.Create(Self) do
   begin
-       SetIDO( ZQZatrudnieni.FieldByName('ido').AsInteger );
+       SetIDO( ZQBezrobotni.FieldByName('ido').AsInteger );
        ShowModal;
        Free;
+       RefreshQuery(ZQBezrobotni);
   end;
 end;
 
@@ -102,7 +107,7 @@ begin
 
   if Field.FieldName = 'data_autoryzacji' then
     begin
-      if (Field.AsDateTime < ZQZatrudnieni.FieldByName('PRZYJ').AsDateTime) then
+      if (Field.AsDateTime < ZQBezrobotni.FieldByName('PRZYJ').AsDateTime) then
       begin
         Background := clRed;
       end;
@@ -110,7 +115,7 @@ begin
 
   if Field.FieldName = 'Autoryzacja' then
     begin
-      if (Field.AsString <> ZQZatrudnieni.FieldByName('Wychowawca').AsString) then
+      if (Field.AsString <> ZQBezrobotni.FieldByName('Wychowawca').AsString) then
       begin
         Background := clRed;
       end;

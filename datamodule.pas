@@ -114,7 +114,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.0.47';
+  wersja = '0.0.0.48';
 
 const
   sp_Aktualny = 'Aktualny';
