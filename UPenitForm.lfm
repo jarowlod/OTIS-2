@@ -1,10 +1,10 @@
 object PenitForm: TPenitForm
   Left = 443
-  Height = 614
+  Height = 691
   Top = 161
   Width = 713
   Caption = 'Karta Penitencjarna'
-  ClientHeight = 614
+  ClientHeight = 691
   ClientWidth = 713
   KeyPreview = True
   OnClose = FormClose
@@ -77,13 +77,13 @@ object PenitForm: TPenitForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 366
+    Height = 390
     Top = 58
     Width = 713
     Align = alTop
-    ClientHeight = 366
+    ClientHeight = 390
     ClientWidth = 713
-    TabOrder = 2
+    TabOrder = 1
     object Label2: TLabel
       Left = 16
       Height = 15
@@ -378,7 +378,7 @@ object PenitForm: TPenitForm
     object btnRejestrZat: TBitBtn
       Left = 312
       Height = 30
-      Top = 256
+      Top = 312
       Width = 152
       Caption = 'Rejestr zatrudnienia'
       Glyph.Data = {
@@ -559,11 +559,10 @@ object PenitForm: TPenitForm
       end
     end
     object DBNavigator1: TDBNavigator
-      Left = 1
+      Left = 0
       Height = 25
-      Top = 336
+      Top = 325
       Width = 105
-      Anchors = [akLeft, akBottom]
       BevelOuter = bvNone
       ChildSizing.EnlargeHorizontal = crsScaleChilds
       ChildSizing.EnlargeVertical = crsScaleChilds
@@ -627,7 +626,7 @@ object PenitForm: TPenitForm
       Visible = False
     end
     object btnRejestrProsb: TBitBtn
-      Left = 312
+      Left = 542
       Height = 30
       Top = 320
       Width = 152
@@ -672,121 +671,271 @@ object PenitForm: TPenitForm
       TabOrder = 19
     end
   end
-  object Panel3: TPanel
+  object PageControl1: TPageControl
     Left = 0
-    Height = 190
-    Top = 424
+    Height = 243
+    Top = 448
     Width = 713
+    ActivePage = TabSheet1
     Align = alClient
-    ClientHeight = 190
-    ClientWidth = 713
-    TabOrder = 1
-    object Panel4: TPanel
-      Left = 1
-      Height = 31
-      Top = 1
-      Width = 711
-      Align = alTop
-      BevelOuter = bvNone
-      ClientHeight = 31
-      ClientWidth = 711
-      TabOrder = 1
-      object Label12: TLabel
-        Left = 32
-        Height = 15
-        Top = 7
-        Width = 42
-        Caption = 'Notatki:'
-        ParentColor = False
-      end
-      object DBText7: TDBText
-        Left = 80
-        Height = 15
+    Images = Form1.ImageList1
+    TabIndex = 0
+    TabOrder = 2
+    object TabSheet1: TTabSheet
+      Caption = 'Notatki'
+      ClientHeight = 215
+      ClientWidth = 705
+      ImageIndex = 6
+      object Panel4: TPanel
+        Left = 0
+        Height = 31
         Top = 0
-        Width = 211
-        Alignment = taCenter
-        AutoSize = False
-        DataField = 'wych'
-        DataSource = DSOsNotatki
-        ParentColor = False
-      end
-      object DBText8: TDBText
-        Left = 80
-        Height = 15
-        Top = 16
-        Width = 211
-        Alignment = taCenter
-        AutoSize = False
-        DataField = 'data'
-        DataSource = DSOsNotatki
-        ParentColor = False
-      end
-      object DBNavigator2: TDBNavigator
-        Left = 312
-        Height = 25
-        Top = 6
-        Width = 105
+        Width = 705
+        Align = alTop
         BevelOuter = bvNone
-        ChildSizing.EnlargeHorizontal = crsScaleChilds
-        ChildSizing.EnlargeVertical = crsScaleChilds
-        ChildSizing.ShrinkHorizontal = crsScaleChilds
-        ChildSizing.ShrinkVertical = crsScaleChilds
-        ChildSizing.Layout = cclLeftToRightThenTopToBottom
-        ChildSizing.ControlsPerLine = 100
-        ClientHeight = 25
-        ClientWidth = 105
-        DataSource = DSOsNotatki
-        Options = []
+        ClientHeight = 31
+        ClientWidth = 705
+        Color = clForm
+        ParentColor = False
         TabOrder = 0
-        VisibleButtons = [nbPost, nbCancel]
+        object DBText7: TDBText
+          Left = 112
+          Height = 15
+          Top = 0
+          Width = 211
+          Alignment = taCenter
+          AutoSize = False
+          DataField = 'wych'
+          DataSource = DSOsNotatki
+          ParentColor = False
+        end
+        object DBText8: TDBText
+          Left = 112
+          Height = 15
+          Top = 16
+          Width = 211
+          Alignment = taCenter
+          AutoSize = False
+          DataField = 'data'
+          DataSource = DSOsNotatki
+          ParentColor = False
+        end
+        object DBNavigator2: TDBNavigator
+          Left = 0
+          Height = 25
+          Top = 6
+          Width = 105
+          BevelOuter = bvNone
+          ChildSizing.EnlargeHorizontal = crsScaleChilds
+          ChildSizing.EnlargeVertical = crsScaleChilds
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 100
+          ClientHeight = 25
+          ClientWidth = 105
+          DataSource = DSOsNotatki
+          Options = []
+          TabOrder = 0
+          VisibleButtons = [nbPost, nbCancel]
+        end
       end
-      object Image1: TImage
-        Left = 8
-        Height = 16
-        Top = 6
-        Width = 16
-        AutoSize = True
-        Picture.Data = {
-          1754506F727461626C654E6574776F726B477261706869633603000089504E47
-          0D0A1A0A0000000D49484452000000100000001008060000001FF3FF61000002
-          FD4944415478DA95934D48146118C7FFEF3B5FEBEE4CBA7EB766259191D5B646
-          5A91970E9994D0A510C383115D82880E451114441DAA43514175A94311061105
-          7D2754D8078669544648DA8791BB9A8ACEEC3AFB31F3F6EC88D7A8E73433CFCC
-          EFF9FF9FFF3B8CEF7BA76F8C14B66F0EE786215CC71500E3802673A41DBAA1D2
-          72144C4DA5C118F5044306506F7EB06EB537CF6E668D57067AAEB65644DE4533
-          C87E9C7D4BE21C03C3090C4EC491366DE4290C359139108E0B975E3154863901
-          8E868B0367D8F18E11B7A23C8FC5CC2464894382804DA494ED606FB50195331C
-          B9FB05C18A32CC52415DEEF5C3453EDC78131B63DBEFFC9AACAB2A30127606A4
-          1AA412B6C3E0975DEC5C1CF02C9C7E11851ACC855F6364019ED24243C1F59743
-          36DBDAF6CD5C5F5DA25B890C483924B2E0D294A1091B0B7C2ED2A934868482D2
-          8200B810DE806C1510A0ED75D4625BAE0D98EBAA4B759300E400AA4400827445
-          6D34870426E2293C9B541109F9092E907199A7203720E3E9A7518B6DBADC67D6
-          AF0AE922E540905F3325108B9386641A67EB8BBC69BB9FFC86EC5311D239ED81
-          6CD0263445C1C3F7318B52E833D754CFD6BBBEC7319A7010A7E87E9902556E1C
-          EDBB1679800D17FAD0A71898972743A7448A7409ABCA3474BC1FB1D8DC039DA6
-          B6B05C8F5B294FBE4613C6A70422C2C4A33D4B3CC0A673BDF8A8E6223F4706E9
-          84A05DCC327C480C0E5B4C6F7D9CCCAF5DAC2299248F1C8C161123257598C4C3
-          FD110FD078AA1B9D6A3E4A020A38CB0609709F8CDFFDC371E66B79306ED42ECB
-          13A6052E334A42824DFB5047C6103BBDDA03941FEC46BA20082387DCB3E91DA8
-          F906C67ABED275DDA526B566459B5C1C04775C8FAEA81CA3E353A84A4E40D214
-          7C0E14A3982215C285A4C8E074B493D1498CBF7A7B743AD6DAB36BE1D70F9104
-          77E6A448861F8EAA23FB13F80B030D5255A54F160E92FD3F53E9C16847C64A9C
-          172F76DC9E39177FAFCA63E52CBCB457AB5D69D8CF5F76E15E53CD4CEBDF00D9
-          0A9F08626EE8075C6914F7B7CDFF7F40B6961F0E91CD93E839DC32F3E80FEEF7
-          30430C290B7F0000000049454E44AE426082
-        }
+      object DBMemo1: TDBMemo
+        Left = 0
+        Height = 184
+        Top = 31
+        Width = 705
+        Align = alClient
+        DataField = 'notatka'
+        DataSource = DSOsNotatki
+        ScrollBars = ssAutoBoth
+        TabOrder = 1
       end
     end
-    object DBMemo1: TDBMemo
-      Left = 1
-      Height = 157
-      Top = 32
-      Width = 711
-      Align = alClient
-      DataField = 'notatka'
-      DataSource = DSOsNotatki
-      ScrollBars = ssAutoBoth
-      TabOrder = 0
+    object TabSheet2: TTabSheet
+      Caption = 'Zatrudnienie'
+      ClientHeight = 215
+      ClientWidth = 705
+      ImageIndex = 5
+      object RxDBGrid2: TRxDBGrid
+        Left = 0
+        Height = 215
+        Top = 0
+        Width = 705
+        ColumnDefValues.BlobText = '(blob)'
+        TitleButtons = True
+        AutoSort = True
+        Columns = <        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Status'
+            Width = 90
+            FieldName = 'status_zatrudnienia'
+            EditButtons = <>
+            Filter.IsNull = False
+            Filter.IsAll = True
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footer.ValueType = fvtCount
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Nazwa grupy'
+            Width = 200
+            FieldName = 'nazwa'
+            EditButtons = <>
+            Filter.IsNull = False
+            Filter.IsAll = True
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Alignment = taCenter
+            Font.Color = clMaroon
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'zat_od'
+            Width = 80
+            FieldName = 'zat_od'
+            EditButtons = <>
+            Filter.IsNull = False
+            Filter.IsAll = True
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Alignment = taCenter
+            Font.Color = clMaroon
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'zat_do'
+            Width = 80
+            FieldName = 'zat_do'
+            EditButtons = <>
+            Filter.IsNull = False
+            Filter.IsAll = True
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Powód wycofania'
+            Width = 200
+            FieldName = 'powod_wycofania'
+            EditButtons = <>
+            Filter.IsNull = False
+            Filter.IsAll = True
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+            WordWrap = True
+          end>
+        KeyStrokes = <        
+          item
+            Command = rxgcShowFindDlg
+            ShortCut = 16454
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowColumnsDlg
+            ShortCut = 16471
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowFilterDlg
+            ShortCut = 16468
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowSortDlg
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowQuickFilter
+            ShortCut = 16465
+            Enabled = True
+          end        
+          item
+            Command = rxgcHideQuickFilter
+            ShortCut = 16456
+            Enabled = True
+          end        
+          item
+            Command = rxgcSelectAll
+            ShortCut = 16449
+            Enabled = True
+          end        
+          item
+            Command = rxgcDeSelectAll
+            ShortCut = 16429
+            Enabled = True
+          end        
+          item
+            Command = rxgcInvertSelection
+            ShortCut = 16426
+            Enabled = True
+          end        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16427
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.Active = True
+        FooterOptions.RowCount = 1
+        FooterOptions.Style = tsNative
+        FooterOptions.DrawFullLine = False
+        OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+        FooterRowCount = 1
+        Align = alClient
+        AlternateColor = 16055807
+        AutoAdvance = aaNone
+        AutoEdit = False
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clHighlight
+        FixedHotColor = clNone
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        DataSource = DSOsZat
+        DefaultRowHeight = 24
+        FixedColor = clNone
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
+        ParentColor = False
+        ParentShowHint = False
+        ReadOnly = True
+        ShowHint = True
+        TabOrder = 0
+        TitleStyle = tsNative
+      end
     end
   end
   object DSOsInfo: TDataSource
@@ -1083,5 +1232,42 @@ object PenitForm: TPenitForm
     DataSet = ZQOs
     left = 544
     top = 64
+  end
+  object ZQOsZat: TZQuery
+    Connection = DM.ZConnection1
+    ReadOnly = True
+    SQL.Strings = (
+      'SELECT '
+      'zat.IDO, '
+      'zat.status_zatrudnienia, '
+      'sta.nazwa,'
+      'zat.zat_od,'
+      'zat.zat_do,'
+      'zat.powod_wycofania'
+      'FROM zat_zatrudnieni as zat'
+      '  LEFT JOIN zat_stanowiska as sta ON sta.id = zat.id_stanowiska'
+      'WHERE IDO = :ido'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
+    MasterFields = 'IDO'
+    LinkedFields = 'IDO'
+    left = 480
+    top = 504
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
+  end
+  object DSOsZat: TDataSource
+    DataSet = ZQOsZat
+    left = 560
+    top = 504
   end
 end

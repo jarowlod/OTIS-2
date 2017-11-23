@@ -15,6 +15,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionDrukujWykazOs: TAction;
     ActionNieZatrudnieni: TAction;
     ActionWydarzenia: TAction;
     ActionStatystyka: TAction;
@@ -54,6 +55,7 @@ type
     MenuItem41: TMenuItem;
     MenuItem42: TMenuItem;
     MenuItem43: TMenuItem;
+    MenuItem44: TMenuItem;
     MenuItem9: TMenuItem;
     Panel2: TPanel;
     SpkPane1: TSpkPane;

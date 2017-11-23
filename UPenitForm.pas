@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate,
   DBDateTimePicker, Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
-  StdCtrls, Buttons, datamodule, rxdbutils;
+  StdCtrls, Buttons, ComCtrls, datamodule, rxdbutils, rxdbgrid, UZatrudnieni;
 
 type
 
@@ -45,12 +45,11 @@ type
     DBText6: TDBText;
     DBText7: TDBText;
     DBText8: TDBText;
-    Image1: TImage;
+    DSOsZat: TDataSource;
     Image_os: TImage;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
-    Label12: TLabel;
     lblCelaOchronna: TLabel;
     lblCelaPalaca: TLabel;
     Label2: TLabel;
@@ -62,14 +61,18 @@ type
     Label8: TLabel;
     Label9: TLabel;
     lblKomunikat: TLabel;
+    PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
-    Panel3: TPanel;
     Panel4: TPanel;
     Panel_1: TPanel;
+    RxDBGrid2: TRxDBGrid;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
     ZQOsInfo: TZQuery;
     ZQOsNotatki: TZQuery;
     ZQOs: TZQuery;
+    ZQOsZat: TZQuery;
     ZUOsInfo: TZUpdateSQL;
     ZUOsNotatki: TZUpdateSQL;
     procedure btnRejestrProsbClick(Sender: TObject);
@@ -82,8 +85,8 @@ type
     procedure ZQOsInfoAfterPost(DataSet: TDataSet);
     procedure ZQOsNotatkiAfterPost(DataSet: TDataSet);
   private
-    SelectIDO: integer;
-    fRefresh: Boolean;
+    SelectIDO  : integer;
+    fRefresh   : Boolean;
     SourceQuery: TZQuery;
     procedure WczytajTypCeli;
     function CzyZatrudniony: Boolean;
@@ -98,7 +101,7 @@ var
   PenitForm: TPenitForm;
 
 implementation
-uses UZatrudnieni, UPenitAktaArch, UPenitWywiad, URejestrProsbOs;
+uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs;
 {$R *.lfm}
 
 { TPenitForm }
@@ -244,7 +247,12 @@ begin
 
   //typ celi dla określenia Ochronki i palenia
   WczytajTypCeli;
+
+  //zatrudnienie
   btnRejestrZat.Enabled:= CzyZatrudniony;
+    ZQOsZat.Close;
+    ZQOsZat.ParamByName('ido').AsInteger:= SelectIDO;
+    ZQOsZat.Open;
 end;
 
 procedure TPenitForm.SetIDO(ido: integer; RefreshSourceQuery: TZQuery);

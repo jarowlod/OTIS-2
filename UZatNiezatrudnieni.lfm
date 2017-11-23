@@ -818,6 +818,7 @@ object NieZatrudnieni: TNieZatrudnieni
   end
   object ZQZatrudnieni: TZQuery
     Connection = DM.ZConnection1
+    ReadOnly = True
     SQL.Strings = (
       'SELECT '
       'zat.IDO, '
