@@ -55,7 +55,7 @@ var
 
 implementation
 uses UKomunikatorNowaWiad;
-{$R *.lfm}
+{$R *.frm}
 
 { TKomunikator }
 

@@ -44,7 +44,7 @@ var
 
 implementation
 uses Clipbrd;
-{$R *.lfm}
+{$R *.frm}
 
 { TAktualizacjaOs }
 

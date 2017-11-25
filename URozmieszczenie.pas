@@ -136,7 +136,7 @@ var
   Rozmieszczenie: TRozmieszczenie;
 
 implementation
-{$R *.lfm}
+{$R *.frm}
 uses UPenitForm;
 
 { TRozmieszczenie }

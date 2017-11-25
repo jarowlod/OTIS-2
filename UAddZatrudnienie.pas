@@ -144,7 +144,7 @@ var
 
 implementation
 uses UOsadzeni, UStanowiska, DateUtils, UKomunikatorNowaWiad;
-{$R *.lfm}
+{$R *.frm}
 
 { TAddZatrudnienie }
 

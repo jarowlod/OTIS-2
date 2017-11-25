@@ -39,7 +39,7 @@ var
 
 implementation
 uses UAdresyJednostek;
-{$R *.lfm}
+{$R *.frm}
 
 { TPenitWywiad }
 

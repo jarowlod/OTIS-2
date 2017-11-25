@@ -54,7 +54,7 @@ var
 
 implementation
 uses dateutils;
-{$R *.lfm}
+{$R *.frm}
 
 { TZatrudnienieGrafik }
 

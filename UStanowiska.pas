@@ -166,7 +166,7 @@ var
 
 implementation
 uses UAddStanowiska, LR_DSet, UZatrudnienieGrafik, UAddZatrudnienie, UZatrudnieni, Clipbrd;
-{$R *.lfm}
+{$R *.frm}
 
 { TStanowiska }
 

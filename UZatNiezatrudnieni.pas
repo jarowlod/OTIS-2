@@ -47,7 +47,7 @@ var
 
 implementation
 uses UPenitForm, rxdbutils;
-{$R *.lfm}
+{$R *.frm}
 
 { TNieZatrudnieni }
 

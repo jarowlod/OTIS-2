@@ -73,7 +73,7 @@ var
 
 implementation
 uses URejestrProsbDodaj, LR_DSet;
-{$R *.lfm}
+{$R *.frm}
 
 { TRejestrProsbOs }
 

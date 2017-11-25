@@ -46,7 +46,7 @@ var
 
 implementation
 uses Unit1;
-{$R *.lfm}
+{$R *.frm}
 
 { TOknoKomunikatu }
 

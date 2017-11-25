@@ -6,7 +6,7 @@
     <BuildModes Active="Default"/>
     <Units Count="119">
       <Unit0>
-        <Filename Value="project1.lpr"/>
+        <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos Y="27"/>
@@ -429,14 +429,14 @@
         <UsageCount Value="8"/>
       </Unit38>
       <Unit39>
-        <Filename Value="unit1.lfm"/>
+        <Filename Value="unit1.frm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="641"/>
         <CursorPos X="21" Y="656"/>
         <UsageCount Value="9"/>
-        <DefaultSyntaxHighlighter Value="LFM"/>
+        <DefaultSyntaxHighlighter Value="FRM"/>
       </Unit39>
       <Unit40>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\datih.inc"/>

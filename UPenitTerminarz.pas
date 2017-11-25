@@ -157,7 +157,7 @@ var
 
 implementation
 
-{$R *.lfm}
+{$R *.frm}
 
 { TPenitTerminarz }
 

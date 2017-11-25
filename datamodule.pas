@@ -126,7 +126,7 @@ const
 
 implementation
 uses strutils;
-{$R *.lfm}
+{$R *.frm}
 
 { TDM }
 

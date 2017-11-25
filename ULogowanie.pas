@@ -45,7 +45,7 @@ var
 implementation
 uses datamodule;
 
-{$R *.lfm}
+{$R *.frm}
 
 procedure TLogowanie.FormCreate(Sender: TObject);
 begin

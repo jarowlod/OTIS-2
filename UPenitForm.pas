@@ -102,7 +102,7 @@ var
 
 implementation
 uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs;
-{$R *.lfm}
+{$R *.frm}
 
 { TPenitForm }
 

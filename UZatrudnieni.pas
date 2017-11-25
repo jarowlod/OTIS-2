@@ -316,7 +316,7 @@ var
 
 implementation
 uses UAddZatrudnienie, Clipbrd, UZatZaswiadczenie, UZatWniosekUrlopowy, UStawkiPlac, LR_DSet;
-{$R *.lfm}
+{$R *.frm}
 
 { TZatrudnieni }
 

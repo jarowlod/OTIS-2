@@ -54,7 +54,7 @@ var
 
 implementation
 uses datamodule;
-{$R *.lfm}
+{$R *.frm}
 
 { TAddStanowiska }
 

@@ -132,7 +132,7 @@ var
 
 implementation
 uses UAktualizacjaOs;
-{$R *.lfm}
+{$R *.frm}
 
 { TKomunikatorNowaWiad }
 

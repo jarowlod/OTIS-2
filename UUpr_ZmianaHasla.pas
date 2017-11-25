@@ -38,7 +38,7 @@ var
 
 implementation
 
-{$R *.lfm}
+{$R *.frm}
 
 { TUpr_ZmianaHasla }
 
