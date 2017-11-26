@@ -15,6 +15,7 @@ type
 
   TDM = class(TDataModule)
     DSOsadzeni: TDataSource;
+    ImageList1: TImageList;
     IniPropStorage1: TIniPropStorage;
     ZConnection1: TZConnection;
     ZQOsadzeni: TZQuery;

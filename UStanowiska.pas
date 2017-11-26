@@ -189,8 +189,42 @@ begin
   NewSelect; // stanowiska open
   ZQZatrudnieni.Open;
   DateTimePicker2.Date:= Date;
+  PageControl1.TabIndex:= 0;
 end;
 
+procedure TStanowiska.NewSelect;
+var sstatus: char;
+    snazwa: string;
+begin
+  case RadioGroup1.ItemIndex of
+       0: sstatus:='A';
+       1: sstatus:='U';
+       2: sstatus:='%';
+  end;
+  if Edit1.Text<>'' then snazwa:= '%'+ Edit1.Text+ '%' else snazwa:='%';
+
+  if sstatus='%' then
+      ZQStanowiska.SQL.Text:='SELECT * FROM zat_stanowiska WHERE (nazwa LIKE :nazwa)'
+  else
+      begin
+        ZQStanowiska.SQL.Text:='SELECT * FROM zat_stanowiska WHERE (stan= :status) AND (nazwa LIKE :nazwa)';
+        ZQStanowiska.ParamByName('status').AsString:= sstatus;
+      end;
+
+  if cbForma.ItemIndex>0 then
+  begin
+    ZQStanowiska.SQL.Text:= ZQStanowiska.SQL.Text + 'AND(Forma = :forma)';
+    ZQStanowiska.ParamByName('forma').AsString:= cbForma.Text;
+  end;
+  if cbSystem.ItemIndex>0 then
+  begin
+    ZQStanowiska.SQL.Text:= ZQStanowiska.SQL.Text + 'AND(System = :system)';
+    ZQStanowiska.ParamByName('system').AsString:= cbSystem.Text;
+  end;
+
+  ZQStanowiska.ParamByName('nazwa').AsString:= snazwa;
+  ZQStanowiska.Open;
+end;
 
 procedure TStanowiska.RadioGroup1SelectionChanged(Sender: TObject);
 begin
@@ -463,40 +497,6 @@ begin
     if ShowModal = mrOK then RefreshQuery(ZQStanowiska);
     Free;
   end;
-end;
-
-procedure TStanowiska.NewSelect;
-var sstatus: char;
-    snazwa: string;
-begin
-  case RadioGroup1.ItemIndex of
-       0: sstatus:='A';
-       1: sstatus:='U';
-       2: sstatus:='%';
-  end;
-  if Edit1.Text<>'' then snazwa:= '%'+ Edit1.Text+ '%' else snazwa:='%';
-
-  if sstatus='%' then
-      ZQStanowiska.SQL.Text:='SELECT * FROM zat_stanowiska WHERE (nazwa LIKE :nazwa)'
-  else
-      begin
-        ZQStanowiska.SQL.Text:='SELECT * FROM zat_stanowiska WHERE (stan= :status) AND (nazwa LIKE :nazwa)';
-        ZQStanowiska.ParamByName('status').AsString:= sstatus;
-      end;
-
-  if cbForma.ItemIndex>0 then
-  begin
-    ZQStanowiska.SQL.Text:= ZQStanowiska.SQL.Text + 'AND(Forma = :forma)';
-    ZQStanowiska.ParamByName('forma').AsString:= cbForma.Text;
-  end;
-  if cbSystem.ItemIndex>0 then
-  begin
-    ZQStanowiska.SQL.Text:= ZQStanowiska.SQL.Text + 'AND(System = :system)';
-    ZQStanowiska.ParamByName('system').AsString:= cbSystem.Text;
-  end;
-
-  ZQStanowiska.ParamByName('nazwa').AsString:= snazwa;
-  ZQStanowiska.Open;
 end;
 
 //=============== TRYB WYBORU GRUPY

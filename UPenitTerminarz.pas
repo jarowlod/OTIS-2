@@ -184,6 +184,7 @@ begin
   NewSelect;
 
   FirstShowTerminarz:= true;
+  PageControl1.TabIndex:= 1;
 end;
 
 procedure TPenitTerminarz.FormClose(Sender: TObject;

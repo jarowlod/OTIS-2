@@ -34,7 +34,6 @@ type
     ActionProsbyOsadzonych: TAction;
     ActionProsbyOsadzonego: TAction;
     ActionRozmieszczenie: TAction;
-    ImageList1: TImageList;
     Label2: TLabel;
     MenuItem10: TMenuItem;
     MenuItem23: TMenuItem;
@@ -65,7 +64,7 @@ type
     SpkSmallButton3: TSpkSmallButton;
     SpkTab1: TSpkTab;
     SpkTab2: TSpkTab;
-    Timer2: TTimer;
+    Timer2Komunikaty: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -110,7 +109,8 @@ type
     PopupMenu1: TPopupMenu;
     RxDBGrid1: TRxDBGrid;
     StatusBar1: TStatusBar;
-    Timer1: TTimer;
+    Timer1Wyszukaj: TTimer;
+    procedure ActionDrukujWykazOsExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
     procedure ActionKomunikatDoExecute(Sender: TObject);
     procedure ActionKomunikatorExecute(Sender: TObject);
@@ -135,7 +135,7 @@ type
       Cell: TGridCoord; Column: TRxColumn; var HintStr: string;
       var Processed: boolean);
     procedure RxDBGrid1DblClick(Sender: TObject);
-    procedure Timer2Timer(Sender: TObject);
+    procedure Timer2KomunikatyTimer(Sender: TObject);
     procedure ZatrudnienieAddExecute(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: char);
@@ -145,7 +145,7 @@ type
     procedure MenuItem5Click(Sender: TObject);
     procedure RxDBGrid1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure Timer1Timer(Sender: TObject);
+    procedure Timer1WyszukajTimer(Sender: TObject);
   private
     { private declarations }
     fRecCount: integer;
@@ -171,7 +171,7 @@ implementation
 uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr_ZmianaHasla, URozmieszczenie,
      UUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
-     UPenitWydarzenia, USaper, UZatNiezatrudnieni;
+     UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz;
 {$R *.frm}
 
 { TForm1 }
@@ -180,7 +180,7 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   fRecCount:=0;
   DM.DSOsadzeni.OnDataChange:= @StatusBarRefresh;
-  Timer1Timer(Sender); // inicjujemy widok osadzonych.
+  Timer1WyszukajTimer(Sender); // inicjujemy widok osadzonych.
   isExecuteSQL := true;
   RefreshUprawnienia;
 
@@ -251,7 +251,7 @@ begin
   ActionTerminarz.Enabled      := (DM.Wychowawca<>'');      // tylko wychowawca
   ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>'');// tylko wychowawca
 
-  Timer2.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
+  Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
 
 procedure TForm1.Zaloguj;
@@ -288,14 +288,14 @@ begin
   begin
       Key:=0;
       Edit1.SetFocus;
-      if not isExecuteSQL then Timer1Timer(Sender);  // wymuszam reakcje timera po wcisnieciu Entera
+      if not isExecuteSQL then Timer1WyszukajTimer(Sender);  // wymuszam reakcje timera po wcisnieciu Entera
       WyborDomyslny;
   end;
 end;
 
-procedure TForm1.Timer1Timer(Sender: TObject);
+procedure TForm1.Timer1WyszukajTimer(Sender: TObject);
 begin
-  Timer1.Enabled:= false;
+  Timer1Wyszukaj.Enabled:= false;
     try
       with DM.ZQOsadzeni do
       begin
@@ -327,8 +327,8 @@ end;
 
 procedure TForm1.Edit1Change(Sender: TObject);
 begin
-  Timer1.Interval:= 500;
-  Timer1.Enabled := true;
+  Timer1Wyszukaj.Interval:= 500;
+  Timer1Wyszukaj.Enabled := true;
   isExecuteSQL   := false;
 end;
 
@@ -386,10 +386,10 @@ begin
   WyborDomyslny;
 end;
 
-procedure TForm1.Timer2Timer(Sender: TObject);
+procedure TForm1.Timer2KomunikatyTimer(Sender: TObject);
 begin
-  Timer2.Enabled:=false;
-  if Timer2.Interval = 1000 then Timer2.Interval:= DM.TimerInterval;
+  Timer2Komunikaty.Enabled:=false;
+  if Timer2Komunikaty.Interval = 1000 then Timer2Komunikaty.Interval:= DM.TimerInterval;
 
   OknoKomunikatu:= TOknoKomunikatu.Create(Self);
 
@@ -399,7 +399,7 @@ begin
 
   FreeAndNil(OknoKomunikatu);
 
-  Timer2.Enabled:=true;
+  Timer2Komunikaty.Enabled:=true;
 end;
 
 
@@ -420,6 +420,14 @@ begin
        SetIDO( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
        ShowModal;
        Free;
+  end;
+end;
+
+procedure TForm1.ActionDrukujWykazOsExecute(Sender: TObject);
+begin
+  with TDrukWykazOsadz.Create(Self) do
+  begin
+       Show;
   end;
 end;
 
@@ -553,14 +561,14 @@ begin
   if Key=#13 then    // ENTER
   begin
       Edit1.SetFocus;
-      if not isExecuteSQL then Timer1Timer(Sender);  // wymuszam reakcje timera po wcisnieciu Entera
+      if not isExecuteSQL then Timer1WyszukajTimer(Sender);  // wymuszam reakcje timera po wcisnieciu Entera
       WyborDomyslny;
   end else
   if Key=#27 then    // ESC
   begin
       Edit1.Text:='';
       Edit1.SetFocus;
-      if not isExecuteSQL then Timer1Timer(Sender);
+      if not isExecuteSQL then Timer1WyszukajTimer(Sender);
   end else
   if Key=' ' then Key:=#0;     // zabraniamy wpisywania spacji
 end;
@@ -596,7 +604,7 @@ var Teraz: TDateTime;
          Teraz:= Now;
          repeat
           Application.ProcessMessages; // Pozwalamy aplikacji obsłużyć komunikaty
-         until Teraz+1/SecsPerDay<Now;
+         until Teraz+1/SecsPerDay < Now;
          Clipboard.AsText:= ClipbrdSaveText;
          ClipbrdSaveText:= '';
     end;

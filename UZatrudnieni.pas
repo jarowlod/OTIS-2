@@ -341,6 +341,113 @@ begin
 
   ShowOsIDO:=0;
   DateTimePicker3.Date:= Date;  // Data dla wydruku Kart Pracy
+  PageControl1.TabIndex:= 0;
+  PageControl2.TabIndex:= 0;
+end;
+
+procedure TZatrudnieni.NewSelect;
+var spobyt     : string;
+    sstatus_zatrudnienia: string;
+    snazwisko  : string;
+    sstanowisko: string;
+    smiejsce   : string;
+    sFindData  : string;
+begin
+  if DisableNewSelect then exit;
+
+  snazwisko:= Trim( Edit1.Text) + '%';
+
+  ZQZatrudnieni.SQL.Text:= SQLZatrudnieni + ' WHERE';
+
+  // STATUS POBYTU
+  case RadioGroup2.ItemIndex of
+       0: spobyt:= sp_Aktualny;
+       1: spobyt:= sp_Uprzedni;
+       2: spobyt:='%';
+  end;
+  if spobyt<>'%' then
+      begin
+        ZQZatrudnieni.SQL.Add(' (pobyt = :pobyt) AND');
+        ZQZatrudnieni.ParamByName('pobyt').AsString:= spobyt;
+      end;
+
+  // STATUS ZATRUDNIENIA
+  case RadioGroup1.ItemIndex of
+       0: sstatus_zatrudnienia:= sz_Zatrudniony;
+       1: sstatus_zatrudnienia:= sz_Wycofany;
+       2: sstatus_zatrudnienia:= sz_Oczekujacy;
+       3: sstatus_zatrudnienia:= '%'; //wszystkie
+  end;
+  if sstatus_zatrudnienia<>'%' then
+      begin
+        ZQZatrudnieni.SQL.Add(' (zat.status_zatrudnienia = :status_zat) AND');
+        ZQZatrudnieni.ParamByName('status_zat').AsString:= sstatus_zatrudnienia;
+      end;
+
+  // ZAKRES DATY ZATRUDNIENIA
+  if CheckBox1.Checked then
+      begin
+        case ComboBox1.ItemIndex of
+             0: sFindData:='zat.data_dodania'; // Data dodania
+             1: sFindData:='zat.zat_od'; // Data zatrudnienia
+             2: sFindData:='zat.zat_do'; // Data wycofania
+             3: sFindData:='data_badania'; // Data badania
+             4: sFindData:='data_nastepnego_badania'; // Data następnego badania
+             5: sFindData:='data_nastepnego_BHP'; // Data następnego BHP
+             6: sFindData:='urlop_od'; // Data rozpoczęcia urlopu
+             7: sFindData:='urlop_do'; // Data zakończenia urlopu
+             8: sFindData:='data_nastepnego_urlopu'; // Data planowanego urlopu
+        end;
+        ZQZatrudnieni.SQL.Add(' ('+sFindData+' BETWEEN :data_od AND :data_do) AND');
+        ZQZatrudnieni.ParamByName('data_od').AsDate:= DateTimePicker1.Date;
+        ZQZatrudnieni.ParamByName('data_do').AsDate:= DateTimePicker2.Date;
+      end;
+
+  // ZATRUDNIENI NA DANY DZIEŃ
+  if cbZatNaDzien.Checked then
+      begin
+        ZQZatrudnieni.SQL.Add(' (:data_na_dzien BETWEEN zat.zat_od AND IFNULL(zat.zat_do, CURDATE() ) ) AND');
+        ZQZatrudnieni.ParamByName('data_na_dzien').AsDate:= dtZatNaDzien.Date;
+      end;
+
+  //Zmienili Celę
+  if CheckBox3.Checked then
+     begin
+       ZQZatrudnieni.SQL.Add(' (zat.POC <> os.POC) AND');
+     end;
+  //Zmienili Klasyfikację
+  if CheckBox4.Checked then
+     begin
+       ZQZatrudnieni.SQL.Add(' (zat.Klasyf <> os.Klasyf) AND');
+     end;
+
+  // PO STANOWISKU
+  sstanowisko:= Trim(edNazwaGrupy.Text);
+  if cbNazwaGrupy.Checked and (sstanowisko<>'') then
+      begin
+        ZQZatrudnieni.SQL.Add(' (sta.nazwa LIKE :stanowisko) AND');
+        ZQZatrudnieni.ParamByName('stanowisko').AsString:= '%'+ sstanowisko +'%';
+      end;
+
+  // PO MIEJSCU PRACY
+  smiejsce:= Trim(edMiejsce.Text);
+  if cbMiejsce.Checked and (smiejsce<>'') then
+      begin
+        ZQZatrudnieni.SQL.Add(' (sta.miejsce LIKE :miejsce) AND');
+        ZQZatrudnieni.ParamByName('miejsce').AsString:= '%'+ smiejsce +'%';
+      end;
+
+  // PO NAZWISKU
+  ZQZatrudnieni.SQL.Add(' (zat.Nazwisko LIKE :nazwisko)');
+  ZQZatrudnieni.ParamByName('nazwisko').AsString:= snazwisko;
+
+  //Zmienili pobyt
+  if CheckBox5.Checked then
+     begin
+       ZQZatrudnieni.SQL.Add(' HAVING new_pobyt <> pobyt');
+     end;
+
+  ZQZatrudnieni.Open;
 end;
 
 procedure TZatrudnieni.RadioGroup1SelectionChanged(Sender: TObject);
@@ -649,111 +756,6 @@ end;
 procedure TZatrudnieni.ComboBox1Change(Sender: TObject);
 begin
   if CheckBox1.Checked then NewSelect;
-end;
-
-procedure TZatrudnieni.NewSelect;
-var spobyt     : string;
-    sstatus_zatrudnienia: string;
-    snazwisko  : string;
-    sstanowisko: string;
-    smiejsce   : string;
-    sFindData  : string;
-begin
-  if DisableNewSelect then exit;
-
-  snazwisko:= Trim( Edit1.Text) + '%';
-
-  ZQZatrudnieni.SQL.Text:= SQLZatrudnieni + ' WHERE';
-
-  // STATUS POBYTU
-  case RadioGroup2.ItemIndex of
-       0: spobyt:= sp_Aktualny;
-       1: spobyt:= sp_Uprzedni;
-       2: spobyt:='%';
-  end;
-  if spobyt<>'%' then
-      begin
-        ZQZatrudnieni.SQL.Add(' (pobyt = :pobyt) AND');
-        ZQZatrudnieni.ParamByName('pobyt').AsString:= spobyt;
-      end;
-
-  // STATUS ZATRUDNIENIA
-  case RadioGroup1.ItemIndex of
-       0: sstatus_zatrudnienia:= sz_Zatrudniony;
-       1: sstatus_zatrudnienia:= sz_Wycofany;
-       2: sstatus_zatrudnienia:= sz_Oczekujacy;
-       3: sstatus_zatrudnienia:= '%'; //wszystkie
-  end;
-  if sstatus_zatrudnienia<>'%' then
-      begin
-        ZQZatrudnieni.SQL.Add(' (zat.status_zatrudnienia = :status_zat) AND');
-        ZQZatrudnieni.ParamByName('status_zat').AsString:= sstatus_zatrudnienia;
-      end;
-
-  // ZAKRES DATY ZATRUDNIENIA
-  if CheckBox1.Checked then
-      begin
-        case ComboBox1.ItemIndex of
-             0: sFindData:='zat.data_dodania'; // Data dodania
-             1: sFindData:='zat.zat_od'; // Data zatrudnienia
-             2: sFindData:='zat.zat_do'; // Data wycofania
-             3: sFindData:='data_badania'; // Data badania
-             4: sFindData:='data_nastepnego_badania'; // Data następnego badania
-             5: sFindData:='data_nastepnego_BHP'; // Data następnego BHP
-             6: sFindData:='urlop_od'; // Data rozpoczęcia urlopu
-             7: sFindData:='urlop_do'; // Data zakończenia urlopu
-             8: sFindData:='data_nastepnego_urlopu'; // Data planowanego urlopu
-        end;
-        ZQZatrudnieni.SQL.Add(' ('+sFindData+' BETWEEN :data_od AND :data_do) AND');
-        ZQZatrudnieni.ParamByName('data_od').AsDate:= DateTimePicker1.Date;
-        ZQZatrudnieni.ParamByName('data_do').AsDate:= DateTimePicker2.Date;
-      end;
-
-  // ZATRUDNIENI NA DANY DZIEŃ
-  if cbZatNaDzien.Checked then
-      begin
-        ZQZatrudnieni.SQL.Add(' (:data_na_dzien BETWEEN zat.zat_od AND IFNULL(zat.zat_do, CURDATE() ) ) AND');
-        ZQZatrudnieni.ParamByName('data_na_dzien').AsDate:= dtZatNaDzien.Date;
-      end;
-
-  //Zmienili Celę
-  if CheckBox3.Checked then
-     begin
-       ZQZatrudnieni.SQL.Add(' (zat.POC <> os.POC) AND');
-     end;
-  //Zmienili Klasyfikację
-  if CheckBox4.Checked then
-     begin
-       ZQZatrudnieni.SQL.Add(' (zat.Klasyf <> os.Klasyf) AND');
-     end;
-
-  // PO STANOWISKU
-  sstanowisko:= Trim(edNazwaGrupy.Text);
-  if cbNazwaGrupy.Checked and (sstanowisko<>'') then
-      begin
-        ZQZatrudnieni.SQL.Add(' (sta.nazwa LIKE :stanowisko) AND');
-        ZQZatrudnieni.ParamByName('stanowisko').AsString:= '%'+ sstanowisko +'%';
-      end;
-
-  // PO MIEJSCU PRACY
-  smiejsce:= Trim(edMiejsce.Text);
-  if cbMiejsce.Checked and (smiejsce<>'') then
-      begin
-        ZQZatrudnieni.SQL.Add(' (sta.miejsce LIKE :miejsce) AND');
-        ZQZatrudnieni.ParamByName('miejsce').AsString:= '%'+ smiejsce +'%';
-      end;
-
-  // PO NAZWISKU
-  ZQZatrudnieni.SQL.Add(' (zat.Nazwisko LIKE :nazwisko)');
-  ZQZatrudnieni.ParamByName('nazwisko').AsString:= snazwisko;
-
-  //Zmienili pobyt
-  if CheckBox5.Checked then
-     begin
-       ZQZatrudnieni.SQL.Add(' HAVING new_pobyt <> pobyt');
-     end;
-
-  ZQZatrudnieni.Open;
 end;
 
 // szczegóły zatrudnienia wybranego osadzonego we wszystkich pobytach

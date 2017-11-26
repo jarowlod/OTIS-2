@@ -67,8 +67,8 @@ type
     Panel4: TPanel;
     Panel_1: TPanel;
     RxDBGrid2: TRxDBGrid;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
+    TabSheetNotatnik: TTabSheet;
+    TabSheetZatrudnienie: TTabSheet;
     ZQOsInfo: TZQuery;
     ZQOsNotatki: TZQuery;
     ZQOs: TZQuery;
@@ -110,16 +110,7 @@ procedure TPenitForm.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
   fRefresh := false;
-end;
-
-procedure TPenitForm.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  if fRefresh then exit; // jeśli jest w widoku terminarza to exit
-  if Char(Key) =#27 then    // ESC
-  begin
-    close;
-  end;
+  PageControl1.TabIndex:= 0;
 end;
 
 procedure TPenitForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -128,59 +119,6 @@ begin
   if ZQOsInfo.State    in [dsEdit, dsInsert] then ZQOsInfo.Post;
   if ZQOsNotatki.State in [dsEdit, dsInsert] then ZQOsNotatki.Post;
   //----------------------------------------------------------------------------
-end;
-
-procedure TPenitForm.ZQOsInfoAfterPost(DataSet: TDataSet);
-begin
-  if fRefresh then RefreshQuery(SourceQuery);
-  DataSet.Refresh;  // uaktualnia dane kto i kiedy modyfikował
-end;
-
-procedure TPenitForm.ZQOsNotatkiAfterPost(DataSet: TDataSet);
-begin
-  DataSet.Refresh;
-end;
-
-procedure TPenitForm.btnRejestrZatClick(Sender: TObject);
-begin
-  with TZatrudnieni.Create(Self) do
-  begin
-       ShowZatrudnienieOsadzonego( SelectIDO, ZQOs.FieldByName('NAZWISKO').AsString );
-       ShowModal;
-       Free;
-  end;
-end;
-
-procedure TPenitForm.btnRejestrProsbClick(Sender: TObject);
-begin
-  with TRejestrProsbOs.Create(Parent) do
-  begin
-       SetIDO( SelectIDO );
-       ShowModal;
-       Free;
-  end;
-end;
-
-procedure TPenitForm.BitBtn2Click(Sender: TObject);
-begin
-  if SelectIDO = 0 then exit;
-  with TPenitAktaArch.Create(Self) do
-  begin
-       SetIDO( SelectIDO );
-       ShowModal;
-       Free;
-  end;
-end;
-
-procedure TPenitForm.BitBtn3Click(Sender: TObject);
-begin
-  if SelectIDO = 0 then exit;
-  with TPenitWywiad.Create(Self) do
-  begin
-       SetIDO( SelectIDO );
-       ShowModal;
-       Free;
-  end;
 end;
 
 procedure TPenitForm.SetIDO(ido: integer);
@@ -260,6 +198,69 @@ begin
   SourceQuery:= RefreshSourceQuery;
   fRefresh:= true;
   SetIDO(ido);
+end;
+
+procedure TPenitForm.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if fRefresh then exit; // jeśli jest w widoku terminarza to exit
+  if Char(Key) =#27 then    // ESC
+  begin
+    close;
+  end;
+end;
+
+procedure TPenitForm.ZQOsInfoAfterPost(DataSet: TDataSet);
+begin
+  if fRefresh then RefreshQuery(SourceQuery);
+  DataSet.Refresh;  // uaktualnia dane kto i kiedy modyfikował
+end;
+
+procedure TPenitForm.ZQOsNotatkiAfterPost(DataSet: TDataSet);
+begin
+  DataSet.Refresh;
+end;
+
+procedure TPenitForm.btnRejestrZatClick(Sender: TObject);
+begin
+  with TZatrudnieni.Create(Self) do
+  begin
+       ShowZatrudnienieOsadzonego( SelectIDO, ZQOs.FieldByName('NAZWISKO').AsString );
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TPenitForm.btnRejestrProsbClick(Sender: TObject);
+begin
+  with TRejestrProsbOs.Create(Parent) do
+  begin
+       SetIDO( SelectIDO );
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TPenitForm.BitBtn2Click(Sender: TObject);
+begin
+  if SelectIDO = 0 then exit;
+  with TPenitAktaArch.Create(Self) do
+  begin
+       SetIDO( SelectIDO );
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TPenitForm.BitBtn3Click(Sender: TObject);
+begin
+  if SelectIDO = 0 then exit;
+  with TPenitWywiad.Create(Self) do
+  begin
+       SetIDO( SelectIDO );
+       ShowModal;
+       Free;
+  end;
 end;
 
 function TPenitForm.UprawnieniaDoEdycji(ido: integer): boolean;

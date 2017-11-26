@@ -1,14 +1,14 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 72
+  Left = 115
   Height = 853
-  Top = 85
+  Top = 99
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 853
   ClientWidth = 1359
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   WindowState = wsMaximized
   object Panel2: TPanel
     Left = 0
@@ -422,8 +422,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 100
             FieldName = 'Nazwisko'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -440,8 +438,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 100
             FieldName = 'Imie'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -456,8 +452,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 100
             FieldName = 'Ojciec'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -474,8 +468,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 40
             FieldName = 'Klasyf'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -492,8 +484,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 40
             FieldName = 'POC'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -509,8 +499,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 80
             FieldName = 'status_zatrudnienia'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -525,8 +513,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 200
             FieldName = 'nazwa'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -543,8 +529,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 70
             FieldName = 'zat_od'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -561,8 +545,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 70
             FieldName = 'zat_do'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -577,8 +559,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 50
             FieldName = 'rodzaj_zatrudnienia'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -593,8 +573,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 50
             FieldName = 'system'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -614,8 +592,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 50
             FieldName = 'forma'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -638,8 +614,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 80
             FieldName = 'data_nastepnego_badania'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -657,8 +631,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 75
             FieldName = 'data_nastepnego_urlopu'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -674,8 +646,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 75
             FieldName = 'data_dodania'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -691,8 +661,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 75
             FieldName = 'data_nastepnego_BHP'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -708,8 +676,6 @@ object Zatrudnieni: TZatrudnieni
             Width = 50
             FieldName = 'pobyt'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -777,6 +743,8 @@ object Zatrudnieni: TZatrudnieni
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         Align = alClient
@@ -793,12 +761,12 @@ object Zatrudnieni: TZatrudnieni
         DefaultRowHeight = 24
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-        ParentColor = False
         ParentShowHint = False
         PopupMenu = PopupMenu1
         ReadOnly = True
         ShowHint = True
         TabOrder = 0
+        TitleImageList = ImageList1
         TitleStyle = tsNative
         OnDblClick = RxDBGrid1DblClick
         OnKeyPress = Edit1KeyPress
@@ -811,12 +779,13 @@ object Zatrudnieni: TZatrudnieni
       Width = 503
       ActivePage = tabSzczegolyOs
       Align = alRight
-      Images = Form1.ImageList1
+      Images = DM.ImageList1
+      TabHeight = 25
       TabIndex = 0
       TabOrder = 1
       object tabSzczegolyOs: TTabSheet
         Caption = 'Szczegóły osadzonego'
-        ClientHeight = 653
+        ClientHeight = 648
         ClientWidth = 495
         ImageIndex = 5
         object Panel5: TPanel
@@ -1125,7 +1094,7 @@ object Zatrudnieni: TZatrudnieni
         object GroupBox3: TGroupBox
           Left = 0
           Height = 64
-          Top = 589
+          Top = 584
           Width = 495
           Align = alBottom
           Caption = 'Modyfikacje:'
@@ -1215,17 +1184,18 @@ object Zatrudnieni: TZatrudnieni
         end
         object PageControl2: TPageControl
           Left = 0
-          Height = 397
+          Height = 392
           Top = 192
           Width = 495
           ActivePage = tabInfoZat
           Align = alClient
-          Images = Form1.ImageList1
+          Images = DM.ImageList1
+          TabHeight = 25
           TabIndex = 0
           TabOrder = 1
           object tabInfoZat: TTabSheet
             Caption = 'Informacje o zatrudnieniu'
-            ClientHeight = 369
+            ClientHeight = 359
             ClientWidth = 487
             ImageIndex = 6
             object plGradient1: TplGradient
@@ -1577,7 +1547,7 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInfoStanowisko: TTabSheet
             Caption = 'Informacje o Stanowisku'
-            ClientHeight = 534
+            ClientHeight = 524
             ClientWidth = 487
             ImageIndex = 7
             object Label15: TLabel
@@ -1705,8 +1675,8 @@ object Zatrudnieni: TZatrudnieni
             end
             object DBMemo1: TDBMemo
               Left = 6
-              Height = 0
-              Top = 184
+              Height = 192
+              Top = 176
               Width = 474
               Anchors = [akTop, akLeft, akBottom]
               DataField = 'opis'
@@ -1787,7 +1757,7 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInne: TTabSheet
             Caption = 'inne'
-            ClientHeight = 534
+            ClientHeight = 524
             ClientWidth = 487
             ImageIndex = 3
             object Label12: TLabel
@@ -2044,12 +2014,12 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabNotatnik: TTabSheet
         Caption = 'Notatnik'
-        ClientHeight = 818
+        ClientHeight = 813
         ClientWidth = 495
         ImageIndex = 2
         object DBMemo2: TDBMemo
           Left = 0
-          Height = 652
+          Height = 628
           Top = 0
           Width = 495
           Align = alClient
@@ -2062,7 +2032,7 @@ object Zatrudnieni: TZatrudnieni
         object DBNavigator1: TDBNavigator
           Left = 0
           Height = 25
-          Top = 652
+          Top = 628
           Width = 495
           Align = alBottom
           BevelOuter = bvNone
@@ -2082,7 +2052,7 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabWydruki: TTabSheet
         Caption = 'Wydruki'
-        ClientHeight = 818
+        ClientHeight = 813
         ClientWidth = 495
         ImageIndex = 4
         object lblDruk_OsadzeniAll: TLabel
@@ -2667,8 +2637,8 @@ object Zatrudnieni: TZatrudnieni
       ''
     )
     Params = <>
-    left = 57
-    top = 163
+    Left = 57
+    Top = 163
     object ZQZatrudnieniid: TLargeintField
       FieldKind = fkData
       FieldName = 'id'
@@ -3201,8 +3171,8 @@ object Zatrudnieni: TZatrudnieni
   end
   object DSZatrudnieni: TDataSource
     DataSet = ZQZatrudnieni
-    left = 57
-    top = 226
+    Left = 57
+    Top = 226
   end
   object ZUZatrudnieni: TZUpdateSQL
     DeleteSQL.Strings = (
@@ -3220,8 +3190,8 @@ object Zatrudnieni: TZatrudnieni
       'SELECT * FROM zat_zatrudnieni WHERE id=:OLD_id'
     )
     UseSequenceFieldForRefreshSQL = False
-    left = 176
-    top = 163
+    Left = 176
+    Top = 163
     ParamData = <    
       item
         DataType = ftUnknown
@@ -3240,17 +3210,17 @@ object Zatrudnieni: TZatrudnieni
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 530
-    top = 178
+    Left = 530
+    Top = 178
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = ZQZatrudnieni
-    left = 600
-    top = 178
+    Left = 600
+    Top = 178
   end
   object PopupMenu1: TPopupMenu
-    left = 472
-    top = 336
+    Left = 472
+    Top = 336
     object MenuItemDodaj: TMenuItem
       Caption = 'Dodaj ...'
       Bitmap.Data = {
@@ -3570,8 +3540,8 @@ object Zatrudnieni: TZatrudnieni
     end
   end
   object ImageList1: TImageList
-    left = 180
-    top = 369
+    Left = 180
+    Top = 369
     Bitmap = {
       4C69040000001000000010000000000000000000000000000000000000000000
       0000000000000B7B005366BC6BFF78C987FA2E92259D00000000000000000000

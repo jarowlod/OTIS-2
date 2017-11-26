@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 443
+  Left = 180
   Height = 743
-  Top = 161
+  Top = 178
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -9,7 +9,7 @@ object PenitTerminarz: TPenitTerminarz
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   WindowState = wsMaximized
   object Panel1: TPanel
     Left = 0
@@ -94,18 +94,21 @@ object PenitTerminarz: TPenitTerminarz
     Height = 693
     Top = 50
     Width = 1182
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
-    TabIndex = 1
+    Images = DM.ImageList1
+    TabHeight = 25
+    TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
-      ClientHeight = 665
+      ClientHeight = 660
       ClientWidth = 1174
+      ImageIndex = 16
       OnShow = TabSheet1Show
       object YearPlanner1: TYearPlanner
         Left = 0
-        Height = 665
+        Height = 660
         Top = 0
         Width = 798
         Align = alClient
@@ -148,17 +151,17 @@ object PenitTerminarz: TPenitTerminarz
       end
       object Panel5: TPanel
         Left = 803
-        Height = 665
+        Height = 660
         Top = 0
         Width = 371
         Align = alRight
         BevelOuter = bvNone
-        ClientHeight = 665
+        ClientHeight = 660
         ClientWidth = 371
         TabOrder = 1
         object RxDBGrid2: TRxDBGrid
           Left = 0
-          Height = 665
+          Height = 660
           Top = 0
           Width = 371
           ColumnDefValues.BlobText = '(blob)'
@@ -172,8 +175,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 70
               FieldName = 'Termin'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -188,8 +189,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 50
               FieldName = 'Rodzaj'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -204,8 +203,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 90
               FieldName = 'NAZWISKO'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -220,8 +217,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 80
               FieldName = 'IMIE'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -236,8 +231,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 45
               FieldName = 'POC'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -304,6 +297,8 @@ object PenitTerminarz: TPenitTerminarz
           FooterOptions.RowCount = 1
           FooterOptions.Style = tsNative
           FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
           OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
           FooterRowCount = 1
           Align = alClient
@@ -324,7 +319,6 @@ object PenitTerminarz: TPenitTerminarz
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-          ParentColor = False
           ParentFont = False
           ParentShowHint = False
           PopupMenu = PopupMenu2
@@ -341,7 +335,7 @@ object PenitTerminarz: TPenitTerminarz
       end
       object Splitter2: TSplitter
         Left = 798
-        Height = 665
+        Height = 660
         Top = 0
         Width = 5
         Align = alRight
@@ -350,22 +344,23 @@ object PenitTerminarz: TPenitTerminarz
     end
     object TabSheet2: TTabSheet
       Caption = 'Terminy'
-      ClientHeight = 665
+      ClientHeight = 660
       ClientWidth = 1174
+      ImageIndex = 24
       object Panel2: TPanel
         Left = 0
-        Height = 665
+        Height = 660
         Top = 0
         Width = 456
         Align = alClient
         BevelOuter = bvNone
-        ClientHeight = 665
+        ClientHeight = 660
         ClientWidth = 456
         TabOrder = 0
         object Panel4: TPanel
           Left = 0
           Height = 50
-          Top = 615
+          Top = 610
           Width = 456
           Align = alBottom
           ClientHeight = 50
@@ -430,7 +425,7 @@ object PenitTerminarz: TPenitTerminarz
         end
         object RxDBGrid1: TRxDBGrid
           Left = 0
-          Height = 615
+          Height = 610
           Top = 0
           Width = 456
           ColumnDefValues.BlobText = '(blob)'
@@ -445,8 +440,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 50
               FieldName = 'POC'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -462,8 +455,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 180
               FieldName = 'NazwiskoImie'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -479,8 +470,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 45
               FieldName = 'KLASYF'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -496,8 +485,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 25
               FieldName = 'GR'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -513,8 +500,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 45
               FieldName = 'Starszy'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -529,8 +514,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 70
               FieldName = 'toceny'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -545,8 +528,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 70
               FieldName = 'twpz'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -561,8 +542,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 70
               FieldName = 'KoniecKary'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -577,8 +556,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 70
               FieldName = 'tpostpenitu'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -593,8 +570,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 70
               FieldName = 'tterapii'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -609,8 +584,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 70
               FieldName = 'tprzepustki'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -625,8 +598,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 150
               FieldName = 'Zatrudnienie'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -641,8 +612,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 70
               FieldName = 'URODZ'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -657,8 +626,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 70
               FieldName = 'PRZYJ'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -674,8 +641,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 45
               FieldName = 'STATUS'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -690,8 +655,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 90
               FieldName = 'data_autoryzacji'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -707,8 +670,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 30
               FieldName = 'Arch'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = False
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -724,8 +685,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 50
               FieldName = 'Wywiad'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -740,8 +699,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 75
               FieldName = 'ulamek_wpz'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -757,8 +714,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 40
               FieldName = 'wpz_stanowisko'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -774,8 +729,6 @@ object PenitTerminarz: TPenitTerminarz
               Width = 55
               FieldName = 'postpenit_notatka'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -842,6 +795,8 @@ object PenitTerminarz: TPenitTerminarz
           FooterOptions.RowCount = 1
           FooterOptions.Style = tsNative
           FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
           OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
           FooterRowCount = 1
           Align = alClient
@@ -857,7 +812,6 @@ object PenitTerminarz: TPenitTerminarz
           DefaultRowHeight = 20
           FixedColor = clNone
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-          ParentColor = False
           ParentShowHint = False
           PopupMenu = PopupMenu1
           ReadOnly = True
@@ -868,7 +822,7 @@ object PenitTerminarz: TPenitTerminarz
       end
       object Panel3: TPanel
         Left = 461
-        Height = 665
+        Height = 660
         Top = 0
         Width = 713
         Align = alRight
@@ -879,7 +833,7 @@ object PenitTerminarz: TPenitTerminarz
       end
       object Splitter1: TSplitter
         Left = 456
-        Height = 665
+        Height = 660
         Top = 0
         Width = 5
         Align = alRight
@@ -926,8 +880,8 @@ object PenitTerminarz: TPenitTerminarz
       'INNER JOIN typ_cel ON (osadzeni.POC = typ_cel.POC)'
     )
     Params = <>
-    left = 456
-    top = 112
+    Left = 456
+    Top = 112
     object ZQTerminarzIDO: TLargeintField
       FieldKind = fkData
       FieldName = 'IDO'
@@ -1185,19 +1139,19 @@ object PenitTerminarz: TPenitTerminarz
   object DSTerminarz: TDataSource
     DataSet = ZQTerminarz
     OnDataChange = DSTerminarzDataChange
-    left = 532
-    top = 112
+    Left = 532
+    Top = 112
   end
   object Timer1: TTimer
     Enabled = False
     Interval = 100
     OnTimer = OnTimerDataChange
-    left = 704
-    top = 80
+    Left = 704
+    Top = 80
   end
   object ImageList1: TImageList
-    left = 1064
-    top = 168
+    Left = 1064
+    Top = 168
     Bitmap = {
       4C69130000001000000010000000000000000000000000000000000000000000
       000000000000000000007291D5D57A94D5D20000000000000000000000000000
@@ -1812,8 +1766,8 @@ object PenitTerminarz: TPenitTerminarz
   end
   object PopupMenu1: TPopupMenu
     Images = ImageList1
-    left = 280
-    top = 292
+    Left = 280
+    Top = 292
     object MenuItem1: TMenuItem
       Caption = 'Drukuj wykaz osadzonych ...'
       Bitmap.Data = {
@@ -2108,8 +2062,8 @@ object PenitTerminarz: TPenitTerminarz
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = ZQTerminarz
-    left = 624
-    top = 363
+    Left = 624
+    Top = 363
   end
   object frReport1: TfrReport
     Dataset = frDBDataSet1
@@ -2117,21 +2071,21 @@ object PenitTerminarz: TPenitTerminarz
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 624
-    top = 312
+    Left = 624
+    Top = 312
   end
   object ZQKalendarz: TZQuery
     Connection = DM.ZConnection1
     CachedUpdates = True
     ReadOnly = True
     Params = <>
-    left = 920
-    top = 168
+    Left = 920
+    Top = 168
   end
   object DSKalendarz: TDataSource
     DataSet = ZQKalendarz
-    left = 996
-    top = 168
+    Left = 996
+    Top = 168
   end
   object ZQZatReport: TZQuery
     Connection = DM.ZConnection1
@@ -2174,8 +2128,8 @@ object PenitTerminarz: TPenitTerminarz
         Name = 'wych'
         ParamType = ptUnknown
       end>
-    left = 712
-    top = 424
+    Left = 712
+    Top = 424
     ParamData = <    
       item
         DataType = ftUnknown
@@ -2185,12 +2139,12 @@ object PenitTerminarz: TPenitTerminarz
   end
   object frDBDataSet2: TfrDBDataSet
     DataSet = ZQZatReport
-    left = 624
-    top = 424
+    Left = 624
+    Top = 424
   end
   object PopupMenu2: TPopupMenu
-    left = 920
-    top = 248
+    Left = 920
+    Top = 248
     object MenuItem8: TMenuItem
       Caption = 'Drukuj wykaz ...'
       Bitmap.Data = {
@@ -2274,7 +2228,7 @@ object PenitTerminarz: TPenitTerminarz
   end
   object frDBDataSet3: TfrDBDataSet
     DataSet = ZQKalendarz
-    left = 920
-    top = 320
+    Left = 920
+    Top = 320
   end
 end

@@ -1,19 +1,19 @@
 object Komunikator: TKomunikator
-  Left = 445
+  Left = 392
   Height = 560
-  Top = 161
-  Width = 737
+  Top = 237
+  Width = 735
   Caption = 'Komunikator'
   ClientHeight = 560
-  ClientWidth = 737
+  ClientWidth = 735
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object PageControl1: TPageControl
     Left = 0
     Height = 510
     Top = 0
-    Width = 737
+    Width = 735
     ActivePage = TabSheet2
     Align = alClient
     TabIndex = 1
@@ -39,8 +39,6 @@ object Komunikator: TKomunikator
             Width = 120
             FieldName = 'dataNadania'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -55,8 +53,6 @@ object Komunikator: TKomunikator
             Width = 170
             FieldName = 'Full_name'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -71,8 +67,6 @@ object Komunikator: TKomunikator
             Width = 280
             FieldName = 'temat'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -88,8 +82,6 @@ object Komunikator: TKomunikator
             Width = 120
             FieldName = 'dataOdebrania'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -156,6 +148,8 @@ object Komunikator: TKomunikator
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         Align = alTop
@@ -172,7 +166,6 @@ object Komunikator: TKomunikator
         DefaultRowHeight = 22
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
-        ParentColor = False
         ParentShowHint = False
         ReadOnly = True
         ShowHint = True
@@ -204,22 +197,22 @@ object Komunikator: TKomunikator
     object TabSheet2: TTabSheet
       Caption = 'Wysłane'
       ClientHeight = 482
-      ClientWidth = 729
+      ClientWidth = 727
       object Panel2: TPanel
         Left = 0
         Height = 168
         Top = 0
-        Width = 729
+        Width = 727
         Align = alTop
         BevelOuter = bvNone
         ClientHeight = 168
-        ClientWidth = 729
+        ClientWidth = 727
         TabOrder = 0
         object RxDBGrid2: TRxDBGrid
           Left = 0
           Height = 168
           Top = 0
-          Width = 362
+          Width = 360
           ColumnDefValues.BlobText = '(blob)'
           TitleButtons = True
           AutoSort = True
@@ -232,8 +225,6 @@ object Komunikator: TKomunikator
               Width = 120
               FieldName = 'dataNadania'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -248,8 +239,6 @@ object Komunikator: TKomunikator
               Width = 200
               FieldName = 'temat'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -316,6 +305,8 @@ object Komunikator: TKomunikator
           FooterOptions.RowCount = 1
           FooterOptions.Style = tsNative
           FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
           OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
           FooterRowCount = 1
           Align = alClient
@@ -332,7 +323,6 @@ object Komunikator: TKomunikator
           DefaultRowHeight = 22
           FixedColor = clNone
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
-          ParentColor = False
           ParentShowHint = False
           ReadOnly = True
           ShowHint = True
@@ -340,7 +330,7 @@ object Komunikator: TKomunikator
           TitleStyle = tsNative
         end
         object RxDBGrid3: TRxDBGrid
-          Left = 362
+          Left = 360
           Height = 168
           Top = 0
           Width = 367
@@ -355,8 +345,6 @@ object Komunikator: TKomunikator
               Width = 200
               FieldName = 'Full_name'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -372,8 +360,6 @@ object Komunikator: TKomunikator
               Width = 120
               FieldName = 'dataOdebrania'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -440,6 +426,8 @@ object Komunikator: TKomunikator
           FooterOptions.RowCount = 1
           FooterOptions.Style = tsNative
           FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
           OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
           FooterRowCount = 1
           Align = alRight
@@ -456,7 +444,6 @@ object Komunikator: TKomunikator
           DefaultRowHeight = 22
           FixedColor = clNone
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
-          ParentColor = False
           ParentShowHint = False
           ReadOnly = True
           ShowHint = True
@@ -468,7 +455,7 @@ object Komunikator: TKomunikator
         Left = 0
         Height = 309
         Top = 173
-        Width = 729
+        Width = 727
         Align = alClient
         HideSelection = False
         ReadOnly = True
@@ -482,7 +469,7 @@ object Komunikator: TKomunikator
         Left = 0
         Height = 5
         Top = 168
-        Width = 729
+        Width = 727
         Align = alTop
         ResizeAnchor = akTop
       end
@@ -492,10 +479,10 @@ object Komunikator: TKomunikator
     Left = 0
     Height = 50
     Top = 510
-    Width = 737
+    Width = 735
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 737
+    ClientWidth = 735
     TabOrder = 1
     object btnNowaWiadomosc: TBitBtn
       Left = 8
@@ -543,7 +530,7 @@ object Komunikator: TKomunikator
       TabOrder = 0
     end
     object btnOdswiez: TBitBtn
-      Left = 608
+      Left = 606
       Height = 30
       Top = 8
       Width = 123
@@ -703,8 +690,8 @@ object Komunikator: TKomunikator
         Name = 'odbiorca'
         ParamType = ptUnknown
       end>
-    left = 184
-    top = 232
+    Left = 184
+    Top = 232
     ParamData = <    
       item
         DataType = ftUnknown
@@ -715,8 +702,8 @@ object Komunikator: TKomunikator
   object DSKomOdebrane: TDataSource
     DataSet = ZQKomOdebrane
     OnDataChange = DSKomOdebraneDataChange
-    left = 184
-    top = 360
+    Left = 184
+    Top = 360
   end
   object ZUKomOdebrane: TZUpdateSQL
     ModifySQL.Strings = (
@@ -726,8 +713,8 @@ object Komunikator: TKomunikator
       '  kom_odbiorcy.ID = :OLD_ID'
     )
     UseSequenceFieldForRefreshSQL = False
-    left = 184
-    top = 295
+    Left = 184
+    Top = 295
     ParamData = <    
       item
         DataType = ftUnknown
@@ -759,8 +746,8 @@ object Komunikator: TKomunikator
         Name = 'nadawca'
         ParamType = ptUnknown
       end>
-    left = 416
-    top = 232
+    Left = 416
+    Top = 232
     ParamData = <    
       item
         DataType = ftUnknown
@@ -771,8 +758,8 @@ object Komunikator: TKomunikator
   object DSKomWyslane: TDataSource
     DataSet = ZQKomWyslane
     OnDataChange = DSKomWyslaneDataChange
-    left = 416
-    top = 295
+    Left = 416
+    Top = 295
   end
   object ZQKomOdbiorcy: TZQuery
     Connection = DM.ZConnection1
@@ -790,12 +777,12 @@ object Komunikator: TKomunikator
     MasterFields = 'ID'
     MasterSource = DSKomWyslane
     LinkedFields = 'ID_tresc'
-    left = 520
-    top = 232
+    Left = 520
+    Top = 232
   end
   object DSKomOdbiorcy: TDataSource
     DataSet = ZQKomOdbiorcy
-    left = 520
-    top = 295
+    Left = 520
+    Top = 295
   end
 end

@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
-  Left = 443
+  Left = 392
   Height = 691
-  Top = 161
+  Top = 237
   Width = 713
   Caption = 'Karta Penitencjarna'
   ClientHeight = 691
@@ -11,7 +11,7 @@ object PenitForm: TPenitForm
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 58
@@ -626,9 +626,9 @@ object PenitForm: TPenitForm
       Visible = False
     end
     object btnRejestrProsb: TBitBtn
-      Left = 542
+      Left = 312
       Height = 30
-      Top = 320
+      Top = 344
       Width = 152
       Caption = 'Rejestr próśb'
       Glyph.Data = {
@@ -676,14 +676,14 @@ object PenitForm: TPenitForm
     Height = 243
     Top = 448
     Width = 713
-    ActivePage = TabSheet1
+    ActivePage = TabSheetNotatnik
     Align = alClient
-    Images = Form1.ImageList1
+    TabHeight = 25
     TabIndex = 0
     TabOrder = 2
-    object TabSheet1: TTabSheet
-      Caption = 'Notatki'
-      ClientHeight = 215
+    object TabSheetNotatnik: TTabSheet
+      Caption = 'Notatnik'
+      ClientHeight = 210
       ClientWidth = 705
       ImageIndex = 6
       object Panel4: TPanel
@@ -742,7 +742,7 @@ object PenitForm: TPenitForm
       end
       object DBMemo1: TDBMemo
         Left = 0
-        Height = 184
+        Height = 179
         Top = 31
         Width = 705
         Align = alClient
@@ -752,14 +752,14 @@ object PenitForm: TPenitForm
         TabOrder = 1
       end
     end
-    object TabSheet2: TTabSheet
+    object TabSheetZatrudnienie: TTabSheet
       Caption = 'Zatrudnienie'
-      ClientHeight = 215
+      ClientHeight = 210
       ClientWidth = 705
       ImageIndex = 5
       object RxDBGrid2: TRxDBGrid
         Left = 0
-        Height = 215
+        Height = 210
         Top = 0
         Width = 705
         ColumnDefValues.BlobText = '(blob)'
@@ -774,8 +774,6 @@ object PenitForm: TPenitForm
             Width = 90
             FieldName = 'status_zatrudnienia'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -791,8 +789,6 @@ object PenitForm: TPenitForm
             Width = 200
             FieldName = 'nazwa'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -809,8 +805,6 @@ object PenitForm: TPenitForm
             Width = 80
             FieldName = 'zat_od'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -827,8 +821,6 @@ object PenitForm: TPenitForm
             Width = 80
             FieldName = 'zat_do'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -843,8 +835,6 @@ object PenitForm: TPenitForm
             Width = 200
             FieldName = 'powod_wycofania'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -913,6 +903,8 @@ object PenitForm: TPenitForm
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         Align = alClient
@@ -929,7 +921,6 @@ object PenitForm: TPenitForm
         DefaultRowHeight = 24
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-        ParentColor = False
         ParentShowHint = False
         ReadOnly = True
         ShowHint = True
@@ -940,13 +931,13 @@ object PenitForm: TPenitForm
   end
   object DSOsInfo: TDataSource
     DataSet = ZQOsInfo
-    left = 544
-    top = 112
+    Left = 544
+    Top = 112
   end
   object DSOsNotatki: TDataSource
     DataSet = ZQOsNotatki
-    left = 560
-    top = 408
+    Left = 560
+    Top = 408
   end
   object ZQOsInfo: TZQuery
     Connection = DM.ZConnection1
@@ -980,8 +971,8 @@ object PenitForm: TPenitForm
         Name = 'IDO'
         ParamType = ptUnknown
       end>
-    left = 480
-    top = 112
+    Left = 480
+    Top = 112
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1009,8 +1000,8 @@ object PenitForm: TPenitForm
         Name = 'IDO'
         ParamType = ptUnknown
       end>
-    left = 480
-    top = 408
+    Left = 480
+    Top = 408
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1056,8 +1047,8 @@ object PenitForm: TPenitForm
       '  os_info.IDO = :OLD_IDO'
     )
     UseSequenceFieldForRefreshSQL = False
-    left = 616
-    top = 112
+    Left = 616
+    Top = 112
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1167,8 +1158,8 @@ object PenitForm: TPenitForm
       '  os_notatki.ID = :OLD_ID'
     )
     UseSequenceFieldForRefreshSQL = False
-    left = 640
-    top = 408
+    Left = 640
+    Top = 408
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1219,8 +1210,8 @@ object PenitForm: TPenitForm
         Name = 'IDO'
         ParamType = ptUnknown
       end>
-    left = 480
-    top = 64
+    Left = 480
+    Top = 64
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1230,8 +1221,8 @@ object PenitForm: TPenitForm
   end
   object DSOs: TDataSource
     DataSet = ZQOs
-    left = 544
-    top = 64
+    Left = 544
+    Top = 64
   end
   object ZQOsZat: TZQuery
     Connection = DM.ZConnection1
@@ -1256,8 +1247,8 @@ object PenitForm: TPenitForm
       end>
     MasterFields = 'IDO'
     LinkedFields = 'IDO'
-    left = 480
-    top = 504
+    Left = 480
+    Top = 504
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1267,7 +1258,7 @@ object PenitForm: TPenitForm
   end
   object DSOsZat: TDataSource
     DataSet = ZQOsZat
-    left = 560
-    top = 504
+    Left = 560
+    Top = 504
   end
 end

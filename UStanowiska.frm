@@ -1,7 +1,7 @@
 object Stanowiska: TStanowiska
-  Left = 315
+  Left = 392
   Height = 677
-  Top = 142
+  Top = 237
   Width = 1215
   Caption = 'Stanowiska / Grupy'
   ClientHeight = 677
@@ -9,7 +9,7 @@ object Stanowiska: TStanowiska
   Constraints.MinWidth = 850
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 52
@@ -381,8 +381,6 @@ object Stanowiska: TStanowiska
             Width = 400
             FieldName = 'nazwa'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -399,8 +397,6 @@ object Stanowiska: TStanowiska
             Width = 50
             FieldName = 'system'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -422,8 +418,6 @@ object Stanowiska: TStanowiska
             Width = 50
             FieldName = 'forma'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -445,8 +439,6 @@ object Stanowiska: TStanowiska
             Width = 50
             FieldName = 'stan'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -514,6 +506,8 @@ object Stanowiska: TStanowiska
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         OnDataHintShow = RxDBGrid1DataHintShow
@@ -531,7 +525,6 @@ object Stanowiska: TStanowiska
         DefaultRowHeight = 24
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-        ParentColor = False
         ParentShowHint = False
         PopupMenu = PopupMenu1
         ReadOnly = True
@@ -545,24 +538,25 @@ object Stanowiska: TStanowiska
       Height = 529
       Top = 0
       Width = 614
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alRight
-      Images = Form1.ImageList1
-      TabIndex = 1
+      Images = DM.ImageList1
+      TabHeight = 25
+      TabIndex = 0
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Szczegóły stanowiska'
-        ClientHeight = 501
+        ClientHeight = 496
         ClientWidth = 606
         ImageIndex = 7
         object Panel5: TPanel
           Left = 0
-          Height = 501
+          Height = 496
           Top = 0
           Width = 606
           Align = alClient
           BevelOuter = bvNone
-          ClientHeight = 501
+          ClientHeight = 496
           ClientWidth = 606
           Color = clBtnFace
           ParentColor = False
@@ -823,13 +817,13 @@ object Stanowiska: TStanowiska
       end
       object TabSheet2: TTabSheet
         Caption = 'Osadzeni zatrudnieni'
-        ClientHeight = 501
+        ClientHeight = 496
         ClientWidth = 606
         ImageIndex = 8
         object Panel6: TPanel
           Left = 0
           Height = 31
-          Top = 470
+          Top = 465
           Width = 606
           Align = alBottom
           ClientHeight = 31
@@ -973,7 +967,7 @@ object Stanowiska: TStanowiska
         end
         object RxDBGrid2: TRxDBGrid
           Left = 0
-          Height = 470
+          Height = 465
           Top = 0
           Width = 606
           ColumnDefValues.BlobText = '(blob)'
@@ -993,8 +987,6 @@ object Stanowiska: TStanowiska
               Width = 40
               FieldName = 'drukuj'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1010,8 +1002,6 @@ object Stanowiska: TStanowiska
               Width = 90
               FieldName = 'Nazwisko'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1029,8 +1019,6 @@ object Stanowiska: TStanowiska
               Width = 74
               FieldName = 'Imie'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1046,8 +1034,6 @@ object Stanowiska: TStanowiska
               Width = 74
               FieldName = 'Ojciec'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1063,8 +1049,6 @@ object Stanowiska: TStanowiska
               Width = 74
               FieldName = 'zat_od'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1080,8 +1064,6 @@ object Stanowiska: TStanowiska
               Width = 74
               FieldName = 'zat_do'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1098,8 +1080,6 @@ object Stanowiska: TStanowiska
               Width = 50
               FieldName = 'Klasyf'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1115,8 +1095,6 @@ object Stanowiska: TStanowiska
               Width = 50
               FieldName = 'POC'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1131,8 +1109,6 @@ object Stanowiska: TStanowiska
               Width = 50
               FieldName = 'rodzaj_zatrudnienia'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1148,8 +1124,6 @@ object Stanowiska: TStanowiska
               Width = 50
               FieldName = 'etat'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -1217,6 +1191,8 @@ object Stanowiska: TStanowiska
           FooterOptions.RowCount = 1
           FooterOptions.Style = tsNative
           FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
           OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
           FooterRowCount = 1
           Align = alClient
@@ -1233,7 +1209,6 @@ object Stanowiska: TStanowiska
           DefaultRowHeight = 24
           FixedColor = clNone
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-          ParentColor = False
           PopupMenu = PopupMenu2
           TabOrder = 0
           TitleStyle = tsNative
@@ -1242,7 +1217,7 @@ object Stanowiska: TStanowiska
       end
       object TabSheet3: TTabSheet
         Caption = 'Wydruki ...'
-        ClientHeight = 501
+        ClientHeight = 496
         ClientWidth = 606
         ImageIndex = 4
         object GroupBox1: TGroupBox
@@ -1810,8 +1785,8 @@ object Stanowiska: TStanowiska
     )
     Params = <>
     IndexFieldNames = 'nazwa Asc'
-    left = 32
-    top = 168
+    Left = 32
+    Top = 168
     object ZQStanowiskaid: TLargeintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -1960,8 +1935,8 @@ object Stanowiska: TStanowiska
   end
   object DSStanowiska: TDataSource
     DataSet = ZQStanowiska
-    left = 32
-    top = 224
+    Left = 32
+    Top = 224
   end
   object ZQZatrudnieni: TZQuery
     Connection = DM.ZConnection1
@@ -1996,17 +1971,17 @@ object Stanowiska: TStanowiska
     MasterSource = DSStanowiska
     LinkedFields = 'id_stanowiska'
     IndexFieldNames = 'NAZWISKO Asc'
-    left = 302
-    top = 168
+    Left = 302
+    Top = 168
   end
   object DSZatrudnieni: TDataSource
     DataSet = ZQZatrudnieni
-    left = 302
-    top = 224
+    Left = 302
+    Top = 224
   end
   object PopupMenu1: TPopupMenu
-    left = 302
-    top = 304
+    Left = 302
+    Top = 304
     object MenuItemDodajSt: TMenuItem
       Caption = 'Dodaj stanowisko ...'
       Bitmap.Data = {
@@ -2260,17 +2235,17 @@ object Stanowiska: TStanowiska
     Options = []
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 304
-    top = 376
+    Left = 304
+    Top = 376
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = ZQZatrudnieni
-    left = 368
-    top = 376
+    Left = 368
+    Top = 376
   end
   object ImageList1: TImageList
-    left = 152
-    top = 341
+    Left = 152
+    Top = 341
     Bitmap = {
       4C69050000001000000010000000000000000000000000000000000000000000
       0000000000000B7B005366BC6BFF78C987FA2E92259D00000000000000000000
@@ -2449,8 +2424,8 @@ object Stanowiska: TStanowiska
     )
     UseSequenceFieldForRefreshSQL = False
     MultiStatements = False
-    left = 392
-    top = 168
+    Left = 392
+    Top = 168
     ParamData = <    
       item
         DataType = ftUnknown
@@ -2464,8 +2439,8 @@ object Stanowiska: TStanowiska
       end>
   end
   object PopupMenu2: TPopupMenu
-    left = 928
-    top = 136
+    Left = 928
+    Top = 136
     object MenuItemDodaj: TMenuItem
       Caption = 'Dodaj ...'
       Bitmap.Data = {
@@ -2632,8 +2607,8 @@ object Stanowiska: TStanowiska
   end
   object frDBDataSet2: TfrDBDataSet
     DataSet = ZQStanowiska
-    left = 368
-    top = 440
+    Left = 368
+    Top = 440
   end
   object frReport2: TfrReport
     Dataset = frDBDataSet2
@@ -2641,7 +2616,7 @@ object Stanowiska: TStanowiska
     Options = []
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 304
-    top = 440
+    Left = 304
+    Top = 440
   end
 end
