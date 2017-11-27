@@ -545,6 +545,7 @@ begin
   S:='';
   DS:= DataSource.DataSet;
   bookmark:= DS.GetBookmark;
+  DS.DisableControls;
 
   DS.First;
   while not DS.EOF do
@@ -566,6 +567,7 @@ begin
   end;
 
   SetToBookmark(DS, bookmark);
+  DS.EnableControls;
 
   if S<>'' then
   begin

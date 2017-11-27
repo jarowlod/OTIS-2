@@ -9,7 +9,7 @@
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="78" Y="6"/>
+        <CursorPos X="31" Y="7"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="602"/>
-        <CursorPos X="38" Y="612"/>
+        <TopLine Value="400"/>
+        <CursorPos X="63" Y="587"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,8 +33,8 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <TopLine Value="132"/>
-        <CursorPos X="31" Y="141"/>
+        <TopLine Value="555"/>
+        <CursorPos X="21" Y="570"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -57,7 +57,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="274"/>
+        <TopLine Value="273"/>
         <CursorPos X="71" Y="176"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -140,8 +140,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="10"/>
-        <TopLine Value="42"/>
-        <CursorPos X="30" Y="382"/>
+        <TopLine Value="441"/>
+        <CursorPos X="3" Y="336"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -176,10 +176,14 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="711"/>
-        <CursorPos X="72" Y="722"/>
+        <TopLine Value="723"/>
+        <CursorPos X="21" Y="738"/>
         <UsageCount Value="200"/>
+        <Bookmarks Count="1">
+          <Item0 X="24" Y="748"/>
+        </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit14>
@@ -191,7 +195,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="110"/>
-        <CursorPos X="77" Y="117"/>
+        <CursorPos X="66" Y="120"/>
         <UsageCount Value="200"/>
       </Unit15>
       <Unit16>
@@ -201,8 +205,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="245"/>
-        <CursorPos X="11" Y="258"/>
+        <TopLine Value="68"/>
+        <CursorPos X="24" Y="81"/>
         <UsageCount Value="203"/>
       </Unit16>
       <Unit17>
@@ -335,7 +339,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="283"/>
         <CursorPos X="46" Y="297"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="157"/>
       </Unit28>
       <Unit29>
         <Filename Value="UStawkiPlac.pas"/>
@@ -345,7 +349,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23" Y="79"/>
-        <UsageCount Value="120"/>
+        <UsageCount Value="125"/>
       </Unit29>
       <Unit30>
         <Filename Value="UZatStatystyka.pas"/>
@@ -356,7 +360,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="116"/>
         <CursorPos Y="122"/>
-        <UsageCount Value="108"/>
+        <UsageCount Value="113"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit30>
@@ -369,7 +373,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="83"/>
         <CursorPos X="20" Y="89"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="101"/>
       </Unit31>
       <Unit32>
         <Filename Value="USaper.pas"/>
@@ -380,7 +384,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="47" Y="161"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="97"/>
       </Unit32>
       <Unit33>
         <Filename Value="UZatNiezatrudnieni.pas"/>
@@ -390,7 +394,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
         <CursorPos X="94" Y="98"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="72"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit33>
@@ -400,11 +404,10 @@
         <ComponentName Value="DrukWykazOsadz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="52"/>
-        <CursorPos X="22" Y="69"/>
-        <UsageCount Value="35"/>
+        <TopLine Value="51"/>
+        <CursorPos X="66" Y="65"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit34>
@@ -1040,123 +1043,127 @@
         <DefaultSyntaxHighlighter Value="FRM"/>
       </Unit122>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="100" Column="3" TopLine="96"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="493" Column="64" TopLine="491"/>
       </Position1>
       <Position2>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="86" Column="22" TopLine="56"/>
+        <Caret Line="10" Column="60"/>
       </Position2>
       <Position3>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="527" Column="25" TopLine="510"/>
+        <Caret Line="86" Column="26" TopLine="84"/>
       </Position3>
       <Position4>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="495" Column="25" TopLine="477"/>
+        <Caret Line="493" Column="40" TopLine="476"/>
       </Position4>
       <Position5>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="86" Column="14" TopLine="71"/>
+        <Caret Line="86" Column="40" TopLine="86"/>
       </Position5>
       <Position6>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="493" Column="32" TopLine="491"/>
+        <Caret Line="493" Column="32" TopLine="477"/>
       </Position6>
       <Position7>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="86" Column="51" TopLine="86"/>
+        <Caret Line="111" Column="18" TopLine="89"/>
       </Position7>
       <Position8>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="493" Column="22" TopLine="477"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="100" Column="28" TopLine="96"/>
       </Position8>
       <Position9>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="86" Column="14" TopLine="71"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="74" Column="48" TopLine="62"/>
       </Position9>
       <Position10>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="493" Column="22" TopLine="491"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="75" Column="48" TopLine="63"/>
       </Position10>
       <Position11>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="86" Column="21" TopLine="71"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="76" Column="48" TopLine="64"/>
       </Position11>
       <Position12>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="493" Column="64" TopLine="491"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="75" Column="48" TopLine="63"/>
       </Position12>
       <Position13>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="10" Column="60"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="85" Column="23" TopLine="63"/>
       </Position13>
       <Position14>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="14" Column="40" TopLine="70"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="84" Column="23" TopLine="62"/>
       </Position14>
       <Position15>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="86" Column="26" TopLine="84"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="85" Column="6" TopLine="81"/>
       </Position15>
       <Position16>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="493" Column="40" TopLine="476"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="10" Column="42"/>
       </Position16>
       <Position17>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="86" Column="40" TopLine="86"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="69" Column="27" TopLine="52"/>
       </Position17>
       <Position18>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="493" Column="32" TopLine="477"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="49" Column="17" TopLine="23"/>
       </Position18>
       <Position19>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="111" Column="18" TopLine="89"/>
+        <Filename Value="UDrukWykazOsadz.pas"/>
+        <Caret Line="67" Column="45" TopLine="66"/>
       </Position19>
       <Position20>
         <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="100" Column="28" TopLine="96"/>
+        <Caret Line="49" Column="33" TopLine="34"/>
       </Position20>
       <Position21>
         <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="74" Column="48" TopLine="62"/>
+        <Caret Line="75" Column="36" TopLine="66"/>
       </Position21>
       <Position22>
-        <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="75" Column="48" TopLine="63"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="745" Column="48" TopLine="672"/>
       </Position22>
       <Position23>
-        <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="76" Column="48" TopLine="64"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="162" Column="86" TopLine="142"/>
       </Position23>
       <Position24>
         <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="75" Column="48" TopLine="63"/>
+        <Caret Line="46" TopLine="91"/>
       </Position24>
       <Position25>
         <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="85" Column="23" TopLine="63"/>
+        <Caret Line="74" Column="46" TopLine="55"/>
       </Position25>
       <Position26>
         <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="84" Column="23" TopLine="62"/>
+        <Caret Line="72" Column="43" TopLine="55"/>
       </Position26>
       <Position27>
-        <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="85" Column="6" TopLine="81"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="736" Column="53" TopLine="721"/>
       </Position27>
       <Position28>
         <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="10" Column="42"/>
+        <Caret Line="8" Column="38"/>
       </Position28>
       <Position29>
-        <Filename Value="UDrukWykazOsadz.pas"/>
-        <Caret Line="69" Column="27" TopLine="52"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="738" Column="21" TopLine="723"/>
       </Position29>
+      <Position30>
+        <Filename Value="URozmieszczenie.pas"/>
+        <Caret Line="382" Column="30" TopLine="42"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

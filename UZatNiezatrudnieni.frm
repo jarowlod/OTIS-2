@@ -1,14 +1,14 @@
 object NieZatrudnieni: TNieZatrudnieni
-  Left = 215
+  Left = 158
   Height = 692
-  Top = 85
+  Top = 142
   Width = 1389
   Caption = 'Wykaz osadzonych niezatrudnionych'
   ClientHeight = 692
   ClientWidth = 1389
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel5: TPanel
     Left = 0
     Height = 50
@@ -194,8 +194,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 70
         FieldName = 'IDO'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -214,8 +212,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 60
         FieldName = 'POC'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -230,8 +226,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 100
         FieldName = 'Nazwisko'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -246,8 +240,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 100
         FieldName = 'IMIE'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -262,8 +254,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 100
         FieldName = 'OJCIEC'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -280,8 +270,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 60
         FieldName = 'KLASYF'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -296,8 +284,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 300
         FieldName = 'Zatrudnienie'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -314,8 +300,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 30
         FieldName = 'GR'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -332,8 +316,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 70
         FieldName = 'PRZYJ'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -350,8 +332,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 70
         FieldName = 'KoniecKary'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -368,8 +348,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 30
         FieldName = 'Arch'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -386,8 +364,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 30
         FieldName = 'Wywiad'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -404,8 +380,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 70
         FieldName = 'twpz'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -420,8 +394,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 100
         FieldName = 'ulamek_wpz'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -438,8 +410,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 80
         FieldName = 'Wychowawca'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -456,8 +426,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 80
         FieldName = 'Autoryzacja'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -474,8 +442,6 @@ object NieZatrudnieni: TNieZatrudnieni
         Width = 80
         FieldName = 'data_autoryzacji'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -543,6 +509,8 @@ object NieZatrudnieni: TNieZatrudnieni
     FooterOptions.RowCount = 1
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
+    SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+    SearchOptions.FromStart = False
     OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
     FooterRowCount = 1
     Align = alClient
@@ -559,7 +527,6 @@ object NieZatrudnieni: TNieZatrudnieni
     DefaultRowHeight = 24
     FixedColor = clNone
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-    ParentColor = False
     ParentShowHint = False
     ReadOnly = True
     ShowHint = True
@@ -594,8 +561,6 @@ object NieZatrudnieni: TNieZatrudnieni
           Width = 90
           FieldName = 'status_zatrudnienia'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -611,8 +576,6 @@ object NieZatrudnieni: TNieZatrudnieni
           Width = 400
           FieldName = 'nazwa'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -629,8 +592,6 @@ object NieZatrudnieni: TNieZatrudnieni
           Width = 80
           FieldName = 'zat_od'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -647,8 +608,6 @@ object NieZatrudnieni: TNieZatrudnieni
           Width = 80
           FieldName = 'zat_do'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -663,8 +622,6 @@ object NieZatrudnieni: TNieZatrudnieni
           Width = 500
           FieldName = 'powod_wycofania'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -732,6 +689,8 @@ object NieZatrudnieni: TNieZatrudnieni
       FooterOptions.RowCount = 1
       FooterOptions.Style = tsNative
       FooterOptions.DrawFullLine = False
+      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+      SearchOptions.FromStart = False
       OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alClient
@@ -748,7 +707,6 @@ object NieZatrudnieni: TNieZatrudnieni
       DefaultRowHeight = 24
       FixedColor = clNone
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-      ParentColor = False
       ParentShowHint = False
       ReadOnly = True
       ShowHint = True
@@ -771,13 +729,13 @@ object NieZatrudnieni: TNieZatrudnieni
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 569
-    top = 167
+    Left = 569
+    Top = 167
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = ZQBezrobotni
-    left = 639
-    top = 167
+    Left = 639
+    Top = 167
   end
   object ZQBezrobotni: TZQuery
     Connection = DM.ZConnection1
@@ -808,13 +766,13 @@ object NieZatrudnieni: TNieZatrudnieni
       '  AND (os.POC <> ''ubył'')'
     )
     Params = <>
-    left = 96
-    top = 167
+    Left = 96
+    Top = 167
   end
   object DSBezrobotni: TDataSource
     DataSet = ZQBezrobotni
-    left = 96
-    top = 232
+    Left = 96
+    Top = 232
   end
   object ZQZatrudnieni: TZQuery
     Connection = DM.ZConnection1
@@ -834,12 +792,12 @@ object NieZatrudnieni: TNieZatrudnieni
     MasterFields = 'IDO'
     MasterSource = DSBezrobotni
     LinkedFields = 'IDO'
-    left = 192
-    top = 440
+    Left = 192
+    Top = 440
   end
   object DSZatrudnieni: TDataSource
     DataSet = ZQZatrudnieni
-    left = 288
-    top = 440
+    Left = 288
+    Top = 440
   end
 end

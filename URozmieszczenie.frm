@@ -1,7 +1,7 @@
 object Rozmieszczenie: TRozmieszczenie
-  Left = 894
+  Left = 301
   Height = 760
-  Top = 324
+  Top = 142
   Width = 1103
   Caption = 'Rozmieszczenie'
   ClientHeight = 760
@@ -415,17 +415,18 @@ object Rozmieszczenie: TRozmieszczenie
     Images = ImageList1
     ParentShowHint = False
     ShowHint = True
+    TabHeight = 25
     TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Wolne Cele'
-      ClientHeight = 732
+      ClientHeight = 727
       ClientWidth = 861
       ImageIndex = 0
       object Panel2: TPanel
         Left = 0
         Height = 207
-        Top = 525
+        Top = 520
         Width = 861
         Align = alBottom
         BevelOuter = bvNone
@@ -694,7 +695,7 @@ object Rozmieszczenie: TRozmieszczenie
       end
       object RxDBGrid1: TRxDBGrid
         Left = 0
-        Height = 520
+        Height = 515
         Top = 0
         Width = 861
         ColumnDefValues.BlobText = '(blob)'
@@ -1083,7 +1084,7 @@ object Rozmieszczenie: TRozmieszczenie
         Cursor = crVSplit
         Left = 0
         Height = 5
-        Top = 520
+        Top = 515
         Width = 861
         Align = alBottom
         ResizeAnchor = akBottom

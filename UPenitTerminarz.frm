@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 180
+  Left = 368
   Height = 743
-  Top = 178
+  Top = 364
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -344,8 +344,8 @@ object PenitTerminarz: TPenitTerminarz
     end
     object TabSheet2: TTabSheet
       Caption = 'Terminy'
-      ClientHeight = 660
-      ClientWidth = 1174
+      ClientHeight = 935
+      ClientWidth = 1912
       ImageIndex = 24
       object Panel2: TPanel
         Left = 0
@@ -2145,7 +2145,7 @@ object PenitTerminarz: TPenitTerminarz
   object PopupMenu2: TPopupMenu
     Left = 920
     Top = 248
-    object MenuItem8: TMenuItem
+    object MenuDrukujWykazKal: TMenuItem
       Caption = 'Drukuj wykaz ...'
       Bitmap.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -2183,9 +2183,9 @@ object PenitTerminarz: TPenitTerminarz
         00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
         DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
       }
-      OnClick = MenuItem8Click
+      OnClick = MenuDrukujWykazKalClick
     end
-    object MenuItem9: TMenuItem
+    object MenuWykazDoSchowkaKal: TMenuItem
       Caption = 'Kopiuj do schowka'
       Bitmap.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -2223,7 +2223,7 @@ object PenitTerminarz: TPenitTerminarz
         55CECC8857DECB8856DBCC8856DBCB8757DBCA8350D0C479426EB2673C08FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
-      OnClick = MenuItem9Click
+      OnClick = MenuWykazDoSchowkaKalClick
     end
   end
   object frDBDataSet3: TfrDBDataSet

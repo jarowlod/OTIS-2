@@ -40,8 +40,8 @@ type
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
-    MenuItem8: TMenuItem;
-    MenuItem9: TMenuItem;
+    MenuDrukujWykazKal: TMenuItem;
+    MenuWykazDoSchowkaKal: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -99,8 +99,8 @@ type
     procedure MenuItem5Click(Sender: TObject);
     procedure MenuItem6Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
-    procedure MenuItem8Click(Sender: TObject);
-    procedure MenuItem9Click(Sender: TObject);
+    procedure MenuDrukujWykazKalClick(Sender: TObject);
+    procedure MenuWykazDoSchowkaKalClick(Sender: TObject);
     procedure OnTimerDataChange(Sender: TObject);
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
@@ -156,6 +156,7 @@ var
   PenitTerminarz: TPenitTerminarz;
 
 implementation
+uses UDrukWykazOsadz;
 
 {$R *.frm}
 
@@ -717,13 +718,38 @@ begin
   ZQZatReport.Close;
 end;
 
-procedure TPenitTerminarz.MenuItem8Click(Sender: TObject);
+procedure TPenitTerminarz.MenuDrukujWykazKalClick(Sender: TObject);
+var bookmark: TBookMark;
 begin
-  frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_grupowy.lrf');
-  frReport1.ShowReport;
+  if ZQKalendarz.IsEmpty then exit;
+  bookmark:= ZQKalendarz.GetBookmark;
+  ZQKalendarz.DisableControls;
+  ZQKalendarz.First;
+
+  with TDrukWykazOsadz.Create(Self) do
+  begin
+    while not ZQKalendarz.EOF do
+    begin
+      DodajDoWykazu( ZQKalendarz.FieldByName('IDO').AsInteger,
+                     ZQKalendarz.FieldByName('Nazwisko').AsString,
+                     ZQKalendarz.FieldByName('Imie').AsString,
+                     ZQKalendarz.FieldByName('Ojciec').AsString,
+                     ZQKalendarz.FieldByName('POC').AsString
+                   );
+      ZQKalendarz.Next;
+    end;
+
+    ShowModal;
+    Free;
+  end;
+
+  SetToBookmark(ZQKalendarz, bookmark);
+  ZQKalendarz.EnableControls;
+  //frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_grupowy.lrf');
+  //frReport1.ShowReport;
 end;
 
-procedure TPenitTerminarz.MenuItem9Click(Sender: TObject);
+procedure TPenitTerminarz.MenuWykazDoSchowkaKalClick(Sender: TObject);
 var schowek: string;
     bookmark: TBookMark;
 

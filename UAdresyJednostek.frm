@@ -1,7 +1,7 @@
 object AdresyJednostek: TAdresyJednostek
-  Left = 443
+  Left = 396
   Height = 552
-  Top = 161
+  Top = 229
   Width = 920
   BorderStyle = bsDialog
   Caption = 'Adresy'
@@ -9,7 +9,7 @@ object AdresyJednostek: TAdresyJednostek
   ClientWidth = 920
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 46
@@ -19,7 +19,7 @@ object AdresyJednostek: TAdresyJednostek
     BevelOuter = bvNone
     ClientHeight = 46
     ClientWidth = 920
-    TabOrder = 0
+    TabOrder = 2
     object BitBtn1: TBitBtn
       Left = 687
       Height = 30
@@ -57,7 +57,7 @@ object AdresyJednostek: TAdresyJednostek
     ClientWidth = 920
     Color = 16632718
     ParentColor = False
-    TabOrder = 1
+    TabOrder = 0
     object Label1: TLabel
       Left = 8
       Height = 15
@@ -92,7 +92,7 @@ object AdresyJednostek: TAdresyJednostek
     ActivePage = TabSheet1
     Align = alClient
     TabIndex = 0
-    TabOrder = 2
+    TabOrder = 1
     OnChange = PageControl1Change
     object TabSheet1: TTabSheet
       Caption = 'Adresy Jednostek'
@@ -192,8 +192,6 @@ object AdresyJednostek: TAdresyJednostek
             Width = 50
             FieldName = 'Kod'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -208,8 +206,6 @@ object AdresyJednostek: TAdresyJednostek
             Width = 250
             FieldName = 'Jednostka'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -276,6 +272,8 @@ object AdresyJednostek: TAdresyJednostek
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         Align = alClient
@@ -292,7 +290,6 @@ object AdresyJednostek: TAdresyJednostek
         DefaultRowHeight = 24
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-        ParentColor = False
         ReadOnly = True
         TabOrder = 1
         TitleStyle = tsNative
@@ -396,8 +393,6 @@ object AdresyJednostek: TAdresyJednostek
             Width = 500
             FieldName = 'Nazwa'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -464,6 +459,8 @@ object AdresyJednostek: TAdresyJednostek
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         Align = alClient
@@ -480,7 +477,6 @@ object AdresyJednostek: TAdresyJednostek
         DefaultRowHeight = 24
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-        ParentColor = False
         ReadOnly = True
         TabOrder = 1
         TitleStyle = tsNative
@@ -584,8 +580,6 @@ object AdresyJednostek: TAdresyJednostek
             Width = 500
             FieldName = 'Nazwa'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -652,6 +646,8 @@ object AdresyJednostek: TAdresyJednostek
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         Align = alClient
@@ -668,7 +664,6 @@ object AdresyJednostek: TAdresyJednostek
         DefaultRowHeight = 24
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-        ParentColor = False
         ReadOnly = True
         TabOrder = 1
         TitleStyle = tsNative
@@ -677,8 +672,8 @@ object AdresyJednostek: TAdresyJednostek
   end
   object DSAdrJednostki: TDataSource
     DataSet = ZQAdrJednostki
-    left = 692
-    top = 13
+    Left = 692
+    Top = 13
   end
   object ZQAdrJednostki: TZQuery
     Connection = DM.ZConnection1
@@ -698,8 +693,8 @@ object AdresyJednostek: TAdresyJednostek
         Name = 'kod'
         ParamType = ptUnknown
       end>
-    left = 613
-    top = 13
+    Left = 613
+    Top = 13
     ParamData = <    
       item
         DataType = ftUnknown
@@ -709,8 +704,8 @@ object AdresyJednostek: TAdresyJednostek
   end
   object DSAdrSady: TDataSource
     DataSet = ZQAdrSady
-    left = 692
-    top = 80
+    Left = 692
+    Top = 80
   end
   object ZQAdrSady: TZQuery
     Connection = DM.ZConnection1
@@ -730,8 +725,8 @@ object AdresyJednostek: TAdresyJednostek
         Name = 'nazwa'
         ParamType = ptUnknown
       end>
-    left = 613
-    top = 80
+    Left = 613
+    Top = 80
     ParamData = <    
       item
         DataType = ftUnknown
@@ -757,8 +752,8 @@ object AdresyJednostek: TAdresyJednostek
         Name = 'nazwa'
         ParamType = ptUnknown
       end>
-    left = 613
-    top = 144
+    Left = 613
+    Top = 144
     ParamData = <    
       item
         DataType = ftUnknown
@@ -768,7 +763,7 @@ object AdresyJednostek: TAdresyJednostek
   end
   object DSAdrPolicja: TDataSource
     DataSet = ZQAdrPolicja
-    left = 692
-    top = 144
+    Left = 692
+    Top = 144
   end
 end

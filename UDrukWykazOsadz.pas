@@ -5,7 +5,7 @@ unit UDrukWykazOsadz;
 interface
 
 uses
-  Classes, SysUtils, db, BufDataset, memds, FileUtil, rxdbgrid, rxmemds,
+  Classes, SysUtils, db, BufDataset, FileUtil, rxdbgrid, rxmemds,
   ZDataset, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons,
   datamodule, LR_Class, LR_DBSet, DBGrids;
 
@@ -46,7 +46,7 @@ type
   private
 
   public
-
+    procedure DodajDoWykazu(AIDO: integer; ANazwisko, AImie, AOjciec, APoc: string);
   end;
 
 var
@@ -64,6 +64,17 @@ begin
   MemWykaz.Open;
 end;
 
+procedure TDrukWykazOsadz.DodajDoWykazu(AIDO: integer; ANazwisko, AImie, AOjciec, APoc: string);
+begin
+  MemWykaz.Append;
+  MemWykaz.FieldByName('IDO').AsInteger     := AIDO;
+  MemWykaz.FieldByName('Nazwisko').AsString := ANazwisko;
+  MemWykaz.FieldByName('Imie').AsString     := AImie;
+  MemWykaz.FieldByName('Ojciec').AsString   := AOjciec;
+  MemWykaz.FieldByName('POC').AsString      := APoc;
+  MemWykaz.Post;
+end;
+
 procedure TDrukWykazOsadz.btnClearClick(Sender: TObject);
 begin
   MemWykaz.CloseOpen;
@@ -72,6 +83,8 @@ end;
 procedure TDrukWykazOsadz.btnDodajClick(Sender: TObject);
 var vIDO: integer;
 begin
+  if ZQOs.IsEmpty then exit;
+
   vIDO:= ZQOs.FieldByName('IDO').AsInteger;
 
   if MemWykaz.Locate('IDO',vIDO, []) then
@@ -80,13 +93,12 @@ begin
     exit;
   end;
 
-  MemWykaz.Append;
-  MemWykaz.FieldByName('IDO').AsInteger:= vIDO;
-  MemWykaz.FieldValues['Nazwisko']     := ZQOs.FieldValues['Nazwisko'];
-  MemWykaz.FieldValues['Imie']         := ZQOs.FieldValues['Imie'];
-  MemWykaz.FieldValues['Ojciec']       := ZQOs.FieldValues['Ojciec'];
-  MemWykaz.FieldValues['POC']          := ZQOs.FieldValues['POC'];
-  MemWykaz.Post;
+  DodajDoWykazu( vIDO,
+                 ZQOs.FieldByName('Nazwisko').AsString,
+                 ZQOs.FieldByName('Imie').AsString,
+                 ZQOs.FieldByName('Ojciec').AsString,
+                 ZQOs.FieldByName('POC').AsString
+               );
 end;
 
 procedure TDrukWykazOsadz.btnDrukujClick(Sender: TObject);

@@ -1,7 +1,7 @@
 object DrukWykazOsadz: TDrukWykazOsadz
   Left = 396
   Height = 577
-  Top = 222
+  Top = 229
   Width = 999
   Caption = 'Drukuj Wykaz osadzonych'
   ClientHeight = 577
@@ -520,6 +520,8 @@ object DrukWykazOsadz: TDrukWykazOsadz
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Footer.DisplayFormat = 'Poz: %d'
+          Footer.ValueType = fvtCount
           Footers = <>
         end      
         item
@@ -625,12 +627,13 @@ object DrukWykazOsadz: TDrukWykazOsadz
           ShortCut = 16451
           Enabled = True
         end>
+      FooterOptions.Active = True
       FooterOptions.RowCount = 1
       FooterOptions.Style = tsNative
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
+      OptionsRx = [rdgFooterRows, rdgCaseInsensitiveSort]
       FooterRowCount = 1
       Align = alClient
       AlternateColor = 16055807
@@ -648,6 +651,11 @@ object DrukWykazOsadz: TDrukWykazOsadz
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
       ReadOnly = True
       TabOrder = 1
+      TitleFont.CharSet = EASTEUROPE_CHARSET
+      TitleFont.Height = -16
+      TitleFont.Name = 'Calibri'
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
       TitleStyle = tsNative
       OnDblClick = btnUsunClick
       OnKeyPress = edWyszukajKeyPress
