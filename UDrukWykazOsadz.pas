@@ -5,9 +5,9 @@ unit UDrukWykazOsadz;
 interface
 
 uses
-  Classes, SysUtils, db, memds, FileUtil, rxdbgrid, ZDataset, Forms, Controls,
-  Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, datamodule, LR_Class,
-  LR_DBSet;
+  Classes, SysUtils, db, BufDataset, memds, FileUtil, rxdbgrid, rxmemds,
+  ZDataset, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons,
+  datamodule, LR_Class, LR_DBSet, DBGrids;
 
 type
 
@@ -26,7 +26,6 @@ type
     frReport1: TfrReport;
     Label1: TLabel;
     Label2: TLabel;
-    MemWykaz: TMemDataset;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -34,6 +33,7 @@ type
     Panel5: TPanel;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
+    MemWykaz: TRxMemoryData;
     ZQOs: TZQuery;
     procedure btnClearClick(Sender: TObject);
     procedure btnDodajClick(Sender: TObject);
@@ -66,7 +66,7 @@ end;
 
 procedure TDrukWykazOsadz.btnClearClick(Sender: TObject);
 begin
-  MemWykaz.Clear(false);
+  MemWykaz.CloseOpen;
 end;
 
 procedure TDrukWykazOsadz.btnDodajClick(Sender: TObject);
@@ -91,14 +91,13 @@ end;
 
 procedure TDrukWykazOsadz.btnDrukujClick(Sender: TObject);
 begin
-  frReport1.LoadFromFile(DM.Path_Raporty + 'pen_Wykaz.lrf');
+  frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_grupowy_1.lrf');
   frReport1.ShowReport;
 end;
 
 procedure TDrukWykazOsadz.btnKopiujDoSchowkaClick(Sender: TObject);
 begin
-  // TODO
-  // DM.CopyToClipboard(DataSet: TDataSet);
+  RxDBGrid2.CopyToClipboard;
 end;
 
 procedure TDrukWykazOsadz.btnUsunClick(Sender: TObject);
@@ -123,7 +122,12 @@ begin
       edWyszukaj.Text:='';
       edWyszukaj.SetFocus;
   end else
+  if Key=#13 then
+  begin
+      btnDodajClick(Sender);
+  end else
   if Key=' ' then Key:=#0;     // zabraniamy wpisywania spacji
+
 end;
 
 end.

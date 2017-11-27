@@ -360,6 +360,7 @@
         <Filename Value="UDrukWykazOsadz.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DrukWykazOsadz"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit34>
     </Units>

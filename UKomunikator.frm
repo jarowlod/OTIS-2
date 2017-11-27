@@ -1,7 +1,7 @@
 object Komunikator: TKomunikator
-  Left = 392
+  Left = 396
   Height = 560
-  Top = 237
+  Top = 222
   Width = 735
   Caption = 'Komunikator'
   ClientHeight = 560
@@ -14,19 +14,19 @@ object Komunikator: TKomunikator
     Height = 510
     Top = 0
     Width = 735
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Odebrane'
       ClientHeight = 482
-      ClientWidth = 729
+      ClientWidth = 727
       object RxDBGrid1: TRxDBGrid
         Left = 0
         Height = 162
         Top = 0
-        Width = 729
+        Width = 727
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -176,7 +176,7 @@ object Komunikator: TKomunikator
         Left = 0
         Height = 315
         Top = 167
-        Width = 729
+        Width = 727
         Align = alClient
         HideSelection = False
         ReadOnly = True
@@ -189,7 +189,7 @@ object Komunikator: TKomunikator
         Left = 0
         Height = 5
         Top = 162
-        Width = 729
+        Width = 727
         Align = alTop
         ResizeAnchor = akTop
       end

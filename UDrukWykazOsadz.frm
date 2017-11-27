@@ -1,7 +1,7 @@
 object DrukWykazOsadz: TDrukWykazOsadz
-  Left = 392
+  Left = 396
   Height = 577
-  Top = 237
+  Top = 222
   Width = 999
   Caption = 'Drukuj Wykaz osadzonych'
   ClientHeight = 577
@@ -73,7 +73,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           Title.Orientation = toHorizontal
           Title.Caption = 'Nazwisko'
           Width = 120
-          FieldName = 'NAZWISKO'
+          FieldName = 'Nazwisko'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -88,7 +88,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           Title.Orientation = toHorizontal
           Title.Caption = 'Imię'
           Width = 120
-          FieldName = 'IMIE'
+          FieldName = 'Imie'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -103,7 +103,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           Title.Orientation = toHorizontal
           Title.Caption = 'Imię ojca'
           Width = 120
-          FieldName = 'OJCIEC'
+          FieldName = 'Ojciec'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -190,7 +190,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+      OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
       FooterRowCount = 1
       Align = alClient
       AlternateColor = 16055807
@@ -513,7 +513,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           Title.Orientation = toHorizontal
           Title.Caption = 'Nazwisko'
           Width = 120
-          FieldName = 'NAZWISKO'
+          FieldName = 'Nazwisko'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -528,7 +528,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           Title.Orientation = toHorizontal
           Title.Caption = 'Imię'
           Width = 120
-          FieldName = 'IMIE'
+          FieldName = 'Imie'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -543,7 +543,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           Title.Orientation = toHorizontal
           Title.Caption = 'Imię ojca'
           Width = 120
-          FieldName = 'OJCIEC'
+          FieldName = 'Ojciec'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -630,7 +630,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+      OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
       FooterRowCount = 1
       Align = alClient
       AlternateColor = 16055807
@@ -650,6 +650,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
       TabOrder = 1
       TitleStyle = tsNative
       OnDblClick = btnUsunClick
+      OnKeyPress = edWyszukajKeyPress
     end
   end
   object ZQOs: TZQuery
@@ -659,7 +660,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
       'IDO,'
       'Nazwisko,'
       'Imie,'
-      'Ojcec,'
+      'Ojciec,'
       'POC'
       'FROM osadzeni'
       'WHERE '
@@ -686,7 +687,25 @@ object DrukWykazOsadz: TDrukWykazOsadz
     Left = 344
     Top = 8
   end
-  object MemWykaz: TMemDataset
+  object DSWykaz: TDataSource
+    DataSet = MemWykaz
+    Left = 848
+    Top = 29
+  end
+  object frReport1: TfrReport
+    Dataset = frDBDataSet1
+    InitialZoom = pzDefault
+    Options = [roSaveAndRestoreBookmarks]
+    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    DataType = dtDataSet
+    Left = 782
+    Top = 178
+  end
+  object frDBDataSet1: TfrDBDataSet
+    Left = 782
+    Top = 240
+  end
+  object MemWykaz: TRxMemoryData
     FieldDefs = <    
       item
         Name = 'IDO'
@@ -712,27 +731,8 @@ object DrukWykazOsadz: TDrukWykazOsadz
         DataType = ftString
         Size = 10
       end>
-    Left = 782
+    PacketRecords = 0
+    Left = 792
     Top = 29
-  end
-  object DSWykaz: TDataSource
-    DataSet = MemWykaz
-    Left = 848
-    Top = 29
-  end
-  object frReport1: TfrReport
-    Dataset = frDBDataSet1
-    InitialZoom = pzDefault
-    Options = [roSaveAndRestoreBookmarks]
-    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
-    DataType = dtDataSet
-    Left = 782
-    Top = 178
-  end
-  object frDBDataSet1: TfrDBDataSet
-    DataSet = MemWykaz
-    DataSource = DSWykaz
-    Left = 782
-    Top = 240
   end
 end

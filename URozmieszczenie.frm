@@ -1,7 +1,7 @@
 object Rozmieszczenie: TRozmieszczenie
-  Left = 443
+  Left = 894
   Height = 760
-  Top = 158
+  Top = 324
   Width = 1103
   Caption = 'Rozmieszczenie'
   ClientHeight = 760
@@ -10,7 +10,7 @@ object Rozmieszczenie: TRozmieszczenie
   Constraints.MinWidth = 480
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   WindowState = wsMaximized
   object Panel1: TPanel
     Left = 0
@@ -451,8 +451,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 80
               FieldName = 'IDO'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -467,8 +465,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 100
               FieldName = 'Nazwisko'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -483,8 +479,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 90
               FieldName = 'Imie'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -499,8 +493,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 90
               FieldName = 'Ojciec'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -516,8 +508,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 60
               FieldName = 'Klasyf'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -534,8 +524,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 30
               FieldName = 'GR'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -551,8 +539,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 40
               FieldName = 'Status'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -567,8 +553,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 110
               FieldName = 'Opis'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -585,8 +569,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 90
               FieldName = 'data_od'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -603,8 +585,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 90
               FieldName = 'data_do'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -620,8 +600,6 @@ object Rozmieszczenie: TRozmieszczenie
               Width = 40
               FieldName = 'dni'
               EditButtons = <>
-              Filter.IsNull = False
-              Filter.IsAll = True
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
               Filter.AllValue = '(All values)'
@@ -688,6 +666,8 @@ object Rozmieszczenie: TRozmieszczenie
           FooterOptions.RowCount = 1
           FooterOptions.Style = tsNative
           FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
           OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
           FooterRowCount = 1
           Align = alClient
@@ -704,7 +684,6 @@ object Rozmieszczenie: TRozmieszczenie
           DefaultRowHeight = 20
           FixedColor = clNone
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-          ParentColor = False
           ParentShowHint = False
           ReadOnly = True
           ShowHint = True
@@ -732,8 +711,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 60
             FieldName = 'POC'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -755,8 +732,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'Zajete'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -779,8 +754,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'Pojemnosc'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -804,8 +777,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 50
             FieldName = 'Wolne'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -824,8 +795,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 200
             FieldName = 'Opis'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -848,8 +817,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 90
             FieldName = 'Wychowawca'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -869,8 +836,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'GR'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -892,8 +857,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'Pali'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -914,8 +877,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'Ochronka'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -936,8 +897,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 70
             FieldName = 'Przejsciowa'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -955,8 +914,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'TA'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -977,8 +934,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'R'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -996,8 +951,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'P'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -1015,8 +968,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'M'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -1035,8 +986,6 @@ object Rozmieszczenie: TRozmieszczenie
             Width = 40
             FieldName = 'blokuje'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -1107,6 +1056,8 @@ object Rozmieszczenie: TRozmieszczenie
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         Align = alClient
@@ -1122,7 +1073,6 @@ object Rozmieszczenie: TRozmieszczenie
         DefaultRowHeight = 20
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 1
@@ -1723,19 +1673,19 @@ object Rozmieszczenie: TRozmieszczenie
     )
     Params = <>
     IndexFieldNames = 'id Asc'
-    left = 766
-    top = 160
+    Left = 766
+    Top = 160
   end
   object DSRozmieszczenie: TDataSource
     DataSet = ZQRozmieszczenie
     OnDataChange = DSRozmieszczenieDataChange
-    left = 766
-    top = 213
+    Left = 766
+    Top = 213
   end
   object DSOsadzeni: TDataSource
     DataSet = ZQOsadzeni
-    left = 766
-    top = 488
+    Left = 766
+    Top = 488
   end
   object ZQOsadzeni: TZQuery
     Connection = DM.ZConnection1
@@ -1763,8 +1713,8 @@ object Rozmieszczenie: TRozmieszczenie
     MasterFields = 'POC'
     MasterSource = DSRozmieszczenie
     LinkedFields = 'POC'
-    left = 766
-    top = 440
+    Left = 766
+    Top = 440
   end
   object ZURozmieszczenie: TZUpdateSQL
     DeleteSQL.Strings = (
@@ -1797,8 +1747,8 @@ object Rozmieszczenie: TRozmieszczenie
       ''
     )
     UseSequenceFieldForRefreshSQL = False
-    left = 872
-    top = 160
+    Left = 872
+    Top = 160
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1857,8 +1807,8 @@ object Rozmieszczenie: TRozmieszczenie
       end>
   end
   object ImageList1: TImageList
-    left = 903
-    top = 55
+    Left = 903
+    Top = 55
     Bitmap = {
       4C6902000000100000001000000000000000E5AF4952EAC172F9E9C380F6E6C0
       81F3E4BF85F3E1B577F3DEB06DF3DAA964F3D6A461F3D29D5AF3CF9753F3CA8F
@@ -1933,12 +1883,12 @@ object Rozmieszczenie: TRozmieszczenie
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 360
-    top = 344
+    Left = 360
+    Top = 344
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = ZQRozmieszczenie
-    left = 360
-    top = 400
+    Left = 360
+    Top = 400
   end
 end

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZConnection, ZDataset, Forms,
   Dialogs, DateUtils, controls, IniPropStorage, ShellApi, ExtCtrls, Graphics,
-  rxdbgrid, LMessages, LCLType, LR_Class;
+  rxdbgrid, LMessages, LCLType, LR_Class, Clipbrd;
 
 type
 
@@ -107,6 +107,8 @@ type
   TRxDBGrid = class(rxdbgrid.TRxDBGrid)
   private
     procedure WMVScroll(var Message : TLMVScroll); message LM_VScroll;
+  public
+    function CopyToClipboard: Boolean;
   end;
 
   function SetToBookmark(ADataSet: TDataSet; ABookmark: TBookmark): Boolean;
@@ -532,6 +534,50 @@ begin
   if Message.ScrollCode = SB_THUMBTRACK then
     Message.ScrollCode := SB_THUMBPOSITION;
   inherited WMVScroll(Message);
+end;
+
+function TRxDBGrid.CopyToClipboard: Boolean;
+var bookmark: TBookMark;
+    S: string;
+    K, i: integer;
+    DS: TDataSet;
+begin
+  S:='';
+  DS:= DataSource.DataSet;
+  bookmark:= DS.GetBookmark;
+
+  DS.First;
+  while not DS.EOF do
+  begin
+    if S<>'' then
+      S:= S + LineEnding;
+    K:= 0;
+    for i:= 0 to Columns.Count-1 do
+    begin
+      if Assigned(Columns[i].Field) then
+      begin
+        if K<>0 then
+          S:= S + #09;
+        S:= S + Columns[i].Field.DisplayText;
+        inc(K);
+      end;
+    end;
+    DS.Next;
+  end;
+
+  SetToBookmark(DS, bookmark);
+
+  if S<>'' then
+  begin
+    try
+      Clipboard.Open;
+      Clipboard.AsText:= S;
+    finally
+      Clipboard.Close;
+    end;
+  end;
+
+  Result:= (S<>'');
 end;
 
 function SetToBookmark(ADataSet: TDataSet; ABookmark: TBookmark): Boolean;
