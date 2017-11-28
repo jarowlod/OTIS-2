@@ -119,7 +119,7 @@
         <PackageName Value="adLCL"/>
       </Item28>
     </RequiredPackages>
-    <Units Count="35">
+    <Units Count="36">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -363,6 +363,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit34>
+      <Unit35>
+        <Filename Value="UOchRejestrWykazow.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OchRejestrWykazow"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit35>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

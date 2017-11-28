@@ -1,7 +1,7 @@
 object DrukWykazOsadz: TDrukWykazOsadz
   Left = 396
   Height = 577
-  Top = 229
+  Top = 222
   Width = 999
   Caption = 'Drukuj Wykaz osadzonych'
   ClientHeight = 577
@@ -710,6 +710,8 @@ object DrukWykazOsadz: TDrukWykazOsadz
     Top = 178
   end
   object frDBDataSet1: TfrDBDataSet
+    DataSet = MemWykaz
+    DataSource = DSWykaz
     Left = 782
     Top = 240
   end

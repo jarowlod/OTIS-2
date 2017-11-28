@@ -1118,6 +1118,12 @@ object Form1: TForm1
         Action = ActionRejestrWidzen
       end
     end
+    object MenuItem45: TMenuItem
+      Caption = 'Ochrona'
+      object MenuItem46: TMenuItem
+        Action = ActionRejestrWykazow
+      end
+    end
     object MenuItem15: TMenuItem
       Caption = 'Penit'
       object MenuItem16: TMenuItem
@@ -1358,6 +1364,12 @@ object Form1: TForm1
       Caption = 'Drukuj wykaz os. ...'
       ImageIndex = 4
       OnExecute = ActionDrukujWykazOsExecute
+    end
+    object ActionRejestrWykazow: TAction
+      Category = 'Ochrona'
+      Caption = 'Rejestr wykazów ...'
+      ImageIndex = 12
+      OnExecute = ActionRejestrWykazowExecute
     end
   end
   object Timer2Komunikaty: TTimer

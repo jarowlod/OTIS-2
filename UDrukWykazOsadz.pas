@@ -46,7 +46,7 @@ type
   private
 
   public
-    procedure DodajDoWykazu(AIDO: integer; ANazwisko, AImie, AOjciec, APoc: string);
+    procedure DodajDoWykazu(AIDO: integer; ANazwisko, AImie, AOjciec, APoc: string; cicho: Boolean);
   end;
 
 var
@@ -64,8 +64,14 @@ begin
   MemWykaz.Open;
 end;
 
-procedure TDrukWykazOsadz.DodajDoWykazu(AIDO: integer; ANazwisko, AImie, AOjciec, APoc: string);
+procedure TDrukWykazOsadz.DodajDoWykazu(AIDO: integer; ANazwisko, AImie, AOjciec, APoc: string; cicho: Boolean);
 begin
+  if MemWykaz.Locate('IDO',AIDO, []) then
+  begin
+    if not cicho then MessageDlg('Osadzony jest już dodany.', mtInformation, [mbOK],0);
+    exit;
+  end;
+
   MemWykaz.Append;
   MemWykaz.FieldByName('IDO').AsInteger     := AIDO;
   MemWykaz.FieldByName('Nazwisko').AsString := ANazwisko;
@@ -81,23 +87,15 @@ begin
 end;
 
 procedure TDrukWykazOsadz.btnDodajClick(Sender: TObject);
-var vIDO: integer;
 begin
   if ZQOs.IsEmpty then exit;
 
-  vIDO:= ZQOs.FieldByName('IDO').AsInteger;
-
-  if MemWykaz.Locate('IDO',vIDO, []) then
-  begin
-    MessageDlg('Osadzony jest już dodany.', mtInformation, [mbOK],0);
-    exit;
-  end;
-
-  DodajDoWykazu( vIDO,
+  DodajDoWykazu( ZQOs.FieldByName('IDO').AsInteger,
                  ZQOs.FieldByName('Nazwisko').AsString,
                  ZQOs.FieldByName('Imie').AsString,
                  ZQOs.FieldByName('Ojciec').AsString,
-                 ZQOs.FieldByName('POC').AsString
+                 ZQOs.FieldByName('POC').AsString,
+                 False
                );
 end;
 

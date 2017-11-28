@@ -15,6 +15,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionRejestrWykazow: TAction;
     ActionDrukujWykazOs: TAction;
     ActionNieZatrudnieni: TAction;
     ActionWydarzenia: TAction;
@@ -55,6 +56,8 @@ type
     MenuItem42: TMenuItem;
     MenuItem43: TMenuItem;
     MenuItem44: TMenuItem;
+    MenuItem45: TMenuItem;
+    MenuItem46: TMenuItem;
     MenuItem9: TMenuItem;
     Panel2: TPanel;
     SpkPane1: TSpkPane;
@@ -117,6 +120,7 @@ type
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
     procedure ActionProsbyOsadzonegoExecute(Sender: TObject);
     procedure ActionProsbyOsadzonychExecute(Sender: TObject);
+    procedure ActionRejestrWykazowExecute(Sender: TObject);
     procedure ActionRozmieszczenieExecute(Sender: TObject);
     procedure ActionStanowiskaExecute(Sender: TObject);
     procedure ActionStatystykaExecute(Sender: TObject);
@@ -171,7 +175,7 @@ implementation
 uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr_ZmianaHasla, URozmieszczenie,
      UUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
-     UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz;
+     UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow;
 {$R *.frm}
 
 { TForm1 }
@@ -475,6 +479,15 @@ procedure TForm1.ActionProsbyOsadzonychExecute(Sender: TObject);
 begin
   if DM.ZQOsadzeni.IsEmpty then exit;
   with TRejestrProsbAll.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TForm1.ActionRejestrWykazowExecute(Sender: TObject);
+begin
+  with TOchRejestrWykazow.Create(Self) do
   begin
        ShowModal;
        Free;

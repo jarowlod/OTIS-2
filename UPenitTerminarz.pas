@@ -734,7 +734,8 @@ begin
                      ZQKalendarz.FieldByName('Nazwisko').AsString,
                      ZQKalendarz.FieldByName('Imie').AsString,
                      ZQKalendarz.FieldByName('Ojciec').AsString,
-                     ZQKalendarz.FieldByName('POC').AsString
+                     ZQKalendarz.FieldByName('POC').AsString,
+                     True
                    );
       ZQKalendarz.Next;
     end;
