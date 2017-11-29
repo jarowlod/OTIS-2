@@ -119,7 +119,7 @@
         <PackageName Value="adLCL"/>
       </Item28>
     </RequiredPackages>
-    <Units Count="36">
+    <Units Count="37">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -352,7 +352,7 @@
       <Unit33>
         <Filename Value="UZatNiezatrudnieni.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="NieZatrudnieni"/>
+        <ComponentName Value="ZatNieZatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit33>
@@ -370,6 +370,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit35>
+      <Unit36>
+        <Filename Value="UOchAddWykaz.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OchAddWykaz"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit36>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

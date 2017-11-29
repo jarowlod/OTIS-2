@@ -15,6 +15,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionAddWykaz: TAction;
     ActionRejestrWykazow: TAction;
     ActionDrukujWykazOs: TAction;
     ActionNieZatrudnieni: TAction;
@@ -58,6 +59,7 @@ type
     MenuItem44: TMenuItem;
     MenuItem45: TMenuItem;
     MenuItem46: TMenuItem;
+    MenuItem47: TMenuItem;
     MenuItem9: TMenuItem;
     Panel2: TPanel;
     SpkPane1: TSpkPane;
@@ -113,6 +115,7 @@ type
     RxDBGrid1: TRxDBGrid;
     StatusBar1: TStatusBar;
     Timer1Wyszukaj: TTimer;
+    procedure ActionAddWykazExecute(Sender: TObject);
     procedure ActionDrukujWykazOsExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
     procedure ActionKomunikatDoExecute(Sender: TObject);
@@ -175,7 +178,7 @@ implementation
 uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr_ZmianaHasla, URozmieszczenie,
      UUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
-     UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow;
+     UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz;
 {$R *.frm}
 
 { TForm1 }
@@ -252,8 +255,9 @@ begin
   //MenuItem14.Enabled:= DM.uprawnienia[15];
   ZatrudnienieAdd.Enabled      := DM.uprawnienia[15]; // dodaj zatrudnienie
   MenuItem9.Enabled            := DM.uprawnienia[1];  // aktualizacja podkultury
-  ActionTerminarz.Enabled      := (DM.Wychowawca<>'');      // tylko wychowawca
-  ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>'');// tylko wychowawca
+  ActionTerminarz.Enabled      := (DM.Wychowawca<>''); // tylko wychowawca
+  ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>''); // tylko wychowawca
+  ActionAddWykaz.Enabled       := DM.uprawnienia[4]; // dodawanie do wykazów ochronnych
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
@@ -435,6 +439,17 @@ begin
   end;
 end;
 
+procedure TForm1.ActionAddWykazExecute(Sender: TObject);
+begin
+  if DM.ZQOsadzeni.IsEmpty then exit;
+  with TOchAddWykaz.Create(Self) do
+  begin
+       DodajOsadzonego( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
+       ShowModal;
+       Free;
+  end;
+end;
+
 procedure TForm1.ActionKomunikatDoExecute(Sender: TObject);
 begin
   if DM.ZQOsadzeni.IsEmpty then exit;
@@ -457,7 +472,7 @@ end;
 
 procedure TForm1.ActionNieZatrudnieniExecute(Sender: TObject);
 begin
-  with TNieZatrudnieni.Create(Self) do
+  with TZatNieZatrudnieni.Create(Self) do
   begin
        ShowModal;
        Free;

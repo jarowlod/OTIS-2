@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 396
   Height = 598
-  Top = 222
+  Top = 229
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1123,6 +1123,9 @@ object Form1: TForm1
       object MenuItem46: TMenuItem
         Action = ActionRejestrWykazow
       end
+      object MenuItem47: TMenuItem
+        Action = ActionAddWykaz
+      end
     end
     object MenuItem15: TMenuItem
       Caption = 'Penit'
@@ -1370,6 +1373,12 @@ object Form1: TForm1
       Caption = 'Rejestr wykazów ...'
       ImageIndex = 12
       OnExecute = ActionRejestrWykazowExecute
+    end
+    object ActionAddWykaz: TAction
+      Category = 'Ochrona'
+      Caption = 'Dodaj do wykazu ...'
+      ImageIndex = 0
+      OnExecute = ActionAddWykazExecute
     end
   end
   object Timer2Komunikaty: TTimer

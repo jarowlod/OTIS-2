@@ -1,7 +1,7 @@
-object NieZatrudnieni: TNieZatrudnieni
-  Left = 158
+object ZatNieZatrudnieni: TZatNieZatrudnieni
+  Left = 396
   Height = 692
-  Top = 142
+  Top = 229
   Width = 1389
   Caption = 'Wykaz osadzonych niezatrudnionych'
   ClientHeight = 692

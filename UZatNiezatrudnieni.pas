@@ -11,9 +11,9 @@ uses
 
 type
 
-  { TNieZatrudnieni }
+  { TZatNieZatrudnieni }
 
-  TNieZatrudnieni = class(TForm)
+  TZatNieZatrudnieni = class(TForm)
     BitBtn17: TBitBtn;
     BitBtn18: TBitBtn;
     DSBezrobotni: TDataSource;
@@ -43,22 +43,22 @@ type
   end;
 
 var
-  NieZatrudnieni: TNieZatrudnieni;
+  ZatNieZatrudnieni: TZatNieZatrudnieni;
 
 implementation
 uses UPenitForm, rxdbutils;
 {$R *.frm}
 
-{ TNieZatrudnieni }
+{ TZatNieZatrudnieni }
 
-procedure TNieZatrudnieni.BitBtn17Click(Sender: TObject);
+procedure TZatNieZatrudnieni.BitBtn17Click(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_bezrobotni.lrf');
   DM.SetMemoReport(frReport1, 'Memo_data', DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.');
   frReport1.ShowReport;
 end;
 
-procedure TNieZatrudnieni.BitBtn18Click(Sender: TObject);
+procedure TZatNieZatrudnieni.BitBtn18Click(Sender: TObject);
 var bookmark: TBookMark;
     schowek: string;
 begin
@@ -81,13 +81,13 @@ begin
   ZQBezrobotni.EnableControls;
 end;
 
-procedure TNieZatrudnieni.FormCreate(Sender: TObject);
+procedure TZatNieZatrudnieni.FormCreate(Sender: TObject);
 begin
   ZQBezrobotni.Open;
   ZQZatrudnieni.Open;
 end;
 
-procedure TNieZatrudnieni.RxDBGrid1DblClick(Sender: TObject);
+procedure TZatNieZatrudnieni.RxDBGrid1DblClick(Sender: TObject);
 begin
   if ZQBezrobotni.IsEmpty then exit;
 
@@ -100,7 +100,7 @@ begin
   end;
 end;
 
-procedure TNieZatrudnieni.RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
+procedure TZatNieZatrudnieni.RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor);
 begin
   if not Assigned(Field) then exit;
@@ -123,7 +123,7 @@ begin
 
 end;
 
-function TNieZatrudnieni.ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
+function TZatNieZatrudnieni.ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
 var s: string;
 begin
   s:='';
