@@ -1,7 +1,7 @@
 object OchRejestrWykazow: TOchRejestrWykazow
   Left = 396
   Height = 556
-  Top = 229
+  Top = 222
   Width = 1176
   Caption = 'Rejestr Wykazów Ochronnych'
   ClientHeight = 556
@@ -229,6 +229,34 @@ object OchRejestrWykazow: TOchRejestrWykazow
           Filter.ItemIndex = -1
           Footers = <>
           WordWrap = True
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Użytkownik'
+          Width = 100
+          FieldName = 'user_dodania'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Dodano'
+          Width = 100
+          FieldName = 'data_dodania'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
         end>
       KeyStrokes = <      
         item
@@ -435,6 +463,7 @@ object OchRejestrWykazow: TOchRejestrWykazow
   object ZQRejWykazow: TZQuery
     Connection = DM.ZConnection1
     UpdateObject = ZURejWykazow
+    Active = True
     SQL.Strings = (
       'SELECT'
       'wyk.ID,'
@@ -446,7 +475,9 @@ object OchRejestrWykazow: TOchRejestrWykazow
       'os.POC,'
       'wyk.Uwagi,'
       'wyk.Kategoria,'
-      'kat.Opis'
+      'kat.Opis,'
+      'wyk.data_dodania,'
+      'wyk.user_dodania'
       'FROM uwagi_wykazy as wyk'
       'RIGHT JOIN osadzeni as os ON os.IDO = wyk.IDO'
       'JOIN katalog_wykazow as kat ON kat.ID = wyk.Kategoria'
@@ -462,7 +493,6 @@ object OchRejestrWykazow: TOchRejestrWykazow
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = ZQRejWykazow
-    DataSource = DSRejWykazow
     Left = 384
     Top = 240
   end
@@ -476,8 +506,59 @@ object OchRejestrWykazow: TOchRejestrWykazow
     Top = 240
   end
   object ZURejWykazow: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'DELETE FROM uwagi_wykazy'
+      'WHERE'
+      '  uwagi_wykazy.ID = :OLD_ID'
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO uwagi_wykazy'
+      '  (IDO, Uwagi, Kategoria, data_dodania, user_dodania)'
+      'VALUES'
+      '  (:IDO, :Uwagi, :Kategoria, :data_dodania, :user_dodania)'
+    )
+    ModifySQL.Strings = (
+      'UPDATE uwagi_wykazy SET'
+      '  Uwagi = :Uwagi,'
+      '  Kategoria = :Kategoria,'
+      '  data_dodania = :data_dodania,'
+      '  user_dodania = :user_dodania'
+      'WHERE'
+      '  uwagi_wykazy.ID = :OLD_ID'
+    )
     UseSequenceFieldForRefreshSQL = False
     Left = 496
     Top = 152
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'Uwagi'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'Kategoria'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_dodania'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'user_dodania'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_ID'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'IDO'
+        ParamType = ptUnknown
+      end>
   end
 end

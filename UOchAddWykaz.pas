@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, Buttons, DbCtrls, StdCtrls, datamodule, UOchRejestrWykazow;
+  ExtCtrls, Buttons, DbCtrls, StdCtrls, datamodule, UOchRejestrWykazow,
+  rxdbgrid;
 
 type
 
@@ -17,8 +18,10 @@ type
     BitBtn2: TBitBtn;
     cbKategoriaWykazu: TComboBox;
     dbeUwagi: TDBEdit;
+    DSRejWykazow: TDataSource;
     DSWykaz: TDataSource;
     GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -34,6 +37,8 @@ type
     lbl_Imie: TLabel;
     lbl_Ojciec: TLabel;
     Panel1: TPanel;
+    RxDBGrid1: TRxDBGrid;
+    ZQRejWykazow: TZQuery;
     ZQWykaz: TZQuery;
     procedure BitBtn1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -41,7 +46,10 @@ type
     fIDO: integer;
     fKategorie: TWykazyOchronne;
     isDodawanie: Boolean;
+    fOldKategoria: integer;
+    procedure SprawdzPodwojneWpisy; // przed dodaniem sprawdz czy nie będzie zdublowania kategorii
     procedure SprawdzIZapisz;
+    procedure WczytajDaneOsadzonego;
   public
     procedure ModyfikujWykaz(ZQW: TZQuery);
     procedure DodajOsadzonego(vIDO: integer);
@@ -62,12 +70,21 @@ begin
   fKategorie:= TWykazyOchronne.Create(cbKategoriaWykazu);
 end;
 
+procedure TOchAddWykaz.SprawdzPodwojneWpisy;
+var ZQPom: TZQueryPom;
+begin
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT ID, IDO, Kategoria FROM uwagi_wykazy WHERE IDO = :ido';
+  ZQPom.ParamByName('ido').AsInteger:= fIDO;
+  ZQPom.Open;
+end;
+
 procedure TOchAddWykaz.SprawdzIZapisz;
 begin
   // sprawdz kategorie >=0;
   if not fKategorie.GetIDKategorieWykazow>=0 then
     begin
-      //komunikat i powrót
+      MessageDlg('Wybierz kategorie wykazu.', mtWarning, [mbOK],0);
       ModalResult:= mrNone;
       exit;
     end;
@@ -75,40 +92,22 @@ begin
   // sprawdz osadzonego
   if fIDO<0 then
     begin
-      // komunikat
+      MessageDlg('Nie wybrano osadzonego.', mtWarning, [mbOK],0);
       ModalResult:= mrNone;
       exit;
     end;
 
   // zapisz do bazy
-  ZQWykaz.FieldByName('Kategoria').AsInteger:= fKategorie.GetIDKategorieWykazow;
-  ZQWykaz.FieldByName('IDO').AsInteger      := fIDO;
-  //ZQWykaz.FieldByName('user').AsString      := DM.PelnaNazwa;
-  //ZQWykaz.FieldByName('data_dodania').AsDateTime:= Now();
+  ZQWykaz.FieldByName('Kategoria').AsInteger    := fKategorie.GetIDKategorieWykazow;
+  ZQWykaz.FieldByName('IDO').AsInteger          := fIDO;
+  ZQWykaz.FieldByName('user_dodania').AsString  := DM.PelnaNazwa;
+  ZQWykaz.FieldByName('data_dodania').AsDateTime:= Now();
   ZQWykaz.Post;
 end;
 
-procedure TOchAddWykaz.BitBtn1Click(Sender: TObject);
-begin
-  if isDodawanie then
-    SprawdzIZapisz;
-end;
-
-procedure TOchAddWykaz.ModyfikujWykaz(ZQW: TZQuery);
-begin
-  isDodawanie:= false;
-  DSWykaz.DataSet:= ZQW;
-  cbKategoriaWykazu.Text:= ZQW.FieldByName('Opis').AsString;
-  cbKategoriaWykazu.Enabled:= false;
-end;
-
-procedure TOchAddWykaz.DodajOsadzonego(vIDO: integer);
+procedure TOchAddWykaz.WczytajDaneOsadzonego;
 var ZQPom: TZQueryPom;
 begin
-  fIDO:= vIDO;
-  isDodawanie:= true;
-  ZQWykaz.Append;
-
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'SELECT IDO, Nazwisko, Imie, Ojciec, Klasyf, POC FROM osadzeni WHERE IDO = :ido';
   ZQPom.ParamByName('ido').AsInteger:= fIDO;
@@ -132,8 +131,51 @@ begin
       lbl_Ojciec.Caption  := 'brak';
       fIDO:= -1;
     end;
+    FreeAndNil(ZQPom);
 
-  FreeAndNil(ZQPom);
+  //wczytaj informacje o innych wykazach
+  ZQRejWykazow.ParamByName('IDO').AsInteger:= fIDO;
+  ZQRejWykazow.Open;
+end;
+
+procedure TOchAddWykaz.BitBtn1Click(Sender: TObject);
+begin
+  if isDodawanie then
+      begin
+        SprawdzIZapisz
+      end
+    else
+      begin
+        //modyfikacja, zapisujemy id kategori
+        if not fKategorie.GetIDKategorieWykazow>=0 then
+          begin
+            MessageDlg('Wybierz kategorie wykazu.', mtWarning, [mbOK],0);
+            ModalResult:= mrNone;
+            exit;
+          end;
+        DSWykaz.DataSet.FieldByName('Kategoria').AsInteger:= fKategorie.GetIDKategorieWykazow;
+      end;
+end;
+
+procedure TOchAddWykaz.ModyfikujWykaz(ZQW: TZQuery);
+begin
+  isDodawanie:= false;
+  DSWykaz.DataSet:= ZQW;
+  cbKategoriaWykazu.Text:= ZQW.FieldByName('Opis').AsString;
+  fIDO:= ZQW.FieldByName('IDO').AsInteger;
+  WczytajDaneOsadzonego;
+  Caption:= Caption+ ZQW.FieldByName('Opis').AsString;
+end;
+
+procedure TOchAddWykaz.DodajOsadzonego(vIDO: integer);
+begin
+  fIDO:= vIDO;
+  isDodawanie:= true;
+  WczytajDaneOsadzonego;
+  Caption:= 'Dodaj do wykazu';
+
+  ZQWykaz.Open;
+  ZQWykaz.Append;
 end;
 
 end.

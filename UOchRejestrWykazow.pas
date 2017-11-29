@@ -81,7 +81,7 @@ var ZQPom: TZQueryPom;
     i: integer;
 begin
   ZQPom:= TZQueryPom.Create(ComboBox);
-  ZQPom.SQL.Text:= 'SELECT ID, Opis FORM katalog_wykazow';
+  ZQPom.SQL.Text:= 'SELECT ID, Opis FROM katalog_wykazow';
   ZQPom.Open;
 
   SetLength(fKategorieWykazow, ZQPom.RecordCount);
@@ -179,8 +179,14 @@ begin
   begin
        ZQRejWykazow.Edit;
        ModyfikujWykaz(ZQRejWykazow);
-       if ShowModal = mrOK then ZQRejWykazow.Post
-                           else ZQRejWykazow.Cancel;
+       if ShowModal = mrOK then
+           begin
+             ZQRejWykazow.FieldByName('data_dodania').AsDateTime:= Now();
+             ZQRejWykazow.FieldByName('user_dodania').AsString:= DM.PelnaNazwa;
+             ZQRejWykazow.Post
+           end
+         else
+           ZQRejWykazow.Cancel;
        Free;
   end;
 end;
