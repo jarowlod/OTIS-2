@@ -221,6 +221,7 @@ end;
 procedure TOchRejestrWykazow.btnModyfikujClick(Sender: TObject);
 begin
   if not DM.uprawnienia[4] then exit;
+  if ZQRejWykazow.IsEmpty then exit;
 
   with TOchAddWykaz.Create(Self) do
   begin
@@ -233,6 +234,7 @@ end;
 
 procedure TOchRejestrWykazow.btnUsunClick(Sender: TObject);
 begin
+  if ZQRejWykazow.IsEmpty then exit;
   if MessageDlg('Osadzony zostanie usunięty z wybranego wykazu.'+LineEnding+'Czy usunąć ?', mtWarning, [mbYes, mbNo],0) = mrYes then
     ZQRejWykazow.Delete;
 end;

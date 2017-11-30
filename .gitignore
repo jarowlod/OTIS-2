@@ -6,3 +6,6 @@ lib/
 #__history/
 #__recovery/
 *.~*
+
+# Config files
+config.ini

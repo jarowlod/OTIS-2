@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 86
+  Left = 180
   Height = 743
-  Top = 85
+  Top = 178
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -344,8 +344,8 @@ object PenitTerminarz: TPenitTerminarz
     end
     object TabSheet2: TTabSheet
       Caption = 'Terminy'
-      ClientHeight = 935
-      ClientWidth = 1912
+      ClientHeight = 660
+      ClientWidth = 1174
       ImageIndex = 24
       object Panel2: TPanel
         Left = 0

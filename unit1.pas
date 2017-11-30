@@ -343,6 +343,7 @@ end;
 // DODAJ OSADZONEGO DO ZATRUDNIENIA
 procedure TForm1.ZatrudnienieAddExecute(Sender: TObject);
 begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TAddZatrudnienie.Create(Self) do
   begin
     NoweZatrudnienie(DM.ZQOsadzeni.FieldByName('ido').AsInteger);
@@ -423,6 +424,7 @@ end;
 
 procedure TForm1.ActionKartaOsadzonegoExecute(Sender: TObject);
 begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TPenitForm.Create(Self) do
   begin
        SetIDO( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
@@ -441,7 +443,7 @@ end;
 
 procedure TForm1.ActionAddWykazExecute(Sender: TObject);
 begin
-  if DM.ZQOsadzeni.IsEmpty then exit;
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TOchAddWykaz.Create(Self) do
   begin
        DodajOsadzonego( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
@@ -452,7 +454,7 @@ end;
 
 procedure TForm1.ActionKomunikatDoExecute(Sender: TObject);
 begin
-  if DM.ZQOsadzeni.IsEmpty then exit;
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TKomunikatorNowaWiad.Create(Self) do
   begin
        OdpiszDoUserByIDO( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
@@ -481,7 +483,7 @@ end;
 
 procedure TForm1.ActionProsbyOsadzonegoExecute(Sender: TObject);
 begin
-  if DM.ZQOsadzeni.IsEmpty then exit;
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TRejestrProsbOs.Create(Self) do
   begin
        SetIDO( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
@@ -492,7 +494,6 @@ end;
 
 procedure TForm1.ActionProsbyOsadzonychExecute(Sender: TObject);
 begin
-  if DM.ZQOsadzeni.IsEmpty then exit;
   with TRejestrProsbAll.Create(Self) do
   begin
        ShowModal;
@@ -547,6 +548,7 @@ end;
 
 procedure TForm1.ActionZatrudnienieOsExecute(Sender: TObject);
 begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TZatrudnieni.Create(Self) do
   begin
        ShowZatrudnienieOsadzonego( DM.ZQOsadzeni.FieldByName('ido').AsInteger, DM.ZQOsadzeni.FieldByName('nazwisko').AsString );

@@ -1,14 +1,14 @@
 object RejestrProsbDodaj: TRejestrProsbDodaj
-  Left = 445
+  Left = 396
   Height = 466
-  Top = 161
+  Top = 229
   Width = 661
   BorderStyle = bsDialog
   Caption = 'Zarejestruj prośbę'
   ClientHeight = 466
   ClientWidth = 661
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 46
@@ -146,7 +146,6 @@ object RejestrProsbDodaj: TRejestrProsbDodaj
       HideDateTimeParts = []
       MonthNames = 'Long'
       ShowMonthNames = True
-      FlatButton = True
     end
     object cbKategoria: TComboBox
       Left = 104
@@ -160,7 +159,6 @@ object RejestrProsbDodaj: TRejestrProsbDodaj
       ItemHeight = 15
       MaxLength = 100
       OnDrawItem = cbKategoriaDrawItem
-      ReadOnly = True
       Style = csOwnerDrawFixed
       TabOrder = 1
     end
@@ -201,7 +199,6 @@ object RejestrProsbDodaj: TRejestrProsbDodaj
       'Wpis omyłkowy'
     )
     OnDrawItem = cbStatusDrawItem
-    ReadOnly = True
     Style = csOwnerDrawFixed
     TabOrder = 4
     Text = 'Oczekuje'
@@ -232,6 +229,5 @@ object RejestrProsbDodaj: TRejestrProsbDodaj
     HideDateTimeParts = []
     MonthNames = 'Long'
     ShowMonthNames = True
-    FlatButton = True
   end
 end

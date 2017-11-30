@@ -1,10 +1,10 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 86
-  Height = 853
-  Top = 85
+  Left = 180
+  Height = 856
+  Top = 178
   Width = 1359
   Caption = 'Zatrudnieni'
-  ClientHeight = 853
+  ClientHeight = 856
   ClientWidth = 1359
   OnCreate = FormCreate
   Position = poOwnerFormCenter
@@ -386,30 +386,30 @@ object Zatrudnieni: TZatrudnieni
   end
   object Panel3: TPanel
     Left = 0
-    Height = 681
+    Height = 684
     Top = 120
     Width = 1359
     Align = alClient
     BevelOuter = bvNone
-    ClientHeight = 681
+    ClientHeight = 684
     ClientWidth = 1359
     TabOrder = 1
     object Panel4: TPanel
       Left = 0
-      Height = 681
+      Height = 684
       Top = 0
-      Width = 851
+      Width = 848
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 681
-      ClientWidth = 851
+      ClientHeight = 684
+      ClientWidth = 848
       Constraints.MinWidth = 490
       TabOrder = 0
       object RxDBGrid1: TRxDBGrid
         Left = 0
-        Height = 681
+        Height = 684
         Top = 0
-        Width = 851
+        Width = 848
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -740,12 +740,14 @@ object Zatrudnieni: TZatrudnieni
             Enabled = True
           end>
         FooterOptions.Active = True
+        FooterOptions.Color = clSilver
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
         SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
         SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+        FooterColor = clSilver
         FooterRowCount = 1
         Align = alClient
         AlternateColor = 16055807
@@ -773,10 +775,10 @@ object Zatrudnieni: TZatrudnieni
       end
     end
     object PageControl1: TPageControl
-      Left = 856
-      Height = 681
+      Left = 853
+      Height = 684
       Top = 0
-      Width = 503
+      Width = 506
       ActivePage = tabSzczegolyOs
       Align = alRight
       Images = DM.ImageList1
@@ -785,19 +787,19 @@ object Zatrudnieni: TZatrudnieni
       TabOrder = 1
       object tabSzczegolyOs: TTabSheet
         Caption = 'Szczegóły osadzonego'
-        ClientHeight = 648
-        ClientWidth = 495
+        ClientHeight = 651
+        ClientWidth = 498
         ImageIndex = 5
         object Panel5: TPanel
           Left = 0
           Height = 192
           Top = 0
-          Width = 495
+          Width = 498
           Align = alTop
           BevelInner = bvRaised
           BevelOuter = bvLowered
           ClientHeight = 192
-          ClientWidth = 495
+          ClientWidth = 498
           Color = 16316664
           ParentColor = False
           TabOrder = 0
@@ -1094,12 +1096,12 @@ object Zatrudnieni: TZatrudnieni
         object GroupBox3: TGroupBox
           Left = 0
           Height = 64
-          Top = 584
-          Width = 495
+          Top = 587
+          Width = 498
           Align = alBottom
           Caption = 'Modyfikacje:'
           ClientHeight = 44
-          ClientWidth = 491
+          ClientWidth = 494
           TabOrder = 2
           object Label21: TLabel
             Left = 44
@@ -1184,9 +1186,9 @@ object Zatrudnieni: TZatrudnieni
         end
         object PageControl2: TPageControl
           Left = 0
-          Height = 392
+          Height = 395
           Top = 192
-          Width = 495
+          Width = 498
           ActivePage = tabInfoZat
           Align = alClient
           Images = DM.ImageList1
@@ -1195,14 +1197,14 @@ object Zatrudnieni: TZatrudnieni
           TabOrder = 1
           object tabInfoZat: TTabSheet
             Caption = 'Informacje o zatrudnieniu'
-            ClientHeight = 359
-            ClientWidth = 487
+            ClientHeight = 362
+            ClientWidth = 490
             ImageIndex = 6
             object plGradient1: TplGradient
               Left = 0
               Height = 56
               Top = 0
-              Width = 488
+              Width = 491
               Anchors = [akTop, akLeft, akRight]
               BevelWidth = 1
               BevelStyle = bvLowered
@@ -1225,7 +1227,7 @@ object Zatrudnieni: TZatrudnieni
               Left = 112
               Height = 15
               Top = 56
-              Width = 367
+              Width = 370
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               DataField = 'status_zatrudnienia'
@@ -1291,7 +1293,7 @@ object Zatrudnieni: TZatrudnieni
               Left = 6
               Height = 21
               Top = 24
-              Width = 473
+              Width = 476
               Alignment = taCenter
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
@@ -1547,8 +1549,8 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInfoStanowisko: TTabSheet
             Caption = 'Informacje o Stanowisku'
-            ClientHeight = 524
-            ClientWidth = 487
+            ClientHeight = 362
+            ClientWidth = 490
             ImageIndex = 7
             object Label15: TLabel
               Left = 6
@@ -1602,7 +1604,7 @@ object Zatrudnieni: TZatrudnieni
               Left = 152
               Height = 16
               Top = 11
-              Width = 327
+              Width = 330
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Color = clBtnFace
@@ -1617,7 +1619,7 @@ object Zatrudnieni: TZatrudnieni
               Left = 152
               Height = 15
               Top = 40
-              Width = 327
+              Width = 330
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Color = clBtnFace
@@ -1632,7 +1634,7 @@ object Zatrudnieni: TZatrudnieni
               Left = 152
               Height = 15
               Top = 59
-              Width = 327
+              Width = 330
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Color = clBtnFace
@@ -1647,7 +1649,7 @@ object Zatrudnieni: TZatrudnieni
               Left = 152
               Height = 15
               Top = 80
-              Width = 327
+              Width = 330
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Color = clBtnFace
@@ -1662,7 +1664,7 @@ object Zatrudnieni: TZatrudnieni
               Left = 152
               Height = 15
               Top = 100
-              Width = 327
+              Width = 330
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Color = clBtnFace
@@ -1675,10 +1677,10 @@ object Zatrudnieni: TZatrudnieni
             end
             object DBMemo1: TDBMemo
               Left = 6
-              Height = 192
+              Height = 182
               Top = 176
-              Width = 474
-              Anchors = [akTop, akLeft, akBottom]
+              Width = 477
+              Anchors = [akTop, akLeft, akRight, akBottom]
               DataField = 'opis'
               DataSource = DSZatrudnieni
               ReadOnly = True
@@ -1697,7 +1699,7 @@ object Zatrudnieni: TZatrudnieni
               Left = 152
               Height = 15
               Top = 123
-              Width = 327
+              Width = 330
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Color = clBtnFace
@@ -1721,7 +1723,6 @@ object Zatrudnieni: TZatrudnieni
               Height = 15
               Top = 144
               Width = 56
-              Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Color = clBtnFace
               DataField = 'godz_wyjscia'
@@ -1736,7 +1737,6 @@ object Zatrudnieni: TZatrudnieni
               Height = 15
               Top = 144
               Width = 56
-              Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Color = clBtnFace
               DataField = 'godz_powrotu'
@@ -1757,7 +1757,7 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInne: TTabSheet
             Caption = 'inne'
-            ClientHeight = 524
+            ClientHeight = 359
             ClientWidth = 487
             ImageIndex = 3
             object Label12: TLabel
@@ -2401,8 +2401,8 @@ object Zatrudnieni: TZatrudnieni
       end
     end
     object Splitter1: TSplitter
-      Left = 851
-      Height = 681
+      Left = 848
+      Height = 684
       Top = 0
       Width = 5
       Align = alRight
@@ -2412,7 +2412,7 @@ object Zatrudnieni: TZatrudnieni
   object Panel1: TPanel
     Left = 0
     Height = 52
-    Top = 801
+    Top = 804
     Width = 1359
     Align = alBottom
     BevelOuter = bvNone

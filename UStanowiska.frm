@@ -1,7 +1,7 @@
 object Stanowiska: TStanowiska
   Left = 396
   Height = 677
-  Top = 222
+  Top = 229
   Width = 1215
   Caption = 'Stanowiska / Grupy'
   ClientHeight = 677
@@ -358,17 +358,17 @@ object Stanowiska: TStanowiska
       Left = 0
       Height = 529
       Top = 0
-      Width = 596
+      Width = 590
       Align = alClient
       BevelOuter = bvNone
       ClientHeight = 529
-      ClientWidth = 596
+      ClientWidth = 590
       TabOrder = 0
       object RxDBGrid1: TRxDBGrid
         Left = 0
         Height = 529
         Top = 0
-        Width = 596
+        Width = 590
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -503,12 +503,14 @@ object Stanowiska: TStanowiska
             Enabled = True
           end>
         FooterOptions.Active = True
+        FooterOptions.Color = clSilver
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
         SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
         SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+        FooterColor = clSilver
         FooterRowCount = 1
         OnDataHintShow = RxDBGrid1DataHintShow
         Align = alClient
@@ -534,30 +536,30 @@ object Stanowiska: TStanowiska
       end
     end
     object PageControl1: TPageControl
-      Left = 601
+      Left = 595
       Height = 529
       Top = 0
-      Width = 614
-      ActivePage = TabSheet1
+      Width = 620
+      ActivePage = TabSheet2
       Align = alRight
       Images = DM.ImageList1
       TabHeight = 25
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Szczegóły stanowiska'
         ClientHeight = 496
-        ClientWidth = 606
+        ClientWidth = 612
         ImageIndex = 7
         object Panel5: TPanel
           Left = 0
           Height = 496
           Top = 0
-          Width = 606
+          Width = 612
           Align = alClient
           BevelOuter = bvNone
           ClientHeight = 496
-          ClientWidth = 606
+          ClientWidth = 612
           Color = clBtnFace
           ParentColor = False
           TabOrder = 0
@@ -565,7 +567,7 @@ object Stanowiska: TStanowiska
             Left = 8
             Height = 23
             Top = 32
-            Width = 589
+            Width = 595
             DataField = 'nazwa'
             DataSource = DSStanowiska
             ReadOnly = True
@@ -578,7 +580,7 @@ object Stanowiska: TStanowiska
             Left = 8
             Height = 23
             Top = 112
-            Width = 589
+            Width = 595
             DataField = 'stanowisko'
             DataSource = DSStanowiska
             ReadOnly = True
@@ -591,7 +593,7 @@ object Stanowiska: TStanowiska
             Left = 8
             Height = 23
             Top = 192
-            Width = 589
+            Width = 595
             DataField = 'forma'
             DataSource = DSStanowiska
             ReadOnly = True
@@ -604,7 +606,7 @@ object Stanowiska: TStanowiska
             Left = 8
             Height = 23
             Top = 72
-            Width = 589
+            Width = 595
             DataField = 'miejsce'
             DataSource = DSStanowiska
             ReadOnly = True
@@ -617,7 +619,7 @@ object Stanowiska: TStanowiska
             Left = 8
             Height = 23
             Top = 152
-            Width = 589
+            Width = 595
             DataField = 'system'
             DataSource = DSStanowiska
             ReadOnly = True
@@ -627,7 +629,7 @@ object Stanowiska: TStanowiska
             TabOrder = 3
           end
           object DBEdit6: TDBEdit
-            Left = 418
+            Left = 424
             Height = 23
             Top = 416
             Width = 179
@@ -683,7 +685,7 @@ object Stanowiska: TStanowiska
             Left = 8
             Height = 120
             Top = 280
-            Width = 589
+            Width = 595
             Anchors = [akTop, akLeft, akRight]
             DataField = 'opis'
             DataSource = DSStanowiska
@@ -699,7 +701,7 @@ object Stanowiska: TStanowiska
             ParentColor = False
           end
           object Label8: TLabel
-            Left = 335
+            Left = 341
             Height = 15
             Top = 424
             Width = 73
@@ -708,7 +710,7 @@ object Stanowiska: TStanowiska
             ParentColor = False
           end
           object Label10: TLabel
-            Left = 94
+            Left = 100
             Height = 15
             Top = 424
             Width = 34
@@ -717,7 +719,7 @@ object Stanowiska: TStanowiska
             ParentColor = False
           end
           object Label11: TLabel
-            Left = 56
+            Left = 62
             Height = 15
             Top = 448
             Width = 72
@@ -726,7 +728,7 @@ object Stanowiska: TStanowiska
             ParentColor = False
           end
           object DBEdit8: TDBEdit
-            Left = 134
+            Left = 140
             Height = 23
             Top = 416
             Width = 179
@@ -739,7 +741,7 @@ object Stanowiska: TStanowiska
             TabOrder = 6
           end
           object DBEdit9: TDBEdit
-            Left = 134
+            Left = 140
             Height = 23
             Top = 440
             Width = 179
@@ -752,7 +754,7 @@ object Stanowiska: TStanowiska
             TabOrder = 8
           end
           object Label12: TLabel
-            Left = 316
+            Left = 322
             Height = 15
             Top = 448
             Width = 92
@@ -761,7 +763,7 @@ object Stanowiska: TStanowiska
             ParentColor = False
           end
           object DBEdit10: TDBEdit
-            Left = 418
+            Left = 424
             Height = 23
             Top = 440
             Width = 179
@@ -774,41 +776,45 @@ object Stanowiska: TStanowiska
             TabOrder = 9
           end
           object Label16: TLabel
-            Left = 395
+            Left = 397
             Height = 15
             Top = 229
             Width = 144
+            Anchors = [akTop, akRight]
             Caption = 'Planowana godzina wyjścia'
             ParentColor = False
           end
           object Label17: TLabel
-            Left = 388
+            Left = 390
             Height = 15
             Top = 253
             Width = 151
+            Anchors = [akTop, akRight]
             Caption = 'Planowana godzina powrotu'
             ParentColor = False
           end
           object DBEdit7: TDBEdit
-            Left = 544
+            Left = 546
             Height = 23
             Top = 221
             Width = 53
             DataField = 'godz_wyjscia'
             DataSource = DSStanowiska
             ReadOnly = True
+            Anchors = [akTop, akRight]
             CharCase = ecNormal
             MaxLength = 20
             TabOrder = 10
           end
           object DBEdit11: TDBEdit
-            Left = 544
+            Left = 546
             Height = 23
             Top = 245
             Width = 53
             DataField = 'godz_powrotu'
             DataSource = DSStanowiska
             ReadOnly = True
+            Anchors = [akTop, akRight]
             CharCase = ecNormal
             MaxLength = 20
             TabOrder = 11
@@ -818,16 +824,16 @@ object Stanowiska: TStanowiska
       object TabSheet2: TTabSheet
         Caption = 'Osadzeni zatrudnieni'
         ClientHeight = 496
-        ClientWidth = 606
+        ClientWidth = 612
         ImageIndex = 8
         object Panel6: TPanel
           Left = 0
           Height = 31
           Top = 465
-          Width = 606
+          Width = 612
           Align = alBottom
           ClientHeight = 31
-          ClientWidth = 606
+          ClientWidth = 612
           TabOrder = 1
           object BitBtn12: TBitBtn
             Left = 104
@@ -969,7 +975,7 @@ object Stanowiska: TStanowiska
           Left = 0
           Height = 465
           Top = 0
-          Width = 606
+          Width = 612
           ColumnDefValues.BlobText = '(blob)'
           TitleButtons = True
           AutoSort = True
@@ -984,7 +990,7 @@ object Stanowiska: TStanowiska
               Title.Hint = 'Drukuj'
               Title.ShowHint = True
               Title.Caption = 'Drukuj'
-              Width = 40
+              Width = 42
               FieldName = 'drukuj'
               EditButtons = <>
               Filter.DropDownRows = 0
@@ -998,7 +1004,7 @@ object Stanowiska: TStanowiska
               ReadOnly = True
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
-              Title.Caption = 'NAZWISKO'
+              Title.Caption = 'Nazwisko'
               Width = 90
               FieldName = 'Nazwisko'
               EditButtons = <>
@@ -1015,7 +1021,7 @@ object Stanowiska: TStanowiska
               ReadOnly = True
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
-              Title.Caption = 'IMIE'
+              Title.Caption = 'Imię'
               Width = 74
               FieldName = 'Imie'
               EditButtons = <>
@@ -1030,7 +1036,7 @@ object Stanowiska: TStanowiska
               ReadOnly = True
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
-              Title.Caption = 'OJCIEC'
+              Title.Caption = 'Ojciec'
               Width = 74
               FieldName = 'Ojciec'
               EditButtons = <>
@@ -1045,7 +1051,7 @@ object Stanowiska: TStanowiska
               ReadOnly = True
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
-              Title.Caption = 'zat_od'
+              Title.Caption = 'zat. od'
               Width = 74
               FieldName = 'zat_od'
               EditButtons = <>
@@ -1060,7 +1066,7 @@ object Stanowiska: TStanowiska
               ReadOnly = True
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
-              Title.Caption = 'zat_do'
+              Title.Caption = 'zat. do'
               Width = 74
               FieldName = 'zat_do'
               EditButtons = <>
@@ -1076,7 +1082,7 @@ object Stanowiska: TStanowiska
               ReadOnly = True
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
-              Title.Caption = 'KLASYF'
+              Title.Caption = 'Klasyf.'
               Width = 50
               FieldName = 'Klasyf'
               EditButtons = <>
@@ -1188,12 +1194,14 @@ object Stanowiska: TStanowiska
               Enabled = True
             end>
           FooterOptions.Active = True
+          FooterOptions.Color = clSilver
           FooterOptions.RowCount = 1
           FooterOptions.Style = tsNative
           FooterOptions.DrawFullLine = False
           SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
           SearchOptions.FromStart = False
           OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+          FooterColor = clSilver
           FooterRowCount = 1
           Align = alClient
           AlternateColor = 16055807
@@ -1767,7 +1775,7 @@ object Stanowiska: TStanowiska
       end
     end
     object Splitter1: TSplitter
-      Left = 596
+      Left = 590
       Height = 529
       Top = 0
       Width = 5
@@ -2440,7 +2448,7 @@ object Stanowiska: TStanowiska
   end
   object PopupMenu2: TPopupMenu
     Left = 928
-    Top = 136
+    Top = 160
     object MenuItemDodaj: TMenuItem
       Caption = 'Dodaj ...'
       Bitmap.Data = {

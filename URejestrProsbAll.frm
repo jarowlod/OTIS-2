@@ -1,23 +1,23 @@
 object RejestrProsbAll: TRejestrProsbAll
-  Left = 445
+  Left = 86
   Height = 569
-  Top = 161
-  Width = 1199
+  Top = 85
+  Width = 1373
   Caption = 'Rejestr Próśb osadzonych'
   ClientHeight = 569
-  ClientWidth = 1199
+  ClientWidth = 1373
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   WindowState = wsMaximized
   object Panel1: TPanel
     Left = 0
     Height = 50
     Top = 0
-    Width = 1199
+    Width = 1373
     Align = alTop
     ClientHeight = 50
-    ClientWidth = 1199
+    ClientWidth = 1373
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -444,17 +444,17 @@ object RejestrProsbAll: TRejestrProsbAll
     Left = 144
     Height = 519
     Top = 50
-    Width = 1055
+    Width = 1229
     Align = alClient
     BevelOuter = bvNone
     ClientHeight = 519
-    ClientWidth = 1055
+    ClientWidth = 1229
     TabOrder = 2
     object DBMemo1: TDBMemo
       Left = 0
       Height = 82
       Top = 437
-      Width = 1055
+      Width = 1229
       Align = alBottom
       DataField = 'Uwagi'
       DataSource = DSRejestr
@@ -466,7 +466,7 @@ object RejestrProsbAll: TRejestrProsbAll
       Left = 0
       Height = 437
       Top = 0
-      Width = 1055
+      Width = 1229
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
@@ -481,8 +481,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 70
           FieldName = 'Data_Wplywu'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -498,8 +496,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 130
           FieldName = 'Oznaczenie'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -516,8 +512,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 220
           FieldName = 'Kategoria'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -533,8 +527,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 220
           FieldName = 'Opis'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -550,8 +542,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 80
           FieldName = 'status'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -565,11 +555,9 @@ object RejestrProsbAll: TRejestrProsbAll
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Data Decyzji'
-          Width = 70
+          Width = 72
           FieldName = 'Data_Decyzji'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -584,8 +572,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 110
           FieldName = 'User'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -601,8 +587,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 50
           FieldName = 'Wydruk'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -622,8 +606,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 70
           FieldName = 'User_Realizacji'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -639,8 +621,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 70
           FieldName = 'Data_Realizacji'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -655,8 +635,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 100
           FieldName = 'Nazwisko'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -671,8 +649,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 80
           FieldName = 'Imie'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -687,8 +663,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 80
           FieldName = 'Ojciec'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -704,8 +678,6 @@ object RejestrProsbAll: TRejestrProsbAll
           Width = 50
           FieldName = 'POC'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -773,6 +745,8 @@ object RejestrProsbAll: TRejestrProsbAll
       FooterOptions.RowCount = 1
       FooterOptions.Style = tsNative
       FooterOptions.DrawFullLine = False
+      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+      SearchOptions.FromStart = False
       OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alClient
@@ -789,7 +763,6 @@ object RejestrProsbAll: TRejestrProsbAll
       DefaultRowHeight = 24
       FixedColor = clNone
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-      ParentColor = False
       ParentShowHint = False
       ReadOnly = True
       ShowHint = True
@@ -798,8 +771,8 @@ object RejestrProsbAll: TRejestrProsbAll
     end
   end
   object ImageList1: TImageList
-    left = 764
-    top = 160
+    Left = 764
+    Top = 160
     Bitmap = {
       4C6902000000100000001000000000000000000000000000000000000000E3D8
       C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFE3D8C6D30000
@@ -870,8 +843,8 @@ object RejestrProsbAll: TRejestrProsbAll
   end
   object DSRejestr: TDataSource
     DataSet = ZQRejestr
-    left = 540
-    top = 135
+    Left = 540
+    Top = 135
   end
   object ZQRejestr: TZQuery
     Connection = DM.ZConnection1
@@ -901,8 +874,8 @@ object RejestrProsbAll: TRejestrProsbAll
       'LEFT OUTER JOIN osadzeni as o ON o.IDO = rej.IDO'
     )
     Params = <>
-    left = 458
-    top = 135
+    Left = 458
+    Top = 135
     object ZQRejestrID: TLargeintField
       FieldKind = fkData
       FieldName = 'ID'
@@ -1094,8 +1067,8 @@ object RejestrProsbAll: TRejestrProsbAll
       '  rej_prosb.ID = :OLD_ID'
     )
     UseSequenceFieldForRefreshSQL = False
-    left = 458
-    top = 191
+    Left = 458
+    Top = 191
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1119,12 +1092,12 @@ object RejestrProsbAll: TRejestrProsbAll
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 458
-    top = 268
+    Left = 458
+    Top = 268
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = ZQRejestr
-    left = 458
-    top = 319
+    Left = 458
+    Top = 319
   end
 end

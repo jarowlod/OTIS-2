@@ -1,7 +1,7 @@
 object OchRejestrWykazow: TOchRejestrWykazow
   Left = 396
   Height = 556
-  Top = 222
+  Top = 229
   Width = 1176
   Caption = 'Rejestr Wykazów Ochronnych'
   ClientHeight = 556
@@ -124,6 +124,7 @@ object OchRejestrWykazow: TOchRejestrWykazow
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Footer.ValueType = fvtCount
           Footers = <>
         end      
         item
@@ -316,11 +317,16 @@ object OchRejestrWykazow: TOchRejestrWykazow
           ShortCut = 16451
           Enabled = True
         end>
+      FooterOptions.Active = True
+      FooterOptions.Color = clSilver
+      FooterOptions.RowCount = 1
       FooterOptions.Style = tsNative
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgDisableWordWrapTitles]
+      OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgDisableWordWrapTitles]
+      FooterColor = clSilver
+      FooterRowCount = 1
       OnSortChanged = RxDBGrid1SortChanged
       Align = alClient
       AlternateColor = 16055807

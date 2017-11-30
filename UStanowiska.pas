@@ -272,7 +272,6 @@ end;
 // USUŃ - zmiana statusu grupy na uprzednia
 procedure TStanowiska.BitBtn3Click(Sender: TObject);
 begin
-  // TODO: sprawdzenie osadzonych czy sa aktywni dla grupy i zmienic status na uprzedni po komunikacie
   if IsDataSetEmpty(ZQStanowiska) then exit;
   if MessageDlg('Czy zmienić status grupy na uprzednią?', mtWarning, [mbYes, mbNo],0) = mrYes then
   begin
@@ -289,7 +288,8 @@ procedure TStanowiska.BitBtn7Click(Sender: TObject);
 begin
   if IsDataSetEmpty(ZQStanowiska) then exit;
 
-  //sprawdzam czy są przypisani osadzeni do grupy
+  // TODO: sprawdzenie osadzonych czy sa aktywni dla grupy i zmienic status na uprzedni po komunikacie
+  //sprawdzam czy są przypisani osadzeni do grupy !!! ale nie tylko obecnym pobytem
   if not ZQZatrudnieni.IsEmpty then
   begin
     MessageDlg('Do grupy są przypisani osadzeni.'+LineEnding+'Usunięcie jest niemożliwe.', mtWarning, [mbOK],0);
@@ -436,7 +436,7 @@ end;
 // MODYFIKUJ OSADZONEGO
 procedure TStanowiska.BitBtn12Click(Sender: TObject);
 begin
-  if ZQStanowiska.IsEmpty then exit;
+  if ZQZatrudnieni.IsEmpty then exit;
   with TAddZatrudnienie.Create(Self) do
   begin
     ModyfikujZatrudnienie( ZQZatrudnieni.FieldByName('id').AsInteger );
@@ -448,7 +448,7 @@ end;
 // USUŃ OSADZONEGO z bazy zatrudnionych
 procedure TStanowiska.BitBtn13Click(Sender: TObject);
 begin
-  if ZQStanowiska.IsEmpty then exit;
+  if ZQZatrudnieni.IsEmpty then exit;
   if MessageDlg('Czy jesteś pewien aby usunąć osadzonego ?', mtWarning, [mbYes, mbNo],0) = mrYes then
      ZQZatrudnieni.Delete;
 end;
@@ -491,6 +491,7 @@ end;
 procedure TStanowiska.BitBtn2Click(Sender: TObject);
 begin
   //okno modyfikacji grupy
+  if ZQStanowiska.IsEmpty then exit;
   with TAddStanowiska.Create(Self) do
   begin
     ModyfikujStanowisko( ZQStanowiska.FieldByName('id').AsInteger );

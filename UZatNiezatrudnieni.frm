@@ -1,11 +1,11 @@
 object ZatNieZatrudnieni: TZatNieZatrudnieni
-  Left = 396
+  Left = 86
   Height = 692
-  Top = 222
-  Width = 1389
+  Top = 85
+  Width = 1471
   Caption = 'Wykaz osadzonych niezatrudnionych'
   ClientHeight = 692
-  ClientWidth = 1389
+  ClientWidth = 1471
   OnCreate = FormCreate
   Position = poOwnerFormCenter
   LCLVersion = '6.3'
@@ -13,10 +13,10 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
     Left = 0
     Height = 50
     Top = 0
-    Width = 1389
+    Width = 1471
     Align = alTop
     ClientHeight = 50
-    ClientWidth = 1389
+    ClientWidth = 1471
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -75,11 +75,11 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
     Left = 0
     Height = 36
     Top = 656
-    Width = 1389
+    Width = 1471
     Align = alBottom
     BevelOuter = bvNone
     ClientHeight = 36
-    ClientWidth = 1389
+    ClientWidth = 1471
     TabOrder = 1
     object BitBtn17: TBitBtn
       Left = 0
@@ -178,7 +178,7 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
     Left = 0
     Height = 468
     Top = 50
-    Width = 1389
+    Width = 1471
     ColumnDefValues.BlobText = '(blob)'
     TitleButtons = True
     AutoSort = True
@@ -345,7 +345,7 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Arch'
-        Width = 30
+        Width = 32
         FieldName = 'Arch'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -361,7 +361,7 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Wy- wiad'
-        Width = 30
+        Width = 32
         FieldName = 'Wywiad'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -506,12 +506,14 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
         Enabled = True
       end>
     FooterOptions.Active = True
+    FooterOptions.Color = clSilver
     FooterOptions.RowCount = 1
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
     SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
     SearchOptions.FromStart = False
     OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+    FooterColor = clSilver
     FooterRowCount = 1
     Align = alClient
     AlternateColor = 16055807
@@ -538,17 +540,17 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
     Left = 0
     Height = 133
     Top = 523
-    Width = 1389
+    Width = 1471
     Align = alBottom
     BevelOuter = bvLowered
     ClientHeight = 133
-    ClientWidth = 1389
+    ClientWidth = 1471
     TabOrder = 3
     object RxDBGrid2: TRxDBGrid
       Left = 1
       Height = 131
       Top = 1
-      Width = 1387
+      Width = 1469
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
@@ -719,7 +721,7 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
     Left = 0
     Height = 5
     Top = 518
-    Width = 1389
+    Width = 1471
     Align = alBottom
     ResizeAnchor = akBottom
   end

@@ -650,6 +650,7 @@ end;
 
 procedure TZatrudnieni.BitBtn3Click(Sender: TObject);
 begin
+  if IsDataSetEmpty(ZQZatrudnieni) then exit;
   if MessageDlg('Czy jesteś pewien aby usunąć osadzonego ?', mtWarning, [mbYes, mbNo],0) = mrYes then
      ZQZatrudnieni.Delete;
 end;
@@ -729,6 +730,7 @@ end;
 // MODYFIKUJ OSADZONEGO ZATRUDNIONEGO
 procedure TZatrudnieni.BitBtn2Click(Sender: TObject);
 begin
+  if IsDataSetEmpty(ZQZatrudnieni) then exit;
   with TAddZatrudnienie.Create(Self) do
   begin
     ModyfikujZatrudnienie( ZQZatrudnieni.FieldByName('id').AsInteger );

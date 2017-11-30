@@ -8,8 +8,9 @@
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos Y="27"/>
+        <CursorPos Y="29"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -21,8 +22,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="442"/>
-        <CursorPos X="3" Y="444"/>
+        <TopLine Value="177"/>
+        <CursorPos X="46" Y="346"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,7 +34,6 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="92"/>
         <CursorPos X="17" Y="117"/>
         <UsageCount Value="200"/>
@@ -58,8 +58,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="176"/>
-        <CursorPos X="71" Y="176"/>
+        <TopLine Value="436"/>
+        <CursorPos X="3" Y="451"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -82,8 +82,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="349"/>
-        <CursorPos X="11" Y="309"/>
+        <TopLine Value="642"/>
+        <CursorPos X="34" Y="653"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -95,8 +95,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="182"/>
-        <CursorPos X="88" Y="197"/>
+        <TopLine Value="109"/>
+        <CursorPos X="3" Y="449"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -165,7 +165,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="178"/>
+        <TopLine Value="154"/>
         <CursorPos X="48" Y="199"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -249,8 +249,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="70"/>
-        <CursorPos X="64" Y="86"/>
+        <TopLine Value="113"/>
+        <CursorPos X="3" Y="115"/>
         <UsageCount Value="200"/>
       </Unit20>
       <Unit21>
@@ -271,8 +271,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="260"/>
-        <CursorPos X="5" Y="237"/>
+        <TopLine Value="232"/>
+        <CursorPos X="3" Y="234"/>
         <UsageCount Value="200"/>
       </Unit22>
       <Unit23>
@@ -339,7 +339,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="283"/>
         <CursorPos X="46" Y="297"/>
-        <UsageCount Value="183"/>
+        <UsageCount Value="185"/>
       </Unit28>
       <Unit29>
         <Filename Value="UStawkiPlac.pas"/>
@@ -349,7 +349,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23" Y="79"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="153"/>
       </Unit29>
       <Unit30>
         <Filename Value="UZatStatystyka.pas"/>
@@ -360,7 +360,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="116"/>
         <CursorPos Y="122"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="141"/>
       </Unit30>
       <Unit31>
         <Filename Value="UPenitWydarzenia.pas"/>
@@ -371,7 +371,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="83"/>
         <CursorPos X="20" Y="89"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="129"/>
       </Unit31>
       <Unit32>
         <Filename Value="USaper.pas"/>
@@ -382,7 +382,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="47" Y="161"/>
-        <UsageCount Value="123"/>
+        <UsageCount Value="125"/>
       </Unit32>
       <Unit33>
         <Filename Value="UZatNiezatrudnieni.pas"/>
@@ -393,7 +393,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="23"/>
         <CursorPos Y="56"/>
-        <UsageCount Value="98"/>
+        <UsageCount Value="100"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit33>
@@ -406,7 +406,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="112"/>
         <CursorPos X="3" Y="131"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="68"/>
       </Unit34>
       <Unit35>
         <Filename Value="UOchRejestrWykazow.pas"/>
@@ -415,9 +415,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="65"/>
-        <CursorPos X="35" Y="89"/>
-        <UsageCount Value="46"/>
+        <TopLine Value="216"/>
+        <CursorPos X="37" Y="224"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit35>
@@ -430,7 +430,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="112"/>
         <CursorPos X="37" Y="129"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit36>
@@ -450,9 +450,9 @@
       <Unit39>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\db.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1652"/>
-        <CursorPos X="15" Y="1668"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="1680"/>
+        <CursorPos X="14" Y="1694"/>
+        <UsageCount Value="10"/>
       </Unit39>
       <Unit40>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -484,7 +484,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="114"/>
         <CursorPos X="10" Y="132"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit43>
       <Unit44>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\dati.inc"/>
@@ -519,16 +519,16 @@
       <Unit48>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\dataset.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1503"/>
-        <CursorPos Y="1507"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="1883"/>
+        <CursorPos X="3" Y="1886"/>
+        <UsageCount Value="10"/>
       </Unit48>
       <Unit49>
         <Filename Value="C:\codetyphon\typhon\components\pl_RX\source\rxdbutils.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="214"/>
-        <CursorPos X="3" Y="218"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="1051"/>
+        <CursorPos X="55" Y="921"/>
+        <UsageCount Value="10"/>
       </Unit49>
       <Unit50>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\component\ZAbstractRODataset.pas"/>
@@ -1066,127 +1066,115 @@
         <DefaultSyntaxHighlighter Value="FRM"/>
       </Unit124>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="27" HistoryIndex="26">
       <Position1>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="739" Column="37" TopLine="723"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="493" Column="29" TopLine="474"/>
       </Position1>
       <Position2>
-        <Filename Value="UOchAddWykaz.pas"/>
-        <Caret Line="73" Column="23" TopLine="62"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="494" Column="36" TopLine="480"/>
       </Position2>
       <Position3>
-        <Filename Value="UOchAddWykaz.pas"/>
-        <Caret Line="52" Column="19" TopLine="34"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="439" Column="3" TopLine="436"/>
       </Position3>
       <Position4>
-        <Filename Value="UOchAddWykaz.pas"/>
-        <Caret Line="75" TopLine="66"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="451" Column="3" TopLine="436"/>
       </Position4>
       <Position5>
-        <Filename Value="UOchAddWykaz.pas"/>
-        <Caret Line="52" Column="16" TopLine="36"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="290" Column="3" TopLine="287"/>
       </Position5>
       <Position6>
-        <Filename Value="UOchAddWykaz.pas"/>
-        <Caret Line="99" Column="10" TopLine="87"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="289" Column="25" TopLine="269"/>
       </Position6>
       <Position7>
-        <Filename Value="UOchAddWykaz.pas"/>
-        <Caret Line="52" Column="15" TopLine="36"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="289" Column="25" TopLine="269"/>
       </Position7>
       <Position8>
-        <Filename Value="UOchAddWykaz.pas"/>
-        <Caret Line="90" Column="3" TopLine="87"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="444" Column="3" TopLine="442"/>
       </Position8>
       <Position9>
-        <Filename Value="UOchAddWykaz.pas"/>
-        <Caret Line="52" Column="15" TopLine="36"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="426" Column="37" TopLine="424"/>
       </Position9>
       <Position10>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="29" Column="22" TopLine="17"/>
+        <Filename Value="UAddZatrudnienie.pas"/>
+        <Caret Line="133" Column="21" TopLine="126"/>
       </Position10>
       <Position11>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="118" Column="3" TopLine="116"/>
+        <Filename Value="UAddZatrudnienie.pas"/>
+        <Caret Line="280" Column="19" TopLine="268"/>
       </Position11>
       <Position12>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="30" Column="16" TopLine="11"/>
+        <Filename Value="UAddZatrudnienie.pas"/>
+        <Caret Line="138" Column="15" TopLine="119"/>
       </Position12>
       <Position13>
         <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="119" Column="3" TopLine="117"/>
+        <Caret Line="89" Column="35" TopLine="65"/>
       </Position13>
       <Position14>
         <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="29" Column="11" TopLine="12"/>
+        <Caret Line="245" Column="13" TopLine="216"/>
       </Position14>
       <Position15>
         <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="157" Column="54" TopLine="146"/>
+        <Caret Line="236" Column="36" TopLine="216"/>
       </Position15>
       <Position16>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="194" Column="39" TopLine="164"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="309" Column="11" TopLine="347"/>
       </Position16>
       <Position17>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="190" Column="3" TopLine="188"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="717" Column="3" TopLine="714"/>
       </Position17>
       <Position18>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="150" Column="35" TopLine="145"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="732" Column="35" TopLine="714"/>
       </Position18>
       <Position19>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="174" Column="35" TopLine="143"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="292" Column="85" TopLine="273"/>
       </Position19>
       <Position20>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="172" Column="29" TopLine="157"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="482" Column="3" TopLine="480"/>
       </Position20>
       <Position21>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="227" Column="37" TopLine="211"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="493" Column="3" TopLine="480"/>
       </Position21>
       <Position22>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="224" TopLine="211"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="275" Column="2" TopLine="272"/>
       </Position22>
       <Position23>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="225" TopLine="211"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="315" Column="53" TopLine="286"/>
       </Position23>
       <Position24>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="225" TopLine="211"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="459" Column="3" TopLine="456"/>
       </Position24>
       <Position25>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="227" Column="26" TopLine="211"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="440" Column="42" TopLine="436"/>
       </Position25>
       <Position26>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="228" Column="26" TopLine="212"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="459" Column="15" TopLine="436"/>
       </Position26>
       <Position27>
-        <Filename Value="UOchRejestrWykazow.pas"/>
-        <Caret Line="227" Column="26" TopLine="211"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="346" Column="46" TopLine="177"/>
       </Position27>
-      <Position28>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="113" Column="24" TopLine="101"/>
-      </Position28>
-      <Position29>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="114" Column="24" TopLine="102"/>
-      </Position29>
-      <Position30>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="117" Column="24" TopLine="105"/>
-      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

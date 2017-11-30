@@ -1371,13 +1371,13 @@ object Form1: TForm1
     object ActionRejestrWykazow: TAction
       Category = 'Ochrona'
       Caption = 'Rejestr wykazów ...'
-      ImageIndex = 12
+      ImageIndex = 26
       OnExecute = ActionRejestrWykazowExecute
     end
     object ActionAddWykaz: TAction
       Category = 'Ochrona'
       Caption = 'Dodaj do wykazu ...'
-      ImageIndex = 0
+      ImageIndex = 27
       OnExecute = ActionAddWykazExecute
     end
   end

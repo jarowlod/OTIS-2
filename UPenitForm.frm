@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
   Left = 396
   Height = 691
-  Top = 222
+  Top = 229
   Width = 713
   Caption = 'Karta Penitencjarna'
   ClientHeight = 691
@@ -676,11 +676,11 @@ object PenitForm: TPenitForm
     Height = 243
     Top = 448
     Width = 713
-    ActivePage = TabSheetWykazy
+    ActivePage = TabSheetZatrudnienie
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 2
     object TabSheetNotatnik: TTabSheet
       Caption = 'Notatnik'
@@ -901,12 +901,14 @@ object PenitForm: TPenitForm
             Enabled = True
           end>
         FooterOptions.Active = True
+        FooterOptions.Color = clSilver
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
         SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
         SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+        FooterColor = clSilver
         FooterRowCount = 1
         Align = alClient
         AlternateColor = 16055807
