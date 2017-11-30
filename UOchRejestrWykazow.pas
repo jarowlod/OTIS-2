@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate, rxdbgrid, Forms,
-  Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, datamodule,
+  Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, DbCtrls, datamodule,
   LR_DBSet, LR_Class;
 
 type
@@ -24,7 +24,10 @@ type
      procedure SetKategorieWykazow;             // to ComboBox1
    public
      constructor Create(AComboBox: TComboBox);
-     function GetIDKategorieWykazow: integer;   // from Select ComboBox1
+     // from Select ComboBox1
+     // Out: -1 brak wybranej kategorii
+     //     >= 0 ID katalog_wykazow
+     function GetIDKategorieWykazow: integer;
    end;
 
   { TOchRejestrWykazow }
@@ -36,7 +39,7 @@ type
     btnModyfikuj: TBitBtn;
     ComboBox1: TComboBox;
     DSRejWykazow: TDataSource;
-    Edit1: TEdit;
+    edWyszukaj: TEdit;
     frDBDataSet1: TfrDBDataSet;
     frReport1: TfrReport;
     Image1: TImage;
@@ -52,6 +55,8 @@ type
     procedure btnModyfikujClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure ComboBox1Select(Sender: TObject);
+    procedure edWyszukajChange(Sender: TObject);
+    procedure edWyszukajKeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
     procedure RxDBGrid1SortChanged(Sender: TObject);
   private
@@ -140,8 +145,22 @@ end;
 
 procedure TOchRejestrWykazow.NewSelect;
 var kategoriaID: integer;
+    isWhere: Boolean;
+
+    procedure AddSQLWhere;
+    begin
+      if not isWhere then
+                       begin
+                         ZQRejWykazow.SQL.Add('WHERE');
+                         isWhere:= true;
+                       end
+                     else
+                       ZQRejWykazow.SQL.Add('AND');
+    end;
+
 begin
   if DisableNewSelect then exit;
+  isWhere:= false;
 
   ZQRejWykazow.SQL.Text:= SQLSelect;
 
@@ -149,8 +168,17 @@ begin
   kategoriaID:= fKategorie.GetIDKategorieWykazow;
   if kategoriaID>=0 then
     begin
-      ZQRejWykazow.SQL.Add('WHERE wyk.Kategoria = :kategoriaID');
+      AddSQLWhere;
+      ZQRejWykazow.SQL.Add('(wyk.Kategoria = :kategoriaID)');
       ZQRejWykazow.ParamByName('kategoriaID').AsInteger:= kategoriaID;
+    end;
+
+  // wyszukiwanie po nazwisku osadzonego
+  if edWyszukaj.Text<>'' then
+    begin
+      AddSQLWhere;
+      ZQRejWykazow.SQL.Add('(os.Nazwisko LIKE :nazwisko)');
+      ZQRejWykazow.ParamByName('nazwisko').AsString:= edWyszukaj.Text+'%';
     end;
 
   ZQRejWykazow.Open;
@@ -166,6 +194,25 @@ begin
   NewSelect;
 end;
 
+procedure TOchRejestrWykazow.edWyszukajChange(Sender: TObject);
+begin
+  NewSelect;
+end;
+
+procedure TOchRejestrWykazow.edWyszukajKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key=#27 then    // ESC
+  begin
+      edWyszukaj.Text:='';
+      edWyszukaj.SetFocus;
+  end else
+  if Key=#13 then
+  begin
+      btnModyfikujClick(Sender);
+  end else
+  if Key=' ' then Key:=#0;     // zabraniamy wpisywania spacji
+end;
+
 procedure TOchRejestrWykazow.btnCopyToClipboardClick(Sender: TObject);
 begin
   RxDBGrid1.CopyToClipboard;
@@ -177,15 +224,8 @@ begin
 
   with TOchAddWykaz.Create(Self) do
   begin
-       ZQRejWykazow.Edit;
        ModyfikujWykaz(ZQRejWykazow);
-       if ShowModal = mrOK then
-           begin
-             ZQRejWykazow.FieldByName('data_dodania').AsDateTime:= Now();
-             ZQRejWykazow.FieldByName('user_dodania').AsString:= DM.PelnaNazwa;
-             ZQRejWykazow.Post
-           end
-         else
+       if not (ShowModal = mrOK) then
            ZQRejWykazow.Cancel;
        Free;
   end;
@@ -203,47 +243,6 @@ begin
   DM.SetMemoReport(frReport1, 'Memo_data', DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.');
   frReport1.ShowReport;
 end;
-
-//procedure TOchRejestrWykazow.SetKategorieWykazow;
-//var ZQPom: TZQueryPom;
-//    i: integer;
-//begin
-//  DisableNewSelect:= true;
-//
-//  ZQPom:= TZQueryPom.Create(Self);
-//  ZQPom.SQL.Text:= 'SELECT ID, Opis FORM katalog_wykazow';
-//  ZQPom.Open;
-//
-//  SetLength(fKategorieWykazow, ZQPom.RecordCount);
-//  ComboBox1.Clear;
-//  ComboBox1.Items.Add('');  // index 0
-//
-//  i:=0;
-//  while not ZQPom.EOF do
-//  begin
-//    fKategorieWykazow[i].id  := ZQPom.FieldByName('ID').AsInteger;
-//    fKategorieWykazow[i].opis:= ZQPom.FieldByName('Opis').AsString;
-//
-//    // wczytujemy opisy do kontrolki; zaczynając od indexu 1 ... dla tablicy 0
-//    ComboBox1.Items.Add(fKategorieWykazow[i].opis);
-//
-//    inc(i);
-//    ZQPom.Next;
-//  end;
-//
-//  ComboBox1.ItemIndex:= 0;
-//  DisableNewSelect:= False;
-//
-//  FreeAndNil(ZQPom);
-//end;
-//
-//function TOchRejestrWykazow.GetIDKategorieWykazow: integer;
-//begin
-//  Result:= -1;
-//  // index = 0 wskazuje puste pole, czyli wszystkie kategorie
-//  if ComboBox1.ItemIndex>0 then
-//    Result:= fKategorieWykazow[ ComboBox1.ItemIndex - 1 ].id;
-//end;
 
 end.
 

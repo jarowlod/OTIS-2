@@ -102,6 +102,7 @@ end;
 procedure TDrukWykazOsadz.btnDrukujClick(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_grupowy_1.lrf');
+  DM.SetMemoReport(frReport1, 'Memo_Data', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
   frReport1.ShowReport;
 end;
 

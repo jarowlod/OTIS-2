@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 744
+  Left = 86
   Height = 743
-  Top = 736
+  Top = 85
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743

@@ -1,7 +1,7 @@
 object ZatNieZatrudnieni: TZatNieZatrudnieni
   Left = 396
   Height = 692
-  Top = 229
+  Top = 222
   Width = 1389
   Caption = 'Wykaz osadzonych niezatrudnionych'
   ClientHeight = 692
@@ -691,7 +691,7 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+      OptionsRx = [rdgFooterRows, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alClient
       AlternateColor = 16055807
@@ -706,7 +706,7 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
       DataSource = DSZatrudnieni
       DefaultRowHeight = 24
       FixedColor = clNone
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
       ParentShowHint = False
       ReadOnly = True
       ShowHint = True

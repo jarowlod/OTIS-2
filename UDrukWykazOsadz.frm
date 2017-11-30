@@ -711,7 +711,6 @@ object DrukWykazOsadz: TDrukWykazOsadz
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = MemWykaz
-    DataSource = DSWykaz
     Left = 782
     Top = 240
   end

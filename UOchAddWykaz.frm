@@ -18,7 +18,7 @@ object OchAddWykaz: TOchAddWykaz
     ClientHeight = 38
     ClientWidth = 562
     TabOrder = 0
-    object BitBtn1: TBitBtn
+    object btnOK: TBitBtn
       Left = 344
       Height = 30
       Top = 0
@@ -27,10 +27,10 @@ object OchAddWykaz: TOchAddWykaz
       DefaultCaption = True
       Kind = bkOK
       ModalResult = 1
-      OnClick = BitBtn1Click
+      OnClick = btnOKClick
       TabOrder = 0
     end
-    object BitBtn2: TBitBtn
+    object btnAnuluj: TBitBtn
       Left = 456
       Height = 30
       Top = 0
@@ -376,7 +376,7 @@ object OchAddWykaz: TOchAddWykaz
       FixedHotColor = clNone
       SelectedColor = clHighlight
       GridLineStyle = psSolid
-      DataSource = DSRejWykazow
+      DataSource = DSRejWyk
       DefaultRowHeight = 24
       FixedColor = clNone
       FixedCols = 0
@@ -410,12 +410,12 @@ object OchAddWykaz: TOchAddWykaz
     Left = 504
     Top = 88
   end
-  object DSRejWykazow: TDataSource
-    DataSet = ZQRejWykazow
+  object DSRejWyk: TDataSource
+    DataSet = ZQRejWyk
     Left = 504
     Top = 224
   end
-  object ZQRejWykazow: TZQuery
+  object ZQRejWyk: TZQuery
     Connection = DM.ZConnection1
     ReadOnly = True
     SQL.Strings = (

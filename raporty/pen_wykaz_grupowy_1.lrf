@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-05-18 14:26:22"/>
-    <ReportLastChange Value="2017-11-27 12:34:13"/>
+    <ReportLastChange Value="2017-11-30 09:09:43"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -208,7 +208,7 @@
           <Cursor Value="0"/>
         </Object5>
         <Object6>
-          <Name Value="Memo5"/>
+          <Name Value="Memo_Data"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
           <Typ Value="gtMemo"/>
@@ -231,7 +231,7 @@
           <Data>
             <Format Value="33751086"/>
             <FormatStr Value=""/>
-            <Memo Value="Kłodzko, dnia [DATE]&#xD;&#xA;"/>
+            <Memo Value="Kłodzko, dnia&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>

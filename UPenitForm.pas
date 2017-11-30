@@ -46,6 +46,7 @@ type
     DBText7: TDBText;
     DBText8: TDBText;
     DSOsZat: TDataSource;
+    DSRejWyk: TDataSource;
     Image_os: TImage;
     Label1: TLabel;
     Label10: TLabel;
@@ -66,13 +67,16 @@ type
     Panel2: TPanel;
     Panel4: TPanel;
     Panel_1: TPanel;
+    RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
+    TabSheetWykazy: TTabSheet;
     TabSheetNotatnik: TTabSheet;
     TabSheetZatrudnienie: TTabSheet;
     ZQOsInfo: TZQuery;
     ZQOsNotatki: TZQuery;
     ZQOs: TZQuery;
     ZQOsZat: TZQuery;
+    ZQRejWyk: TZQuery;
     ZUOsInfo: TZUpdateSQL;
     ZUOsNotatki: TZUpdateSQL;
     procedure btnRejestrProsbClick(Sender: TObject);
@@ -188,9 +192,16 @@ begin
 
   //zatrudnienie
   btnRejestrZat.Enabled:= CzyZatrudniony;
-    ZQOsZat.Close;
-    ZQOsZat.ParamByName('ido').AsInteger:= SelectIDO;
-    ZQOsZat.Open;
+   ZQOsZat.Close;
+   ZQOsZat.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQOsZat.Open;
+  TabSheetZatrudnienie.TabVisible:= not ZQOsZat.IsEmpty;
+
+  //wykazy ochronne
+  ZQRejWyk.Close;
+   ZQRejWyk.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQRejWyk.Open;
+  TabSheetWykazy.TabVisible:= not ZQRejWyk.IsEmpty;
 end;
 
 procedure TPenitForm.SetIDO(ido: integer; RefreshSourceQuery: TZQuery);
