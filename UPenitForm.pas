@@ -86,6 +86,8 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure RxDBGrid2GetCellProps(Sender: TObject; Field: TField;
+      AFont: TFont; var Background: TColor);
     procedure ZQOsInfoAfterPost(DataSet: TDataSet);
     procedure ZQOsNotatkiAfterPost(DataSet: TDataSet);
   private
@@ -219,6 +221,29 @@ begin
   begin
     close;
   end;
+end;
+
+procedure TPenitForm.RxDBGrid2GetCellProps(Sender: TObject; Field: TField;
+  AFont: TFont; var Background: TColor);
+begin
+  if not Assigned(Field) then exit;
+  if Field.IsNull then exit;
+
+  if (Field.FieldName = 'status_zatrudnienia') then
+      begin
+        if Field.AsString = 'zatrudniony' then
+        begin
+           Background := $80FF80;
+        end else
+        if Field.AsString = 'wycofany' then
+        begin
+          Background := clRed;
+          //AFont.Color:= clBlack;
+        end else  // oczekujący
+        begin
+          Background := clYellow;
+        end;
+      end;
 end;
 
 procedure TPenitForm.ZQOsInfoAfterPost(DataSet: TDataSet);

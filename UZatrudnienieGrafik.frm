@@ -1,13 +1,13 @@
 object ZatrudnienieGrafik: TZatrudnienieGrafik
-  Left = 443
+  Left = 396
   Height = 563
-  Top = 158
+  Top = 222
   Width = 1176
   Caption = 'Grafik dni wolnych'
   ClientHeight = 563
   ClientWidth = 1176
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -140,8 +140,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 120
           FieldName = 'Nazwisko'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -161,8 +159,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd1'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -182,8 +178,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd2'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -203,8 +197,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd3'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -224,8 +216,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd4'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -245,8 +235,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd5'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -266,8 +254,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd6'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -287,8 +273,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd7'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -308,8 +292,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd8'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -329,8 +311,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd9'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -350,8 +330,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd10'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -371,8 +349,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd11'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -392,8 +368,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd12'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -413,8 +387,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd13'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -434,8 +406,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd14'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -455,8 +425,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd15'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -476,8 +444,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd16'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -497,8 +463,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd17'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -518,8 +482,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd18'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -539,8 +501,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd19'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -560,8 +520,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd20'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -581,8 +539,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd21'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -602,8 +558,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd22'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -623,8 +577,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd23'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -644,8 +596,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd24'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -665,8 +615,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd25'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -686,8 +634,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd26'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -707,8 +653,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd27'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -728,8 +672,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd28'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -749,8 +691,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd29'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -770,8 +710,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd30'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -791,8 +729,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 25
           FieldName = 'd31'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -816,8 +752,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
           Width = 35
           FieldName = 'suma'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -886,7 +820,9 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
       FooterOptions.RowCount = 1
       FooterOptions.Style = tsNative
       FooterOptions.DrawFullLine = True
-      OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickFilter]
+      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+      SearchOptions.FromStart = False
+      OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickFilter, rdgWordWrap]
       FooterColor = 8978431
       FooterRowCount = 1
       Align = alClient
@@ -903,7 +839,6 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
       FixedCols = 0
       Flat = True
       Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
-      ParentColor = False
       TabOrder = 1
       TitleStyle = tsStandard
       OnCellClick = RxDBGrid1CellClick
@@ -991,16 +926,16 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = MemGrafik
-    left = 720
-    top = 8
+    Left = 720
+    Top = 8
   end
   object frReport1: TfrReport
     InitialZoom = pzDefault
     Options = []
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 656
-    top = 8
+    Left = 656
+    Top = 8
   end
   object MemGrafik: TMemDataset
     Active = True
@@ -1143,12 +1078,12 @@ object ZatrudnienieGrafik: TZatrudnienieGrafik
         DataType = ftString
         Size = 10
       end>
-    left = 816
-    top = 8
+    Left = 816
+    Top = 8
   end
   object DSGrafik: TDataSource
     DataSet = MemGrafik
-    left = 872
-    top = 8
+    Left = 872
+    Top = 8
   end
 end

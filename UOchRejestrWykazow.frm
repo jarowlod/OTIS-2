@@ -1,7 +1,7 @@
 object OchRejestrWykazow: TOchRejestrWykazow
   Left = 396
   Height = 556
-  Top = 229
+  Top = 222
   Width = 1176
   Caption = 'Rejestr Wykazów Ochronnych'
   ClientHeight = 556
@@ -324,7 +324,7 @@ object OchRejestrWykazow: TOchRejestrWykazow
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgDisableWordWrapTitles]
+      OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap, rdgDisableWordWrapTitles]
       FooterColor = clSilver
       FooterRowCount = 1
       OnSortChanged = RxDBGrid1SortChanged

@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 180
+  Left = 368
   Height = 856
-  Top = 178
+  Top = 364
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -465,7 +465,7 @@ object Zatrudnieni: TZatrudnieni
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'Klasyf'
-            Width = 40
+            Width = 42
             FieldName = 'Klasyf'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -481,7 +481,7 @@ object Zatrudnieni: TZatrudnieni
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'POC'
-            Width = 40
+            Width = 42
             FieldName = 'POC'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -526,7 +526,7 @@ object Zatrudnieni: TZatrudnieni
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'zat. od'
-            Width = 70
+            Width = 75
             FieldName = 'zat_od'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -542,7 +542,7 @@ object Zatrudnieni: TZatrudnieni
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'zat. do'
-            Width = 70
+            Width = 75
             FieldName = 'zat_do'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -605,13 +605,14 @@ object Zatrudnieni: TZatrudnieni
             )
           end        
           item
+            Alignment = taCenter
             Font.Color = clMaroon
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Hint = 'Data następnych badań lekarskich.'
             Title.ShowHint = True
             Title.Caption = 'Następne badania'
-            Width = 80
+            Width = 75
             FieldName = 'data_nastepnego_badania'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -622,6 +623,7 @@ object Zatrudnieni: TZatrudnieni
             Footers = <>
           end        
           item
+            Alignment = taCenter
             Font.Color = clMaroon
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
@@ -654,6 +656,7 @@ object Zatrudnieni: TZatrudnieni
             Footers = <>
           end        
           item
+            Alignment = taCenter
             Font.Color = clMaroon
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
@@ -673,7 +676,7 @@ object Zatrudnieni: TZatrudnieni
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'pobyty'
-            Width = 50
+            Width = 52
             FieldName = 'pobyt'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -1549,7 +1552,7 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInfoStanowisko: TTabSheet
             Caption = 'Informacje o Stanowisku'
-            ClientHeight = 362
+            ClientHeight = 524
             ClientWidth = 490
             ImageIndex = 7
             object Label15: TLabel
@@ -1757,8 +1760,8 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInne: TTabSheet
             Caption = 'inne'
-            ClientHeight = 359
-            ClientWidth = 487
+            ClientHeight = 524
+            ClientWidth = 490
             ImageIndex = 3
             object Label12: TLabel
               Left = 6
@@ -2015,7 +2018,7 @@ object Zatrudnieni: TZatrudnieni
       object tabNotatnik: TTabSheet
         Caption = 'Notatnik'
         ClientHeight = 813
-        ClientWidth = 495
+        ClientWidth = 498
         ImageIndex = 2
         object DBMemo2: TDBMemo
           Left = 0
@@ -2053,7 +2056,7 @@ object Zatrudnieni: TZatrudnieni
       object tabWydruki: TTabSheet
         Caption = 'Wydruki'
         ClientHeight = 813
-        ClientWidth = 495
+        ClientWidth = 498
         ImageIndex = 4
         object lblDruk_OsadzeniAll: TLabel
           Cursor = crHandPoint

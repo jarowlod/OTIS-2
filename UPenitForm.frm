@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
   Left = 396
   Height = 691
-  Top = 229
+  Top = 222
   Width = 713
   Caption = 'Karta Penitencjarna'
   ClientHeight = 691
@@ -676,11 +676,11 @@ object PenitForm: TPenitForm
     Height = 243
     Top = 448
     Width = 713
-    ActivePage = TabSheetZatrudnienie
+    ActivePage = TabSheetWykazy
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 2
     object TabSheetNotatnik: TTabSheet
       Caption = 'Notatnik'
@@ -766,6 +766,7 @@ object PenitForm: TPenitForm
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
+        OnGetCellProps = RxDBGrid2GetCellProps
         Columns = <        
           item
             Alignment = taCenter
@@ -907,7 +908,7 @@ object PenitForm: TPenitForm
         FooterOptions.DrawFullLine = False
         SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
         SearchOptions.FromStart = False
-        OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+        OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterColor = clSilver
         FooterRowCount = 1
         Align = alClient
@@ -923,7 +924,8 @@ object PenitForm: TPenitForm
         DataSource = DSOsZat
         DefaultRowHeight = 24
         FixedColor = clNone
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
+        FixedCols = 0
+        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
         ParentShowHint = False
         ReadOnly = True
         ShowHint = True
@@ -1062,7 +1064,7 @@ object PenitForm: TPenitForm
         FooterOptions.DrawFullLine = False
         SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
         SearchOptions.FromStart = False
-        OptionsRx = [rdgAllowSortForm, rdgCaseInsensitiveSort, rdgDisableWordWrapTitles]
+        OptionsRx = [rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap, rdgDisableWordWrapTitles]
         Align = alClient
         AlternateColor = 16055807
         AutoAdvance = aaNone

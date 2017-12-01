@@ -1,14 +1,14 @@
 object Uprawnienia: TUprawnienia
-  Left = 487
+  Left = 396
   Height = 635
-  Top = 256
+  Top = 222
   Width = 1003
   Caption = 'Uprawnienia'
   ClientHeight = 635
   ClientWidth = 1003
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -184,8 +184,6 @@ object Uprawnienia: TUprawnienia
           Width = 90
           FieldName = 'user'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -201,8 +199,6 @@ object Uprawnienia: TUprawnienia
           Width = 160
           FieldName = 'Full_name'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -217,8 +213,6 @@ object Uprawnienia: TUprawnienia
           Width = 90
           FieldName = 'Last'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -233,8 +227,6 @@ object Uprawnienia: TUprawnienia
           Width = 50
           FieldName = 'IleRazy'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -249,8 +241,6 @@ object Uprawnienia: TUprawnienia
           Width = 100
           FieldName = 'Wychowawca'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -265,8 +255,6 @@ object Uprawnienia: TUprawnienia
           Width = 100
           FieldName = 'Dzial'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -281,8 +269,6 @@ object Uprawnienia: TUprawnienia
           Width = 100
           FieldName = 'ZastepstwaWych'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -296,8 +282,6 @@ object Uprawnienia: TUprawnienia
           Title.Caption = 'Podpis'
           FieldName = 'Podpis'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -314,8 +298,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod1'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -332,8 +314,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod2'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -350,8 +330,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod3'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -368,8 +346,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod4'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -386,8 +362,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod5'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -404,8 +378,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod6'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -422,8 +394,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod7'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -440,8 +410,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod8'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -458,8 +426,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod9'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -476,8 +442,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod10'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -494,8 +458,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod11'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -512,8 +474,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod12'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -530,8 +490,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod13'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -548,8 +506,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod14'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -566,8 +522,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod15'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -584,8 +538,6 @@ object Uprawnienia: TUprawnienia
           Width = 30
           FieldName = 'Mod16'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -652,6 +604,8 @@ object Uprawnienia: TUprawnienia
       FooterOptions.RowCount = 1
       FooterOptions.Style = tsNative
       FooterOptions.DrawFullLine = False
+      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+      SearchOptions.FromStart = False
       OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alClient
@@ -667,7 +621,6 @@ object Uprawnienia: TUprawnienia
       DefaultRowHeight = 24
       FixedColor = clNone
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-      ParentColor = False
       ParentShowHint = False
       ReadOnly = True
       ShowHint = True
@@ -1178,6 +1131,7 @@ object Uprawnienia: TUprawnienia
         'asd'
       )
       MaxLength = 0
+      OnDropDown = DBComboBox1DropDown
       OnSelect = DBComboBox1Select
       Style = csDropDownList
       TabOrder = 5
@@ -1587,7 +1541,7 @@ object Uprawnienia: TUprawnienia
         ParamType = ptUnknown
       end>
     IndexFieldNames = 'user Asc'
-    left = 464
+    Left = 464
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1597,6 +1551,6 @@ object Uprawnienia: TUprawnienia
   end
   object DSUsers: TDataSource
     DataSet = ZQUsers
-    left = 536
+    Left = 536
   end
 end

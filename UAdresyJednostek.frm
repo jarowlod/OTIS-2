@@ -1,7 +1,7 @@
 object AdresyJednostek: TAdresyJednostek
   Left = 396
   Height = 552
-  Top = 229
+  Top = 222
   Width = 920
   BorderStyle = bsDialog
   Caption = 'Adresy'

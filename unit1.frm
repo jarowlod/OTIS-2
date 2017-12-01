@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 396
   Height = 598
-  Top = 229
+  Top = 222
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -756,7 +756,7 @@ object Form1: TForm1
     FooterOptions.DrawFullLine = False
     SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
     SearchOptions.FromStart = False
-    OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgDisableWordWrapTitles]
+    OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap, rdgDisableWordWrapTitles]
     OnDataHintShow = RxDBGrid1DataHintShow
     Align = alClient
     AlternateColor = 16055807

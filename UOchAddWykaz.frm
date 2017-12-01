@@ -365,7 +365,7 @@ object OchAddWykaz: TOchAddWykaz
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowSortForm, rdgCaseInsensitiveSort, rdgDisableWordWrapTitles]
+      OptionsRx = [rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap, rdgDisableWordWrapTitles]
       Align = alClient
       AlternateColor = 16055807
       AutoAdvance = aaNone
