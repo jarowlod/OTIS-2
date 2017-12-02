@@ -1,7 +1,7 @@
 object Stanowiska: TStanowiska
   Left = 396
   Height = 677
-  Top = 229
+  Top = 222
   Width = 1215
   Caption = 'Stanowiska / Grupy'
   ClientHeight = 677
@@ -1226,7 +1226,7 @@ object Stanowiska: TStanowiska
       object TabSheet3: TTabSheet
         Caption = 'Wydruki ...'
         ClientHeight = 496
-        ClientWidth = 606
+        ClientWidth = 612
         ImageIndex = 4
         object GroupBox1: TGroupBox
           Left = 8

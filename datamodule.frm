@@ -4,7 +4,7 @@ object DM: TDM
   OldCreateOrder = False
   Height = 514
   HorizontalOffset = 396
-  VerticalOffset = 229
+  VerticalOffset = 222
   Width = 697
   object IniPropStorage1: TIniPropStorage
     StoredValues = <>

@@ -190,7 +190,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
+      OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alClient
       AlternateColor = 16055807
@@ -633,7 +633,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgFooterRows, rdgCaseInsensitiveSort]
+      OptionsRx = [rdgFooterRows, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alClient
       AlternateColor = 16055807

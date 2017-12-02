@@ -94,6 +94,7 @@ type
     procedure BitBtn5Click(Sender: TObject); // ANULUJ Nowy Uzytkownik
     procedure BitBtn6Click(Sender: TObject); // OK - Nowe Haslo
     procedure BitBtn7Click(Sender: TObject); // ANULUJ Hasło
+    procedure DBComboBox1DropDown(Sender: TObject);
     procedure DBComboBox1Select(Sender: TObject);
     procedure Edit1Change(Sender: TObject);  // Wyszukiwanie
     procedure HasloChange(Sender: TObject);
@@ -304,9 +305,14 @@ begin
   Panel8.Visible:= false;
 end;
 
-procedure TUprawnienia.DBComboBox1Select(Sender: TObject);
+procedure TUprawnienia.DBComboBox1DropDown(Sender: TObject);
 begin
   ZQUsers.Edit;
+end;
+
+procedure TUprawnienia.DBComboBox1Select(Sender: TObject);
+begin
+  //ZQUsers.Edit;
   if DBComboBox1.Text='' then ZQUsers.FieldByName('Dzial').Value:= NULL
   else ZQUsers.FieldByName('Dzial').AsString:= DBComboBox1.Text;
 end;
