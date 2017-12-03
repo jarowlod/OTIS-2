@@ -103,7 +103,8 @@ type
   end;
 
   { TRxDBGrid }
-
+  // Hack na RXDBGRID płynne przewijanie paskiem przewijania
+  // kopiowanie całego grida do schowka
   TRxDBGrid = class(rxdbgrid.TRxDBGrid)
   protected
     //function GetDefaultRowHeight: integer; override;
@@ -121,6 +122,7 @@ var
 const
   wersja = '0.0.1.2';
 
+// ZATRUDNIENIE ----------------------
 const
   sp_Aktualny = 'Aktualny';
   sp_Uprzedni = 'Uprzedni';
@@ -128,6 +130,7 @@ const
   sz_Oczekujacy  = 'oczekujący';
   sz_Zatrudniony = 'zatrudniony';
   sz_Wycofany    = 'wycofany';
+// END ZATRUDNIENIE ------------------
 
 implementation
 uses strutils;

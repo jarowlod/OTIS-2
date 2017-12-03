@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
   Left = 396
   Height = 691
-  Top = 222
+  Top = 229
   Width = 713
   Caption = 'Karta Penitencjarna'
   ClientHeight = 691
@@ -937,7 +937,7 @@ object PenitForm: TPenitForm
       Caption = 'Wykazy'
       ClientHeight = 210
       ClientWidth = 705
-      ImageIndex = 12
+      ImageIndex = 26
       TabVisible = False
       object RxDBGrid1: TRxDBGrid
         Left = 0

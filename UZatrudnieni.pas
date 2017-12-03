@@ -267,7 +267,6 @@ type
     procedure CheckBox3Change(Sender: TObject);
     procedure cbMiejsceChange(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
-    procedure cyHotLabel1Click(Sender: TObject);
     procedure DateTimePicker1Change(Sender: TObject);
     procedure DateTimePicker2Change(Sender: TObject);
     procedure dtZatNaDzienChange(Sender: TObject);
@@ -332,12 +331,14 @@ begin
 
   ZQZatrudnieni.ReadOnly    := not DM.uprawnienia[15];  // zatrudnienie; prawo do edycji notatki
 
-  DisableNewSelect := False;
+  DisableNewSelect := true;
   SQLZatrudnieni   := ZQZatrudnieni.SQL.Text; // podstawa zapytania
-  NewSelect;
   DateTimePicker1.Date:= IncMonth(Date(), -1);
   DateTimePicker2.Date:= Date();
   dtZatNaDzien.Date   := Date();
+  DisableNewSelect:= false;
+
+  NewSelect;
 
   ShowOsIDO:=0;
   DateTimePicker3.Date:= Date;  // Data dla wydruku Kart Pracy
@@ -641,11 +642,6 @@ procedure TZatrudnieni.cbMiejsceChange(Sender: TObject);
 begin
   edMiejsce.Enabled:= cbMiejsce.Checked;
   NewSelect;
-end;
-
-procedure TZatrudnieni.cyHotLabel1Click(Sender: TObject);
-begin
-   BitBtn1Click(Sender);
 end;
 
 procedure TZatrudnieni.BitBtn3Click(Sender: TObject);

@@ -15,6 +15,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionAddWidzenie: TAction;
     ActionAddWykaz: TAction;
     ActionRejestrWykazow: TAction;
     ActionDrukujWykazOs: TAction;
@@ -60,6 +61,7 @@ type
     MenuItem45: TMenuItem;
     MenuItem46: TMenuItem;
     MenuItem47: TMenuItem;
+    MenuItem48: TMenuItem;
     MenuItem9: TMenuItem;
     Panel2: TPanel;
     SpkPane1: TSpkPane;
@@ -115,6 +117,7 @@ type
     RxDBGrid1: TRxDBGrid;
     StatusBar1: TStatusBar;
     Timer1Wyszukaj: TTimer;
+    procedure ActionAddWidzenieExecute(Sender: TObject);
     procedure ActionAddWykazExecute(Sender: TObject);
     procedure ActionDrukujWykazOsExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
@@ -123,6 +126,7 @@ type
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
     procedure ActionProsbyOsadzonegoExecute(Sender: TObject);
     procedure ActionProsbyOsadzonychExecute(Sender: TObject);
+    procedure ActionRejestrWidzenExecute(Sender: TObject);
     procedure ActionRejestrWykazowExecute(Sender: TObject);
     procedure ActionRozmieszczenieExecute(Sender: TObject);
     procedure ActionStanowiskaExecute(Sender: TObject);
@@ -178,7 +182,8 @@ implementation
 uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr_ZmianaHasla, URozmieszczenie,
      UUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
-     UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz;
+     UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
+     UOchRejestrWidzen, UOchAddWidzenie;
 {$R *.frm}
 
 { TForm1 }
@@ -252,12 +257,13 @@ begin
 
   MenuItem4.Enabled            := DM.uprawnienia[1];   // aktualizacja
   MenuItem5.Enabled            := DM.uprawnienia[8];   // uprawnienia
-  //MenuItem14.Enabled:= DM.uprawnienia[15];
-  ZatrudnienieAdd.Enabled      := DM.uprawnienia[15]; // dodaj zatrudnienie
-  MenuItem9.Enabled            := DM.uprawnienia[1];  // aktualizacja podkultury
+  ZatrudnienieAdd.Enabled      := DM.uprawnienia[15];  // dodaj zatrudnienie
+  MenuItem9.Enabled            := DM.uprawnienia[1];   // aktualizacja podkultury
   ActionTerminarz.Enabled      := (DM.Wychowawca<>''); // tylko wychowawca
   ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>''); // tylko wychowawca
-  ActionAddWykaz.Enabled       := DM.uprawnienia[4]; // dodawanie do wykazów ochronnych
+  ActionWydarzenia.Enabled     := (DM.Wychowawca<>'');
+  ActionAddWykaz.Enabled       := DM.uprawnienia[4];   // dodawanie do wykazów ochronnych
+  ActionAddWidzenie.Enabled    := DM.uprawnienia[6];   // widzenia
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
@@ -452,6 +458,17 @@ begin
   end;
 end;
 
+procedure TForm1.ActionAddWidzenieExecute(Sender: TObject);
+begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
+  with TOchAddWidzenie.Create(Self) do
+  begin
+       DodajOsadzonego( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
+       ShowModal;
+       Free;
+  end;
+end;
+
 procedure TForm1.ActionKomunikatDoExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
@@ -495,6 +512,15 @@ end;
 procedure TForm1.ActionProsbyOsadzonychExecute(Sender: TObject);
 begin
   with TRejestrProsbAll.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TForm1.ActionRejestrWidzenExecute(Sender: TObject);
+begin
+  with TOchRejestrWidzen.Create(Self) do
   begin
        ShowModal;
        Free;

@@ -120,7 +120,7 @@
         <PackageName Value="adLCL"/>
       </Item28>
     </RequiredPackages>
-    <Units Count="37">
+    <Units Count="39">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -378,6 +378,20 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit36>
+      <Unit37>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OchRejestrWidzen"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OchAddWidzenie"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit38>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

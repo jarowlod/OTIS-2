@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 368
+  Left = 86
   Height = 856
-  Top = 364
+  Top = 85
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -1192,11 +1192,11 @@ object Zatrudnieni: TZatrudnieni
           Height = 395
           Top = 192
           Width = 498
-          ActivePage = tabInfoZat
+          ActivePage = tabInne
           Align = alClient
           Images = DM.ImageList1
           TabHeight = 25
-          TabIndex = 0
+          TabIndex = 2
           TabOrder = 1
           object tabInfoZat: TTabSheet
             Caption = 'Informacje o zatrudnieniu'
@@ -1760,7 +1760,7 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInne: TTabSheet
             Caption = 'inne'
-            ClientHeight = 524
+            ClientHeight = 362
             ClientWidth = 490
             ImageIndex = 3
             object Label12: TLabel
@@ -2017,14 +2017,14 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabNotatnik: TTabSheet
         Caption = 'Notatnik'
-        ClientHeight = 813
+        ClientHeight = 651
         ClientWidth = 498
         ImageIndex = 2
         object DBMemo2: TDBMemo
           Left = 0
-          Height = 628
+          Height = 626
           Top = 0
-          Width = 495
+          Width = 498
           Align = alClient
           DataField = 'Notatki'
           DataSource = DSZatrudnieni
@@ -2035,8 +2035,8 @@ object Zatrudnieni: TZatrudnieni
         object DBNavigator1: TDBNavigator
           Left = 0
           Height = 25
-          Top = 628
-          Width = 495
+          Top = 626
+          Width = 498
           Align = alBottom
           BevelOuter = bvNone
           ChildSizing.EnlargeHorizontal = crsScaleChilds
@@ -2046,7 +2046,7 @@ object Zatrudnieni: TZatrudnieni
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 100
           ClientHeight = 25
-          ClientWidth = 495
+          ClientWidth = 498
           DataSource = DSZatrudnieni
           Options = []
           TabOrder = 1
@@ -2055,7 +2055,7 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabWydruki: TTabSheet
         Caption = 'Wydruki'
-        ClientHeight = 813
+        ClientHeight = 651
         ClientWidth = 498
         ImageIndex = 4
         object lblDruk_OsadzeniAll: TLabel
