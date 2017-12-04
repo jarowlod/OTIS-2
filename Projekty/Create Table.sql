@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `arch_osadzeni` (
   `Urodz` date NOT NULL,
   `Klasyf` varchar(10) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12491 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12649 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.arch_paczki
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `komunikaty` (
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0- nie odebrany; 1- odebrany;',
   `dataOdebrania` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8330 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8353 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.kom_grupy
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `kom_odbiorcy` (
   `dataOdebrania` datetime DEFAULT NULL,
   `ID_tresc` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=557 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=568 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.kom_tresc
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `kom_tresc` (
   `temat` varchar(200) NOT NULL,
   `komunikat` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.koszyk
@@ -252,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `koszyk` (
   `IDO` int(10) unsigned NOT NULL,
   `data_dodania` datetime NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1955 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1967 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.koszyk_sl
@@ -346,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `os_notatki` (
   `wych` varchar(45) NOT NULL,
   `notatka` text,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1862 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1868 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.paczki
@@ -364,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `paczki` (
   `ADRES` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `Index_IDO` (`IDO`)
-) ENGINE=InnoDB AUTO_INCREMENT=41050 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=41229 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.prosby
@@ -381,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `prosby` (
   `KTO_Zrealizowal` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `Index_IDO` (`IDO`)
-) ENGINE=InnoDB AUTO_INCREMENT=39127 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=39245 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.rej_prosb
@@ -402,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `rej_prosb` (
   `Data_Realizacji` datetime DEFAULT NULL,
   `User_Realizacji` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=41359 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41625 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.rej_prosb_sl
@@ -508,7 +508,7 @@ CREATE TABLE IF NOT EXISTS `synchro` (
   `NAZWISKO` varchar(45) NOT NULL,
   `Opis` text,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11541 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11572 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.typ_cel
@@ -578,7 +578,7 @@ CREATE TABLE IF NOT EXISTS `uprawnione` (
   `Uwagi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE,
   KEY `Index_IDO` (`IDO`)
-) ENGINE=InnoDB AUTO_INCREMENT=23885 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=23941 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.uwagi
@@ -605,8 +605,10 @@ CREATE TABLE IF NOT EXISTS `uwagi_wykazy` (
   `IDO` int(10) unsigned NOT NULL,
   `Uwagi` varchar(200) DEFAULT NULL,
   `Kategoria` int(10) unsigned NOT NULL,
+  `data_dodania` datetime DEFAULT NULL,
+  `user_dodania` varchar(60) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=821 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=826 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.ver_otis2
@@ -660,7 +662,7 @@ CREATE TABLE IF NOT EXISTS `widzenia` (
   `Data_Dod` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `Index_IDO` (`IDO`)
-) ENGINE=InnoDB AUTO_INCREMENT=47353 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=47515 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.widzenia_rezerwacje
@@ -714,7 +716,7 @@ CREATE TABLE IF NOT EXISTS `wykaz_bledow` (
   `Opis` varchar(255) DEFAULT NULL,
   `ID_Sesji` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13051 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13156 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.zat_stanowiska
@@ -734,7 +736,7 @@ CREATE TABLE IF NOT EXISTS `zat_stanowiska` (
   `user_dodania` varchar(50) DEFAULT NULL,
   `user_modyfikacji` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COMMENT='Zatrudnienie';
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COMMENT='Zatrudnienie';
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.zat_stawki_plac
@@ -802,7 +804,7 @@ CREATE TABLE IF NOT EXISTS `zat_zatrudnieni` (
   `Notatki` varchar(500) DEFAULT NULL,
   `drukuj` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=673 DEFAULT CHARSET=utf8 COMMENT='Zatrudnienie';
+) ENGINE=InnoDB AUTO_INCREMENT=703 DEFAULT CHARSET=utf8 COMMENT='Zatrudnienie';
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela klodzko.zwroty_paczek
@@ -815,7 +817,7 @@ CREATE TABLE IF NOT EXISTS `zwroty_paczek` (
   `Data_Z` datetime NOT NULL,
   `Kto` varchar(45) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1609 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1613 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Zrzut struktury widok klodzko.osadzeni_od_daty
