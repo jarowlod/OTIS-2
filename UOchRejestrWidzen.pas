@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, rxdbgrid, DateTimePicker, Forms,
   Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, DbCtrls, datamodule,
-  dateutils;
+  dateutils, rxdbutils;
 
 type
 

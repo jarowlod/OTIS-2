@@ -106,8 +106,6 @@ type
   // Hack na RXDBGRID płynne przewijanie paskiem przewijania
   // kopiowanie całego grida do schowka
   TRxDBGrid = class(rxdbgrid.TRxDBGrid)
-  protected
-    //function GetDefaultRowHeight: integer; override;
   private
     procedure WMVScroll(var Message : TLMVScroll); message LM_VScroll;
   public
@@ -529,12 +527,6 @@ end;
 
 //#############################################################################
 //#############################################################################
-
-//function TRxDBGrid.GetDefaultRowHeight: integer;
-//begin
-//  if DefaultRowHeight = 0 then Result:=inherited GetDefaultRowHeight
-//  else Result:= DefaultRowHeight;
-//end;
 
 //------------------------------------------------------------------------
 //-------------- Nadpisanie komponentu TRxDBGrid aby płynnie przewijał widok

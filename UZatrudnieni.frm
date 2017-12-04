@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 86
+  Left = 180
   Height = 856
-  Top = 85
+  Top = 178
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -763,7 +763,7 @@ object Zatrudnieni: TZatrudnieni
         SelectedColor = clHighlight
         GridLineStyle = psSolid
         DataSource = DSZatrudnieni
-        DefaultRowHeight = 24
+        DefaultRowHeight = 0
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
         ParentShowHint = False
@@ -1200,7 +1200,7 @@ object Zatrudnieni: TZatrudnieni
           TabOrder = 1
           object tabInfoZat: TTabSheet
             Caption = 'Informacje o zatrudnieniu'
-            ClientHeight = 362
+            ClientHeight = 524
             ClientWidth = 490
             ImageIndex = 6
             object plGradient1: TplGradient
@@ -2017,7 +2017,7 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabNotatnik: TTabSheet
         Caption = 'Notatnik'
-        ClientHeight = 651
+        ClientHeight = 813
         ClientWidth = 498
         ImageIndex = 2
         object DBMemo2: TDBMemo
@@ -2055,7 +2055,7 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabWydruki: TTabSheet
         Caption = 'Wydruki'
-        ClientHeight = 651
+        ClientHeight = 813
         ClientWidth = 498
         ImageIndex = 4
         object lblDruk_OsadzeniAll: TLabel

@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 396
   Height = 598
-  Top = 229
+  Top = 222
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -769,7 +769,7 @@ object Form1: TForm1
     SelectedColor = clHighlight
     GridLineStyle = psSolid
     DataSource = DM.DSOsadzeni
-    DefaultRowHeight = 24
+    DefaultRowHeight = 0
     FixedColor = clNone
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
     ParentShowHint = False

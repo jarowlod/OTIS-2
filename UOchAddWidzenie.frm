@@ -1,11 +1,13 @@
 object OchAddWidzenie: TOchAddWidzenie
   Left = 396
   Height = 568
-  Top = 229
+  Top = 222
   Width = 748
   Caption = 'Dodaj widzenie'
   ClientHeight = 568
   ClientWidth = 748
+  OnCreate = FormCreate
+  OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '6.3'
   object Panel2: TPanel
@@ -44,17 +46,17 @@ object OchAddWidzenie: TOchAddWidzenie
   end
   object Panel1: TPanel
     Left = 0
-    Height = 194
+    Height = 218
     Top = 0
     Width = 748
     Align = alTop
-    ClientHeight = 194
+    ClientHeight = 218
     ClientWidth = 748
     TabOrder = 1
     object Label1: TLabel
       Left = 15
       Height = 15
-      Top = 35
+      Top = 59
       Width = 205
       Caption = 'Czas trwania widzenia (regulaminowe):'
       ParentColor = False
@@ -62,7 +64,7 @@ object OchAddWidzenie: TOchAddWidzenie
     object Label2: TLabel
       Left = 15
       Height = 15
-      Top = 120
+      Top = 156
       Width = 147
       Caption = 'Sposób udzielenia widzenia:'
       ParentColor = False
@@ -70,7 +72,7 @@ object OchAddWidzenie: TOchAddWidzenie
     object cbSposob: TComboBox
       Left = 168
       Height = 23
-      Top = 116
+      Top = 152
       Width = 312
       DropDownCount = 10
       ItemHeight = 15
@@ -88,7 +90,7 @@ object OchAddWidzenie: TOchAddWidzenie
     object Label3: TLabel
       Left = 15
       Height = 15
-      Top = 152
+      Top = 188
       Width = 36
       Caption = 'Uwagi:'
       ParentColor = False
@@ -96,14 +98,14 @@ object OchAddWidzenie: TOchAddWidzenie
     object edUwagi: TEdit
       Left = 56
       Height = 23
-      Top = 149
+      Top = 185
       Width = 424
       TabOrder = 1
     end
     object SpinEdit1: TSpinEdit
       Left = 224
       Height = 23
-      Top = 32
+      Top = 56
       Width = 50
       MaxValue = 180
       TabOrder = 2
@@ -111,29 +113,15 @@ object OchAddWidzenie: TOchAddWidzenie
     object SpinEdit2: TSpinEdit
       Left = 224
       Height = 23
-      Top = 56
+      Top = 80
       Width = 50
       MaxValue = 180
       TabOrder = 3
     end
-    object lblNazwisko: TLabel
-      Left = 15
-      Height = 18
-      Top = 8
-      Width = 104
-      Caption = 'Nazwisko Imię'
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Height = -16
-      Font.Name = 'Georgia'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      ParentColor = False
-      ParentFont = False
-    end
     object btnRejestrProsb: TBitBtn
       Left = 590
       Height = 30
-      Top = 160
+      Top = 184
       Width = 152
       Anchors = [akRight, akBottom]
       Caption = 'Rejestr próśb'
@@ -176,66 +164,94 @@ object OchAddWidzenie: TOchAddWidzenie
       OnClick = btnRejestrProsbClick
       TabOrder = 4
     end
-    object lblKlasyf: TLabel
-      AnchorSideLeft.Control = lblNazwisko
-      AnchorSideLeft.Side = asrBottom
-      Left = 169
-      Height = 18
-      Top = 8
-      Width = 44
-      BorderSpacing.Left = 50
-      Caption = 'Klasyf'
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Height = -16
-      Font.Name = 'Georgia'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
+    object Panel3: TPanel
+      Left = 1
+      Height = 39
+      Top = 1
+      Width = 746
+      Align = alTop
+      BevelOuter = bvNone
+      ClientHeight = 39
+      ClientWidth = 746
+      Color = clWhite
       ParentColor = False
-      ParentFont = False
-    end
-    object lblPoc: TLabel
-      AnchorSideLeft.Control = lblKlasyf
-      AnchorSideLeft.Side = asrBottom
-      Left = 263
-      Height = 18
-      Top = 8
-      Width = 32
-      BorderSpacing.Left = 50
-      Caption = 'POC'
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Height = -16
-      Font.Name = 'Georgia'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      ParentColor = False
-      ParentFont = False
+      TabOrder = 5
+      object lblNazwisko: TLabel
+        Left = 15
+        Height = 18
+        Top = 8
+        Width = 122
+        Caption = 'Nazwisko Imię'
+        Font.CharSet = EASTEUROPE_CHARSET
+        Font.Height = -16
+        Font.Name = 'Georgia'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblKlasyf: TLabel
+        AnchorSideLeft.Control = lblNazwisko
+        AnchorSideLeft.Side = asrBottom
+        Left = 187
+        Height = 18
+        Top = 8
+        Width = 44
+        BorderSpacing.Left = 50
+        Caption = 'Klasyf'
+        Font.CharSet = EASTEUROPE_CHARSET
+        Font.Height = -16
+        Font.Name = 'Georgia'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblPoc: TLabel
+        AnchorSideLeft.Control = lblKlasyf
+        AnchorSideLeft.Side = asrBottom
+        Left = 281
+        Height = 18
+        Top = 8
+        Width = 32
+        BorderSpacing.Left = 50
+        Caption = 'POC'
+        Font.CharSet = EASTEUROPE_CHARSET
+        Font.Height = -16
+        Font.Name = 'Georgia'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
     end
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 334
-    Top = 194
+    Height = 310
+    Top = 218
     Width = 748
-    ActivePage = TabSheet4
+    ActivePage = TabSheetUwagi
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
     TabIndex = 3
     TabOrder = 2
-    object TabSheet1: TTabSheet
+    object TabSheetOsoby: TTabSheet
       Caption = 'Osoby uprawnione do widzenia'
       ImageIndex = 8
     end
-    object TabSheet2: TTabSheet
+    object TabSheetWidzenia: TTabSheet
       Caption = 'Widzenia'
       ClientHeight = 301
       ClientWidth = 740
       ImageIndex = 21
       object RxDBGrid2: TRxDBGrid
         Left = 0
-        Height = 285
+        Height = 301
         Top = 0
-        Width = 793
+        Width = 740
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -321,16 +337,16 @@ object OchAddWidzenie: TOchAddWidzenie
         TitleStyle = tsNative
       end
     end
-    object TabSheet3: TTabSheet
+    object TabSheetWykazy: TTabSheet
       Caption = 'Wykazy'
       ClientHeight = 301
       ClientWidth = 740
       ImageIndex = 26
       object RxDBGrid1: TRxDBGrid
         Left = 0
-        Height = 285
+        Height = 301
         Top = 0
-        Width = 793
+        Width = 740
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -474,19 +490,20 @@ object OchAddWidzenie: TOchAddWidzenie
         TitleStyle = tsNative
       end
     end
-    object TabSheet4: TTabSheet
+    object TabSheetUwagi: TTabSheet
       Caption = 'Uwagi i Polecenia'
-      ClientHeight = 301
+      ClientHeight = 277
       ClientWidth = 740
       ImageIndex = 28
       object DBMemoUwagiOch: TDBMemo
         Left = 0
-        Height = 147
+        Height = 123
         Top = 0
         Width = 740
         Align = alTop
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Bottom = 5
+        DataField = 'Uwagi_Och'
         DataSource = DSUwagi
         ReadOnly = True
         ScrollBars = ssAutoBoth
@@ -494,21 +511,36 @@ object OchAddWidzenie: TOchAddWidzenie
       end
       object DBMemoUwagiKier: TDBMemo
         Left = 0
-        Height = 144
-        Top = 157
+        Height = 125
+        Top = 152
         Width = 740
         Align = alClient
-        BorderSpacing.Top = 10
+        DataField = 'Uwagi_Kier'
+        DataSource = DSUwagi
         ReadOnly = True
         ScrollBars = ssAutoBoth
         TabOrder = 1
+      end
+      object Label4: TLabel
+        Left = 0
+        Height = 24
+        Top = 128
+        Width = 740
+        Align = alTop
+        Alignment = taCenter
+        AutoSize = False
+        Caption = 'Uwagi Kierownika'
+        Color = 8684799
+        Layout = tlCenter
+        ParentColor = False
+        Transparent = False
       end
     end
   end
   object DSRejWyk: TDataSource
     DataSet = ZQRejWyk
     Left = 304
-    Top = 312
+    Top = 344
   end
   object ZQRejWyk: TZQuery
     Connection = DM.ZConnection1
@@ -532,7 +564,7 @@ object OchAddWidzenie: TOchAddWidzenie
         ParamType = ptUnknown
       end>
     Left = 304
-    Top = 256
+    Top = 288
     ParamData = <    
       item
         DataType = ftUnknown
@@ -545,16 +577,12 @@ object OchAddWidzenie: TOchAddWidzenie
     ReadOnly = True
     SQL.Strings = (
       '  SELECT'
-      '  IDO,'
-      '  UWAGI as Uwagi_Och'
-      '  FROM uwagi'
-      '  WHERE IDO = :ido'
-      'UNION ALL'
-      '  SELECT'
-      '  IDO,'
-      '  UWAGI as Uwagi_Kier'
-      '  FROM uwagi_kierownika'
-      '  WHERE IDO = :ido'
+      '  u.IDO,'
+      '  u.UWAGI as Uwagi_Och,'
+      '  uk.UWAGI as Uwagi_Kier'
+      '  FROM uwagi u, uwagi_kierownika uk'
+      'WHERE '
+      '(u.IDO = :ido) and (uk.IDO = :ido)'
     )
     Params = <    
       item
@@ -563,7 +591,7 @@ object OchAddWidzenie: TOchAddWidzenie
         ParamType = ptUnknown
       end>
     Left = 408
-    Top = 256
+    Top = 288
     ParamData = <    
       item
         DataType = ftUnknown
@@ -574,6 +602,6 @@ object OchAddWidzenie: TOchAddWidzenie
   object DSUwagi: TDataSource
     DataSet = ZQUwagi
     Left = 408
-    Top = 312
+    Top = 344
   end
 end
