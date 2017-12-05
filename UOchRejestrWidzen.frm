@@ -1,11 +1,11 @@
 object OchRejestrWidzen: TOchRejestrWidzen
-  Left = 396
-  Height = 536
-  Top = 222
-  Width = 908
+  Left = 86
+  Height = 766
+  Top = 85
+  Width = 1123
   Caption = 'Rejestr widzeń osadzonych'
-  ClientHeight = 536
-  ClientWidth = 908
+  ClientHeight = 766
+  ClientWidth = 1123
   OnCreate = FormCreate
   Position = poOwnerFormCenter
   LCLVersion = '6.3'
@@ -13,10 +13,10 @@ object OchRejestrWidzen: TOchRejestrWidzen
     Left = 0
     Height = 104
     Top = 0
-    Width = 908
+    Width = 1123
     Align = alTop
     ClientHeight = 104
-    ClientWidth = 908
+    ClientWidth = 1123
     TabOrder = 0
     object RadioGroup1: TRadioGroup
       Left = 1
@@ -261,21 +261,380 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object Panel2: TPanel
     Left = 0
-    Height = 432
+    Height = 662
     Top = 104
-    Width = 908
+    Width = 1123
     Align = alClient
-    ClientHeight = 432
-    ClientWidth = 908
+    ClientHeight = 662
+    ClientWidth = 1123
     TabOrder = 1
+    object Panel3: TPanel
+      Left = 1
+      Height = 148
+      Top = 513
+      Width = 1121
+      Align = alBottom
+      BevelOuter = bvNone
+      ClientHeight = 148
+      ClientWidth = 1121
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 0
+        Height = 24
+        Top = 0
+        Width = 1121
+        Align = alTop
+        Alignment = taCenter
+        AutoSize = False
+        Caption = 'Osoby odwiedzające'
+        Layout = tlCenter
+        ParentColor = False
+      end
+      object RxDBGrid2: TRxDBGrid
+        Left = 0
+        Height = 124
+        Top = 24
+        Width = 1121
+        ColumnDefValues.BlobText = '(blob)'
+        TitleButtons = True
+        AutoSort = True
+        Columns = <        
+          item
+            Color = clWindow
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Nazwisko'
+            Width = 120
+            FieldName = 'Nazwisko'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footer.ValueType = fvtCount
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Imię'
+            Width = 120
+            FieldName = 'Imie'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Pokrewieństwo'
+            Width = 120
+            FieldName = 'Pokrew'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Uwagi'
+            Width = 300
+            FieldName = 'Uwagi'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end>
+        KeyStrokes = <        
+          item
+            Command = rxgcShowFindDlg
+            ShortCut = 16454
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowColumnsDlg
+            ShortCut = 16471
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowFilterDlg
+            ShortCut = 16468
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowSortDlg
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowQuickFilter
+            ShortCut = 16465
+            Enabled = True
+          end        
+          item
+            Command = rxgcHideQuickFilter
+            ShortCut = 16456
+            Enabled = True
+          end        
+          item
+            Command = rxgcSelectAll
+            ShortCut = 16449
+            Enabled = True
+          end        
+          item
+            Command = rxgcDeSelectAll
+            ShortCut = 16429
+            Enabled = True
+          end        
+          item
+            Command = rxgcInvertSelection
+            ShortCut = 16426
+            Enabled = True
+          end        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16427
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.Active = True
+        FooterOptions.Color = clSilver
+        FooterOptions.RowCount = 1
+        FooterOptions.Style = tsNative
+        FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
+        OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+        FooterColor = clSilver
+        FooterRowCount = 1
+        Align = alClient
+        AlternateColor = 16055807
+        AutoAdvance = aaNone
+        AutoEdit = False
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clHighlight
+        FixedHotColor = clNone
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        DataSource = DSOsoby
+        DefaultRowHeight = 0
+        FixedColor = clNone
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
+        ParentShowHint = False
+        ReadOnly = True
+        ShowHint = True
+        TabOrder = 0
+        TitleStyle = tsNative
+      end
+    end
+    object Splitter1: TSplitter
+      Cursor = crVSplit
+      Left = 1
+      Height = 5
+      Top = 508
+      Width = 1121
+      Align = alBottom
+      ResizeAnchor = akBottom
+    end
     object RxDBGrid1: TRxDBGrid
       Left = 1
-      Height = 310
+      Height = 507
       Top = 1
-      Width = 906
+      Width = 1121
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
+      Columns = <      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Data Widzenia'
+          Width = 115
+          FieldName = 'Data_Widzenie'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footer.ValueType = fvtCount
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Czas Widz.'
+          Width = 50
+          FieldName = 'Czas_Widzenia'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Sposób'
+          Width = 50
+          FieldName = 'Sposob'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Dodatkowe'
+          FieldName = 'Dodatkowe'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Data_Dod'
+          Width = 100
+          FieldName = 'Data_Dod'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Uwagi'
+          Width = 100
+          FieldName = 'Uwagi'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Nadzor'
+          Width = 150
+          FieldName = 'Nadzor'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Nazwisko'
+          Width = 100
+          FieldName = 'Nazwisko'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Imie'
+          Width = 100
+          FieldName = 'Imie'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Ojciec'
+          Width = 100
+          FieldName = 'Ojciec'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'POC'
+          Width = 60
+          FieldName = 'POC'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Klasyf'
+          Width = 60
+          FieldName = 'Klasyf'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end>
       KeyStrokes = <      
         item
           Command = rxgcShowFindDlg
@@ -353,143 +712,21 @@ object OchRejestrWidzen: TOchRejestrWidzen
       SelectedColor = clHighlight
       GridLineStyle = psSolid
       DataSource = DSWidzenia
-      DefaultRowHeight = 24
+      DefaultRowHeight = 0
       FixedColor = clNone
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
       ParentShowHint = False
       ReadOnly = True
       ShowHint = True
-      TabOrder = 0
+      TabOrder = 2
       TitleStyle = tsNative
-    end
-    object Panel3: TPanel
-      Left = 1
-      Height = 115
-      Top = 316
-      Width = 906
-      Align = alBottom
-      BevelOuter = bvNone
-      ClientHeight = 115
-      ClientWidth = 906
-      TabOrder = 1
-      object Label1: TLabel
-        Left = 0
-        Height = 24
-        Top = 0
-        Width = 906
-        Align = alTop
-        Alignment = taCenter
-        AutoSize = False
-        Caption = 'Osoby odwiedzające'
-        Layout = tlCenter
-        ParentColor = False
-      end
-      object RxDBGrid2: TRxDBGrid
-        Left = 0
-        Height = 91
-        Top = 24
-        Width = 906
-        ColumnDefValues.BlobText = '(blob)'
-        TitleButtons = True
-        AutoSort = True
-        KeyStrokes = <        
-          item
-            Command = rxgcShowFindDlg
-            ShortCut = 16454
-            Enabled = True
-          end        
-          item
-            Command = rxgcShowColumnsDlg
-            ShortCut = 16471
-            Enabled = True
-          end        
-          item
-            Command = rxgcShowFilterDlg
-            ShortCut = 16468
-            Enabled = True
-          end        
-          item
-            Command = rxgcShowSortDlg
-            ShortCut = 16467
-            Enabled = True
-          end        
-          item
-            Command = rxgcShowQuickFilter
-            ShortCut = 16465
-            Enabled = True
-          end        
-          item
-            Command = rxgcHideQuickFilter
-            ShortCut = 16456
-            Enabled = True
-          end        
-          item
-            Command = rxgcSelectAll
-            ShortCut = 16449
-            Enabled = True
-          end        
-          item
-            Command = rxgcDeSelectAll
-            ShortCut = 16429
-            Enabled = True
-          end        
-          item
-            Command = rxgcInvertSelection
-            ShortCut = 16426
-            Enabled = True
-          end        
-          item
-            Command = rxgcOptimizeColumnsWidth
-            ShortCut = 16427
-            Enabled = True
-          end        
-          item
-            Command = rxgcCopyCellValue
-            ShortCut = 16451
-            Enabled = True
-          end>
-        FooterOptions.Color = clSilver
-        FooterOptions.RowCount = 1
-        FooterOptions.Style = tsNative
-        FooterOptions.DrawFullLine = False
-        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
-        SearchOptions.FromStart = False
-        OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
-        FooterColor = clSilver
-        FooterRowCount = 1
-        Align = alClient
-        AlternateColor = 16055807
-        AutoAdvance = aaNone
-        AutoEdit = False
-        Color = clWindow
-        DrawFullLine = False
-        FocusColor = clHighlight
-        FixedHotColor = clNone
-        SelectedColor = clHighlight
-        GridLineStyle = psSolid
-        DataSource = DSOsoby
-        DefaultRowHeight = 24
-        FixedColor = clNone
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-        ParentShowHint = False
-        ReadOnly = True
-        ShowHint = True
-        TabOrder = 0
-        TitleStyle = tsNative
-      end
-    end
-    object Splitter1: TSplitter
-      Cursor = crVSplit
-      Left = 1
-      Height = 5
-      Top = 311
-      Width = 906
-      Align = alBottom
-      ResizeAnchor = akBottom
     end
   end
   object ZQWidzenia: TZQuery
     Connection = DM.ZConnection1
+    SortedFields = 'Data_Widzenie'
+    SortType = stDescending
+    Active = True
     SQL.Strings = (
       'SELECT'
       'w.ID, '
@@ -515,11 +752,13 @@ object OchRejestrWidzen: TOchRejestrWidzen
       '  (w.IDO = o.IDO)'
     )
     Params = <>
+    IndexFieldNames = 'Data_Widzenie Desc'
     Left = 269
     Top = 143
   end
   object ZQOsoby: TZQuery
     Connection = DM.ZConnection1
+    Active = True
     SQL.Strings = (
       'SELECT'
       'w.ID_widzenia, '

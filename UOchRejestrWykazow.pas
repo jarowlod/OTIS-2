@@ -242,7 +242,8 @@ end;
 procedure TOchRejestrWykazow.btnDrukujClick(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'och_wykazy.lrf');
-  DM.SetMemoReport(frReport1, 'Memo_data', DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.');
+  DM.SetMemoReport(frReport1, 'Memo_Data', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.');
+  if ComboBox1.Text='' then DM.SetMemoReport(frReport1, 'Memo_Wykaz', 'wykaz osadzonych ujętych na wszystkich wykazach');
   frReport1.ShowReport;
 end;
 

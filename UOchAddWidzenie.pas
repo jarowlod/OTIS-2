@@ -102,12 +102,14 @@ begin
   // --------------------------------------------------------
 
   WstawDaneOsadzonego;
+  OtworzTabele;
 end;
 
 procedure TOchAddWidzenie.Modyfikuj(vIDO: integer);
 begin
   isModyfikacja:= true;
   WstawDaneOsadzonego;
+  OtworzTabele;
 end;
 
 

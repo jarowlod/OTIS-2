@@ -543,6 +543,7 @@ object OchRejestrWykazow: TOchRejestrWykazow
   end
   object ZQRejWykazow: TZQuery
     Connection = DM.ZConnection1
+    SortedFields = 'POC'
     UpdateObject = ZURejWykazow
     SQL.Strings = (
       'SELECT'
@@ -563,6 +564,7 @@ object OchRejestrWykazow: TOchRejestrWykazow
       'JOIN katalog_wykazow as kat ON kat.ID = wyk.Kategoria'
     )
     Params = <>
+    IndexFieldNames = 'POC Asc'
     Left = 290
     Top = 152
   end

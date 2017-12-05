@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 180
+  Left = 368
   Height = 743
-  Top = 178
+  Top = 364
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -94,11 +94,11 @@ object PenitTerminarz: TPenitTerminarz
     Height = 693
     Top = 50
     Width = 1182
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
@@ -809,7 +809,7 @@ object PenitTerminarz: TPenitTerminarz
           SelectedColor = clHighlight
           GridLineStyle = psSolid
           DataSource = DSTerminarz
-          DefaultRowHeight = 20
+          DefaultRowHeight = 0
           FixedColor = clNone
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
           ParentShowHint = False

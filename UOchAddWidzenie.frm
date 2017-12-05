@@ -244,7 +244,7 @@ object OchAddWidzenie: TOchAddWidzenie
     end
     object TabSheetWidzenia: TTabSheet
       Caption = 'Widzenia'
-      ClientHeight = 301
+      ClientHeight = 277
       ClientWidth = 740
       ImageIndex = 21
       object RxDBGrid2: TRxDBGrid
@@ -339,7 +339,7 @@ object OchAddWidzenie: TOchAddWidzenie
     end
     object TabSheetWykazy: TTabSheet
       Caption = 'Wykazy'
-      ClientHeight = 301
+      ClientHeight = 277
       ClientWidth = 740
       ImageIndex = 26
       object RxDBGrid1: TRxDBGrid
