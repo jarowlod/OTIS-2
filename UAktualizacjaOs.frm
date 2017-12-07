@@ -1,7 +1,7 @@
 object AktualizacjaOs: TAktualizacjaOs
-  Left = 443
+  Left = 396
   Height = 515
-  Top = 161
+  Top = 222
   Width = 1128
   Caption = 'AktualizacjaOs'
   ClientHeight = 515
@@ -9,7 +9,7 @@ object AktualizacjaOs: TAktualizacjaOs
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 234
@@ -214,6 +214,8 @@ object AktualizacjaOs: TAktualizacjaOs
     FooterOptions.RowCount = 1
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
+    SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+    SearchOptions.FromStart = False
     OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
     FooterRowCount = 1
     Align = alRight
@@ -230,7 +232,6 @@ object AktualizacjaOs: TAktualizacjaOs
     DefaultRowHeight = 24
     FixedColor = clNone
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAutoSizeColumns, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-    ParentColor = False
     ReadOnly = True
     TabOrder = 2
     TitleStyle = tsNative
@@ -280,12 +281,12 @@ object AktualizacjaOs: TAktualizacjaOs
         DataType = ftString
         Size = 10
       end>
-    left = 640
-    top = 326
+    Left = 640
+    Top = 326
   end
   object DataSource1: TDataSource
     DataSet = MemDataset1
-    left = 733
-    top = 326
+    Left = 733
+    Top = 326
   end
 end

@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
   Left = 396
   Height = 691
-  Top = 229
+  Top = 222
   Width = 713
   Caption = 'Karta Penitencjarna'
   ClientHeight = 691
@@ -1079,7 +1079,7 @@ object PenitForm: TPenitForm
         DefaultRowHeight = 24
         FixedColor = clNone
         FixedCols = 0
-        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
+        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
         ParentShowHint = False
         ReadOnly = True
         ShowHint = True

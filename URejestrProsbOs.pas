@@ -56,6 +56,7 @@ type
     procedure btnModyfikujClick(Sender: TObject);
     procedure btnZrealizujClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
     procedure ZQRejestrstatusGetText(Sender: TField; var aText: string;
@@ -84,6 +85,15 @@ begin
   btnDodaj.Enabled     := DM.uprawnienia[14]; //uprawnienia do dodania
   btnModyfikuj.Enabled := DM.uprawnienia[14]; //uprawnienia do edycji
   btnZrealizuj.Enabled := DM.uprawnienia[12]; // realizacja próśb
+end;
+
+procedure TRejestrProsbOs.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Char(Key) =#27 then    // ESC
+  begin
+    close;
+  end;
 end;
 
 procedure TRejestrProsbOs.btnDodajClick(Sender: TObject);

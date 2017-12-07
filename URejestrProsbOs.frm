@@ -6,7 +6,9 @@ object RejestrProsbOs: TRejestrProsbOs
   Caption = 'Rejestr Próśb Osadzonego: '
   ClientHeight = 550
   ClientWidth = 1271
+  KeyPreview = True
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   Position = poOwnerFormCenter
   LCLVersion = '6.3'
   object Panel1: TPanel

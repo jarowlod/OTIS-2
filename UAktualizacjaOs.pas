@@ -179,10 +179,20 @@ begin
     MemDataset1.Next;
   end;                  // koniec dopisywania
   Memo2.Lines.Add(IntToStr(i)+' - osadzonych dopisanych.');
+      // alternatywne rozwiązanie zapisania Opisu do DB
+      //
+      //ZQPom.SQL.Text:= 'SELECT ID, Opis FROM synchro WHERE ID=:id';
+      //ZQPom.ParamByName('id').AsInteger:= ID_Synchro;
+      //ZQPom.Open;
+      //ZQPom.Edit;
+      //ZQPom.FieldByName('Opis').AsString:= Memo1.Text;
+      //ZQPom.Post;
+      //ZQPom.Close;
+      // -----------------------------------------------
 
       ZQPom.SQL.Text:= 'UPDATE synchro SET opis=:opis WHERE ID=:id;';
       ZQPom.ParamByName('id').AsInteger := ID_Synchro;
-      ZQPom.ParamByName('opis').AsMemo  := Memo1.Text;
+      ZQPom.ParamByName('opis').AsString  := Memo1.Text;  // zapis przez ParamByName('opis').AsMemo powoduje błąd
       ZQPom.ExecSQL;
 
   MemDataset1.EnableControls;

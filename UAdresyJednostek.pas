@@ -79,7 +79,6 @@ procedure TAdresyJednostek.FormCreate(Sender: TObject);
 begin
   fAdres:= '';
   Edit1Change(Sender);
-  Edit1.SetFocus;
 end;
 
 procedure TAdresyJednostek.PageControl1Change(Sender: TObject);

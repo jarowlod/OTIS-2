@@ -1,7 +1,7 @@
 object RejestrProsbDodaj: TRejestrProsbDodaj
   Left = 396
   Height = 466
-  Top = 229
+  Top = 222
   Width = 661
   BorderStyle = bsDialog
   Caption = 'Zarejestruj prośbę'

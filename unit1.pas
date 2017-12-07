@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, windows, ExtCtrls, StdCtrls, DBGrids, ActnList, rxdbutils,
   db, datamodule, spkt_Tab, spkt_Pane, spkt_Buttons,
-  Types, Grids, Clipbrd, dateutils;
+  Types, Grids, Clipbrd, dateutils, LCLType;
 
 type
 
@@ -136,6 +136,7 @@ type
     procedure ActionZatrudnienieOsExecute(Sender: TObject);
     procedure ActionZatrudnieniExecute(Sender: TObject);
     procedure Action_AdresyJednostekExecute(Sender: TObject);
+    procedure Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure Image1DblClick(Sender: TObject);
     procedure MenuItem26Click(Sender: TObject);
@@ -601,6 +602,21 @@ begin
   end;
 end;
 
+procedure TForm1.Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+  );
+begin
+  if Key = VK_DOWN then
+  begin
+    DM.ZQOsadzeni.Next;
+    Key:= VK_UNKNOWN;
+  end else
+  if Key = VK_UP then
+  begin
+    DM.ZQOsadzeni.Prior;
+    Key:= VK_UNKNOWN;
+  end;
+end;
+
 //Aktualizacja podkultury
 procedure TForm1.MenuItem9Click(Sender: TObject);
 begin
@@ -614,19 +630,19 @@ end;
 // obsługa entera i ESC
 procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: char);
 begin
-  if Key=#13 then    // ENTER
+  if Key=#13 then    // ENTER VK_RETURN;
   begin
       Edit1.SetFocus;
       if not isExecuteSQL then Timer1WyszukajTimer(Sender);  // wymuszam reakcje timera po wcisnieciu Entera
       WyborDomyslny;
   end else
-  if Key=#27 then    // ESC
+  if Ord(Key) = VK_ESCAPE then    // ESC
   begin
       Edit1.Text:='';
       Edit1.SetFocus;
       if not isExecuteSQL then Timer1WyszukajTimer(Sender);
   end else
-  if Key=' ' then Key:=#0;     // zabraniamy wpisywania spacji
+  if Ord(Key) = VK_SPACE then Key:=#0;     // zabraniamy wpisywania spacji
 end;
 
 procedure TForm1.StatusBarRefresh(Sender: TObject; Field: TField);

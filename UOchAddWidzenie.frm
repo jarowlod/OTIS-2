@@ -232,11 +232,11 @@ object OchAddWidzenie: TOchAddWidzenie
     Height = 310
     Top = 218
     Width = 748
-    ActivePage = TabSheetUwagi
+    ActivePage = TabSheetOsoby
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 3
+    TabIndex = 0
     TabOrder = 2
     object TabSheetOsoby: TTabSheet
       Caption = 'Osoby uprawnione do widzenia'
@@ -249,7 +249,7 @@ object OchAddWidzenie: TOchAddWidzenie
       ImageIndex = 21
       object RxDBGrid2: TRxDBGrid
         Left = 0
-        Height = 301
+        Height = 277
         Top = 0
         Width = 740
         ColumnDefValues.BlobText = '(blob)'
@@ -329,7 +329,7 @@ object OchAddWidzenie: TOchAddWidzenie
         DefaultRowHeight = 24
         FixedColor = clNone
         FixedCols = 0
-        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
+        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
         ParentShowHint = False
         ReadOnly = True
         ShowHint = True
@@ -344,7 +344,7 @@ object OchAddWidzenie: TOchAddWidzenie
       ImageIndex = 26
       object RxDBGrid1: TRxDBGrid
         Left = 0
-        Height = 301
+        Height = 277
         Top = 0
         Width = 740
         ColumnDefValues.BlobText = '(blob)'
@@ -482,7 +482,7 @@ object OchAddWidzenie: TOchAddWidzenie
         DefaultRowHeight = 24
         FixedColor = clNone
         FixedCols = 0
-        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
+        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
         ParentShowHint = False
         ReadOnly = True
         ShowHint = True

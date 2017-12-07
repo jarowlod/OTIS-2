@@ -63,6 +63,7 @@ object Form1: TForm1
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       OnChange = Edit1Change
+      OnKeyDown = Edit1KeyDown
       OnKeyPress = Edit1KeyPress
       ParentFont = False
       TabOrder = 0
