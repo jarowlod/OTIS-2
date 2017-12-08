@@ -232,11 +232,11 @@ object OchAddWidzenie: TOchAddWidzenie
     Height = 310
     Top = 218
     Width = 748
-    ActivePage = TabSheetOsoby
+    ActivePage = TabSheetUwagi
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 0
+    TabIndex = 3
     TabOrder = 2
     object TabSheetOsoby: TTabSheet
       Caption = 'Osoby uprawnione do widzenia'
@@ -590,7 +590,7 @@ object OchAddWidzenie: TOchAddWidzenie
         Name = 'ido'
         ParamType = ptUnknown
       end>
-    Left = 408
+    Left = 409
     Top = 288
     ParamData = <    
       item
@@ -601,7 +601,7 @@ object OchAddWidzenie: TOchAddWidzenie
   end
   object DSUwagi: TDataSource
     DataSet = ZQUwagi
-    Left = 408
+    Left = 409
     Top = 344
   end
 end

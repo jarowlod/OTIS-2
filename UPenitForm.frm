@@ -1,10 +1,10 @@
 object PenitForm: TPenitForm
   Left = 396
-  Height = 691
+  Height = 743
   Top = 222
   Width = 713
   Caption = 'Karta Penitencjarna'
-  ClientHeight = 691
+  ClientHeight = 743
   ClientWidth = 713
   KeyPreview = True
   OnClose = FormClose
@@ -673,18 +673,18 @@ object PenitForm: TPenitForm
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 243
+    Height = 295
     Top = 448
     Width = 713
-    ActivePage = TabSheetWykazy
+    ActivePage = TabSheetUwagi
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 2
+    TabIndex = 3
     TabOrder = 2
     object TabSheetNotatnik: TTabSheet
       Caption = 'Notatnik'
-      ClientHeight = 210
+      ClientHeight = 262
       ClientWidth = 705
       ImageIndex = 6
       object Panel4: TPanel
@@ -743,7 +743,7 @@ object PenitForm: TPenitForm
       end
       object DBMemo1: TDBMemo
         Left = 0
-        Height = 179
+        Height = 231
         Top = 31
         Width = 705
         Align = alClient
@@ -1085,6 +1085,84 @@ object PenitForm: TPenitForm
         ShowHint = True
         TabOrder = 0
         TitleStyle = tsNative
+      end
+    end
+    object TabSheetUwagi: TTabSheet
+      Caption = 'Uwagi i Polecenia'
+      ClientHeight = 262
+      ClientWidth = 705
+      ImageIndex = 28
+      object DBMemoUwagiOch: TDBMemo
+        Left = 0
+        Height = 120
+        Top = 24
+        Width = 705
+        Align = alTop
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Bottom = 5
+        DataField = 'UWAGI'
+        DataSource = DSUwagi
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+      end
+      object DBMemoUwagiKier: TDBMemo
+        Left = 0
+        Height = 89
+        Top = 173
+        Width = 705
+        Align = alClient
+        Color = 15790335
+        DataField = 'UWAGI'
+        DataSource = DSUwagiKierownika
+        ReadOnly = True
+        ScrollBars = ssAutoBoth
+        TabOrder = 1
+      end
+      object Panel3: TPanel
+        Left = 0
+        Height = 24
+        Top = 0
+        Width = 705
+        Align = alTop
+        BevelOuter = bvNone
+        Caption = 'Uwagi Ochrony'
+        ClientHeight = 24
+        ClientWidth = 705
+        TabOrder = 2
+        object DBText4: TDBText
+          Left = 662
+          Height = 24
+          Top = 0
+          Width = 43
+          Align = alRight
+          DataField = 'Data'
+          DataSource = DSUwagi
+          ParentColor = False
+        end
+      end
+      object Panel5: TPanel
+        Left = 0
+        Height = 24
+        Top = 149
+        Width = 705
+        Align = alTop
+        BevelOuter = bvNone
+        Caption = 'Uwagi Kierownika'
+        ClientHeight = 24
+        ClientWidth = 705
+        Color = 8684799
+        ParentColor = False
+        TabOrder = 3
+        object DBText9: TDBText
+          Left = 662
+          Height = 24
+          Top = 0
+          Width = 43
+          Align = alRight
+          DataField = 'Data'
+          DataSource = DSUwagiKierownika
+          ParentColor = False
+        end
       end
     end
   end
@@ -1454,5 +1532,65 @@ object PenitForm: TPenitForm
     DataSet = ZQRejWyk
     Left = 192
     Top = 584
+  end
+  object ZQUwagi: TZQuery
+    Connection = DM.ZConnection1
+    SQL.Strings = (
+      'SELECT'
+      'IDO,'
+      'UWAGI,'
+      'Data'
+      'FROM uwagi'
+      'WHERE IDO = :ido'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
+    Left = 312
+    Top = 528
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
+  end
+  object DSUwagi: TDataSource
+    DataSet = ZQUwagi
+    Left = 312
+    Top = 584
+  end
+  object ZQUwagiKierownika: TZQuery
+    Connection = DM.ZConnection1
+    SQL.Strings = (
+      'SELECT'
+      'IDO,'
+      'UWAGI,'
+      'Data'
+      'FROM uwagi_kierownika'
+      'WHERE IDO = :ido'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
+    Left = 312
+    Top = 640
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
+  end
+  object DSUwagiKierownika: TDataSource
+    DataSet = ZQUwagiKierownika
+    Left = 312
+    Top = 696
   end
 end

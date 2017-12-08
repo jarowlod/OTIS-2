@@ -18,6 +18,10 @@ type
     btnRejestrZat: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
+    DBMemoUwagiKier: TDBMemo;
+    DBMemoUwagiOch: TDBMemo;
+    DBText4: TDBText;
+    DBText9: TDBText;
     DSOs: TDataSource;
     DBCheckBox6: TDBCheckBox;
     DBEdit2: TDBEdit;
@@ -47,6 +51,8 @@ type
     DBText8: TDBText;
     DSOsZat: TDataSource;
     DSRejWyk: TDataSource;
+    DSUwagi: TDataSource;
+    DSUwagiKierownika: TDataSource;
     Image_os: TImage;
     Label1: TLabel;
     Label10: TLabel;
@@ -65,10 +71,13 @@ type
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
+    Panel3: TPanel;
     Panel4: TPanel;
+    Panel5: TPanel;
     Panel_1: TPanel;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
+    TabSheetUwagi: TTabSheet;
     TabSheetWykazy: TTabSheet;
     TabSheetNotatnik: TTabSheet;
     TabSheetZatrudnienie: TTabSheet;
@@ -77,6 +86,8 @@ type
     ZQOs: TZQuery;
     ZQOsZat: TZQuery;
     ZQRejWyk: TZQuery;
+    ZQUwagi: TZQuery;
+    ZQUwagiKierownika: TZQuery;
     ZUOsInfo: TZUpdateSQL;
     ZUOsNotatki: TZUpdateSQL;
     procedure btnRejestrProsbClick(Sender: TObject);
@@ -96,6 +107,7 @@ type
     SourceQuery: TZQuery;
     procedure WczytajTypCeli;
     function CzyZatrudniony: Boolean;
+    procedure ZapiszZmiany;
   public
     Procedure SetIDO(ido: integer);
     Procedure SetIDO(ido: integer; RefreshSourceQuery: TZQuery);
@@ -117,13 +129,24 @@ begin
   SelectIDO:= 0;
   fRefresh := false;
   PageControl1.TabIndex:= 0;
+
+  // nadajemy uprawnienia
+  ZQUwagiKierownika.ReadOnly:= not DM.uprawnienia[4];  // uprawnienia do edycji uwag dal uproawnionych do wykazów
 end;
 
 procedure TPenitForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   // przed zamknięceim osadzonego zapisz ewentualne zaminy jeśli jest w trybie edycji
+  ZapiszZmiany;
+end;
+
+procedure TPenitForm.ZapiszZmiany;
+begin
+  // przed zamknięceim osadzonego zapisz ewentualne zaminy jeśli jest w trybie edycji
   if ZQOsInfo.State    in [dsEdit, dsInsert] then ZQOsInfo.Post;
   if ZQOsNotatki.State in [dsEdit, dsInsert] then ZQOsNotatki.Post;
+  if ZQUwagi.State     in [dsEdit, dsInsert] then ZQUwagi.Post;
+  if ZQUwagiKierownika.State in [dsEdit, dsInsert] then ZQUwagiKierownika.Post;
   //----------------------------------------------------------------------------
 end;
 
@@ -133,8 +156,7 @@ begin
   if SelectIDO = ido then exit;
 
   // przed zmiana osadzonego zapisz ewentualne zaminy jeśli jest w trybie edycji
-  if ZQOsInfo.State    in [dsEdit, dsInsert] then ZQOsInfo.Post;
-  if ZQOsNotatki.State in [dsEdit, dsInsert] then ZQOsNotatki.Post;
+  ZapiszZmiany;
   //----------------------------------------------------------------------------
 
   SelectIDO:= ido;
@@ -204,6 +226,15 @@ begin
    ZQRejWyk.ParamByName('ido').AsInteger:= SelectIDO;
   ZQRejWyk.Open;
   TabSheetWykazy.TabVisible:= not ZQRejWyk.IsEmpty;
+
+  //Uwagi i polecenia ochronne
+  ZQUwagi.Close;
+   ZQUwagi.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQUwagi.Open;
+  ZQUwagiKierownika.Close;
+   ZQUwagiKierownika.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQUwagiKierownika.Open;
+  //TabSheetUwagi.TabVisible:= not ZQRejWyk.IsEmpty;  // zakładka widoczna z uwagi na możliwość edycji
 end;
 
 procedure TPenitForm.SetIDO(ido: integer; RefreshSourceQuery: TZQuery);
