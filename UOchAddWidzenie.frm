@@ -1,7 +1,7 @@
 object OchAddWidzenie: TOchAddWidzenie
-  Left = 396
+  Left = 407
   Height = 568
-  Top = 222
+  Top = 229
   Width = 748
   Caption = 'Dodaj widzenie'
   ClientHeight = 568
@@ -232,11 +232,11 @@ object OchAddWidzenie: TOchAddWidzenie
     Height = 310
     Top = 218
     Width = 748
-    ActivePage = TabSheetUwagi
+    ActivePage = TabSheetOsoby
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 3
+    TabIndex = 0
     TabOrder = 2
     object TabSheetOsoby: TTabSheet
       Caption = 'Osoby uprawnione do widzenia'
@@ -495,45 +495,105 @@ object OchAddWidzenie: TOchAddWidzenie
       ClientHeight = 277
       ClientWidth = 740
       ImageIndex = 28
-      object DBMemoUwagiOch: TDBMemo
+      object Panel4: TPanel
         Left = 0
-        Height = 123
+        Height = 24
         Top = 0
         Width = 740
         Align = alTop
-        Anchors = [akTop, akLeft, akRight, akBottom]
-        BorderSpacing.Bottom = 5
-        DataField = 'Uwagi_Och'
-        DataSource = DSUwagi
-        ReadOnly = True
-        ScrollBars = ssAutoBoth
+        BevelOuter = bvNone
+        Caption = 'Uwagi Ochrony'
+        ClientHeight = 24
+        ClientWidth = 740
         TabOrder = 0
+        object DBText4: TDBText
+          Left = 697
+          Height = 24
+          Top = 0
+          Width = 43
+          Align = alRight
+          DataField = 'Data'
+          DataSource = DSUwagi
+          ParentColor = False
+        end
       end
-      object DBMemoUwagiKier: TDBMemo
+      object PanelCenter: TPanel
         Left = 0
-        Height = 125
-        Top = 152
+        Height = 253
+        Top = 24
         Width = 740
         Align = alClient
-        DataField = 'Uwagi_Kier'
-        DataSource = DSUwagi
-        ReadOnly = True
-        ScrollBars = ssAutoBoth
+        BevelOuter = bvNone
+        ClientHeight = 253
+        ClientWidth = 740
         TabOrder = 1
-      end
-      object Label4: TLabel
-        Left = 0
-        Height = 24
-        Top = 128
-        Width = 740
-        Align = alTop
-        Alignment = taCenter
-        AutoSize = False
-        Caption = 'Uwagi Kierownika'
-        Color = 8684799
-        Layout = tlCenter
-        ParentColor = False
-        Transparent = False
+        object PanelKierownika: TPanel
+          AnchorSideLeft.Control = PanelCenter
+          AnchorSideTop.Control = PanelCenter
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = PanelCenter
+          AnchorSideRight.Side = asrBottom
+          Left = 0
+          Height = 24
+          Top = 114
+          Width = 740
+          Anchors = [akTop, akLeft, akRight]
+          BevelOuter = bvNone
+          Caption = 'Uwagi Kierownika'
+          ClientHeight = 24
+          ClientWidth = 740
+          Color = 8684799
+          ParentColor = False
+          TabOrder = 0
+          object DBText9: TDBText
+            Left = 697
+            Height = 24
+            Top = 0
+            Width = 43
+            Align = alRight
+            DataField = 'Data'
+            DataSource = DSUwagiKierownika
+            ParentColor = False
+          end
+        end
+        object DBMemoUwagiOch: TDBMemo
+          AnchorSideLeft.Control = PanelCenter
+          AnchorSideTop.Control = PanelCenter
+          AnchorSideRight.Control = PanelCenter
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = PanelKierownika
+          Left = 0
+          Height = 114
+          Top = 0
+          Width = 740
+          Align = alCustom
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          DataField = 'UWAGI'
+          DataSource = DSUwagi
+          ScrollBars = ssAutoBoth
+          TabOrder = 1
+        end
+        object DBMemoUwagiKier: TDBMemo
+          AnchorSideLeft.Control = PanelCenter
+          AnchorSideTop.Control = PanelKierownika
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = PanelCenter
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = PanelCenter
+          AnchorSideBottom.Side = asrBottom
+          Left = 0
+          Height = 115
+          Top = 138
+          Width = 740
+          Align = alCustom
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          Color = 15790335
+          DataField = 'UWAGI'
+          DataSource = DSUwagiKierownika
+          ReadOnly = True
+          ScrollBars = ssAutoBoth
+          TabOrder = 2
+        end
       end
     end
   end
@@ -574,15 +634,13 @@ object OchAddWidzenie: TOchAddWidzenie
   end
   object ZQUwagi: TZQuery
     Connection = DM.ZConnection1
-    ReadOnly = True
     SQL.Strings = (
-      '  SELECT'
-      '  u.IDO,'
-      '  u.UWAGI as Uwagi_Och,'
-      '  uk.UWAGI as Uwagi_Kier'
-      '  FROM uwagi u, uwagi_kierownika uk'
-      'WHERE '
-      '(u.IDO = :ido) and (uk.IDO = :ido)'
+      'SELECT'
+      'IDO,'
+      'UWAGI,'
+      'Data'
+      'FROM uwagi'
+      'WHERE IDO = :ido'
     )
     Params = <    
       item
@@ -590,7 +648,7 @@ object OchAddWidzenie: TOchAddWidzenie
         Name = 'ido'
         ParamType = ptUnknown
       end>
-    Left = 409
+    Left = 416
     Top = 288
     ParamData = <    
       item
@@ -601,7 +659,38 @@ object OchAddWidzenie: TOchAddWidzenie
   end
   object DSUwagi: TDataSource
     DataSet = ZQUwagi
-    Left = 409
+    Left = 416
     Top = 344
+  end
+  object ZQUwagiKierownika: TZQuery
+    Connection = DM.ZConnection1
+    ReadOnly = True
+    SQL.Strings = (
+      'SELECT'
+      'IDO,'
+      'UWAGI,'
+      'Data'
+      'FROM uwagi_kierownika'
+      'WHERE IDO = :ido'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
+    Left = 416
+    Top = 408
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
+  end
+  object DSUwagiKierownika: TDataSource
+    DataSet = ZQUwagiKierownika
+    Left = 416
+    Top = 464
   end
 end

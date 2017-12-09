@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="605"/>
-        <CursorPos X="3" Y="608"/>
+        <TopLine Value="263"/>
+        <CursorPos X="14" Y="271"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -154,10 +154,9 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="111"/>
-        <CursorPos X="114" Y="134"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="120"/>
+        <CursorPos X="116" Y="135"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -168,12 +167,13 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="474"/>
-        <CursorPos X="50" Y="475"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="727"/>
+        <CursorPos X="3" Y="725"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
-          <Item0 X="24" Y="749"/>
+          <Item0 X="24" Y="750"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -217,11 +217,9 @@
         <ComponentName Value="AktualizacjaOs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="195"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="UAktualizacjaRejestr.pas"/>
@@ -251,12 +249,10 @@
         <ComponentName Value="RejestrProsbDodaj"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="289"/>
         <CursorPos X="3" Y="292"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit21>
       <Unit22>
         <Filename Value="URejestrProsbAll.pas"/>
@@ -342,7 +338,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23" Y="79"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="200"/>
       </Unit29>
       <Unit30>
         <Filename Value="UZatStatystyka.pas"/>
@@ -353,7 +349,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="116"/>
         <CursorPos Y="122"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="190"/>
       </Unit30>
       <Unit31>
         <Filename Value="UPenitWydarzenia.pas"/>
@@ -364,7 +360,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="83"/>
         <CursorPos X="20" Y="89"/>
-        <UsageCount Value="175"/>
+        <UsageCount Value="178"/>
       </Unit31>
       <Unit32>
         <Filename Value="USaper.pas"/>
@@ -375,7 +371,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="47" Y="161"/>
-        <UsageCount Value="171"/>
+        <UsageCount Value="174"/>
       </Unit32>
       <Unit33>
         <Filename Value="UZatNiezatrudnieni.pas"/>
@@ -386,7 +382,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos Y="56"/>
-        <UsageCount Value="146"/>
+        <UsageCount Value="149"/>
       </Unit33>
       <Unit34>
         <Filename Value="UDrukWykazOsadz.pas"/>
@@ -397,7 +393,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="112"/>
         <CursorPos X="3" Y="131"/>
-        <UsageCount Value="114"/>
+        <UsageCount Value="117"/>
       </Unit34>
       <Unit35>
         <Filename Value="UOchRejestrWykazow.pas"/>
@@ -408,7 +404,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="166"/>
         <CursorPos X="3" Y="183"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="97"/>
       </Unit35>
       <Unit36>
         <Filename Value="UOchAddWykaz.pas"/>
@@ -419,7 +415,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="18" Y="178"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="90"/>
       </Unit36>
       <Unit37>
         <Filename Value="UOchRejestrWidzen.pas"/>
@@ -427,10 +423,10 @@
         <ComponentName Value="OchRejestrWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="38"/>
-        <CursorPos X="63" Y="44"/>
-        <UsageCount Value="55"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="170"/>
+        <CursorPos X="3" Y="144"/>
+        <UsageCount Value="58"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit37>
@@ -440,10 +436,10 @@
         <ComponentName Value="OchAddWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="121"/>
-        <CursorPos X="16" Y="105"/>
-        <UsageCount Value="45"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="140"/>
+        <CursorPos X="33" Y="62"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit38>
@@ -1050,124 +1046,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="467" Column="21" TopLine="461"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="107" Column="16" TopLine="107"/>
       </Position1>
       <Position2>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="630" Column="43" TopLine="614"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="109" Column="16" TopLine="109"/>
       </Position2>
       <Position3>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="623" Column="14" TopLine="606"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="108" Column="16" TopLine="108"/>
       </Position3>
       <Position4>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="630" Column="14" TopLine="613"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="107" Column="16" TopLine="107"/>
       </Position4>
       <Position5>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="637" Column="12" TopLine="619"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="106" Column="16" TopLine="106"/>
       </Position5>
       <Position6>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="610" Column="3" TopLine="604"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="105" Column="16" TopLine="105"/>
       </Position6>
       <Position7>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="633" Column="40" TopLine="626"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="109" Column="16" TopLine="109"/>
       </Position7>
       <Position8>
-        <Filename Value="URejestrProsbDodaj.pas"/>
-        <Caret Line="221" TopLine="25"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="111" Column="16" TopLine="111"/>
       </Position8>
       <Position9>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="219" Column="3" TopLine="216"/>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Caret Line="44" Column="63" TopLine="38"/>
       </Position9>
       <Position10>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="220" Column="3" TopLine="217"/>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Caret Line="179" Column="32" TopLine="170"/>
       </Position10>
       <Position11>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="226" Column="3" TopLine="223"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="65" Column="16" TopLine="47"/>
       </Position11>
       <Position12>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="220" Column="103" TopLine="125"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="118" Column="3" TopLine="105"/>
       </Position12>
       <Position13>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="221" Column="103" TopLine="189"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="66" Column="21" TopLine="50"/>
       </Position13>
       <Position14>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="220" Column="103" TopLine="188"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="608" Column="3" TopLine="605"/>
       </Position14>
       <Position15>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="107" Column="18" TopLine="94"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="609" Column="3" TopLine="606"/>
       </Position15>
       <Position16>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="144" Column="74" TopLine="121"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="610" Column="3" TopLine="607"/>
       </Position16>
       <Position17>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="145" Column="74" TopLine="122"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="609" Column="3" TopLine="606"/>
       </Position17>
       <Position18>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="144" Column="74" TopLine="121"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="616" Column="3" TopLine="613"/>
       </Position18>
       <Position19>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="143" Column="74" TopLine="120"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="467" Column="3" TopLine="465"/>
       </Position19>
       <Position20>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="145" Column="74" TopLine="122"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="614" Column="18" TopLine="579"/>
       </Position20>
       <Position21>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="107" Column="28" TopLine="96"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="613" Column="18" TopLine="583"/>
       </Position21>
       <Position22>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="131" Column="115" TopLine="108"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="264" Column="14" TopLine="256"/>
       </Position22>
       <Position23>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="132" Column="115" TopLine="109"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="265" Column="14" TopLine="257"/>
       </Position23>
       <Position24>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="133" Column="115" TopLine="110"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="266" Column="14" TopLine="258"/>
       </Position24>
       <Position25>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="132" Column="115" TopLine="109"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="267" Column="14" TopLine="259"/>
       </Position25>
       <Position26>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="133" Column="115" TopLine="110"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="268" Column="14" TopLine="260"/>
       </Position26>
       <Position27>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="134" Column="115" TopLine="111"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="269" Column="14" TopLine="261"/>
       </Position27>
       <Position28>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="133" Column="115" TopLine="110"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="270" Column="14" TopLine="262"/>
       </Position28>
       <Position29>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="134" Column="115" TopLine="111"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="475" Column="50" TopLine="474"/>
       </Position29>
       <Position30>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="133" Column="115" TopLine="110"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="476" Column="50" TopLine="475"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

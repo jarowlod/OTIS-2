@@ -190,7 +190,7 @@ begin
 
   with TOchAddWidzenie.Create(Self) do
   begin
-       Modyfikuj( ZQWidzenia.FieldByName('ido').AsInteger );
+       Modyfikuj( ZQWidzenia.FieldByName('id').AsInteger, ZQWidzenia.FieldByName('ido').AsInteger );
        ShowModal;
        Free;
   end;

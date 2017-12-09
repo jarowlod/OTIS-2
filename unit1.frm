@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 396
+  Left = 407
   Height = 598
-  Top = 222
+  Top = 229
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -913,6 +913,9 @@ object Form1: TForm1
         ImageIndex = 12
         OnClick = MenuItem26Click
       end
+      object MenuItem52: TMenuItem
+        Caption = '-'
+      end
       object MenuItem5: TMenuItem
         Caption = 'Uprawnienia...'
         Bitmap.Data = {
@@ -1124,6 +1127,15 @@ object Form1: TForm1
     end
     object MenuItem45: TMenuItem
       Caption = 'Ochrona'
+      object MenuItem49: TMenuItem
+        Action = ActionDrukujWykazOs
+      end
+      object MenuItem9: TMenuItem
+        Action = ActionAktualizacjaPodkultury
+      end
+      object MenuItem50: TMenuItem
+        Caption = '-'
+      end
       object MenuItem46: TMenuItem
         Action = ActionRejestrWykazow
       end
@@ -1142,54 +1154,17 @@ object Form1: TForm1
       object MenuItem42: TMenuItem
         Action = ActionWydarzenia
       end
+      object MenuItem51: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem44: TMenuItem
+        Action = ActionKoszyk
+      end
     end
     object MenuItem17: TMenuItem
       Caption = 'Dodatki'
       object MenuItem18: TMenuItem
         Action = ActionRozmieszczenie
-      end
-      object MenuItem44: TMenuItem
-        Action = ActionDrukujWykazOs
-      end
-      object MenuItem9: TMenuItem
-        Caption = 'Aktualizacja podkultury...'
-        Bitmap.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000000000000000
-          000000000000000000000000000000000000000000000587E6FF000000000587
-          E6FF000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000587E6FF000000000587
-          E6FF000000000000000000000000000000000000000000000000000000000000
-          00000000000099530A21A76105CCC58105FFCE8401FFDA7B00FFDD7D00FFD083
-          01FFC58207FFA56004CC934D0710000000000000000000000000000000000000
-          00009B550F1AB57112FFD8951BFFD4931EFFD18E1EFFD08E1DFFCB8A1AFFCA88
-          19FFCE8B19FFD3901AFFAF6810D7995109040000000000000000000000009853
-          100DB46F18D0DA9B2BFFC68522FFBA7516FFBA791CFFC68322FFD5942EFFD394
-          2CFFD08E29FFD1922BFFD5942AFFA05A1460000000000000000000000000AA64
-          1592DDA144FFDFA646FFD19439FF9D590EFF8F4600FF985100FFA9650FFFD596
-          38FFD89A3BFFD49636FFDDA03CFFBB7926DF000000000000000000000000D4A2
-          62F8D8AB72FFC4905AB3E9BD79FFEABD77FFA9640DFFA75E03FF9E5500FFB673
-          19FFDFA44AFFD99C42FFDFA246FFCC8F38FF000000000000000000000000B77B
-          3958A8651B2F00000000BF874BA8F1C67DFFB97920FFAF6500FFB06A07FFB36F
-          0CFFE2AA53FFDFA54DFFE2A84FFFD79F49FF0000000000000000000000000000
-          00000000000000000000BC7E3668EEBE77FFCD9746FFB06000FFB46800FFBE77
-          0AFFE7B15FFFE3AA5AFFE6AE5DFFDDA452FF0000000000000000000000000000
-          00000000000000000000C3884274F0C17AFFEABC77FFDAAB5CFFD8A550FFE5B1
-          62FFE8B262FFE6B161FFE8B464FFE0AB5BFF0000000000000000000000000000
-          00000000000000000000C78E4773F8D9A7FFF1C47EFFF0C27BFFECBC6EFFEDBB
-          6BFFEAB867FFEAB869FFEBBB6DFFF2B158FF0000000000000000000000000000
-          00000000000000000000CD944B76FBDCABFFF5D398FFF4D197FFF4CF8FFFF6CC
-          86FFF2C477FFEDBB6CFFF2C06DFFF4B45FFF3C81978A0390CA56000000000000
-          00000000000000000000D1964F69FFE6BBFFF6D497FFF9D9A1FFF7D69DFFBD8A
-          4DFFBD8A4DFFFDDDA4FFFFD58DFFD4BB96FF0080DEFF008BD47C000000000000
-          00000000000000000000D9A3593CFAEAC9FFFCE0A8FFF9D697FFF9DBA7FFD7A9
-          64FFBD8A4DFFFEDEA4FFFFE7A1FF67B9C3FF0870B55100000000000000000000
-          0000000000000000000000000000E5B7758BFFF6DBFFFFEDC4FFFFE3AEFFFFE7
-          B4FFFFE7B4FFFFF1C5FFFFD89DFF2B8FCFFF089DD8C73BADD297000000000000
-          000000000000000000000000000000000000E0A75366EFCC96DCF4D5A3F7F8DC
-          ADF6F3D19BF3E7C286C3FF9D1C32000000000000000000000000
-        }
-        OnClick = MenuItem9Click
       end
       object MenuItem23: TMenuItem
         Action = Action_AdresyJednostek
@@ -1242,6 +1217,12 @@ object Form1: TForm1
     end
     object MenuItem35: TMenuItem
       Action = ActionKartaOsadzonego
+    end
+    object MenuItem54: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem53: TMenuItem
+      Action = ActionDodajDoKoszyka
     end
     object MenuItem39: TMenuItem
       Action = ActionKomunikatDo
@@ -1368,8 +1349,8 @@ object Form1: TForm1
       OnExecute = ActionNieZatrudnieniExecute
     end
     object ActionDrukujWykazOs: TAction
-      Category = 'Dodatki'
-      Caption = 'Drukuj wykaz os. ...'
+      Category = 'Ochrona'
+      Caption = 'Drukuj przepustkę zbiorczą ...'
       ImageIndex = 4
       OnExecute = ActionDrukujWykazOsExecute
     end
@@ -1390,6 +1371,22 @@ object Form1: TForm1
       Caption = 'Dodaj widzenie ...'
       ImageIndex = 27
       OnExecute = ActionAddWidzenieExecute
+    end
+    object ActionAktualizacjaPodkultury: TAction
+      Category = 'Ochrona'
+      Caption = 'Aktualizacja podkultury...'
+      ImageIndex = 29
+      OnExecute = ActionAktualizacjaPodkulturyExecute
+    end
+    object ActionKoszyk: TAction
+      Category = 'Penit'
+      Caption = 'Koszyk ...'
+      ImageIndex = 30
+    end
+    object ActionDodajDoKoszyka: TAction
+      Category = 'Penit'
+      Caption = 'Dodaj do koszyka:'
+      ImageIndex = 30
     end
   end
   object Timer2Komunikaty: TTimer

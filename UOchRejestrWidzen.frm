@@ -1,7 +1,7 @@
 object OchRejestrWidzen: TOchRejestrWidzen
-  Left = 86
+  Left = 407
   Height = 766
-  Top = 85
+  Top = 229
   Width = 1123
   Caption = 'Rejestr widzeń osadzonych'
   ClientHeight = 766
@@ -300,7 +300,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
         AutoSort = True
         Columns = <        
           item
-            Color = clWindow
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'Nazwisko'
@@ -726,7 +725,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
     Connection = DM.ZConnection1
     SortedFields = 'Data_Widzenie'
     SortType = stDescending
-    Active = True
     SQL.Strings = (
       'SELECT'
       'w.ID, '
@@ -758,7 +756,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object ZQOsoby: TZQuery
     Connection = DM.ZConnection1
-    Active = True
     SQL.Strings = (
       'SELECT'
       'w.ID_widzenia, '

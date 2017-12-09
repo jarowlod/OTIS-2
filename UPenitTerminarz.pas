@@ -41,6 +41,7 @@ type
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
     MenuDrukujWykazKal: TMenuItem;
+    MenuItem8: TMenuItem;
     MenuWykazDoSchowkaKal: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;

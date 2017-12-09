@@ -15,6 +15,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionDodajDoKoszyka: TAction;
+    ActionKoszyk: TAction;
+    ActionAktualizacjaPodkultury: TAction;
     ActionAddWidzenie: TAction;
     ActionAddWykaz: TAction;
     ActionRejestrWykazow: TAction;
@@ -62,6 +65,12 @@ type
     MenuItem46: TMenuItem;
     MenuItem47: TMenuItem;
     MenuItem48: TMenuItem;
+    MenuItem49: TMenuItem;
+    MenuItem50: TMenuItem;
+    MenuItem51: TMenuItem;
+    MenuItem52: TMenuItem;
+    MenuItem53: TMenuItem;
+    MenuItem54: TMenuItem;
     MenuItem9: TMenuItem;
     Panel2: TPanel;
     SpkPane1: TSpkPane;
@@ -119,6 +128,7 @@ type
     Timer1Wyszukaj: TTimer;
     procedure ActionAddWidzenieExecute(Sender: TObject);
     procedure ActionAddWykazExecute(Sender: TObject);
+    procedure ActionAktualizacjaPodkulturyExecute(Sender: TObject);
     procedure ActionDrukujWykazOsExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
     procedure ActionKomunikatDoExecute(Sender: TObject);
@@ -142,7 +152,6 @@ type
     procedure MenuItem26Click(Sender: TObject);
     procedure MenuItem37Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
-    procedure MenuItem9Click(Sender: TObject);
     procedure RxDBGrid1DataHintShow(Sender: TObject; CursorPos: TPoint;
       Cell: TGridCoord; Column: TRxColumn; var HintStr: string;
       var Processed: boolean);
@@ -257,9 +266,9 @@ begin
   StatusBar1.Panels[2].Text:= 'ver. '+wersja;
 
   MenuItem4.Enabled            := DM.uprawnienia[1];   // aktualizacja
+  ActionAktualizacjaPodkultury.Enabled:= DM.uprawnienia[1];   // aktualizacja podkultury;
   MenuItem5.Enabled            := DM.uprawnienia[8];   // uprawnienia
   ZatrudnienieAdd.Enabled      := DM.uprawnienia[15];  // dodaj zatrudnienie
-  MenuItem9.Enabled            := DM.uprawnienia[1];   // aktualizacja podkultury
   ActionTerminarz.Enabled      := (DM.Wychowawca<>''); // tylko wychowawca
   ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>''); // tylko wychowawca
   ActionWydarzenia.Enabled     := (DM.Wychowawca<>'');
@@ -459,6 +468,15 @@ begin
   end;
 end;
 
+procedure TForm1.ActionAktualizacjaPodkulturyExecute(Sender: TObject);
+begin
+  with TUpdPodkultury.Create(Self) do
+  begin
+    ShowModal;
+    Free;
+  end;
+end;
+
 procedure TForm1.ActionAddWidzenieExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
@@ -602,8 +620,7 @@ begin
   end;
 end;
 
-procedure TForm1.Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
-  );
+procedure TForm1.Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_DOWN then
   begin
@@ -614,16 +631,6 @@ begin
   begin
     DM.ZQOsadzeni.Prior;
     Key:= VK_UNKNOWN;
-  end;
-end;
-
-//Aktualizacja podkultury
-procedure TForm1.MenuItem9Click(Sender: TObject);
-begin
-  with TUpdPodkultury.Create(Self) do
-  begin
-    ShowModal;
-    Free;
   end;
 end;
 

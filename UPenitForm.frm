@@ -1,11 +1,11 @@
 object PenitForm: TPenitForm
-  Left = 396
-  Height = 743
-  Top = 222
-  Width = 713
+  Left = 407
+  Height = 795
+  Top = 229
+  Width = 715
   Caption = 'Karta Penitencjarna'
-  ClientHeight = 743
-  ClientWidth = 713
+  ClientHeight = 795
+  ClientWidth = 715
   KeyPreview = True
   OnClose = FormClose
   OnCreate = FormCreate
@@ -16,10 +16,10 @@ object PenitForm: TPenitForm
     Left = 0
     Height = 58
     Top = 0
-    Width = 713
+    Width = 715
     Align = alTop
     ClientHeight = 58
-    ClientWidth = 713
+    ClientWidth = 715
     TabOrder = 0
     object DBText1: TDBText
       Left = 16
@@ -79,10 +79,10 @@ object PenitForm: TPenitForm
     Left = 0
     Height = 390
     Top = 58
-    Width = 713
+    Width = 715
     Align = alTop
     ClientHeight = 390
-    ClientWidth = 713
+    ClientWidth = 715
     TabOrder = 1
     object Label2: TLabel
       Left = 16
@@ -673,9 +673,9 @@ object PenitForm: TPenitForm
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 295
+    Height = 347
     Top = 448
-    Width = 713
+    Width = 715
     ActivePage = TabSheetUwagi
     Align = alClient
     Images = DM.ImageList1
@@ -755,7 +755,7 @@ object PenitForm: TPenitForm
     end
     object TabSheetZatrudnienie: TTabSheet
       Caption = 'Zatrudnienie'
-      ClientHeight = 210
+      ClientHeight = 262
       ClientWidth = 705
       ImageIndex = 5
       object RxDBGrid2: TRxDBGrid
@@ -935,7 +935,7 @@ object PenitForm: TPenitForm
     end
     object TabSheetWykazy: TTabSheet
       Caption = 'Wykazy'
-      ClientHeight = 210
+      ClientHeight = 262
       ClientWidth = 705
       ImageIndex = 26
       TabVisible = False
@@ -1089,48 +1089,22 @@ object PenitForm: TPenitForm
     end
     object TabSheetUwagi: TTabSheet
       Caption = 'Uwagi i Polecenia'
-      ClientHeight = 262
-      ClientWidth = 705
+      ClientHeight = 314
+      ClientWidth = 707
       ImageIndex = 28
-      object DBMemoUwagiOch: TDBMemo
-        Left = 0
-        Height = 120
-        Top = 24
-        Width = 705
-        Align = alTop
-        Anchors = [akTop, akLeft, akRight, akBottom]
-        BorderSpacing.Bottom = 5
-        DataField = 'UWAGI'
-        DataSource = DSUwagi
-        ScrollBars = ssAutoBoth
-        TabOrder = 0
-      end
-      object DBMemoUwagiKier: TDBMemo
-        Left = 0
-        Height = 89
-        Top = 173
-        Width = 705
-        Align = alClient
-        Color = 15790335
-        DataField = 'UWAGI'
-        DataSource = DSUwagiKierownika
-        ReadOnly = True
-        ScrollBars = ssAutoBoth
-        TabOrder = 1
-      end
       object Panel3: TPanel
         Left = 0
         Height = 24
         Top = 0
-        Width = 705
+        Width = 707
         Align = alTop
         BevelOuter = bvNone
         Caption = 'Uwagi Ochrony'
         ClientHeight = 24
-        ClientWidth = 705
-        TabOrder = 2
+        ClientWidth = 707
+        TabOrder = 0
         object DBText4: TDBText
-          Left = 662
+          Left = 664
           Height = 24
           Top = 0
           Width = 43
@@ -1140,28 +1114,81 @@ object PenitForm: TPenitForm
           ParentColor = False
         end
       end
-      object Panel5: TPanel
+      object PanelCenter: TPanel
         Left = 0
-        Height = 24
-        Top = 149
-        Width = 705
-        Align = alTop
+        Height = 290
+        Top = 24
+        Width = 707
+        Align = alClient
         BevelOuter = bvNone
-        Caption = 'Uwagi Kierownika'
-        ClientHeight = 24
-        ClientWidth = 705
-        Color = 8684799
-        ParentColor = False
-        TabOrder = 3
-        object DBText9: TDBText
-          Left = 662
+        ClientHeight = 290
+        ClientWidth = 707
+        TabOrder = 1
+        object PanelKierownika: TPanel
+          AnchorSideLeft.Control = PanelCenter
+          AnchorSideTop.Control = PanelCenter
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = PanelCenter
+          AnchorSideRight.Side = asrBottom
+          Left = 0
           Height = 24
-          Top = 0
-          Width = 43
-          Align = alRight
-          DataField = 'Data'
-          DataSource = DSUwagiKierownika
+          Top = 133
+          Width = 707
+          Anchors = [akTop, akLeft, akRight]
+          BevelOuter = bvNone
+          Caption = 'Uwagi Kierownika'
+          ClientHeight = 24
+          ClientWidth = 707
+          Color = 8684799
           ParentColor = False
+          TabOrder = 0
+          object DBText9: TDBText
+            Left = 664
+            Height = 24
+            Top = 0
+            Width = 43
+            Align = alRight
+            DataField = 'Data'
+            DataSource = DSUwagiKierownika
+            ParentColor = False
+          end
+        end
+        object DBMemoUwagiKier: TDBMemo
+          AnchorSideLeft.Control = PanelCenter
+          AnchorSideTop.Control = PanelKierownika
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = PanelCenter
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = PanelCenter
+          AnchorSideBottom.Side = asrBottom
+          Left = 0
+          Height = 133
+          Top = 157
+          Width = 707
+          Align = alCustom
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          Color = 15790335
+          DataField = 'UWAGI'
+          DataSource = DSUwagiKierownika
+          ScrollBars = ssAutoBoth
+          TabOrder = 1
+        end
+        object DBMemoUwagiOch: TDBMemo
+          AnchorSideLeft.Control = PanelCenter
+          AnchorSideTop.Control = PanelCenter
+          AnchorSideRight.Control = PanelCenter
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = PanelKierownika
+          Left = 0
+          Height = 133
+          Top = 0
+          Width = 707
+          Align = alCustom
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          DataField = 'UWAGI'
+          DataSource = DSUwagi
+          ScrollBars = ssAutoBoth
+          TabOrder = 2
         end
       end
     end

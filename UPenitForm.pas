@@ -73,7 +73,8 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
-    Panel5: TPanel;
+    PanelKierownika: TPanel;
+    PanelCenter: TPanel;
     Panel_1: TPanel;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
@@ -171,11 +172,15 @@ begin
     lblCelaOchronna.Visible:= false;
     lblCelaPalaca.Visible  := false;
     btnRejestrZat.Enabled  := false;
+    btnRejestrProsb.Enabled:= false;
+    PageControl1.Enabled   := false;
     exit;
   end;
   //-------------------------------
 
   btnRejestrZat.Enabled        := true;
+  btnRejestrProsb.Enabled      := true;
+  PageControl1.Enabled         := true;
 
   TLoadFotoThread.Create( DM.Path_Foto + IntToStr( SelectIDO )+'.jpg', Image_os);
 

@@ -20,13 +20,15 @@ type
     cbSposob: TComboBox;
     DBMemoUwagiKier: TDBMemo;
     DBMemoUwagiOch: TDBMemo;
+    DBText4: TDBText;
+    DBText9: TDBText;
     DSRejWyk: TDataSource;
     DSUwagi: TDataSource;
+    DSUwagiKierownika: TDataSource;
     edUwagi: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Label4: TLabel;
     lblKlasyf: TLabel;
     lblNazwisko: TLabel;
     lblPoc: TLabel;
@@ -34,6 +36,9 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
+    Panel4: TPanel;
+    PanelCenter: TPanel;
+    PanelKierownika: TPanel;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     SpinEdit1: TSpinEdit;
@@ -44,18 +49,21 @@ type
     TabSheetUwagi: TTabSheet;
     ZQRejWyk: TZQuery;
     ZQUwagi: TZQuery;
+    ZQUwagiKierownika: TZQuery;
     procedure btnRejestrProsbClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     SelectIDO: integer;
+    SelectID : integer; // ID widzenia
     isModyfikacja: Boolean;
     isCloseForm: Boolean;
-    procedure WstawDaneOsadzonego;
+    procedure ShowDaneOsadzonego;
     procedure OtworzTabele;
   public
     procedure DodajOsadzonego(vIDO: integer);
-    procedure Modyfikuj(vIDO: integer);
+                       // ID - index widzenia, IDO - osadzonego
+    procedure Modyfikuj(vID, vIDO: integer);
   end;
 
 var
@@ -101,14 +109,17 @@ begin
     end;
   // --------------------------------------------------------
 
-  WstawDaneOsadzonego;
+  ShowDaneOsadzonego;
   OtworzTabele;
 end;
 
-procedure TOchAddWidzenie.Modyfikuj(vIDO: integer);
+procedure TOchAddWidzenie.Modyfikuj(vID, vIDO: integer);
 begin
   isModyfikacja:= true;
-  WstawDaneOsadzonego;
+  SelectIDO:= vIDO;
+  SelectID := vID;
+
+  ShowDaneOsadzonego;
   OtworzTabele;
 end;
 
@@ -123,7 +134,7 @@ begin
   end;
 end;
 
-procedure TOchAddWidzenie.WstawDaneOsadzonego;
+procedure TOchAddWidzenie.ShowDaneOsadzonego;
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(Self);
@@ -150,7 +161,9 @@ begin
 
   ZQUwagi.ParamByName('ido').AsInteger:= SelectIDO;
   ZQUwagi.Open;
-  TabSheetUwagi.Visible:= not ZQUwagi.IsEmpty;
+  ZQUwagiKierownika.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQUwagiKierownika.Open;
+  //TabSheetUwagi.Visible:= not ZQUwagi.IsEmpty;
 end;
 
 end.
