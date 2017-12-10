@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
-  Left = 407
+  Left = 86
   Height = 795
-  Top = 229
+  Top = 85
   Width = 715
   Caption = 'Karta Penitencjarna'
   ClientHeight = 795
@@ -676,16 +676,16 @@ object PenitForm: TPenitForm
     Height = 347
     Top = 448
     Width = 715
-    ActivePage = TabSheetUwagi
+    ActivePage = TabSheetWykazy
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 3
+    TabIndex = 2
     TabOrder = 2
     object TabSheetNotatnik: TTabSheet
       Caption = 'Notatnik'
-      ClientHeight = 262
-      ClientWidth = 705
+      ClientHeight = 314
+      ClientWidth = 707
       ImageIndex = 6
       object Panel4: TPanel
         Left = 0
@@ -755,14 +755,14 @@ object PenitForm: TPenitForm
     end
     object TabSheetZatrudnienie: TTabSheet
       Caption = 'Zatrudnienie'
-      ClientHeight = 262
-      ClientWidth = 705
+      ClientHeight = 314
+      ClientWidth = 707
       ImageIndex = 5
       object RxDBGrid2: TRxDBGrid
         Left = 0
-        Height = 210
+        Height = 314
         Top = 0
-        Width = 705
+        Width = 707
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -922,7 +922,7 @@ object PenitForm: TPenitForm
         SelectedColor = clHighlight
         GridLineStyle = psSolid
         DataSource = DSOsZat
-        DefaultRowHeight = 24
+        DefaultRowHeight = 19
         FixedColor = clNone
         FixedCols = 0
         Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
@@ -935,15 +935,15 @@ object PenitForm: TPenitForm
     end
     object TabSheetWykazy: TTabSheet
       Caption = 'Wykazy'
-      ClientHeight = 262
-      ClientWidth = 705
+      ClientHeight = 314
+      ClientWidth = 707
       ImageIndex = 26
       TabVisible = False
       object RxDBGrid1: TRxDBGrid
         Left = 0
-        Height = 210
+        Height = 314
         Top = 0
-        Width = 705
+        Width = 707
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -1076,7 +1076,7 @@ object PenitForm: TPenitForm
         SelectedColor = clHighlight
         GridLineStyle = psSolid
         DataSource = DSRejWyk
-        DefaultRowHeight = 24
+        DefaultRowHeight = 19
         FixedColor = clNone
         FixedCols = 0
         Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]

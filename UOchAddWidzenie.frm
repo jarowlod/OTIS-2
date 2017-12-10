@@ -232,11 +232,11 @@ object OchAddWidzenie: TOchAddWidzenie
     Height = 310
     Top = 218
     Width = 748
-    ActivePage = TabSheetOsoby
+    ActivePage = TabSheetUwagi
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 0
+    TabIndex = 3
     TabOrder = 2
     object TabSheetOsoby: TTabSheet
       Caption = 'Osoby uprawnione do widzenia'

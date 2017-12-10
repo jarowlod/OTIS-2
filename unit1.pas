@@ -15,6 +15,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionNowyKoszyk: TAction;
     ActionDodajDoKoszyka: TAction;
     ActionKoszyk: TAction;
     ActionAktualizacjaPodkultury: TAction;
@@ -69,8 +70,12 @@ type
     MenuItem50: TMenuItem;
     MenuItem51: TMenuItem;
     MenuItem52: TMenuItem;
-    MenuItem53: TMenuItem;
+    MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
+    MenuItemDoKoszyka: TMenuItem;
+    MenuItem56: TMenuItem;
+    MenuItem57: TMenuItem;
+    MenuItem58: TMenuItem;
     MenuItem9: TMenuItem;
     Panel2: TPanel;
     SpkPane1: TSpkPane;
@@ -129,11 +134,14 @@ type
     procedure ActionAddWidzenieExecute(Sender: TObject);
     procedure ActionAddWykazExecute(Sender: TObject);
     procedure ActionAktualizacjaPodkulturyExecute(Sender: TObject);
+    procedure ActionDodajDoKoszykaExecute(Sender: TObject);
     procedure ActionDrukujWykazOsExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
     procedure ActionKomunikatDoExecute(Sender: TObject);
     procedure ActionKomunikatorExecute(Sender: TObject);
+    procedure ActionKoszykExecute(Sender: TObject);
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
+    procedure ActionNowyKoszykExecute(Sender: TObject);
     procedure ActionProsbyOsadzonegoExecute(Sender: TObject);
     procedure ActionProsbyOsadzonychExecute(Sender: TObject);
     procedure ActionRejestrWidzenExecute(Sender: TObject);
@@ -152,6 +160,7 @@ type
     procedure MenuItem26Click(Sender: TObject);
     procedure MenuItem37Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
+    procedure PopupMenu1Popup(Sender: TObject);
     procedure RxDBGrid1DataHintShow(Sender: TObject; CursorPos: TPoint;
       Cell: TGridCoord; Column: TRxColumn; var HintStr: string;
       var Processed: boolean);
@@ -193,7 +202,7 @@ uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr
      UUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
-     UOchRejestrWidzen, UOchAddWidzenie;
+     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk;
 {$R *.frm}
 
 { TForm1 }
@@ -217,6 +226,24 @@ begin
   //------------ zwalniam globalny skrót
   UnregisterHotKey(Form1.Handle, $0001);
   if DM.Podpis<>'' then UnregisterHotKey(Form1.Handle, $0002);
+end;
+
+procedure TForm1.RefreshUprawnienia;
+begin
+  StatusBar1.Panels[1].Text:= DM.PelnaNazwa;
+  StatusBar1.Panels[2].Text:= 'ver. '+wersja;
+
+  MenuItem4.Enabled            := DM.uprawnienia[1];   // aktualizacja
+  ActionAktualizacjaPodkultury.Enabled:= DM.uprawnienia[1];   // aktualizacja podkultury;
+  MenuItem5.Enabled            := DM.uprawnienia[8];   // uprawnienia
+  ZatrudnienieAdd.Enabled      := DM.uprawnienia[15];  // dodaj zatrudnienie
+  ActionTerminarz.Enabled      := (DM.Wychowawca<>''); // tylko wychowawca
+  ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>''); // tylko wychowawca
+  ActionWydarzenia.Enabled     := (DM.Wychowawca<>'');
+  ActionAddWykaz.Enabled       := DM.uprawnienia[4];   // dodawanie do wykazów ochronnych
+  ActionAddWidzenie.Enabled    := DM.uprawnienia[6];   // widzenia
+
+  Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
 
 procedure TForm1.Image1DblClick(Sender: TObject);
@@ -260,23 +287,48 @@ begin
   end;
 end;
 
-procedure TForm1.RefreshUprawnienia;
+//======================================================================================================================
+//-------------------------------- KOSZYK ------------------------------------------------------------------------------
+procedure TForm1.PopupMenu1Popup(Sender: TObject);
+var koszyk_name: string;
 begin
-  StatusBar1.Panels[1].Text:= DM.PelnaNazwa;
-  StatusBar1.Panels[2].Text:= 'ver. '+wersja;
-
-  MenuItem4.Enabled            := DM.uprawnienia[1];   // aktualizacja
-  ActionAktualizacjaPodkultury.Enabled:= DM.uprawnienia[1];   // aktualizacja podkultury;
-  MenuItem5.Enabled            := DM.uprawnienia[8];   // uprawnienia
-  ZatrudnienieAdd.Enabled      := DM.uprawnienia[15];  // dodaj zatrudnienie
-  ActionTerminarz.Enabled      := (DM.Wychowawca<>''); // tylko wychowawca
-  ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>''); // tylko wychowawca
-  ActionWydarzenia.Enabled     := (DM.Wychowawca<>'');
-  ActionAddWykaz.Enabled       := DM.uprawnienia[4];   // dodawanie do wykazów ochronnych
-  ActionAddWidzenie.Enabled    := DM.uprawnienia[6];   // widzenia
-
-  Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
+   koszyk_name:='';
+   if not DM.ZQKoszyk_sl.IsEmpty then koszyk_name:= DM.ZQKoszyk_sl.FieldByName('nazwa').AsString;
+   if Length(koszyk_name) > 30 then
+      begin
+         koszyk_name:= copy(koszyk_name,1,30);
+         koszyk_name:= koszyk_name + '...';
+      end;
+   if koszyk_name='' then koszyk_name:='(nowy koszyk)';
+   ActionDodajDoKoszyka.Caption:= 'Dodaj do: '+koszyk_name;
 end;
+
+procedure TForm1.ActionDodajDoKoszykaExecute(Sender: TObject);
+begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
+  if DM.DodajDoKoszyka(DM.ZQOsadzeni.FieldByName('IDO').AsInteger) then
+    MessageDlg('Dodano osadzonego do koszyka.', mtInformation, [mbOK], 0);
+end;
+
+procedure TForm1.ActionNowyKoszykExecute(Sender: TObject);
+begin
+  with TKoszykNowy.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TForm1.ActionKoszykExecute(Sender: TObject);
+begin
+  with TKoszyk.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+//======================================================================================================================
+//--------------------------------END KOSZYK ---------------------------------------------------------------------------
 
 procedure TForm1.Zaloguj;
 begin

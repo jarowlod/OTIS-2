@@ -16,6 +16,7 @@ type
   TDrukWykazOsadz = class(TForm)
     btnDodaj: TBitBtn;
     btnKopiujDoSchowka: TBitBtn;
+    btnKopiujDoKoszyka: TBitBtn;
     btnUsun: TBitBtn;
     btnClear: TBitBtn;
     btnDrukuj: TBitBtn;
@@ -38,6 +39,7 @@ type
     procedure btnClearClick(Sender: TObject);
     procedure btnDodajClick(Sender: TObject);
     procedure btnDrukujClick(Sender: TObject);
+    procedure btnKopiujDoKoszykaClick(Sender: TObject);
     procedure btnKopiujDoSchowkaClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure edWyszukajChange(Sender: TObject);
@@ -53,7 +55,7 @@ var
   DrukWykazOsadz: TDrukWykazOsadz;
 
 implementation
-
+uses rxdbutils;
 {$R *.frm}
 
 { TDrukWykazOsadz }
@@ -104,6 +106,18 @@ begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_grupowy_1.lrf');
   DM.SetMemoReport(frReport1, 'Memo_Data', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
   frReport1.ShowReport;
+end;
+
+procedure TDrukWykazOsadz.btnKopiujDoKoszykaClick(Sender: TObject);
+begin
+  if IsDataSetEmpty(MemWykaz) then exit;
+  MemWykaz.First;
+  while not MemWykaz.EOF do
+  begin
+    DM.DodajDoKoszyka(MemWykaz.FieldByName('IDO').AsInteger);
+    MemWykaz.Next;
+  end;
+  MessageDlg('Dodano osadzonego/nych do koszyka.', mtInformation, [mbOK], 0);
 end;
 
 procedure TDrukWykazOsadz.btnKopiujDoSchowkaClick(Sender: TObject);

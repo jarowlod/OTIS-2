@@ -1,7 +1,7 @@
 object ZatNieZatrudnieni: TZatNieZatrudnieni
-  Left = 86
+  Left = 407
   Height = 692
-  Top = 85
+  Top = 229
   Width = 1471
   Caption = 'Wykaz osadzonych niezatrudnionych'
   ClientHeight = 692
@@ -526,7 +526,7 @@ object ZatNieZatrudnieni: TZatNieZatrudnieni
     SelectedColor = clHighlight
     GridLineStyle = psSolid
     DataSource = DSBezrobotni
-    DefaultRowHeight = 24
+    DefaultRowHeight = 19
     FixedColor = clNone
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
     ParentShowHint = False

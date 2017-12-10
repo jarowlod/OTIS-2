@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, YearPlanner, rxdbgrid, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, datamodule, LR_DBSet,
-  LR_Class, db, ZDataset, DBGrids, Menus, dateutils, Clipbrd;
+  LR_Class, db, ZDataset, DBGrids, Menus, dateutils, Clipbrd, rxdbutils;
 
 type
 
@@ -34,6 +34,9 @@ type
     MenuItem1: TMenuItem;
     MenuItem10: TMenuItem;
     MenuItem11: TMenuItem;
+    MenuItem12: TMenuItem;
+    MenuItem13: TMenuItem;
+    MenuItem14: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -42,6 +45,7 @@ type
     MenuItem7: TMenuItem;
     MenuDrukujWykazKal: TMenuItem;
     MenuItem8: TMenuItem;
+    MenuItemDoKoszyka: TMenuItem;
     MenuWykazDoSchowkaKal: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;
@@ -94,6 +98,8 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
+    procedure MenuItem13Click(Sender: TObject);
+    procedure MenuItem14Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
@@ -101,8 +107,10 @@ type
     procedure MenuItem6Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure MenuDrukujWykazKalClick(Sender: TObject);
+    procedure MenuItemDoKoszykaClick(Sender: TObject);
     procedure MenuWykazDoSchowkaKalClick(Sender: TObject);
     procedure OnTimerDataChange(Sender: TObject);
+    procedure PopupMenu1Popup(Sender: TObject);
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
     procedure TabSheet1Show(Sender: TObject);
@@ -157,7 +165,7 @@ var
   PenitTerminarz: TPenitTerminarz;
 
 implementation
-uses UDrukWykazOsadz;
+uses UDrukWykazOsadz, UKoszyk, UKoszykNowy;
 
 {$R *.frm}
 
@@ -229,6 +237,49 @@ begin
   if Assigned(PanelOsInfo) then
      PanelOsInfo.SetIDO( ZQTerminarz.FieldByName('IDO').AsInteger, ZQTerminarz );
 end;
+
+//======================================================================================================================
+//-------------------------------- KOSZYK ------------------------------------------------------------------------------
+procedure TPenitTerminarz.PopupMenu1Popup(Sender: TObject);
+var koszyk_name: string;
+begin
+   koszyk_name:='';
+   if not DM.ZQKoszyk_sl.IsEmpty then koszyk_name:= DM.ZQKoszyk_sl.FieldByName('nazwa').AsString;
+   if Length(koszyk_name) > 30 then
+      begin
+         koszyk_name:= copy(koszyk_name,1,30);
+         koszyk_name:= koszyk_name + '...';
+      end;
+   if koszyk_name='' then koszyk_name:='(nowy koszyk)';
+   MenuItemDoKoszyka.Caption:= 'Dodaj do: '+koszyk_name;
+end;
+
+procedure TPenitTerminarz.MenuItemDoKoszykaClick(Sender: TObject);
+begin
+  if IsDataSetEmpty(ZQTerminarz) then exit;
+  if DM.DodajDoKoszyka(ZQTerminarz.FieldByName('IDO').AsInteger) then
+   MessageDlg('Dodano osadzonego do koszyka.', mtInformation, [mbOK], 0);
+end;
+
+procedure TPenitTerminarz.MenuItem13Click(Sender: TObject);
+begin
+  with TKoszykNowy.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TPenitTerminarz.MenuItem14Click(Sender: TObject);
+begin
+  with TKoszyk.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+//======================================================================================================================
+//--------------------------------END KOSZYK ---------------------------------------------------------------------------
 
 procedure TPenitTerminarz.RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor);

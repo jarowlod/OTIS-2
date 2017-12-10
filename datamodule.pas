@@ -14,12 +14,16 @@ type
   { TDM }
 
   TDM = class(TDataModule)
+    DSKoszyk_sl: TDataSource;
+    DSKoszyk: TDataSource;
     DSOsadzeni: TDataSource;
     ImageList1: TImageList;
     IniPropStorage1: TIniPropStorage;
     ZConnection1: TZConnection;
     ZQOsadzeni: TZQuery;
     ZQTemp: TZQuery;
+    ZQKoszyk: TZQuery;
+    ZQKoszyk_sl: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -82,6 +86,8 @@ type
     function GetDateFormatPismo(data: TDate; strFormat: string): string;
     function GetNazwiskoImieByIDO(gIdo: integer): string; // Nazwisko Imię osadzonego wskazanego przez IDO
     function GetUserByIDO(gIDO: integer): string;  // user (wychowawcy) wybranego osadzonego
+
+    function DodajDoKoszyka(vIDO: integer): Boolean;
   end;
 
   TZQueryPom = class(TZQuery)
@@ -131,7 +137,7 @@ const
 // END ZATRUDNIENIE ------------------
 
 implementation
-uses strutils;
+uses strutils, UKoszykNowy;
 {$R *.frm}
 
 { TDM }
@@ -339,6 +345,10 @@ begin
 
   // otwieramy jakies tabele na start
   ZQOsadzeni.Open;
+
+  ZQKoszyk_sl.ParamByName('user').AsString:= login;
+  ZQKoszyk_sl.Open;
+  ZQKoszyk.Open;
 end;
 
 procedure TDM.ObslugaBledu(Sender: TObject; e: exception);
@@ -490,6 +500,50 @@ begin
     if not ZQPom.IsEmpty then Result:= ZQPom.FieldByName('user').AsString;
   except
   end;
+  FreeAndNil(ZQPom);
+end;
+
+function TDM.DodajDoKoszyka(vIDO: integer): Boolean;
+var ZQPom: TZQueryPom;
+begin
+  Result:= False;
+  if ZQKoszyk_sl.IsEmpty then
+  begin
+    if MessageDlg('Nie masz jeszcze utworzonego koszyka.'+LineEnding+'Czy utworzyć nowy koszyk ?', mtInformation, [mbYes, mbNo],0) = mrYes then
+      with TKoszykNowy.Create(Self) do
+      begin
+           ShowModal;
+           Free;
+      end;
+
+    if ZQKoszyk_sl.IsEmpty then
+    begin
+      MessageDlg('Najpierw musisz utworzyć nowy koszyk.', mtInformation, [mbOK], 0);
+      exit;
+    end;
+  end;
+
+  ZQPom:= TZQueryPom.Create(Self);
+
+    // sprawdzamy czy osadzony już istnieje w koszyku
+    ZQPom.SQL.Text:= 'SELECT IDO FROM koszyk WHERE (ID_koszyka = :id_koszyka) and (IDO = :ido) ';
+    ZQPom.ParamByName('id_koszyka').AsInteger:= ZQKoszyk_sl.FieldByName('ID_koszyka').AsInteger;
+    ZQPom.ParamByName('ido').AsInteger       := vIDO;
+    ZQPom.Open;
+    if ZQPom.IsEmpty then
+      begin
+        // dopisujemy osadzonego do koszyka
+        ZQPom.SQL.Text:= 'INSERT INTO koszyk (ID_koszyka, IDO, data_dodania) VALUES (:id_koszyka, :ido, NOW());';
+        ZQPom.ParamByName('id_koszyka').AsInteger:= ZQKoszyk_sl.FieldByName('ID_koszyka').AsInteger;
+        ZQPom.ParamByName('ido').AsInteger       := vIDO;
+        ZQPom.ExecSQL;
+        Result:= True;
+      end
+    else
+      begin
+        MessageDlg('Osadzony jest już w koszyku.'+LineEnding+'IDO: '+IntToStr(vIDO), mtInformation, [mbOK], 0);
+      end;
+
   FreeAndNil(ZQPom);
 end;
 
