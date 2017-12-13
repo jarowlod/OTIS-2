@@ -7,14 +7,15 @@ interface
 uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, windows, ExtCtrls, StdCtrls, DBGrids, ActnList, rxdbutils,
-  db, datamodule, spkt_Tab, spkt_Pane, spkt_Buttons,
-  Types, Grids, Clipbrd, dateutils, LCLType;
+  db, datamodule, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Grids, Clipbrd,
+  dateutils, LCLType;
 
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionZwrotyPaczek: TAction;
     ActionNowyKoszyk: TAction;
     ActionDodajDoKoszyka: TAction;
     ActionKoszyk: TAction;
@@ -70,6 +71,8 @@ type
     MenuItem50: TMenuItem;
     MenuItem51: TMenuItem;
     MenuItem52: TMenuItem;
+    MenuItem53: TMenuItem;
+    MenuItem55: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -233,13 +236,14 @@ begin
   StatusBar1.Panels[1].Text:= DM.PelnaNazwa;
   StatusBar1.Panels[2].Text:= 'ver. '+wersja;
 
-  MenuItem4.Enabled            := DM.uprawnienia[1];   // aktualizacja
+  MenuItem4.Enabled            := DM.uprawnienia[1];          // aktualizacja
   ActionAktualizacjaPodkultury.Enabled:= DM.uprawnienia[1];   // aktualizacja podkultury;
-  MenuItem5.Enabled            := DM.uprawnienia[8];   // uprawnienia
-  ZatrudnienieAdd.Enabled      := DM.uprawnienia[15];  // dodaj zatrudnienie
-  ActionTerminarz.Enabled      := (DM.Wychowawca<>''); // tylko wychowawca
-  ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>''); // tylko wychowawca
-  ActionWydarzenia.Enabled     := (DM.Wychowawca<>'');
+  MenuItem5.Enabled            := DM.uprawnienia[8];          // admin, uprawnienia
+  ZatrudnienieAdd.Enabled      := DM.uprawnienia[15];         // dodaj zatrudnienie
+  ActionTerminarz.Enabled      := (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
+  ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
+  ActionWydarzenia.Enabled     := (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
+  //ActionKartaOchrony.Enabled:= (DM.Dzial='Ochrona');
   ActionAddWykaz.Enabled       := DM.uprawnienia[4];   // dodawanie do wykazów ochronnych
   ActionAddWidzenie.Enabled    := DM.uprawnienia[6];   // widzenia
 
@@ -396,6 +400,7 @@ end;
 
 procedure TForm1.WyborDomyslny;
 begin
+  DM.KomunikatPopUp(Self, 'Wyszukiwarka','Wybrano osadzonego', nots_Info);
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   //wybieramy akcję po wybraniu osadzonego
   if (DM.Wychowawca<>'') and ActionKartaOsadzonego.Enabled then ActionKartaOsadzonegoExecute(Self);
@@ -534,7 +539,7 @@ begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TOchAddWidzenie.Create(Self) do
   begin
-       DodajOsadzonego( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
+       DodajOsadzonegoDoPoczekalni( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
        ShowModal;
        Free;
   end;

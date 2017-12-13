@@ -176,7 +176,7 @@ procedure TOchRejestrWidzen.btnDodajClick(Sender: TObject);
 begin
   with TOchAddWidzenie.Create(Self) do
   begin
-       DodajOsadzonego( -1 );
+       DodajOsadzonegoDoPoczekalni( -1 );
        ShowModal;
        Free;
   end;

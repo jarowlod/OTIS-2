@@ -16,7 +16,7 @@ type
   TDrukWykazOsadz = class(TForm)
     btnDodaj: TBitBtn;
     btnKopiujDoSchowka: TBitBtn;
-    btnKopiujDoKoszyka: TBitBtn;
+    btnZapiszDoKoszyka: TBitBtn;
     btnUsun: TBitBtn;
     btnClear: TBitBtn;
     btnDrukuj: TBitBtn;
@@ -39,7 +39,7 @@ type
     procedure btnClearClick(Sender: TObject);
     procedure btnDodajClick(Sender: TObject);
     procedure btnDrukujClick(Sender: TObject);
-    procedure btnKopiujDoKoszykaClick(Sender: TObject);
+    procedure btnZapiszDoKoszykaClick(Sender: TObject);
     procedure btnKopiujDoSchowkaClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure edWyszukajChange(Sender: TObject);
@@ -55,7 +55,7 @@ var
   DrukWykazOsadz: TDrukWykazOsadz;
 
 implementation
-uses rxdbutils;
+uses rxdbutils, UKoszykNowy;
 {$R *.frm}
 
 { TDrukWykazOsadz }
@@ -108,9 +108,19 @@ begin
   frReport1.ShowReport;
 end;
 
-procedure TDrukWykazOsadz.btnKopiujDoKoszykaClick(Sender: TObject);
+procedure TDrukWykazOsadz.btnZapiszDoKoszykaClick(Sender: TObject);
+var isZakoncz: Boolean;
 begin
   if IsDataSetEmpty(MemWykaz) then exit;
+  // zakładamy nowy koszyk dla przepustki grupowej
+  with TKoszykNowy.Create(Self) do
+  begin
+       DomyslnaNazwa('Przepustka grupowa z dnia '+FormatDateTime('dd.mm.yyyy',Date()));
+       if not (ShowModal = mrOK) then isZakoncz:=true else isZakoncz:= false;
+       Free;
+  end;
+  if isZakoncz then exit;
+
   MemWykaz.First;
   while not MemWykaz.EOF do
   begin

@@ -5,9 +5,9 @@ unit UOchAddWidzenie;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, Buttons, StdCtrls, Spin, EditBtn, ComCtrls, DbCtrls, datamodule,
-  ZDataset, db;
+  Classes, SysUtils, FileUtil, rxdbgrid, rxmemds, Forms, Controls, Graphics,
+  Dialogs, ExtCtrls, Buttons, StdCtrls, Spin, EditBtn, ComCtrls, DbCtrls,
+  datamodule, ZDataset, db;
 
 type
 
@@ -15,32 +15,45 @@ type
 
   TOchAddWidzenie = class(TForm)
     btnAnuluj: TBitBtn;
+    btnDodaj: TBitBtn;
     btnOK: TBitBtn;
     btnRejestrProsb: TBitBtn;
+    btnUsun: TBitBtn;
+    btnDopiszOsobe: TBitBtn;
     cbSposob: TComboBox;
     DBMemoUwagiKier: TDBMemo;
     DBMemoUwagiOch: TDBMemo;
     DBText4: TDBText;
     DBText9: TDBText;
     DSRejWyk: TDataSource;
+    DSUprawnione: TDataSource;
     DSUwagi: TDataSource;
     DSUwagiKierownika: TDataSource;
+    DSOsoby: TDataSource;
     edUwagi: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
     lblKlasyf: TLabel;
     lblNazwisko: TLabel;
     lblPoc: TLabel;
+    MemOsoby: TRxMemoryData;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
     PanelCenter: TPanel;
     PanelKierownika: TPanel;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
+    RxDBGrid3: TRxDBGrid;
+    RxDBGrid4: TRxDBGrid;
     SpinEdit1: TSpinEdit;
     SpinEdit2: TSpinEdit;
     TabSheetOsoby: TTabSheet;
@@ -48,6 +61,7 @@ type
     TabSheetWykazy: TTabSheet;
     TabSheetUwagi: TTabSheet;
     ZQRejWyk: TZQuery;
+    ZQUprawnione: TZQuery;
     ZQUwagi: TZQuery;
     ZQUwagiKierownika: TZQuery;
     procedure btnRejestrProsbClick(Sender: TObject);
@@ -61,8 +75,9 @@ type
     procedure ShowDaneOsadzonego;
     procedure OtworzTabele;
   public
-    procedure DodajOsadzonego(vIDO: integer);
-                       // ID - index widzenia, IDO - osadzonego
+              // Zainicjuj widzenie osadzonemu vIDO
+    procedure DodajOsadzonegoDoPoczekalni(vIDO: integer);
+              // ID - index widzenia, IDO - osadzonego
     procedure Modyfikuj(vID, vIDO: integer);
   end;
 
@@ -86,7 +101,7 @@ begin
   if isCloseForm then Close;
 end;
 
-procedure TOchAddWidzenie.DodajOsadzonego(vIDO: integer);
+procedure TOchAddWidzenie.DodajOsadzonegoDoPoczekalni(vIDO: integer);
 begin
   isModyfikacja:= false;
   // jeśli ido -1 to znajdź osadzonego
@@ -164,6 +179,9 @@ begin
   ZQUwagiKierownika.ParamByName('ido').AsInteger:= SelectIDO;
   ZQUwagiKierownika.Open;
   //TabSheetUwagi.Visible:= not ZQUwagi.IsEmpty;
+
+  MemOsoby.Open;
+  ZQUprawnione.ParamByName('ido').AsInteger:= SelectIDO;
 end;
 
 end.

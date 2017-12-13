@@ -1,7 +1,7 @@
 object Logowanie: TLogowanie
-  Left = 383
+  Left = 407
   Height = 235
-  Top = 176
+  Top = 229
   Width = 344
   BorderStyle = bsDialog
   Caption = 'Logowanie'
@@ -10,7 +10,8 @@ object Logowanie: TLogowanie
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '5.9'
+  ShowInTaskBar = stAlways
+  LCLVersion = '6.3'
   object BitBtn1: TBitBtn
     Left = 112
     Height = 30
@@ -619,7 +620,7 @@ object Logowanie: TLogowanie
     Enabled = False
     Interval = 100
     OnTimer = Timer1Timer
-    left = 296
-    top = 8
+    Left = 296
+    Top = 8
   end
 end

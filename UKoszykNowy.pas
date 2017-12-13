@@ -32,6 +32,7 @@ type
   public
     ID_Koszyka: integer;
     Procedure ZmienNazwe(oldNazwa, oldOpis: string; vID_koszyka: integer);
+    procedure DomyslnaNazwa(defNazwa: string);
   end;
 
 var
@@ -123,6 +124,11 @@ begin
   Edit1.Text   := oldNazwa;
   Edit2.Text   := oldOpis;
   ID_Koszyka   := vID_koszyka;
+end;
+
+procedure TKoszykNowy.DomyslnaNazwa(defNazwa: string);
+begin
+  Edit1.Text:= defNazwa;
 end;
 
 end.

@@ -1104,6 +1104,12 @@ object Form1: TForm1
         Action = ActionNieZatrudnieni
       end
     end
+    object MenuItem53: TMenuItem
+      Caption = 'Paczki'
+      object MenuItem55: TMenuItem
+        Action = ActionZwrotyPaczek
+      end
+    end
     object MenuItem11: TMenuItem
       Caption = 'Widzenia'
       object MenuItem12: TMenuItem
@@ -1180,7 +1186,7 @@ object Form1: TForm1
       end
     end
     object MenuItem20: TMenuItem
-      Caption = 'Rejestr'
+      Caption = 'Rejestr próśb'
       object MenuItem21: TMenuItem
         Action = ActionProsbyOsadzonego
       end
@@ -1445,6 +1451,11 @@ object Form1: TForm1
       Caption = 'Nowy koszyk ...'
       ImageIndex = 31
       OnExecute = ActionNowyKoszykExecute
+    end
+    object ActionZwrotyPaczek: TAction
+      Category = 'Paczki'
+      Caption = 'Zwroty paczek ...'
+      ImageIndex = 11
     end
   end
   object Timer2Komunikaty: TTimer

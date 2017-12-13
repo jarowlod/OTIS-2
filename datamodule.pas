@@ -7,9 +7,10 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZConnection, ZDataset, Forms,
   Dialogs, DateUtils, controls, IniPropStorage, ShellApi, ExtCtrls, Graphics,
-  rxdbgrid, LMessages, LCLType, LR_Class, Clipbrd;
+  rxdbgrid, LMessages, LCLType, LR_Class, Clipbrd, UNotifierPopUp;
 
 type
+  TNotifierPopUpStyle = (nots_Info, nots_Warning, nots_Clear);
 
   { TDM }
 
@@ -30,6 +31,8 @@ type
     { private declarations }
   public
     { public declarations }
+    KomunikatyPopUp: TNotifierPopUp;  // znikające komunikaty
+
     fStatusList : TStringList;     // statusy transportowe
     Path_Update : string;
     autologin   : Boolean;
@@ -88,6 +91,7 @@ type
     function GetUserByIDO(gIDO: integer): string;  // user (wychowawcy) wybranego osadzonego
 
     function DodajDoKoszyka(vIDO: integer): Boolean;
+    Procedure KomunikatPopUp(Sender: TObject; ATitle, AText: string; Style: TNotifierPopUpStyle);
   end;
 
   TZQueryPom = class(TZQuery)
@@ -181,12 +185,15 @@ begin
                     'ZBWX | CZYNNOŚĆ ZAKOŃCZONA - WYCOFANY Z TRANSPORTU'+#13+
                     'ZPRX | CZYNNOŚĆ ZAKOŃCZONA - TRANSPORT NIE DOSZEDŁ DO SKUTKU WSKUTEK PRZESZKODY'+#13+
                     'ZTRX | CZYNNOŚĆ ZAKOŃCZONA - TRANSPORT ZREALIZOWANY';
+
+  KomunikatyPopUp:= TNotifierPopUp.Create(Self);
 end;
 
 procedure TDM.DataModuleDestroy(Sender: TObject);
 begin
   ZConnection1.Disconnect;
   fStatusList.Free;
+  KomunikatyPopUp.Free;
 end;
 
 function TDM.VersionStringToNumber(AVersionString: string): integer;
@@ -545,6 +552,32 @@ begin
       end;
 
   FreeAndNil(ZQPom);
+end;
+
+procedure TDM.KomunikatPopUp(Sender: TObject; ATitle, AText: string; Style: TNotifierPopUpStyle);
+var img: TPicture;
+begin
+  img:= TPicture.Create;
+
+  case Style of
+    nots_Clear  : ;
+    nots_Info   : begin
+                    ImageList1.GetBitmap(34, img.Bitmap);
+                    KomunikatyPopUp.Icon.Assign(img);
+                    KomunikatyPopUp.ColorTop:= clBlack;
+                  end;
+    nots_Warning: begin
+                    ImageList1.GetBitmap(28, img.Bitmap);
+                    KomunikatyPopUp.Icon.Assign(img);
+                    KomunikatyPopUp.ColorTop:= clRed;
+                    KomunikatyPopUp.Color:= $00D9D9FF;
+                  end;
+  end;
+
+  KomunikatyPopUp.AddNotifer(ATitle, AText);
+
+  //TForm(Sender).SetFocus;
+  FreeAndNil(img);
 end;
 
 //------------------------------------------------------------------------
