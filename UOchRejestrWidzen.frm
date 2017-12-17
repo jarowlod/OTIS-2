@@ -7,7 +7,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
   ClientHeight = 766
   ClientWidth = 1123
   OnCreate = FormCreate
-  Position = poOwnerFormCenter
+  Position = poScreenCenter
   LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
@@ -463,6 +463,57 @@ object OchRejestrWidzen: TOchRejestrWidzen
       AutoSort = True
       Columns = <      
         item
+          Alignment = taCenter
+          Color = clWindow
+          Font.Color = clBlue
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Pozostało minut'
+          Width = 60
+          FieldName = 'Pozostalo'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Color = clWindow
+          Font.Color = clMaroon
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Data w Poczekalni'
+          Width = 115
+          FieldName = 'Data_Oczekuje'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Color = clWindow
+          Font.Color = clMaroon
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Data na Sali'
+          Width = 115
+          FieldName = 'Data_Stolik'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Color = clWindow
+          Font.Color = clMaroon
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Data Widzenia'
@@ -479,6 +530,8 @@ object OchRejestrWidzen: TOchRejestrWidzen
         end      
         item
           Alignment = taCenter
+          Color = clWindow
+          Font.Color = clBlue
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Czas Widz.'
@@ -496,8 +549,8 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Alignment = taCenter
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Sposób'
-          Width = 50
+          Title.Caption = 'Spo- sób'
+          Width = 45
           FieldName = 'Sposob'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -508,9 +561,11 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Footers = <>
         end      
         item
+          Alignment = taCenter
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Dodatkowe'
+          Title.Caption = 'Doda- tkowe'
+          Width = 45
           FieldName = 'Dodatkowe'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -523,37 +578,9 @@ object OchRejestrWidzen: TOchRejestrWidzen
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Data_Dod'
+          Title.Caption = 'Uwagi do dodatkowego'
           Width = 100
           FieldName = 'Data_Dod'
-          EditButtons = <>
-          Filter.DropDownRows = 0
-          Filter.EmptyValue = '(Empty)'
-          Filter.AllValue = '(All values)'
-          Filter.EmptyFont.Style = [fsItalic]
-          Filter.ItemIndex = -1
-          Footers = <>
-        end      
-        item
-          Title.Alignment = taCenter
-          Title.Orientation = toHorizontal
-          Title.Caption = 'Uwagi'
-          Width = 100
-          FieldName = 'Uwagi'
-          EditButtons = <>
-          Filter.DropDownRows = 0
-          Filter.EmptyValue = '(Empty)'
-          Filter.AllValue = '(All values)'
-          Filter.EmptyFont.Style = [fsItalic]
-          Filter.ItemIndex = -1
-          Footers = <>
-        end      
-        item
-          Title.Alignment = taCenter
-          Title.Orientation = toHorizontal
-          Title.Caption = 'Nadzor'
-          Width = 150
-          FieldName = 'Nadzor'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -606,6 +633,8 @@ object OchRejestrWidzen: TOchRejestrWidzen
         end      
         item
           Alignment = taCenter
+          Color = clWindow
+          Font.Color = clGreen
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'POC'
@@ -621,11 +650,43 @@ object OchRejestrWidzen: TOchRejestrWidzen
         end      
         item
           Alignment = taCenter
+          Color = clWindow
+          Font.Color = clGreen
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Klasyf'
           Width = 60
           FieldName = 'Klasyf'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Uwagi'
+          Width = 100
+          FieldName = 'Uwagi'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Color = clWindow
+          Font.Color = clNavy
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Nadzór'
+          Width = 150
+          FieldName = 'Nadzor'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -733,6 +794,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
       'w.Data_Widzenie,'
       'w.Data_Stolik,'
       'w.Czas_Widzenia,'
+      'w.Etap,'
       'w.Sposob,'
       'w.Dodatkowe, '
       'w.Data_Dod, '
@@ -753,6 +815,179 @@ object OchRejestrWidzen: TOchRejestrWidzen
     IndexFieldNames = 'Data_Widzenie Desc'
     Left = 269
     Top = 143
+    object ZQWidzeniaID: TLargeintField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQWidzeniaIDO: TLargeintField
+      FieldKind = fkData
+      FieldName = 'IDO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQWidzeniaData_Oczekuje: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'Data_Oczekuje'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQWidzeniaData_Widzenie: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'Data_Widzenie'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQWidzeniaData_Stolik: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'Data_Stolik'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQWidzeniaCzas_Widzenia: TLargeintField
+      FieldKind = fkData
+      FieldName = 'Czas_Widzenia'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQWidzeniaEtap: TLargeintField
+      FieldKind = fkData
+      FieldName = 'Etap'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZQWidzeniaSposob: TStringField
+      FieldKind = fkData
+      FieldName = 'Sposob'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 40
+    end
+    object ZQWidzeniaDodatkowe: TStringField
+      FieldKind = fkData
+      FieldName = 'Dodatkowe'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object ZQWidzeniaData_Dod: TStringField
+      FieldKind = fkData
+      FieldName = 'Data_Dod'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object ZQWidzeniaUwagi: TStringField
+      FieldKind = fkData
+      FieldName = 'Uwagi'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object ZQWidzeniaNadzor: TStringField
+      FieldKind = fkData
+      FieldName = 'Nadzor'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object ZQWidzeniaNazwisko: TStringField
+      FieldKind = fkData
+      FieldName = 'Nazwisko'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 180
+    end
+    object ZQWidzeniaImie: TStringField
+      FieldKind = fkData
+      FieldName = 'Imie'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 180
+    end
+    object ZQWidzeniaOjciec: TStringField
+      FieldKind = fkData
+      FieldName = 'Ojciec'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object ZQWidzeniaPOC: TStringField
+      FieldKind = fkData
+      FieldName = 'POC'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object ZQWidzeniaKlasyf: TStringField
+      FieldKind = fkData
+      FieldName = 'Klasyf'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object ZQWidzeniaPozostalo: TLongintField
+      FieldKind = fkCalculated
+      FieldName = 'Pozostalo'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      OnGetText = ZQWidzeniaPozostaloGetText
+    end
   end
   object ZQOsoby: TZQuery
     Connection = DM.ZConnection1
@@ -764,11 +999,8 @@ object OchRejestrWidzen: TOchRejestrWidzen
       'u.Imie, '
       'u.Pokrew, '
       'u.Uwagi '
-      'FROM '
-      ' widzenia_upr w, '
-      ' uprawnione u '
-      'WHERE '
-      '  w.ID_uprawnione = u.ID'
+      'FROM widzenia_upr w'
+      'LEFT JOIN uprawnione u ON (w.ID_uprawnione = u.ID)'
     )
     Params = <>
     MasterFields = 'ID'

@@ -93,7 +93,7 @@ begin
   inherited CreateNew(AOwner);
 
   BorderStyle    := bsNone;
-  FormStyle      := fsSystemStayOnTop;
+  FormStyle      := fsStayOnTop;
   AlphaBlend     := true;
   AlphaBlendValue:= 255;
 
@@ -101,48 +101,48 @@ begin
 
   Panel1:= TPanel.Create(Self);
   Panel1.Parent:= Self;
-  Panel1.Align:= alTop;
-  Panel1.Color:= $00FF4242; // $005C5C5C;
+  Panel1.Align := alTop;
+  Panel1.Color := $00FF4242; // $005C5C5C;
   Panel1.Height:= 5;
   Panel1.BevelOuter:= bvNone;
 
   lblTitle := TLabel.Create(Self);
-  lblTitle.Parent := Self;
-  lblTitle.AutoSize := False;
+  lblTitle.Parent      := Self;
+  lblTitle.AutoSize    := False;
   lblTitle.Transparent := True;
-  lblTitle.Font.Style := [FsBold];
-  lblTitle.Font.Color:= $005C5C5C;
-  lblTitle.Caption := 'OTIS';
+  lblTitle.Font.Style  := [FsBold];
+  lblTitle.Font.Color  := $005C5C5C;
+  lblTitle.Caption     := 'OTIS';
   lblTitle.ParentColor := True;
-  lblTitle.OnClick := @HideForm;
+  lblTitle.OnClick     := @HideForm;
 
   lblText := TLabel.Create(Self);
-  lblText.Parent := Self;
-  lblText.AutoSize := False;
+  lblText.Parent      := Self;
+  lblText.AutoSize    := False;
   lblText.Transparent := True;
-  lblText.Caption := 'Text';
-  lblText.Font.Color:= $005C5C5C;
-  lblText.WordWrap := True;
+  lblText.Caption     := 'Text';
+  lblText.Font.Color  := $005C5C5C;
+  lblText.WordWrap    := True;
   lblText.ParentColor := True;
-  lblText.OnClick := @HideForm;
+  lblText.OnClick     := @HideForm;
 
   Timer1:= TTimer.Create(Self);
-  Timer1.Interval:= 2000;
-  Timer1.Enabled:= false;
-  Timer1.OnTimer:= @Timer1Timer;
+  Timer1.Interval     := 2000;
+  Timer1.Enabled      := false;
+  Timer1.OnTimer      := @Timer1Timer;
 
   Timer2:= TTimer.Create(Self);
-  Timer2.Interval:= 100;
-  Timer2.Enabled:= false;
-  Timer2.OnTimer:= @Timer2Timer;
+  Timer2.Interval     := 100;
+  Timer2.Enabled      := false;
+  Timer2.OnTimer      := @Timer2Timer;
 
-  Color := $DCFFFF; // Kolor tła
+  Color               := $DCFFFF; // Kolor tła
 
   HandleResize(Self);
 
   // Connects the methods to events
   OnClick := @HideForm;
-  OnShow := @HandleResize;
+  OnShow  := @HandleResize;
 end;
 
 destructor TNotifierPopUpForm.Destroy;
@@ -214,17 +214,17 @@ begin
 
   if (lblTitle <> nil) then
   begin
-    lblTitle.Left := IconAdjust + INT_NOTIFIER_SPACING;
-    lblTitle.Top := INT_NOTIFIER_SPACING + 5;
+    lblTitle.Left  := IconAdjust + INT_NOTIFIER_SPACING;
+    lblTitle.Top   := INT_NOTIFIER_SPACING + 5;
     lblTitle.Width := Width - (lblTitle.Left + INT_NOTIFIER_SPACING);
-    lblTitle.Height := 20;
+    lblTitle.Height:= 20;
   end;
 
   if (lblText <> nil) then
   begin
-    lblText.Left := IconAdjust + 20;
-    lblText.Top := LblTitle.Top + LblTitle.Height + INT_NOTIFIER_SPACING;
-    lblText.Width := Width - (lblText.Left + INT_NOTIFIER_SPACING);
+    lblText.Left   := IconAdjust + 20;
+    lblText.Top    := LblTitle.Top + LblTitle.Height + INT_NOTIFIER_SPACING;
+    lblText.Width  := Width - (lblText.Left + INT_NOTIFIER_SPACING);
     lblText.Height := Height - (lblText.Top + INT_NOTIFIER_SPACING);
   end;
 end;
@@ -316,12 +316,12 @@ begin
   inherited Create(AOwner);
   fLista:= TList.Create;
 
-  fLeft:= 0;
-  fTop := 0;
-  fWidth := 350;
-  fHeight:= 80;
+  fLeft    := 0;
+  fTop     := 0;
+  fWidth   := 350;
+  fHeight  := 80;
   fInterval:= 2000;
-  fIcon  := TPicture.Create;
+  fIcon    := TPicture.Create;
   fColorTop:= clBlack;
   fColor   := $DCFFFF;
 end;
@@ -344,9 +344,9 @@ begin
 end;
 
 procedure TNotifierPopUp.AddNotifer(ATitle, AText: string);
-var frm: TNotifierPopUpForm;
+var frm     : TNotifierPopUpForm;
     posindex: integer;
-    i: integer;
+    i       : integer;
     isAnyVisible: Boolean;
 begin
   // Sprawdzamy czy są widoczne komunikaty

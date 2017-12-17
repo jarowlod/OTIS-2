@@ -132,13 +132,21 @@ const
 
 // ZATRUDNIENIE ----------------------
 const
+  //status pobytu
   sp_Aktualny = 'Aktualny';
   sp_Uprzedni = 'Uprzedni';
 
+  // status zatrudnienia
   sz_Oczekujacy  = 'oczekujący';
   sz_Zatrudniony = 'zatrudniony';
   sz_Wycofany    = 'wycofany';
 // END ZATRUDNIENIE ------------------
+
+// ETAPY WIDZENIA --------------------
+  ew_Poczekalnia  = 1;
+  ew_NaSali       = 2;
+  ew_Zrealizowane = 3;
+// END ETAPY WIDZENIA
 
 implementation
 uses strutils, UKoszykNowy;
@@ -548,7 +556,7 @@ begin
       end
     else
       begin
-        MessageDlg('Osadzony jest już w koszyku.'+LineEnding+'IDO: '+IntToStr(vIDO), mtInformation, [mbOK], 0);
+        KomunikatPopUp(Self, 'Koszyk', 'Osadzony jest już w koszyku.', nots_Warning);
       end;
 
   FreeAndNil(ZQPom);

@@ -34,14 +34,35 @@ type
     Splitter1: TSplitter;
     ZQWidzenia: TZQuery;
     ZQOsoby: TZQuery;
+    ZQWidzeniaCzas_Widzenia: TLargeintField;
+    ZQWidzeniaData_Dod: TStringField;
+    ZQWidzeniaData_Oczekuje: TDateTimeField;
+    ZQWidzeniaData_Stolik: TDateTimeField;
+    ZQWidzeniaData_Widzenie: TDateTimeField;
+    ZQWidzeniaDodatkowe: TStringField;
+    ZQWidzeniaEtap: TLargeintField;
+    ZQWidzeniaID: TLargeintField;
+    ZQWidzeniaIDO: TLargeintField;
+    ZQWidzeniaPozostalo: TLongintField;
+    ZQWidzeniaImie: TStringField;
+    ZQWidzeniaKlasyf: TStringField;
+    ZQWidzeniaNadzor: TStringField;
+    ZQWidzeniaNazwisko: TStringField;
+    ZQWidzeniaOjciec: TStringField;
+    ZQWidzeniaPOC: TStringField;
+    ZQWidzeniaSposob: TStringField;
+    ZQWidzeniaUwagi: TStringField;
     procedure btnDodajClick(Sender: TObject);
     procedure btnModyfikujClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure cbPrzedzialCzasuChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure RadioGroup1SelectionChanged(Sender: TObject);
+    procedure ZQWidzeniaPozostaloGetText(Sender: TField; var aText: string;
+      DisplayText: Boolean);
   private
     DisableNewSelect: Boolean;
+    procedure WidokTabeli(etap_widzenia: Integer);
   public
     SQLWidzenia: string;
     Procedure NewSelect;
@@ -58,15 +79,15 @@ uses UOchAddWidzenie;
 
 procedure TOchRejestrWidzen.FormCreate(Sender: TObject);
 begin
-  btnDodaj.Enabled:=     DM.uprawnienia[6];
+  btnDodaj.Enabled    := DM.uprawnienia[6];
   btnModyfikuj.Enabled:= DM.uprawnienia[6];
-  btnUsun.Enabled:=      DM.uprawnienia[6];
+  btnUsun.Enabled     := DM.uprawnienia[6];
 
-  DisableNewSelect:= true;
-  SQLWidzenia:= ZQWidzenia.SQL.Text;
+  DisableNewSelect    := true;
+  SQLWidzenia         := ZQWidzenia.SQL.Text;
   DateTimePicker1.Date:= IncDay(Date(), -7);
   DateTimePicker2.Date:= Date();
-  DisableNewSelect:= false;
+  DisableNewSelect    := false;
 
   NewSelect;
 end;
@@ -80,11 +101,22 @@ begin
   ZQWidzenia.SQL.Text:= SQLWidzenia;
 
   // STATUS WIDZENIA
+  ZQWidzenia.SQL.Add('and (w.Etap = :etap)');
   case RadioGroup1.ItemIndex of
-       0: ZQWidzenia.SQL.Add('and (w.Etap = 1)');
-       1: ZQWidzenia.SQL.Add('and (w.Etap = 2)');
-       2: ZQWidzenia.SQL.Add('and (w.Etap = 3)');
+       0: begin
+            ZQWidzenia.ParamByName('etap').AsInteger:= ew_Poczekalnia;
+            WidokTabeli(ew_Poczekalnia);
+          end;
+       1: begin
+            ZQWidzenia.ParamByName('etap').AsInteger:= ew_NaSali;
+            WidokTabeli(ew_NaSali);
+          end;
+       2: begin
+            ZQWidzenia.ParamByName('etap').AsInteger:= ew_Zrealizowane;
+            WidokTabeli(ew_Zrealizowane);
+          end;
   end;
+
 
   // WIDZENIA W PRZEDZIALE CZASU
   if GroupBox1.Enabled then
@@ -122,6 +154,51 @@ begin
   NewSelect;
 end;
 
+procedure TOchRejestrWidzen.ZQWidzeniaPozostaloGetText(Sender: TField;
+  var aText: string; DisplayText: Boolean);
+var uplynelo, pozostalo: integer;
+begin
+  if not DisplayText then exit;
+  if ZQWidzenia.IsEmpty then exit;
+
+  if not ZQWidzeniaData_Widzenie.IsNull then
+    uplynelo:= MinutesBetween(Now(), ZQWidzeniaData_Widzenie.AsDateTime)
+  else
+    uplynelo:= 0; // aText:= 'czeka';
+
+  pozostalo:= ZQWidzeniaCzas_Widzenia.AsInteger - uplynelo;
+  if pozostalo<0 then pozostalo:= 0; // aText:= 'koniec';
+
+  aText:= IntToStr(pozostalo);
+end;
+
+procedure TOchRejestrWidzen.WidokTabeli(etap_widzenia: Integer);
+begin
+  case etap_widzenia of
+    ew_Poczekalnia:
+          begin
+            RxDBGrid1.ColumnByFieldName('Data_Widzenie').Visible:= False;
+            RxDBGrid1.ColumnByFieldName('Data_Stolik').Visible  := False;
+            RxDBGrid1.ColumnByFieldName('Data_Oczekuje').Visible:= True;
+            RxDBGrid1.ColumnByFieldName('Pozostalo').Visible    := False;
+          end;
+    ew_NaSali:
+          begin
+            RxDBGrid1.ColumnByFieldName('Data_Widzenie').Visible:= False;
+            RxDBGrid1.ColumnByFieldName('Data_Stolik').Visible  := True;
+            RxDBGrid1.ColumnByFieldName('Data_Oczekuje').Visible:= False;
+            RxDBGrid1.ColumnByFieldName('Pozostalo').Visible    := True;  // liczy od Data_Widzenie
+          end;
+    ew_Zrealizowane:
+          begin
+            RxDBGrid1.ColumnByFieldName('Data_Widzenie').Visible:= True;
+            RxDBGrid1.ColumnByFieldName('Data_Stolik').Visible  := False;
+            RxDBGrid1.ColumnByFieldName('Data_Oczekuje').Visible:= False;
+            RxDBGrid1.ColumnByFieldName('Pozostalo').Visible    := False;
+          end;
+  end;
+end;
+
 procedure TOchRejestrWidzen.cbPrzedzialCzasuChange(Sender: TObject);
 begin
   if cbPrzedzialCzasu.Checked then
@@ -156,7 +233,7 @@ begin
     end;
   //--------------------------------------------------------------------------------------------------------------------
   // usuń widzenie
-  id_w:=ZQWidzenia.FieldByName('ID').AsInteger;
+  id_w :=ZQWidzenia.FieldByName('ID').AsInteger;
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'DELETE FROM widzenia WHERE ID = :id';
   ZQPom.ParamByName('id').AsInteger:= id_w;
@@ -177,21 +254,39 @@ begin
   with TOchAddWidzenie.Create(Self) do
   begin
        DodajOsadzonegoDoPoczekalni( -1 );
-       ShowModal;
+       if ShowModal = mrOK then
+         begin
+           RefreshQuery(ZQOsoby);
+           RefreshQuery(ZQWidzenia);
+         end;
        Free;
   end;
 end;
 
 procedure TOchRejestrWidzen.btnModyfikujClick(Sender: TObject);
 begin
+  // walidacja
   if IsDataSetEmpty(ZQWidzenia) then exit;
-  if ZQWidzenia.FieldByName('Etap').AsInteger <> 1 then exit;
-  if ZQWidzenia.FieldByName('Nadzor').AsString <> DM.PelnaNazwa then exit;
+  if ZQWidzenia.FieldByName('Etap').AsInteger = ew_Zrealizowane then
+    begin
+      DM.KomunikatPopUp(Sender, 'Widzenia','Można edytować widzenia tylko na etapie poczekalni i sali widzeń.', nots_Warning);
+      exit;
+    end;
+  if ZQWidzenia.FieldByName('Nadzor').AsString <> DM.PelnaNazwa then
+    begin
+      DM.KomunikatPopUp(Sender, 'Widzenia','Prawo do edycji ma tylko użytkownik który nadzorował widzenie.', nots_Warning);
+      exit;
+    end;
+  // koniec walidacji
 
   with TOchAddWidzenie.Create(Self) do
   begin
        Modyfikuj( ZQWidzenia.FieldByName('id').AsInteger, ZQWidzenia.FieldByName('ido').AsInteger );
-       ShowModal;
+       if ShowModal = mrOK then
+         begin
+           RefreshQuery(ZQOsoby);
+           RefreshQuery(ZQWidzenia);
+         end;
        Free;
   end;
 end;

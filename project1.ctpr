@@ -120,7 +120,7 @@
         <PackageName Value="adLCL"/>
       </Item28>
     </RequiredPackages>
-    <Units Count="41">
+    <Units Count="42">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -406,6 +406,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit40>
+      <Unit41>
+        <Filename Value="UOchAddOsobeWidzenie.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OchAddOsobeWidzenie"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit41>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

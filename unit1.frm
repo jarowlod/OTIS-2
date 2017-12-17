@@ -1443,7 +1443,7 @@ object Form1: TForm1
     object ActionDodajDoKoszyka: TAction
       Category = 'Penit'
       Caption = 'Dodaj do koszyka:'
-      ImageIndex = 30
+      ImageIndex = 35
       OnExecute = ActionDodajDoKoszykaExecute
     end
     object ActionNowyKoszyk: TAction

@@ -84,6 +84,7 @@ begin
   FreeAndNil(ZQPom);
 
   RefreshQuery(DM.ZQKoszyk);
+  DM.KomunikatPopUp(Sender, 'Koszyk', 'Usunięto osadzonego z koszyka.', nots_Info);
 end;
 
 procedure TKoszyk.btnPustyKoszykClick(Sender: TObject);
@@ -100,11 +101,13 @@ begin
   FreeAndNil(ZQPom);
 
   RefreshQuery(DM.ZQKoszyk);
+  DM.KomunikatPopUp(Sender, 'Koszyk', 'Usunięto osadzonych przypisanych do koszyka.', nots_Info);
 end;
 
 procedure TKoszyk.btnDoSchowkaClick(Sender: TObject);
 begin
   RxDBGrid2.CopyToClipboard;
+  DM.KomunikatPopUp(Sender, 'Koszyk', 'Dodano osadzonych do schowka.', nots_Info);
 end;
 
 procedure TKoszyk.btnUsunKoszykClick(Sender: TObject);
@@ -155,6 +158,7 @@ begin
   FreeAndNil(ZQPom);
 
   RefreshQuery(DM.ZQKoszyk_sl);
+  DM.KomunikatPopUp(Sender, 'Koszyk', 'Usunięto koszyk.', nots_Info);
 end;
 
 procedure TKoszyk.btnWydrukClick(Sender: TObject);

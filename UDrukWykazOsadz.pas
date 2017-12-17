@@ -70,7 +70,7 @@ procedure TDrukWykazOsadz.DodajDoWykazu(AIDO: integer; ANazwisko, AImie, AOjciec
 begin
   if MemWykaz.Locate('IDO',AIDO, []) then
   begin
-    if not cicho then MessageDlg('Osadzony jest już dodany.', mtInformation, [mbOK],0);
+    if not cicho then DM.KomunikatPopUp(Self, 'Wykaz osadzonych', 'Osadzony jest już dodany.', nots_Info); //MessageDlg('Osadzony jest już dodany.', mtInformation, [mbOK],0);
     exit;
   end;
 
@@ -127,16 +127,19 @@ begin
     DM.DodajDoKoszyka(MemWykaz.FieldByName('IDO').AsInteger);
     MemWykaz.Next;
   end;
-  MessageDlg('Dodano osadzonego/nych do koszyka.', mtInformation, [mbOK], 0);
+  DM.KomunikatPopUp(Sender, 'Wykaz osadzonych', 'Dodano osadzonego/nych do koszyka.', nots_Info);
+  //MessageDlg('Dodano osadzonego/nych do koszyka.', mtInformation, [mbOK], 0);
 end;
 
 procedure TDrukWykazOsadz.btnKopiujDoSchowkaClick(Sender: TObject);
 begin
   RxDBGrid2.CopyToClipboard;
+  DM.KomunikatPopUp(Sender, 'Wykaz osadzonych', 'Skopiowano do schowka.', nots_Info);
 end;
 
 procedure TDrukWykazOsadz.btnUsunClick(Sender: TObject);
 begin
+  if MemWykaz.IsEmpty then exit;
   MemWykaz.Delete;
 end;
 
@@ -162,7 +165,6 @@ begin
       btnDodajClick(Sender);
   end else
   if Key=' ' then Key:=#0;     // zabraniamy wpisywania spacji
-
 end;
 
 end.

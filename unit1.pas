@@ -311,7 +311,7 @@ procedure TForm1.ActionDodajDoKoszykaExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   if DM.DodajDoKoszyka(DM.ZQOsadzeni.FieldByName('IDO').AsInteger) then
-    MessageDlg('Dodano osadzonego do koszyka.', mtInformation, [mbOK], 0);
+    DM.KomunikatPopUp(Sender,'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
 end;
 
 procedure TForm1.ActionNowyKoszykExecute(Sender: TObject);

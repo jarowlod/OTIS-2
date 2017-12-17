@@ -258,7 +258,7 @@ procedure TPenitTerminarz.MenuItemDoKoszykaClick(Sender: TObject);
 begin
   if IsDataSetEmpty(ZQTerminarz) then exit;
   if DM.DodajDoKoszyka(ZQTerminarz.FieldByName('IDO').AsInteger) then
-   MessageDlg('Dodano osadzonego do koszyka.', mtInformation, [mbOK], 0);
+   DM.KomunikatPopUp(Sender, 'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
 end;
 
 procedure TPenitTerminarz.MenuItem13Click(Sender: TObject);
@@ -422,10 +422,10 @@ begin
   SetLength(WolneCele,0);
 
   ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT typ_cel.id, typ_cel.POC, (typ_cel.Pojemnosc - count(osadzeni.POC)) AS Wolne, typ_cel.Wychowawca FROM typ_cel'+
+  ZQPom.SQL.Text:= 'SELECT typ_cel.ID, typ_cel.POC, (typ_cel.Pojemnosc - count(osadzeni.POC)) AS Wolne, typ_cel.Wychowawca FROM typ_cel'+
                    ' LEFT JOIN osadzeni ON (typ_cel.POC = osadzeni.POC)'+
                    WhereSQL+
-                   ' GROUP BY ID'+
+                   ' GROUP BY POC'+
                    ' HAVING Wolne>0';
   ZQPom.ParamByName('wych').AsString:= cbWychowawcy.Text;
   ZQPom.Open;
@@ -719,6 +719,7 @@ begin
 
   ZQTerminarz.GotoBookmark(bookmark);
   ZQTerminarz.EnableControls;
+  DM.KomunikatPopUp(Sender, 'Terminarz','Dodano osadzonych do schowka.', nots_Info);
 end;
 
 function TPenitTerminarz.OsadzeniFieldsToString(ZQPom: TZQuery): string;  // osadzeni z terminarza
@@ -838,6 +839,7 @@ begin
   Clipboard.AsText:= schowek;
   SetToBookmark(ZQKalendarz, bookmark);
   ZQKalendarz.EnableControls;
+  DM.KomunikatPopUp(Sender, 'Terminarz','Dodano osadzonych do schowka.', nots_Info);
 end;
 
 
