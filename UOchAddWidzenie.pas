@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, rxdbgrid, rxmemds, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, Buttons, StdCtrls, Spin, EditBtn, ComCtrls, DbCtrls,
-  datamodule, DateTimePicker, ZDataset, db, rxdbutils, Grids, DBGrids;
+  datamodule, DateTimePicker, ZDataset, db, rxdbutils, Grids, DBGrids,
+  UViewWykazy, UViewUwagiOch, UViewWidzenia;
 
 type
 
@@ -25,14 +26,7 @@ type
     cbCzyZrealizowane: TCheckBox;
     cbDodatkowe: TComboBox;
     dtDataWidzenia: TDateTimePicker;
-    DBMemoUwagiKier: TDBMemo;
-    DBMemoUwagiOch: TDBMemo;
-    DBText4: TDBText;
-    DBText9: TDBText;
-    DSRejWyk: TDataSource;
     DSUprawnione: TDataSource;
-    DSUwagi: TDataSource;
-    DSUwagiKierownika: TDataSource;
     DSOsoby: TDataSource;
     edUwagi: TEdit;
     GroupBox1: TGroupBox;
@@ -51,14 +45,9 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
-    Panel4: TPanel;
     Panel5: TPanel;
     Panel6: TPanel;
     Panel7: TPanel;
-    PanelCenter: TPanel;
-    PanelKierownika: TPanel;
-    RxDBGrid1: TRxDBGrid;
-    RxDBGrid2: TRxDBGrid;
     RxDBGrid3: TRxDBGrid;
     RxDBGrid4: TRxDBGrid;
     edRegulamin: TSpinEdit;
@@ -67,10 +56,7 @@ type
     TabSheetWidzenia: TTabSheet;
     TabSheetWykazy: TTabSheet;
     TabSheetUwagi: TTabSheet;
-    ZQRejWyk: TZQuery;
     ZQUprawnione: TZQuery;
-    ZQUwagi: TZQuery;
-    ZQUwagiKierownika: TZQuery;
     procedure btnModyfikujOsobeClick(Sender: TObject);
     procedure btnDodajClick(Sender: TObject);
     procedure btnDopiszOsobeClick(Sender: TObject);
@@ -79,6 +65,7 @@ type
     procedure btnUsunClick(Sender: TObject);
     procedure cbCzyZrealizowaneChange(Sender: TObject);
     procedure edDodatkoweChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RxDBGrid3DblClick(Sender: TObject);
@@ -90,7 +77,14 @@ type
     SelectID : integer; // ID widzenia
     isModyfikacja: Boolean;
     isCloseForm: Boolean;
+
+    // importowane widoki osadzone w zakładkach
+    fViewUwagiOch: TViewUwagiOch;
+    fViewWykazy  : TViewWykazy;
+    fViewWidzenia: TViewWidzenia;
+
     procedure ShowDaneOsadzonego;
+    function CzyJestDodanyDoPoczekalni: Boolean;
     procedure OtworzTabele;
     function Zapisz: Boolean;
     procedure WczytajWidzenie; // wczytaj widzenie do modyfikacji
@@ -120,6 +114,26 @@ begin
   btnDopiszOsobe.Enabled := DM.uprawnienia[11]; // osoby bliskie
   dtDataWidzenia.Date    := Date;
   dtDataWidzenia.Enabled := false;
+
+  fViewWidzenia:= TViewWidzenia.Create(Self);
+  fViewWidzenia.Parent:= TabSheetWidzenia;
+  fViewWidzenia.Show;
+
+  fViewWykazy:= TViewWykazy.Create(Self);
+  fViewWykazy.Parent:= TabSheetWykazy;
+  fViewWykazy.Show;
+
+  fViewUwagiOch:= TViewUwagiOch.Create(Self); //CreateParented//(TabSheet1.Handle);
+  fViewUwagiOch.Parent:= TabSheetUwagi;
+  fViewUwagiOch.Show;
+end;
+
+procedure TOchAddWidzenie.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  FreeAndNil(fViewWidzenia);
+  FreeAndNil(fViewUwagiOch);
+  FreeAndNil(fViewWykazy);
 end;
 
 procedure TOchAddWidzenie.FormShow(Sender: TObject);
@@ -153,8 +167,19 @@ begin
     end;
   // --------------------------------------------------------
 
+  // TODO: sprawdzamy czy osadzony przebywa w celi aresztowej
+
+  // sprawdzamy czy osadzony jest już dodany do poczekalni
+  if CzyJestDodanyDoPoczekalni then
+    begin
+      isCloseForm:= true;
+      exit;
+    end;
+
   ShowDaneOsadzonego;
   OtworzTabele;
+
+  if fViewWidzenia.isEmpty then DM.KomunikatPopUp(Self, 'Widzenia', 'Osadzony nie posiada wprowadzonych widzeń.'+LineEnding+'Sprawdź w NOE !!!', nots_Warning);
 end;
 
 procedure TOchAddWidzenie.Modyfikuj(vID, vIDO: integer);
@@ -282,17 +307,34 @@ begin
   FreeAndNil(ZQPom);
 end;
 
+function TOchAddWidzenie.CzyJestDodanyDoPoczekalni: Boolean;
+var ZQPom: TZQueryPom;
+begin
+  // sprawdzam czy jest dodany do poczekalni
+  Result:= false;
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT ido FROM widzenia WHERE (Etap=1)AND(IDO=:ido);';
+  ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQPom.Open;
+  if not ZQPom.IsEmpty then
+  begin
+    MessageDlg('Osadzony jest już dodany do poczekalni.', mtInformation, [mbOK], 0);
+    Result:= true;
+  end;
+  FreeAndNil(ZQPom);
+end;
+
 procedure TOchAddWidzenie.OtworzTabele;
 begin
-  ZQRejWyk.ParamByName('ido').AsInteger:= SelectIDO;
-  ZQRejWyk.Open;
-  TabSheetWykazy.Visible:= not ZQRejWyk.IsEmpty;
+  // Widzenia
+  fViewWidzenia.SetIDO(SelectIDO);
 
-  ZQUwagi.ParamByName('ido').AsInteger:= SelectIDO;
-  ZQUwagi.Open;
-  ZQUwagiKierownika.ParamByName('ido').AsInteger:= SelectIDO;
-  ZQUwagiKierownika.Open;
-  //TabSheetUwagi.Visible:= not ZQUwagi.IsEmpty;
+  //wykazy ochronne
+  fViewWykazy.SetIDO(SelectIDO);
+  TabSheetWykazy.TabVisible:= not fViewWykazy.IsEmpty;
+
+  //Uwagi i polecenia ochronne
+  fViewUwagiOch.SetIDO(SelectIDO);
 
   MemOsoby.Open;
   ZQUprawnione.ParamByName('ido').AsInteger:= SelectIDO;

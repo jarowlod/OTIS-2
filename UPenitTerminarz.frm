@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 180
+  Left = 368
   Height = 743
-  Top = 178
+  Top = 364
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -94,11 +94,11 @@ object PenitTerminarz: TPenitTerminarz
     Height = 693
     Top = 50
     Width = 1182
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
@@ -348,8 +348,8 @@ object PenitTerminarz: TPenitTerminarz
     end
     object TabSheet2: TTabSheet
       Caption = 'Terminy'
-      ClientHeight = 935
-      ClientWidth = 1912
+      ClientHeight = 660
+      ClientWidth = 1174
       ImageIndex = 24
       object Panel2: TPanel
         Left = 0
@@ -762,53 +762,8 @@ object PenitTerminarz: TPenitTerminarz
             end>
           KeyStrokes = <          
             item
-              Command = rxgcShowFindDlg
-              ShortCut = 16454
-              Enabled = True
-            end          
-            item
-              Command = rxgcShowColumnsDlg
-              ShortCut = 16471
-              Enabled = True
-            end          
-            item
-              Command = rxgcShowFilterDlg
-              ShortCut = 16468
-              Enabled = True
-            end          
-            item
-              Command = rxgcShowSortDlg
-              ShortCut = 16467
-              Enabled = True
-            end          
-            item
-              Command = rxgcShowQuickFilter
-              ShortCut = 16465
-              Enabled = True
-            end          
-            item
-              Command = rxgcHideQuickFilter
-              ShortCut = 16456
-              Enabled = True
-            end          
-            item
-              Command = rxgcSelectAll
-              ShortCut = 16449
-              Enabled = True
-            end          
-            item
-              Command = rxgcDeSelectAll
-              ShortCut = 16429
-              Enabled = True
-            end          
-            item
-              Command = rxgcInvertSelection
-              ShortCut = 16426
-              Enabled = True
-            end          
-            item
               Command = rxgcOptimizeColumnsWidth
-              ShortCut = 16427
+              ShortCut = 16467
               Enabled = True
             end          
             item

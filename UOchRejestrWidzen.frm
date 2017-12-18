@@ -1,11 +1,11 @@
 object OchRejestrWidzen: TOchRejestrWidzen
-  Left = 407
+  Left = 72
   Height = 766
-  Top = 229
-  Width = 1123
+  Top = 156
+  Width = 1216
   Caption = 'Rejestr widzeń osadzonych'
   ClientHeight = 766
-  ClientWidth = 1123
+  ClientWidth = 1216
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '6.3'
@@ -13,10 +13,10 @@ object OchRejestrWidzen: TOchRejestrWidzen
     Left = 0
     Height = 104
     Top = 0
-    Width = 1123
+    Width = 1216
     Align = alTop
     ClientHeight = 104
-    ClientWidth = 1123
+    ClientWidth = 1216
     TabOrder = 0
     object RadioGroup1: TRadioGroup
       Left = 1
@@ -86,6 +86,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
+        OnChange = cbPrzedzialCzasuChange
       end
       object DateTimePicker2: TDateTimePicker
         Left = 104
@@ -109,6 +110,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
+        OnChange = cbPrzedzialCzasuChange
       end
     end
     object GroupBox2: TGroupBox
@@ -263,26 +265,26 @@ object OchRejestrWidzen: TOchRejestrWidzen
     Left = 0
     Height = 662
     Top = 104
-    Width = 1123
+    Width = 1216
     Align = alClient
     ClientHeight = 662
-    ClientWidth = 1123
+    ClientWidth = 1216
     TabOrder = 1
     object Panel3: TPanel
       Left = 1
       Height = 148
       Top = 513
-      Width = 1121
+      Width = 1214
       Align = alBottom
       BevelOuter = bvNone
       ClientHeight = 148
-      ClientWidth = 1121
+      ClientWidth = 1214
       TabOrder = 0
       object Label1: TLabel
         Left = 0
         Height = 24
         Top = 0
-        Width = 1121
+        Width = 1214
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -294,7 +296,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
         Left = 0
         Height = 124
         Top = 24
-        Width = 1121
+        Width = 1214
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -449,7 +451,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
       Left = 1
       Height = 5
       Top = 508
-      Width = 1121
+      Width = 1214
       Align = alBottom
       ResizeAnchor = akBottom
     end
@@ -457,14 +459,13 @@ object OchRejestrWidzen: TOchRejestrWidzen
       Left = 1
       Height = 507
       Top = 1
-      Width = 1121
+      Width = 1214
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
       Columns = <      
         item
           Alignment = taCenter
-          Color = clWindow
           Font.Color = clBlue
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -480,7 +481,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Footers = <>
         end      
         item
-          Color = clWindow
           Font.Color = clMaroon
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -496,7 +496,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Footers = <>
         end      
         item
-          Color = clWindow
           Font.Color = clMaroon
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -512,7 +511,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Footers = <>
         end      
         item
-          Color = clWindow
           Font.Color = clMaroon
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -530,13 +528,42 @@ object OchRejestrWidzen: TOchRejestrWidzen
         end      
         item
           Alignment = taCenter
-          Color = clWindow
           Font.Color = clBlue
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Czas Widz.'
-          Width = 50
+          Width = 45
           FieldName = 'Czas_Widzenia'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Czas reg.'
+          Width = 45
+          FieldName = 'Czas_reg'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Czas dod.'
+          Width = 45
+          FieldName = 'Czas_dod'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -633,7 +660,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
         end      
         item
           Alignment = taCenter
-          Color = clWindow
           Font.Color = clGreen
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -650,7 +676,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
         end      
         item
           Alignment = taCenter
-          Color = clWindow
           Font.Color = clGreen
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -680,7 +705,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Footers = <>
         end      
         item
-          Color = clWindow
           Font.Color = clNavy
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -794,6 +818,8 @@ object OchRejestrWidzen: TOchRejestrWidzen
       'w.Data_Widzenie,'
       'w.Data_Stolik,'
       'w.Czas_Widzenia,'
+      'w.Czas_reg,'
+      'w.Czas_dod,'
       'w.Etap,'
       'w.Sposob,'
       'w.Dodatkowe, '
@@ -869,10 +895,28 @@ object OchRejestrWidzen: TOchRejestrWidzen
       ReadOnly = False
       Required = True
     end
+    object ZQWidzeniaCzas_reg: TLargeintField
+      FieldKind = fkData
+      FieldName = 'Czas_reg'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQWidzeniaCzas_dod: TLargeintField
+      FieldKind = fkData
+      FieldName = 'Czas_dod'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
     object ZQWidzeniaEtap: TLargeintField
       FieldKind = fkData
       FieldName = 'Etap'
-      Index = 6
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -881,7 +925,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaSposob: TStringField
       FieldKind = fkData
       FieldName = 'Sposob'
-      Index = 7
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -891,7 +935,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaDodatkowe: TStringField
       FieldKind = fkData
       FieldName = 'Dodatkowe'
-      Index = 8
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -901,7 +945,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaData_Dod: TStringField
       FieldKind = fkData
       FieldName = 'Data_Dod'
-      Index = 9
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -911,7 +955,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaUwagi: TStringField
       FieldKind = fkData
       FieldName = 'Uwagi'
-      Index = 10
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -921,7 +965,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaNadzor: TStringField
       FieldKind = fkData
       FieldName = 'Nadzor'
-      Index = 11
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -931,7 +975,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaNazwisko: TStringField
       FieldKind = fkData
       FieldName = 'Nazwisko'
-      Index = 12
+      Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -941,7 +985,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaImie: TStringField
       FieldKind = fkData
       FieldName = 'Imie'
-      Index = 13
+      Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -951,7 +995,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaOjciec: TStringField
       FieldKind = fkData
       FieldName = 'Ojciec'
-      Index = 14
+      Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -961,7 +1005,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaPOC: TStringField
       FieldKind = fkData
       FieldName = 'POC'
-      Index = 15
+      Index = 17
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -971,7 +1015,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaKlasyf: TStringField
       FieldKind = fkData
       FieldName = 'Klasyf'
-      Index = 16
+      Index = 18
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -981,7 +1025,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
     object ZQWidzeniaPozostalo: TLongintField
       FieldKind = fkCalculated
       FieldName = 'Pozostalo'
-      Index = 17
+      Index = 19
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

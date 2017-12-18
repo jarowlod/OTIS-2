@@ -86,9 +86,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     TabOrder = 2
   end
   object Label3: TLabel
-    AnchorSideTop.Control = DBEdit4
     AnchorSideTop.Side = asrCenter
-    AnchorSideRight.Control = DBEdit4
     Left = 6
     Height = 15
     Top = 121
@@ -97,18 +95,6 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     BorderSpacing.Right = 10
     Caption = 'Pokrewieństwo'
     ParentColor = False
-  end
-  object DBEdit4: TDBEdit
-    Left = 96
-    Height = 23
-    Top = 117
-    Width = 516
-    DataField = 'Pokrew'
-    DataSource = DSUprawnione
-    Anchors = [akTop, akLeft, akRight]
-    CharCase = ecUppercase
-    MaxLength = 0
-    TabOrder = 3
   end
   object Label4: TLabel
     AnchorSideTop.Control = DBEdit3
@@ -133,7 +119,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     Anchors = [akTop, akLeft, akRight]
     CharCase = ecUppercase
     MaxLength = 0
-    TabOrder = 4
+    TabOrder = 3
   end
   object Label5: TLabel
     AnchorSideTop.Control = DBEdit5
@@ -159,7 +145,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 5
+    TabOrder = 4
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
@@ -182,7 +168,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     Caption = 'Prawo do widzeń'
     DataField = 'Skreslona'
     DataSource = DSUprawnione
-    TabOrder = 6
+    TabOrder = 5
     ValueChecked = '0'
     ValueUnchecked = '1'
   end
@@ -198,7 +184,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     Font.Color = 7039851
     ParentColor = False
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 6
     object DBText1: TDBText
       Left = 88
       Height = 15
@@ -277,7 +263,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     BevelOuter = bvNone
     ClientHeight = 38
     ClientWidth = 622
-    TabOrder = 8
+    TabOrder = 7
     object btnOK: TBitBtn
       Left = 405
       Height = 30
@@ -303,6 +289,33 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
       OnClick = btnAnulujClick
       TabOrder = 1
     end
+  end
+  object DBComboBox1: TDBComboBox
+    Left = 98
+    Height = 23
+    Top = 117
+    Width = 514
+    AutoComplete = True
+    AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+    CharCase = ecUppercase
+    DataField = 'Pokrew'
+    DataSource = DSUprawnione
+    ItemHeight = 15
+    Items.Strings = (
+      'MATKA'
+      'OJCIEC'
+      'BRAT'
+      'SIOSTRA'
+      'SYN'
+      'CÓRKA'
+      'WUJEK'
+      'KUZYN'
+      'KOLEGA'
+      'KOLEŻANKA'
+      'KONKUBINA'
+    )
+    MaxLength = 0
+    TabOrder = 8
   end
   object ZQUprawnione: TZQuery
     Connection = DM.ZConnection1

@@ -697,62 +697,7 @@ object Form1: TForm1
         Filter.ItemIndex = -1
         Footers = <>
       end>
-    KeyStrokes = <    
-      item
-        Command = rxgcShowFindDlg
-        ShortCut = 16454
-        Enabled = True
-      end    
-      item
-        Command = rxgcShowColumnsDlg
-        ShortCut = 16471
-        Enabled = True
-      end    
-      item
-        Command = rxgcShowFilterDlg
-        ShortCut = 16468
-        Enabled = True
-      end    
-      item
-        Command = rxgcShowSortDlg
-        ShortCut = 16467
-        Enabled = True
-      end    
-      item
-        Command = rxgcShowQuickFilter
-        ShortCut = 16465
-        Enabled = True
-      end    
-      item
-        Command = rxgcHideQuickFilter
-        ShortCut = 16456
-        Enabled = True
-      end    
-      item
-        Command = rxgcSelectAll
-        ShortCut = 16449
-        Enabled = True
-      end    
-      item
-        Command = rxgcDeSelectAll
-        ShortCut = 16429
-        Enabled = True
-      end    
-      item
-        Command = rxgcInvertSelection
-        ShortCut = 16426
-        Enabled = True
-      end    
-      item
-        Command = rxgcOptimizeColumnsWidth
-        ShortCut = 16427
-        Enabled = True
-      end    
-      item
-        Command = rxgcCopyCellValue
-        ShortCut = 16451
-        Enabled = True
-      end>
+    KeyStrokes = <>
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
     SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
@@ -1118,11 +1063,11 @@ object Form1: TForm1
       object MenuItem13: TMenuItem
         Action = ActionSkype
       end
-      object MenuItem19: TMenuItem
-        Action = ActionWidzenia
-      end
       object MenuItem29: TMenuItem
         Caption = '-'
+      end
+      object MenuItem59: TMenuItem
+        Action = ActionDodajOsobeBliska
       end
       object MenuItem48: TMenuItem
         Action = ActionAddWidzenie
@@ -1300,6 +1245,7 @@ object Form1: TForm1
       Hint = 'Rozmieszczenie ...'
       ImageIndex = 1
       OnExecute = ActionRozmieszczenieExecute
+      ShortCut = 112
     end
     object ActionProsbyOsadzonego: TAction
       Category = 'Rejestr'
@@ -1357,17 +1303,6 @@ object Form1: TForm1
       Caption = 'Skype ...'
       ImageIndex = 20
     end
-    object ActionWidzenia: TAction
-      Category = 'Widzenia'
-      Caption = 'Widzenia ...'
-      ImageIndex = 21
-    end
-    object ActionRejestrWidzen: TAction
-      Category = 'Widzenia'
-      Caption = 'Rejestr Widzeń ...'
-      ImageIndex = 26
-      OnExecute = ActionRejestrWidzenExecute
-    end
     object ActionKomunikator: TAction
       Category = 'Dodatki'
       Caption = 'Komunikator ...'
@@ -1422,12 +1357,6 @@ object Form1: TForm1
       ImageIndex = 27
       OnExecute = ActionAddWykazExecute
     end
-    object ActionAddWidzenie: TAction
-      Category = 'Widzenia'
-      Caption = 'Dodaj widzenie ...'
-      ImageIndex = 27
-      OnExecute = ActionAddWidzenieExecute
-    end
     object ActionAktualizacjaPodkultury: TAction
       Category = 'Ochrona'
       Caption = 'Aktualizacja podkultury...'
@@ -1456,6 +1385,25 @@ object Form1: TForm1
       Category = 'Paczki'
       Caption = 'Zwroty paczek ...'
       ImageIndex = 11
+    end
+    object ActionDodajOsobeBliska: TAction
+      Category = 'Widzenia'
+      Caption = 'Dodaj osobę bliską ...'
+      ImageIndex = 21
+      OnExecute = ActionDodajOsobeBliskaExecute
+    end
+    object ActionAddWidzenie: TAction
+      Category = 'Widzenia'
+      Caption = 'Dodaj widzenie ...'
+      ImageIndex = 27
+      OnExecute = ActionAddWidzenieExecute
+      ShortCut = 16471
+    end
+    object ActionRejestrWidzen: TAction
+      Category = 'Widzenia'
+      Caption = 'Rejestr Widzeń ...'
+      ImageIndex = 26
+      OnExecute = ActionRejestrWidzenExecute
     end
   end
   object Timer2Komunikaty: TTimer

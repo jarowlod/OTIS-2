@@ -16,11 +16,11 @@ type
     btnAnuluj: TBitBtn;
     btnOK: TBitBtn;
     DBCheckBox1: TDBCheckBox;
+    DBComboBox1: TDBComboBox;
     DBDateTimePicker1: TDBDateTimePicker;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     DBEdit3: TDBEdit;
-    DBEdit4: TDBEdit;
     DBEdit5: TDBEdit;
     DBText1: TDBText;
     DBText2: TDBText;

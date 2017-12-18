@@ -34,6 +34,8 @@ type
     Splitter1: TSplitter;
     ZQWidzenia: TZQuery;
     ZQOsoby: TZQuery;
+    ZQWidzeniaCzas_dod: TLargeintField;
+    ZQWidzeniaCzas_reg: TLargeintField;
     ZQWidzeniaCzas_Widzenia: TLargeintField;
     ZQWidzeniaData_Dod: TStringField;
     ZQWidzeniaData_Oczekuje: TDateTimeField;
@@ -220,20 +222,24 @@ var id_w: integer;
 begin
   if ZQWidzenia.IsEmpty then exit;
 
-  if ZQWidzenia.FieldByName('').AsString <> DM.PelnaNazwa then
+  if ZQWidzenia.FieldByName('Nadzor').AsString <> DM.PelnaNazwa then
     begin
       MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć może tylko użytkownik który nadzorował widzenie.', mtWarning, [mbOK],0);
       exit;
     end;
-
-  if ZQWidzenia.FieldByName('').AsDateTime < IncDay(Date(), -7) then
+  if (ZQWidzenia.FieldByName('Etap').AsInteger = ew_Zrealizowane) and
+     (ZQWidzenia.FieldByName('Data_Widzenie').AsDateTime < IncDay(Date(), -7)) then
     begin
       MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć można tylko do 7 dni od daty widzenia.', mtWarning, [mbOK],0);
       exit;
     end;
+
+  if MessageDlg('Czy napewno usunąć widzenie?', mtWarning, [mbOK, mbCancel],0) = mrCancel then exit;
   //--------------------------------------------------------------------------------------------------------------------
+
   // usuń widzenie
   id_w :=ZQWidzenia.FieldByName('ID').AsInteger;
+
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'DELETE FROM widzenia WHERE ID = :id';
   ZQPom.ParamByName('id').AsInteger:= id_w;

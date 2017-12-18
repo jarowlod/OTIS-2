@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate,
   DBDateTimePicker, Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
-  StdCtrls, Buttons, ComCtrls, datamodule, rxdbutils, rxdbgrid, UZatrudnieni;
+  StdCtrls, Buttons, ComCtrls, datamodule, rxdbutils, rxdbgrid, UZatrudnieni,
+  UViewUwagiOch, UViewWykazy, UViewZatrudnienie;
 
 type
 
@@ -18,10 +19,6 @@ type
     btnRejestrZat: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
-    DBMemoUwagiKier: TDBMemo;
-    DBMemoUwagiOch: TDBMemo;
-    DBText4: TDBText;
-    DBText9: TDBText;
     DSOs: TDataSource;
     DBCheckBox6: TDBCheckBox;
     DBEdit2: TDBEdit;
@@ -49,10 +46,6 @@ type
     DBText6: TDBText;
     DBText7: TDBText;
     DBText8: TDBText;
-    DSOsZat: TDataSource;
-    DSRejWyk: TDataSource;
-    DSUwagi: TDataSource;
-    DSUwagiKierownika: TDataSource;
     Image_os: TImage;
     Label1: TLabel;
     Label10: TLabel;
@@ -71,13 +64,8 @@ type
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
-    Panel3: TPanel;
     Panel4: TPanel;
-    PanelKierownika: TPanel;
-    PanelCenter: TPanel;
     Panel_1: TPanel;
-    RxDBGrid1: TRxDBGrid;
-    RxDBGrid2: TRxDBGrid;
     TabSheetUwagi: TTabSheet;
     TabSheetWykazy: TTabSheet;
     TabSheetNotatnik: TTabSheet;
@@ -85,10 +73,6 @@ type
     ZQOsInfo: TZQuery;
     ZQOsNotatki: TZQuery;
     ZQOs: TZQuery;
-    ZQOsZat: TZQuery;
-    ZQRejWyk: TZQuery;
-    ZQUwagi: TZQuery;
-    ZQUwagiKierownika: TZQuery;
     ZUOsInfo: TZUpdateSQL;
     ZUOsNotatki: TZUpdateSQL;
     procedure btnRejestrProsbClick(Sender: TObject);
@@ -98,16 +82,18 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure RxDBGrid2GetCellProps(Sender: TObject; Field: TField;
-      AFont: TFont; var Background: TColor);
     procedure ZQOsInfoAfterPost(DataSet: TDataSet);
     procedure ZQOsNotatkiAfterPost(DataSet: TDataSet);
   private
     SelectIDO  : integer;
     fRefresh   : Boolean;
     SourceQuery: TZQuery;
+    // importowane widoki osadzone w zakładkach
+    fViewUwagiOch: TViewUwagiOch;
+    fViewWykazy  : TViewWykazy;
+    fViewZatrudnienie: TViewZatrudnienie;
+
     procedure WczytajTypCeli;
-    function CzyZatrudniony: Boolean;
     procedure ZapiszZmiany;
   public
     Procedure SetIDO(ido: integer);
@@ -132,13 +118,28 @@ begin
   PageControl1.TabIndex:= 0;
 
   // nadajemy uprawnienia
-  ZQUwagiKierownika.ReadOnly:= not DM.uprawnienia[4];  // uprawnienia do edycji uwag dal uproawnionych do wykazów
+  // ...
+
+  fViewZatrudnienie:= TViewZatrudnienie.Create(Self);
+  fViewZatrudnienie.Parent:= TabSheetZatrudnienie;
+  fViewZatrudnienie.Show;
+
+  fViewWykazy:= TViewWykazy.Create(Self);
+  fViewWykazy.Parent:= TabSheetWykazy;
+  fViewWykazy.Show;
+
+  fViewUwagiOch:= TViewUwagiOch.Create(Self); //CreateParented//(TabSheet1.Handle);
+  fViewUwagiOch.Parent:= TabSheetUwagi;
+  fViewUwagiOch.Show;
 end;
 
 procedure TPenitForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   // przed zamknięceim osadzonego zapisz ewentualne zaminy jeśli jest w trybie edycji
   ZapiszZmiany;
+  FreeAndNil(fViewUwagiOch);
+  FreeAndNil(fViewWykazy);
+  FreeAndNil(fViewZatrudnienie);
 end;
 
 procedure TPenitForm.ZapiszZmiany;
@@ -146,8 +147,6 @@ begin
   // przed zamknięceim osadzonego zapisz ewentualne zaminy jeśli jest w trybie edycji
   if ZQOsInfo.State    in [dsEdit, dsInsert] then ZQOsInfo.Post;
   if ZQOsNotatki.State in [dsEdit, dsInsert] then ZQOsNotatki.Post;
-  if ZQUwagi.State     in [dsEdit, dsInsert] then ZQUwagi.Post;
-  if ZQUwagiKierownika.State in [dsEdit, dsInsert] then ZQUwagiKierownika.Post;
   //----------------------------------------------------------------------------
 end;
 
@@ -173,7 +172,7 @@ begin
     lblCelaPalaca.Visible  := false;
     btnRejestrZat.Enabled  := false;
     btnRejestrProsb.Enabled:= false;
-    PageControl1.Enabled   := false;
+    PageControl1.Enabled   := false; // Blokujemy Okno zakładek !!!
     exit;
   end;
   //-------------------------------
@@ -220,26 +219,17 @@ begin
   WczytajTypCeli;
 
   //zatrudnienie
-  btnRejestrZat.Enabled:= CzyZatrudniony;
-   ZQOsZat.Close;
-   ZQOsZat.ParamByName('ido').AsInteger:= SelectIDO;
-  ZQOsZat.Open;
-  TabSheetZatrudnienie.TabVisible:= not ZQOsZat.IsEmpty;
+  fViewZatrudnienie.SetIDO(SelectIDO);
+  TabSheetZatrudnienie.TabVisible:= not fViewZatrudnienie.isEmpty;
+  btnRejestrZat.Enabled:= not fViewZatrudnienie.isEmpty;
 
   //wykazy ochronne
-  ZQRejWyk.Close;
-   ZQRejWyk.ParamByName('ido').AsInteger:= SelectIDO;
-  ZQRejWyk.Open;
-  TabSheetWykazy.TabVisible:= not ZQRejWyk.IsEmpty;
+  fViewWykazy.SetIDO(SelectIDO);
+  TabSheetWykazy.TabVisible:= not fViewWykazy.IsEmpty;
 
   //Uwagi i polecenia ochronne
-  ZQUwagi.Close;
-   ZQUwagi.ParamByName('ido').AsInteger:= SelectIDO;
-  ZQUwagi.Open;
-  ZQUwagiKierownika.Close;
-   ZQUwagiKierownika.ParamByName('ido').AsInteger:= SelectIDO;
-  ZQUwagiKierownika.Open;
-  //TabSheetUwagi.TabVisible:= not ZQRejWyk.IsEmpty;  // zakładka widoczna z uwagi na możliwość edycji
+  fViewUwagiOch.SetIDO(SelectIDO);
+  //TabSheetUwagi.TabVisible:= not fViewUwagiOch.IsEmpty;  // zakładka widoczna z uwagi na możliwość edycji
 end;
 
 procedure TPenitForm.SetIDO(ido: integer; RefreshSourceQuery: TZQuery);
@@ -257,29 +247,6 @@ begin
   begin
     close;
   end;
-end;
-
-procedure TPenitForm.RxDBGrid2GetCellProps(Sender: TObject; Field: TField;
-  AFont: TFont; var Background: TColor);
-begin
-  if not Assigned(Field) then exit;
-  if Field.IsNull then exit;
-
-  if (Field.FieldName = 'status_zatrudnienia') then
-      begin
-        if Field.AsString = 'zatrudniony' then
-        begin
-           Background := $80FF80;
-        end else
-        if Field.AsString = 'wycofany' then
-        begin
-          Background := clRed;
-          //AFont.Color:= clBlack;
-        end else  // oczekujący
-        begin
-          Background := clYellow;
-        end;
-      end;
 end;
 
 procedure TPenitForm.ZQOsInfoAfterPost(DataSet: TDataSet);
@@ -391,21 +358,6 @@ begin
           lblCelaOchronna.Visible:= true;
         end;
     end;
-  FreeAndNil(ZQPom);
-end;
-
-function TPenitForm.CzyZatrudniony: Boolean;
-var ZQPom: TZQueryPom;
-begin
-  Result:= false;
-
-  if ZQOs.IsEmpty then exit;
-  ZQPom := TZQueryPom.Create(Self);
-  ZQPom.SQL.Text := 'SELECT IDO FROM zat_zatrudnieni WHERE IDO=:ido LIMIT 1';
-  ZQPom.ParamByName('ido').AsInteger := ZQOs.FieldByName('IDO').AsInteger;
-  ZQPom.Open;
-  if not ZQPom.IsEmpty then Result:= true;
-
   FreeAndNil(ZQPom);
 end;
 

@@ -15,6 +15,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionDodajOsobeBliska: TAction;
     ActionZwrotyPaczek: TAction;
     ActionNowyKoszyk: TAction;
     ActionDodajDoKoszyka: TAction;
@@ -31,7 +32,6 @@ type
     ActionZatrudnieni: TAction;
     ActionKomunikator: TAction;
     ActionRejestrWidzen: TAction;
-    ActionWidzenia: TAction;
     ActionSkype: TAction;
     ActionBezdozorowe: TAction;
     Action_AdresyJednostek: TAction;
@@ -73,6 +73,7 @@ type
     MenuItem52: TMenuItem;
     MenuItem53: TMenuItem;
     MenuItem55: TMenuItem;
+    MenuItem59: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -115,7 +116,6 @@ type
     MenuItem16: TMenuItem;
     MenuItem17: TMenuItem;
     MenuItem18: TMenuItem;
-    MenuItem19: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem20: TMenuItem;
     MenuItem21: TMenuItem;
@@ -138,6 +138,7 @@ type
     procedure ActionAddWykazExecute(Sender: TObject);
     procedure ActionAktualizacjaPodkulturyExecute(Sender: TObject);
     procedure ActionDodajDoKoszykaExecute(Sender: TObject);
+    procedure ActionDodajOsobeBliskaExecute(Sender: TObject);
     procedure ActionDrukujWykazOsExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
     procedure ActionKomunikatDoExecute(Sender: TObject);
@@ -314,6 +315,11 @@ begin
     DM.KomunikatPopUp(Sender,'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
 end;
 
+procedure TForm1.ActionDodajOsobeBliskaExecute(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.ActionNowyKoszykExecute(Sender: TObject);
 begin
   with TKoszykNowy.Create(Self) do
@@ -400,7 +406,6 @@ end;
 
 procedure TForm1.WyborDomyslny;
 begin
-  DM.KomunikatPopUp(Self, 'Wyszukiwarka','Wybrano osadzonego', nots_Info);
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   //wybieramy akcję po wybraniu osadzonego
   if (DM.Wychowawca<>'') and ActionKartaOsadzonego.Enabled then ActionKartaOsadzonegoExecute(Self);
