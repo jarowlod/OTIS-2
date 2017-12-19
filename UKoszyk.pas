@@ -15,6 +15,7 @@ type
   TKoszyk = class(TForm)
     Bevel1: TBevel;
     Bevel2: TBevel;
+    btnWspoldziel: TBitBtn;
     btnUsunOsadzonego: TBitBtn;
     btnPustyKoszyk: TBitBtn;
     btnWydruk: TBitBtn;
@@ -37,6 +38,7 @@ type
     procedure btnPustyKoszykClick(Sender: TObject);
     procedure btnUsunKoszykClick(Sender: TObject);
     procedure btnUsunOsadzonegoClick(Sender: TObject);
+    procedure btnWspoldzielClick(Sender: TObject);
     procedure btnWydrukClick(Sender: TObject);
     procedure btnZmienNazweClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -50,7 +52,7 @@ var
   Koszyk: TKoszyk;
 
 implementation
-uses UKoszykNowy, UDrukWykazOsadz;
+uses UKoszykNowy, UDrukWykazOsadz, UKoszykDostep;
 {$R *.frm}
 
 { TKoszyk }
@@ -85,6 +87,16 @@ begin
 
   RefreshQuery(DM.ZQKoszyk);
   DM.KomunikatPopUp(Sender, 'Koszyk', 'Usunięto osadzonego z koszyka.', nots_Info);
+end;
+
+procedure TKoszyk.btnWspoldzielClick(Sender: TObject);
+begin
+  with TKoszykDostep.Create(Self) do
+  begin
+    SetID(DM.ZQKoszyk_sl.FieldByName('ID_koszyka').AsInteger);
+    ShowModal;
+    Free;
+  end;
 end;
 
 procedure TKoszyk.btnPustyKoszykClick(Sender: TObject);

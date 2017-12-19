@@ -1,7 +1,7 @@
 object KomunikatorNowaWiad: TKomunikatorNowaWiad
-  Left = 143
+  Left = 407
   Height = 658
-  Top = 199
+  Top = 229
   Width = 1039
   Caption = 'Nowa wiadomość'
   ClientHeight = 658
@@ -10,7 +10,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
   OnShow = FormShow
   Position = poOwnerFormCenter
   ShowHint = True
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 558
@@ -47,8 +47,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             Width = 140
             FieldName = 'Full_name'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -63,8 +61,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             Width = 100
             FieldName = 'user'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -79,8 +75,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             Width = 80
             FieldName = 'dzial'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -94,8 +88,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             Title.Caption = 'logowanie'
             FieldName = 'Last'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -162,6 +154,8 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         Align = alClient
@@ -178,7 +172,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
         DefaultRowHeight = 22
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
-        ParentColor = False
         ParentShowHint = False
         ReadOnly = True
         ShowHint = True
@@ -254,8 +247,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             Width = 300
             FieldName = 'Nazwa'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -322,6 +313,8 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         OnDataHintShow = RxDBGrid4DataHintShow
@@ -339,7 +332,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
         DefaultRowHeight = 22
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
-        ParentColor = False
         ParentShowHint = False
         PopupMenu = PopupMenu1
         ReadOnly = True
@@ -395,8 +387,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             Width = 200
             FieldName = 'NazwiskoImie'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -411,8 +401,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             Width = 120
             FieldName = 'user'
             EditButtons = <>
-            Filter.IsNull = False
-            Filter.IsAll = True
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
             Filter.AllValue = '(All values)'
@@ -479,6 +467,8 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
         FooterOptions.RowCount = 1
         FooterOptions.Style = tsNative
         FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
         OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterRowCount = 1
         Align = alClient
@@ -495,7 +485,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
         DefaultRowHeight = 22
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
-        ParentColor = False
         ParentShowHint = False
         ReadOnly = True
         ShowHint = True
@@ -813,7 +802,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             Left = 70
             Height = 22
             Top = 0
-            Width = 8
             Caption = 'ToolButton4'
             Style = tbsSeparator
           end
@@ -873,7 +861,6 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             Left = 147
             Height = 22
             Top = 0
-            Width = 8
             Caption = 'ToolButton1'
             Style = tbsSeparator
           end
@@ -1057,8 +1044,8 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
         Name = 'nazwisko'
         ParamType = ptUnknown
       end>
-    left = 80
-    top = 312
+    Left = 80
+    Top = 312
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1068,13 +1055,13 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
   end
   object DSUzytkownicy: TDataSource
     DataSet = ZQUzytkownicy
-    left = 80
-    top = 375
+    Left = 80
+    Top = 375
   end
   object DSOdbiorcy: TDataSource
     DataSet = memOdbiorcy
-    left = 632
-    top = 144
+    Left = 632
+    Top = 144
   end
   object memOdbiorcy: TMemDataset
     Active = True
@@ -1089,8 +1076,8 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
         DataType = ftString
         Size = 45
       end>
-    left = 632
-    top = 72
+    Left = 632
+    Top = 72
   end
   object ZQTresc: TZQuery
     Connection = DM.ZConnection1
@@ -1105,8 +1092,8 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
       'LIMIT 1'
     )
     Params = <>
-    left = 412
-    top = 303
+    Left = 412
+    Top = 303
   end
   object ZQOdbiorcy: TZQuery
     Connection = DM.ZConnection1
@@ -1123,13 +1110,13 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
     MasterFields = 'ID'
     MasterSource = DSTresc
     LinkedFields = 'ID_tresc'
-    left = 504
-    top = 303
+    Left = 504
+    Top = 303
   end
   object DSTresc: TDataSource
     DataSet = ZQTresc
-    left = 412
-    top = 368
+    Left = 412
+    Top = 368
   end
   object ZQGrupy: TZQuery
     Connection = DM.ZConnection1
@@ -1148,8 +1135,8 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
         Name = 'user'
         ParamType = ptUnknown
       end>
-    left = 80
-    top = 496
+    Left = 80
+    Top = 496
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1159,12 +1146,12 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
   end
   object DSGrupy: TDataSource
     DataSet = ZQGrupy
-    left = 80
-    top = 559
+    Left = 80
+    Top = 559
   end
   object PopupMenu1: TPopupMenu
-    left = 252
-    top = 515
+    Left = 252
+    Top = 515
     object MenuItem3: TMenuItem
       Caption = 'Wyślij do grupy'
       Bitmap.Data = {
@@ -1287,8 +1274,8 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
     end
   end
   object ImageList1: TImageList
-    left = 779
-    top = 320
+    Left = 779
+    Top = 320
     Bitmap = {
       4C69080000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
@@ -1574,19 +1561,19 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 864
-    top = 320
+    Left = 864
+    Top = 320
   end
   object FontDialog1: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
     Options = [fdTrueTypeOnly, fdEffects, fdForceFontExist, fdNoStyleSel, fdNoVectorFonts]
-    left = 952
-    top = 320
+    Left = 952
+    Top = 320
   end
   object PopupMenu2: TPopupMenu
-    left = 776
-    top = 400
+    Left = 776
+    Top = 400
     object MenuItemWytnij: TMenuItem
       Caption = 'Wytnij'
       Bitmap.Data = {

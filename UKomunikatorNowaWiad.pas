@@ -159,7 +159,7 @@ begin
 
   if memOdbiorcy.Locate('user', ZQUzytkownicy.FieldByName('user').AsString,[]) then
   begin
-    MessageDlg('Osadzony jest już dodany do odbiorców.', mtInformation, [mbCancel],0);
+    MessageDlg('Użtkownik jest już dodany do odbiorców.', mtInformation, [mbCancel],0);
     exit;
   end;
 
