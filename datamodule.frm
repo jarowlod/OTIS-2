@@ -3,8 +3,8 @@ object DM: TDM
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 514
-  HorizontalOffset = 407
-  VerticalOffset = 229
+  HorizontalOffset = 396
+  VerticalOffset = 222
   Width = 697
   object IniPropStorage1: TIniPropStorage
     StoredValues = <>

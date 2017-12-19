@@ -172,14 +172,14 @@ begin
     lblCelaPalaca.Visible  := false;
     btnRejestrZat.Enabled  := false;
     btnRejestrProsb.Enabled:= false;
-    PageControl1.Enabled   := false; // Blokujemy Okno zakładek !!!
+    PageControl1.Visible   := false; // Ukrywamy Okno zakładek !!!
     exit;
   end;
   //-------------------------------
 
   btnRejestrZat.Enabled        := true;
   btnRejestrProsb.Enabled      := true;
-  PageControl1.Enabled         := true;
+  PageControl1.Visible         := true;
 
   TLoadFotoThread.Create( DM.Path_Foto + IntToStr( SelectIDO )+'.jpg', Image_os);
 

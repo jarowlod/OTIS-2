@@ -1,7 +1,7 @@
 object ViewZatrudnienie: TViewZatrudnienie
-  Left = 407
+  Left = 396
   Height = 434
-  Top = 229
+  Top = 222
   Width = 679
   Align = alClient
   BorderStyle = bsNone
@@ -95,7 +95,6 @@ object ViewZatrudnienie: TViewZatrudnienie
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
         Footers = <>
-        WordWrap = True
       end>
     KeyStrokes = <    
       item
