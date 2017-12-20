@@ -539,7 +539,6 @@ end;
 procedure TAddZatrudnienie.BitBtn7Click(Sender: TObject);
 begin
   WyslijKomunikaty;
-  MessageDlg('Wysłano.', mtInformation, [mbOK],0);
 end;
 
 procedure TAddZatrudnienie.WyslijKomunikaty;
@@ -579,6 +578,7 @@ begin
        Free;
   end;
 
+  DM.KomunikatPopUp(Self, 'Zatrudnienie', tresc, nots_Info);
   FreeAndNil(user_List);
 end;
 

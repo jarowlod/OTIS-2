@@ -1,7 +1,7 @@
 object ViewWidzenia: TViewWidzenia
-  Left = 407
+  Left = 396
   Height = 454
-  Top = 229
+  Top = 222
   Width = 925
   Align = alClient
   BorderStyle = bsNone
@@ -174,7 +174,62 @@ object ViewWidzenia: TViewWidzenia
         Filter.ItemIndex = -1
         Footers = <>
       end>
-    KeyStrokes = <>
+    KeyStrokes = <    
+      item
+        Command = rxgcShowFindDlg
+        ShortCut = 16454
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowColumnsDlg
+        ShortCut = 16471
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowFilterDlg
+        ShortCut = 16468
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowSortDlg
+        ShortCut = 16467
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowQuickFilter
+        ShortCut = 16465
+        Enabled = True
+      end    
+      item
+        Command = rxgcHideQuickFilter
+        ShortCut = 16456
+        Enabled = True
+      end    
+      item
+        Command = rxgcSelectAll
+        ShortCut = 16449
+        Enabled = True
+      end    
+      item
+        Command = rxgcDeSelectAll
+        ShortCut = 16429
+        Enabled = True
+      end    
+      item
+        Command = rxgcInvertSelection
+        ShortCut = 16426
+        Enabled = True
+      end    
+      item
+        Command = rxgcOptimizeColumnsWidth
+        ShortCut = 16427
+        Enabled = True
+      end    
+      item
+        Command = rxgcCopyCellValue
+        ShortCut = 16451
+        Enabled = True
+      end>
     FooterOptions.Active = True
     FooterOptions.Color = clSilver
     FooterOptions.RowCount = 1
@@ -450,6 +505,7 @@ object ViewWidzenia: TViewWidzenia
     ReadOnly = True
     SQL.Strings = (
       'SELECT'
+      'u.IDO,'
       'w.ID_widzenia, '
       'w.ID_uprawnione, '
       'u.Nazwisko, '
@@ -458,12 +514,24 @@ object ViewWidzenia: TViewWidzenia
       'u.Uwagi '
       'FROM widzenia_upr w'
       'LEFT JOIN uprawnione u ON (w.ID_uprawnione = u.ID)'
+      'WHERE IDO = :ido'
     )
-    Params = <>
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
     MasterFields = 'ID'
     MasterSource = DSWidzenia
     LinkedFields = 'ID_widzenia'
     Left = 372
     Top = 288
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
   end
 end

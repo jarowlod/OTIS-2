@@ -17,7 +17,7 @@ type
     DBNazwaKoszyka: TDBText;
     DSUzytkownicy: TDataSource;
     DSKoszykDostep: TDataSource;
-    Edit2: TEdit;
+    edWyszukaj: TEdit;
     Image1: TImage;
     Image2: TImage;
     Image3: TImage;
@@ -35,9 +35,10 @@ type
     ZQUzytkownicy: TZQuery;
     ZQKoszykDostep: TZQuery;
     procedure btnUdostepnijClick(Sender: TObject);
-    procedure Edit2Change(Sender: TObject);
+    procedure edWyszukajChange(Sender: TObject);
   private
     SelectID: integer;
+    procedure WyslijKomunikat;
   public
     procedure SetID(aID: integer);
   end;
@@ -46,16 +47,32 @@ type
 //  KoszykDostep: TKoszykDostep;
 
 implementation
+uses UKomunikatorNowaWiad;
 
 {$R *.frm}
 
 { TKoszykDostep }
 
-procedure TKoszykDostep.Edit2Change(Sender: TObject);
+procedure TKoszykDostep.edWyszukajChange(Sender: TObject);
 begin
   ZQUzytkownicy.Close;
-  ZQUzytkownicy.ParamByName('nazwisko').AsString:= Trim(Edit2.Text)+'%';
+  ZQUzytkownicy.ParamByName('nazwisko').AsString:= Trim(edWyszukaj.Text)+'%';
   ZQUzytkownicy.Open;
+end;
+
+procedure TKoszykDostep.WyslijKomunikat;
+var user: TStringList;
+    tresc: string;
+begin
+  user := TStringList.Create;
+  user.Add(ZQUzytkownicy.FieldByName('user').AsString);
+  tresc:= 'Użytkownik ('+DM.PelnaNazwa+') udostępnił Ci koszyk ('+DBNazwaKoszyka.Caption+');';
+
+  with TKomunikatorNowaWiad.Create(Self) do
+  begin
+       AutoKomunikat(user, 'Udostępniono koszyk', tresc);
+       Free;
+  end;
 end;
 
 procedure TKoszykDostep.btnUdostepnijClick(Sender: TObject);
@@ -77,12 +94,14 @@ begin
 
   DM.KomunikatPopUp(Sender,'Koszyk','Udostępniono koszyk ('+DBNazwaKoszyka.Caption+') użytkownikowi ('+
                             ZQUzytkownicy.FieldByName('Full_name').AsString+')', nots_Info);
-  // TODO: wyślij komunikat do użytkownika o udostępnieniu mu koszyka
+  //wyślij komunikat do użytkownika o udostępnieniu mu koszyka
+  WyslijKomunikat;
 end;
 
 procedure TKoszykDostep.SetID(aID: integer);
 begin
   SelectID:= aID;
+  edWyszukajChange(Self);
   ZQKoszykDostep.Close;
   ZQKoszykDostep.ParamByName('id_koszyka').AsInteger:= SelectID;
   ZQKoszykDostep.Open;

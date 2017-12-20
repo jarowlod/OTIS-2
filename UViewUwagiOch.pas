@@ -15,6 +15,8 @@ type
   TViewUwagiOch = class(TForm)
     DBMemoUwagiKier: TDBMemo;
     DBMemoUwagiOch: TDBMemo;
+    DBNavigator1: TDBNavigator;
+    DBNavigator2: TDBNavigator;
     DBText4: TDBText;
     DBText9: TDBText;
     DSUwagi: TDataSource;

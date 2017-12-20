@@ -445,6 +445,7 @@
         <Filename Value="UKoszykDostep.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="KoszykDostep"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit46>
     </Units>

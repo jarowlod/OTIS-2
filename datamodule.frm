@@ -22,7 +22,7 @@ object DM: TDM
       'codepage=utf8'
       'controls_cp=CP_UTF8'
     )
-    HostName = '192.168.1.21'
+    HostName = '172.30.64.11'
     Port = 3306
     Database = 'klodzko'
     User = '153202jwlo'

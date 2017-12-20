@@ -1,7 +1,7 @@
 object KoszykDostep: TKoszykDostep
-  Left = 407
+  Left = 396
   Height = 550
-  Top = 229
+  Top = 222
   Width = 970
   Caption = 'Koszyk - współdzielenie'
   ClientHeight = 550
@@ -75,6 +75,7 @@ object KoszykDostep: TKoszykDostep
       Top = 16
       Width = 143
       BorderSpacing.Left = 20
+      DataField = 'nazwa'
       DataSource = DM.DSKoszyk_sl
       Font.CharSet = EASTEUROPE_CHARSET
       Font.Color = clTeal
@@ -108,13 +109,13 @@ object KoszykDostep: TKoszykDostep
       ClientWidth = 419
       ParentFont = False
       TabOrder = 0
-      object Edit2: TEdit
+      object edWyszukaj: TEdit
         Left = 24
         Height = 23
         Top = 7
         Width = 387
         Anchors = [akTop, akLeft, akRight]
-        OnChange = Edit2Change
+        OnChange = edWyszukajChange
         TabOrder = 0
       end
       object Image2: TImage
@@ -444,6 +445,50 @@ object KoszykDostep: TKoszykDostep
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
+        Columns = <        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Nazwisko Imię'
+            Width = 150
+            FieldName = 'Full_name'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'login'
+            Width = 100
+            FieldName = 'user'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Font.Color = clMaroon
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Data dodania'
+            Width = 140
+            FieldName = 'data_dodania'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end>
         KeyStrokes = <        
           item
             Command = rxgcShowFindDlg
@@ -517,7 +562,7 @@ object KoszykDostep: TKoszykDostep
         FixedHotColor = clNone
         SelectedColor = clHighlight
         GridLineStyle = psSolid
-        DataSource = DSUzytkownicy
+        DataSource = DSKoszykDostep
         DefaultRowHeight = 22
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
@@ -531,6 +576,7 @@ object KoszykDostep: TKoszykDostep
   end
   object ZQUzytkownicy: TZQuery
     Connection = DM.ZConnection1
+    SortedFields = 'Full_name'
     ReadOnly = True
     SQL.Strings = (
       'SELECT'
@@ -547,6 +593,7 @@ object KoszykDostep: TKoszykDostep
         Name = 'nazwisko'
         ParamType = ptUnknown
       end>
+    IndexFieldNames = 'Full_name Asc'
     Left = 108
     Top = 340
     ParamData = <    
@@ -565,11 +612,15 @@ object KoszykDostep: TKoszykDostep
     Connection = DM.ZConnection1
     SQL.Strings = (
       'SELECT'
-      'user,'
-      'Full_name'
-      'FROM koszyk_usr'
+      'ku.ID,'
+      'ku.ID_koszyka,'
+      'ku.user,'
+      'ku.data_dodania,'
+      'u.Full_name'
+      'FROM koszyk_usr ku, uprawnienia u'
       'WHERE '
-      '  ID_koszyka = :id_koszyka'
+      '(ku.user = u.user) and'
+      '(ID_koszyka = :id_koszyka)'
     )
     Params = <    
       item

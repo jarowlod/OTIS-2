@@ -339,7 +339,7 @@ object OchRejestrWykazow: TOchRejestrWykazow
       SelectedColor = clHighlight
       GridLineStyle = psSolid
       DataSource = DSRejWykazow
-      DefaultRowHeight = 0
+      DefaultRowHeight = 19
       FixedColor = clNone
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
       ParentShowHint = False
