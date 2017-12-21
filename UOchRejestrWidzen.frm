@@ -1,7 +1,7 @@
 object OchRejestrWidzen: TOchRejestrWidzen
-  Left = 72
+  Left = 396
   Height = 766
-  Top = 156
+  Top = 222
   Width = 1216
   Caption = 'Rejestr widzeń osadzonych'
   ClientHeight = 766
@@ -111,6 +111,16 @@ object OchRejestrWidzen: TOchRejestrWidzen
         HideDateTimeParts = []
         MonthNames = 'Long'
         OnChange = cbPrzedzialCzasuChange
+      end
+      object cbUprzedniePobyty: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 56
+        Width = 147
+        Caption = 'Z uprzednimi pobytami.'
+        Enabled = False
+        OnChange = cbPrzedzialCzasuChange
+        TabOrder = 3
       end
     end
     object GroupBox2: TGroupBox
@@ -259,6 +269,19 @@ object OchRejestrWidzen: TOchRejestrWidzen
         OnClick = btnModyfikujClick
         TabOrder = 2
       end
+    end
+    object Memo1: TMemo
+      Left = 632
+      Height = 56
+      Top = 8
+      Width = 288
+      Color = 14024703
+      Enabled = False
+      Lines.Strings = (
+        'Uwzględnia tylko osadzonych w obecnym pobycie.'
+      )
+      ReadOnly = True
+      TabOrder = 3
     end
   end
   object Panel2: TPanel
@@ -523,7 +546,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
-          Footer.ValueType = fvtCount
           Footers = <>
         end      
         item
@@ -540,6 +562,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Footer.ValueType = fvtCount
           Footers = <>
         end      
         item
@@ -1062,5 +1085,86 @@ object OchRejestrWidzen: TOchRejestrWidzen
     DataSet = ZQOsoby
     Left = 344
     Top = 448
+  end
+  object ZQWidzeniaArch: TZQuery
+    Connection = DM.ZConnection1
+    SQL.Strings = (
+      'SELECT'
+      'w.ID, '
+      'w.IDO, '
+      'w.Data_Oczekuje, '
+      'w.Data_Widzenie,'
+      'w.Data_Stolik,'
+      'w.Czas_Widzenia,'
+      'w.Czas_reg,'
+      'w.Czas_dod,'
+      'w.Etap,'
+      'w.Sposob,'
+      'w.Dodatkowe, '
+      'w.Data_Dod, '
+      'w.Uwagi, '
+      'w.Nadzor, '
+      'o.Nazwisko, '
+      'o.Imie,'
+      'o.Ojciec,'
+      'o.POC,'
+      'o.Klasyf'
+      'FROM '
+      '  widzenia w'
+      'LEFT JOIN osadzeni o'
+      'ON o.IDO = w.IDO'
+      'WHERE (w.Data_Widzenie BETWEEN :data_od AND :data_do)'
+      'UNION'
+      'SELECT'
+      'w.ID, '
+      'w.IDO, '
+      'w.Data_Oczekuje, '
+      'w.Data_Widzenie,'
+      'w.Data_Stolik,'
+      'w.Czas_Widzenia,'
+      'w.Czas_reg,'
+      'w.Czas_dod,'
+      'w.Etap,'
+      'w.Sposob,'
+      'w.Dodatkowe, '
+      'w.Data_Dod, '
+      'w.Uwagi, '
+      'w.Nadzor, '
+      'o.Nazwisko, '
+      'o.Imie,'
+      'o.Ojciec,'
+      'o.POC,'
+      'o.Klasyf'
+      'FROM '
+      '  arch_widzenia w'
+      'LEFT JOIN (SELECT * FROM arch_osadzeni GROUP BY IDO) o'
+      'ON o.IDO = w.IDO'
+      'WHERE (w.Data_Widzenie BETWEEN :data_od AND :data_do)'
+      'ORDER BY Data_Widzenie'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'data_od'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_do'
+        ParamType = ptUnknown
+      end>
+    Left = 269
+    Top = 208
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'data_od'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_do'
+        ParamType = ptUnknown
+      end>
   end
 end

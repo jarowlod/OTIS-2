@@ -408,7 +408,8 @@ procedure TForm1.WyborDomyslny;
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   //wybieramy akcję po wybraniu osadzonego
-  if (DM.Wychowawca<>'') and ActionKartaOsadzonego.Enabled then ActionKartaOsadzonegoExecute(Self);
+     // tylko wychowawcy, Penit
+  if ActionKartaOsadzonego.Enabled then ActionKartaOsadzonegoExecute(Self);
 end;
 
 procedure TForm1.Edit1Change(Sender: TObject);

@@ -18,6 +18,7 @@ type
     btnUsun: TBitBtn;
     btnModyfikuj: TBitBtn;
     cbPrzedzialCzasu: TCheckBox;
+    cbUprzedniePobyty: TCheckBox;
     DSWidzenia: TDataSource;
     DSOsoby: TDataSource;
     DateTimePicker1: TDateTimePicker;
@@ -25,6 +26,7 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     Label1: TLabel;
+    Memo1: TMemo;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -32,6 +34,7 @@ type
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     Splitter1: TSplitter;
+    ZQWidzeniaArch: TZQuery;
     ZQWidzenia: TZQuery;
     ZQOsoby: TZQuery;
     ZQWidzeniaCzas_dod: TLargeintField;
@@ -140,8 +143,22 @@ begin
       else
         ZQWidzenia.SQL.Add('ORDER BY w.Data_Widzenie');
 
-  ZQWidzenia.Open;
-  ZQOsoby.Open;
+  //ZQWidzenia.Open;
+  //ZQOsoby.Open;
+
+  if GroupBox1.Enabled and cbUprzedniePobyty.Enabled and cbUprzedniePobyty.Checked then
+    begin
+      ZQWidzeniaArch.ParamByName('data_od').AsDate:= DateTimePicker1.Date;
+      ZQWidzeniaArch.ParamByName('data_do').AsDate:= DateTimePicker2.Date;
+      ZQWidzeniaArch.Open;
+      DSWidzenia.DataSet:= ZQWidzeniaArch;
+    end
+  else
+    begin
+      DSWidzenia.DataSet:= ZQWidzenia;
+      ZQWidzenia.Open;
+      ZQOsoby.Open;
+    end;
 end;
 
 procedure TOchRejestrWidzen.RadioGroup1SelectionChanged(Sender: TObject);
@@ -207,11 +224,14 @@ begin
       begin
         DateTimePicker1.Enabled:= true;
         DateTimePicker2.Enabled:= true;
+        cbUprzedniePobyty.Enabled:= true;
       end
   else
       begin
         DateTimePicker1.Enabled:= false;
         DateTimePicker2.Enabled:= false;
+        cbUprzedniePobyty.Enabled:= false;
+        cbUprzedniePobyty.Checked:= false;
       end;
   NewSelect;
 end;

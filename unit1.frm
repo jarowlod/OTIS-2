@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 407
+  Left = 396
   Height = 598
-  Top = 229
+  Top = 222
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -697,7 +697,62 @@ object Form1: TForm1
         Filter.ItemIndex = -1
         Footers = <>
       end>
-    KeyStrokes = <>
+    KeyStrokes = <    
+      item
+        Command = rxgcShowFindDlg
+        ShortCut = 16454
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowColumnsDlg
+        ShortCut = 16471
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowFilterDlg
+        ShortCut = 16468
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowSortDlg
+        ShortCut = 16467
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowQuickFilter
+        ShortCut = 16465
+        Enabled = True
+      end    
+      item
+        Command = rxgcHideQuickFilter
+        ShortCut = 16456
+        Enabled = True
+      end    
+      item
+        Command = rxgcSelectAll
+        ShortCut = 16449
+        Enabled = True
+      end    
+      item
+        Command = rxgcDeSelectAll
+        ShortCut = 16429
+        Enabled = True
+      end    
+      item
+        Command = rxgcInvertSelection
+        ShortCut = 16426
+        Enabled = True
+      end    
+      item
+        Command = rxgcOptimizeColumnsWidth
+        ShortCut = 16427
+        Enabled = True
+      end    
+      item
+        Command = rxgcCopyCellValue
+        ShortCut = 16451
+        Enabled = True
+      end>
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
     SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
@@ -1087,11 +1142,11 @@ object Form1: TForm1
       object MenuItem50: TMenuItem
         Caption = '-'
       end
-      object MenuItem46: TMenuItem
-        Action = ActionRejestrWykazow
-      end
       object MenuItem47: TMenuItem
         Action = ActionAddWykaz
+      end
+      object MenuItem46: TMenuItem
+        Action = ActionRejestrWykazow
       end
     end
     object MenuItem15: TMenuItem

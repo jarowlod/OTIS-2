@@ -74,6 +74,38 @@ object PenitForm: TPenitForm
       ParentColor = False
       ParentFont = False
     end
+    object DBText4: TDBText
+      Left = 16
+      Height = 15
+      Hint = 'IDO'
+      Top = 40
+      Width = 43
+      DataField = 'IDO'
+      DataSource = DSOs
+      Font.Color = clGray
+      ParentColor = False
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object DBText9: TDBText
+      AnchorSideLeft.Control = DBText1
+      AnchorSideLeft.Side = asrBottom
+      Left = 122
+      Height = 25
+      Hint = 'Imię ojca'
+      Top = 14
+      Width = 69
+      BorderSpacing.Left = 30
+      DataField = 'OJCIEC'
+      DataSource = DSOs
+      Font.Color = clGray
+      Font.Height = -19
+      ParentColor = False
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+    end
   end
   object Panel2: TPanel
     Left = 0
@@ -676,11 +708,11 @@ object PenitForm: TPenitForm
     Height = 347
     Top = 448
     Width = 715
-    ActivePage = TabSheetZatrudnienie
+    ActivePage = TabSheetNotatnik
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 2
     object TabSheetNotatnik: TTabSheet
       Caption = 'Notatnik'
@@ -691,11 +723,11 @@ object PenitForm: TPenitForm
         Left = 0
         Height = 31
         Top = 0
-        Width = 705
+        Width = 707
         Align = alTop
         BevelOuter = bvNone
         ClientHeight = 31
-        ClientWidth = 705
+        ClientWidth = 707
         Color = clForm
         ParentColor = False
         TabOrder = 0
@@ -743,9 +775,9 @@ object PenitForm: TPenitForm
       end
       object DBMemo1: TDBMemo
         Left = 0
-        Height = 231
+        Height = 283
         Top = 31
-        Width = 705
+        Width = 707
         Align = alClient
         DataField = 'notatka'
         DataSource = DSOsNotatki

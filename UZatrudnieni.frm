@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 180
+  Left = 72
   Height = 856
-  Top = 178
+  Top = 28
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -427,7 +427,7 @@ object Zatrudnieni: TZatrudnieni
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
-            Footer.DisplayFormat = 'Poz: %d'
+            Footer.DisplayFormat = 'Ilość: %d'
             Footer.ValueType = fvtCount
             Footers = <>
           end        
@@ -763,7 +763,7 @@ object Zatrudnieni: TZatrudnieni
         SelectedColor = clHighlight
         GridLineStyle = psSolid
         DataSource = DSZatrudnieni
-        DefaultRowHeight = 0
+        DefaultRowHeight = 19
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
         ParentShowHint = False

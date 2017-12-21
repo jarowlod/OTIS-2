@@ -313,7 +313,7 @@ begin
   // sprawdzam czy jest dodany do poczekalni
   Result:= false;
   ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT ido FROM widzenia WHERE (Etap=1)AND(IDO=:ido);';
+  ZQPom.SQL.Text:= 'SELECT IDO FROM widzenia WHERE (Etap=1)AND(IDO=:ido);';
   ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
   ZQPom.Open;
   if not ZQPom.IsEmpty then

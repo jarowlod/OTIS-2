@@ -19,6 +19,8 @@ type
     btnRejestrZat: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
+    DBText4: TDBText;
+    DBText9: TDBText;
     DSOs: TDataSource;
     DBCheckBox6: TDBCheckBox;
     DBEdit2: TDBEdit;
