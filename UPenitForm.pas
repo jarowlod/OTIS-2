@@ -68,6 +68,7 @@ type
     Panel2: TPanel;
     Panel4: TPanel;
     Panel_1: TPanel;
+    btnDodajDoKoszyka: TSpeedButton;
     TabSheetUwagi: TTabSheet;
     TabSheetWykazy: TTabSheet;
     TabSheetNotatnik: TTabSheet;
@@ -84,6 +85,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnDodajDoKoszykaClick(Sender: TObject);
     procedure ZQOsInfoAfterPost(DataSet: TDataSet);
     procedure ZQOsNotatkiAfterPost(DataSet: TDataSet);
   private
@@ -249,6 +251,13 @@ begin
   begin
     close;
   end;
+end;
+
+procedure TPenitForm.btnDodajDoKoszykaClick(Sender: TObject);
+begin
+  if SelectIDO<=0 then exit;
+  if DM.DodajDoKoszyka(SelectIDO) then
+     DM.KomunikatPopUp(Sender, 'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
 end;
 
 procedure TPenitForm.ZQOsInfoAfterPost(DataSet: TDataSet);

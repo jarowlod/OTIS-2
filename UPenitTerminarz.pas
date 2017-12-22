@@ -58,7 +58,6 @@ type
     PopupMenu2: TPopupMenu;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
-    SpeedButton1: TSpeedButton;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     TabSheet1: TTabSheet;
