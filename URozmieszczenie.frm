@@ -1,7 +1,7 @@
 object Rozmieszczenie: TRozmieszczenie
-  Left = 610
+  Left = 86
   Height = 760
-  Top = 292
+  Top = 85
   Width = 1103
   Caption = 'Rozmieszczenie'
   ClientHeight = 760
@@ -410,13 +410,13 @@ object Rozmieszczenie: TRozmieszczenie
     Height = 760
     Top = 0
     Width = 869
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     Images = ImageList1
     ParentShowHint = False
     ShowHint = True
     TabHeight = 25
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Wolne Cele'
@@ -1092,18 +1092,18 @@ object Rozmieszczenie: TRozmieszczenie
     end
     object TabSheet2: TTabSheet
       Caption = 'Zdjęcia'
-      ClientHeight = 732
+      ClientHeight = 727
       ClientWidth = 861
       ImageIndex = 1
       OnShow = TabSheet2Show
       object PanelZdjec: TPanel
         Left = 0
-        Height = 732
+        Height = 727
         Top = 0
         Width = 861
         Align = alClient
         BevelOuter = bvNone
-        ClientHeight = 732
+        ClientHeight = 727
         ClientWidth = 861
         Color = clWhite
         ParentColor = False

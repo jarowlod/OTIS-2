@@ -15,6 +15,7 @@ type
 
   TOchRejestrWidzen = class(TForm)
     btnDodaj: TBitBtn;
+    btnOdswiez: TBitBtn;
     btnUsun: TBitBtn;
     btnModyfikuj: TBitBtn;
     cbPrzedzialCzasu: TCheckBox;
@@ -34,6 +35,7 @@ type
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     Splitter1: TSplitter;
+    ZQOsobyArch: TZQuery;
     ZQWidzeniaArch: TZQuery;
     ZQWidzenia: TZQuery;
     ZQOsoby: TZQuery;
@@ -59,6 +61,7 @@ type
     ZQWidzeniaUwagi: TStringField;
     procedure btnDodajClick(Sender: TObject);
     procedure btnModyfikujClick(Sender: TObject);
+    procedure btnOdswiezClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure cbPrzedzialCzasuChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -139,13 +142,14 @@ begin
 
   //ORDER BY
   if RadioGroup1.ItemIndex = 0 then
-        ZQWidzenia.SQL.Add('ORDER BY w.Data_Oczekuje')
+        ZQWidzenia.SQL.Add('ORDER BY w.Data_Oczekuje DESC')
       else
-        ZQWidzenia.SQL.Add('ORDER BY w.Data_Widzenie');
+        ZQWidzenia.SQL.Add('ORDER BY w.Data_Widzenie DESC');
 
   //ZQWidzenia.Open;
   //ZQOsoby.Open;
 
+  // Podmiana ZQWidzenia -> ZQWidzeniaArch dla uprzednich pobytów
   if GroupBox1.Enabled and cbUprzedniePobyty.Enabled and cbUprzedniePobyty.Checked then
     begin
       ZQWidzeniaArch.ParamByName('data_od').AsDate:= DateTimePicker1.Date;
@@ -315,6 +319,11 @@ begin
          end;
        Free;
   end;
+end;
+
+procedure TOchRejestrWidzen.btnOdswiezClick(Sender: TObject);
+begin
+  NewSelect;
 end;
 
 end.
