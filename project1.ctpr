@@ -4,6 +4,10 @@
     <Version Value="10"/>
     <PathDelim Value="\"/>
     <General>
+      <Flags>
+        <MainUnitHasUsesSectionForAllUnits Value="False"/>
+        <MainUnitHasCreateFormStatements Value="False"/>
+      </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
       <Title Value="OTIS 2"/>
@@ -120,7 +124,7 @@
         <PackageName Value="adLCL"/>
       </Item28>
     </RequiredPackages>
-    <Units Count="47">
+    <Units Count="49">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -448,6 +452,19 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit46>
+      <Unit47>
+        <Filename Value="UOchForm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OchForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit47>
+      <Unit48>
+        <Filename Value="UViewOsobyBliskie.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ViewOsobyBliskie"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit48>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

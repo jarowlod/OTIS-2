@@ -103,7 +103,6 @@ type
     Procedure SetIDO(ido: integer);
     Procedure SetIDO(ido: integer; RefreshSourceQuery: TZQuery);
     Function UprawnieniaDoEdycji(ido: integer): boolean;
-
   end;
 
 var

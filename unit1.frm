@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 396
+  Left = 407
   Height = 598
-  Top = 222
+  Top = 229
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -832,7 +832,7 @@ object Form1: TForm1
         Action = ActionZatrudnienieOs
       end
       object ToolButton5: TToolButton
-        Left = 101
+        Left = 132
         Height = 22
         Top = 0
         Caption = 'ToolButton5'
@@ -844,14 +844,14 @@ object Form1: TForm1
         Action = ActionProsbyOsadzonego
       end
       object ToolButton7: TToolButton
-        Left = 132
+        Left = 186
         Height = 22
         Top = 0
         Caption = 'ToolButton7'
         Style = tbsSeparator
       end
       object ToolButton8: TToolButton
-        Left = 140
+        Left = 194
         Top = 0
         Action = ActionTerminarz
       end
@@ -859,6 +859,23 @@ object Form1: TForm1
         Left = 55
         Top = 0
         Action = ActionZatrudnieni
+      end
+      object ToolButton10: TToolButton
+        Left = 101
+        Height = 22
+        Top = 0
+        Caption = 'ToolButton10'
+        Style = tbsSeparator
+      end
+      object ToolButton11: TToolButton
+        Left = 140
+        Top = 0
+        Action = ActionAddWidzenie
+      end
+      object ToolButton12: TToolButton
+        Left = 163
+        Top = 0
+        Action = ActionKartaOchronna
       end
     end
   end
@@ -1138,6 +1155,12 @@ object Form1: TForm1
       end
       object MenuItem9: TMenuItem
         Action = ActionAktualizacjaPodkultury
+      end
+      object MenuItem60: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem19: TMenuItem
+        Action = ActionKartaOchronna
       end
       object MenuItem50: TMenuItem
         Caption = '-'
@@ -1450,6 +1473,7 @@ object Form1: TForm1
     object ActionAddWidzenie: TAction
       Category = 'Widzenia'
       Caption = 'Dodaj widzenie ...'
+      Hint = 'Dodaj widzenie'
       ImageIndex = 27
       OnExecute = ActionAddWidzenieExecute
       ShortCut = 16471
@@ -1459,6 +1483,13 @@ object Form1: TForm1
       Caption = 'Rejestr Widzeń ...'
       ImageIndex = 26
       OnExecute = ActionRejestrWidzenExecute
+    end
+    object ActionKartaOchronna: TAction
+      Category = 'Ochrona'
+      Caption = 'Karta Ochronna'
+      Hint = 'Karta Ochronna'
+      ImageIndex = 24
+      OnExecute = ActionKartaOchronnaExecute
     end
   end
   object Timer2Komunikaty: TTimer

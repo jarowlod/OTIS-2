@@ -3,7 +3,8 @@ program project1;
 {$mode objfpc}{$H+}
 
 uses
-  Interfaces, Forms, pl_rx, SysUtils, controls, Unit1, datamodule, ULogowanie
+  Interfaces, Forms, pl_rx, SysUtils, controls,
+  Unit1, datamodule, ULogowanie
   ;
 
 

@@ -112,6 +112,7 @@ begin
   isCloseForm            := false;
   PageControl1.TabIndex  := 0;
   btnDopiszOsobe.Enabled := DM.uprawnienia[11]; // osoby bliskie
+  btnModyfikujOsobe.Enabled:= DM.uprawnienia[11]; // osoby bliskie;
   dtDataWidzenia.Date    := Date;
   dtDataWidzenia.Enabled := false;
 

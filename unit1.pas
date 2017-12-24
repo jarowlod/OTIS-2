@@ -15,6 +15,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionKartaOchronna: TAction;
     ActionDodajOsobeBliska: TAction;
     ActionZwrotyPaczek: TAction;
     ActionNowyKoszyk: TAction;
@@ -44,6 +45,7 @@ type
     ActionRozmieszczenie: TAction;
     Label2: TLabel;
     MenuItem10: TMenuItem;
+    MenuItem19: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem26: TMenuItem;
     MenuItem28: TMenuItem;
@@ -74,6 +76,7 @@ type
     MenuItem53: TMenuItem;
     MenuItem55: TMenuItem;
     MenuItem59: TMenuItem;
+    MenuItem60: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -92,6 +95,9 @@ type
     Timer2Komunikaty: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
+    ToolButton12: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -140,6 +146,7 @@ type
     procedure ActionDodajDoKoszykaExecute(Sender: TObject);
     procedure ActionDodajOsobeBliskaExecute(Sender: TObject);
     procedure ActionDrukujWykazOsExecute(Sender: TObject);
+    procedure ActionKartaOchronnaExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
     procedure ActionKomunikatDoExecute(Sender: TObject);
     procedure ActionKomunikatorExecute(Sender: TObject);
@@ -206,7 +213,7 @@ uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr
      UUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
-     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk;
+     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm;
 {$R *.frm}
 
 { TForm1 }
@@ -244,9 +251,10 @@ begin
   ActionTerminarz.Enabled      := (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
   ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
   ActionWydarzenia.Enabled     := (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
-  //ActionKartaOchrony.Enabled:= (DM.Dzial='Ochrona');
+  //ActionKartaOchronna.Enabled:= (DM.Dzial='Ochrona')or(DM.Dzial='Penit');
   ActionAddWykaz.Enabled       := DM.uprawnienia[4];   // dodawanie do wykazów ochronnych
   ActionAddWidzenie.Enabled    := DM.uprawnienia[6];   // widzenia
+  ActionDodajOsobeBliska.Enabled:= DM.uprawnienia[11]; // osoby bliskie
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
@@ -517,6 +525,17 @@ begin
   with TDrukWykazOsadz.Create(Self) do
   begin
        Show;
+  end;
+end;
+
+procedure TForm1.ActionKartaOchronnaExecute(Sender: TObject);
+begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
+  with TOchForm.Create(Self) do
+  begin
+       SetIDO( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
+       ShowModal;
+       Free;
   end;
 end;
 
