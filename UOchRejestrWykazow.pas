@@ -72,8 +72,8 @@ type
 
   end;
 
-var
-  OchRejestrWykazow: TOchRejestrWykazow;
+//var
+//  OchRejestrWykazow: TOchRejestrWykazow;
 
 implementation
 uses UOchAddWykaz;

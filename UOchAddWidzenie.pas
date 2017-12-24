@@ -98,8 +98,8 @@ type
     procedure DodajOsobeDoWidzenia(aID: integer; aNazwisko, aImie, aPokrewienstwo: string);
   end;
 
-var
-  OchAddWidzenie: TOchAddWidzenie;
+//var
+//  OchAddWidzenie: TOchAddWidzenie;
 
 implementation
 uses URejestrProsbOs, UOsadzeni, UOchAddOsobeWidzenie;

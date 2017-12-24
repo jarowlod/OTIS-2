@@ -1,7 +1,7 @@
 object OchRejestrWidzen: TOchRejestrWidzen
-  Left = 407
+  Left = 396
   Height = 766
-  Top = 229
+  Top = 222
   Width = 1216
   Caption = 'Rejestr widzeń osadzonych'
   ClientHeight = 766
@@ -82,7 +82,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
         TimeDisplay = tdHMS
         DateMode = dmComboBox
         Date = 42762
-        Time = 0.398035810183501
+        Time = 0
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
@@ -106,7 +106,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
         TimeDisplay = tdHMS
         DateMode = dmComboBox
         Date = 42762
-        Time = 0.398139062497648
+        Time = 0.958333333335759
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
@@ -876,6 +876,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object ZQWidzenia: TZQuery
     Connection = DM.ZConnection1
+    ReadOnly = True
     SQL.Strings = (
       'SELECT'
       'w.ID, '
@@ -1100,6 +1101,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object ZQOsoby: TZQuery
     Connection = DM.ZConnection1
+    ReadOnly = True
     SQL.Strings = (
       'SELECT'
       'w.ID_widzenia, '
@@ -1120,6 +1122,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object DSWidzenia: TDataSource
     DataSet = ZQWidzenia
+    OnDataChange = DSWidzeniaDataChange
     Left = 344
     Top = 143
   end
@@ -1130,6 +1133,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object ZQWidzeniaArch: TZQuery
     Connection = DM.ZConnection1
+    ReadOnly = True
     SQL.Strings = (
       'SELECT'
       'w.ID, '
@@ -1182,7 +1186,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
       'LEFT JOIN (SELECT * FROM arch_osadzeni GROUP BY IDO) o'
       'ON o.IDO = w.IDO'
       'WHERE (w.Data_Widzenie BETWEEN :data_od AND :data_do)'
-      'ORDER BY w.Data_Widzenie DESC'
+      'ORDER BY Data_Widzenie DESC'
     )
     Params = <    
       item
@@ -1211,6 +1215,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object ZQOsobyArch: TZQuery
     Connection = DM.ZConnection1
+    ReadOnly = True
     SQL.Strings = (
       'SELECT'
       'w.ID_widzenia, '
@@ -1220,14 +1225,35 @@ object OchRejestrWidzen: TOchRejestrWidzen
       'u.Pokrew, '
       'u.Uwagi '
       'FROM widzenia_upr w'
-      'LEFT JOIN (SELECT ID, Nazwisko, Imie, Pokrew, Uwagi FROM uprawnione UNION SELECT ID, Nazwisko, Imie, Pokrew, Uwagi FROM arch_uprawnione) u '
-      'ON (w.ID_uprawnione = u.ID)'
+      'LEFT JOIN uprawnione u ON (w.ID_uprawnione = u.ID)'
+      'WHERE ID_widzenia=:id_widzenia'
+      ''
+      'UNION'
+      ''
+      'SELECT'
+      'w.ID_widzenia, '
+      'w.ID_uprawnione, '
+      'u.Nazwisko, '
+      'u.Imie, '
+      'u.Pokrew, '
+      'u.Uwagi '
+      'FROM arch_widzenia_upr w'
+      'LEFT JOIN arch_uprawnione u ON (w.ID_uprawnione = u.ID)'
+      'WHERE ID_widzenia=:id_widzenia'
     )
-    Params = <>
-    MasterFields = 'ID'
-    MasterSource = DSWidzenia
-    LinkedFields = 'ID_widzenia'
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_widzenia'
+        ParamType = ptUnknown
+      end>
     Left = 269
     Top = 520
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_widzenia'
+        ParamType = ptUnknown
+      end>
   end
 end

@@ -21,6 +21,7 @@ object ViewWidzenia: TViewWidzenia
     AutoSort = True
     Columns = <    
       item
+        Color = clWindow
         Font.Color = clMaroon
         SizePriority = 0
         Title.Alignment = taCenter

@@ -101,7 +101,7 @@ begin
   if Column.FieldName = 'Data_Widzenie' then
     if Column.Field.AsDateTime >= StartOfTheMonth(Date()) then
     begin
-      TRxDBGrid(Sender).Canvas.Brush.Color:= clRed;
+      TRxDBGrid(Sender).Canvas.Brush.Color:= $008080FF;
       //TRxDBGrid(Sender).Canvas.Font.Color:= clWhite;
     end;
 end;

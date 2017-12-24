@@ -210,10 +210,10 @@ const
 
 implementation
 uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr_ZmianaHasla, URozmieszczenie,
-     UUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
+     UOchUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
-     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm;
+     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie;
 {$R *.frm}
 
 { TForm1 }
@@ -325,7 +325,12 @@ end;
 
 procedure TForm1.ActionDodajOsobeBliskaExecute(Sender: TObject);
 begin
-
+  with TOchAddOsobeWidzenie.Create(Self) do
+  begin
+    DodajOsobe(DM.ZQOsadzeni.FieldByName('IDO').AsInteger);
+    ShowModal;
+    Free;
+  end;
 end;
 
 procedure TForm1.ActionNowyKoszykExecute(Sender: TObject);
@@ -552,7 +557,7 @@ end;
 
 procedure TForm1.ActionAktualizacjaPodkulturyExecute(Sender: TObject);
 begin
-  with TUpdPodkultury.Create(Self) do
+  with TOchUpdPodkultury.Create(Self) do
   begin
     ShowModal;
     Free;

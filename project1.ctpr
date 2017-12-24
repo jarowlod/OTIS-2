@@ -208,9 +208,9 @@
         <ResourceBaseClass Value="Form"/>
       </Unit11>
       <Unit12>
-        <Filename Value="UUpdPodkultury.pas"/>
+        <Filename Value="UOchUpdPodkultury.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="UpdPodkultury"/>
+        <ComponentName Value="OchUpdPodkultury"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit12>
@@ -463,6 +463,7 @@
         <Filename Value="UViewOsobyBliskie.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewOsobyBliskie"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit48>
     </Units>

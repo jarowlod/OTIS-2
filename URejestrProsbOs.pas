@@ -69,8 +69,8 @@ type
     Procedure NewSelect;
   end;
 
-var
-  RejestrProsbOs: TRejestrProsbOs;
+//var
+//  RejestrProsbOs: TRejestrProsbOs;
 
 implementation
 uses URejestrProsbDodaj, LR_DSet;

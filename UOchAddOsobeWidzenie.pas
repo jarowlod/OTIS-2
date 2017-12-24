@@ -15,6 +15,7 @@ type
   TOchAddOsobeWidzenie = class(TForm)
     btnAnuluj: TBitBtn;
     btnOK: TBitBtn;
+    CheckBox1: TCheckBox;
     DBCheckBox1: TDBCheckBox;
     DBComboBox1: TDBComboBox;
     DBDateTimePicker1: TDBDateTimePicker;
@@ -49,8 +50,8 @@ type
     procedure ModyfikujOsobe(aID: integer);
   end;
 
-var
-  OchAddOsobeWidzenie: TOchAddOsobeWidzenie;
+//var
+//  OchAddOsobeWidzenie: TOchAddOsobeWidzenie;
 
 implementation
 

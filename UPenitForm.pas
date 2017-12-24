@@ -105,8 +105,8 @@ type
     Function UprawnieniaDoEdycji(ido: integer): boolean;
   end;
 
-var
-  PenitForm: TPenitForm;
+//var
+//  PenitForm: TPenitForm;
 
 implementation
 uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs;

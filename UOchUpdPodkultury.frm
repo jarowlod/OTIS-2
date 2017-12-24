@@ -1,14 +1,14 @@
-object UpdPodkultury: TUpdPodkultury
-  Left = 443
+object OchUpdPodkultury: TOchUpdPodkultury
+  Left = 396
   Height = 531
-  Top = 158
+  Top = 222
   Width = 645
   Caption = 'Aktualizacja uczestników podkultury'
   ClientHeight = 531
   ClientWidth = 645
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -181,7 +181,7 @@ object UpdPodkultury: TUpdPodkultury
         Name = 'GR'
         DataType = ftInteger
       end>
-    left = 301
-    top = 112
+    Left = 301
+    Top = 112
   end
 end

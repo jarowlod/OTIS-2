@@ -14,6 +14,8 @@ type
   { TOchForm }
 
   TOchForm = class(TForm)
+    Bevel1: TBevel;
+    btnDodajProsbe: TBitBtn;
     btnDodajWidzenie: TBitBtn;
     btnRejestrProsb: TBitBtn;
     btnRejestrZat: TBitBtn;
@@ -45,6 +47,7 @@ type
     TabSheetWykazy: TTabSheet;
     TabSheetZatrudnienie: TTabSheet;
     ZQOs: TZQuery;
+    procedure btnDodajProsbeClick(Sender: TObject);
     procedure btnDodajWidzenieClick(Sender: TObject);
     procedure btnRejestrProsbClick(Sender: TObject);
     procedure btnRejestrZatClick(Sender: TObject);
@@ -64,11 +67,11 @@ type
     Procedure SetIDO(ido: integer);
   end;
 
-var
-  OchForm: TOchForm;
+//var
+//  OchForm: TOchForm;
 
 implementation
-uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie;
+uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie, URejestrProsbDodaj;
 {$R *.frm}
 
 { TOchForm }
@@ -80,6 +83,7 @@ begin
 
   // nadajemy uprawnienia
   btnDodajWidzenie.Enabled:= DM.uprawnienia[6];
+  btnDodajProsbe.Enabled  := DM.uprawnienia[14];
   // ...
 
   fViewZatrudnienie:= TViewZatrudnienie.Create(Self);
@@ -197,6 +201,16 @@ begin
   end;
 end;
 
+procedure TOchForm.btnDodajProsbeClick(Sender: TObject);
+begin
+  with TRejestrProsbDodaj.Create(Self) do
+  begin
+       SetAdd( SelectIDO );
+       if ShowModal=mrOK then btnRejestrProsbClick(Sender);
+       Free;
+  end;
+end;
+
 procedure TOchForm.WczytajTypCeli;
 var ZQPom: TZQueryPom;
 begin
@@ -232,7 +246,7 @@ begin
 
   // sprawdzamy czy cela jest TA
   ZQPom.SQL.Text:= 'SELECT tc.POC, tc.TA FROM typ_cel AS tc WHERE (tc.POC = :poc) AND '+   // ((tc.TA = 1) OR
-                   '(SELECT COUNT(IDO) AS ile FROM osadzeni AS os WHERE os.POC = :poc AND os.KLASYF LIKE "%TA%") > 0)';
+                   '((SELECT COUNT(IDO) AS ile FROM osadzeni AS os WHERE os.POC = :poc AND os.KLASYF LIKE "%TA%") > 0)';
   ZQPom.ParamByName('poc').AsString:= ZQOs.FieldByName('POC').AsString;
   ZQPom.Open;
   lblCelaTA.Visible:= not ZQPom.IsEmpty;

@@ -163,7 +163,7 @@ type
   end;
 
 var
-  PenitTerminarz: TPenitTerminarz;
+  PenitTerminarz: TPenitTerminarz;  // wymagane w Unit1;
 
 implementation
 uses UDrukWykazOsadz, UKoszyk, UKoszykNowy;
