@@ -32,7 +32,6 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="118"/>
         <CursorPos X="20" Y="131"/>
@@ -134,10 +133,13 @@
         <ComponentName Value="Rozmieszczenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="537"/>
-        <CursorPos X="6" Y="549"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="540"/>
+        <CursorPos X="66" Y="551"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit11>
       <Unit12>
         <Filename Value="UOchUpdPodkultury.pas"/>
@@ -156,7 +158,7 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="94"/>
         <CursorPos Y="108"/>
         <UsageCount Value="201"/>
@@ -169,7 +171,7 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="146"/>
         <CursorPos X="57" Y="166"/>
         <UsageCount Value="200"/>
@@ -219,7 +221,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="32" Y="195"/>
+        <TopLine Value="294"/>
+        <CursorPos X="47" Y="317"/>
         <UsageCount Value="200"/>
       </Unit18>
       <Unit19>
@@ -403,7 +406,7 @@
         <ComponentName Value="OchRejestrWykazow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="62"/>
         <CursorPos Y="75"/>
         <UsageCount Value="202"/>
@@ -427,10 +430,10 @@
         <ComponentName Value="OchRejestrWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="152"/>
         <CursorPos X="33" Y="178"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="198"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit37>
@@ -443,7 +446,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="75"/>
         <CursorPos Y="101"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="188"/>
       </Unit38>
       <Unit39>
         <Filename Value="UKoszykNowy.pas"/>
@@ -454,7 +457,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
         <CursorPos X="3" Y="82"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="157"/>
       </Unit39>
       <Unit40>
         <Filename Value="UKoszyk.pas"/>
@@ -465,7 +468,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos X="65" Y="96"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="155"/>
       </Unit40>
       <Unit41>
         <Filename Value="UOchAddOsobeWidzenie.pas"/>
@@ -473,10 +476,10 @@
         <ComponentName Value="OchAddOsobeWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="31"/>
         <CursorPos Y="53"/>
-        <UsageCount Value="116"/>
+        <UsageCount Value="117"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit41>
@@ -489,7 +492,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="33" Y="105"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="80"/>
       </Unit42>
       <Unit43>
         <Filename Value="UViewWykazy.pas"/>
@@ -499,7 +502,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="96" Y="58"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="80"/>
       </Unit43>
       <Unit44>
         <Filename Value="UViewZatrudnienie.pas"/>
@@ -510,7 +513,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
         <CursorPos X="48" Y="9"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="76"/>
       </Unit44>
       <Unit45>
         <Filename Value="UViewWidzenia.pas"/>
@@ -518,10 +521,10 @@
         <ComponentName Value="ViewWidzenia"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="77"/>
         <CursorPos X="53" Y="94"/>
-        <UsageCount Value="71"/>
+        <UsageCount Value="72"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit45>
@@ -534,7 +537,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="36" Y="97"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="66"/>
       </Unit46>
       <Unit47>
         <Filename Value="UOchForm.pas"/>
@@ -542,10 +545,10 @@
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="48"/>
         <CursorPos Y="70"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="39"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit47>
@@ -555,10 +558,10 @@
         <ComponentName Value="ViewOsobyBliskie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="82"/>
         <CursorPos Y="85"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit48>

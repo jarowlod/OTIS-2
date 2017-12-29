@@ -36,7 +36,7 @@ object AktualizacjaOs: TAktualizacjaOs
       ScrollBars = ssAutoBoth
       TabOrder = 0
     end
-    object BitBtn1: TBitBtn
+    object btnAktualizujOs: TBitBtn
       Left = 22
       Height = 30
       Top = 14
@@ -78,7 +78,7 @@ object AktualizacjaOs: TAktualizacjaOs
         00000000000000000000CE791924D78E2E72E4A84CDAE9B057F5F1C472F3EFBF
         6AF6EFBD58CDEDB23364EEB43509000000000000000000000000
       }
-      OnClick = BitBtn1Click
+      OnClick = btnAktualizujOsClick
       TabOrder = 1
     end
     object Label1: TLabel
@@ -91,7 +91,7 @@ object AktualizacjaOs: TAktualizacjaOs
       ParentColor = False
       WordWrap = True
     end
-    object BitBtn2: TBitBtn
+    object btnWczytajSchowek: TBitBtn
       Left = 22
       Height = 30
       Top = 155
@@ -133,7 +133,7 @@ object AktualizacjaOs: TAktualizacjaOs
         0000000000000000000000000000C9C9C91EA6A6A6FFB7B7B780000000000000
         0000000000000000000000000000000000000000000000000000
       }
-      OnClick = BitBtn2Click
+      OnClick = btnWczytajSchowekClick
       TabOrder = 2
     end
   end
@@ -160,6 +160,7 @@ object AktualizacjaOs: TAktualizacjaOs
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'IDO'
+        Width = 80
         FieldName = 'IDO'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -215,7 +216,7 @@ object AktualizacjaOs: TAktualizacjaOs
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'URODZ'
-        Width = 80
+        Width = 70
         FieldName = 'URODZ'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -229,7 +230,7 @@ object AktualizacjaOs: TAktualizacjaOs
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'PRZYJ'
-        Width = 80
+        Width = 70
         FieldName = 'PRZYJ'
         EditButtons = <>
         Filter.DropDownRows = 0
