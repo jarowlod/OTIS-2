@@ -1,7 +1,7 @@
 object OchRejestrWidzen: TOchRejestrWidzen
-  Left = 396
+  Left = 407
   Height = 766
-  Top = 222
+  Top = 229
   Width = 1216
   Caption = 'Rejestr widzeń osadzonych'
   ClientHeight = 766

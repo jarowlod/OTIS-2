@@ -38,6 +38,7 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     Panel_1: TPanel;
+    sbtnWyslijWiad: TSpeedButton;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheetPaczki: TTabSheet;
@@ -53,6 +54,8 @@ type
     procedure btnRejestrZatClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure sbtnWyslijWiadClick(Sender: TObject);
   private
     SelectIDO  : integer;
         // importowane widoki osadzone w zakładkach
@@ -71,7 +74,7 @@ type
 //  OchForm: TOchForm;
 
 implementation
-uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie, URejestrProsbDodaj;
+uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie, URejestrProsbDodaj, UKomunikatorNowaWiad;
 {$R *.frm}
 
 { TOchForm }
@@ -105,6 +108,26 @@ begin
   fViewOsobyBliskie:= TViewOsobyBliskie.Create(Self);
   fViewOsobyBliskie.Parent:= TabSheetOsobyBliskie;
   fViewOsobyBliskie.Show;
+end;
+
+procedure TOchForm.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Char(Key) =#27 then    // ESC
+  begin
+    close;
+  end;
+end;
+
+procedure TOchForm.sbtnWyslijWiadClick(Sender: TObject);
+begin
+  if DBWychowawca.Caption = '' then exit;
+  with TKomunikatorNowaWiad.Create(Self) do
+  begin
+       OdpiszDoUserByIDO( SelectIDO );
+       ShowModal;
+       Free;
+  end;
 end;
 
 procedure TOchForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);

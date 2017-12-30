@@ -15,6 +15,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ActionKomunikatNowy: TAction;
     ActionKartaOchronna: TAction;
     ActionDodajOsobeBliska: TAction;
     ActionZwrotyPaczek: TAction;
@@ -77,6 +78,7 @@ type
     MenuItem55: TMenuItem;
     MenuItem59: TMenuItem;
     MenuItem60: TMenuItem;
+    MenuItem61: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -149,6 +151,7 @@ type
     procedure ActionKartaOchronnaExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
     procedure ActionKomunikatDoExecute(Sender: TObject);
+    procedure ActionKomunikatNowyExecute(Sender: TObject);
     procedure ActionKomunikatorExecute(Sender: TObject);
     procedure ActionKoszykExecute(Sender: TObject);
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
@@ -581,6 +584,15 @@ begin
   with TKomunikatorNowaWiad.Create(Self) do
   begin
        OdpiszDoUserByIDO( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TForm1.ActionKomunikatNowyExecute(Sender: TObject);
+begin
+  with TKomunikatorNowaWiad.Create(Self) do
+  begin
        ShowModal;
        Free;
   end;

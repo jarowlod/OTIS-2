@@ -146,7 +146,7 @@ begin
 
   //ORDER BY
   if RadioGroup1.ItemIndex = 0 then
-        ZQWidzenia.SQL.Add('ORDER BY w.Data_Oczekuje DESC')  // poczekalnia
+        ZQWidzenia.SQL.Add('ORDER BY w.Data_Oczekuje')  // poczekalnia
       else
         ZQWidzenia.SQL.Add('ORDER BY w.Data_Widzenie DESC'); // sala widzeń i zrealizowane
 

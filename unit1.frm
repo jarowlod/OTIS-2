@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 396
+  Left = 407
   Height = 598
-  Top = 222
+  Top = 229
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1204,6 +1204,9 @@ object Form1: TForm1
       object MenuItem30: TMenuItem
         Action = ActionKomunikator
       end
+      object MenuItem61: TMenuItem
+        Action = ActionKomunikatNowy
+      end
       object MenuItem38: TMenuItem
         Action = ActionKomunikatDo
       end
@@ -1490,6 +1493,12 @@ object Form1: TForm1
       Hint = 'Karta Ochronna'
       ImageIndex = 24
       OnExecute = ActionKartaOchronnaExecute
+    end
+    object ActionKomunikatNowy: TAction
+      Category = 'Dodatki'
+      Caption = 'Nowa wiadomość ...'
+      ImageIndex = 36
+      OnExecute = ActionKomunikatNowyExecute
     end
   end
   object Timer2Komunikaty: TTimer

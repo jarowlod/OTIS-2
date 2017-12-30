@@ -20,6 +20,7 @@ type
     BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
     BitBtn5: TBitBtn;
+    btnDodajDoKoszyka: TSpeedButton;
     CheckBox1: TCheckBox;
     cbNazwaGrupy: TCheckBox;
     cbZatNaDzien: TCheckBox;
@@ -261,6 +262,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
+    procedure btnDodajDoKoszykaClick(Sender: TObject);
     procedure cbZatNaDzienChange(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure cbNazwaGrupyChange(Sender: TObject);
@@ -310,8 +312,8 @@ type
     Procedure ShowZatrudnienieOsadzonego(ido: integer; nazwisko: string);
   end;
 
-var
-  Zatrudnieni: TZatrudnieni;
+//var
+//  Zatrudnieni: TZatrudnieni;
 
 implementation
 uses UAddZatrudnienie, Clipbrd, UZatZaswiadczenie, UZatWniosekUrlopowy, UStawkiPlac, LR_DSet;
@@ -686,6 +688,13 @@ begin
 
   FreeAndNil(ZQ);
   NewSelect; // odświerzamy widok
+end;
+
+procedure TZatrudnieni.btnDodajDoKoszykaClick(Sender: TObject);
+begin
+  if ZQZatrudnieni.IsEmpty then exit;
+  if DM.DodajDoKoszyka( ZQZatrudnieni.FieldByName('ido').AsInteger ) then
+     DM.KomunikatPopUp(Sender, 'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
 end;
 
 procedure TZatrudnieni.cbZatNaDzienChange(Sender: TObject);

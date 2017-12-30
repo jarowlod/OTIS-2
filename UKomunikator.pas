@@ -50,8 +50,8 @@ type
 
   end;
 
-var
-  Komunikator: TKomunikator;
+//var
+//  Komunikator: TKomunikator;
 
 implementation
 uses UKomunikatorNowaWiad;
