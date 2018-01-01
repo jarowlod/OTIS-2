@@ -4,7 +4,7 @@ program project1;
 
 uses
   Interfaces, Forms, pl_rx, SysUtils, controls,
-  Unit1, datamodule, ULogowanie
+  UMasterForm, datamodule, ULogowanie
   ;
 
 
@@ -20,7 +20,7 @@ begin
   if Logowanie.ShowModal= mrOK then
       begin
         DM.OpenAllTable;                          // sprawdzamy akutualizacje i otwieramy tabele
-        Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TMasterForm, MasterForm);
       end
   else
       Application.Terminate;

@@ -124,18 +124,17 @@
         <PackageName Value="adLCL"/>
       </Item28>
     </RequiredPackages>
-    <Units Count="49">
+    <Units Count="51">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="unit1.pas"/>
+        <Filename Value="UMasterForm.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit1"/>
       </Unit1>
       <Unit2>
         <Filename Value="datamodule.pas"/>
@@ -466,6 +465,20 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit48>
+      <Unit49>
+        <Filename Value="UViewPanelZdj.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ViewPanelZdj"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit49>
+      <Unit50>
+        <Filename Value="UAktualizacjaZdjec.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AktualizacjaZdjec"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit50>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

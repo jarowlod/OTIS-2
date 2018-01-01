@@ -10,7 +10,7 @@ object OchForm: TOchForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
-  Position = poOwnerFormCenter
+  Position = poScreenCenter
   LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0

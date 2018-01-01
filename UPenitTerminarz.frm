@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 368
+  Left = 180
   Height = 743
-  Top = 364
+  Top = 178
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -94,16 +94,16 @@ object PenitTerminarz: TPenitTerminarz
     Height = 693
     Top = 50
     Width = 1182
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
-      ClientHeight = 935
-      ClientWidth = 1912
+      ClientHeight = 660
+      ClientWidth = 1174
       ImageIndex = 16
       OnShow = TabSheet1Show
       object YearPlanner1: TYearPlanner
@@ -112,9 +112,12 @@ object PenitTerminarz: TPenitTerminarz
         Top = 0
         Width = 798
         Align = alClient
+        DayFont.CharSet = EASTEUROPE_CHARSET
         DayFont.Color = 3355443
         DayFont.Height = -11
         DayFont.Name = 'Arial'
+        DayFont.Pitch = fpVariable
+        DayFont.Quality = fqCleartype
         GridPen.Color = 13158600
         HeadingColor = clWhite
         Images = ImageList1
@@ -129,7 +132,6 @@ object PenitTerminarz: TPenitTerminarz
         SelectionFont.Name = 'Arial'
         Seperator = False
         ShowToday = True
-        StretchImages = True
         TextLayout = tlTop
         TodayCircleColour = 13999409
         TodayCircleFilled = True
@@ -146,6 +148,7 @@ object PenitTerminarz: TPenitTerminarz
         YearFont.Color = 3355443
         YearFont.Height = -11
         YearFont.Name = 'Arial'
+        OnDrawCell = YearPlanner1DrawCell
         OnSelectionEnd = YearPlanner1SelectionEnd
         OnYearChanged = YearPlanner1YearChanged
       end
@@ -613,9 +616,28 @@ object PenitTerminarz: TPenitTerminarz
             item
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
-              Title.Caption = 'Zatrudnienie'
+              Title.Hint = 'Przyczyny niezatrudnienia.'
+              Title.ShowHint = True
+              Title.Caption = 'Zatrudnienie uwagi'
               Width = 150
               FieldName = 'Zatrudnienie'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Alignment = taCenter
+              Font.Color = clMaroon
+              Title.Alignment = taCenter
+              Title.Color = clNone
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Zatrudniony od'
+              Width = 70
+              FieldName = 'zat_od'
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
@@ -827,16 +849,16 @@ object PenitTerminarz: TPenitTerminarz
     CachedUpdates = True
     SQL.Strings = (
       'SELECT'
-      'osadzeni.IDO,'
-      'NAZWISKO,'
-      'IMIE,'
-      'CONCAT_WS('' '',NAZWISKO, IMIE) as NazwiskoImie,'
-      'OJCIEC,'
-      'URODZ,'
-      'PRZYJ,'
-      'KLASYF,'
-      'osadzeni.POC,'
-      'STATUS,'
+      'os.IDO,'
+      'os.NAZWISKO,'
+      'os.IMIE,'
+      'CONCAT_WS('' '',os.NAZWISKO, os.IMIE) as NazwiskoImie,'
+      'os.OJCIEC,'
+      'os.URODZ,'
+      'os.PRZYJ,'
+      'os.KLASYF,'
+      'os.POC,'
+      'os.STATUS,'
       'Autoryzacja,'
       'data_autoryzacji,'
       'KoniecKary,'
@@ -853,10 +875,12 @@ object PenitTerminarz: TPenitTerminarz
       'wpz_stanowisko,'
       'postpenit_notatka,'
       'GR,'
-      'typ_cel.ID'
-      'FROM osadzeni'
-      'LEFT OUTER JOIN os_info ON (osadzeni.IDO = os_info.IDO)'
-      'INNER JOIN typ_cel ON (osadzeni.POC = typ_cel.POC)'
+      'typ_cel.ID,'
+      'zat.zat_od'
+      'FROM osadzeni os'
+      'LEFT OUTER JOIN os_info ON (os.IDO = os_info.IDO)'
+      'INNER JOIN typ_cel ON (os.POC = typ_cel.POC)'
+      'LEFT OUTER JOIN zat_zatrudnieni zat ON (zat.IDO = os.IDO)and(zat.status_zatrudnienia="zatrudniony")'
     )
     Params = <>
     Left = 456
@@ -1113,6 +1137,15 @@ object PenitTerminarz: TPenitTerminarz
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
+    end
+    object ZQTerminarzzat_od: TDateField
+      FieldKind = fkData
+      FieldName = 'zat_od'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
   object DSTerminarz: TDataSource
@@ -2028,6 +2061,11 @@ object PenitTerminarz: TPenitTerminarz
       }
       ImageIndex = 33
       OnClick = MenuItem5Click
+    end
+    object MenuItem9: TMenuItem
+      Caption = 'Filtr - zatrudnieni'
+      ImageIndex = 33
+      OnClick = MenuItem9Click
     end
     object MenuItem6: TMenuItem
       Caption = 'Wszyscy'

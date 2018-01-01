@@ -1,4 +1,4 @@
-object Form1: TForm1
+object MasterForm: TMasterForm
   Left = 407
   Height = 598
   Top = 229
@@ -851,7 +851,7 @@ object Form1: TForm1
         Style = tbsSeparator
       end
       object ToolButton8: TToolButton
-        Left = 194
+        Left = 240
         Top = 0
         Action = ActionTerminarz
       end
@@ -876,6 +876,16 @@ object Form1: TForm1
         Left = 163
         Top = 0
         Action = ActionKartaOchronna
+      end
+      object ToolButton13: TToolButton
+        Left = 217
+        Top = 0
+        Action = ActionKomunikator
+      end
+      object ToolButton14: TToolButton
+        Left = 194
+        Top = 0
+        Action = ActionKoszyk
       end
     end
   end
@@ -929,6 +939,9 @@ object Form1: TForm1
         Caption = 'Rejestr aktualizacji...'
         ImageIndex = 12
         OnClick = MenuItem26Click
+      end
+      object MenuItem62: TMenuItem
+        Action = ActionZdjeciaBraki
       end
       object MenuItem52: TMenuItem
         Caption = '-'
@@ -1134,6 +1147,12 @@ object Form1: TForm1
       end
       object MenuItem13: TMenuItem
         Action = ActionSkype
+      end
+      object MenuItem64: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem63: TMenuItem
+        Action = ActionSalaWidzen
       end
       object MenuItem29: TMenuItem
         Caption = '-'
@@ -1387,12 +1406,14 @@ object Form1: TForm1
     object ActionKomunikator: TAction
       Category = 'Dodatki'
       Caption = 'Komunikator ...'
+      Hint = 'Komunikator ...'
       ImageIndex = 23
       OnExecute = ActionKomunikatorExecute
     end
     object ActionZatrudnieni: TAction
       Category = 'Zatrudnienie'
       Caption = 'Zatrudnieni ...'
+      Hint = 'Rejest zatrudnionych ...'
       ImageIndex = 8
       OnExecute = ActionZatrudnieniExecute
     end
@@ -1447,7 +1468,8 @@ object Form1: TForm1
     object ActionKoszyk: TAction
       Category = 'Penit'
       Caption = 'Koszyki ...'
-      ImageIndex = 26
+      Hint = 'Menadżer koszyków ...'
+      ImageIndex = 30
       OnExecute = ActionKoszykExecute
     end
     object ActionDodajDoKoszyka: TAction
@@ -1476,7 +1498,7 @@ object Form1: TForm1
     object ActionAddWidzenie: TAction
       Category = 'Widzenia'
       Caption = 'Dodaj widzenie ...'
-      Hint = 'Dodaj widzenie'
+      Hint = 'Dodaj widzenie ...'
       ImageIndex = 27
       OnExecute = ActionAddWidzenieExecute
       ShortCut = 16471
@@ -1499,6 +1521,17 @@ object Form1: TForm1
       Caption = 'Nowa wiadomość ...'
       ImageIndex = 36
       OnExecute = ActionKomunikatNowyExecute
+    end
+    object ActionSalaWidzen: TAction
+      Category = 'Widzenia'
+      Caption = 'Sala Widzeń ...'
+      ImageIndex = 37
+    end
+    object ActionZdjeciaBraki: TAction
+      Category = 'Opcje'
+      Caption = 'Brakujące zdjęcia os. ...'
+      ImageIndex = 38
+      OnExecute = ActionZdjeciaBrakiExecute
     end
   end
   object Timer2Komunikaty: TTimer

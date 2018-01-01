@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
-  Left = 396
+  Left = 407
   Height = 795
-  Top = 222
+  Top = 229
   Width = 715
   Caption = 'Karta Penitencjarna'
   ClientHeight = 795
@@ -10,7 +10,7 @@ object PenitForm: TPenitForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
-  Position = poOwnerFormCenter
+  Position = poScreenCenter
   LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0

@@ -45,7 +45,7 @@ var
   OknoKomunikatu: TOknoKomunikatu;
 
 implementation
-uses Unit1;
+uses UMasterForm;
 {$R *.frm}
 
 { TOknoKomunikatu }
@@ -132,7 +132,7 @@ begin
     ZQKomunikat.Open;
   except
     ShowMessage('Połączenie zostało zerwane. Zaloguj się ponownie. K001.');
-    Form1.Zaloguj;
+    MasterForm.Zaloguj;
     ZQKomunikat.Open;
   end;
 // END STARE
@@ -142,7 +142,7 @@ begin
     ZQKomOdebrane.Open;
   except
     ShowMessage('Połączenie zostało zerwane. Zaloguj się ponownie. K002');
-    Form1.Zaloguj;
+    MasterForm.Zaloguj;
     ZQKomOdebrane.Open;
   end;
 
