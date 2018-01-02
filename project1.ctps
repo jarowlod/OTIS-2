@@ -32,9 +32,10 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="619"/>
-        <CursorPos X="44" Y="619"/>
+        <TopLine Value="118"/>
+        <CursorPos X="20" Y="131"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -447,7 +448,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
         <CursorPos X="3" Y="82"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="200"/>
       </Unit39>
       <Unit40>
         <Filename Value="UKoszyk.pas"/>
@@ -458,7 +459,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos X="65" Y="96"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="198"/>
       </Unit40>
       <Unit41>
         <Filename Value="UOchAddOsobeWidzenie.pas"/>
@@ -469,7 +470,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="112"/>
         <CursorPos Y="53"/>
-        <UsageCount Value="158"/>
+        <UsageCount Value="160"/>
       </Unit41>
       <Unit42>
         <Filename Value="UViewUwagiOch.pas"/>
@@ -480,7 +481,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="33" Y="105"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="123"/>
       </Unit42>
       <Unit43>
         <Filename Value="UViewWykazy.pas"/>
@@ -490,7 +491,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="96" Y="58"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="123"/>
       </Unit43>
       <Unit44>
         <Filename Value="UViewZatrudnienie.pas"/>
@@ -501,7 +502,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="6"/>
         <CursorPos X="48" Y="9"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="119"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit44>
@@ -514,7 +515,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="46"/>
         <CursorPos X="3" Y="54"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="115"/>
       </Unit45>
       <Unit46>
         <Filename Value="UKoszykDostep.pas"/>
@@ -525,7 +526,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="36" Y="97"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="109"/>
       </Unit46>
       <Unit47>
         <Filename Value="UOchForm.pas"/>
@@ -536,7 +537,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="113"/>
         <CursorPos X="16" Y="119"/>
-        <UsageCount Value="80"/>
+        <UsageCount Value="82"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit47>
@@ -549,7 +550,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="82"/>
         <CursorPos Y="85"/>
-        <UsageCount Value="71"/>
+        <UsageCount Value="73"/>
       </Unit48>
       <Unit49>
         <Filename Value="UViewPanelZdj.pas"/>
@@ -560,7 +561,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="89"/>
         <CursorPos X="58" Y="103"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="57"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit49>
@@ -570,11 +571,10 @@
         <ComponentName Value="AktualizacjaZdjec"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="17"/>
         <CursorPos Y="34"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit50>

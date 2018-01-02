@@ -1,0 +1,1 @@
+C:\codetyphon\fpc\fpc32\bin\i386-win32\strip.exe Update.exe
