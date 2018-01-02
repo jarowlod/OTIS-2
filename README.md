@@ -6,13 +6,13 @@ is the Pascal Rapid Application Development tool,<br>
 part of CodeTyphon Programming Studio.
 
 <b>Wersja środowiska: 6.3</b>
-
+--
 Dodatkowy Komponent TYearPlanner: w katalogu Projekty\YearPlanner\
 
 Program do automatycznej aktualizacji: w katalogu Projekty\Update\
 
 Przygotowanie do pracy:
-
+--
 Utworzenie tabel w bazie danych na podstawie: Projekty\Create Table.sql<br>
 Utworzenie pierwszego użytkownika i dodanie go do tabeli (uprawnienia), nadanie uprawnień administratora (Mod8 = 1).<br>
 W tabeli (ver_otis2) wpisać:<br>
