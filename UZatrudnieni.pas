@@ -19,14 +19,14 @@ type
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
+    btnZapiszZmiany: TBitBtn;
     btnDodajDoKoszyka: TSpeedButton;
     CheckBox1: TCheckBox;
     cbNazwaGrupy: TCheckBox;
     cbZatNaDzien: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
+    cbZmianyPOC: TCheckBox;
+    cbZmianyKlasyf: TCheckBox;
+    cbZmianyPobytow: TCheckBox;
     cbMiejsce: TCheckBox;
     ComboBox1: TComboBox;
     DateTimePicker1: TDateTimePicker;
@@ -74,9 +74,9 @@ type
     DBText38: TDBText;
     DBText39: TDBText;
     DBText4: TDBText;
-    DBText40: TDBText;
-    DBText41: TDBText;
-    DBText42: TDBText;
+    DBPoprzedniePOC: TDBText;
+    DBPoprzedniaKlasyf: TDBText;
+    DBAktualnyPobyt: TDBText;
     DBText43: TDBText;
     DBText44: TDBText;
     DBText45: TDBText;
@@ -138,9 +138,9 @@ type
     Label4: TLabel;
     Label40: TLabel;
     Label41: TLabel;
-    Label42: TLabel;
-    Label43: TLabel;
-    Label44: TLabel;
+    lblPoprzedniePOC: TLabel;
+    lblPoprzedniaKlasyf: TLabel;
+    lblAktualnyPobyt: TLabel;
     Label45: TLabel;
     Label46: TLabel;
     Label47: TLabel;
@@ -191,8 +191,8 @@ type
     Panel5: TPanel;
     plGradient1: TplGradient;
     PopupMenu1: TPopupMenu;
-    RadioGroup1: TRadioGroup;
-    RadioGroup2: TRadioGroup;
+    rgStatusZat: TRadioGroup;
+    rgStatusPobytu: TRadioGroup;
     RxDBGrid1: TRxDBGrid;
     Splitter1: TSplitter;
     tabSzczegolyOs: TTabSheet;
@@ -261,12 +261,12 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
-    procedure BitBtn5Click(Sender: TObject);
+    procedure btnZapiszZmianyClick(Sender: TObject);
     procedure btnDodajDoKoszykaClick(Sender: TObject);
     procedure cbZatNaDzienChange(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure cbNazwaGrupyChange(Sender: TObject);
-    procedure CheckBox3Change(Sender: TObject);
+    procedure cbZmianyPOCChange(Sender: TObject);
     procedure cbMiejsceChange(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure DateTimePicker1Change(Sender: TObject);
@@ -293,8 +293,8 @@ type
     procedure lblWniosekOZatrudnienieClick(Sender: TObject);
     procedure lblWniosekUrlopowyClick(Sender: TObject);
     procedure lblZatZaswiadczenieClick(Sender: TObject);
-    procedure RadioGroup1SelectionChanged(Sender: TObject);
-    procedure RadioGroup2SelectionChanged(Sender: TObject);
+    procedure rgStatusZatSelectionChanged(Sender: TObject);
+    procedure rgStatusPobytuSelectionChanged(Sender: TObject);
     procedure RxDBGrid1DblClick(Sender: TObject);
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
@@ -323,7 +323,7 @@ uses UAddZatrudnienie, Clipbrd, UZatZaswiadczenie, UZatWniosekUrlopowy, UStawkiP
 
 procedure TZatrudnieni.FormCreate(Sender: TObject);
 begin
-  BitBtn5.Enabled:= DM.uprawnienia[15];  // zatrudnienie
+  btnZapiszZmiany.Enabled:= DM.uprawnienia[15];  // zatrudnienie
   BitBtn1.Enabled:= DM.uprawnienia[15];  // zatrudnienie
   BitBtn2.Enabled:= DM.uprawnienia[15];  // zatrudnienie
   BitBtn3.Enabled:= DM.uprawnienia[15];  // zatrudnienie
@@ -346,6 +346,8 @@ begin
   DateTimePicker3.Date:= Date;  // Data dla wydruku Kart Pracy
   PageControl1.TabIndex:= 0;
   PageControl2.TabIndex:= 0;
+
+  btnDodajDoKoszyka.Hint:= 'Dodaj osadzonego do koszyka: '+ DM.ZQKoszyk_sl.FieldByName('nazwa').AsString;
 end;
 
 procedure TZatrudnieni.NewSelect;
@@ -363,7 +365,7 @@ begin
   ZQZatrudnieni.SQL.Text:= SQLZatrudnieni + ' WHERE';
 
   // STATUS POBYTU
-  case RadioGroup2.ItemIndex of
+  case rgStatusPobytu.ItemIndex of
        0: spobyt:= sp_Aktualny;
        1: spobyt:= sp_Uprzedni;
        2: spobyt:='%';
@@ -375,7 +377,7 @@ begin
       end;
 
   // STATUS ZATRUDNIENIA
-  case RadioGroup1.ItemIndex of
+  case rgStatusZat.ItemIndex of
        0: sstatus_zatrudnienia:= sz_Zatrudniony;
        1: sstatus_zatrudnienia:= sz_Wycofany;
        2: sstatus_zatrudnienia:= sz_Oczekujacy;
@@ -414,12 +416,12 @@ begin
       end;
 
   //Zmienili Celę
-  if CheckBox3.Checked then
+  if cbZmianyPOC.Checked then
      begin
        ZQZatrudnieni.SQL.Add(' (zat.POC <> os.POC) AND');
      end;
   //Zmienili Klasyfikację
-  if CheckBox4.Checked then
+  if cbZmianyKlasyf.Checked then
      begin
        ZQZatrudnieni.SQL.Add(' (zat.Klasyf <> os.Klasyf) AND');
      end;
@@ -445,7 +447,7 @@ begin
   ZQZatrudnieni.ParamByName('nazwisko').AsString:= snazwisko;
 
   //Zmienili pobyt
-  if CheckBox5.Checked then
+  if cbZmianyPobytow.Checked then
      begin
        ZQZatrudnieni.SQL.Add(' HAVING new_pobyt <> pobyt');
      end;
@@ -453,13 +455,13 @@ begin
   ZQZatrudnieni.Open;
 end;
 
-procedure TZatrudnieni.RadioGroup1SelectionChanged(Sender: TObject);
+procedure TZatrudnieni.rgStatusZatSelectionChanged(Sender: TObject);
 begin
   //zmieniamy statusy zatrudnienia
   NewSelect;
 end;
 
-procedure TZatrudnieni.RadioGroup2SelectionChanged(Sender: TObject);
+procedure TZatrudnieni.rgStatusPobytuSelectionChanged(Sender: TObject);
 begin
   //zmieniamy pobyty osadzonego
   NewSelect;
@@ -582,42 +584,45 @@ begin
 end;
 
 //ZMIANY Celi, Klasyfikacji, Ubyli
-procedure TZatrudnieni.CheckBox3Change(Sender: TObject);
+procedure TZatrudnieni.cbZmianyPOCChange(Sender: TObject);
 begin
   if TCheckBox(Sender).Checked then
       begin
         DisableNewSelect:= true;  // wyłączamy działeanie kontrolek NewSelect;
 
-        RadioGroup1.ItemIndex:= 3;    // status zatrudnienia na wszystkie
-        RadioGroup2.ItemIndex:= 0;    // pobyty na aktualne
+        rgStatusZat.ItemIndex   := 3;    // 0 Zatrudniony, 3 - wszystkie
+        rgStatusPobytu.ItemIndex:= 0;    // pobyty na aktualne
 
-        BitBtn5.Visible:= true;      // ZAPISZ
+        btnZapiszZmiany.Visible    := true;      // ZAPISZ
 
-        Label42.Visible:= false;      // POC
-        Label43.Visible:= false;      // Klasyf
-        Label44.Visible:= false;      // pobyt
-        DBText40.Visible:= false;
-        DBText41.Visible:= false;
-        DBText42.Visible:= false;
+        lblPoprzedniePOC.Visible   := false;      // POC
+        lblPoprzedniaKlasyf.Visible:= false;      // Klasyf
+        lblAktualnyPobyt.Visible   := false;      // pobyt
+        DBPoprzedniePOC.Visible    := false;
+        DBPoprzedniaKlasyf.Visible := false;
+        DBAktualnyPobyt.Visible    := false;
 
         case TCheckBox(Sender).Caption of
              'Celi':         begin
-                               CheckBox4.Checked:= False; //klasyfikacji
-                               CheckBox5.Checked:= False; //Ubyli
-                               Label42.Visible:= true;    // POC
-                               DBText40.Visible:= true;   // POC
+                               cbZmianyKlasyf.Checked  := False; //klasyfikacji
+                               cbZmianyPobytow.Checked := False; //Ubyli
+                               lblPoprzedniePOC.Visible:= true;    // POC
+                               DBPoprzedniePOC.Visible := true;   // POC
+                               rgStatusZat.ItemIndex   := 0;    // 0 Zatrudniony, 3 - wszystkie
                              end;
              'Klasyfikacji': begin
-                               CheckBox3.Checked:= False; //Celi
-                               CheckBox5.Checked:= False; //Ubyli
-                               Label43.Visible:= true;   // Klasyf
-                               DBText41.Visible:= true;  // Klasyf
+                               cbZmianyPOC.Checked        := False; //Celi
+                               cbZmianyPobytow.Checked    := False; //Ubyli
+                               lblPoprzedniaKlasyf.Visible:= true;   // Klasyf
+                               DBPoprzedniaKlasyf.Visible := true;   // Klasyf
+                               rgStatusZat.ItemIndex   := 0;    // 0 Zatrudniony, 3 - wszystkie
                              end;
              'Ubyli':         begin
-                               CheckBox3.Checked:= False; //Celi
-                               CheckBox4.Checked:= False; //klasyfikacji
-                               Label44.Visible:= true;   // pobyt
-                               DBText42.Visible:= true;  // pobyt
+                               cbZmianyPOC.Checked     := False; //Celi
+                               cbZmianyKlasyf.Checked  := False; //klasyfikacji
+                               lblAktualnyPobyt.Visible:= true;   // pobyt
+                               DBAktualnyPobyt.Visible := true;   // pobyt
+                               rgStatusZat.ItemIndex   := 3;    // 0 Zatrudniony, 3 - wszystkie
                              end;
         end;
 
@@ -625,16 +630,17 @@ begin
         NewSelect;
       end;
 
-  if (not CheckBox3.Checked) AND (not CheckBox4.Checked) AND (not CheckBox5.Checked) then
+  if (not cbZmianyPOC.Checked) AND (not cbZmianyKlasyf.Checked) AND (not cbZmianyPobytow.Checked) then
       begin
-        Label42.Visible:= false;
-        Label43.Visible:= false;
-        Label44.Visible:= false;
-        DBText40.Visible:= false;
-        DBText41.Visible:= false;
-        DBText42.Visible:= false;
+        lblPoprzedniePOC.Visible   := false;
+        lblPoprzedniaKlasyf.Visible:= false;
+        lblAktualnyPobyt.Visible   := false;
+        DBPoprzedniePOC.Visible    := false;
+        DBPoprzedniaKlasyf.Visible := false;
+        DBAktualnyPobyt.Visible    := false;
 
-        BitBtn5.Visible:= false;
+        btnZapiszZmiany.Visible    := false;
+        rgStatusZat.ItemIndex      := 0;    // 0 Zatrudniony, 3 - wszystkie
 
         NewSelect;
       end;
@@ -654,7 +660,7 @@ begin
 end;
 
 // ZAPISZ ZMIANY
-procedure TZatrudnieni.BitBtn5Click(Sender: TObject);
+procedure TZatrudnieni.btnZapiszZmianyClick(Sender: TObject);
 var ZQ: TZQueryPom;
 begin
   if ZQZatrudnieni.IsEmpty then exit;
@@ -664,17 +670,17 @@ begin
 
   while not ZQZatrudnieni.EOF do
   begin
-    if CheckBox3.Checked then  // 'Celi'
+    if cbZmianyPOC.Checked then  // 'Celi'
         begin
            ZQ.SQL.Text:= 'UPDATE zat_zatrudnieni SET POC = :POC WHERE id = :id';
            ZQ.ParamByName('POC').AsString := ZQZatrudnieni.FieldByName('POC').AsString;
         end;
-    if CheckBox4.Checked then  // 'Klasyfikacji'
+    if cbZmianyKlasyf.Checked then  // 'Klasyfikacji'
         begin
            ZQ.SQL.Text:= 'UPDATE zat_zatrudnieni SET Klasyf = :Klasyf WHERE id = :id';
            ZQ.ParamByName('Klasyf').AsString := ZQZatrudnieni.FieldByName('Klasyf').AsString;
         end;
-    if CheckBox5.Checked then  // 'Ubyli'
+    if cbZmianyPobytow.Checked then  // 'Ubyli'
         begin
            ZQ.SQL.Text:= 'UPDATE zat_zatrudnieni SET Pobyt = :Pobyt WHERE id = :id';
            ZQ.ParamByName('Pobyt').AsString := ZQZatrudnieni.FieldByName('new_Pobyt').AsString;
@@ -703,8 +709,8 @@ begin
 
   if cbZatNaDzien.Checked then
       begin
-        RadioGroup1.ItemIndex:= 3;    // status zatrudnienia na wszystkie
-        RadioGroup2.ItemIndex:= 2;    // pobyty na wszystkie
+        rgStatusZat.ItemIndex:= 3;    // status zatrudnienia na wszystkie
+        rgStatusPobytu.ItemIndex:= 2;    // pobyty na wszystkie
 
         dtZatNaDzien.Enabled:= true;
       end
@@ -777,8 +783,8 @@ begin
   ZQZatrudnieni.Open;
 
   Edit1.Text:= nazwisko;
-  RadioGroup1.ItemIndex:= 3;   //select status all
-  RadioGroup2.ItemIndex:= 2;   //select pobyt all
+  rgStatusZat.ItemIndex:= 3;   //select status all
+  rgStatusPobytu.ItemIndex:= 2;   //select pobyt all
   DisableNewSelect:= false;
 end;
 

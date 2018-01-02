@@ -17,8 +17,8 @@ type
   TPenitForm = class(TForm)
     btnRejestrProsb: TBitBtn;
     btnRejestrZat: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
+    btnDrukArch: TBitBtn;
+    btnDrukWywiad: TBitBtn;
     DBText4: TDBText;
     DBText9: TDBText;
     DSOs: TDataSource;
@@ -80,8 +80,8 @@ type
     ZUOsNotatki: TZUpdateSQL;
     procedure btnRejestrProsbClick(Sender: TObject);
     procedure btnRejestrZatClick(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
-    procedure BitBtn3Click(Sender: TObject);
+    procedure btnDrukArchClick(Sender: TObject);
+    procedure btnDrukWywiadClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -175,14 +175,20 @@ begin
     lblCelaPalaca.Visible  := false;
     btnRejestrZat.Enabled  := false;
     btnRejestrProsb.Enabled:= false;
+    btnDrukArch.Enabled    := false;
+    btnDrukWywiad.Enabled  := false;
     PageControl1.Visible   := false; // Ukrywamy Okno zakładek !!!
+    Enabled                := false; // cały panel nieaktywny
     exit;
   end;
   //-------------------------------
 
-  btnRejestrZat.Enabled        := true;
-  btnRejestrProsb.Enabled      := true;
-  PageControl1.Visible         := true;
+  btnRejestrZat.Enabled    := true;
+  btnRejestrProsb.Enabled  := true;
+  btnDrukArch.Enabled      := true;
+  btnDrukWywiad.Enabled    := true;
+  PageControl1.Visible     := true;
+  Enabled                  := true;    // cały panel Aktywny
 
   TLoadFotoThread.Create( DM.Path_Foto + IntToStr( SelectIDO )+'.jpg', Image_os);
 
@@ -290,7 +296,7 @@ begin
   end;
 end;
 
-procedure TPenitForm.BitBtn2Click(Sender: TObject);
+procedure TPenitForm.btnDrukArchClick(Sender: TObject);
 begin
   if SelectIDO = 0 then exit;
   with TPenitAktaArch.Create(Self) do
@@ -301,7 +307,7 @@ begin
   end;
 end;
 
-procedure TPenitForm.BitBtn3Click(Sender: TObject);
+procedure TPenitForm.btnDrukWywiadClick(Sender: TObject);
 begin
   if SelectIDO = 0 then exit;
   with TPenitWywiad.Create(Self) do

@@ -113,6 +113,7 @@ object OchAddWidzenie: TOchAddWidzenie
       Increment = 60
       MaxValue = 180
       TabOrder = 2
+      Value = 60
     end
     object edDodatkowe: TSpinEdit
       Left = 224

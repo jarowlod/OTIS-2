@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 152
+  Left = 312
   Height = 856
-  Top = 64
+  Top = 136
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -256,34 +256,34 @@ object Zatrudnieni: TZatrudnieni
       ClientHeight = 70
       ClientWidth = 92
       TabOrder = 3
-      object CheckBox3: TCheckBox
+      object cbZmianyPOC: TCheckBox
         Left = 8
         Height = 19
         Top = -5
         Width = 40
         Caption = 'Celi'
-        OnChange = CheckBox3Change
+        OnChange = cbZmianyPOCChange
         TabOrder = 0
       end
-      object CheckBox4: TCheckBox
+      object cbZmianyKlasyf: TCheckBox
         Left = 8
         Height = 19
         Top = 11
         Width = 78
         Caption = 'Klasyfikacji'
-        OnChange = CheckBox3Change
+        OnChange = cbZmianyPOCChange
         TabOrder = 1
       end
-      object CheckBox5: TCheckBox
+      object cbZmianyPobytow: TCheckBox
         Left = 8
         Height = 19
         Top = 27
         Width = 47
         Caption = 'Ubyli'
-        OnChange = CheckBox3Change
+        OnChange = cbZmianyPOCChange
         TabOrder = 2
       end
-      object BitBtn5: TBitBtn
+      object btnZapiszZmiany: TBitBtn
         Left = 8
         Height = 22
         Top = 48
@@ -325,12 +325,12 @@ object Zatrudnieni: TZatrudnieni
           0000CACDFA3C3F47E3BD0E18D8F71D25DAFF565EE6BD7E84ED88B1B6F9360000
           0000000000000000000000000000000000000000000000000000
         }
-        OnClick = BitBtn5Click
+        OnClick = btnZapiszZmianyClick
         TabOrder = 3
         Visible = False
       end
     end
-    object RadioGroup1: TRadioGroup
+    object rgStatusZat: TRadioGroup
       Left = 1145
       Height = 90
       Top = 0
@@ -354,10 +354,10 @@ object Zatrudnieni: TZatrudnieni
         'Oczekujący'
         'Wszystkie'
       )
-      OnSelectionChanged = RadioGroup1SelectionChanged
+      OnSelectionChanged = rgStatusZatSelectionChanged
       TabOrder = 5
     end
-    object RadioGroup2: TRadioGroup
+    object rgStatusPobytu: TRadioGroup
       Left = 1265
       Height = 90
       Top = 0
@@ -380,7 +380,7 @@ object Zatrudnieni: TZatrudnieni
         'Uprzednie'
         'Wszystkie'
       )
-      OnSelectionChanged = RadioGroup2SelectionChanged
+      OnSelectionChanged = rgStatusPobytuSelectionChanged
       TabOrder = 6
     end
   end
@@ -782,11 +782,11 @@ object Zatrudnieni: TZatrudnieni
       Height = 684
       Top = 0
       Width = 506
-      ActivePage = tabWydruki
+      ActivePage = tabSzczegolyOs
       Align = alRight
       Images = DM.ImageList1
       TabHeight = 25
-      TabIndex = 2
+      TabIndex = 0
       TabOrder = 1
       object tabSzczegolyOs: TTabSheet
         Caption = 'Szczegóły osadzonego'
@@ -1000,11 +1000,11 @@ object Zatrudnieni: TZatrudnieni
             ValueChecked = '1'
             ValueUnchecked = '0'
           end
-          object DBText40: TDBText
+          object DBPoprzedniePOC: TDBText
             Left = 400
             Height = 15
             Top = 8
-            Width = 57
+            Width = 103
             Color = clYellow
             DataField = 'zat_POC'
             DataSource = DSZatrudnieni
@@ -1014,7 +1014,7 @@ object Zatrudnieni: TZatrudnieni
             Transparent = False
             Visible = False
           end
-          object Label42: TLabel
+          object lblPoprzedniePOC: TLabel
             Left = 331
             Height = 15
             Top = 8
@@ -1025,7 +1025,7 @@ object Zatrudnieni: TZatrudnieni
             ParentFont = False
             Visible = False
           end
-          object Label43: TLabel
+          object lblPoprzedniaKlasyf: TLabel
             Left = 174
             Height = 15
             Top = 140
@@ -1036,11 +1036,11 @@ object Zatrudnieni: TZatrudnieni
             ParentFont = False
             Visible = False
           end
-          object DBText41: TDBText
+          object DBPoprzedniaKlasyf: TDBText
             Left = 243
             Height = 15
             Top = 140
-            Width = 57
+            Width = 112
             Color = clYellow
             DataField = 'zat_Klasyf'
             DataSource = DSZatrudnieni
@@ -1050,7 +1050,7 @@ object Zatrudnieni: TZatrudnieni
             Transparent = False
             Visible = False
           end
-          object Label44: TLabel
+          object lblAktualnyPobyt: TLabel
             Left = 340
             Height = 15
             Top = 74
@@ -1061,11 +1061,11 @@ object Zatrudnieni: TZatrudnieni
             ParentFont = False
             Visible = False
           end
-          object DBText42: TDBText
+          object DBAktualnyPobyt: TDBText
             Left = 400
             Height = 15
             Top = 74
-            Width = 57
+            Width = 98
             Color = clYellow
             DataField = 'new_pobyt'
             DataSource = DSZatrudnieni
@@ -1200,7 +1200,7 @@ object Zatrudnieni: TZatrudnieni
           TabOrder = 1
           object tabInfoZat: TTabSheet
             Caption = 'Informacje o zatrudnieniu'
-            ClientHeight = 524
+            ClientHeight = 362
             ClientWidth = 490
             ImageIndex = 6
             object plGradient1: TplGradient
@@ -1552,7 +1552,7 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInfoStanowisko: TTabSheet
             Caption = 'Informacje o Stanowisku'
-            ClientHeight = 524
+            ClientHeight = 362
             ClientWidth = 490
             ImageIndex = 7
             object Label15: TLabel

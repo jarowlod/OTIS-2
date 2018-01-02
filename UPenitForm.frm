@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
-  Left = 407
+  Left = 396
   Height = 795
-  Top = 229
+  Top = 222
   Width = 715
   Caption = 'Karta Penitencjarna'
   ClientHeight = 795
@@ -476,7 +476,7 @@ object PenitForm: TPenitForm
       ValueChecked = '1'
       ValueUnchecked = '0'
     end
-    object BitBtn2: TBitBtn
+    object btnDrukArch: TBitBtn
       Left = 312
       Height = 30
       Top = 184
@@ -517,10 +517,10 @@ object PenitForm: TPenitForm
         00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
         DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
       }
-      OnClick = BitBtn2Click
+      OnClick = btnDrukArchClick
       TabOrder = 11
     end
-    object BitBtn3: TBitBtn
+    object btnDrukWywiad: TBitBtn
       Left = 312
       Height = 30
       Top = 216
@@ -561,7 +561,7 @@ object PenitForm: TPenitForm
         00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
         DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
       }
-      OnClick = BitBtn3Click
+      OnClick = btnDrukWywiadClick
       TabOrder = 13
     end
     object Panel_1: TPanel
