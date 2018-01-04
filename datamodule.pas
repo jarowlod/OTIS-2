@@ -104,6 +104,7 @@ type
     path: string;
     Fpic: TPicture;
     Fimg: TImage;
+    Ftag: LongInt;  // kolejność wyświetleń, wyświetlamy tylko jak Image.Tag = Ftag
     procedure SetProprties;
   protected
     procedure Execute; override;
@@ -595,6 +596,11 @@ begin
   inherited Create(False); // wywołanie wątku
   Fimg:= img;
   path:= str;
+
+  // zapamiętujemy numer wywołania w Tag'u zdjęcia i w zmiennej Ftag
+  // zapobiega to wyświetleniu zdjęć na miejscu którym mają wyświetlać się nowe/kolejne zdjęcia.
+  Fimg.Tag:= Fimg.Tag + 1;
+  Ftag:= Fimg.Tag;
 end;
 
 destructor TLoadFotoThread.Destroy;
@@ -616,6 +622,7 @@ end;
 procedure TLoadFotoThread.SetProprties;
 begin
     if terminated then exit;
+    if Ftag <> Fimg.Tag then exit;  // jeśli Img.Tag jest inny od zapamiętanego Ftag to zakończ.
     if Assigned( Fimg ) then
     Fimg.Picture.Assign( Fpic );
 end;

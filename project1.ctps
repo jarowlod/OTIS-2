@@ -19,9 +19,9 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="251"/>
-        <CursorPos X="84" Y="259"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="428"/>
+        <CursorPos X="72" Y="438"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,8 +33,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="118"/>
-        <CursorPos X="18" Y="129"/>
+        <TopLine Value="581"/>
+        <CursorPos X="55" Y="601"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -78,7 +78,7 @@
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="335"/>
         <CursorPos X="3" Y="350"/>
         <UsageCount Value="200"/>
@@ -146,7 +146,7 @@
         <ComponentName Value="OchUpdPodkultury"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="148"/>
         <CursorPos X="66" Y="160"/>
         <UsageCount Value="200"/>
@@ -159,8 +159,7 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="163"/>
         <CursorPos X="35" Y="189"/>
         <UsageCount Value="201"/>
@@ -173,10 +172,13 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="705"/>
-        <CursorPos X="59" Y="687"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="432"/>
+        <CursorPos X="80" Y="452"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit14>
       <Unit15>
         <Filename Value="UPenitAktaArch.pas"/>
@@ -472,7 +474,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="112"/>
         <CursorPos Y="53"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="164"/>
       </Unit41>
       <Unit42>
         <Filename Value="UViewUwagiOch.pas"/>
@@ -483,7 +485,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="33" Y="105"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="127"/>
       </Unit42>
       <Unit43>
         <Filename Value="UViewWykazy.pas"/>
@@ -493,7 +495,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="96" Y="58"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="127"/>
       </Unit43>
       <Unit44>
         <Filename Value="UViewZatrudnienie.pas"/>
@@ -501,10 +503,10 @@
         <ComponentName Value="ViewZatrudnienie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="6"/>
         <CursorPos X="48" Y="9"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="123"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit44>
@@ -517,7 +519,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="46"/>
         <CursorPos X="3" Y="54"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="119"/>
       </Unit45>
       <Unit46>
         <Filename Value="UKoszykDostep.pas"/>
@@ -528,7 +530,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="36" Y="97"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="113"/>
       </Unit46>
       <Unit47>
         <Filename Value="UOchForm.pas"/>
@@ -536,10 +538,10 @@
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="113"/>
         <CursorPos X="16" Y="119"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="86"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit47>
@@ -552,7 +554,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="82"/>
         <CursorPos Y="85"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit48>
       <Unit49>
         <Filename Value="UViewPanelZdj.pas"/>
@@ -560,10 +562,10 @@
         <ComponentName Value="ViewPanelZdj"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="89"/>
         <CursorPos X="58" Y="103"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit49>
@@ -573,10 +575,10 @@
         <ComponentName Value="AktualizacjaZdjec"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="17"/>
         <CursorPos Y="34"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit50>
@@ -1071,7 +1073,7 @@
         <UsageCount Value="9"/>
       </Unit119>
     </Units>
-    <JumpHistory Count="21" HistoryIndex="20">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
         <Filename Value="UViewPanelZdj.pas"/>
         <Caret Line="23" Column="37" TopLine="11"/>
@@ -1155,6 +1157,18 @@
         <Filename Value="UZatrudnieni.pas"/>
         <Caret Line="448" Column="11" TopLine="363"/>
       </Position21>
+      <Position22>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="598" Column="14" TopLine="593"/>
+      </Position22>
+      <Position23>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="110" Column="6" TopLine="94"/>
+      </Position23>
+      <Position24>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="687" Column="59" TopLine="704"/>
+      </Position24>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

@@ -434,7 +434,8 @@ begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   //wybieramy akcję po wybraniu osadzonego
      // tylko wychowawcy, Penit
-  if ActionKartaOsadzonego.Enabled then ActionKartaOsadzonegoExecute(Self);
+  if ActionKartaOsadzonego.Enabled then ActionKartaOsadzonegoExecute(Self)
+                                   else ActionKartaOchronnaExecute(Self);
 end;
 
 procedure TMasterForm.Edit1Change(Sender: TObject);

@@ -449,7 +449,7 @@ begin
     inc(i);   // inc(-1) = [0..n]
     WolneCele[i].ID:=  ZQPom.FieldByName('ID').AsInteger;
     WolneCele[i].POC:= ZQPom.FieldByName('POC').AsString;
-    WolneCele[i].Wolne:= ZQPom.FieldByName('Wolne').AsInteger;
+    WolneCele[i].Wolne:= ZQPom.FieldByName('Wolne').AsInteger; // wakaty w celi
     fWakaty:= fWakaty + WolneCele[i].Wolne;
     ZQPom.Next;
   end;
