@@ -168,6 +168,7 @@ type
     procedure ActionRejestrWidzenExecute(Sender: TObject);
     procedure ActionRejestrWykazowExecute(Sender: TObject);
     procedure ActionRozmieszczenieExecute(Sender: TObject);
+    procedure ActionSalaWidzenExecute(Sender: TObject);
     procedure ActionStanowiskaExecute(Sender: TObject);
     procedure ActionStatystykaExecute(Sender: TObject);
     procedure ActionTerminarzExecute(Sender: TObject);
@@ -224,7 +225,8 @@ uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr
      UOchUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
-     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec;
+     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec,
+     UOchSalaWidzen;
 {$R *.frm}
 
 { TMasterForm }
@@ -267,6 +269,8 @@ begin
   ActionAddWykaz.Enabled       := DM.uprawnienia[4];   // dodawanie do wykazów ochronnych
   ActionAddWidzenie.Enabled    := DM.uprawnienia[6];   // widzenia
   ActionDodajOsobeBliska.Enabled:= DM.uprawnienia[11]; // osoby bliskie
+  // docelowo wszyscy będą mieli podgląd a edycja tylko dla wyznaczonego stanowiska
+  ActionSalaWidzen.Enabled     := DM.uprawnienia[6];   // widzenia
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
@@ -519,11 +523,16 @@ end;
 // Rozmieszczenie
 procedure TMasterForm.ActionRozmieszczenieExecute(Sender: TObject);
 begin
-  with TRozmieszczenie.Create(Self) do
-  begin
-    ShowModal;
-    Free;
-  end;
+  Rozmieszczenie:= TRozmieszczenie.Create(Self);
+  Rozmieszczenie.ShowModal;
+  FreeAndNil(Rozmieszczenie);
+end;
+
+procedure TMasterForm.ActionSalaWidzenExecute(Sender: TObject);
+begin
+  OchSalaWidzen:= TOchSalaWidzen.Create(Self);
+  OchSalaWidzen.ShowModal;
+  FreeAndNil(OchSalaWidzen);
 end;
 
 procedure TMasterForm.ActionKartaOsadzonegoExecute(Sender: TObject);
@@ -811,9 +820,13 @@ begin
      if ClipbrdSaveText='' then ClipbrdSaveText:= Clipboard.AsText;
      { reakcja na skrót klawiszowy Ctrl+n}
      { jeśli jest włączony terminarz to pobierz nazwisko z niego, potem z wyszukiwarki głównej }
-    if PenitTerminarz <> nil then Clipboard.AsText := PenitTerminarz.ZQTerminarzNAZWISKO.AsString else
-    // if Wolne_cele <> nil then Clipboard.AsText := Wolne_Cele.ZQuery4Nazwisko.AsString else
-                               Clipboard.AsText := DM.ZQOsadzeni.FieldByName('NAZWISKO').AsString;
+    if (PenitTerminarz <> nil)and(not PenitTerminarz.ZQTerminarz.IsEmpty) then
+      Clipboard.AsText := PenitTerminarz.ZQTerminarzNAZWISKO.AsString
+    else if (Rozmieszczenie <> nil)and(not Rozmieszczenie.ZQOsadzeni.IsEmpty) then
+      Clipboard.AsText := Rozmieszczenie.ZQOsadzeni.FieldByName('NAZWISKO').AsString
+    else
+      Clipboard.AsText := DM.ZQOsadzeni.FieldByName('NAZWISKO').AsString;
+
      PressCtrlV;
      WaitMessage;
   end else

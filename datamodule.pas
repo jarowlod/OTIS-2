@@ -39,6 +39,7 @@ type
     Path_Foto   : string;
     Path_NO_Foto: string;
     Path_Raporty: string;
+    Path_NrStolikow: string;
 
     login     : string;
     haslo     : string;
@@ -295,6 +296,7 @@ begin
   //PelnaNazwa:= fGetPelnaNazwaSQL;
 
   Path_Raporty:= ExtractFilePath(ParamStr(0)) + 'raporty\';
+  Path_NrStolikow:= ExtractFilePath(ParamStr(0)) + 'NrStolikow\';
 
   ZQ:=TZQueryPom.Create(Self);
 

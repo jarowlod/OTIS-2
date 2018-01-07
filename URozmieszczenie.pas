@@ -107,8 +107,8 @@ type
     property VisibleRowCount;
   end;
 
-//var
-//  Rozmieszczenie: TRozmieszczenie;
+var
+  Rozmieszczenie: TRozmieszczenie;
 
 implementation
 {$R *.frm}
