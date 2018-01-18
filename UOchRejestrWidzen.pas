@@ -15,9 +15,11 @@ type
 
   TOchRejestrWidzen = class(TForm)
     btnDodaj: TBitBtn;
+    btnOdswiez: TBitBtn;
     btnUsun: TBitBtn;
     btnModyfikuj: TBitBtn;
     cbPrzedzialCzasu: TCheckBox;
+    cbUprzedniePobyty: TCheckBox;
     DSWidzenia: TDataSource;
     DSOsoby: TDataSource;
     DateTimePicker1: TDateTimePicker;
@@ -25,6 +27,7 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     Label1: TLabel;
+    Memo1: TMemo;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -32,6 +35,8 @@ type
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     Splitter1: TSplitter;
+    ZQOsobyArch: TZQuery;
+    ZQWidzeniaArch: TZQuery;
     ZQWidzenia: TZQuery;
     ZQOsoby: TZQuery;
     ZQWidzeniaCzas_dod: TLargeintField;
@@ -56,8 +61,10 @@ type
     ZQWidzeniaUwagi: TStringField;
     procedure btnDodajClick(Sender: TObject);
     procedure btnModyfikujClick(Sender: TObject);
+    procedure btnOdswiezClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure cbPrzedzialCzasuChange(Sender: TObject);
+    procedure DSWidzeniaDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure RadioGroup1SelectionChanged(Sender: TObject);
     procedure ZQWidzeniaPozostaloGetText(Sender: TField; var aText: string;
@@ -70,8 +77,8 @@ type
     Procedure NewSelect;
   end;
 
-var
-  OchRejestrWidzen: TOchRejestrWidzen;
+//var
+//  OchRejestrWidzen: TOchRejestrWidzen;
 
 implementation
 uses UOchAddWidzenie;
@@ -100,6 +107,9 @@ begin
   ZQOsoby.Close;
   ZQWidzenia.Close;
 
+  ZQOsobyArch.Close;
+  ZQWidzeniaArch.Close;
+
   ZQWidzenia.SQL.Text:= SQLWidzenia;
 
   // STATUS WIDZENIA
@@ -125,8 +135,8 @@ begin
     if cbPrzedzialCzasu.Checked then
         begin
           ZQWidzenia.SQL.Add('and ( w.Data_Widzenie BETWEEN :data_od AND :data_do)');
-          ZQWidzenia.ParamByName('data_od').AsDate:= DateTimePicker1.Date;
-          ZQWidzenia.ParamByName('data_do').AsDate:= DateTimePicker2.Date;
+          ZQWidzenia.ParamByName('data_od').AsDateTime:= DateTimePicker1.DateTime;
+          ZQWidzenia.ParamByName('data_do').AsDateTime:= DateTimePicker2.DateTime;
         end
     else
         begin
@@ -136,12 +146,41 @@ begin
 
   //ORDER BY
   if RadioGroup1.ItemIndex = 0 then
-        ZQWidzenia.SQL.Add('ORDER BY w.Data_Oczekuje')
+        ZQWidzenia.SQL.Add('ORDER BY w.Data_Oczekuje')  // poczekalnia
       else
-        ZQWidzenia.SQL.Add('ORDER BY w.Data_Widzenie');
+        ZQWidzenia.SQL.Add('ORDER BY w.Data_Widzenie DESC'); // sala widzeń i zrealizowane
 
-  ZQWidzenia.Open;
-  ZQOsoby.Open;
+  //ZQWidzenia.Open;
+  //ZQOsoby.Open;
+
+  // Podmiana ZQWidzenia -> ZQWidzeniaArch dla uprzednich pobytów
+  if GroupBox1.Enabled and cbUprzedniePobyty.Enabled and cbUprzedniePobyty.Checked then
+    begin
+      ZQWidzeniaArch.ParamByName('data_od').AsDateTime:= DateTimePicker1.DateTime;
+      ZQWidzeniaArch.ParamByName('data_do').AsDateTime:= DateTimePicker2.DateTime;
+      ZQWidzeniaArch.Open;
+      DSWidzenia.DataSet:= ZQWidzeniaArch;
+
+      DSOsoby.DataSet   := ZQOsobyArch;
+    end
+  else
+    begin
+      DSWidzenia.DataSet:= ZQWidzenia;
+      ZQWidzenia.Open;
+      DSOsoby.DataSet   := ZQOsoby;
+      ZQOsoby.Open;
+    end;
+end;
+
+procedure TOchRejestrWidzen.DSWidzeniaDataChange(Sender: TObject; Field: TField
+  );
+begin
+  if ZQWidzeniaArch.Active then
+    begin
+      ZQOsobyArch.Close;
+      ZQOsobyArch.ParamByName('id_widzenia').AsInteger:= ZQWidzeniaArch.FieldByName('ID').AsInteger;
+      ZQOsobyArch.Open;
+    end;
 end;
 
 procedure TOchRejestrWidzen.RadioGroup1SelectionChanged(Sender: TObject);
@@ -207,11 +246,14 @@ begin
       begin
         DateTimePicker1.Enabled:= true;
         DateTimePicker2.Enabled:= true;
+        cbUprzedniePobyty.Enabled:= true;
       end
   else
       begin
         DateTimePicker1.Enabled:= false;
         DateTimePicker2.Enabled:= false;
+        cbUprzedniePobyty.Enabled:= false;
+        cbUprzedniePobyty.Checked:= false;
       end;
   NewSelect;
 end;
@@ -295,6 +337,11 @@ begin
          end;
        Free;
   end;
+end;
+
+procedure TOchRejestrWidzen.btnOdswiezClick(Sender: TObject);
+begin
+  NewSelect;
 end;
 
 end.

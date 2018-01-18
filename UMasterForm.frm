@@ -1,7 +1,7 @@
-object Form1: TForm1
+object MasterForm: TMasterForm
   Left = 407
   Height = 598
-  Top = 229
+  Top = 238
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -697,7 +697,62 @@ object Form1: TForm1
         Filter.ItemIndex = -1
         Footers = <>
       end>
-    KeyStrokes = <>
+    KeyStrokes = <    
+      item
+        Command = rxgcShowFindDlg
+        ShortCut = 16454
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowColumnsDlg
+        ShortCut = 16471
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowFilterDlg
+        ShortCut = 16468
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowSortDlg
+        ShortCut = 16467
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowQuickFilter
+        ShortCut = 16465
+        Enabled = True
+      end    
+      item
+        Command = rxgcHideQuickFilter
+        ShortCut = 16456
+        Enabled = True
+      end    
+      item
+        Command = rxgcSelectAll
+        ShortCut = 16449
+        Enabled = True
+      end    
+      item
+        Command = rxgcDeSelectAll
+        ShortCut = 16429
+        Enabled = True
+      end    
+      item
+        Command = rxgcInvertSelection
+        ShortCut = 16426
+        Enabled = True
+      end    
+      item
+        Command = rxgcOptimizeColumnsWidth
+        ShortCut = 16427
+        Enabled = True
+      end    
+      item
+        Command = rxgcCopyCellValue
+        ShortCut = 16451
+        Enabled = True
+      end>
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
     SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
@@ -777,7 +832,7 @@ object Form1: TForm1
         Action = ActionZatrudnienieOs
       end
       object ToolButton5: TToolButton
-        Left = 101
+        Left = 132
         Height = 22
         Top = 0
         Caption = 'ToolButton5'
@@ -789,14 +844,14 @@ object Form1: TForm1
         Action = ActionProsbyOsadzonego
       end
       object ToolButton7: TToolButton
-        Left = 132
+        Left = 186
         Height = 22
         Top = 0
         Caption = 'ToolButton7'
         Style = tbsSeparator
       end
       object ToolButton8: TToolButton
-        Left = 140
+        Left = 240
         Top = 0
         Action = ActionTerminarz
       end
@@ -804,6 +859,33 @@ object Form1: TForm1
         Left = 55
         Top = 0
         Action = ActionZatrudnieni
+      end
+      object ToolButton10: TToolButton
+        Left = 101
+        Height = 22
+        Top = 0
+        Caption = 'ToolButton10'
+        Style = tbsSeparator
+      end
+      object ToolButton11: TToolButton
+        Left = 140
+        Top = 0
+        Action = ActionAddWidzenie
+      end
+      object ToolButton12: TToolButton
+        Left = 163
+        Top = 0
+        Action = ActionKartaOchronna
+      end
+      object ToolButton13: TToolButton
+        Left = 217
+        Top = 0
+        Action = ActionKomunikator
+      end
+      object ToolButton14: TToolButton
+        Left = 194
+        Top = 0
+        Action = ActionKoszyk
       end
     end
   end
@@ -857,6 +939,9 @@ object Form1: TForm1
         Caption = 'Rejestr aktualizacji...'
         ImageIndex = 12
         OnClick = MenuItem26Click
+      end
+      object MenuItem62: TMenuItem
+        Action = ActionZdjeciaBraki
       end
       object MenuItem52: TMenuItem
         Caption = '-'
@@ -1063,6 +1148,12 @@ object Form1: TForm1
       object MenuItem13: TMenuItem
         Action = ActionSkype
       end
+      object MenuItem64: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem63: TMenuItem
+        Action = ActionSalaWidzen
+      end
       object MenuItem29: TMenuItem
         Caption = '-'
       end
@@ -1084,14 +1175,20 @@ object Form1: TForm1
       object MenuItem9: TMenuItem
         Action = ActionAktualizacjaPodkultury
       end
+      object MenuItem60: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem19: TMenuItem
+        Action = ActionKartaOchronna
+      end
       object MenuItem50: TMenuItem
         Caption = '-'
       end
-      object MenuItem46: TMenuItem
-        Action = ActionRejestrWykazow
-      end
       object MenuItem47: TMenuItem
         Action = ActionAddWykaz
+      end
+      object MenuItem46: TMenuItem
+        Action = ActionRejestrWykazow
       end
     end
     object MenuItem15: TMenuItem
@@ -1125,6 +1222,9 @@ object Form1: TForm1
       end
       object MenuItem30: TMenuItem
         Action = ActionKomunikator
+      end
+      object MenuItem61: TMenuItem
+        Action = ActionKomunikatNowy
       end
       object MenuItem38: TMenuItem
         Action = ActionKomunikatDo
@@ -1306,12 +1406,14 @@ object Form1: TForm1
     object ActionKomunikator: TAction
       Category = 'Dodatki'
       Caption = 'Komunikator ...'
+      Hint = 'Komunikator ...'
       ImageIndex = 23
       OnExecute = ActionKomunikatorExecute
     end
     object ActionZatrudnieni: TAction
       Category = 'Zatrudnienie'
       Caption = 'Zatrudnieni ...'
+      Hint = 'Rejest zatrudnionych ...'
       ImageIndex = 8
       OnExecute = ActionZatrudnieniExecute
     end
@@ -1366,7 +1468,8 @@ object Form1: TForm1
     object ActionKoszyk: TAction
       Category = 'Penit'
       Caption = 'Koszyki ...'
-      ImageIndex = 26
+      Hint = 'Menadżer koszyków ...'
+      ImageIndex = 30
       OnExecute = ActionKoszykExecute
     end
     object ActionDodajDoKoszyka: TAction
@@ -1395,6 +1498,7 @@ object Form1: TForm1
     object ActionAddWidzenie: TAction
       Category = 'Widzenia'
       Caption = 'Dodaj widzenie ...'
+      Hint = 'Dodaj widzenie ...'
       ImageIndex = 27
       OnExecute = ActionAddWidzenieExecute
       ShortCut = 16471
@@ -1404,6 +1508,31 @@ object Form1: TForm1
       Caption = 'Rejestr Widzeń ...'
       ImageIndex = 26
       OnExecute = ActionRejestrWidzenExecute
+    end
+    object ActionKartaOchronna: TAction
+      Category = 'Ochrona'
+      Caption = 'Karta Ochronna'
+      Hint = 'Karta Ochronna'
+      ImageIndex = 24
+      OnExecute = ActionKartaOchronnaExecute
+    end
+    object ActionKomunikatNowy: TAction
+      Category = 'Dodatki'
+      Caption = 'Nowa wiadomość ...'
+      ImageIndex = 36
+      OnExecute = ActionKomunikatNowyExecute
+    end
+    object ActionSalaWidzen: TAction
+      Category = 'Widzenia'
+      Caption = 'Sala Widzeń ...'
+      ImageIndex = 37
+      OnExecute = ActionSalaWidzenExecute
+    end
+    object ActionZdjeciaBraki: TAction
+      Category = 'Opcje'
+      Caption = 'Brakujące zdjęcia os. ...'
+      ImageIndex = 38
+      OnExecute = ActionZdjeciaBrakiExecute
     end
   end
   object Timer2Komunikaty: TTimer

@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 180
+  Left = 312
   Height = 856
-  Top = 178
+  Top = 136
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -256,34 +256,34 @@ object Zatrudnieni: TZatrudnieni
       ClientHeight = 70
       ClientWidth = 92
       TabOrder = 3
-      object CheckBox3: TCheckBox
+      object cbZmianyPOC: TCheckBox
         Left = 8
         Height = 19
         Top = -5
         Width = 40
         Caption = 'Celi'
-        OnChange = CheckBox3Change
+        OnChange = cbZmianyPOCChange
         TabOrder = 0
       end
-      object CheckBox4: TCheckBox
+      object cbZmianyKlasyf: TCheckBox
         Left = 8
         Height = 19
         Top = 11
         Width = 78
         Caption = 'Klasyfikacji'
-        OnChange = CheckBox3Change
+        OnChange = cbZmianyPOCChange
         TabOrder = 1
       end
-      object CheckBox5: TCheckBox
+      object cbZmianyPobytow: TCheckBox
         Left = 8
         Height = 19
         Top = 27
         Width = 47
         Caption = 'Ubyli'
-        OnChange = CheckBox3Change
+        OnChange = cbZmianyPOCChange
         TabOrder = 2
       end
-      object BitBtn5: TBitBtn
+      object btnZapiszZmiany: TBitBtn
         Left = 8
         Height = 22
         Top = 48
@@ -325,12 +325,12 @@ object Zatrudnieni: TZatrudnieni
           0000CACDFA3C3F47E3BD0E18D8F71D25DAFF565EE6BD7E84ED88B1B6F9360000
           0000000000000000000000000000000000000000000000000000
         }
-        OnClick = BitBtn5Click
+        OnClick = btnZapiszZmianyClick
         TabOrder = 3
         Visible = False
       end
     end
-    object RadioGroup1: TRadioGroup
+    object rgStatusZat: TRadioGroup
       Left = 1145
       Height = 90
       Top = 0
@@ -354,10 +354,10 @@ object Zatrudnieni: TZatrudnieni
         'Oczekujący'
         'Wszystkie'
       )
-      OnSelectionChanged = RadioGroup1SelectionChanged
+      OnSelectionChanged = rgStatusZatSelectionChanged
       TabOrder = 5
     end
-    object RadioGroup2: TRadioGroup
+    object rgStatusPobytu: TRadioGroup
       Left = 1265
       Height = 90
       Top = 0
@@ -380,7 +380,7 @@ object Zatrudnieni: TZatrudnieni
         'Uprzednie'
         'Wszystkie'
       )
-      OnSelectionChanged = RadioGroup2SelectionChanged
+      OnSelectionChanged = rgStatusPobytuSelectionChanged
       TabOrder = 6
     end
   end
@@ -427,7 +427,7 @@ object Zatrudnieni: TZatrudnieni
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
-            Footer.DisplayFormat = 'Poz: %d'
+            Footer.DisplayFormat = 'Ilość: %d'
             Footer.ValueType = fvtCount
             Footers = <>
           end        
@@ -763,7 +763,7 @@ object Zatrudnieni: TZatrudnieni
         SelectedColor = clHighlight
         GridLineStyle = psSolid
         DataSource = DSZatrudnieni
-        DefaultRowHeight = 0
+        DefaultRowHeight = 19
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
         ParentShowHint = False
@@ -1000,11 +1000,11 @@ object Zatrudnieni: TZatrudnieni
             ValueChecked = '1'
             ValueUnchecked = '0'
           end
-          object DBText40: TDBText
+          object DBPoprzedniePOC: TDBText
             Left = 400
             Height = 15
             Top = 8
-            Width = 57
+            Width = 103
             Color = clYellow
             DataField = 'zat_POC'
             DataSource = DSZatrudnieni
@@ -1014,7 +1014,7 @@ object Zatrudnieni: TZatrudnieni
             Transparent = False
             Visible = False
           end
-          object Label42: TLabel
+          object lblPoprzedniePOC: TLabel
             Left = 331
             Height = 15
             Top = 8
@@ -1025,7 +1025,7 @@ object Zatrudnieni: TZatrudnieni
             ParentFont = False
             Visible = False
           end
-          object Label43: TLabel
+          object lblPoprzedniaKlasyf: TLabel
             Left = 174
             Height = 15
             Top = 140
@@ -1036,11 +1036,11 @@ object Zatrudnieni: TZatrudnieni
             ParentFont = False
             Visible = False
           end
-          object DBText41: TDBText
+          object DBPoprzedniaKlasyf: TDBText
             Left = 243
             Height = 15
             Top = 140
-            Width = 57
+            Width = 112
             Color = clYellow
             DataField = 'zat_Klasyf'
             DataSource = DSZatrudnieni
@@ -1050,7 +1050,7 @@ object Zatrudnieni: TZatrudnieni
             Transparent = False
             Visible = False
           end
-          object Label44: TLabel
+          object lblAktualnyPobyt: TLabel
             Left = 340
             Height = 15
             Top = 74
@@ -1061,11 +1061,11 @@ object Zatrudnieni: TZatrudnieni
             ParentFont = False
             Visible = False
           end
-          object DBText42: TDBText
+          object DBAktualnyPobyt: TDBText
             Left = 400
             Height = 15
             Top = 74
-            Width = 57
+            Width = 98
             Color = clYellow
             DataField = 'new_pobyt'
             DataSource = DSZatrudnieni
@@ -1200,7 +1200,7 @@ object Zatrudnieni: TZatrudnieni
           TabOrder = 1
           object tabInfoZat: TTabSheet
             Caption = 'Informacje o zatrudnieniu'
-            ClientHeight = 524
+            ClientHeight = 362
             ClientWidth = 490
             ImageIndex = 6
             object plGradient1: TplGradient
@@ -1552,7 +1552,7 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInfoStanowisko: TTabSheet
             Caption = 'Informacje o Stanowisku'
-            ClientHeight = 524
+            ClientHeight = 362
             ClientWidth = 490
             ImageIndex = 7
             object Label15: TLabel
@@ -2055,7 +2055,7 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabWydruki: TTabSheet
         Caption = 'Wydruki'
-        ClientHeight = 813
+        ClientHeight = 651
         ClientWidth = 498
         ImageIndex = 4
         object lblDruk_OsadzeniAll: TLabel
@@ -2570,6 +2570,53 @@ object Zatrudnieni: TZatrudnieni
       Kind = bkClose
       ModalResult = 11
       TabOrder = 3
+    end
+    object btnDodajDoKoszyka: TSpeedButton
+      Left = 360
+      Height = 25
+      Hint = 'Dodaj osadzonego do koszyka.'
+      Top = 13
+      Width = 31
+      Flat = True
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000001E0000003300000033000000330000001E000000008C898700908D
+        8B000000001A00000033000000330000001A908D8B008E8888009A858A000000
+        001D008D54AC009E5EFF009D5DFF009E5EFF008C55AC0000001E8B8886000000
+        00334542439A514F4FFF514F4FFF44424399000000330000003300000033008C
+        51A600A669FF00BA86FF77DFC4FF00BA86FF00A66AFF008C55AC868381008A87
+        85FF5D5B5AFF8A8887FF8A8887FF5D5B5AFF8A8785FF898382FF968185FF009F
+        59FF00C08BFF00BB82FFFFFFFFFF00BB82FF00C08CFF009E5EFFC4C2C000C9C7
+        C5FF6C6968FFCCCAC9FFCCCAC9FF6D6968FFC9C8C5FFC8C3C2FFD6C2C7FF009B
+        55FF74E5CBFFFFFFFFFFFFFFFFFFFFFFFFFF77E5CCFF009C5CFFC0BEBC00C5C3
+        C1007C79777F817E7DFF817E7DFF7D7A787CC8C6C400C7C2C100D5C2C500009B
+        55FF00CC96FF00C88FFFFFFFFFFF00C88FFF00CC98FF009D5DFFC0BEBC00C5C4
+        C200000000220000003300000033000000330000003300000033000000330084
+        479900AE6EFF00D39CFF74EDD3FF00D39DFF00AE72FF009F6097BEBCBA000000
+        002172706EBA9B9896FF919292FF909191FF8F9090FF8F8F8FFF948F91FF9F8D
+        94FF379470FF009851FF009851FF009B57FF009F5E9000A16100000000228B89
+        87B9A8A7A5FFF0EFEEFFB7B6B5FFEDECEBFFB6B5B3FFEDECEBFFB7B4B4FFF1EB
+        ECFFBFB3B6FFFAE9EEFFEFDCE2FFAE9298FF00A15A0000A25D00ADAAA8BDB9B7
+        B4FFEAE9E8FFB0B1B0FFE2E1E0FFADACABFFE2E1E0FFADACABFFE2E1E0FFADAC
+        ABFFE3E1E0FFAEABABFFE3DFDEFF9C9292FFA7969900AC979B00A19D9BFFE7E6
+        E4FFADACABFFDCDAD8FFA8A6A5FFDCDAD8FFA8A6A5FFDCDAD8FFA8A6A5FFDCDA
+        D8FFA8A6A5FFDBD9D7FFE2E1E0FF969290FFA0989400A69A9400A4A2A0FFF3F3
+        F2FFD1CFCDFF9F9E9CFFD4D1CFFF9F9F9CFFD4D1CFFF9F9F9CFFD4D1CFFF9F9F
+        9CFFD3D1CFFF9E9E9BFFE6E3E2FF99928EFFA79A90002476C000AAA6A4FFFAF9
+        F8FFF7F7F6FFF8F7F6FFF8F7F6FFF8F7F7FFF8F7F6FFF8F7F7FFF8F7F6FFF8F7
+        F6FFF7F6F6FFF7F6F5FFE9E6E3FF9F938AFF0000003300000033AEACAAB0ADAB
+        A8FFABA9A7FFABA9A7FFABA9A7FFABA9A7FFABA9A7FFABA9A7FFABA9A7FFABA9
+        A7FFA9A7A5FFD4D2D1FFF3EDE8FF4685B7FF327BBAFF3179B9FFB0AEAC00B0AE
+        AC00B0AEAC00B0AEAC00B0AEAC00B0AEAC00B0AEAC00B0AEAC00B0AEAC00AFAD
+        AB00AEACAA00BEBBB8FFE7DED8FF2E7ABBFF71E2FFFF3177B8FFB0AEAC00B1AF
+        AD00B1AFAD00B1AFAD00B1AFAD00B1AFAD00B1AFAD00B1AFAD00B1AFAD00B1AF
+        AD00AFADAB00C1BEBA00C9C0B8FF3D83BDFF357BBAFF327AB8EF
+      }
+      OnClick = btnDodajDoKoszykaClick
+      ShowHint = True
+      ParentShowHint = False
     end
   end
   object ZQZatrudnieni: TZQuery

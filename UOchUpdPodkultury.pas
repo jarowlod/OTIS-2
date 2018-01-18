@@ -1,4 +1,4 @@
-unit UUpdPodkultury;
+unit UOchUpdPodkultury;
 
 {$mode objfpc}{$H+}
 
@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TUpdPodkultury }
+  { TOchUpdPodkultury }
 
-  TUpdPodkultury = class(TForm)
+  TOchUpdPodkultury = class(TForm)
     BitBtn1: TBitBtn;
     Image1: TImage;
     Label1: TLabel;
@@ -32,21 +32,23 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Memo1Change(Sender: TObject);
   private
-
+    procedure AktualizacjaWykazuGR;
   public
     procedure AktualizacjaGR;
   end;
 
-var
-  UpdPodkultury: TUpdPodkultury;
+//var
+//  OchUpdPodkultury: TOchUpdPodkultury;
+
+const ID_WYKAZU_PODKULTURY = 8; // ID from DB katalog_wykazow;
 
 implementation
 
 {$R *.frm}
 
-{ TUpdPodkultury }
+{ TOchUpdPodkultury }
 
-procedure TUpdPodkultury.FormCreate(Sender: TObject);
+procedure TOchUpdPodkultury.FormCreate(Sender: TObject);
 begin
   Label2.Caption:='0';
   Label4.Caption:='0';
@@ -54,7 +56,7 @@ begin
   Label8.Caption:='0';
 end;
 
-procedure TUpdPodkultury.AktualizacjaGR;
+procedure TOchUpdPodkultury.AktualizacjaGR;
 var i : integer;
   ido : string;
   p1  : integer;
@@ -138,18 +140,43 @@ begin
     ZQ.ExecSQL;
     //---
   finally
-    ZQ.Free;
+    FreeAndNil(ZQ);
+
+    // Aktualizacja wykazu osadzonych grypsujących
+    AktualizacjaWykazuGR;
+
     Screen.Cursor:= crDefault;
     MessageDlg('Aktualizacja zakończona poprawnie.', mtInformation, [mbOK],0);
   end;
 end;
 
-procedure TUpdPodkultury.Memo1Change(Sender: TObject);
+procedure TOchUpdPodkultury.Memo1Change(Sender: TObject);
 begin
   BitBtn1.Enabled:= (Memo1.Lines.Text <> '');
 end;
 
-procedure TUpdPodkultury.BitBtn1Click(Sender: TObject);
+procedure TOchUpdPodkultury.AktualizacjaWykazuGR;
+var ZQPom: TZQueryPom;
+begin
+  try
+    ZQPom:= TZQueryPom.Create(Self);
+    ZQPom.SQL.Text:= 'DELETE FROM uwagi_wykazy WHERE (Kategoria = :idGR) AND (IDO NOT IN (SELECT IDO FROM os_info WHERE GR=1))';
+    ZQPom.ParamByName('idGR').AsInteger:= ID_WYKAZU_PODKULTURY;
+    ZQPom.ExecSQL;
+
+    ZQPom.SQL.Text:= 'INSERT INTO uwagi_wykazy (IDO, Kategoria, data_dodania, user_dodania) '+
+                       'SELECT IDO, :idGR, Now(), :usr FROM os_info WHERE (GR = 1) AND (IDO NOT IN (SELECT IDO FROM uwagi_wykazy WHERE Kategoria=:idGR))';
+    ZQPom.ParamByName('idGR').AsInteger:= ID_WYKAZU_PODKULTURY;
+    ZQPom.ParamByName('usr').AsString  := DM.PelnaNazwa;
+    ZQPom.ExecSQL;
+
+    DM.KomunikatPopUp(Self, 'Aktualizacja podkultury','Zaktualizowano WYKAZ osadzonych grypsujących.', nots_Info);
+  finally
+    FreeAndNil(ZQPom);
+  end;
+end;
+
+procedure TOchUpdPodkultury.BitBtn1Click(Sender: TObject);
 begin
   AktualizacjaGR;
 end;

@@ -1,7 +1,7 @@
 object RejestrProsbAll: TRejestrProsbAll
-  Left = 86
+  Left = 180
   Height = 569
-  Top = 85
+  Top = 178
   Width = 1373
   Caption = 'Rejestr Próśb osadzonych'
   ClientHeight = 569
@@ -760,7 +760,7 @@ object RejestrProsbAll: TRejestrProsbAll
       SelectedColor = clHighlight
       GridLineStyle = psSolid
       DataSource = DSRejestr
-      DefaultRowHeight = 24
+      DefaultRowHeight = 19
       FixedColor = clNone
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
       ParentShowHint = False

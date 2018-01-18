@@ -1,11 +1,11 @@
 object Komunikator: TKomunikator
-  Left = 396
+  Left = 407
   Height = 560
-  Top = 222
-  Width = 735
+  Top = 229
+  Width = 736
   Caption = 'Komunikator'
   ClientHeight = 560
-  ClientWidth = 735
+  ClientWidth = 736
   OnCreate = FormCreate
   Position = poOwnerFormCenter
   LCLVersion = '6.3'
@@ -13,7 +13,7 @@ object Komunikator: TKomunikator
     Left = 0
     Height = 510
     Top = 0
-    Width = 735
+    Width = 736
     ActivePage = TabSheet1
     Align = alClient
     TabIndex = 0
@@ -21,12 +21,12 @@ object Komunikator: TKomunikator
     object TabSheet1: TTabSheet
       Caption = 'Odebrane'
       ClientHeight = 482
-      ClientWidth = 727
+      ClientWidth = 728
       object RxDBGrid1: TRxDBGrid
         Left = 0
         Height = 162
         Top = 0
-        Width = 727
+        Width = 728
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -176,7 +176,7 @@ object Komunikator: TKomunikator
         Left = 0
         Height = 315
         Top = 167
-        Width = 727
+        Width = 728
         Align = alClient
         HideSelection = False
         ReadOnly = True
@@ -189,7 +189,7 @@ object Komunikator: TKomunikator
         Left = 0
         Height = 5
         Top = 162
-        Width = 727
+        Width = 728
         Align = alTop
         ResizeAnchor = akTop
       end
@@ -197,28 +197,29 @@ object Komunikator: TKomunikator
     object TabSheet2: TTabSheet
       Caption = 'Wysłane'
       ClientHeight = 482
-      ClientWidth = 727
+      ClientWidth = 728
       object Panel2: TPanel
         Left = 0
         Height = 168
         Top = 0
-        Width = 727
+        Width = 728
         Align = alTop
         BevelOuter = bvNone
         ClientHeight = 168
-        ClientWidth = 727
+        ClientWidth = 728
         TabOrder = 0
         object RxDBGrid2: TRxDBGrid
           Left = 0
           Height = 168
           Top = 0
-          Width = 360
+          Width = 361
           ColumnDefValues.BlobText = '(blob)'
           TitleButtons = True
           AutoSort = True
           Columns = <          
             item
               Font.Color = clMaroon
+              SizePriority = 0
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Data Nadania'
@@ -236,7 +237,7 @@ object Komunikator: TKomunikator
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Temat'
-              Width = 200
+              Width = 208
               FieldName = 'temat'
               EditButtons = <>
               Filter.DropDownRows = 0
@@ -312,6 +313,7 @@ object Komunikator: TKomunikator
           Align = alClient
           AlternateColor = 16055807
           AutoAdvance = aaNone
+          AutoFillColumns = True
           AutoEdit = False
           Color = clWindow
           DrawFullLine = False
@@ -330,7 +332,7 @@ object Komunikator: TKomunikator
           TitleStyle = tsNative
         end
         object RxDBGrid3: TRxDBGrid
-          Left = 360
+          Left = 361
           Height = 168
           Top = 0
           Width = 367
@@ -455,7 +457,7 @@ object Komunikator: TKomunikator
         Left = 0
         Height = 309
         Top = 173
-        Width = 727
+        Width = 728
         Align = alClient
         HideSelection = False
         ReadOnly = True
@@ -469,7 +471,7 @@ object Komunikator: TKomunikator
         Left = 0
         Height = 5
         Top = 168
-        Width = 727
+        Width = 728
         Align = alTop
         ResizeAnchor = akTop
       end
@@ -479,10 +481,10 @@ object Komunikator: TKomunikator
     Left = 0
     Height = 50
     Top = 510
-    Width = 735
+    Width = 736
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 735
+    ClientWidth = 736
     TabOrder = 1
     object btnNowaWiadomosc: TBitBtn
       Left = 8
@@ -530,7 +532,7 @@ object Komunikator: TKomunikator
       TabOrder = 0
     end
     object btnOdswiez: TBitBtn
-      Left = 606
+      Left = 607
       Height = 30
       Top = 8
       Width = 123

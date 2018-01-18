@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, ComCtrls, Buttons, StdCtrls, datamodule, LR_Class, LR_DBSet,
-  TplGradientUnit, db, ZDataset, ZSqlUpdate, DBGrids, DbCtrls, Grids;
+  TplGradientUnit, db, ZDataset, ZSqlUpdate, DBGrids, DbCtrls, Grids, UViewPanelZdj;
 
 type
 
@@ -47,49 +47,13 @@ type
     frReport1: TfrReport;
     GroupBox1: TGroupBox;
     ImageList1: TImageList;
-    Image_1: TImage;
-    Image_10: TImage;
-    Image_11: TImage;
-    Image_12: TImage;
-    Image_2: TImage;
-    Image_3: TImage;
-    Image_4: TImage;
-    Image_5: TImage;
-    Image_6: TImage;
-    Image_7: TImage;
-    Image_8: TImage;
-    Image_9: TImage;
     Label1: TLabel;
     Label2: TLabel;
-    lbNazwisko_1: TLabel;
-    lbNazwisko_10: TLabel;
-    lbNazwisko_11: TLabel;
-    lbNazwisko_12: TLabel;
-    lbNazwisko_2: TLabel;
-    lbNazwisko_3: TLabel;
-    lbNazwisko_4: TLabel;
-    lbNazwisko_5: TLabel;
-    lbNazwisko_6: TLabel;
-    lbNazwisko_7: TLabel;
-    lbNazwisko_8: TLabel;
-    lbNazwisko_9: TLabel;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
     DodatkowyPanel: TPanel;
     PanelZdjec: TPanel;
-    Panel_1: TPanel;
-    Panel_10: TPanel;
-    Panel_11: TPanel;
-    Panel_12: TPanel;
-    Panel_2: TPanel;
-    Panel_3: TPanel;
-    Panel_4: TPanel;
-    Panel_5: TPanel;
-    Panel_6: TPanel;
-    Panel_7: TPanel;
-    Panel_8: TPanel;
-    Panel_9: TPanel;
     plGradient1: TplGradient;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
@@ -107,6 +71,7 @@ type
     procedure cbPanelZdjecChange(Sender: TObject);
     procedure cmbPOCSelect(Sender: TObject);
     procedure DSRozmieszczenieDataChange(Sender: TObject; Field: TField);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure KryteriaCheckBoxClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure RxDBGrid1CellClick(Column: TColumn);
@@ -117,14 +82,19 @@ type
       AFont: TFont; var Background: TColor);
     procedure PanelZdjecResize(Sender: TObject);
     procedure TabSheet2Show(Sender: TObject);
+    procedure ZQRozmieszczenieAfterPost(DataSet: TDataSet);
+    procedure ZQRozmieszczenieBeforePost(DataSet: TDataSet);
     procedure ZQRozmieszczeniePostError(DataSet: TDataSet; E: EDatabaseError;
       var DataAction: TDataAction);
   private
     DodRozmieszczenie: TRozmieszczenie;
     SQLRozmieszczenie: string;
     SQLGroup: string;
-    PanelZdj: array[1..12]of TPanel;
+    //PanelZdj: array[1..12]of TPanel;
+    PanelZdj: array[1..12]of TViewPanelZdj;
     POC: string;
+    Fbook: TBookMark;
+    Rpos: integer;      // pozycja rekordu w Gridzie
     Procedure PictureResize;
     Procedure PreparePicture;
     procedure WczytajWychowawcowDoEdycji;
@@ -132,16 +102,22 @@ type
     Procedure NewSelect;
   end;
 
+  THackDBGrid = class(TRxDBGrid)
+    property Row;
+    property VisibleRowCount;
+  end;
+
 var
   Rozmieszczenie: TRozmieszczenie;
 
 implementation
 {$R *.frm}
-uses UPenitForm;
+uses UPenitForm, UOchForm;
 
 { TRozmieszczenie }
 
 procedure TRozmieszczenie.FormCreate(Sender: TObject);
+var i: integer;
 begin
   cbTrybEdycji.Enabled:= DM.uprawnienia[5];  // modyfikacja typu celi
 
@@ -151,76 +127,18 @@ begin
   ZQRozmieszczenie.Open;
   ZQOsadzeni.Open;
 
-  PanelZdj[1]:= Panel_1;
-  PanelZdj[2]:= Panel_2;
-  PanelZdj[3]:= Panel_3;
-  PanelZdj[4]:= Panel_4;
-  PanelZdj[5]:= Panel_5;
-  PanelZdj[6]:= Panel_6;
-  PanelZdj[7]:= Panel_7;
-  PanelZdj[8]:= Panel_8;
-  PanelZdj[9]:= Panel_9;
-  PanelZdj[10]:= Panel_10;
-  PanelZdj[11]:= Panel_11;
-  PanelZdj[12]:= Panel_12;
+  for i:=1 to 12 do
+  begin
+    PanelZdj[i]:= TViewPanelZdj.Create(Self);
+    PanelZdj[i].Parent:= PanelZdjec;
+  end;
+
   PictureResize;
 
   POC:='null';
   TabSheet1.Show;
 
   WczytajWychowawcowDoEdycji;
-end;
-
-procedure TRozmieszczenie.RxDBGrid1CellClick(Column: TColumn);
-var book: TBookMark;
-begin
-  if not cbTrybEdycji.Checked then exit;
-  if (Column.ButtonStyle= cbsCheckboxColumn) and (not Column.Field.IsNull) then
-  begin
-    book:= Column.Field.DataSet.GetBookmark;
-    Column.Field.DataSet.Edit;
-
-    if Column.Field.IsNull then Column.Field.Value:= Column.ValueChecked
-      else if Column.Field.AsString = Column.ValueChecked then Column.Field.Value:= Column.ValueUnchecked
-        else Column.Field.Value:= Column.ValueChecked;
-
-    Column.Field.DataSet.Post;
-
-    SetToBookmark(Column.Field.DataSet, Book);
-  end;
-end;
-
-procedure TRozmieszczenie.RxDBGrid2GetCellProps(Sender: TObject; Field: TField;
-  AFont: TFont; var Background: TColor);
-begin
-  if Assigned(Field) and (Field.FieldName = 'Status') then
-  begin
-    if (Field.IsNull) then   // status nieokoreslony
-    begin
-      Background := clYellow;
-      AFont.Color:= clBlack;
-    end else
-        if (Field.AsInteger =0 ) then      // status nie przeludniac
-        begin
-          Background := clRed;
-          AFont.Color:= clWhite;
-        end else
-            if (Field.AsInteger =1) then // status mozna przeludniac
-            begin
-              Background := clGreen;
-              AFont.Color:= clWhite;
-            end
-  end;
-
-  if Assigned(Field) and ((Field.FieldName = 'data_od')
-                      or  (Field.FieldName = 'data_do')) then
-  begin
-    if not (Field.IsNull) then   // jesli jest jakas data
-    begin
-      Background := clRed;
-      AFont.Color:= clBlack;
-    end;
-  end;
 end;
 
 procedure TRozmieszczenie.NewSelect;
@@ -321,12 +239,67 @@ end;
 
 procedure TRozmieszczenie.RxDBGrid2DblClick(Sender: TObject);
 begin
-  if (DM.Wychowawca<>'') then
-  with TPenitForm.Create(Self) do
+  if (DM.Dzial='Penit')and(DM.Wychowawca<>'') then
+    with TPenitForm.Create(Self) do
+    begin
+         SetIDO( ZQOsadzeni.FieldByName('ido').AsInteger );
+         ShowModal;
+         Free;
+    end
+  else
+    with TOchForm.Create(Self) do
+    begin
+         SetIDO( ZQOsadzeni.FieldByName('ido').AsInteger );
+         ShowModal;
+         Free;
+    end
+end;
+
+procedure TRozmieszczenie.RxDBGrid1CellClick(Column: TColumn);
+begin
+  if not cbTrybEdycji.Checked then exit;
+  if (Column.ButtonStyle= cbsCheckboxColumn) and (not Column.Field.IsNull) then
   begin
-       SetIDO( ZQOsadzeni.FieldByName('ido').AsInteger );
-       ShowModal;
-       Free;
+    Column.Field.DataSet.Edit;
+
+    if Column.Field.IsNull then Column.Field.Value:= Column.ValueChecked
+      else if Column.Field.AsString = Column.ValueChecked then Column.Field.Value:= Column.ValueUnchecked
+        else Column.Field.Value:= Column.ValueChecked;
+
+    Column.Field.DataSet.Post;
+  end;
+end;
+
+procedure TRozmieszczenie.RxDBGrid2GetCellProps(Sender: TObject; Field: TField;
+  AFont: TFont; var Background: TColor);
+begin
+  if Assigned(Field) and (Field.FieldName = 'Status') then
+  begin
+    if (Field.IsNull) then   // status nieokoreslony
+    begin
+      Background := clYellow;
+      AFont.Color:= clBlack;
+    end else
+        if (Field.AsInteger =0 ) then      // status nie przeludniac
+        begin
+          Background := clRed;
+          AFont.Color:= clWhite;
+        end else
+            if (Field.AsInteger =1) then // status mozna przeludniac
+            begin
+              Background := clGreen;
+              AFont.Color:= clWhite;
+            end
+  end;
+
+  if Assigned(Field) and ((Field.FieldName = 'data_od')
+                      or  (Field.FieldName = 'data_do')) then
+  begin
+    if not (Field.IsNull) then   // jesli jest jakas data
+    begin
+      Background := clRed;
+      AFont.Color:= clBlack;
+    end;
   end;
 end;
 
@@ -352,6 +325,14 @@ procedure TRozmieszczenie.DSRozmieszczenieDataChange(Sender: TObject;
   Field: TField);
 begin
   if cbPanelZdjec.Checked then PreparePicture;
+end;
+
+procedure TRozmieszczenie.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+var i: integer;
+begin
+  for i:=1 to 12 do
+    FreeAndNil(PanelZdj[i]);
 end;
 
 // odśwież
@@ -493,6 +474,29 @@ begin
   PreparePicture;
 end;
 
+procedure TRozmieszczenie.ZQRozmieszczenieAfterPost(DataSet: TDataSet);
+begin
+  DataSet.DisableControls;
+  SetToBookmark(ZQRozmieszczenie, Fbook);
+  if Rpos>=THackDBGrid(RxDBGrid1).Row then
+  begin
+    ZQRozmieszczenie.MoveBy(-Rpos);
+    ZQRozmieszczenie.MoveBy(Rpos);
+  end else
+  begin
+     Rpos:= THackDBGrid(RxDBGrid1).VisibleRowCount-Rpos-1;
+     ZQRozmieszczenie.MoveBy(Rpos);
+     ZQRozmieszczenie.MoveBy(-Rpos);
+  end;
+  DataSet.EnableControls;
+end;
+
+procedure TRozmieszczenie.ZQRozmieszczenieBeforePost(DataSet: TDataSet);
+begin
+  Fbook:= ZQRozmieszczenie.GetBookmark;
+  Rpos:= THackDBGrid(RxDBGrid1).Row-1;
+end;
+
 procedure TRozmieszczenie.ZQRozmieszczeniePostError(DataSet: TDataSet;
   E: EDatabaseError; var DataAction: TDataAction);
 begin
@@ -511,60 +515,57 @@ end;
 procedure TRozmieszczenie.PictureResize;
 var PanelW, PanelH: integer;
     i: integer;
+
+  procedure ResizePanel;
+  var c: integer;
+  begin
+    PanelZdj[i].Width:= PanelW - 8;
+    c:= (i-1) mod 4; // obliczamy kolumę (do 4)
+    PanelZdj[i].Left:= 4 + c * PanelW;
+
+    PanelZdj[i].Height:= PanelH - 8;
+    c:= (i-1) div 4; // obliczamy wiersz (co 4 kolumna)
+    PanelZdj[i].Top:= 4 + c * PanelH;
+  end;
+
 begin
     PanelW:= PanelZdjec.Width div 4;
     PanelH:= PanelZdjec.Height div 3;
 
     for i:=1 to 12 do
     begin
-      if i<= ZQOsadzeni.RecordCount then PanelZdj[i].Visible:= true else PanelZdj[i].Visible:= false;
-
-      PanelZdj[i].Width:= PanelW - 8;
-      if i<=4 then PanelZdj[i].Left:= 4 + ((i-1) * PanelW)
-         else
-      if i<=8 then PanelZdj[i].Left:= 4 + ((i-1-4) * PanelW)
-         else
-                   PanelZdj[i].Left:= 4 + ((i-1-8) * PanelW);
-
-      PanelZdj[i].Height:= PanelH - 8;
-      if i<=4 then PanelZdj[i].Top:= 4
-         else
-      if i<=8 then PanelZdj[i].Top:= 8 + PanelH
-         else
-                   PanelZdj[i].Top:= 12 + PanelH*2;
+      if i<= ZQOsadzeni.RecordCount then
+        begin
+          ResizePanel;
+          PanelZdj[i].Show
+        end
+      else
+        PanelZdj[i].Hide;
     end;
 end;
 
 procedure TRozmieszczenie.PreparePicture;
 var i: integer;
-    plik: string;
-    nazwisko: string;
-    p_image: TImage;
-    p_label: TLabel;
+    opis: string;
 begin
-  PictureResize;
-  // wczytujemy zdjęcia.
+  PictureResize; // resize and panel view or hide
+
   if ZQOsadzeni.IsEmpty then exit;
   if POC = ZQRozmieszczenie.FieldByName('POC').AsString then exit;
+
   POC:= ZQRozmieszczenie.FieldByName('POC').AsString;
   ZQOsadzeni.DisableControls;
   ZQOsadzeni.First;
   i:=1;
   while (not ZQOsadzeni.EOF)and(i<=12) do // ograniczenie do 12 zdjęć
   begin
-    plik    := DM.Path_Foto + IntToStr(ZQOsadzeni.FieldByName('IDO').AsInteger)+'.jpg';
-    nazwisko:= ZQOsadzeni.FieldByName('Nazwisko').AsString+' '+ZQOsadzeni.FieldByName('Imie').AsString;
-    if ZQOsadzeni.FieldByName('GR').AsInteger = 1 then nazwisko:=nazwisko+ ' - GR';
-    nazwisko:= nazwisko + LineEnding + 'Data Przyjęcia: ' + ZQOsadzeni.FieldByName('Przyj').AsString;
+    opis:= ZQOsadzeni.FieldByName('Nazwisko').AsString+' '+ZQOsadzeni.FieldByName('Imie').AsString;
+    if ZQOsadzeni.FieldByName('GR').AsInteger = 1 then opis:= opis + ' - GR';
+    opis:= opis + LineEnding + 'Data Przyjęcia: ' + ZQOsadzeni.FieldByName('Przyj').AsString;
 
-    p_image:= TImage(FindComponent('Image_'+IntToStr(i)));
-    p_image.Picture.Clear; // czyścimy zdjęcie.
-    p_image.Hint:= nazwisko;
-    TLoadFotoThread.Create(plik, p_image );
-
-    p_Label:= TLabel(FindComponent('lbNazwisko_'+IntToStr(i)));
-    p_Label.Caption:= nazwisko;
-    p_label.Hint   := nazwisko;
+    // wczytujemy zdjęcia.
+    PanelZdj[i].SetIDO(ZQOsadzeni.FieldByName('IDO').AsInteger);
+    PanelZdj[i].SetOpis(opis);
 
     inc(i);
     ZQOsadzeni.Next;

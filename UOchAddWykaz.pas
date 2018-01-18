@@ -55,8 +55,8 @@ type
     procedure DodajOsadzonego(vIDO: integer);
   end;
 
-var
-  OchAddWykaz: TOchAddWykaz;
+//var
+//  OchAddWykaz: TOchAddWykaz;
 
 implementation
 

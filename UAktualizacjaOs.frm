@@ -2,10 +2,10 @@ object AktualizacjaOs: TAktualizacjaOs
   Left = 396
   Height = 515
   Top = 222
-  Width = 1128
+  Width = 1163
   Caption = 'AktualizacjaOs'
   ClientHeight = 515
-  ClientWidth = 1128
+  ClientWidth = 1163
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poOwnerFormCenter
@@ -14,10 +14,10 @@ object AktualizacjaOs: TAktualizacjaOs
     Left = 0
     Height = 234
     Top = 0
-    Width = 1128
+    Width = 1163
     Align = alTop
     ClientHeight = 234
-    ClientWidth = 1128
+    ClientWidth = 1163
     Color = 16308899
     ParentColor = False
     TabOrder = 0
@@ -25,7 +25,7 @@ object AktualizacjaOs: TAktualizacjaOs
       Left = 312
       Height = 212
       Top = 11
-      Width = 805
+      Width = 840
       Align = alRight
       Anchors = [akTop, akLeft, akRight, akBottom]
       BorderSpacing.Around = 10
@@ -36,7 +36,7 @@ object AktualizacjaOs: TAktualizacjaOs
       ScrollBars = ssAutoBoth
       TabOrder = 0
     end
-    object BitBtn1: TBitBtn
+    object btnAktualizujOs: TBitBtn
       Left = 22
       Height = 30
       Top = 14
@@ -78,7 +78,7 @@ object AktualizacjaOs: TAktualizacjaOs
         00000000000000000000CE791924D78E2E72E4A84CDAE9B057F5F1C472F3EFBF
         6AF6EFBD58CDEDB23364EEB43509000000000000000000000000
       }
-      OnClick = BitBtn1Click
+      OnClick = btnAktualizujOsClick
       TabOrder = 1
     end
     object Label1: TLabel
@@ -91,7 +91,7 @@ object AktualizacjaOs: TAktualizacjaOs
       ParentColor = False
       WordWrap = True
     end
-    object BitBtn2: TBitBtn
+    object btnWczytajSchowek: TBitBtn
       Left = 22
       Height = 30
       Top = 155
@@ -133,7 +133,7 @@ object AktualizacjaOs: TAktualizacjaOs
         0000000000000000000000000000C9C9C91EA6A6A6FFB7B7B780000000000000
         0000000000000000000000000000000000000000000000000000
       }
-      OnClick = BitBtn2Click
+      OnClick = btnWczytajSchowekClick
       TabOrder = 2
     end
   end
@@ -141,20 +141,147 @@ object AktualizacjaOs: TAktualizacjaOs
     Left = 0
     Height = 281
     Top = 234
-    Width = 552
+    Width = 424
     Align = alClient
     ReadOnly = True
     ScrollBars = ssAutoBoth
     TabOrder = 1
   end
   object RxDBGrid1: TRxDBGrid
-    Left = 552
+    Left = 424
     Height = 281
     Top = 234
-    Width = 576
+    Width = 739
     ColumnDefValues.BlobText = '(blob)'
     TitleButtons = True
     AutoSort = True
+    Columns = <    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'IDO'
+        Width = 80
+        FieldName = 'IDO'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'NAZWISKO'
+        Width = 100
+        FieldName = 'NAZWISKO'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'IMIE'
+        Width = 100
+        FieldName = 'IMIE'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'OJCIEC'
+        Width = 100
+        FieldName = 'OJCIEC'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'URODZ'
+        Width = 70
+        FieldName = 'URODZ'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'PRZYJ'
+        Width = 70
+        FieldName = 'PRZYJ'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'KLASYF'
+        Width = 50
+        FieldName = 'KLASYF'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'POC'
+        Width = 50
+        FieldName = 'POC'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'STATUS'
+        Width = 50
+        FieldName = 'STATUS'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end>
     KeyStrokes = <    
       item
         Command = rxgcShowFindDlg

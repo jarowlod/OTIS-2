@@ -112,9 +112,12 @@ object PenitTerminarz: TPenitTerminarz
         Top = 0
         Width = 798
         Align = alClient
+        DayFont.CharSet = EASTEUROPE_CHARSET
         DayFont.Color = 3355443
         DayFont.Height = -11
         DayFont.Name = 'Arial'
+        DayFont.Pitch = fpVariable
+        DayFont.Quality = fqCleartype
         GridPen.Color = 13158600
         HeadingColor = clWhite
         Images = ImageList1
@@ -129,7 +132,6 @@ object PenitTerminarz: TPenitTerminarz
         SelectionFont.Name = 'Arial'
         Seperator = False
         ShowToday = True
-        StretchImages = True
         TextLayout = tlTop
         TodayCircleColour = 13999409
         TodayCircleFilled = True
@@ -146,6 +148,7 @@ object PenitTerminarz: TPenitTerminarz
         YearFont.Color = 3355443
         YearFont.Height = -11
         YearFont.Name = 'Arial'
+        OnDrawCell = YearPlanner1DrawCell
         OnSelectionEnd = YearPlanner1SelectionEnd
         OnYearChanged = YearPlanner1YearChanged
       end
@@ -613,9 +616,28 @@ object PenitTerminarz: TPenitTerminarz
             item
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
-              Title.Caption = 'Zatrudnienie'
+              Title.Hint = 'Przyczyny niezatrudnienia.'
+              Title.ShowHint = True
+              Title.Caption = 'Zatrudnienie uwagi'
               Width = 150
               FieldName = 'Zatrudnienie'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Alignment = taCenter
+              Font.Color = clMaroon
+              Title.Alignment = taCenter
+              Title.Color = clNone
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Zatrudniony od'
+              Width = 70
+              FieldName = 'zat_od'
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
@@ -827,16 +849,16 @@ object PenitTerminarz: TPenitTerminarz
     CachedUpdates = True
     SQL.Strings = (
       'SELECT'
-      'osadzeni.IDO,'
-      'NAZWISKO,'
-      'IMIE,'
-      'CONCAT_WS('' '',NAZWISKO, IMIE) as NazwiskoImie,'
-      'OJCIEC,'
-      'URODZ,'
-      'PRZYJ,'
-      'KLASYF,'
-      'osadzeni.POC,'
-      'STATUS,'
+      'os.IDO,'
+      'os.NAZWISKO,'
+      'os.IMIE,'
+      'CONCAT_WS('' '',os.NAZWISKO, os.IMIE) as NazwiskoImie,'
+      'os.OJCIEC,'
+      'os.URODZ,'
+      'os.PRZYJ,'
+      'os.KLASYF,'
+      'os.POC,'
+      'os.STATUS,'
       'Autoryzacja,'
       'data_autoryzacji,'
       'KoniecKary,'
@@ -853,10 +875,12 @@ object PenitTerminarz: TPenitTerminarz
       'wpz_stanowisko,'
       'postpenit_notatka,'
       'GR,'
-      'typ_cel.ID'
-      'FROM osadzeni'
-      'LEFT OUTER JOIN os_info ON (osadzeni.IDO = os_info.IDO)'
-      'INNER JOIN typ_cel ON (osadzeni.POC = typ_cel.POC)'
+      'typ_cel.ID,'
+      'zat.zat_od'
+      'FROM osadzeni os'
+      'LEFT OUTER JOIN os_info ON (os.IDO = os_info.IDO)'
+      'INNER JOIN typ_cel ON (os.POC = typ_cel.POC)'
+      'LEFT OUTER JOIN zat_zatrudnieni zat ON (zat.IDO = os.IDO)and(zat.status_zatrudnienia="zatrudniony")'
     )
     Params = <>
     Left = 456
@@ -1113,6 +1137,15 @@ object PenitTerminarz: TPenitTerminarz
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
+    end
+    object ZQTerminarzzat_od: TDateField
+      FieldKind = fkData
+      FieldName = 'zat_od'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
   object DSTerminarz: TDataSource
@@ -2028,6 +2061,47 @@ object PenitTerminarz: TPenitTerminarz
       }
       ImageIndex = 33
       OnClick = MenuItem5Click
+    end
+    object MenuItem9: TMenuItem
+      Caption = 'Filtr - zatrudnieni'
+      Bitmap.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        000000000000000000000000000000000000B46822FFB05C189AA553192B0000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000D0933CFFE8A527FFAD570FFFA855
+        19C7000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000CD903FFFEAAF30FFBD660EFFB562
+        17FF000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000D09446FFE9B23EFFC06B14FFBA67
+        1DFF000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000D2994AFFECB849FFC6711BFFBE6B
+        1FFF000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000D59C4EFFEEBF53FFCB7820FFC26F
+        22FF000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000D8A253FFF1C45FFFCE7E24FFC77A
+        27FF000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000DAA558FFF2C866FFD1842AFFCB7F
+        2CFF000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000C87A278AEAC681FFEFC261FFDA983AFFCB78
+        24FFCB842E8A0000000000000000000000000000000000000000000000000000
+        00000000000000000000C9781A4EE9C588FFF3CF76FFEFC264FFE7B358FFD17D
+        26FFD58C33FFCE872E4E00000000000000000000000000000000000000000000
+        000000000000CD7D1C33E5BB7CFFF8DB8FFFEEC463FFEFC76CFFF2C96CFFDC93
+        37FFD5852CFFD9983CFFD1872F33000000000000000000000000000000000000
+        0000D4801211E0AB58FCF8DE91FFF1C55DFFF2C666FFF1C363FFF4CB6AFFE8AF
+        44FFD9851DFFDF9331FFDF9B38F5D88E2A0B0000000000000000000000000000
+        0000DFA54FD5FBEEC3FFFAE8B9FFF7E8C6FFF5EEE0FFF3F0EAFFF1EDE9FFEEE9
+        DBFFDAA964FFD6A259FFE0AB5DFFDEA042D60000000000000000DB98311EDFA5
+        479AFEFEFAFFFFFFFFFFF6F4F3FFF2F3F4FFEEE9DFFFE7D5AAFFE2CFA1FFE6E2
+        D7FFD9C9A8FFCFB278FFCAB796FFD3C4ADFFDDA0439ADE99331EE2A642E7E7B7
+        5BFFE5B24EFFDB931AFFDC981EFFDD971EFFDD971EFFDC961AFFDD951BFFDF99
+        20FFE09D29FFE19F2AFFE2A029FFE0AA43FFE2AF52FFE1A742E7E5AE463DE5AB
+        4170E8B24FACEDBE5ECEEEC266F4EEC265F3EFC264F3F3CA73F3F3CB75F3EFC2
+        66F3EEC265F3EEC366F4EDBD5FCEEBB552ACE7AC4470E6AE463D
+      }
+      ImageIndex = 33
+      OnClick = MenuItem9Click
     end
     object MenuItem6: TMenuItem
       Caption = 'Wszyscy'

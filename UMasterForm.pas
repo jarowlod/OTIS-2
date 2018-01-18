@@ -1,4 +1,4 @@
-unit Unit1;
+unit UMasterForm;
 
 {$mode objfpc}{$H+}
 
@@ -12,9 +12,13 @@ uses
 
 type
 
-  { TForm1 }
+  { TMasterForm }
 
-  TForm1 = class(TForm)
+  TMasterForm = class(TForm)
+    ActionZdjeciaBraki: TAction;
+    ActionSalaWidzen: TAction;
+    ActionKomunikatNowy: TAction;
+    ActionKartaOchronna: TAction;
     ActionDodajOsobeBliska: TAction;
     ActionZwrotyPaczek: TAction;
     ActionNowyKoszyk: TAction;
@@ -44,6 +48,7 @@ type
     ActionRozmieszczenie: TAction;
     Label2: TLabel;
     MenuItem10: TMenuItem;
+    MenuItem19: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem26: TMenuItem;
     MenuItem28: TMenuItem;
@@ -74,6 +79,11 @@ type
     MenuItem53: TMenuItem;
     MenuItem55: TMenuItem;
     MenuItem59: TMenuItem;
+    MenuItem60: TMenuItem;
+    MenuItem61: TMenuItem;
+    MenuItem62: TMenuItem;
+    MenuItem63: TMenuItem;
+    MenuItem64: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -92,6 +102,11 @@ type
     Timer2Komunikaty: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
+    ToolButton12: TToolButton;
+    ToolButton13: TToolButton;
+    ToolButton14: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -140,8 +155,10 @@ type
     procedure ActionDodajDoKoszykaExecute(Sender: TObject);
     procedure ActionDodajOsobeBliskaExecute(Sender: TObject);
     procedure ActionDrukujWykazOsExecute(Sender: TObject);
+    procedure ActionKartaOchronnaExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
     procedure ActionKomunikatDoExecute(Sender: TObject);
+    procedure ActionKomunikatNowyExecute(Sender: TObject);
     procedure ActionKomunikatorExecute(Sender: TObject);
     procedure ActionKoszykExecute(Sender: TObject);
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
@@ -151,12 +168,14 @@ type
     procedure ActionRejestrWidzenExecute(Sender: TObject);
     procedure ActionRejestrWykazowExecute(Sender: TObject);
     procedure ActionRozmieszczenieExecute(Sender: TObject);
+    procedure ActionSalaWidzenExecute(Sender: TObject);
     procedure ActionStanowiskaExecute(Sender: TObject);
     procedure ActionStatystykaExecute(Sender: TObject);
     procedure ActionTerminarzExecute(Sender: TObject);
     procedure ActionWydarzeniaExecute(Sender: TObject);
     procedure ActionZatrudnienieOsExecute(Sender: TObject);
     procedure ActionZatrudnieniExecute(Sender: TObject);
+    procedure ActionZdjeciaBrakiExecute(Sender: TObject);
     procedure Action_AdresyJednostekExecute(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -195,7 +214,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  MasterForm: TMasterForm;
 
 const
   SQLAllOsadzeni      = 'SELECT * FROM osadzeni';
@@ -203,15 +222,16 @@ const
 
 implementation
 uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr_ZmianaHasla, URozmieszczenie,
-     UUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
+     UOchUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
-     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk;
+     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec,
+     UOchSalaWidzen;
 {$R *.frm}
 
-{ TForm1 }
+{ TMasterForm }
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TMasterForm.FormCreate(Sender: TObject);
 begin
   fRecCount:=0;
   DM.DSOsadzeni.OnDataChange:= @StatusBarRefresh;
@@ -221,37 +241,41 @@ begin
 
   // -------------------- dodajemy globalny skrót dla NEO :)
   ClipbrdSaveText:='';
-  RegisterHotKey(Form1.Handle, $0001, MOD_CONTROL,  VkKeyScan('n')); {F4 - VK_F4}
-  if DM.Podpis<>'' then RegisterHotKey(Form1.Handle, $0002, MOD_CONTROL,  VkKeyScan('p'));
+  RegisterHotKey(MasterForm.Handle, $0001, MOD_CONTROL,  VkKeyScan('n')); {F4 - VK_F4}
+  if DM.Podpis<>'' then RegisterHotKey(MasterForm.Handle, $0002, MOD_CONTROL,  VkKeyScan('p'));
 end;
 
-procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+procedure TMasterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   //------------ zwalniam globalny skrót
-  UnregisterHotKey(Form1.Handle, $0001);
-  if DM.Podpis<>'' then UnregisterHotKey(Form1.Handle, $0002);
+  UnregisterHotKey(MasterForm.Handle, $0001);
+  if DM.Podpis<>'' then UnregisterHotKey(MasterForm.Handle, $0002);
 end;
 
-procedure TForm1.RefreshUprawnienia;
+procedure TMasterForm.RefreshUprawnienia;
 begin
   StatusBar1.Panels[1].Text:= DM.PelnaNazwa;
   StatusBar1.Panels[2].Text:= 'ver. '+wersja;
 
   MenuItem4.Enabled            := DM.uprawnienia[1];          // aktualizacja
+  ActionZdjeciaBraki.Enabled   := DM.uprawnienia[1];          // aktualizacja zdjęć
   ActionAktualizacjaPodkultury.Enabled:= DM.uprawnienia[1];   // aktualizacja podkultury;
   MenuItem5.Enabled            := DM.uprawnienia[8];          // admin, uprawnienia
   ZatrudnienieAdd.Enabled      := DM.uprawnienia[15];         // dodaj zatrudnienie
   ActionTerminarz.Enabled      := (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
   ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
   ActionWydarzenia.Enabled     := (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
-  //ActionKartaOchrony.Enabled:= (DM.Dzial='Ochrona');
+  //ActionKartaOchronna.Enabled:= (DM.Dzial='Ochrona')or(DM.Dzial='Penit');
   ActionAddWykaz.Enabled       := DM.uprawnienia[4];   // dodawanie do wykazów ochronnych
   ActionAddWidzenie.Enabled    := DM.uprawnienia[6];   // widzenia
+  ActionDodajOsobeBliska.Enabled:= DM.uprawnienia[11]; // osoby bliskie
+  // docelowo wszyscy będą mieli podgląd a edycja tylko dla wyznaczonego stanowiska
+  ActionSalaWidzen.Enabled     := DM.uprawnienia[6];   // widzenia
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
 
-procedure TForm1.Image1DblClick(Sender: TObject);
+procedure TMasterForm.Image1DblClick(Sender: TObject);
 begin
   if not Assigned(SaperForm) then
   begin
@@ -265,7 +289,7 @@ begin
 end;
 
 // Rejstr Aktualizacji
-procedure TForm1.MenuItem26Click(Sender: TObject);
+procedure TMasterForm.MenuItem26Click(Sender: TObject);
 begin
   with TAktualizacjaRejestr.Create(Self) do
   begin
@@ -274,7 +298,7 @@ begin
   end;
 end;
 
-procedure TForm1.MenuItem37Click(Sender: TObject);
+procedure TMasterForm.MenuItem37Click(Sender: TObject);
 begin
   with TUpr_ZmianaHasla.Create(Self) do
   begin
@@ -283,7 +307,7 @@ begin
   end;
 end;
 
-procedure TForm1.MenuItem4Click(Sender: TObject);
+procedure TMasterForm.MenuItem4Click(Sender: TObject);
 begin
   with TAktualizacjaOs.Create(Self) do
   begin
@@ -294,7 +318,7 @@ end;
 
 //======================================================================================================================
 //-------------------------------- KOSZYK ------------------------------------------------------------------------------
-procedure TForm1.PopupMenu1Popup(Sender: TObject);
+procedure TMasterForm.PopupMenu1Popup(Sender: TObject);
 var koszyk_name: string;
 begin
    koszyk_name:='';
@@ -308,19 +332,24 @@ begin
    ActionDodajDoKoszyka.Caption:= 'Dodaj do: '+koszyk_name;
 end;
 
-procedure TForm1.ActionDodajDoKoszykaExecute(Sender: TObject);
+procedure TMasterForm.ActionDodajDoKoszykaExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   if DM.DodajDoKoszyka(DM.ZQOsadzeni.FieldByName('IDO').AsInteger) then
     DM.KomunikatPopUp(Sender,'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
 end;
 
-procedure TForm1.ActionDodajOsobeBliskaExecute(Sender: TObject);
+procedure TMasterForm.ActionDodajOsobeBliskaExecute(Sender: TObject);
 begin
-
+  with TOchAddOsobeWidzenie.Create(Self) do
+  begin
+    DodajOsobe(DM.ZQOsadzeni.FieldByName('IDO').AsInteger);
+    ShowModal;
+    Free;
+  end;
 end;
 
-procedure TForm1.ActionNowyKoszykExecute(Sender: TObject);
+procedure TMasterForm.ActionNowyKoszykExecute(Sender: TObject);
 begin
   with TKoszykNowy.Create(Self) do
   begin
@@ -329,7 +358,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionKoszykExecute(Sender: TObject);
+procedure TMasterForm.ActionKoszykExecute(Sender: TObject);
 begin
   with TKoszyk.Create(Self) do
   begin
@@ -340,7 +369,7 @@ end;
 //======================================================================================================================
 //--------------------------------END KOSZYK ---------------------------------------------------------------------------
 
-procedure TForm1.Zaloguj;
+procedure TMasterForm.Zaloguj;
 begin
   DM.autologin:= false;
   Logowanie:= TLogowanie.Create(Self);  // uruchamiamy dostęp do bazy (login i hasło)
@@ -352,12 +381,12 @@ begin
   RefreshUprawnienia;
 end;
 
-procedure TForm1.MenuItem3Click(Sender: TObject);
+procedure TMasterForm.MenuItem3Click(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TForm1.MenuItem5Click(Sender: TObject);
+procedure TMasterForm.MenuItem5Click(Sender: TObject);
 begin
   with TUprawnienia.Create(Self) do
   begin
@@ -367,7 +396,7 @@ begin
 end;
 
 
-procedure TForm1.RxDBGrid1KeyDown(Sender: TObject; var Key: Word;
+procedure TMasterForm.RxDBGrid1KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if Char(Key) =#13 then    // ENTER
@@ -379,7 +408,7 @@ begin
   end;
 end;
 
-procedure TForm1.Timer1WyszukajTimer(Sender: TObject);
+procedure TMasterForm.Timer1WyszukajTimer(Sender: TObject);
 begin
   Timer1Wyszukaj.Enabled:= false;
     try
@@ -404,14 +433,16 @@ begin
     end;
 end;
 
-procedure TForm1.WyborDomyslny;
+procedure TMasterForm.WyborDomyslny;
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   //wybieramy akcję po wybraniu osadzonego
-  if (DM.Wychowawca<>'') and ActionKartaOsadzonego.Enabled then ActionKartaOsadzonegoExecute(Self);
+     // tylko wychowawcy, Penit
+  if ActionKartaOsadzonego.Enabled then ActionKartaOsadzonegoExecute(Self)
+                                   else ActionKartaOchronnaExecute(Self);
 end;
 
-procedure TForm1.Edit1Change(Sender: TObject);
+procedure TMasterForm.Edit1Change(Sender: TObject);
 begin
   Timer1Wyszukaj.Interval:= 500;
   Timer1Wyszukaj.Enabled := true;
@@ -419,7 +450,7 @@ begin
 end;
 
 // DODAJ OSADZONEGO DO ZATRUDNIENIA
-procedure TForm1.ZatrudnienieAddExecute(Sender: TObject);
+procedure TMasterForm.ZatrudnienieAddExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TAddZatrudnienie.Create(Self) do
@@ -430,7 +461,7 @@ begin
   end;
 end;
 
-procedure TForm1.RxDBGrid1DataHintShow(Sender: TObject; CursorPos: TPoint;
+procedure TMasterForm.RxDBGrid1DataHintShow(Sender: TObject; CursorPos: TPoint;
   Cell: TGridCoord; Column: TRxColumn; var HintStr: string;
   var Processed: boolean);
 var i: integer;
@@ -468,12 +499,12 @@ begin
      end;
 end;
 
-procedure TForm1.RxDBGrid1DblClick(Sender: TObject);
+procedure TMasterForm.RxDBGrid1DblClick(Sender: TObject);
 begin
   WyborDomyslny;
 end;
 
-procedure TForm1.Timer2KomunikatyTimer(Sender: TObject);
+procedure TMasterForm.Timer2KomunikatyTimer(Sender: TObject);
 begin
   Timer2Komunikaty.Enabled:=false;
   if Timer2Komunikaty.Interval = 1000 then Timer2Komunikaty.Interval:= DM.TimerInterval;
@@ -489,18 +520,22 @@ begin
   Timer2Komunikaty.Enabled:=true;
 end;
 
-
 // Rozmieszczenie
-procedure TForm1.ActionRozmieszczenieExecute(Sender: TObject);
+procedure TMasterForm.ActionRozmieszczenieExecute(Sender: TObject);
 begin
-  with TRozmieszczenie.Create(Self) do
-  begin
-    ShowModal;
-    Free;
-  end;
+  Rozmieszczenie:= TRozmieszczenie.Create(Self);
+  Rozmieszczenie.ShowModal;
+  FreeAndNil(Rozmieszczenie);
 end;
 
-procedure TForm1.ActionKartaOsadzonegoExecute(Sender: TObject);
+procedure TMasterForm.ActionSalaWidzenExecute(Sender: TObject);
+begin
+  OchSalaWidzen:= TOchSalaWidzen.Create(Self);
+  OchSalaWidzen.ShowModal;
+  FreeAndNil(OchSalaWidzen);
+end;
+
+procedure TMasterForm.ActionKartaOsadzonegoExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TPenitForm.Create(Self) do
@@ -511,7 +546,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionDrukujWykazOsExecute(Sender: TObject);
+procedure TMasterForm.ActionDrukujWykazOsExecute(Sender: TObject);
 begin
   with TDrukWykazOsadz.Create(Self) do
   begin
@@ -519,7 +554,18 @@ begin
   end;
 end;
 
-procedure TForm1.ActionAddWykazExecute(Sender: TObject);
+procedure TMasterForm.ActionKartaOchronnaExecute(Sender: TObject);
+begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
+  with TOchForm.Create(Self) do
+  begin
+       SetIDO( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.ActionAddWykazExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TOchAddWykaz.Create(Self) do
@@ -530,16 +576,16 @@ begin
   end;
 end;
 
-procedure TForm1.ActionAktualizacjaPodkulturyExecute(Sender: TObject);
+procedure TMasterForm.ActionAktualizacjaPodkulturyExecute(Sender: TObject);
 begin
-  with TUpdPodkultury.Create(Self) do
+  with TOchUpdPodkultury.Create(Self) do
   begin
     ShowModal;
     Free;
   end;
 end;
 
-procedure TForm1.ActionAddWidzenieExecute(Sender: TObject);
+procedure TMasterForm.ActionAddWidzenieExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TOchAddWidzenie.Create(Self) do
@@ -550,7 +596,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionKomunikatDoExecute(Sender: TObject);
+procedure TMasterForm.ActionKomunikatDoExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TKomunikatorNowaWiad.Create(Self) do
@@ -561,7 +607,16 @@ begin
   end;
 end;
 
-procedure TForm1.ActionKomunikatorExecute(Sender: TObject);
+procedure TMasterForm.ActionKomunikatNowyExecute(Sender: TObject);
+begin
+  with TKomunikatorNowaWiad.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.ActionKomunikatorExecute(Sender: TObject);
 begin
   with TKomunikator.Create(Self) do
   begin
@@ -570,7 +625,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionNieZatrudnieniExecute(Sender: TObject);
+procedure TMasterForm.ActionNieZatrudnieniExecute(Sender: TObject);
 begin
   with TZatNieZatrudnieni.Create(Self) do
   begin
@@ -579,7 +634,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionProsbyOsadzonegoExecute(Sender: TObject);
+procedure TMasterForm.ActionProsbyOsadzonegoExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TRejestrProsbOs.Create(Self) do
@@ -590,7 +645,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionProsbyOsadzonychExecute(Sender: TObject);
+procedure TMasterForm.ActionProsbyOsadzonychExecute(Sender: TObject);
 begin
   with TRejestrProsbAll.Create(Self) do
   begin
@@ -599,7 +654,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionRejestrWidzenExecute(Sender: TObject);
+procedure TMasterForm.ActionRejestrWidzenExecute(Sender: TObject);
 begin
   with TOchRejestrWidzen.Create(Self) do
   begin
@@ -608,7 +663,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionRejestrWykazowExecute(Sender: TObject);
+procedure TMasterForm.ActionRejestrWykazowExecute(Sender: TObject);
 begin
   with TOchRejestrWykazow.Create(Self) do
   begin
@@ -618,7 +673,7 @@ begin
 end;
 
 // Stanowiska / Grupy...
-procedure TForm1.ActionStanowiskaExecute(Sender: TObject);
+procedure TMasterForm.ActionStanowiskaExecute(Sender: TObject);
 begin
   with TStanowiska.Create(Self) do
   begin
@@ -627,7 +682,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionStatystykaExecute(Sender: TObject);
+procedure TMasterForm.ActionStatystykaExecute(Sender: TObject);
 begin
   with TZatStatystyka.Create(Self) do
   begin
@@ -637,14 +692,14 @@ begin
   end;
 end;
 
-procedure TForm1.ActionTerminarzExecute(Sender: TObject);
+procedure TMasterForm.ActionTerminarzExecute(Sender: TObject);
 begin
   PenitTerminarz:= TPenitTerminarz.Create(Self);
   PenitTerminarz.ShowModal;
   FreeAndNil(PenitTerminarz);
 end;
 
-procedure TForm1.ActionWydarzeniaExecute(Sender: TObject);
+procedure TMasterForm.ActionWydarzeniaExecute(Sender: TObject);
 begin
   with TPenitWydarzenia.Create(Self) do
   begin
@@ -653,7 +708,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionZatrudnienieOsExecute(Sender: TObject);
+procedure TMasterForm.ActionZatrudnienieOsExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TZatrudnieni.Create(Self) do
@@ -664,7 +719,7 @@ begin
   end;
 end;
 
-procedure TForm1.ActionZatrudnieniExecute(Sender: TObject);
+procedure TMasterForm.ActionZatrudnieniExecute(Sender: TObject);
 begin
   with TZatrudnieni.Create(Self) do
   begin
@@ -673,7 +728,16 @@ begin
   end;
 end;
 
-procedure TForm1.Action_AdresyJednostekExecute(Sender: TObject);
+procedure TMasterForm.ActionZdjeciaBrakiExecute(Sender: TObject);
+begin
+  with TAktualizacjaZdjec.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.Action_AdresyJednostekExecute(Sender: TObject);
 begin
   with TAdresyJednostek.Create(Self) do
   begin
@@ -682,7 +746,7 @@ begin
   end;
 end;
 
-procedure TForm1.Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TMasterForm.Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_DOWN then
   begin
@@ -697,7 +761,7 @@ begin
 end;
 
 // obsługa entera i ESC
-procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: char);
+procedure TMasterForm.Edit1KeyPress(Sender: TObject; var Key: char);
 begin
   if Key=#13 then    // ENTER VK_RETURN;
   begin
@@ -714,7 +778,7 @@ begin
   if Ord(Key) = VK_SPACE then Key:=#0;     // zabraniamy wpisywania spacji
 end;
 
-procedure TForm1.StatusBarRefresh(Sender: TObject; Field: TField);
+procedure TMasterForm.StatusBarRefresh(Sender: TObject; Field: TField);
 begin
   if fRecCount<>DM.ZQOsadzeni.RecordCount then
   begin
@@ -725,13 +789,13 @@ end;
 
 
 //wylogowanie i login od nowa
-procedure TForm1.MenuItem25Click(Sender: TObject);
+procedure TMasterForm.MenuItem25Click(Sender: TObject);
 begin
   Zaloguj;
 end;
 
 
-procedure TForm1.wm_HOTKEY(var Msg: TMessage);
+procedure TMasterForm.wm_HOTKEY(var Msg: TMessage);
 var Teraz: TDateTime;
 
     // procedura symuluje wciśnięcie Ctrl + v
@@ -756,9 +820,13 @@ begin
      if ClipbrdSaveText='' then ClipbrdSaveText:= Clipboard.AsText;
      { reakcja na skrót klawiszowy Ctrl+n}
      { jeśli jest włączony terminarz to pobierz nazwisko z niego, potem z wyszukiwarki głównej }
-    if PenitTerminarz <> nil then Clipboard.AsText := PenitTerminarz.ZQTerminarzNAZWISKO.AsString else
-    // if Wolne_cele <> nil then Clipboard.AsText := Wolne_Cele.ZQuery4Nazwisko.AsString else
-                               Clipboard.AsText := DM.ZQOsadzeni.FieldByName('NAZWISKO').AsString;
+    if (PenitTerminarz <> nil)and(not PenitTerminarz.ZQTerminarz.IsEmpty) then
+      Clipboard.AsText := PenitTerminarz.ZQTerminarzNAZWISKO.AsString
+    else if (Rozmieszczenie <> nil)and(not Rozmieszczenie.ZQOsadzeni.IsEmpty) then
+      Clipboard.AsText := Rozmieszczenie.ZQOsadzeni.FieldByName('NAZWISKO').AsString
+    else
+      Clipboard.AsText := DM.ZQOsadzeni.FieldByName('NAZWISKO').AsString;
+
      PressCtrlV;
      WaitMessage;
   end else

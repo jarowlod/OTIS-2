@@ -62,8 +62,8 @@ uses dateutils;
 procedure TZatrudnienieGrafik.NowyGrafik_Wykaz(ZQ: TZQuery; data: TDate; Nazwa_Grupy: String);
 var i: integer;
 begin
-  DateTimePicker1.Date:= data;
-  Edit1.Text:= Nazwa_Grupy;
+  DateTimePicker1.Date := data;
+  Edit1.Text           := Nazwa_Grupy;
   sePuste_Wiersze.Value:= 19 - ZQ.RecordCount;
 
   MemGrafik.Clear(false);
@@ -88,7 +88,7 @@ begin
   end;
   sePuste_Wiersze.Value:= sePuste_Wiersze.Value - 3;
 
-  ObliczDniWolne;
+  DateTimePicker1Change(Self); //ObliczDniWolne;
 end;
 
 // DRUKUJ

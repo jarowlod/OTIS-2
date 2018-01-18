@@ -111,8 +111,12 @@ begin
   HavingSQL:='';
 
   if cbMoje.Checked    then AddWhere('(User = :uzytkownik)');
-  if cbDoDruku.Checked then AddWhere('(Wydruk = 0)');
-  if cbDoDruku.Checked then AddWhere('(not ISNULL(Imie))');
+  if cbDoDruku.Checked then
+  begin
+    AddWhere('(Wydruk = 0)');
+    AddWhere('(rej.`status` < 2)');
+    AddWhere('(not ISNULL(Imie))');
+  end;
 
   if WhereSQL<>'' then WhereSQL:=' WHERE '+WhereSQL;
 
@@ -177,7 +181,12 @@ begin
   ZQRejestr.Filter:= '(Wydruk = 0) AND (Status < 2) and (Imie is not NULL)'; //nie drukowane [1] oraz (pozytywne, negatywne) [< 2] oraz obecny pobyt
   ZQRejestr.Filtered:= true;
 
-  if ZQRejestr.IsEmpty then exit;
+  if ZQRejestr.IsEmpty then
+  begin
+    ZQRejestr.Filtered:= false;
+    ZQRejestr.Filter  := '';
+    exit;
+  end;
 
   frDBDataSet1.RangeBegin:= rbFirst;
   frDBDataSet1.RangeEnd  := reLast;
@@ -195,7 +204,7 @@ begin
         ZQRejestr.FieldByName('Wydruk_user').AsString:= DM.PelnaNazwa;
         ZQRejestr.Post;
 
-        ZQRejestr.Next;
+        //ZQRejestr.Next; nie jest potrzebne z uwagi na to iż pozycja ubywa i się przes
       end;
   end;
 

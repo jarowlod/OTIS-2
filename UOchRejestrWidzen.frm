@@ -1,7 +1,7 @@
 object OchRejestrWidzen: TOchRejestrWidzen
-  Left = 72
+  Left = 407
   Height = 766
-  Top = 156
+  Top = 229
   Width = 1216
   Caption = 'Rejestr widzeń osadzonych'
   ClientHeight = 766
@@ -82,7 +82,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
         TimeDisplay = tdHMS
         DateMode = dmComboBox
         Date = 42762
-        Time = 0.398035810183501
+        Time = 0
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
@@ -106,11 +106,21 @@ object OchRejestrWidzen: TOchRejestrWidzen
         TimeDisplay = tdHMS
         DateMode = dmComboBox
         Date = 42762
-        Time = 0.398139062497648
+        Time = 0.958333333335759
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
         OnChange = cbPrzedzialCzasuChange
+      end
+      object cbUprzedniePobyty: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 56
+        Width = 147
+        Caption = 'Z uprzednimi pobytami.'
+        Enabled = False
+        OnChange = cbPrzedzialCzasuChange
+        TabOrder = 3
       end
     end
     object GroupBox2: TGroupBox
@@ -259,6 +269,64 @@ object OchRejestrWidzen: TOchRejestrWidzen
         OnClick = btnModyfikujClick
         TabOrder = 2
       end
+      object btnOdswiez: TBitBtn
+        Left = 112
+        Height = 30
+        Top = 40
+        Width = 91
+        Caption = 'Odśwież'
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          00000000000000000000DB730D83D16108C3B75400FFB85500FFB65300FFD05F
+          06C3D86F0C8300000000000000000000000000000000D9710BFF000000000000
+          000000000000D16008FFE39200FFE49600FFE19300FFED9E00FFF9A200FFFDB0
+          0DFFFFBB17FFD56908FFD86F0AFF00000000D9700AFFEC951CFF000000000000
+          0000B55200FFE79B00FFE29300FFDE8F00FFE39000FFFAA500FFF8A708FFF9B0
+          1AFFFCB221FFFFC737FFF6AB28FFD46502FFF6AF2DFFED9621FF00000000C858
+          09FFE89C00FFDF8F00FFE39200FFF0A100FFF19005FFEF8F05FFEC8600FFFFC1
+          29FFFFBE2EFFFFC845FFFFCE50FFFFD964FFFFDC6DFFF3A224FFA24000FFE291
+          00FFE19300FFE39200FFF2A300FFC35508FFC25202FFD2670AFFD06508FFD164
+          07FFFFD965FFFFC945FFFFD058FFFFD767FFFFDC71FFF4A629FFA74200FFEA9C
+          00FFEC9C00FFF0A100FFC35508FF00000000000000000000000000000000F1A8
+          3EFFFFE393FFFFD055FFFFD563FFFFDE78FFFFE486FFF8AE2DFFB35000FFDE81
+          00FFDB7D00FFDD8000FFC65908FF000000000000000000000000DE7508FFFFCF
+          56FFFFEBA7FFFFF2C9FFFFEBA7FFFFDF7DFFFFE78DFFFCB52EFF000000000000
+          000000000000000000000000000000000000000000000000000000000000DD73
+          06FFDB6E00FFED900DFFEF8E0AFFFDC552FFFCC24FFFFECB56FFD47314FFDA7E
+          21FFD97D21FFB24300FFC24F00FFE17803FFE0780AFF00000000000000000000
+          0000000000000000000000000000000000000000000000000000B75300FFEA99
+          00FFF39A00FFFFD858FFFFEA9AFFFFF2C9FFFFDA52FFE0790CFF000000000000
+          000000000000F19718FFEF900FFFFFB71EFFFFB61DFFFEBD2CFFBC5700FFF5A0
+          00FFF8A303FFFCAD10FFF9A814FFFFB517FFD36503FF00000000000000000000
+          000000000000EF8E0AFFFFED97FFFFEB9DFFFFF2C9FFFFB61FFFC65C00FFFBA6
+          00FFF8A308FFFBB321FFFAB525FFFFCF4CFFDE740FFFE4810BFFEE9618FFEC90
+          14FFEF8E0AFFFFED97FFFFE386FFFFE9A7FFFFF6EAFFFFB921FFC95F00FFFBA9
+          04FFFCAE10FFFEB825FFFEB729FFFFC53FFFFFD44EFFFFD75DFFFFD359FFFFCD
+          50FFFFE383FFFFE385FFFFE17EFFFFF6EAFFFFD053FF00000000D16500FFFEAE
+          12FFC75905FFD66B08FFFFC834FFFFC53DFFFFC948FFFFD35EFFFFD765FFFFDC
+          79FFFFDC71FFFFE8A0FFFFF6EAFFFFD053FF0000000000000000D46800FFCB60
+          07FF0000000000000000D56805FFFFD456FFFFD24EFFFFD45EFFFFDB68FFFFDF
+          72FFFFE79CFFFFF6EAFFFFD156FF000000000000000000000000DC750DFF0000
+          0000000000000000000000000000ED8D1383EA8911C3F09212FFF8AA29FFF8A3
+          18FFFDAA15C3FFD0538300000000000000000000000000000000
+        }
+        OnClick = btnOdswiezClick
+        TabOrder = 3
+      end
+    end
+    object Memo1: TMemo
+      Left = 632
+      Height = 56
+      Top = 8
+      Width = 288
+      Color = 14024703
+      Enabled = False
+      Lines.Strings = (
+        'Uwzględnia tylko osadzonych w obecnym pobycie.'
+      )
+      ReadOnly = True
+      TabOrder = 3
     end
   end
   object Panel2: TPanel
@@ -523,7 +591,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
-          Footer.ValueType = fvtCount
           Footers = <>
         end      
         item
@@ -540,6 +607,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Footer.ValueType = fvtCount
           Footers = <>
         end      
         item
@@ -808,8 +876,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object ZQWidzenia: TZQuery
     Connection = DM.ZConnection1
-    SortedFields = 'Data_Widzenie'
-    SortType = stDescending
+    ReadOnly = True
     SQL.Strings = (
       'SELECT'
       'w.ID, '
@@ -838,7 +905,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
       '  (w.IDO = o.IDO)'
     )
     Params = <>
-    IndexFieldNames = 'Data_Widzenie Desc'
     Left = 269
     Top = 143
     object ZQWidzeniaID: TLargeintField
@@ -1035,6 +1101,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object ZQOsoby: TZQuery
     Connection = DM.ZConnection1
+    ReadOnly = True
     SQL.Strings = (
       'SELECT'
       'w.ID_widzenia, '
@@ -1055,6 +1122,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
   end
   object DSWidzenia: TDataSource
     DataSet = ZQWidzenia
+    OnDataChange = DSWidzeniaDataChange
     Left = 344
     Top = 143
   end
@@ -1062,5 +1130,130 @@ object OchRejestrWidzen: TOchRejestrWidzen
     DataSet = ZQOsoby
     Left = 344
     Top = 448
+  end
+  object ZQWidzeniaArch: TZQuery
+    Connection = DM.ZConnection1
+    ReadOnly = True
+    SQL.Strings = (
+      'SELECT'
+      'w.ID, '
+      'w.IDO, '
+      'w.Data_Oczekuje, '
+      'w.Data_Widzenie,'
+      'w.Data_Stolik,'
+      'w.Czas_Widzenia,'
+      'w.Czas_reg,'
+      'w.Czas_dod,'
+      'w.Etap,'
+      'w.Sposob,'
+      'w.Dodatkowe, '
+      'w.Data_Dod, '
+      'w.Uwagi, '
+      'w.Nadzor, '
+      'o.Nazwisko, '
+      'o.Imie,'
+      'o.Ojciec,'
+      'o.POC,'
+      'o.Klasyf'
+      'FROM '
+      '  widzenia w'
+      'LEFT JOIN osadzeni o'
+      'ON o.IDO = w.IDO'
+      'WHERE (w.Data_Widzenie BETWEEN :data_od AND :data_do)'
+      'UNION'
+      'SELECT'
+      'w.ID, '
+      'w.IDO, '
+      'w.Data_Oczekuje, '
+      'w.Data_Widzenie,'
+      'w.Data_Stolik,'
+      'w.Czas_Widzenia,'
+      'w.Czas_reg,'
+      'w.Czas_dod,'
+      'w.Etap,'
+      'w.Sposob,'
+      'w.Dodatkowe, '
+      'w.Data_Dod, '
+      'w.Uwagi, '
+      'w.Nadzor, '
+      'o.Nazwisko, '
+      'o.Imie,'
+      'o.Ojciec,'
+      'o.POC,'
+      'o.Klasyf'
+      'FROM '
+      '  arch_widzenia w'
+      'LEFT JOIN (SELECT * FROM arch_osadzeni GROUP BY IDO) o'
+      'ON o.IDO = w.IDO'
+      'WHERE (w.Data_Widzenie BETWEEN :data_od AND :data_do)'
+      'ORDER BY Data_Widzenie DESC'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'data_od'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_do'
+        ParamType = ptUnknown
+      end>
+    Left = 269
+    Top = 208
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'data_od'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_do'
+        ParamType = ptUnknown
+      end>
+  end
+  object ZQOsobyArch: TZQuery
+    Connection = DM.ZConnection1
+    ReadOnly = True
+    SQL.Strings = (
+      'SELECT'
+      'w.ID_widzenia, '
+      'w.ID_uprawnione, '
+      'u.Nazwisko, '
+      'u.Imie, '
+      'u.Pokrew, '
+      'u.Uwagi '
+      'FROM widzenia_upr w'
+      'LEFT JOIN uprawnione u ON (w.ID_uprawnione = u.ID)'
+      'WHERE ID_widzenia=:id_widzenia'
+      ''
+      'UNION'
+      ''
+      'SELECT'
+      'w.ID_widzenia, '
+      'w.ID_uprawnione, '
+      'u.Nazwisko, '
+      'u.Imie, '
+      'u.Pokrew, '
+      'u.Uwagi '
+      'FROM arch_widzenia_upr w'
+      'LEFT JOIN arch_uprawnione u ON (w.ID_uprawnione = u.ID)'
+      'WHERE ID_widzenia=:id_widzenia'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_widzenia'
+        ParamType = ptUnknown
+      end>
+    Left = 269
+    Top = 520
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_widzenia'
+        ParamType = ptUnknown
+      end>
   end
 end

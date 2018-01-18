@@ -1,14 +1,14 @@
 object AddZatrudnienie: TAddZatrudnienie
-  Left = 444
+  Left = 396
   Height = 762
-  Top = 43
+  Top = 222
   Width = 931
   Caption = 'Zatrudnienie - Nowy'
   ClientHeight = 762
   ClientWidth = 931
   OnClose = FormClose
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object GroupBox2: TGroupBox
     Left = 0
     Height = 412
@@ -335,8 +335,9 @@ object AddZatrudnienie: TAddZatrudnienie
       Height = 23
       Top = 56
       Width = 474
-      AutoDropDown = True
       AutoComplete = True
+      AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+      AutoDropDown = True
       CharCase = ecUppercase
       DataField = 'powod_wycofania'
       DataSource = DSZat
@@ -604,8 +605,9 @@ object AddZatrudnienie: TAddZatrudnienie
         Height = 23
         Top = 24
         Width = 233
-        AutoDropDown = True
         AutoComplete = True
+        AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+        AutoDropDown = True
         CharCase = ecUppercase
         DataField = 'wyksztalcenie'
         DataSource = DSZat
@@ -629,8 +631,9 @@ object AddZatrudnienie: TAddZatrudnienie
       Height = 23
       Top = 56
       Width = 83
-      AutoDropDown = True
       AutoComplete = True
+      AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+      AutoDropDown = True
       CharCase = ecUppercase
       DataField = 'etat'
       DataSource = DSZat
@@ -664,8 +667,9 @@ object AddZatrudnienie: TAddZatrudnienie
       Height = 23
       Top = 80
       Width = 83
-      AutoDropDown = True
       AutoComplete = True
+      AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+      AutoDropDown = True
       CharCase = ecUppercase
       DataField = 'rodzaj_zatrudnienia'
       DataSource = DSZat
@@ -1311,12 +1315,12 @@ object AddZatrudnienie: TAddZatrudnienie
       'FROM zat_zatrudnieni'
     )
     Params = <>
-    left = 216
-    top = 168
+    Left = 216
+    Top = 168
   end
   object DSZat: TDataSource
     DataSet = ZQZat
-    left = 272
-    top = 168
+    Left = 272
+    Top = 168
   end
 end

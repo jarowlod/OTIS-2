@@ -1,7 +1,7 @@
 object OknoKomunikatu: TOknoKomunikatu
-  Left = 445
+  Left = 407
   Height = 513
-  Top = 161
+  Top = 229
   Width = 719
   Caption = 'Masz wiadomość ...'
   ClientHeight = 513
@@ -9,7 +9,7 @@ object OknoKomunikatu: TOknoKomunikatu
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 58
@@ -395,8 +395,6 @@ object OknoKomunikatu: TOknoKomunikatu
           Width = 120
           FieldName = 'dataNadania'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -411,8 +409,6 @@ object OknoKomunikatu: TOknoKomunikatu
           Width = 300
           FieldName = 'Full_name'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -479,6 +475,8 @@ object OknoKomunikatu: TOknoKomunikatu
       FooterOptions.RowCount = 1
       FooterOptions.Style = tsNative
       FooterOptions.DrawFullLine = False
+      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+      SearchOptions.FromStart = False
       OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alLeft
@@ -495,7 +493,6 @@ object OknoKomunikatu: TOknoKomunikatu
       DefaultRowHeight = 22
       FixedColor = clNone
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
-      ParentColor = False
       ParentShowHint = False
       ReadOnly = True
       ShowHint = True
@@ -519,8 +516,6 @@ object OknoKomunikatu: TOknoKomunikatu
           Width = 120
           FieldName = 'dataNadania'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -535,8 +530,6 @@ object OknoKomunikatu: TOknoKomunikatu
           Width = 150
           FieldName = 'Full_name'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -551,8 +544,6 @@ object OknoKomunikatu: TOknoKomunikatu
           Width = 150
           FieldName = 'temat'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -619,6 +610,8 @@ object OknoKomunikatu: TOknoKomunikatu
       FooterOptions.RowCount = 1
       FooterOptions.Style = tsNative
       FooterOptions.DrawFullLine = False
+      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+      SearchOptions.FromStart = False
       OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alClient
@@ -635,7 +628,6 @@ object OknoKomunikatu: TOknoKomunikatu
       DefaultRowHeight = 22
       FixedColor = clNone
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
-      ParentColor = False
       ParentShowHint = False
       ReadOnly = True
       ShowHint = True
@@ -753,8 +745,8 @@ object OknoKomunikatu: TOknoKomunikatu
         Name = 'odbiorca'
         ParamType = ptUnknown
       end>
-    left = 352
-    top = 201
+    Left = 352
+    Top = 201
     ParamData = <    
       item
         DataType = ftUnknown
@@ -765,8 +757,8 @@ object OknoKomunikatu: TOknoKomunikatu
   object DSKomunikat: TDataSource
     DataSet = ZQKomunikat
     OnDataChange = DSKomunikatDataChange
-    left = 352
-    top = 328
+    Left = 352
+    Top = 328
   end
   object ZUKomunikat: TZUpdateSQL
     DeleteSQL.Strings = (
@@ -787,8 +779,8 @@ object OknoKomunikatu: TOknoKomunikatu
       '  komunikaty.ID = :OLD_ID'
     )
     UseSequenceFieldForRefreshSQL = False
-    left = 352
-    top = 264
+    Left = 352
+    Top = 264
     ParamData = <    
       item
         DataType = ftUnknown
@@ -851,8 +843,8 @@ object OknoKomunikatu: TOknoKomunikatu
         Name = 'odbiorca'
         ParamType = ptUnknown
       end>
-    left = 552
-    top = 201
+    Left = 552
+    Top = 201
     ParamData = <    
       item
         DataType = ftUnknown
@@ -868,8 +860,8 @@ object OknoKomunikatu: TOknoKomunikatu
       '  kom_odbiorcy.ID = :OLD_ID'
     )
     UseSequenceFieldForRefreshSQL = False
-    left = 552
-    top = 264
+    Left = 552
+    Top = 264
     ParamData = <    
       item
         DataType = ftUnknown
@@ -885,7 +877,7 @@ object OknoKomunikatu: TOknoKomunikatu
   object DSKomOdebrane: TDataSource
     DataSet = ZQKomOdebrane
     OnDataChange = DSKomOdebraneDataChange
-    left = 552
-    top = 329
+    Left = 552
+    Top = 329
   end
 end

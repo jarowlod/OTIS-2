@@ -39,6 +39,7 @@ type
     Path_Foto   : string;
     Path_NO_Foto: string;
     Path_Raporty: string;
+    Path_NrStolikow: string;
 
     login     : string;
     haslo     : string;
@@ -104,6 +105,7 @@ type
     path: string;
     Fpic: TPicture;
     Fimg: TImage;
+    Ftag: LongInt;  // kolejność wyświetleń, wyświetlamy tylko jak Image.Tag = Ftag
     procedure SetProprties;
   protected
     procedure Execute; override;
@@ -128,7 +130,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.1.3';
+  wersja = '0.0.1.6';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -294,6 +296,7 @@ begin
   //PelnaNazwa:= fGetPelnaNazwaSQL;
 
   Path_Raporty:= ExtractFilePath(ParamStr(0)) + 'raporty\';
+  Path_NrStolikow:= ExtractFilePath(ParamStr(0)) + 'NrStolikow\';
 
   ZQ:=TZQueryPom.Create(Self);
 
@@ -595,6 +598,11 @@ begin
   inherited Create(False); // wywołanie wątku
   Fimg:= img;
   path:= str;
+
+  // zapamiętujemy numer wywołania w Tag'u zdjęcia i w zmiennej Ftag
+  // zapobiega to wyświetleniu zdjęć na miejscu którym mają wyświetlać się nowe/kolejne zdjęcia.
+  Fimg.Tag:= Fimg.Tag + 1;
+  Ftag:= Fimg.Tag;
 end;
 
 destructor TLoadFotoThread.Destroy;
@@ -616,6 +624,7 @@ end;
 procedure TLoadFotoThread.SetProprties;
 begin
     if terminated then exit;
+    if Ftag <> Fimg.Tag then exit;  // jeśli Img.Tag jest inny od zapamiętanego Ftag to zakończ.
     if Assigned( Fimg ) then
     Fimg.Picture.Assign( Fpic );
 end;

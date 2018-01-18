@@ -17,8 +17,10 @@ type
   TPenitForm = class(TForm)
     btnRejestrProsb: TBitBtn;
     btnRejestrZat: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
+    btnDrukArch: TBitBtn;
+    btnDrukWywiad: TBitBtn;
+    DBText4: TDBText;
+    DBText9: TDBText;
     DSOs: TDataSource;
     DBCheckBox6: TDBCheckBox;
     DBEdit2: TDBEdit;
@@ -66,6 +68,7 @@ type
     Panel2: TPanel;
     Panel4: TPanel;
     Panel_1: TPanel;
+    btnDodajDoKoszyka: TSpeedButton;
     TabSheetUwagi: TTabSheet;
     TabSheetWykazy: TTabSheet;
     TabSheetNotatnik: TTabSheet;
@@ -77,11 +80,12 @@ type
     ZUOsNotatki: TZUpdateSQL;
     procedure btnRejestrProsbClick(Sender: TObject);
     procedure btnRejestrZatClick(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
-    procedure BitBtn3Click(Sender: TObject);
+    procedure btnDrukArchClick(Sender: TObject);
+    procedure btnDrukWywiadClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnDodajDoKoszykaClick(Sender: TObject);
     procedure ZQOsInfoAfterPost(DataSet: TDataSet);
     procedure ZQOsNotatkiAfterPost(DataSet: TDataSet);
   private
@@ -99,11 +103,10 @@ type
     Procedure SetIDO(ido: integer);
     Procedure SetIDO(ido: integer; RefreshSourceQuery: TZQuery);
     Function UprawnieniaDoEdycji(ido: integer): boolean;
-
   end;
 
-var
-  PenitForm: TPenitForm;
+//var
+//  PenitForm: TPenitForm;
 
 implementation
 uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs;
@@ -172,14 +175,20 @@ begin
     lblCelaPalaca.Visible  := false;
     btnRejestrZat.Enabled  := false;
     btnRejestrProsb.Enabled:= false;
+    btnDrukArch.Enabled    := false;
+    btnDrukWywiad.Enabled  := false;
     PageControl1.Visible   := false; // Ukrywamy Okno zakładek !!!
+    Enabled                := false; // cały panel nieaktywny
     exit;
   end;
   //-------------------------------
 
-  btnRejestrZat.Enabled        := true;
-  btnRejestrProsb.Enabled      := true;
-  PageControl1.Visible         := true;
+  btnRejestrZat.Enabled    := true;
+  btnRejestrProsb.Enabled  := true;
+  btnDrukArch.Enabled      := true;
+  btnDrukWywiad.Enabled    := true;
+  PageControl1.Visible     := true;
+  Enabled                  := true;    // cały panel Aktywny
 
   TLoadFotoThread.Create( DM.Path_Foto + IntToStr( SelectIDO )+'.jpg', Image_os);
 
@@ -249,6 +258,13 @@ begin
   end;
 end;
 
+procedure TPenitForm.btnDodajDoKoszykaClick(Sender: TObject);
+begin
+  if SelectIDO<=0 then exit;
+  if DM.DodajDoKoszyka(SelectIDO) then
+     DM.KomunikatPopUp(Sender, 'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
+end;
+
 procedure TPenitForm.ZQOsInfoAfterPost(DataSet: TDataSet);
 begin
   if fRefresh then RefreshQuery(SourceQuery);
@@ -280,7 +296,7 @@ begin
   end;
 end;
 
-procedure TPenitForm.BitBtn2Click(Sender: TObject);
+procedure TPenitForm.btnDrukArchClick(Sender: TObject);
 begin
   if SelectIDO = 0 then exit;
   with TPenitAktaArch.Create(Self) do
@@ -291,7 +307,7 @@ begin
   end;
 end;
 
-procedure TPenitForm.BitBtn3Click(Sender: TObject);
+procedure TPenitForm.btnDrukWywiadClick(Sender: TObject);
 begin
   if SelectIDO = 0 then exit;
   with TPenitWywiad.Create(Self) do

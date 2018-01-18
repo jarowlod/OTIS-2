@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, YearPlanner, rxdbgrid, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, datamodule, LR_DBSet,
-  LR_Class, db, ZDataset, DBGrids, Menus, dateutils, Clipbrd, rxdbutils;
+  LR_Class, db, ZDataset, DBGrids, Menus, dateutils, Clipbrd, Buttons,
+  rxdbutils;
 
 type
 
@@ -45,6 +46,7 @@ type
     MenuItem7: TMenuItem;
     MenuDrukujWykazKal: TMenuItem;
     MenuItem8: TMenuItem;
+    MenuItem9: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
     MenuWykazDoSchowkaKal: TMenuItem;
     PageControl1: TPageControl;
@@ -92,6 +94,7 @@ type
     ZQTerminarzwpz_stanowisko: TSmallintField;
     ZQTerminarzWywiad: TSmallintField;
     ZQTerminarzZatrudnienie: TStringField;
+    ZQTerminarzzat_od: TDateField;
     ZQZatReport: TZQuery;
     procedure cbWychowawcyChange(Sender: TObject);
     procedure DSTerminarzDataChange(Sender: TObject; Field: TField);
@@ -107,6 +110,7 @@ type
     procedure MenuItem6Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure MenuDrukujWykazKalClick(Sender: TObject);
+    procedure MenuItem9Click(Sender: TObject);
     procedure MenuItemDoKoszykaClick(Sender: TObject);
     procedure MenuWykazDoSchowkaKalClick(Sender: TObject);
     procedure OnTimerDataChange(Sender: TObject);
@@ -114,6 +118,8 @@ type
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
     procedure TabSheet1Show(Sender: TObject);
+    procedure YearPlanner1DrawCell(Sender: TCustomControl; TheCanvas: TCanvas;
+      Rect: TRect; CellData: TCellData; CellText: String);
     procedure YearPlanner1SelectionEnd(Sender: TObject);
     procedure YearPlanner1YearChanged(Sender: TObject);
     procedure ZQTerminarzAfterClose(DataSet: TDataSet);
@@ -162,7 +168,7 @@ type
   end;
 
 var
-  PenitTerminarz: TPenitTerminarz;
+  PenitTerminarz: TPenitTerminarz;  // wymagane w Unit1;
 
 implementation
 uses UDrukWykazOsadz, UKoszyk, UKoszykNowy;
@@ -365,6 +371,11 @@ begin
           Background := clRed;
         end;
       end
+  else
+  if (Field.FieldName = 'zat_od')and(not Field.IsNull) then
+      begin
+        Background := $00B0FFB0;
+      end;
 end;
 
 procedure TPenitTerminarz.DSTerminarzDataChange(Sender: TObject; Field: TField);
@@ -438,7 +449,7 @@ begin
     inc(i);   // inc(-1) = [0..n]
     WolneCele[i].ID:=  ZQPom.FieldByName('ID').AsInteger;
     WolneCele[i].POC:= ZQPom.FieldByName('POC').AsString;
-    WolneCele[i].Wolne:= ZQPom.FieldByName('Wolne').AsInteger;
+    WolneCele[i].Wolne:= ZQPom.FieldByName('Wolne').AsInteger; // wakaty w celi
     fWakaty:= fWakaty + WolneCele[i].Wolne;
     ZQPom.Next;
   end;
@@ -596,7 +607,7 @@ var ZQPom: TZQueryPom;
     d,m : integer;
     rodzaj : string;
     pomData: TDate;
-    oc,kk, nr_img: integer;
+    //oc,kk, nr_img: integer;
 begin
   for m:=1 to 12 do
     for d:=1 to 31 do
@@ -629,6 +640,9 @@ begin
 
   FreeAndNil(ZQPom);
 
+ // Wstawiamy Images (słupki) do Terminarza na konkretny dzień.
+ // Obecnie zastąpione przez
+{
   for m:=1 to 12 do
     for d:=1 to 31 do
     begin
@@ -643,7 +657,7 @@ begin
           nr_img:= 4*oc + kk;
           YearPlanner1.CellData[m,d].CellImage:= nr_img;
         end;
-    end;
+    end;}
 end;
 
 procedure TPenitTerminarz.TabSheet1Show(Sender: TObject);
@@ -659,6 +673,55 @@ begin
   end;
 
   FirstShowTerminarz:= false;
+end;
+
+procedure TPenitTerminarz.YearPlanner1DrawCell(Sender: TCustomControl;
+  TheCanvas: TCanvas; Rect: TRect; CellData: TCellData; CellText: String);
+var x,h,h1: integer;
+    M,D: integer;
+    DesRect: TRect;
+begin
+  h:= Rect.Height - 12; // ustalam wysokość komórki
+  if h<=0 then h:=1;
+  x:= Rect.Width div 2;  // szerokosc słupka
+  M:= MonthOf( CellData.CellDate );
+  D:= DayOf( CellData.CellDate );
+
+  // rysujemy pierwszy słupek ocen i WPZ
+  if DaneTerminarza[M][D].SumOcen > 0 then
+    begin
+      h1:= round(h* DaneTerminarza[M][D].SumOcen / 8);  // 8 to jest 100% wysokości
+      if h1=0 then h1:=1; // minimalna wysokość to 1
+      if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
+
+      DesRect.Bottom:= Rect.Bottom;
+      DesRect.Left  := Rect.Left  + 1;
+      DesRect.Right := Rect.Left  + x+1;
+      DesRect.Top   := Rect.Bottom- h1;
+      //TheCanvas.FillRect( DesRect);
+      TheCanvas.GradientFill(DesRect, clRed,$00DDDDFF, gdHorizontal);
+      //TheCanvas.Pen.Color:= clSilver; // oceny
+      //TheCanvas.Brush.Style:= bsClear;
+      //TheCanvas.Rectangle(DesRect);
+    end;
+
+  // teraz drugi słupek z innymi terminami KK i pospenit
+  if DaneTerminarza[M][D].SumKK > 0 then
+    begin
+      h1:= Round(h* DaneTerminarza[M][D].SumKK / 8);  // 8 to jest 100% wysokości
+      if h1=0 then h1:=1; // minimalna wysokość to 1
+      if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
+
+      DesRect.Bottom:= Rect.Bottom;
+      DesRect.Left  := Rect.Left + x+1;
+      DesRect.Right := Rect.Right;
+      DesRect.Top   := Rect.Bottom- h1;
+      //TheCanvas.FillRect( DesRect);
+      TheCanvas.GradientFill(DesRect, clBlue,$00FFE6E6, gdHorizontal);
+      //TheCanvas.Pen.Color:= clSilver; // KK
+      //TheCanvas.Brush.Style:= bsClear;
+      //TheCanvas.Rectangle(DesRect);
+    end;
 end;
 
 procedure TPenitTerminarz.YearPlanner1SelectionEnd(Sender: TObject);
@@ -756,6 +819,13 @@ begin
   ZQTerminarz.Filtered:= true;
 end;
 
+procedure TPenitTerminarz.MenuItem9Click(Sender: TObject);
+begin
+  ZQTerminarz.Filtered:= false;
+  ZQTerminarz.Filter:= 'zat_od IS NOT NULL';
+  ZQTerminarz.Filtered:= true;
+end;
+
 procedure TPenitTerminarz.MenuItem6Click(Sender: TObject);
 begin
   ZQTerminarz.Filtered:= false;
@@ -822,7 +892,7 @@ var schowek: string;
     end;
 
 begin
-  // do schowka wszyscy zatrudnieni
+  // do schowka wszyscy zaznaczeni z Kalendarza
   if ZQKalendarz.IsEmpty then exit;
   ZQKalendarz.DisableControls;
   bookmark:= ZQKalendarz.GetBookmark;

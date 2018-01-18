@@ -1,24 +1,21 @@
 object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
-  Left = 407
-  Height = 342
-  Top = 229
+  Left = 396
+  Height = 371
+  Top = 222
   Width = 622
   Caption = 'Osoba uprawniona do widzeń'
-  ClientHeight = 342
+  ClientHeight = 371
   ClientWidth = 622
   KeyPreview = True
   Position = poScreenCenter
   LCLVersion = '6.3'
   object Label6: TLabel
-    AnchorSideTop.Control = DBDateTimePicker1
     AnchorSideTop.Side = asrCenter
-    AnchorSideRight.Control = DBDateTimePicker1
-    Left = 98
+    Left = 96
     Height = 15
     Top = 188
     Width = 116
-    Anchors = [akTop, akRight]
-    BorderSpacing.Right = 10
+    Anchors = []
     Caption = 'Data decyzji dyrektora'
     ParentColor = False
   end
@@ -135,7 +132,11 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     ParentColor = False
   end
   object DBDateTimePicker1: TDBDateTimePicker
-    Left = 224
+    AnchorSideLeft.Control = Label6
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label6
+    AnchorSideTop.Side = asrCenter
+    Left = 222
     Height = 23
     Top = 184
     Width = 83
@@ -146,6 +147,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     MaxDate = 2958465
     MinDate = -53780
     TabOrder = 4
+    BorderSpacing.Left = 10
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
@@ -175,7 +177,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
   object GroupBox1: TGroupBox
     Left = 0
     Height = 65
-    Top = 216
+    Top = 256
     Width = 622
     Align = alCustom
     Anchors = [akTop, akLeft, akRight]
@@ -257,7 +259,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
   object Panel1: TPanel
     Left = 0
     Height = 38
-    Top = 304
+    Top = 333
     Width = 622
     Align = alBottom
     BevelOuter = bvNone
@@ -291,10 +293,10 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     end
   end
   object DBComboBox1: TDBComboBox
-    Left = 98
+    Left = 96
     Height = 23
     Top = 117
-    Width = 514
+    Width = 516
     AutoComplete = True
     AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
     CharCase = ecUppercase
@@ -302,20 +304,45 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     DataSource = DSUprawnione
     ItemHeight = 15
     Items.Strings = (
-      'MATKA'
-      'OJCIEC'
+      'BABKA'
       'BRAT'
-      'SIOSTRA'
-      'SYN'
+      'BRATOWA'
+      'CIOTKA'
       'CÓRKA'
-      'WUJEK'
-      'KUZYN'
+      'CÓRKA - INNE'
+      'DZIADEK'
+      'INNA OSOBA'
       'KOLEGA'
       'KOLEŻANKA'
       'KONKUBINA'
+      'KUZYN'
+      'KUZYNKA'
+      'MACOCHA'
+      'MATKA'
+      'MĄŻ'
+      'OJCIEC'
+      'OJCZYM'
+      'SIOSTRA'
+      'SYN'
+      'SYN - INNE'
+      'SZWAGIER'
+      'WNUCZKA'
+      'WNUK'
+      'WUJEK'
+      'ŻONA'
     )
     MaxLength = 0
     TabOrder = 8
+  end
+  object CheckBox1: TCheckBox
+    Left = 96
+    Height = 19
+    Top = 224
+    Width = 196
+    Caption = 'Dodatkowe widzenie (na dziecko)'
+    Enabled = False
+    ParentBidiMode = False
+    TabOrder = 9
   end
   object ZQUprawnione: TZQuery
     Connection = DM.ZConnection1

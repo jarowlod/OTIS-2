@@ -1,7 +1,7 @@
 object ViewUwagiOch: TViewUwagiOch
-  Left = 407
+  Left = 396
   Height = 395
-  Top = 229
+  Top = 222
   Width = 602
   Align = alClient
   BorderStyle = bsNone
@@ -48,6 +48,26 @@ object ViewUwagiOch: TViewUwagiOch
         DataField = 'Data'
         DataSource = DSUwagiKierownika
         ParentColor = False
+      end
+      object DBNavigator2: TDBNavigator
+        Left = 0
+        Height = 24
+        Top = 0
+        Width = 105
+        Align = alLeft
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 24
+        ClientWidth = 105
+        DataSource = DSUwagiKierownika
+        Options = []
+        TabOrder = 0
+        VisibleButtons = [nbPost, nbCancel]
       end
     end
     object DBMemoUwagiKier: TDBMemo
@@ -108,6 +128,26 @@ object ViewUwagiOch: TViewUwagiOch
       DataField = 'Data'
       DataSource = DSUwagi
       ParentColor = False
+    end
+    object DBNavigator1: TDBNavigator
+      Left = 0
+      Height = 24
+      Top = 0
+      Width = 105
+      Align = alLeft
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 24
+      ClientWidth = 105
+      DataSource = DSUwagi
+      Options = []
+      TabOrder = 0
+      VisibleButtons = [nbPost, nbCancel]
     end
   end
   object ZQUwagi: TZQuery

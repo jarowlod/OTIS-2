@@ -6,15 +6,15 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Buttons, datamodule, rxdbgrid, memds, db;
+  StdCtrls, Buttons, rxdbgrid, datamodule, memds, db;
 
 type
 
   { TAktualizacjaOs }
 
   TAktualizacjaOs = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    btnAktualizujOs: TBitBtn;
+    btnWczytajSchowek: TBitBtn;
     DataSource1: TDataSource;
     Label1: TLabel;
     MemDataset1: TMemDataset;
@@ -22,8 +22,8 @@ type
     Memo2: TMemo;
     Panel1: TPanel;
     RxDBGrid1: TRxDBGrid;
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure btnAktualizujOsClick(Sender: TObject);
+    procedure btnWczytajSchowekClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
@@ -52,7 +52,7 @@ procedure TAktualizacjaOs.FormCreate(Sender: TObject);
 begin
   Memo2.Lines.Clear;
   Memo1.Lines.Clear;
-  BitBtn1.Enabled:=false;
+  btnAktualizujOs.Enabled:=false;
   daneHTML:= TStringList.Create;
 end;
 
@@ -61,16 +61,20 @@ begin
   FreeAndNil(daneHTML);
 end;
 
-procedure TAktualizacjaOs.BitBtn1Click(Sender: TObject);
+procedure TAktualizacjaOs.btnAktualizujOsClick(Sender: TObject);
 begin
   AktualizujDane;
 end;
 
-procedure TAktualizacjaOs.BitBtn2Click(Sender: TObject);
+procedure TAktualizacjaOs.btnWczytajSchowekClick(Sender: TObject);
 begin
-  BitBtn2.Enabled:= false;
-  if WczytajDaneHTML then BitBtn1.Enabled:= true else BitBtn1.Enabled:= false;
-  BitBtn2.Enabled:= not BitBtn1.Enabled;
+  btnWczytajSchowek.Enabled:= false;
+  if WczytajDaneHTML then
+    btnAktualizujOs.Enabled:= true
+  else
+    btnAktualizujOs.Enabled:= false;
+
+  btnWczytajSchowek.Enabled:= not btnAktualizujOs.Enabled;
 end;
 
 procedure TAktualizacjaOs.AktualizujDane;
@@ -80,8 +84,8 @@ var ZQPom : TZQueryPom;
     Zma: integer;
     koniec: boolean;
 begin
-  BitBtn1.Enabled:= false;
-  BitBtn2.Enabled:= false;
+  btnAktualizujOs.Enabled:= false;
+  btnWczytajSchowek.Enabled:= false;
   Memo1.ReadOnly:= true;
   Memo1.Lines.Clear;
   // dodajemy uzytkownika do tabeli synchro
@@ -142,7 +146,8 @@ begin
       if not (ZQPom.FieldByName('POC').AsString = 'ubył') then
       begin
         Memo1.Lines.Add( ZQPom.FieldByName('IDO').AsString+ ' '
-                        +ZQPom.FieldByName('Nazwisko').AsString+ ' ubył');
+                        +ZQPom.FieldByName('Nazwisko').AsString+ ' '
+                        +ZQPom.FieldByName('POC').AsString+' -> ' +'ubył');
         ZQPom.Edit;
         ZQPom.FieldByName('POC').AsString:= 'ubył';  //znacznik aby potem skasować hurtem
         ZQPom.Post;
@@ -192,11 +197,11 @@ begin
 
       ZQPom.SQL.Text:= 'UPDATE synchro SET opis=:opis WHERE ID=:id;';
       ZQPom.ParamByName('id').AsInteger := ID_Synchro;
-      ZQPom.ParamByName('opis').AsString  := Memo1.Text;  // zapis przez ParamByName('opis').AsMemo powoduje błąd
+      ZQPom.ParamByName('opis').AsString:= Memo1.Text;  // zapis przez ParamByName('opis').AsMemo powoduje błąd
       ZQPom.ExecSQL;
 
   MemDataset1.EnableControls;
-  BitBtn2.Enabled:= true;
+  btnWczytajSchowek.Enabled:= true;
   Memo1.ReadOnly:= true;
   Memo2.Lines.Add('Aktualizacja zakończona.');
 
@@ -289,6 +294,7 @@ begin
   st:= TStringList.Create;
   i:=2;  // właściwe dane od 0(śmieci), 1(nagłówek) , >= 2 <=
 
+  MemDataset1.DisableControls;
   while i < daneHTML.Count do
   begin
     st.Clear;
@@ -309,6 +315,7 @@ begin
 
     inc(i);
   end;
+  MemDataset1.EnableControls;
 
   FreeAndNil(st);
 

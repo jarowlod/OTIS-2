@@ -1,7 +1,7 @@
 object OchAddWidzenie: TOchAddWidzenie
-  Left = 407
+  Left = 396
   Height = 758
-  Top = 229
+  Top = 222
   Width = 1108
   Caption = 'Dodaj widzenie'
   ClientHeight = 758
@@ -113,6 +113,7 @@ object OchAddWidzenie: TOchAddWidzenie
       Increment = 60
       MaxValue = 180
       TabOrder = 2
+      Value = 60
     end
     object edDodatkowe: TSpinEdit
       Left = 224

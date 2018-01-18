@@ -98,8 +98,8 @@ type
     procedure DodajOsobeDoWidzenia(aID: integer; aNazwisko, aImie, aPokrewienstwo: string);
   end;
 
-var
-  OchAddWidzenie: TOchAddWidzenie;
+//var
+//  OchAddWidzenie: TOchAddWidzenie;
 
 implementation
 uses URejestrProsbOs, UOsadzeni, UOchAddOsobeWidzenie;
@@ -112,6 +112,7 @@ begin
   isCloseForm            := false;
   PageControl1.TabIndex  := 0;
   btnDopiszOsobe.Enabled := DM.uprawnienia[11]; // osoby bliskie
+  btnModyfikujOsobe.Enabled:= DM.uprawnienia[11]; // osoby bliskie;
   dtDataWidzenia.Date    := Date;
   dtDataWidzenia.Enabled := false;
 
@@ -313,7 +314,7 @@ begin
   // sprawdzam czy jest dodany do poczekalni
   Result:= false;
   ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT ido FROM widzenia WHERE (Etap=1)AND(IDO=:ido);';
+  ZQPom.SQL.Text:= 'SELECT IDO FROM widzenia WHERE (Etap=1)AND(IDO=:ido);';
   ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
   ZQPom.Open;
   if not ZQPom.IsEmpty then

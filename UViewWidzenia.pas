@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, rxdbgrid, ZDataset, Forms, Controls,
-  Graphics, Dialogs, ExtCtrls, StdCtrls, Grids, DBGrids, dateutils;
+  Graphics, Dialogs, ExtCtrls, StdCtrls, Grids, DBGrids, dateutils, datamodule;
 
 type
 
@@ -52,7 +52,6 @@ end;
 procedure TViewWidzenia.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
-  ZQOsoby.Open;
 end;
 
 procedure TViewWidzenia.ZapiszZmiany;
@@ -74,9 +73,14 @@ begin
   if SelectIDO = 0 then
   begin
     ZQWidzenia.Close;
+    ZQOsoby.Close;
     exit;
   end;
   //-------------------------------
+
+  ZQOsoby.Close;
+   ZQOsoby.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQOsoby.Open;
 
   //Rejestr wykazów
   ZQWidzenia.Close;
@@ -97,7 +101,7 @@ begin
   if Column.FieldName = 'Data_Widzenie' then
     if Column.Field.AsDateTime >= StartOfTheMonth(Date()) then
     begin
-      TRxDBGrid(Sender).Canvas.Brush.Color:= clRed;
+      TRxDBGrid(Sender).Canvas.Brush.Color:= $008080FF;
       //TRxDBGrid(Sender).Canvas.Font.Color:= clWhite;
     end;
 end;

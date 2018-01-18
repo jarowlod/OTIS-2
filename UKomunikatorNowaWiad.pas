@@ -127,8 +127,8 @@ type
 type
  THackGrid = class(TRxDBGrid);
 
-var
-  KomunikatorNowaWiad: TKomunikatorNowaWiad;
+//var
+//  KomunikatorNowaWiad: TKomunikatorNowaWiad;
 
 implementation
 uses UAktualizacjaOs;
@@ -159,7 +159,7 @@ begin
 
   if memOdbiorcy.Locate('user', ZQUzytkownicy.FieldByName('user').AsString,[]) then
   begin
-    MessageDlg('Osadzony jest już dodany do odbiorców.', mtInformation, [mbCancel],0);
+    MessageDlg('Użtkownik jest już dodany do odbiorców.', mtInformation, [mbCancel],0);
     exit;
   end;
 
@@ -212,6 +212,8 @@ begin
 
   ZQTresc.Close;
   ZQOdbiorcy.Close;
+
+  DM.KomunikatPopUp(Sender, 'Nowa wiadomość', 'Wiadomość wysłana.', nots_Info);
 end;
 
 procedure TKomunikatorNowaWiad.BitBtn4Click(Sender: TObject);
@@ -347,16 +349,16 @@ end;
 procedure TKomunikatorNowaWiad.OdpiszDoUserByIDO(IDO: integer);
 var ZQPom: TZQueryPom;
 begin
-  Edit1.Text:='Dotyczy: '+ DM.ZQOsadzeni.FieldByName('NAZWISKO').AsString+' '+DM.ZQOsadzeni.FieldByName('IMIE').AsString;;
-
   ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT os.IDO, os.POC, typ.wychowawca, upr.user, upr.Full_name FROM osadzeni as os '+
+  ZQPom.SQL.Text:= 'SELECT os.IDO, os.POC, os.NAZWISKO, os.IMIE, typ.wychowawca, upr.user, upr.Full_name FROM osadzeni as os '+
                    'LEFT JOIN typ_cel as typ ON (os.POC = typ.POC) '+
                    'LEFT JOIN uprawnienia as upr ON (typ.wychowawca = upr.wychowawca) '+
                    'WHERE (os.IDO = :ido) AND (typ.wychowawca<>"") ';
   ZQPom.ParamByName('ido').AsInteger := IDO;
   ZQPom.Open;
   if ZQPom.IsEmpty then exit;
+
+  Edit1.Text:='Dotyczy: '+ ZQPom.FieldByName('NAZWISKO').AsString+' '+ZQPom.FieldByName('IMIE').AsString;;
 
   memOdbiorcy.Append;
   memOdbiorcy.FieldByName('user').AsString        := ZQPom.FieldByName('user').AsString;
