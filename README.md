@@ -24,6 +24,8 @@ Station_Name_For_Widzenia = nazwa komputera na którym realizowane są widzenia 
 TimerInterval = czas w msec odpytywania serwera w celu wyszukania nowych komunikatów do użytkownika.
 
 w pliku config.ini podajemy lokalizację bazy MySQL.<br>
-[CONFIG]<br>
-HostName=192.168.1.1<br>
+```
+[CONFIG]
+HostName=192.168.1.1
 Port=3306
+```
