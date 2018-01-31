@@ -31,6 +31,7 @@ type
     TabSheetSalaWidzen: TTabSheet;
     TabSheetPoczekalnia: TTabSheet;
     TabSheetPleksa: TTabSheet;
+    TimerAutoUpdate: TTimer;
     TimerZegar: TTimer;
     ZQWidzenia: TZQuery;
     procedure btnWybranyDoWidzeniaClick(Sender: TObject);
@@ -38,13 +39,13 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure TabSheetPoczekalniaShow(Sender: TObject);
+    procedure TimerAutoUpdateTimer(Sender: TObject);
     procedure TimerZegarTimer(Sender: TObject);
   private
     FStoliki: array of TViewStolik;
     isTylkoPodglad: boolean;
     procedure UtworzStoliki;
     procedure RozmiescStoliki;
-    procedure WczytajWidzenia;
     procedure SetUprawnienia;
   public
     procedure PrzeladujWidzenia;
@@ -76,6 +77,11 @@ procedure TOchSalaWidzen.TabSheetPoczekalniaShow(Sender: TObject);
 begin
   ZQWidzenia.Close;
   ZQWidzenia.Open;
+end;
+
+procedure TOchSalaWidzen.TimerAutoUpdateTimer(Sender: TObject);
+begin
+  PrzeladujWidzenia;
 end;
 
 procedure TOchSalaWidzen.TimerZegarTimer(Sender: TObject);
@@ -115,6 +121,7 @@ begin
     FStoliki[i]:= TViewStolik.Create(Self);
     FStoliki[i].Parent:= PanelSala;
     FStoliki[i].NrStolika:= i+1;
+    FStoliki[i].PopupMenuVisible:= not isTylkoPodglad; // jeśli tylko podgląd to False
     FStoliki[i].WczytajDane; // zamiast SetIDO sam wczyta sobie co trzeba
   end;
 end;
@@ -136,7 +143,7 @@ begin
   begin
     FStoliki[i].Left:= 100 + (FStoliki[i].Width + 10) * 2;
     ii:= (i-10)+1;
-    FStoliki[i].Top:= 100 + (FStoliki[i].Height + 10) * ii;
+    FStoliki[i].Top := 100 + (FStoliki[i].Height + 10) * ii;
     FStoliki[i].Show;
   end;
   // Prawa strona sali + Bezdozorowe
@@ -144,11 +151,11 @@ begin
   begin
     ii:= ((i-13) mod 2) + 2;
     FStoliki[i].Left:= 100 + (FStoliki[i].Width + 10) * ii;
-    FStoliki[i].Top:= 10;
+    FStoliki[i].Top := 10;
     FStoliki[i].Show;
   end;
-  PanelBezdozor.Left:= FStoliki[13].Left-25;
-  PanelBezdozor.Width:= 2 * (FStoliki[14].Width + 10) + 35;
+  PanelBezdozor.Left  := FStoliki[13].Left-25;
+  PanelBezdozor.Width := 2 * (FStoliki[14].Width + 10) + 35;
   PanelBezdozor.Height:= FStoliki[14].Height + 35;
 
   // Pleksa
@@ -156,35 +163,11 @@ begin
   begin
     ii:= (i-18) mod 3;
     FStoliki[i].Parent:= PanelPleksa;
-    FStoliki[i].Left:= 10 + (FStoliki[i].Width + 20) * ii;
-    FStoliki[i].Top:= 150;
+    FStoliki[i].Left  := 10 + (FStoliki[i].Width + 20) * ii;
+    FStoliki[i].Top   := 150;
     FStoliki[i].Show;
   end;
 
-end;
-
-procedure TOchSalaWidzen.WczytajWidzenia;
-var ZQPom: TZQueryPom;
-    i: integer;
-    st: integer;
-    StPom: array of integer;
-begin
-  SetLength(StPom, LSTOLIKOW);
-  for i:= 0 to LSTOLIKOW-1 do StPom[i]:= 0;
-  // wczytujemy trwające widzenia z bazy i przypisujemy stoliki
-  ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:='SELECT w.IDO, w.Stolik FROM widzenia w WHERE w.Etap=2';
-  ZQPom.Open;
-  while not ZQPom.Eof do
-  begin
-    st:= ZQPom.FieldByName('Stolik').AsInteger;
-    // zapisujemy tymczasowo IDO - > stolika do tabeli
-    StPom[st-1]:= ZQPom.FieldByName('IDO').AsInteger;
-    ZQPom.Next;
-  end;
-  // przekazujemy do stolików ido z tymczasowej tabeli
-  for i:=0 to LSTOLIKOW-1 do FStoliki[i].SetIDO( StPom[i] );
-  FreeAndNil(ZQPom);
 end;
 
 procedure TOchSalaWidzen.SetUprawnienia;
@@ -198,8 +181,8 @@ begin
   begin
     isTylkoPodglad:= true;
     TabSheetPoczekalnia.TabVisible:= false;
-    // ale za to uruchamiamy Timer2 który co minutę wczyte aktualne dane,
-    //Timer2.Enabled := true;
+    // ale za to uruchamiamy Timer który co minutę wczyte aktualne dane,
+    TimerAutoUpdate.Enabled := true;
   end;
 end;
 

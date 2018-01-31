@@ -28,11 +28,10 @@ type
     BitBtn19: TBitBtn;
     btnWykazGrup: TBitBtn;
     BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
     BitBtn5: TBitBtn;
     BitBtn6: TBitBtn;
-    BitBtn7: TBitBtn;
+    btnUsunStanowisko: TBitBtn;
     BitBtn8: TBitBtn;
     BitBtn9: TBitBtn;
     cbSystem: TComboBox;
@@ -137,9 +136,8 @@ type
     procedure druk_karta_pracyEtatClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
-    procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn6Click(Sender: TObject);
-    procedure BitBtn7Click(Sender: TObject);
+    procedure btnUsunStanowiskoClick(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure druk_przepustka_zbiorczaClick(Sender: TObject);
@@ -154,6 +152,7 @@ type
   private
     { private declarations }
     Procedure WydrukKartyPracy(file_name: string);
+    function isZatrudnieniEmpty_byStanowisko(id_stanowisko: integer): Boolean;
   public
     { public declarations }
     Fid_stanowiska: integer;
@@ -172,19 +171,18 @@ uses UAddStanowiska, LR_DSet, UZatrudnienieGrafik, UAddZatrudnienie, UZatrudnien
 
 procedure TStanowiska.FormCreate(Sender: TObject);
 begin
-  BitBtn1.Enabled:= DM.uprawnienia[15];  // zatrudnienie
-  BitBtn2.Enabled:= DM.uprawnienia[15];  // zatrudnienie
-  BitBtn3.Enabled:= DM.uprawnienia[15];  // zatrudnienie
-  BitBtn7.Enabled:= DM.uprawnienia[15];  // zatrudnienie
-  MenuItemDodajSt.Enabled:= DM.uprawnienia[15];
+  BitBtn1.Enabled            := DM.uprawnienia[15];  // zatrudnienie
+  BitBtn2.Enabled            := DM.uprawnienia[15];  // zatrudnienie
+  btnUsunStanowisko.Enabled  := DM.uprawnienia[15];  // zatrudnienie
+  MenuItemDodajSt.Enabled    := DM.uprawnienia[15];
   MenuItemModyfikujSt.Enabled:= DM.uprawnienia[15];
-  MenuItemUsunSt.Enabled:= DM.uprawnienia[15];
+  MenuItemUsunSt.Enabled     := DM.uprawnienia[15];
 
-  BitBtn12.Enabled:= DM.uprawnienia[15];  // zatrudnienie  modyfikuj osadzonego
-  BitBtn13.Enabled:= DM.uprawnienia[15];  // zatrudnienie  usuń osadzonego
-  BitBtn14.Enabled:= DM.uprawnienia[15];  // zatrudnienie  dodaj osadzonego
+  BitBtn12.Enabled           := DM.uprawnienia[15];  // zatrudnienie  modyfikuj osadzonego
+  BitBtn13.Enabled           := DM.uprawnienia[15];  // zatrudnienie  usuń osadzonego
+  BitBtn14.Enabled           := DM.uprawnienia[15];  // zatrudnienie  dodaj osadzonego
 
-  ZQZatrudnieni.ReadOnly:= not DM.uprawnienia[15];
+  ZQZatrudnieni.ReadOnly     := not DM.uprawnienia[15];
 
   NewSelect; // stanowiska open
   ZQZatrudnieni.Open;
@@ -269,38 +267,44 @@ begin
   frDBDataSet1.RangeEnd  := reLast;
 end;
 
-// USUŃ - zmiana statusu grupy na uprzednia
-procedure TStanowiska.BitBtn3Click(Sender: TObject);
+function TStanowiska.isZatrudnieniEmpty_byStanowisko(id_stanowisko: integer): Boolean;
+var ZQPom: TZQueryPom;
 begin
-  if IsDataSetEmpty(ZQStanowiska) then exit;
-  if MessageDlg('Czy zmienić status grupy na uprzednią?', mtWarning, [mbYes, mbNo],0) = mrYes then
-  begin
-    DM.ZQTemp.SQL.Text:='UPDATE zat_stanowiska SET stan = "U", data_modyfikacji = NOW(), user_modyfikacji = :user WHERE id= :id;';
-    DM.ZQTemp.ParamByName('id').AsInteger:= ZQStanowiska.FieldByName('id').AsInteger;
-    DM.ZQTemp.ParamByName('user').AsString:= DM.PelnaNazwa;
-    DM.ZQTemp.ExecSQL;
-    RefreshQuery(ZQStanowiska);
-  end;
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT id_stanowiska FROM zat_stanowiska WHERE id_stanowiska=:id_stanowiska';
+  ZQPom.ParamByName('id_stanowiska').AsInteger:= id_stanowisko;
+  ZQPom.Open;
+
+  Result:= ZQPom.IsEmpty;
+
+  FreeAndNil(ZQPom);
 end;
 
 // USUŃ STANOWISKO
-procedure TStanowiska.BitBtn7Click(Sender: TObject);
+procedure TStanowiska.btnUsunStanowiskoClick(Sender: TObject);
 begin
   if IsDataSetEmpty(ZQStanowiska) then exit;
 
-  // TODO: sprawdzenie osadzonych czy sa aktywni dla grupy i zmienic status na uprzedni po komunikacie
-  //sprawdzam czy są przypisani osadzeni do grupy !!! ale nie tylko obecnym pobytem
-  if not ZQZatrudnieni.IsEmpty then
-  begin
-    MessageDlg('Do grupy są przypisani osadzeni.'+LineEnding+'Usunięcie jest niemożliwe.', mtWarning, [mbOK],0);
-    exit;
-  end;
-
-  if MessageDlg('Czy usunąć grupę?', mtWarning, [mbYes, mbNo],0) = mrYes then
-  begin
-    ZQStanowiska.Delete;
-    //RefreshQuery(ZQStanowiska);
-  end;
+  // sprawdzenie osadzonych czy sa aktywni dla grupy i zmienic status na uprzedni po komunikacie
+  // sprawdzam czy są przypisani osadzeni do grupy !!! ale nie tylko obecnym pobytem
+  if isZatrudnieniEmpty_byStanowisko(ZQStanowiskaid.AsInteger) then
+    begin
+      if MessageDlg('Czy usunąć stanowisko?'+LineEnding+'Do grupy nie ma przypisanych osadzonych.', mtWarning, [mbYes, mbNo],0) = mrYes then
+      begin
+        ZQStanowiska.Delete;
+      end;
+    end
+  else // not Empty
+    begin
+      if MessageDlg('Do stanowiska są przypisani osadzeni.'+LineEnding+'Czy zmienić status grupy na uprzednią?', mtWarning, [mbYes, mbNo],0) = mrYes then
+      begin
+        DM.ZQTemp.SQL.Text:='UPDATE zat_stanowiska SET stan = "U", data_modyfikacji = NOW(), user_modyfikacji = :user WHERE id= :id;';
+        DM.ZQTemp.ParamByName('id').AsInteger := ZQStanowiska.FieldByName('id').AsInteger;
+        DM.ZQTemp.ParamByName('user').AsString:= DM.PelnaNazwa;
+        DM.ZQTemp.ExecSQL;
+        RefreshQuery(ZQStanowiska);
+      end;
+    end;
 end;
 
 procedure TStanowiska.Edit1Change(Sender: TObject);

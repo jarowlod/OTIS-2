@@ -97,35 +97,49 @@ object ViewStolik: TViewStolik
     end
   end
   object PopupMenu1: TPopupMenu
+    Images = DM.ImageList1
     OnPopup = PopupMenu1Popup
     Left = 24
     Top = 56
     object miOsadzony: TMenuItem
       Caption = 'Osadzony'
+      ImageIndex = 5
       OnClick = miOsadzonyClick
+    end
+    object MenuItem2: TMenuItem
+      Caption = '-'
     end
     object miRozpocznijWidzenie: TMenuItem
       Caption = 'Rozpocznij widzenie'
+      ImageIndex = 40
       OnClick = miRozpocznijWidzenieClick
-    end
-    object miZakonczWidzenie: TMenuItem
-      Caption = 'Zakończ widzenie'
-      OnClick = miZakonczWidzenieClick
     end
     object miZatrzymajWidzenie: TMenuItem
       Caption = 'Zatrzymaj'
+      ImageIndex = 43
       OnClick = miZatrzymajWidzenieClick
     end
     object miCofnijDoPoczekalni: TMenuItem
       Caption = 'Cofnij do poczekalni'
+      ImageIndex = 41
       OnClick = miCofnijDoPoczekalniClick
+    end
+    object miZakonczWidzenie: TMenuItem
+      Caption = 'Zakończ widzenie'
+      ImageIndex = 42
+      OnClick = miZakonczWidzenieClick
+    end
+    object MenuItem1: TMenuItem
+      Caption = '-'
     end
     object miKartaOchronna: TMenuItem
       Caption = 'Karta ochronna'
+      ImageIndex = 24
       OnClick = miKartaOchronnaClick
     end
     object miModyfikujWidzenie: TMenuItem
       Caption = 'Modyfikuj'
+      ImageIndex = 39
       OnClick = miModyfikujWidzenieClick
     end
   end

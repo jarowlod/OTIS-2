@@ -503,6 +503,7 @@
         <Filename Value="UOchEdycja_Widz.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchEdycja_Widz"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit53>
     </Units>

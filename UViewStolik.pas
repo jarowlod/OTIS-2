@@ -14,6 +14,8 @@ type
   { TViewStolik }
 
   TViewStolik = class(TForm)
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     ProgressBar1: TBGRAFlashProgressBar;
     Image1: TImage;
     lblCzas: TLabel;
@@ -44,6 +46,7 @@ type
     procedure PopupMenu1Popup(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   private
+    FPopupMenuVisible: Boolean;
     SelectIDO : integer;
     FNrStolika: integer;
     fID       : integer;
@@ -56,12 +59,13 @@ type
 
     procedure SetNrStolika(AValue: integer);
     procedure IncProgress;
+    procedure SetPopupMenuVisible(AValue: Boolean);
     procedure UpdateProgress;
   public
-    procedure SetIDO(ido: integer);   // TODO: do usunięcia
     // wczytuje dane z bazy po nr stolika i Etapie widzenia
     procedure WczytajDane;
     property NrStolika: integer read FNrStolika write SetNrStolika;
+    property PopupMenuVisible: Boolean read FPopupMenuVisible write SetPopupMenuVisible;
   end;
 
 var
@@ -75,7 +79,8 @@ uses UOchSalaWidzen, UOchForm, UOchEdycja_Widz, dateutils;
 
 procedure TViewStolik.FormCreate(Sender: TObject);
 begin
-  SelectIDO:= -1;
+  SelectIDO:= 0;
+  FPopupMenuVisible:= True;
 end;
 
 procedure TViewStolik.Image1DblClick(Sender: TObject);
@@ -142,7 +147,6 @@ begin
   end;
 
   OchSalaWidzen.PrzeladujWidzenia;
-  //WczytajDane;
 end;
 
 procedure TViewStolik.miOsadzonyClick(Sender: TObject);
@@ -243,6 +247,13 @@ begin
   end;
 end;
 
+procedure TViewStolik.SetPopupMenuVisible(AValue: Boolean);
+begin
+  if FPopupMenuVisible= AValue then Exit;
+  FPopupMenuVisible:= AValue;
+  PopupMenu1.AutoPopup:= FPopupMenuVisible;
+end;
+
 procedure TViewStolik.UpdateProgress;
 begin
   lblPozostalo.Caption:= 'Pozostało: ' + IntToStr(fPozostalo)+' min';
@@ -266,23 +277,6 @@ begin
   begin
     MessageBeep(1);
   end;
-end;
-
-procedure TViewStolik.SetIDO(ido: integer);
-begin
-  if SelectIDO = ido then exit;
-  SelectIDO:= ido;
-
-  if SelectIDO = 0 then
-  begin
-    lblIDO.Caption:= 'Nr stolika: '+IntToStr(NrStolika);
-    Image1.Picture.Clear;
-    TLoadFotoThread.Create(DM.Path_NrStolikow+IntToStr(NrStolika)+'.jpg', Image1 );
-    exit;
-  end;
-
-  TLoadFotoThread.Create(DM.Path_Foto+IntToStr(SelectIDO)+'.jpg', Image1 );
-  //WczytajDane;
 end;
 
 procedure TViewStolik.WczytajDane;

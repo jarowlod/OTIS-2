@@ -1,7 +1,7 @@
 object OchSalaWidzen: TOchSalaWidzen
-  Left = 258
+  Left = 407
   Height = 856
-  Top = 114
+  Top = 238
   Width = 1195
   HorzScrollBar.Increment = 109
   HorzScrollBar.Page = 1096
@@ -640,5 +640,12 @@ object OchSalaWidzen: TOchSalaWidzen
     OnDataChange = DSWidzeniaDataChange
     Left = 384
     Top = 88
+  end
+  object TimerAutoUpdate: TTimer
+    Enabled = False
+    Interval = 60000
+    OnTimer = TimerAutoUpdateTimer
+    Left = 1068
+    Top = 384
   end
 end
