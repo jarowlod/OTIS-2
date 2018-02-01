@@ -1,7 +1,7 @@
 object Stanowiska: TStanowiska
-  Left = 407
+  Left = 396
   Height = 677
-  Top = 238
+  Top = 222
   Width = 1215
   Caption = 'Stanowiska / Grupy'
   ClientHeight = 677

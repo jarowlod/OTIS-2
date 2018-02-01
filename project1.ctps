@@ -19,7 +19,6 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="557"/>
         <CursorPos Y="559"/>
@@ -34,8 +33,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="218"/>
-        <CursorPos X="54" Y="618"/>
+        <TopLine Value="291"/>
+        <CursorPos X="48" Y="301"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -470,7 +469,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="112"/>
         <CursorPos Y="53"/>
-        <UsageCount Value="193"/>
+        <UsageCount Value="194"/>
       </Unit41>
       <Unit42>
         <Filename Value="UViewUwagiOch.pas"/>
@@ -481,7 +480,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="33" Y="105"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="157"/>
       </Unit42>
       <Unit43>
         <Filename Value="UViewWykazy.pas"/>
@@ -491,7 +490,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="96" Y="58"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="157"/>
       </Unit43>
       <Unit44>
         <Filename Value="UViewZatrudnienie.pas"/>
@@ -502,7 +501,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
         <CursorPos X="48" Y="9"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="153"/>
       </Unit44>
       <Unit45>
         <Filename Value="UViewWidzenia.pas"/>
@@ -513,7 +512,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="46"/>
         <CursorPos X="3" Y="54"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="149"/>
       </Unit45>
       <Unit46>
         <Filename Value="UKoszykDostep.pas"/>
@@ -524,7 +523,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="36" Y="97"/>
-        <UsageCount Value="142"/>
+        <UsageCount Value="143"/>
       </Unit46>
       <Unit47>
         <Filename Value="UOchForm.pas"/>
@@ -535,7 +534,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="113"/>
         <CursorPos X="16" Y="119"/>
-        <UsageCount Value="115"/>
+        <UsageCount Value="116"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit47>
@@ -548,7 +547,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="82"/>
         <CursorPos Y="85"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="107"/>
       </Unit48>
       <Unit49>
         <Filename Value="UViewPanelZdj.pas"/>
@@ -559,7 +558,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="53"/>
         <CursorPos X="23" Y="64"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="91"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit49>
@@ -572,7 +571,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos Y="34"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="58"/>
       </Unit50>
       <Unit51>
         <Filename Value="UOchSalaWidzen.pas"/>
@@ -581,9 +580,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="117"/>
-        <CursorPos X="36" Y="128"/>
-        <UsageCount Value="49"/>
+        <TopLine Value="99"/>
+        <CursorPos X="3" Y="101"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit51>
@@ -593,10 +592,11 @@
         <ComponentName Value="ViewStolik"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="53"/>
-        <CursorPos X="23" Y="77"/>
-        <UsageCount Value="48"/>
+        <TopLine Value="274"/>
+        <CursorPos X="62" Y="289"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit52>
@@ -607,9 +607,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="6"/>
+        <TopLine Value="3"/>
         <CursorPos X="11" Y="32"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit53>

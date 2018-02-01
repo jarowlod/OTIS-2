@@ -283,7 +283,7 @@ procedure TViewStolik.WczytajDane;
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:='SELECT w.*, o.Nazwisko, o.Imie, o.POC, o.Klasyf, t.Grypsuje, t.Ochronka, u.IDO IDO_u, uk.IDO IDO_uk '+
+  ZQPom.SQL.Text:='SELECT w.*, o.Nazwisko, o.Imie, o.POC, o.Klasyf, t.Ochronka, u.IDO IDO_u, uk.IDO IDO_uk '+
                   'FROM widzenia w, osadzeni o LEFT JOIN typ_cel t ON (o.POC=t.POC) '+
                   'LEFT JOIN uwagi u ON ((u.Uwagi<>"") AND (u.IDO=o.IDO)) '+
                   'LEFT JOIN uwagi_kierownika uk ON ((uk.Uwagi<>"") AND (uk.IDO=o.IDO)) '+

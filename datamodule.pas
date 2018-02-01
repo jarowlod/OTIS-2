@@ -130,7 +130,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.1.6';
+  wersja = '0.0.1.7';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -295,7 +295,7 @@ begin
   // przeniesc full_name z mysql.user_info to uprawnienia
   //PelnaNazwa:= fGetPelnaNazwaSQL;
 
-  Path_Raporty:= ExtractFilePath(ParamStr(0)) + 'raporty\';
+  Path_Raporty   := ExtractFilePath(ParamStr(0)) + 'raporty\';
   Path_NrStolikow:= ExtractFilePath(ParamStr(0)) + 'NrStolikow\';
 
   ZQ:=TZQueryPom.Create(Self);
