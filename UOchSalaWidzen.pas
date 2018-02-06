@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ExtCtrls, Buttons, DbCtrls, datamodule, UViewStolik, db, ZDataset, rxdbgrid,
-  BCPanel, BCLabel;
+  ExtCtrls, Buttons, DbCtrls, StdCtrls, datamodule, UViewStolik, db, ZDataset,
+  rxdbgrid, BCPanel, BCLabel;
 
 type
 
@@ -15,10 +15,21 @@ type
 
   TOchSalaWidzen = class(TForm)
     btnWybranyDoWidzenia: TBitBtn;
-    DBEdit1: TDBEdit;
+    DBCheckBox6: TDBCheckBox;
+    DBlblNazwisko: TDBText;
+    DBlblImie: TDBText;
+    DBlblKlasyf: TDBText;
+    DBlblOjciec: TDBText;
+    DBlblPOC: TDBText;
+    DBlblIDO: TDBText;
+    DSOsoby: TDataSource;
     DSWidzenia: TDataSource;
     Image1: TImage;
+    Label1: TLabel;
+    lblCelaOchronna: TLabel;
+    lblCelaTA: TLabel;
     Panel1: TPanel;
+    Panel3: TPanel;
     PanelBezdozor: TBCPanel;
     lblZegar: TBCLabel;
     BCPanel1: TBCPanel;
@@ -26,6 +37,7 @@ type
     PanelPleksa: TPanel;
     PanelSala: TPanel;
     RxDBGrid1: TRxDBGrid;
+    RxDBGrid2: TRxDBGrid;
     Shape1: TShape;
     Shape2: TShape;
     TabSheetSalaWidzen: TTabSheet;
@@ -33,6 +45,7 @@ type
     TabSheetPleksa: TTabSheet;
     TimerAutoUpdate: TTimer;
     TimerZegar: TTimer;
+    ZQOsoby: TZQuery;
     ZQWidzenia: TZQuery;
     procedure btnWybranyDoWidzeniaClick(Sender: TObject);
     procedure DSWidzeniaDataChange(Sender: TObject; Field: TField);
@@ -47,6 +60,7 @@ type
     procedure UtworzStoliki;
     procedure RozmiescStoliki;
     procedure SetUprawnienia;
+    procedure WczytajDodatkoweInfo;
   public
     procedure PrzeladujWidzenia;
   end;
@@ -71,12 +85,15 @@ begin
   UtworzStoliki; // tworzy stolik wraz z danymi
   RozmiescStoliki;
   ZQWidzenia.Open;
+  ZQOsoby.Open;
 end;
 
 procedure TOchSalaWidzen.TabSheetPoczekalniaShow(Sender: TObject);
 begin
   ZQWidzenia.Close;
+  ZQOsoby.Close;
   ZQWidzenia.Open;
+  ZQOsoby.Open;
 end;
 
 procedure TOchSalaWidzen.TimerAutoUpdateTimer(Sender: TObject);
@@ -190,6 +207,37 @@ procedure TOchSalaWidzen.PrzeladujWidzenia;
 var i: integer;
 begin
   for i:=0 to LSTOLIKOW-1 do FStoliki[i].WczytajDane;
+end;
+
+procedure TOchSalaWidzen.WczytajDodatkoweInfo;
+var ZQPom: TZQueryPom;
+begin
+  lblCelaOchronna.Visible:= false;
+  lblCelaTA.Visible      := false;
+
+  if ZQOs.FieldByName('POC').AsString = '' then exit;
+  ZQPom := TZQueryPom.Create(Self);
+  ZQPom.SQL.Text := 'SELECT Ochronka FROM typ_cel WHERE POC=:poc';
+  ZQPom.ParamByName('poc').AsString := ZQWidzenia.FieldByName('POC').AsString;
+  ZQPom.Open;
+  if not ZQPom.IsEmpty then
+    begin
+      if (not ZQPom.FieldByName('Ochronka').IsNull) and (ZQPom.FieldByName('Ochronka').AsBoolean) then
+        begin
+          lblCelaOchronna.Caption:='Cela Ochronna';
+          lblCelaOchronna.Visible:= true;
+        end;
+    end;
+
+  // sprawdzamy czy cela jest TA
+  ZQPom.SQL.Text:= 'SELECT tc.POC, tc.TA FROM typ_cel AS tc WHERE (tc.POC = :poc) AND '+   // ((tc.TA = 1) OR
+                   '((SELECT COUNT(IDO) AS ile FROM osadzeni AS os WHERE os.POC = :poc AND os.KLASYF LIKE "%TA%") > 0)';
+  ZQPom.ParamByName('poc').AsString:= ZQWidzenia.FieldByName('POC').AsString;
+  ZQPom.Open;
+  lblCelaTA.Visible:= not ZQPom.IsEmpty;
+  //----------------------------
+
+  FreeAndNil(ZQPom);
 end;
 
 end.

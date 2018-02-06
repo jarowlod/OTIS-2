@@ -421,8 +421,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="99"/>
-        <CursorPos X="63" Y="119"/>
+        <TopLine Value="103"/>
+        <CursorPos X="25" Y="185"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -469,7 +469,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="112"/>
         <CursorPos Y="53"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="197"/>
       </Unit41>
       <Unit42>
         <Filename Value="UViewUwagiOch.pas"/>
@@ -480,7 +480,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="33" Y="105"/>
-        <UsageCount Value="157"/>
+        <UsageCount Value="160"/>
       </Unit42>
       <Unit43>
         <Filename Value="UViewWykazy.pas"/>
@@ -490,7 +490,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="96" Y="58"/>
-        <UsageCount Value="157"/>
+        <UsageCount Value="160"/>
       </Unit43>
       <Unit44>
         <Filename Value="UViewZatrudnienie.pas"/>
@@ -501,7 +501,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
         <CursorPos X="48" Y="9"/>
-        <UsageCount Value="153"/>
+        <UsageCount Value="156"/>
       </Unit44>
       <Unit45>
         <Filename Value="UViewWidzenia.pas"/>
@@ -512,7 +512,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="46"/>
         <CursorPos X="3" Y="54"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="152"/>
       </Unit45>
       <Unit46>
         <Filename Value="UKoszykDostep.pas"/>
@@ -523,7 +523,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="36" Y="97"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="146"/>
       </Unit46>
       <Unit47>
         <Filename Value="UOchForm.pas"/>
@@ -532,9 +532,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="113"/>
-        <CursorPos X="16" Y="119"/>
-        <UsageCount Value="116"/>
+        <TopLine Value="249"/>
+        <CursorPos X="6" Y="279"/>
+        <UsageCount Value="119"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit47>
@@ -547,7 +547,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="82"/>
         <CursorPos Y="85"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="110"/>
       </Unit48>
       <Unit49>
         <Filename Value="UViewPanelZdj.pas"/>
@@ -558,7 +558,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="53"/>
         <CursorPos X="23" Y="64"/>
-        <UsageCount Value="91"/>
+        <UsageCount Value="94"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit49>
@@ -571,7 +571,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos Y="34"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="61"/>
       </Unit50>
       <Unit51>
         <Filename Value="UOchSalaWidzen.pas"/>
@@ -579,10 +579,11 @@
         <ComponentName Value="OchSalaWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="99"/>
-        <CursorPos X="3" Y="101"/>
-        <UsageCount Value="50"/>
+        <TopLine Value="46"/>
+        <CursorPos X="36" Y="63"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit51>
@@ -592,11 +593,10 @@
         <ComponentName Value="ViewStolik"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="274"/>
-        <CursorPos X="62" Y="289"/>
-        <UsageCount Value="49"/>
+        <TopLine Value="315"/>
+        <CursorPos X="15" Y="306"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit52>
@@ -609,7 +609,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="3"/>
         <CursorPos X="11" Y="32"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit53>
@@ -1110,123 +1110,127 @@
         <UsageCount Value="10"/>
       </Unit123>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="UViewStolik.pas"/>
-        <Caret Line="323" Column="3" TopLine="293"/>
+        <Caret Line="265" Column="8" TopLine="242"/>
       </Position1>
       <Position2>
         <Filename Value="UViewStolik.pas"/>
-        <Caret Line="338" Column="35" TopLine="317"/>
+        <Caret Line="324" Column="11" TopLine="309"/>
       </Position2>
       <Position3>
         <Filename Value="UViewStolik.pas"/>
-        <Caret Line="55" Column="22" TopLine="48"/>
+        <Caret Line="303" Column="16" TopLine="286"/>
       </Position3>
       <Position4>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="357" Column="15" TopLine="332"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="201" Column="34" TopLine="182"/>
       </Position4>
       <Position5>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="55" Column="19" TopLine="39"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="208" Column="34" TopLine="189"/>
       </Position5>
       <Position6>
         <Filename Value="UViewStolik.pas"/>
-        <Caret Line="240" Column="3" TopLine="232"/>
+        <Caret Line="57" Column="44" TopLine="48"/>
       </Position6>
       <Position7>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="224" Column="15" TopLine="222"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="71" Column="10" TopLine="57"/>
       </Position7>
       <Position8>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="225" Column="15" TopLine="223"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="47" Column="15" TopLine="26"/>
       </Position8>
       <Position9>
         <Filename Value="UViewStolik.pas"/>
-        <Caret Line="224" Column="15" TopLine="222"/>
+        <Caret Line="66" Column="89" TopLine="46"/>
       </Position9>
       <Position10>
         <Filename Value="UViewStolik.pas"/>
-        <Caret Line="225" Column="15" TopLine="223"/>
+        <Caret Line="250" Column="31" TopLine="236"/>
       </Position10>
       <Position11>
         <Filename Value="UViewStolik.pas"/>
-        <Caret Line="227" Column="15" TopLine="225"/>
+        <Caret Line="75" Column="23" TopLine="51"/>
       </Position11>
       <Position12>
         <Filename Value="UViewStolik.pas"/>
-        <Caret Line="226" Column="15" TopLine="224"/>
+        <Caret Line="76" Column="23" TopLine="52"/>
       </Position12>
       <Position13>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="227" Column="15" TopLine="225"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="101" Column="3" TopLine="99"/>
       </Position13>
       <Position14>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="228" Column="15" TopLine="226"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="102" Column="3" TopLine="100"/>
       </Position14>
       <Position15>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="227" Column="15" TopLine="225"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="101" Column="3" TopLine="99"/>
       </Position15>
       <Position16>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="226" Column="15" TopLine="224"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="104" Column="3" TopLine="102"/>
       </Position16>
       <Position17>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="266" Column="12" TopLine="242"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="106" Column="3" TopLine="104"/>
       </Position17>
       <Position18>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="265" Column="8" TopLine="242"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="88" Column="29" TopLine="64"/>
       </Position18>
       <Position19>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="324" Column="11" TopLine="309"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="87" Column="29" TopLine="63"/>
       </Position19>
       <Position20>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="303" Column="16" TopLine="286"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="88" Column="29" TopLine="64"/>
       </Position20>
       <Position21>
         <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="201" Column="34" TopLine="182"/>
+        <Caret Line="87" Column="29" TopLine="63"/>
       </Position21>
       <Position22>
         <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="208" Column="34" TopLine="189"/>
+        <Caret Line="88" Column="29" TopLine="64"/>
       </Position22>
       <Position23>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="57" Column="44" TopLine="48"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="89" Column="29" TopLine="65"/>
       </Position23>
       <Position24>
         <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="71" Column="10" TopLine="57"/>
+        <Caret Line="90" Column="29" TopLine="66"/>
       </Position24>
       <Position25>
         <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="47" Column="15" TopLine="26"/>
+        <Caret Line="91" Column="29" TopLine="67"/>
       </Position25>
       <Position26>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="66" Column="89" TopLine="46"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="92" Column="29" TopLine="68"/>
       </Position26>
       <Position27>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="250" Column="31" TopLine="236"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="93" Column="29" TopLine="69"/>
       </Position27>
       <Position28>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="75" Column="23" TopLine="51"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="94" Column="29" TopLine="70"/>
       </Position28>
       <Position29>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="76" Column="23" TopLine="52"/>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="95" Column="29" TopLine="71"/>
       </Position29>
+      <Position30>
+        <Filename Value="UOchSalaWidzen.pas"/>
+        <Caret Line="211" Column="26" TopLine="209"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
