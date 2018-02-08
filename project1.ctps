@@ -19,9 +19,7 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="557"/>
         <CursorPos Y="559"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -33,9 +31,10 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="218"/>
-        <CursorPos X="54" Y="618"/>
+        <TopLine Value="114"/>
+        <CursorPos Y="236"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -422,7 +421,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="99"/>
         <CursorPos X="63" Y="119"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -557,7 +555,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="53"/>
+        <TopLine Value="2"/>
         <CursorPos X="23" Y="64"/>
         <UsageCount Value="90"/>
         <Loaded Value="True"/>
@@ -581,7 +579,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="117"/>
+        <TopLine Value="52"/>
         <CursorPos X="36" Y="128"/>
         <UsageCount Value="49"/>
         <Loaded Value="True"/>
@@ -594,7 +592,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="53"/>
         <CursorPos X="23" Y="77"/>
         <UsageCount Value="48"/>
         <Loaded Value="True"/>
