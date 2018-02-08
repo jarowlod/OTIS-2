@@ -1,13 +1,13 @@
 object AddStanowiska: TAddStanowiska
-  Left = 383
+  Left = 396
   Height = 573
-  Top = 176
+  Top = 222
   Width = 602
   Caption = 'Stanowisko / Grupa'
   ClientHeight = 573
   ClientWidth = 602
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 46
@@ -80,6 +80,7 @@ object AddStanowiska: TAddStanowiska
     object DBEdit4: TDBEdit
       Left = 72
       Height = 23
+      Hint = 'Dla statystyk: dla grup ZK rozpoczynamy opis od ''DZIAŁ'''
       Top = 38
       Width = 517
       DataField = 'miejsce'
@@ -87,6 +88,8 @@ object AddStanowiska: TAddStanowiska
       Anchors = [akTop, akLeft, akRight]
       CharCase = ecNormal
       MaxLength = 0
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 1
     end
     object Label2: TLabel
@@ -258,12 +261,12 @@ object AddStanowiska: TAddStanowiska
       'FROM zat_stanowiska;'
     )
     Params = <>
-    left = 32
-    top = 368
+    Left = 32
+    Top = 368
   end
   object DSST: TDataSource
     DataSet = ZQST
-    left = 96
-    top = 368
+    Left = 96
+    Top = 368
   end
 end
