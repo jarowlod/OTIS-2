@@ -15,6 +15,7 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionKreatorWPZ: TAction;
     ActionZdjeciaBraki: TAction;
     ActionSalaWidzen: TAction;
     ActionKomunikatNowy: TAction;
@@ -84,6 +85,7 @@ type
     MenuItem62: TMenuItem;
     MenuItem63: TMenuItem;
     MenuItem64: TMenuItem;
+    MenuItem65: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -161,6 +163,7 @@ type
     procedure ActionKomunikatNowyExecute(Sender: TObject);
     procedure ActionKomunikatorExecute(Sender: TObject);
     procedure ActionKoszykExecute(Sender: TObject);
+    procedure ActionKreatorWPZExecute(Sender: TObject);
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
     procedure ActionNowyKoszykExecute(Sender: TObject);
     procedure ActionProsbyOsadzonegoExecute(Sender: TObject);
@@ -226,7 +229,7 @@ uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec,
-     UOchSalaWidzen;
+     UOchSalaWidzen, UPenitWPZ;
 {$R *.frm}
 
 { TMasterForm }
@@ -271,6 +274,10 @@ begin
   ActionDodajOsobeBliska.Enabled:= DM.uprawnienia[11]; // osoby bliskie
   // docelowo wszyscy będą mieli podgląd a edycja tylko dla wyznaczonego stanowiska
   ActionSalaWidzen.Enabled     := DM.uprawnienia[6];   // widzenia
+
+  // TESTOWE
+  ActionKreatorWPZ.Enabled     := DM.uprawnienia[8];
+  // =======
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
@@ -366,6 +373,16 @@ begin
        Free;
   end;
 end;
+
+procedure TMasterForm.ActionKreatorWPZExecute(Sender: TObject);
+begin
+  with TPenitWPZ.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
 //======================================================================================================================
 //--------------------------------END KOSZYK ---------------------------------------------------------------------------
 

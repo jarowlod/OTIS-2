@@ -1,7 +1,7 @@
 object OchSalaWidzen: TOchSalaWidzen
-  Left = 72
+  Left = 396
   Height = 856
-  Top = 85
+  Top = 222
   Width = 1195
   HorzScrollBar.Increment = 41
   HorzScrollBar.Page = 411

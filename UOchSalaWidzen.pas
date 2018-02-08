@@ -215,7 +215,7 @@ begin
   lblCelaOchronna.Visible:= false;
   lblCelaTA.Visible      := false;
 
-  if ZQOs.FieldByName('POC').AsString = '' then exit;
+  if ZQWidzenia.FieldByName('POC').AsString = '' then exit;
   ZQPom := TZQueryPom.Create(Self);
   ZQPom.SQL.Text := 'SELECT Ochronka FROM typ_cel WHERE POC=:poc';
   ZQPom.ParamByName('poc').AsString := ZQWidzenia.FieldByName('POC').AsString;
