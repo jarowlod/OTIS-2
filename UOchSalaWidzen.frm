@@ -975,12 +975,21 @@ object OchSalaWidzen: TOchSalaWidzen
       'u.Uwagi '
       'FROM widzenia_upr w'
       'LEFT JOIN uprawnione u ON (w.ID_uprawnione = u.ID)'
+      'WHERE ID_widzenia = :id_widzenia'
     )
-    Params = <>
-    MasterFields = 'ID'
-    MasterSource = DSWidzenia
-    LinkedFields = 'ID_widzenia'
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_widzenia'
+        ParamType = ptUnknown
+      end>
     Left = 624
     Top = 560
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_widzenia'
+        ParamType = ptUnknown
+      end>
   end
 end

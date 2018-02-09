@@ -275,7 +275,7 @@ begin
   // docelowo wszyscy będą mieli podgląd a edycja tylko dla wyznaczonego stanowiska
   ActionSalaWidzen.Enabled     := DM.uprawnienia[6];   // widzenia
 
-  // TESTOWE
+  //TODO: TESTOWE
   ActionKreatorWPZ.Enabled     := DM.uprawnienia[8];
   // =======
 
@@ -376,8 +376,10 @@ end;
 
 procedure TMasterForm.ActionKreatorWPZExecute(Sender: TObject);
 begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TPenitWPZ.Create(Self) do
   begin
+       SetIDO(DM.ZQOsadzeni.FieldByName('IDO').AsInteger);
        ShowModal;
        Free;
   end;

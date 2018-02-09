@@ -102,9 +102,10 @@ type
   public
     Procedure SetIDO(ido: integer);
     Procedure SetIDO(ido: integer; RefreshSourceQuery: TZQuery);
-    Function UprawnieniaDoEdycji(ido: integer): boolean;
+    //Function UprawnieniaDoEdycji(ido: integer): boolean;
   end;
 
+  Function UprawnieniaDoEdycji(ido: integer): boolean;
 //var
 //  PenitForm: TPenitForm;
 
@@ -209,7 +210,7 @@ begin
   ZQOs.Close;
   ZQOs.ParamByName('IDO').AsInteger := SelectIDO;
   ZQOs.Open;
-
+  DBEdit1.Text:='';
   // otwieramy os_info wybranego osadzonego
   ZQOsInfo.Close;
   ZQOsInfo.ParamByName('IDO').AsInteger := SelectIDO;
@@ -318,31 +319,6 @@ begin
   end;
 end;
 
-function TPenitForm.UprawnieniaDoEdycji(ido: integer): boolean;
-var ZQPom: TZQueryPom;
-begin
-  Result:= false;
-  if DM.Wychowawca='' then exit; // jesli nie wychowawca to brak edycji
-
-  ZQPom := TZQueryPom.Create(Self);
-  ZQPom.SQL.Text := 'SELECT IDO, osadzeni.POC, WYCHOWAWCA FROM osadzeni, typ_cel WHERE (IDO=:ido)AND(osadzeni.POC=typ_cel.POC);';
-  ZQPom.ParamByName('ido').AsInteger := ido;
-  ZQPom.Open;
-  if not ZQPom.IsEmpty then
-    begin
-      if DM.Wychowawca = ZQPom.FieldByName('WYCHOWAWCA').AsString then Result:= True  // jeśli jest wychowawca właściwy
-      else
-        if Pos(ZQPom.FieldByName('WYCHOWAWCA').AsString, DM.ZastepcyWych)>0 then Result:= true; // jeśli jest wych. w zastępstwie
-    end
-  else
-    Result:=true;                          // brak określenia celi = każdy może edytować
-
-  ZQPom.Close;
-  FreeAndNil(ZQPom);
-
-  if DM.uprawnienia[13] then Result:= true; // Terminarz admin  -  admin może wszystko
-end;
-
 procedure TPenitForm.WczytajTypCeli;
 var ZQPom: TZQueryPom;
 begin
@@ -375,6 +351,34 @@ begin
         end;
     end;
   FreeAndNil(ZQPom);
+end;
+
+
+// GLOBALNA
+
+function UprawnieniaDoEdycji(ido: integer): boolean;
+var ZQPom: TZQueryPom;
+begin
+  Result:= false;
+  if DM.Wychowawca='' then exit; // jesli nie wychowawca to brak edycji
+
+  ZQPom := TZQueryPom.Create(nil);
+  ZQPom.SQL.Text := 'SELECT IDO, osadzeni.POC, WYCHOWAWCA FROM osadzeni, typ_cel WHERE (IDO=:ido)AND(osadzeni.POC=typ_cel.POC);';
+  ZQPom.ParamByName('ido').AsInteger := ido;
+  ZQPom.Open;
+  if not ZQPom.IsEmpty then
+    begin
+      if DM.Wychowawca = ZQPom.FieldByName('WYCHOWAWCA').AsString then Result:= True  // jeśli jest wychowawca właściwy
+      else
+        if Pos(ZQPom.FieldByName('WYCHOWAWCA').AsString, DM.ZastepcyWych)>0 then Result:= true; // jeśli jest wych. w zastępstwie
+    end
+  else
+    Result:=true;                          // brak określenia celi = każdy może edytować
+
+  ZQPom.Close;
+  FreeAndNil(ZQPom);
+
+  if DM.uprawnienia[13] then Result:= true; // Terminarz admin  -  admin może wszystko
 end;
 
 end.

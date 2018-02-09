@@ -5,9 +5,9 @@ unit UPenitWPZ;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, TplGradientUnit,
-  rxdbgrid, rxmemds, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  EditBtn, Spin, fpjson, jsonparser, dateutils, Clipbrd, Buttons, datamodule;
+  Classes, SysUtils, FileUtil, TplGradientUnit, rxdbgrid, rxmemds, Forms,
+  Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, EditBtn, Spin, fpjson,
+  jsonparser, dateutils, Clipbrd, Buttons, datamodule, ZDataset, db;
 
 type
   TOrzeczenie = record
@@ -69,14 +69,16 @@ type
   { TPenitWPZ }
 
   TPenitWPZ = class(TForm)
+    btnZapisz: TBitBtn;
     btnOblicz: TBitBtn;
     btnPaste: TBitBtn;
+    btnZapiszTerminarz: TBitBtn;
     Button1: TButton;
     Button2: TButton;
-    Button3: TButton;
     cbOBS: TCheckBox;
     cbOWZ: TCheckBox;
     cbmUlamek: TComboBox;
+    DSOrzeczenia: TDataSource;
     edDataOsadzenia: TDateEdit;
     edWPZ: TDateEdit;
     edPrzepustki: TDateEdit;
@@ -101,31 +103,61 @@ type
     plGradient1: TplGradient;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
-    RxMemoryData1: TRxMemoryData;
+    RxMemoryOrzeczenia: TRxMemoryData;
     edOBS_dni: TSpinEdit;
+    RxMemoryOrzeczeniaArt: TStringField;
+    RxMemoryOrzeczeniaDni: TLongintField;
+    RxMemoryOrzeczeniaKoniecKary: TDateField;
+    RxMemoryOrzeczeniaLat: TLongintField;
+    RxMemoryOrzeczeniaLp: TStringField;
+    RxMemoryOrzeczeniaMsc: TLongintField;
+    RxMemoryOrzeczeniaZastepcza: TBooleanField;
+    ZQOsInfo: TZQuery;
+    procedure btnZapiszClick(Sender: TObject);
     procedure btnObliczClick(Sender: TObject);
     procedure btnPasteClick(Sender: TObject);
+    procedure btnZapiszTerminarzClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure RxMemoryOrzeczeniaLpGetText(Sender: TField; var aText: string;
+      DisplayText: Boolean);
   private
-    procedure WstawDateToEdit(edDateEdit: TDateEdit; DataValue: TDate);
-  public
+    SelectIDO: integer;
     WPZ: TWPZ;
+    procedure WstawDateToEdit(edDateEdit: TDateEdit; DataValue: TDate);
+    procedure WstawDaneDoTabeli;
+    procedure TabelaDoWPZ;
+  public
+    Procedure SetIDO(ido: integer);
     procedure NoweObliczenia;
   end;
 
   function DeleteRepeatedSpaces(s: string):string;
 
-var
-  PenitWPZ: TPenitWPZ;
+//var
+//  PenitWPZ: TPenitWPZ;
 
 implementation
+uses UPenitForm;
 
 const NullDate = 0.0;
 
 {$R *.frm}
 
 { TPenitWPZ }
+
+procedure TPenitWPZ.FormCreate(Sender: TObject);
+begin
+  SelectIDO:= 0;
+  RxMemoryOrzeczenia.Open;
+  btnZapiszTerminarz.Enabled:= false;
+end;
+
+procedure TPenitWPZ.SetIDO(ido: integer);
+begin
+  SelectIDO:= ido;
+  btnZapiszTerminarz.Enabled:= UprawnieniaDoEdycji(SelectIDO); // From UPenitForm
+end;
 
 procedure TPenitWPZ.Button1Click(Sender: TObject);
 begin
@@ -139,9 +171,39 @@ procedure TPenitWPZ.btnPasteClick(Sender: TObject);
 begin
   NoweObliczenia; // create WPZ
   WPZ.ParseFromDOC(Clipboard.AsText);
+  WstawDaneDoTabeli;
 
   Memo1.Text:= WPZ.fKomunikaty.Text;
   WPZ.fKomunikaty.Clear;
+  DM.KomunikatPopUp(Self, 'Kreator WPZ', 'Wklejono orzeczenia ze schowka.', nots_Info);
+end;
+
+procedure TPenitWPZ.btnZapiszTerminarzClick(Sender: TObject);
+begin
+  // zapisz do terminarza
+  ZQOsInfo.Close;
+  ZQOsInfo.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQOsInfo.Open;
+  ZQOsInfo.Edit;
+
+  ZQOsInfo.FieldByName('IDO').AsInteger:= SelectIDO;
+  ZQOsInfo.FieldByName('ulamek_wpz').AsString:= DM.Wychowawca;
+  ZQOsInfo.FieldByName('data_autoryzacji').AsDateTime:= Now();
+
+  if edWPZ.Date = NullDate        then ZQOsInfo.FieldByName('twpz').AsDateTime:= Null
+                                  else ZQOsInfo.FieldByName('twpz').AsDateTime:= edWPZ.Date;
+  if edPrzepustki.Date = NullDate then ZQOsInfo.FieldByName('tprzepustki').AsDateTime:= Null
+                                  else ZQOsInfo.FieldByName('tprzepustki').AsDateTime:= edPrzepustki.Date;
+  if edPostpenit.Date = NullDate  then ZQOsInfo.FieldByName('tpostpenitu').AsDateTime:= Null
+                                  else ZQOsInfo.FieldByName('tpostpenitu').AsDateTime:= edPostpenit.Date;
+  ZQOsInfo.FieldByName('ulamek_wpz').AsString:= cbmUlamek.Text;
+  if WPZ.orzeczenia[WPZ.Count-1].koniec_kary = NullDate then ZQOsInfo.FieldByName('KoniecKary').AsDateTime:= Null
+                                                        else ZQOsInfo.FieldByName('KoniecKary').AsDateTime:= WPZ.orzeczenia[WPZ.Count-1].koniec_kary;
+
+  ZQOsInfo.Post;
+  ZQOsInfo.Close;
+
+  DM.KomunikatPopUp(Self, 'Kreator WPZ','Zmodyfikowano terminy w terminarzu. Koniec Kary, WPZ, Postpenit, Przepustki.', nots_Info);
 end;
 
 procedure TPenitWPZ.btnObliczClick(Sender: TObject);
@@ -151,21 +213,30 @@ begin
   WPZ.OBS_obostrzenie:= cbOBS.Checked;
   WPZ.OBS_po_ilu     := edOBS_dni.Value;
   WPZ.ulamek         := cbmUlamek.Text;
+  TabelaDoWPZ;
 
   if WPZ.Oblicz then
   begin
     WstawDateToEdit(edWPZ, WPZ.WPZ);
     WstawDateToEdit(edPrzepustki, WPZ.przepustki);
     WstawDateToEdit(edPostpenit, WPZ.postpenit);
-  end;
+    DM.KomunikatPopUp(Self, 'Kreator WPZ', 'Obliczono nowe terminy.', nots_Info);
+  end
+  else DM.KomunikatPopUp(Self, 'Kreator WPZ', 'Wystąpił błąd w obliczeniach terminów.', nots_Warning);
 
   Memo1.Text:= WPZ.fKomunikaty.Text;
 end;
 
-procedure TPenitWPZ.Button3Click(Sender: TObject);
+procedure TPenitWPZ.btnZapiszClick(Sender: TObject);
 begin
-  Memo1.Clear;
-  Memo1.Append(WPZ.SaveToStr);
+  // zapisz do bazy danych
+  // Memo1.Append(WPZ.SaveToStr);
+end;
+
+procedure TPenitWPZ.RxMemoryOrzeczeniaLpGetText(Sender: TField;
+  var aText: string; DisplayText: Boolean);
+begin
+    aText:= IntToStr(Sender.DataSet.RecNo)+'.';  // numerowanie wierszy
 end;
 
 procedure TPenitWPZ.WstawDateToEdit(edDateEdit: TDateEdit; DataValue: TDate);
@@ -174,6 +245,51 @@ begin
       edDateEdit.Text:= '---'
     else
       edDateEdit.Date:= DataValue;
+end;
+
+procedure TPenitWPZ.WstawDaneDoTabeli;
+var i: integer;
+begin
+  RxMemoryOrzeczenia.EmptyTable;
+  if WPZ.Count=0 then exit;
+  for i:=0 to WPZ.Count-1 do
+  begin
+    RxMemoryOrzeczenia.Append;
+    RxMemoryOrzeczeniaArt.AsString := WPZ.orzeczenia[i].art;
+    RxMemoryOrzeczeniaLat.AsInteger:= WPZ.orzeczenia[i].lat;
+    RxMemoryOrzeczeniaMsc.AsInteger:= WPZ.orzeczenia[i].msc;
+    RxMemoryOrzeczeniaDni.AsInteger:= WPZ.orzeczenia[i].dni;
+    RxMemoryOrzeczeniaZastepcza.AsBoolean:= WPZ.orzeczenia[i].zastepcza;
+
+    if WPZ.orzeczenia[i].koniec_kary = NullDate then
+        RxMemoryOrzeczeniaKoniecKary.AsDateTime:= Null
+      else
+        RxMemoryOrzeczeniaKoniecKary.AsDateTime:= WPZ.orzeczenia[i].koniec_kary;
+
+    RxMemoryOrzeczenia.Post;
+  end;
+end;
+
+procedure TPenitWPZ.TabelaDoWPZ;
+var i: integer;
+begin
+  RxMemoryOrzeczenia.First;
+  SetLength(WPZ.orzeczenia, RxMemoryOrzeczenia.RecordCount);
+  for i:=0 to WPZ.Count-1 do
+  begin
+    WPZ.orzeczenia[i].art:= RxMemoryOrzeczeniaArt.AsString;
+    WPZ.orzeczenia[i].lat:= RxMemoryOrzeczeniaLat.AsInteger;
+    WPZ.orzeczenia[i].msc:= RxMemoryOrzeczeniaMsc.AsInteger;
+    WPZ.orzeczenia[i].dni:= RxMemoryOrzeczeniaDni.AsInteger;
+    WPZ.orzeczenia[i].zastepcza:= RxMemoryOrzeczeniaZastepcza.AsBoolean;
+
+    if RxMemoryOrzeczeniaKoniecKary.IsNull then
+        WPZ.orzeczenia[i].koniec_kary:= NullDate
+      else
+        WPZ.orzeczenia[i].koniec_kary:= RxMemoryOrzeczeniaKoniecKary.AsDateTime;
+
+    RxMemoryOrzeczenia.Next;
+  end;
 end;
 
 procedure TPenitWPZ.NoweObliczenia;

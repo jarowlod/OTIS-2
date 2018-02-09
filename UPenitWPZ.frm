@@ -6,6 +6,7 @@ object PenitWPZ: TPenitWPZ
   Caption = 'PenitWPZ'
   ClientHeight = 621
   ClientWidth = 1085
+  OnCreate = FormCreate
   LCLVersion = '6.3'
   object Memo2: TMemo
     Left = 8
@@ -40,10 +41,31 @@ object PenitWPZ: TPenitWPZ
       AutoSort = True
       Columns = <      
         item
+          Alignment = taLeftJustify
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Lp'
+          Width = 25
+          FieldName = 'Lp'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Font.CharSet = EASTEUROPE_CHARSET
+          Font.Height = -11
+          Font.Name = 'Calibri Light'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Kwalifikacja prawna czynu'
-          Width = 300
+          Width = 350
+          FieldName = 'Art'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -51,11 +73,15 @@ object PenitWPZ: TPenitWPZ
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
           Footers = <>
+          WordWrap = True
         end      
         item
+          Alignment = taCenter
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'lat'
+          Width = 50
+          FieldName = 'Lat'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -65,9 +91,12 @@ object PenitWPZ: TPenitWPZ
           Footers = <>
         end      
         item
+          Alignment = taCenter
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'msc'
+          Width = 50
+          FieldName = 'Msc'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -77,9 +106,12 @@ object PenitWPZ: TPenitWPZ
           Footers = <>
         end      
         item
+          Alignment = taCenter
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'dni'
+          Width = 50
+          FieldName = 'Dni'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -92,6 +124,8 @@ object PenitWPZ: TPenitWPZ
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'zastępcza'
+          Width = 60
+          FieldName = 'Zastepcza'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -101,9 +135,12 @@ object PenitWPZ: TPenitWPZ
           Footers = <>
         end      
         item
+          Alignment = taCenter
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Termin końca kary'
+          Width = 120
+          FieldName = 'KoniecKary'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -171,7 +208,7 @@ object PenitWPZ: TPenitWPZ
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+      OptionsRx = [rdgDblClickOptimizeColWidth, rdgWordWrap]
       Align = alBottom
       Anchors = [akTop, akLeft, akRight]
       Color = clWindow
@@ -179,8 +216,10 @@ object PenitWPZ: TPenitWPZ
       FocusColor = clRed
       SelectedColor = clHighlight
       GridLineStyle = psSolid
-      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      DataSource = DSOrzeczenia
+      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgConfirmDelete, dgCancelOnExit, dgTruncCellHints]
       TabOrder = 0
+      TitleStyle = tsNative
     end
     object Label1: TLabel
       Left = 8
@@ -287,15 +326,6 @@ object PenitWPZ: TPenitWPZ
         ParentBidiMode = False
         TabOrder = 3
       end
-      object Button3: TButton
-        Left = 97
-        Height = 25
-        Top = 151
-        Width = 120
-        Caption = 'Zapisz'
-        OnClick = Button3Click
-        TabOrder = 4
-      end
       object GroupBox2: TGroupBox
         Left = 232
         Height = 80
@@ -306,7 +336,7 @@ object PenitWPZ: TPenitWPZ
         ClientWidth = 380
         Color = clBtnFace
         ParentColor = False
-        TabOrder = 5
+        TabOrder = 4
         object plGradient1: TplGradient
           Left = 0
           Height = 60
@@ -395,13 +425,13 @@ object PenitWPZ: TPenitWPZ
         Anchors = [akTop, akLeft, akRight, akBottom]
         Color = 14680063
         ScrollBars = ssAutoBoth
-        TabOrder = 6
+        TabOrder = 5
         WordWrap = False
       end
       object btnOblicz: TBitBtn
-        Left = 8
-        Height = 32
-        Top = 104
+        Left = 407
+        Height = 72
+        Top = 10
         Width = 209
         Caption = 'Oblicz'
         Glyph.Data = {
@@ -441,7 +471,100 @@ object PenitWPZ: TPenitWPZ
           9015F1CD8DFFF1D0910600000000000000000000000000000000
         }
         OnClick = btnObliczClick
+        TabOrder = 6
+      end
+      object btnZapisz: TBitBtn
+        Left = 63
+        Height = 30
+        Top = 112
+        Width = 144
+        Caption = 'Zapisz'
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          000000000000000000000000000000000000FCF7F10EE3C69C6FFFFFFE050000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000FFFEFC05CEA05CA6AF6900FF000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000FFFEFC05CB9E5DA6AB6500FFAF6900FF000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000FFFFFF02CDA2679CA76100FFBA7400FFAF6900FF000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000FFFEFC05C79A5DA6A45F00FFBD7807FFC68209FFAF6900FF000000000000
+          000000000000000000000000000000000000000000000000000000000000FFFF
+          FF02C99E689CA15C00FFC17F11FFCC8B17FFCC8A17FFAF6900FFB36D00FFB771
+          00FFBB7500FFBE7700FFC17A00FFC37C00FFBE7700FFC37C00FFFFFEFC05C396
+          5DA69F5A00FFC6861EFFD29527FFD29528FFD29528FFD29427FFD29428FFD295
+          27FFD29428FFD29527FFD29428FFD29528FFD29427FFC37C00FFC19359A69F5A
+          00FFCB8F2CFFD9A03AFFD99F39FFD99F39FFD9A039FFD99F3AFFD99F3AFFD99F
+          3AFFD99F39FFD99F39FFD9A039FFD99F39FFD9A039FFC37C00FFBC8A46B79F5A
+          00FFCB8F2CFFE0AB4BFFE0AB4BFFE0AB4CFFE0AB4CFFE0AB4CFFE0AB4CFFE0AB
+          4CFFE0AB4CFFE0AB4CFFE0AB4BFFE0AB4CFFE0AB4CFFC37C00FFFEFCF70ABB88
+          44C09F5A00FFDEA848FFE7B65DFFE7B65DFFE7B65DFFE7B65EFFE7B65EFFE7B6
+          5DFFE7B65EFFE6B65DFFE7B65EFFE7B65EFFE7B65DFFC37C00FF00000000FBF7
+          EE15BF8E49BBA15C00FFE3B054FFEDC06EFFEDC06EFFAF6900FFB36D00FFB771
+          00FFBB7500FFBE7800FFC17A00FFC37C00FFC37C00FFC37C00FF000000000000
+          0000FEFDF80AC1904ABAA45F00FFE7B75EFFF3C97CFFAF6900FF000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000FBF7EE14C29248BBA76100FFEABB65FFAE6A00FF000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000FEFDF80AC6954ABAAB6500FFAF6900FF000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000FBF6EC16C28D37CCAF6900FF000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000FBF6EC15E0C38E7CFFFFFF040000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = btnZapiszClick
         TabOrder = 7
+      end
+      object btnZapiszTerminarz: TBitBtn
+        Left = 63
+        Height = 30
+        Hint = 'Zapisuje w terminarzu terminy: Końca Kary, WPZ, Postpenitu, Przepustek.'
+        Top = 146
+        Width = 144
+        Caption = 'Zapisz do terminarza'
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000A45618C5AD60
+          18E5A95D17E3AB5E15E3A95C16E3A95C16E3AB5C15E3A95C17E3A95E18E3AB5C
+          13E3A95E1AE3A95E15E3AA5E14E3A95B17E3AE6018E5A3561AC5B96F22FFF7DB
+          B4FFEFD1B1FFD5881AFFF1D4B4FFF0D3AFFFD8922CFFF3DDC5FFEAC796FFD68B
+          22FFF4E0C8FFEAC395FFD7932BFFF2DDC6FFF0C887FFB5650AFFBA7632F2FFFF
+          FFFFFFFFFFFFD69231FFFFFFFFFFFFFFFFFFDDA14BFFFFFFFFFFFAF1E1FFD998
+          45FFFFFFFFFFFAF2EEFFDD9F4DFFFFFFFFFFFFF1D3FFB45F03F2BC7019F3EBC0
+          81FFE5B884FFD89229FFE5BA88FFE2B175FFD89126FFE5BA87FFE3B77BFFD992
+          28FFE6C297FFE1AF6DFFDA9733FFE6BE96FFE9BA73FFBC6F19F3C27D38F3FFF9
+          EDFFF7ECE2FFDE9F41FFFAF3E9FFF9F3E9FFE1AA59FFFCFBFCFFF6E2C7FFDFA8
+          56FFFDFAF8FFF3DFC8FFE0A954FFFBF9F9FFFAE7C0FFBF731CF3CB8E53F3FFFF
+          F8FFFAF2EAFFE2A84EFFFCF4EAFFF9EDD8FFE2AB53FFFDF8F3FFF5E3C5FFE2A8
+          4DFFFDF8F2FFF6E1CBFFE5B264FFFEFEFEFFFEF2D9FFCA8742F3CE8E48F3FBE8
+          CDFFF3DFC9FFEBBB78FFF2DDC7FFF1D4B2FFE6B361FFF1D6BBFFEFD2ACFFE5B4
+          64FFF4E3D1FFEFD0A4FFEABF83FFF5E4D6FFF9E0BFFFCD8E48F3D29961F3FFFF
+          FFFFFFFFFFFFEFC992FFFFFFFFFFFFFFFFFFF1D1A2FFFFFFFFFFFDFAF7FFF0CE
+          A3FFFFFFFFFFFDFAFCFFF0CE9DFFFFFFFFFFFFFFF7FFCE8E43F3D49C5CF3FFF7
+          DEFFF8E6CFFFF6D29AFFF8E5C6FFF7E1C3FFF1CD95FFF9E4CCFFF6DDBBFFF1CB
+          8EFFF8E6CEFFF6DFBCFFF6D6A1FFFAEADAFFFFF2D1FFD49852F3E2B06DF2CC95
+          57FF943600FFC88B51FFF9D79CFFF2CD90FFF4D096FFF2CC8FFFF2CE8FFFF3D0
+          94FFF1CD91FFF9DA9BFFC78A4EFF943500FFCE945AFFE1B170F2E6BE84FFC892
+          5BFFD3850CFFC98849FFFCE5BAFFF8DDAFFFF9DCAEFFF9DEAEFFFADEAFFFF9DC
+          AFFFFADCADFFFCE5BCFFCA8B4DFFD3850AFFC78F5BFFE7BE84FFCE904992D19A
+          5CE3E5AB4DFFCC8E4CF8DFB78AB0DEAF7DB5DDB17EB5DEB07EB5DDB07DB5DDB0
+          7DB5DDB07DB5E0B689AFCD924DF5E5AB4DFFCD965CE3CE90499200000000CD8B
+          408CF9D384FFBB711CD800000000000000000000000000000000000000000000
+          00000000000000000000BC751FCBF7D384FFCD893D8C0000000000000000CE8E
+          3878F0C577F2C47F2E9400000000000000000000000000000000000000000000
+          00000000000000000000C8842E87EEC377F3CC88367800000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = btnZapiszTerminarzClick
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 8
       end
     end
     object btnPaste: TBitBtn
@@ -629,10 +752,148 @@ object PenitWPZ: TPenitWPZ
       ParentColor = False
     end
   end
-  object RxMemoryData1: TRxMemoryData
-    FieldDefs = <>
+  object RxMemoryOrzeczenia: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'Lp'
+        DataType = ftString
+        Size = 2
+      end    
+      item
+        Name = 'Art'
+        DataType = ftString
+        Precision = -1
+        Size = 1000
+      end    
+      item
+        Name = 'Lat'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'Msc'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'Dni'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'Zastepcza'
+        DataType = ftBoolean
+        Precision = -1
+      end    
+      item
+        Name = 'KoniecKary'
+        DataType = ftDate
+        Precision = -1
+      end>
     PacketRecords = 0
-    Left = 720
-    Top = 96
+    Left = 800
+    Top = 178
+    object RxMemoryOrzeczeniaLp: TStringField
+      FieldKind = fkData
+      FieldName = 'Lp'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      OnGetText = RxMemoryOrzeczeniaLpGetText
+      Size = 2
+    end
+    object RxMemoryOrzeczeniaArt: TStringField
+      FieldKind = fkData
+      FieldName = 'Art'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1000
+    end
+    object RxMemoryOrzeczeniaLat: TLongintField
+      FieldKind = fkData
+      FieldName = 'Lat'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RxMemoryOrzeczeniaMsc: TLongintField
+      FieldKind = fkData
+      FieldName = 'Msc'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RxMemoryOrzeczeniaDni: TLongintField
+      FieldKind = fkData
+      FieldName = 'Dni'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RxMemoryOrzeczeniaZastepcza: TBooleanField
+      FieldKind = fkData
+      FieldName = 'Zastepcza'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object RxMemoryOrzeczeniaKoniecKary: TDateField
+      FieldKind = fkData
+      FieldName = 'KoniecKary'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object DSOrzeczenia: TDataSource
+    DataSet = RxMemoryOrzeczenia
+    Left = 694
+    Top = 178
+  end
+  object ZQOsInfo: TZQuery
+    Connection = DM.ZConnection1
+    SQL.Strings = (
+      'SELECT '
+      'IDO,'
+      'Autoryzacja,'
+      'data_autoryzacji,'
+      'KoniecKary,'
+      'twpz,'
+      'ulamek_wpz,'
+      'tprzepustki,'
+      'tpostpenitu'
+      'FROM os_info'
+      'WHERE IDO  = :ido'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
+    Left = 512
+    Top = 536
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end>
   end
 end

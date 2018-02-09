@@ -85,15 +85,12 @@ begin
   UtworzStoliki; // tworzy stolik wraz z danymi
   RozmiescStoliki;
   ZQWidzenia.Open;
-  ZQOsoby.Open;
 end;
 
 procedure TOchSalaWidzen.TabSheetPoczekalniaShow(Sender: TObject);
 begin
   ZQWidzenia.Close;
-  ZQOsoby.Close;
   ZQWidzenia.Open;
-  ZQOsoby.Open;
 end;
 
 procedure TOchSalaWidzen.TimerAutoUpdateTimer(Sender: TObject);
@@ -124,6 +121,10 @@ begin
   if not ZQWidzenia.IsEmpty then
     begin
       TLoadFotoThread.Create(DM.Path_Foto+ZQWidzenia.FieldByName('IDO').AsString+'.jpg', Image1);
+
+      ZQOsoby.Close;
+      ZQOsoby.ParamByName('id_widzenia').AsInteger:= ZQWidzenia.FieldByName('ID').AsInteger;
+      ZQOsoby.Open;
     end
   else
     Image1.Picture.Clear;
@@ -163,7 +164,7 @@ begin
     FStoliki[i].Top := 100 + (FStoliki[i].Height + 10) * ii;
     FStoliki[i].Show;
   end;
-  // Prawa strona sali + Bezdozorowe
+  // Prawa strona sali - Bezdozorowe
   for i:=13 to 14 do
   begin
     ii:= ((i-13) mod 2) + 2;
