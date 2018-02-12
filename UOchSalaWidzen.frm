@@ -1,20 +1,20 @@
 object OchSalaWidzen: TOchSalaWidzen
-  Left = 396
+  Left = 143
   Height = 856
-  Top = 222
-  Width = 1195
-  HorzScrollBar.Increment = 41
-  HorzScrollBar.Page = 411
+  Top = 71
+  Width = 1278
+  HorzScrollBar.Increment = 109
+  HorzScrollBar.Page = 1096
   HorzScrollBar.Smooth = True
   HorzScrollBar.Tracking = True
-  VertScrollBar.Increment = 30
-  VertScrollBar.Page = 306
+  VertScrollBar.Increment = 27
+  VertScrollBar.Page = 279
   VertScrollBar.Smooth = True
   VertScrollBar.Tracking = True
   AutoScroll = True
   Caption = 'Sala widzeń'
   ClientHeight = 856
-  ClientWidth = 1195
+  ClientWidth = 1278
   Color = 16771022
   OnClose = FormClose
   OnCreate = FormCreate
@@ -24,27 +24,27 @@ object OchSalaWidzen: TOchSalaWidzen
     Left = 0
     Height = 856
     Top = 0
-    Width = 1195
-    ActivePage = TabSheetPoczekalnia
+    Width = 1278
+    ActivePage = TabSheetSalaWidzen
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 30
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object TabSheetSalaWidzen: TTabSheet
       Caption = 'Sala widzeń'
       ClientHeight = 818
-      ClientWidth = 1187
+      ClientWidth = 1270
       ImageIndex = 21
       object PanelSala: TPanel
         Left = 0
         Height = 818
         Top = 0
-        Width = 1187
+        Width = 1270
         Align = alClient
         BevelOuter = bvNone
         ClientHeight = 818
-        ClientWidth = 1187
+        ClientWidth = 1270
         Color = 16771022
         ParentColor = False
         TabOrder = 0
@@ -52,7 +52,7 @@ object OchSalaWidzen: TOchSalaWidzen
           Left = 0
           Height = 818
           Top = 0
-          Width = 1187
+          Width = 1270
           Align = alClient
           Background.Color = clWhite
           Background.ColorOpacity = 255
@@ -111,15 +111,13 @@ object OchSalaWidzen: TOchSalaWidzen
           Rounding.RoundOptions = []
           TabOrder = 0
           object lblZegar: TBCLabel
+            AnchorSideLeft.Control = PanelBezdozor
             AnchorSideTop.Control = PanelBezdozor
             AnchorSideTop.Side = asrBottom
-            AnchorSideRight.Control = PanelBezdozor
-            AnchorSideRight.Side = asrBottom
-            Left = 952
+            Left = 552
             Height = 61
-            Top = 190
+            Top = 180
             Width = 136
-            Anchors = [akTop, akRight]
             Background.Color = clBlack
             Background.ColorOpacity = 255
             Background.Gradient1.StartColor = clWhite
@@ -155,7 +153,7 @@ object OchSalaWidzen: TOchSalaWidzen
             Border.LightWidth = 0
             Border.Style = bboSolid
             Border.Width = 1
-            BorderSpacing.Top = 20
+            BorderSpacing.Top = 10
             Caption = '12:23:10'
             FontEx.Color = clCream
             FontEx.EndEllipsis = False
@@ -294,9 +292,11 @@ object OchSalaWidzen: TOchSalaWidzen
         AutoSort = True
         Columns = <        
           item
+            Font.Color = clMaroon
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'Data_Oczekuje'
+            Title.Caption = 'Data oczekiwania'
+            Width = 115
             FieldName = 'Data_Oczekuje'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -307,9 +307,12 @@ object OchSalaWidzen: TOchSalaWidzen
             Footers = <>
           end        
           item
+            Alignment = taCenter
+            Font.Color = clBlue
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'Czas_Widzenia'
+            Title.Caption = 'Czas Widzenia'
+            Width = 60
             FieldName = 'Czas_Widzenia'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -320,9 +323,11 @@ object OchSalaWidzen: TOchSalaWidzen
             Footers = <>
           end        
           item
+            Alignment = taCenter
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'Czas_reg'
+            Title.Caption = 'Czas reg.'
+            Width = 60
             FieldName = 'Czas_reg'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -333,10 +338,11 @@ object OchSalaWidzen: TOchSalaWidzen
             Footers = <>
           end        
           item
+            Alignment = taCenter
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'Czas_dod'
-            Width = 50
+            Title.Caption = 'Czas dod.'
+            Width = 60
             FieldName = 'Czas_dod'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -347,9 +353,11 @@ object OchSalaWidzen: TOchSalaWidzen
             Footers = <>
           end        
           item
+            Alignment = taCenter
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'Sposob'
+            Title.Caption = 'Sposób'
+            Width = 60
             FieldName = 'Sposob'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -360,9 +368,11 @@ object OchSalaWidzen: TOchSalaWidzen
             Footers = <>
           end        
           item
+            Alignment = taCenter
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'Dodatkowe'
+            Width = 70
             FieldName = 'Dodatkowe'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -375,7 +385,7 @@ object OchSalaWidzen: TOchSalaWidzen
           item
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'Data_Dod'
+            Title.Caption = 'Uwagi do dodatkowego'
             Width = 100
             FieldName = 'Data_Dod'
             EditButtons = <>
@@ -390,7 +400,7 @@ object OchSalaWidzen: TOchSalaWidzen
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'Uwagi'
-            Width = 100
+            Width = 200
             FieldName = 'Uwagi'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -404,7 +414,7 @@ object OchSalaWidzen: TOchSalaWidzen
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'Nazwisko'
-            Width = 100
+            Width = 120
             FieldName = 'Nazwisko'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -417,7 +427,7 @@ object OchSalaWidzen: TOchSalaWidzen
           item
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'Imie'
+            Title.Caption = 'Imię'
             Width = 100
             FieldName = 'Imie'
             EditButtons = <>
@@ -443,6 +453,8 @@ object OchSalaWidzen: TOchSalaWidzen
             Footers = <>
           end        
           item
+            Alignment = taCenter
+            Font.Color = clGreen
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'POC'
@@ -457,6 +469,8 @@ object OchSalaWidzen: TOchSalaWidzen
             Footers = <>
           end        
           item
+            Alignment = taCenter
+            Font.Color = clGreen
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'Klasyf'
@@ -550,6 +564,7 @@ object OchSalaWidzen: TOchSalaWidzen
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
         ParentShowHint = False
+        PopupMenu = PopupMenuPoczekalnia
         ReadOnly = True
         ShowHint = True
         TabOrder = 0
@@ -569,7 +584,7 @@ object OchSalaWidzen: TOchSalaWidzen
           Height = 30
           Top = 176
           Width = 174
-          Caption = 'przypisz do stolika'
+          Caption = 'Przypisz do stolika'
           Glyph.Data = {
             36040000424D3604000000000000360000002800000010000000100000000100
             2000000000000004000064000000640000000000000000000000000000000000
@@ -619,15 +634,15 @@ object OchSalaWidzen: TOchSalaWidzen
           Stretch = True
         end
         object Panel3: TPanel
-          Left = 416
+          Left = 456
           Height = 216
           Top = 1
-          Width = 770
+          Width = 730
           Align = alRight
           Anchors = [akTop, akLeft, akRight, akBottom]
           BevelOuter = bvLowered
           ClientHeight = 216
-          ClientWidth = 770
+          ClientWidth = 730
           Color = clBtnFace
           ParentColor = False
           TabOrder = 1
@@ -635,7 +650,7 @@ object OchSalaWidzen: TOchSalaWidzen
             Left = 1
             Height = 24
             Top = 1
-            Width = 768
+            Width = 728
             Align = alTop
             Alignment = taCenter
             AutoSize = False
@@ -647,7 +662,7 @@ object OchSalaWidzen: TOchSalaWidzen
             Left = 1
             Height = 190
             Top = 25
-            Width = 768
+            Width = 728
             ColumnDefValues.BlobText = '(blob)'
             TitleButtons = True
             AutoSort = True
@@ -809,10 +824,14 @@ object OchSalaWidzen: TOchSalaWidzen
           ParentFont = False
         end
         object DBlblImie: TDBText
-          Left = 168
+          AnchorSideLeft.Control = DBlblNazwisko
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = DBlblNazwisko
+          Left = 261
           Height = 15
-          Top = 48
+          Top = 32
           Width = 55
+          BorderSpacing.Left = 10
           DataField = 'Imie'
           DataSource = DSWidzenia
           Font.Style = [fsBold]
@@ -822,7 +841,7 @@ object OchSalaWidzen: TOchSalaWidzen
         object DBlblOjciec: TDBText
           Left = 168
           Height = 15
-          Top = 64
+          Top = 48
           Width = 61
           DataField = 'Ojciec'
           DataSource = DSWidzenia
@@ -840,7 +859,7 @@ object OchSalaWidzen: TOchSalaWidzen
         object DBlblKlasyf: TDBText
           Left = 168
           Height = 15
-          Top = 104
+          Top = 64
           Width = 59
           DataField = 'Klasyf'
           DataSource = DSWidzenia
@@ -875,9 +894,9 @@ object OchSalaWidzen: TOchSalaWidzen
           Visible = False
         end
         object lblCelaOchronna: TLabel
-          AnchorSideLeft.Control = DBCheckBox6
+          AnchorSideLeft.Control = DBcbGR
           AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = DBCheckBox6
+          AnchorSideTop.Control = DBcbGR
           AnchorSideTop.Side = asrCenter
           Left = 250
           Height = 15
@@ -890,13 +909,14 @@ object OchSalaWidzen: TOchSalaWidzen
           ParentFont = False
           Visible = False
         end
-        object DBCheckBox6: TDBCheckBox
+        object DBcbGR: TDBCheckBox
           Left = 168
           Height = 23
           Top = 128
           Width = 72
           Caption = 'Grypsuje'
           DataField = 'GR'
+          DataSource = DSWidzenia
           ReadOnly = True
           TabOrder = 2
           ValueChecked = '1'
@@ -929,14 +949,17 @@ object OchSalaWidzen: TOchSalaWidzen
       'w.Dodatkowe, '
       'w.Data_Dod, '
       'w.Uwagi, '
+      'w.Nadzor,'
       'o.Nazwisko, '
       'o.Imie,'
       'o.Ojciec,'
       'o.POC,'
-      'o.Klasyf '
+      'o.Klasyf,'
+      'inf.GR'
       'FROM '
       '  widzenia w, '
       '  osadzeni o'
+      'LEFT JOIN os_info inf ON (inf.IDO=o.IDO)'
       'WHERE'
       '  (w.Etap=1)and(w.IDO=o.IDO)'
     )
@@ -991,5 +1014,28 @@ object OchSalaWidzen: TOchSalaWidzen
         Name = 'id_widzenia'
         ParamType = ptUnknown
       end>
+  end
+  object PopupMenuPoczekalnia: TPopupMenu
+    Images = DM.ImageList1
+    Left = 296
+    Top = 176
+    object miModyfikuj: TMenuItem
+      Caption = 'Modyfikuj ...'
+      ImageIndex = 39
+      OnClick = miModyfikujClick
+    end
+    object miUsunZPoczekalni: TMenuItem
+      Caption = 'Usuń z poczekalni ...'
+      ImageIndex = 44
+      OnClick = miUsunZPoczekalniClick
+    end
+    object MenuItem2: TMenuItem
+      Caption = '-'
+    end
+    object miRefresh: TMenuItem
+      Caption = 'Odśwież'
+      ImageIndex = 45
+      OnClick = miRefreshClick
+    end
   end
 end

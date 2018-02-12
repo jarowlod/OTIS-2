@@ -23,7 +23,7 @@ type
     lblPodkultura: TLabel;
     lblPozostalo: TLabel;
     lblNazwiskoImie: TLabel;
-    lblIDO: TLabel;
+    lblPOC: TLabel;
     miModyfikujWidzenie: TMenuItem;
     miOsadzony: TMenuItem;
     miKartaOchronna: TMenuItem;
@@ -72,7 +72,7 @@ var
   ViewStolik: TViewStolik;
 
 implementation
-uses UOchSalaWidzen, UOchForm, UOchEdycja_Widz, dateutils;
+uses UOchSalaWidzen, UOchForm, dateutils, rxdbutils, UOchAddWidzenie;
 {$R *.frm}
 
 { TViewStolik }
@@ -122,6 +122,8 @@ begin
   ZQPom.ExecSQL;
 
   WczytajDane;
+
+  RefreshQuery(OchSalaWidzen.ZQWidzenia);
 end;
 
 procedure TViewStolik.miKartaOchronnaClick(Sender: TObject);
@@ -139,14 +141,15 @@ procedure TViewStolik.miModyfikujWidzenieClick(Sender: TObject);
 begin
   if SelectIDO = 0 then exit;
 
-  with TOchEdycja_Widz.Create(Self) do
+  with TOchAddWidzenie.Create(Self) do
   begin
-    SetID_Widzenia(fID);
-    ShowModal;
-    Free;
+       Modyfikuj( fID, SelectIDO );
+       if ShowModal = mrOK then
+         begin
+           OchSalaWidzen.PrzeladujWidzenia;
+         end;
+       Free;
   end;
-
-  OchSalaWidzen.PrzeladujWidzenia;
 end;
 
 procedure TViewStolik.miOsadzonyClick(Sender: TObject);
@@ -283,8 +286,9 @@ procedure TViewStolik.WczytajDane;
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:='SELECT w.*, o.Nazwisko, o.Imie, o.POC, o.Klasyf, t.Ochronka, u.IDO IDO_u, uk.IDO IDO_uk '+
+  ZQPom.SQL.Text:='SELECT w.*, o.Nazwisko, o.Imie, o.POC, o.Klasyf, t.Ochronka, u.IDO IDO_u, uk.IDO IDO_uk, inf.GR '+
                   'FROM widzenia w, osadzeni o LEFT JOIN typ_cel t ON (o.POC=t.POC) '+
+                  'LEFT JOIN os_info inf ON (inf.IDO=o.IDO) '+
                   'LEFT JOIN uwagi u ON ((u.Uwagi<>"") AND (u.IDO=o.IDO)) '+
                   'LEFT JOIN uwagi_kierownika uk ON ((uk.Uwagi<>"") AND (uk.IDO=o.IDO)) '+
                   'WHERE (w.Stolik=:stolik)AND(w.Etap=2)AND(w.IDO=o.IDO) LIMIT 1';
@@ -298,7 +302,7 @@ begin
       Image1.Picture.Clear;
       TLoadFotoThread.Create(DM.Path_NrStolikow+IntToStr(NrStolika)+'.jpg', Image1 );
       // czyścimy lbl'e
-      lblIDO.Caption          := '';
+      lblPOC.Caption          := '';
       lblNazwiskoImie.Caption := '';
       lblPozostalo.Caption    := '';
       lblCzas.Caption         := '';
@@ -320,9 +324,12 @@ begin
       fCzas       := ZQPom.FieldByName('Czas_widzenia').AsInteger;
       fData_Stolik:= ZQPom.FieldByName('Data_Stolik').AsDateTime;
 
-      lblIDO.Caption:= IntToStr(SelectIDO);
+      lblPOC.Caption:= ZQPom.FieldByName('POC').AsString;
       lblNazwiskoImie.Caption:= ZQPom.FieldByName('Nazwisko').AsString+' '+ZQPom.FieldByName('Imie').AsString;
+      lblPodkultura.Caption  := '';
+      lblUwagi.Caption       := '';
       if ZQPom.FieldByName('Ochronka').AsInteger=1 then lblPodkultura.Caption:= 'Ochronka';
+      if ZQPom.FieldByName('GR').AsInteger=1       then lblPodkultura.Caption:= 'GR';
       if (not ZQPom.FieldByName('IDO_u').IsNull) or (not ZQPom.FieldByName('IDO_uk').IsNull) then lblUwagi.Caption:= 'Uwagi !';
 
       // czeka przy stoliku

@@ -1,7 +1,7 @@
 object OchRejestrWidzen: TOchRejestrWidzen
   Left = 407
   Height = 766
-  Top = 229
+  Top = 238
   Width = 1216
   Caption = 'Rejestr widzeń osadzonych'
   ClientHeight = 766
@@ -314,19 +314,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
         OnClick = btnOdswiezClick
         TabOrder = 3
       end
-    end
-    object Memo1: TMemo
-      Left = 632
-      Height = 56
-      Top = 8
-      Width = 288
-      Color = 14024703
-      Enabled = False
-      Lines.Strings = (
-        'Uwzględnia tylko osadzonych w obecnym pobycie.'
-      )
-      ReadOnly = True
-      TabOrder = 3
     end
   end
   object Panel2: TPanel

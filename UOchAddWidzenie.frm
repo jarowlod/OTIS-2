@@ -1,7 +1,7 @@
 object OchAddWidzenie: TOchAddWidzenie
-  Left = 396
+  Left = 407
   Height = 758
-  Top = 222
+  Top = 238
   Width = 1108
   Caption = 'Dodaj widzenie'
   ClientHeight = 758
@@ -232,6 +232,25 @@ object OchAddWidzenie: TOchAddWidzenie
         ParentColor = False
         ParentFont = False
       end
+      object lblCelaTA: TLabel
+        AnchorSideLeft.Side = asrBottom
+        Left = 752
+        Height = 19
+        Top = 8
+        Width = 58
+        BorderSpacing.Left = 10
+        Caption = 'Cela TA'
+        Font.CharSet = EASTEUROPE_CHARSET
+        Font.Color = clRed
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Visible = False
+      end
     end
     object Label6: TLabel
       Left = 157
@@ -317,6 +336,26 @@ object OchAddWidzenie: TOchAddWidzenie
       )
       MaxLength = 100
       TabOrder = 8
+    end
+    object GroupBoxNrStolika: TGroupBox
+      Left = 504
+      Height = 64
+      Top = 144
+      Width = 104
+      Caption = 'Nr stolika'
+      ClientHeight = 44
+      ClientWidth = 100
+      TabOrder = 9
+      Visible = False
+      object cbNrStolika: TComboBox
+        Left = 8
+        Height = 23
+        Top = 8
+        Width = 68
+        ItemHeight = 15
+        Style = csDropDownList
+        TabOrder = 0
+      end
     end
   end
   object PageControl1: TPageControl

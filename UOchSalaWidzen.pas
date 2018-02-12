@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ExtCtrls, Buttons, DbCtrls, StdCtrls, datamodule, UViewStolik, db, ZDataset,
-  rxdbgrid, BCPanel, BCLabel;
+  ExtCtrls, Buttons, DbCtrls, StdCtrls, Menus, datamodule, UViewStolik, db,
+  ZDataset, rxdbgrid, BCPanel, BCLabel;
 
 type
 
@@ -15,7 +15,7 @@ type
 
   TOchSalaWidzen = class(TForm)
     btnWybranyDoWidzenia: TBitBtn;
-    DBCheckBox6: TDBCheckBox;
+    DBcbGR: TDBCheckBox;
     DBlblNazwisko: TDBText;
     DBlblImie: TDBText;
     DBlblKlasyf: TDBText;
@@ -28,6 +28,10 @@ type
     Label1: TLabel;
     lblCelaOchronna: TLabel;
     lblCelaTA: TLabel;
+    miModyfikuj: TMenuItem;
+    miRefresh: TMenuItem;
+    MenuItem2: TMenuItem;
+    miUsunZPoczekalni: TMenuItem;
     Panel1: TPanel;
     Panel3: TPanel;
     PanelBezdozor: TBCPanel;
@@ -36,6 +40,7 @@ type
     PageControl1: TPageControl;
     PanelPleksa: TPanel;
     PanelSala: TPanel;
+    PopupMenuPoczekalnia: TPopupMenu;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     Shape1: TShape;
@@ -51,6 +56,9 @@ type
     procedure DSWidzeniaDataChange(Sender: TObject; Field: TField);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure miModyfikujClick(Sender: TObject);
+    procedure miRefreshClick(Sender: TObject);
+    procedure miUsunZPoczekalniClick(Sender: TObject);
     procedure TabSheetPoczekalniaShow(Sender: TObject);
     procedure TimerAutoUpdateTimer(Sender: TObject);
     procedure TimerZegarTimer(Sender: TObject);
@@ -61,6 +69,9 @@ type
     procedure RozmiescStoliki;
     procedure SetUprawnienia;
     procedure WczytajDodatkoweInfo;
+    procedure UsunZPoczekalni;
+    procedure ModyfikujWidzenie;
+    procedure OdswiezPoczekalnie;
   public
     procedure PrzeladujWidzenia;
   end;
@@ -69,9 +80,11 @@ var
   OchSalaWidzen: TOchSalaWidzen;
 const
   LSTOLIKOW = 22; // liczba stolików
+  ODSTEP_OD_STOLIKOW = 20;
+  PRAWA_STRONA_SALI = 200;
 
 implementation
-
+uses dateutils, rxdbutils, UOchAddWidzenie;
 {$R *.frm}
 
 { TOchSalaWidzen }
@@ -85,12 +98,27 @@ begin
   UtworzStoliki; // tworzy stolik wraz z danymi
   RozmiescStoliki;
   ZQWidzenia.Open;
+  //AutoAdjustLayout(lapAutoAdjustForDPI, 96, 110, Width, Width);
+end;
+
+procedure TOchSalaWidzen.miModyfikujClick(Sender: TObject);
+begin
+  ModyfikujWidzenie;
+end;
+
+procedure TOchSalaWidzen.miRefreshClick(Sender: TObject);
+begin
+  OdswiezPoczekalnie;
+end;
+
+procedure TOchSalaWidzen.miUsunZPoczekalniClick(Sender: TObject);
+begin
+  UsunZPoczekalni;
 end;
 
 procedure TOchSalaWidzen.TabSheetPoczekalniaShow(Sender: TObject);
 begin
-  ZQWidzenia.Close;
-  ZQWidzenia.Open;
+  OdswiezPoczekalnie;
 end;
 
 procedure TOchSalaWidzen.TimerAutoUpdateTimer(Sender: TObject);
@@ -120,14 +148,19 @@ procedure TOchSalaWidzen.DSWidzeniaDataChange(Sender: TObject; Field: TField);
 begin
   if not ZQWidzenia.IsEmpty then
     begin
+      Panel1.Visible:= true;
       TLoadFotoThread.Create(DM.Path_Foto+ZQWidzenia.FieldByName('IDO').AsString+'.jpg', Image1);
 
       ZQOsoby.Close;
       ZQOsoby.ParamByName('id_widzenia').AsInteger:= ZQWidzenia.FieldByName('ID').AsInteger;
       ZQOsoby.Open;
+      WczytajDodatkoweInfo;
     end
   else
-    Image1.Picture.Clear;
+    begin
+      Image1.Picture.Clear;
+      Panel1.Visible:= false;
+    end;
 end;
 
 procedure TOchSalaWidzen.UtworzStoliki;
@@ -151,30 +184,33 @@ begin
   for i:=0 to 9 do
   begin
     ii:= i mod 2;
-    FStoliki[i].Left:= 10 + (FStoliki[i].Width + 10) * ii;
+    FStoliki[i].Left:= ODSTEP_OD_STOLIKOW + (FStoliki[i].Width + ODSTEP_OD_STOLIKOW) * ii;
     ii:= i div 2;
-    FStoliki[i].Top:= 10 + (FStoliki[i].Height + 10) * ii;
+    FStoliki[i].Top:= ODSTEP_OD_STOLIKOW + (FStoliki[i].Height + ODSTEP_OD_STOLIKOW) * ii;
     FStoliki[i].Show;
   end;
+
+  // Prawa strona Bezdozorowe
+  for i:=16 to 17 do
+  begin
+    ii:= ((i-16) mod 2) + 2;
+    FStoliki[i].Left:= PRAWA_STRONA_SALI + (FStoliki[i].Width + ODSTEP_OD_STOLIKOW) * ii;
+    FStoliki[i].Top := ODSTEP_OD_STOLIKOW;
+    FStoliki[i].Show;
+  end;
+  PanelBezdozor.Left  := FStoliki[16].Left-ODSTEP_OD_STOLIKOW-15;
+  PanelBezdozor.Width := 2 * (FStoliki[16].Width + ODSTEP_OD_STOLIKOW) + ODSTEP_OD_STOLIKOW+15;
+  PanelBezdozor.Height:= FStoliki[16].Height + 2*ODSTEP_OD_STOLIKOW+15;
+
   // Prawa strona sali
-  for i:=10 to 12 do
+  for i:=10 to 15 do
   begin
-    FStoliki[i].Left:= 100 + (FStoliki[i].Width + 10) * 2;
-    ii:= (i-10)+1;
-    FStoliki[i].Top := 100 + (FStoliki[i].Height + 10) * ii;
+    ii:= ((i-10) mod 2) + 2;   // kolumna
+    FStoliki[i].Left:= PRAWA_STRONA_SALI + (FStoliki[i].Width + ODSTEP_OD_STOLIKOW) * ii;
+    ii:= ((i-10) div 2);   // wiersz
+    FStoliki[i].Top := PanelBezdozor.Height+81 + (FStoliki[i].Height + ODSTEP_OD_STOLIKOW) * ii;
     FStoliki[i].Show;
   end;
-  // Prawa strona sali - Bezdozorowe
-  for i:=13 to 14 do
-  begin
-    ii:= ((i-13) mod 2) + 2;
-    FStoliki[i].Left:= 100 + (FStoliki[i].Width + 10) * ii;
-    FStoliki[i].Top := 10;
-    FStoliki[i].Show;
-  end;
-  PanelBezdozor.Left  := FStoliki[13].Left-25;
-  PanelBezdozor.Width := 2 * (FStoliki[14].Width + 10) + 35;
-  PanelBezdozor.Height:= FStoliki[14].Height + 35;
 
   // Pleksa
   for i:=18 to 20 do
@@ -196,12 +232,12 @@ begin
 
   if not ( ((Pos(UpperCase(DM.Station_Name_For_Widzenia), UpperCase(CompName) )=1) and DM.uprawnienia[6]) or
             DM.uprawnienia[8] ) then  // jesli osoba nieuprawniona to blokujemy wszystko
-  begin
-    isTylkoPodglad:= true;
-    TabSheetPoczekalnia.TabVisible:= false;
-    // ale za to uruchamiamy Timer który co minutę wczyte aktualne dane,
-    TimerAutoUpdate.Enabled := true;
-  end;
+    begin
+      isTylkoPodglad:= true;
+      TabSheetPoczekalnia.TabVisible:= false;
+      // ale za to uruchamiamy Timer który co minutę wczyte aktualne dane,
+      TimerAutoUpdate.Enabled := true;
+    end;
 end;
 
 procedure TOchSalaWidzen.PrzeladujWidzenia;
@@ -239,6 +275,64 @@ begin
   //----------------------------
 
   FreeAndNil(ZQPom);
+end;
+
+procedure TOchSalaWidzen.UsunZPoczekalni;
+var id_w: integer;
+    ZQPom: TZQueryPom;
+begin
+  if ZQWidzenia.IsEmpty then exit;
+
+  if ZQWidzenia.FieldByName('Nadzor').AsString <> DM.PelnaNazwa then
+    begin
+      MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć może tylko użytkownik który nadzorował widzenie.', mtWarning, [mbOK],0);
+      exit;
+    end;
+  if (ZQWidzenia.FieldByName('Etap').AsInteger = ew_Zrealizowane) and
+     (ZQWidzenia.FieldByName('Data_Widzenie').AsDateTime < IncDay(Date(), -7)) then
+    begin
+      MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć można tylko do 7 dni od daty widzenia.', mtWarning, [mbOK],0);
+      exit;
+    end;
+
+  if MessageDlg('Czy napewno usunąć widzenie?', mtWarning, [mbOK, mbCancel],0) = mrCancel then exit;
+  //--------------------------------------------------------------------------------------------------------------------
+
+  // usuń widzenie
+  id_w :=ZQWidzenia.FieldByName('ID').AsInteger;
+
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'DELETE FROM widzenia WHERE ID = :id';
+  ZQPom.ParamByName('id').AsInteger:= id_w;
+  ZQPom.ExecSQL;
+
+  // usuń osoby przypisane do widzenia
+  ZQPom.SQL.Text:= 'DELETE FROM widzenia_upr WHERE ID_widzenia = :id';
+  ZQPom.ParamByName('id').AsInteger:= id_w;
+  ZQPom.ExecSQL;
+
+  FreeAndNil(ZQPom);
+  OdswiezPoczekalnie;
+  DM.KomunikatPopUp(Self, 'Poczekalnia','Usunięto osadzonego z poczekalni.', nots_Info);
+end;
+
+procedure TOchSalaWidzen.ModyfikujWidzenie;
+begin
+  if ZQWidzenia.IsEmpty then exit;
+  with TOchAddWidzenie.Create(Self) do
+  begin
+       Modyfikuj( ZQWidzenia.FieldByName('id').AsInteger, ZQWidzenia.FieldByName('ido').AsInteger );
+       if ShowModal = mrOK then
+         begin
+           RefreshQuery(ZQWidzenia);
+         end;
+       Free;
+  end;
+end;
+
+procedure TOchSalaWidzen.OdswiezPoczekalnie;
+begin
+  RefreshQuery(ZQWidzenia);
 end;
 
 end.

@@ -25,17 +25,20 @@ type
     cbSposob: TComboBox;
     cbCzyZrealizowane: TCheckBox;
     cbDodatkowe: TComboBox;
+    cbNrStolika: TComboBox;
     dtDataWidzenia: TDateTimePicker;
     DSUprawnione: TDataSource;
     DSOsoby: TDataSource;
     edUwagi: TEdit;
     GroupBox1: TGroupBox;
+    GroupBoxNrStolika: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
+    lblCelaTA: TLabel;
     lblKlasyf: TLabel;
     lblNazwisko: TLabel;
     lblPoc: TLabel;
@@ -77,6 +80,8 @@ type
     SelectID : integer; // ID widzenia
     isModyfikacja: Boolean;
     isCloseForm: Boolean;
+    Etap: integer;
+    nr_stolika: integer;
 
     // importowane widoki osadzone w zakładkach
     fViewUwagiOch: TViewUwagiOch;
@@ -88,6 +93,7 @@ type
     procedure OtworzTabele;
     function Zapisz: Boolean;
     procedure WczytajWidzenie; // wczytaj widzenie do modyfikacji
+    procedure WczytajWolneStoliki;
   public
               // Zainicjuj widzenie osadzonemu vIDO
               // jeśli vIDO = -1 to wywołaj wybór osadzonego
@@ -102,7 +108,7 @@ type
 //  OchAddWidzenie: TOchAddWidzenie;
 
 implementation
-uses URejestrProsbOs, UOsadzeni, UOchAddOsobeWidzenie;
+uses URejestrProsbOs, UOsadzeni, UOchAddOsobeWidzenie, UOchSalaWidzen;
 {$R *.frm}
 
 { TOchAddWidzenie }
@@ -285,7 +291,7 @@ end;
 
 procedure TOchAddWidzenie.btnOKClick(Sender: TObject);
 begin
-  // wywołujemy funkcję zapisującą widzenie, w razie niepowodzenia zmienamy ModalResult na None aby nie zamykać okna;
+  // wywołujemy funkcję zapisującą widzenie, w razie niepowodzenia zmieniamy ModalResult na None aby nie zamykać okna;
   if not Zapisz then ModalResult:= mrNone;
 end;
 
@@ -304,6 +310,14 @@ begin
     end
   else
     lblNazwisko.Caption:= 'Brak danych osadzonego';
+
+  // sprawdzamy czy cela jest TA
+  ZQPom.SQL.Text:= 'SELECT tc.POC, tc.TA FROM typ_cel AS tc WHERE (tc.POC = :poc) AND '+   // ((tc.TA = 1) OR
+                   '((SELECT COUNT(IDO) AS ile FROM osadzeni AS os WHERE os.POC = :poc AND os.KLASYF LIKE "%TA%") > 0)';
+  ZQPom.ParamByName('poc').AsString:= lblPoc.Caption;
+  ZQPom.Open;
+  lblCelaTA.Visible:= not ZQPom.IsEmpty;
+  //----------------------------
 
   FreeAndNil(ZQPom);
 end;
@@ -382,8 +396,12 @@ begin
   // ------------------------------------------UPDATE ------------------------------------------------------------------
   if isModyfikacja then
     begin
-      ZQPom.SQL.Text:= 'UPDATE widzenia SET Czas_widzenia=:czas, Sposob=:sposob, Uwagi=:uwagi, Czas_reg=:czas_r, Czas_dod=:czas_d, Dodatkowe=:dod, Data_Dod=:dd WHERE ID=:id_widzenia';
+      ZQPom.SQL.Text:= 'UPDATE widzenia SET Czas_widzenia=:czas, Sposob=:sposob, Uwagi=:uwagi, Czas_reg=:czas_r, Czas_dod=:czas_d, Dodatkowe=:dod, Data_Dod=:dd, Stolik=:stolik WHERE ID=:id_widzenia';
       ZQPom.ParamByName('id_widzenia').AsInteger:= SelectID;
+      if GroupBoxNrStolika.Visible then
+          ZQPom.ParamByName('stolik').AsInteger:= StrToInt(cbNrStolika.Text)
+        else
+          ZQPom.ParamByName('stolik').Value:= null;
     end;
   // ------------------------------------------END etap UPDATE
   // ----------------------------------------- część wspólna dla INSERT i UPDATE
@@ -458,7 +476,7 @@ begin
   // obsługujemy tylko etap poczekalni i sali widzeń
   cbCzyZrealizowane.Enabled:= false; // wyłączamy możliwość zapisania zrealizowanego widzenia
 
-  ZQPom.SQL.Text:= 'SELECT ID,IDO,Sposob,Uwagi,Czas_reg,Czas_dod,Dodatkowe,Data_Dod FROM widzenia WHERE ID=:id';
+  ZQPom.SQL.Text:= 'SELECT ID,IDO,Sposob,Uwagi,Czas_reg,Czas_dod,Dodatkowe,Data_Dod,Etap,Stolik FROM widzenia WHERE ID=:id';
   ZQPom.ParamByName('id').AsInteger:= SelectID;
   ZQPom.Open;
 
@@ -475,6 +493,15 @@ begin
     'BK': cbSposob.ItemIndex:= 3;
   end;
 
+  Etap:= ZQPom.FieldByName('Etap').AsInteger;
+  if Etap = ew_NaSali then
+    begin
+      GroupBoxNrStolika.Visible:= true;
+      nr_stolika:= ZQPom.FieldByName('Stolik').AsInteger;
+      WczytajWolneStoliki;
+      cbNrStolika.Text:= IntToStr(nr_stolika);
+    end;
+
   // dodajemy osoby uprawnione do widzenia_upr (ID_widzenia, ID_uprawnione)
   ZQPom.SQL.Text:= 'SELECT ID_widzenia,ID_uprawnione FROM widzenia_upr WHERE ID_widzenia=:id_w';
   ZQPom.ParamByName('id_w').AsInteger:= SelectID;
@@ -487,6 +514,27 @@ begin
   end;
 
   FreeAndNil( ZQPom);
+end;
+
+procedure TOchAddWidzenie.WczytajWolneStoliki;
+var ZQPom: TZQueryPom;
+    i: integer;
+begin
+  cbNrStolika.Clear;
+  for i:=1 to LSTOLIKOW do cbNrStolika.Items.Add(IntToStr(i)); // na początek dodajemy wszystkie stoliki
+
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT ID,Etap,Stolik FROM widzenia WHERE Etap=:etap';
+  ZQPom.ParamByName('etap').AsInteger:= ew_NaSali;
+  ZQPom.Open;
+  while not ZQPom.EOF do
+  begin
+    i:= cbNrStolika.Items.IndexOf(ZQPom.FieldByName('Stolik').AsString);
+    if ZQPom.FieldByName('Stolik').AsInteger <> nr_stolika then
+       cbNrStolika.Items.Delete(i);
+    ZQPom.Next;
+  end;
+  FreeAndNil(ZQPom);
 end;
 
 procedure TOchAddWidzenie.RxDBGrid4PrepareCanvas(sender: TObject;

@@ -27,7 +27,6 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     Label1: TLabel;
-    Memo1: TMemo;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -295,6 +294,7 @@ begin
   FreeAndNil(ZQPom);
 
   NewSelect;
+  DM.KomunikatPopUp(Self, 'Rejestr Widzeń','Usunięto wybrane widzenie.', nots_Info);
 end;
 
 procedure TOchRejestrWidzen.btnDodajClick(Sender: TObject);

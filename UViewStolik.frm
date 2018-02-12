@@ -1,7 +1,7 @@
 object ViewStolik: TViewStolik
-  Left = 396
+  Left = 407
   Height = 140
-  Top = 222
+  Top = 238
   Width = 240
   BorderStyle = bsNone
   Caption = 'Stolik'
@@ -34,18 +34,18 @@ object ViewStolik: TViewStolik
       Proportional = True
       Stretch = True
     end
-    object lblIDO: TLabel
+    object lblPOC: TLabel
       Left = 96
       Height = 15
-      Top = 8
-      Width = 33
-      Caption = 'lblIDO'
+      Top = 24
+      Width = 37
+      Caption = 'lblPOC'
       ParentColor = False
     end
     object lblNazwiskoImie: TLabel
       Left = 96
       Height = 15
-      Top = 24
+      Top = 8
       Width = 86
       Caption = 'lblNazwiskoImie'
       ParentColor = False
@@ -74,12 +74,14 @@ object ViewStolik: TViewStolik
       Top = 88
       Width = 46
       Caption = 'lblUwagi'
+      Font.Color = clRed
       ParentColor = False
+      ParentFont = False
     end
     object lblCzas: TLabel
-      Left = 184
+      Left = 96
       Height = 15
-      Top = 88
+      Top = 40
       Width = 37
       Caption = 'lblCzas'
       ParentColor = False
@@ -313,7 +315,7 @@ object ViewStolik: TViewStolik
       Caption = '-'
     end
     object miKartaOchronna: TMenuItem
-      Caption = 'Karta ochronna'
+      Caption = 'Karta ochronna ...'
       Bitmap.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
@@ -354,7 +356,7 @@ object ViewStolik: TViewStolik
       OnClick = miKartaOchronnaClick
     end
     object miModyfikujWidzenie: TMenuItem
-      Caption = 'Modyfikuj'
+      Caption = 'Modyfikuj ...'
       Bitmap.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         20000000000000040000640000006400000000000000000000000A2B9500021C
