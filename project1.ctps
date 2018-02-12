@@ -19,7 +19,7 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="607"/>
         <CursorPos X="18" Y="612"/>
         <UsageCount Value="200"/>
@@ -32,9 +32,10 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="114"/>
-        <CursorPos X="36" Y="121"/>
+        <TopLine Value="445"/>
+        <CursorPos X="59" Y="163"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -133,7 +134,7 @@
         <ComponentName Value="Rozmieszczenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="406"/>
         <CursorPos X="33" Y="467"/>
         <UsageCount Value="200"/>
@@ -157,7 +158,7 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="25"/>
         <CursorPos X="5" Y="41"/>
         <UsageCount Value="201"/>
@@ -422,7 +423,7 @@
         <ComponentName Value="OchRejestrWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="313"/>
         <CursorPos X="43" Y="335"/>
         <UsageCount Value="200"/>
@@ -435,8 +436,7 @@
         <ComponentName Value="OchAddWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="389"/>
         <CursorPos X="51" Y="404"/>
         <UsageCount Value="200"/>
@@ -536,7 +536,7 @@
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="45"/>
         <CursorPos X="55" Y="267"/>
         <UsageCount Value="152"/>
@@ -560,7 +560,7 @@
         <ComponentName Value="ViewPanelZdj"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="2"/>
         <CursorPos X="23" Y="64"/>
         <UsageCount Value="127"/>
@@ -584,7 +584,7 @@
         <ComponentName Value="OchSalaWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="149"/>
         <CursorPos X="31" Y="238"/>
         <UsageCount Value="86"/>
@@ -597,7 +597,7 @@
         <ComponentName Value="ViewStolik"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="244"/>
         <CursorPos X="37" Y="81"/>
         <UsageCount Value="85"/>
@@ -610,7 +610,7 @@
         <ComponentName Value="PenitWPZ"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="209"/>
         <CursorPos X="101" Y="225"/>
         <UsageCount Value="57"/>
@@ -657,10 +657,11 @@
       </Unit58>
       <Unit59>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysinth.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="21"/>
-        <CursorPos X="3" Y="30"/>
-        <UsageCount Value="8"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="55"/>
+        <CursorPos X="11" Y="67"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit59>
       <Unit60>
         <Filename Value="C:\codetyphon\typhon\lcl\grids.pas"/>
@@ -1041,7 +1042,7 @@
         <UsageCount Value="10"/>
       </Unit113>
     </Units>
-    <JumpHistory Count="27" HistoryIndex="26">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="UOchSalaWidzen.pas"/>
         <Caret Line="97" Column="19"/>
@@ -1150,6 +1151,10 @@
         <Filename Value="UOchAddWidzenie.pas"/>
         <Caret Line="404" Column="45" TopLine="389"/>
       </Position27>
+      <Position28>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="163" Column="59" TopLine="153"/>
+      </Position28>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
