@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, TplGradientUnit, rxdbgrid, rxmemds, Forms,
   Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, EditBtn, Spin, fpjson,
-  jsonparser, dateutils, Clipbrd, Buttons, datamodule, ZDataset, db;
+  jsonparser, dateutils, Clipbrd, Buttons, datamodule, LR_Class, LR_DBSet,
+  ZDataset, db;
 
 type
   TOrzeczenie = record
@@ -27,6 +28,7 @@ type
       data_osadzenia: TDate;
       owz          : Boolean;
       ulamek       : string;
+      ulamek_opis  : string;
       OBS_obostrzenie: Boolean;
       OBS_po_ilu   : integer; // wpz po ilu dniach
       uwagi        : string;
@@ -69,6 +71,7 @@ type
   { TPenitWPZ }
 
   TPenitWPZ = class(TForm)
+    BitBtn1: TBitBtn;
     btnZapisz: TBitBtn;
     btnOblicz: TBitBtn;
     btnPaste: TBitBtn;
@@ -80,12 +83,16 @@ type
     cbmUlamek: TComboBox;
     DSOrzeczenia: TDataSource;
     edDataOsadzenia: TDateEdit;
+    edUlamekDoWPZ: TEdit;
     edWPZ: TDateEdit;
     edPrzepustki: TDateEdit;
     edPostpenit: TDateEdit;
+    frDBDataSet1: TfrDBDataSet;
+    frReport1: TfrReport;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     Label1: TLabel;
+    Label10: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -111,8 +118,12 @@ type
     RxMemoryOrzeczeniaLat: TLongintField;
     RxMemoryOrzeczeniaLp: TStringField;
     RxMemoryOrzeczeniaMsc: TLongintField;
+    RxMemoryOrzeczeniaPrzepustki: TDateTimeField;
+    RxMemoryOrzeczeniaWPZ: TDateField;
+    RxMemoryOrzeczeniaWymiarKary: TStringField;
     RxMemoryOrzeczeniaZastepcza: TBooleanField;
     ZQOsInfo: TZQuery;
+    procedure BitBtn1Click(Sender: TObject);
     procedure btnZapiszClick(Sender: TObject);
     procedure btnObliczClick(Sender: TObject);
     procedure btnPasteClick(Sender: TObject);
@@ -127,6 +138,7 @@ type
     procedure WstawDateToEdit(edDateEdit: TDateEdit; DataValue: TDate);
     procedure WstawDaneDoTabeli;
     procedure TabelaDoWPZ;
+    procedure Oblicz;
   public
     Procedure SetIDO(ido: integer);
     procedure NoweObliczenia;
@@ -172,6 +184,10 @@ begin
   NoweObliczenia; // create WPZ
   WPZ.ParseFromDOC(Clipboard.AsText);
   WstawDaneDoTabeli;
+  //cbOBS.Checked       := false;
+  //edOBS_dni.Value     := 0;
+  cbmUlamek.Text      :=  WPZ.GetUlamekArt;
+
 
   Memo1.Text:= WPZ.fKomunikaty.Text;
   WPZ.fKomunikaty.Clear;
@@ -196,7 +212,7 @@ begin
                                   else ZQOsInfo.FieldByName('tprzepustki').AsDateTime:= edPrzepustki.Date;
   if edPostpenit.Date = NullDate  then ZQOsInfo.FieldByName('tpostpenitu').AsDateTime:= Null
                                   else ZQOsInfo.FieldByName('tpostpenitu').AsDateTime:= edPostpenit.Date;
-  ZQOsInfo.FieldByName('ulamek_wpz').AsString:= cbmUlamek.Text;
+  ZQOsInfo.FieldByName('ulamek_wpz').AsString:= edUlamekDoWPZ.Text;
   if WPZ.orzeczenia[WPZ.Count-1].koniec_kary = NullDate then ZQOsInfo.FieldByName('KoniecKary').AsDateTime:= Null
                                                         else ZQOsInfo.FieldByName('KoniecKary').AsDateTime:= WPZ.orzeczenia[WPZ.Count-1].koniec_kary;
 
@@ -208,29 +224,62 @@ end;
 
 procedure TPenitWPZ.btnObliczClick(Sender: TObject);
 begin
-  WPZ.owz            := cbOWZ.Checked;
-  WPZ.data_osadzenia := edDataOsadzenia.Date;
-  WPZ.OBS_obostrzenie:= cbOBS.Checked;
-  WPZ.OBS_po_ilu     := edOBS_dni.Value;
-  WPZ.ulamek         := cbmUlamek.Text;
-  TabelaDoWPZ;
-
-  if WPZ.Oblicz then
-  begin
-    WstawDateToEdit(edWPZ, WPZ.WPZ);
-    WstawDateToEdit(edPrzepustki, WPZ.przepustki);
-    WstawDateToEdit(edPostpenit, WPZ.postpenit);
-    DM.KomunikatPopUp(Self, 'Kreator WPZ', 'Obliczono nowe terminy.', nots_Info);
-  end
-  else DM.KomunikatPopUp(Self, 'Kreator WPZ', 'Wystąpił błąd w obliczeniach terminów.', nots_Warning);
-
-  Memo1.Text:= WPZ.fKomunikaty.Text;
+  Oblicz;
 end;
 
 procedure TPenitWPZ.btnZapiszClick(Sender: TObject);
 begin
   // zapisz do bazy danych
   // Memo1.Append(WPZ.SaveToStr);
+end;
+
+procedure TPenitWPZ.BitBtn1Click(Sender: TObject);
+var i: integer;
+    s: string;
+begin
+  // dpoisujemy terminy WPZ i Przepustek
+  // uzupełniamy RxMemory wynikiem obliczeń =====================
+  RxMemoryOrzeczenia.First;
+  RxMemoryOrzeczenia.MoveBy(WPZ.IndexWPZ);
+
+  RxMemoryOrzeczenia.Edit;
+  if edWPZ.Date = NullDate then
+      RxMemoryOrzeczeniaWPZ.Value:= Null
+    else
+      RxMemoryOrzeczeniaWPZ.AsDateTime:= edWPZ.Date;
+
+  if edPrzepustki.Date = NullDate then
+      RxMemoryOrzeczeniaPrzepustki.Value:= Null
+    else
+      RxMemoryOrzeczeniaPrzepustki.AsDateTime:= edPrzepustki.Date;
+  RxMemoryOrzeczenia.Post;
+  //==============================================================
+
+  // uzupełniamy pole Wymiar Kary
+  RxMemoryOrzeczenia.First;
+  while not RxMemoryOrzeczenia.EOF do
+  begin
+    s:= '';
+    if RxMemoryOrzeczeniaLat.AsInteger = 1 then s:= '1 rok ' else
+    if RxMemoryOrzeczeniaLat.AsInteger > 4 then s:= RxMemoryOrzeczeniaLat.AsString + ' lat ' else
+    if RxMemoryOrzeczeniaLat.AsInteger > 1 then s:= RxMemoryOrzeczeniaLat.AsString + ' lata ';
+
+    if RxMemoryOrzeczeniaMsc.AsInteger > 1 then s+= RxMemoryOrzeczeniaMsc.AsString + ' msc ';
+    if RxMemoryOrzeczeniaDni.AsInteger > 1 then s+= RxMemoryOrzeczeniaDni.AsString + ' dni';
+
+    RxMemoryOrzeczenia.Edit;
+    RxMemoryOrzeczeniaWymiarKary.AsString:= s;
+    RxMemoryOrzeczenia.Post;
+    RxMemoryOrzeczenia.Next;
+  end;
+  // uzupełniamy tabelkę pustymi wierszami do 11 pozycji
+  if RxMemoryOrzeczenia.RecordCount>=11 then begin RxMemoryOrzeczenia.Append; RxMemoryOrzeczenia.Post; end;
+  for i:=RxMemoryOrzeczenia.RecordCount to 10 do begin RxMemoryOrzeczenia.Append; RxMemoryOrzeczenia.Post; end;
+
+  frReport1.LoadFromFile(DM.Path_Raporty + 'pen_obliczenieWPZ.lrf');
+  frReport1.ShowReport;
+
+  // usuwamy wcześniej dodane puste wiersze
 end;
 
 procedure TPenitWPZ.RxMemoryOrzeczeniaLpGetText(Sender: TField;
@@ -292,21 +341,47 @@ begin
   end;
 end;
 
+procedure TPenitWPZ.Oblicz;
+begin
+  WPZ.owz            := cbOWZ.Checked;
+  WPZ.data_osadzenia := edDataOsadzenia.Date;
+  WPZ.OBS_obostrzenie:= cbOBS.Checked;
+  WPZ.OBS_po_ilu     := edOBS_dni.Value;
+  WPZ.ulamek         := cbmUlamek.Text;
+  TabelaDoWPZ;
+
+  if WPZ.Oblicz then
+  begin
+    WstawDateToEdit(edWPZ, WPZ.WPZ);
+    WstawDateToEdit(edPrzepustki, WPZ.przepustki);
+    WstawDateToEdit(edPostpenit, WPZ.postpenit);
+    edUlamekDoWPZ.Text:= WPZ.ulamek_opis;
+
+    DM.KomunikatPopUp(Self, 'Kreator WPZ', 'Obliczono nowe terminy.', nots_Info);
+  end
+  else DM.KomunikatPopUp(Self, 'Kreator WPZ', 'Wystąpił błąd w obliczeniach terminów.', nots_Warning);
+
+  Memo1.Text:= WPZ.fKomunikaty.Text;
+end;
+
 procedure TPenitWPZ.NoweObliczenia;
 begin
   if WPZ <> Nil then FreeAndNil(WPZ);
   WPZ:= TWPZ.Create;
 
   edDataOsadzenia.Date:= DM.ZQOsadzeni.FieldByName('PRZYJ').AsDateTime;
-  cbmUlamek.Text      := WPZ.GetUlamekArt;
-  edWPZ.Text          :='';
-  edPostpenit.Text    :='';
-  edPrzepustki.Text   :='';
+  cbOBS.Checked       := false;
+  edOBS_dni.Value     := 0;
+  cbmUlamek.Text      := '';
+  edUlamekDoWPZ.Text  := '';
+  edWPZ.Text          := '';
+  edPostpenit.Text    := '';
+  edPrzepustki.Text   := '';
 
   Memo1.Clear;
 end;
 
-{ TWPZ }
+{ TWPZ ================================================================================================================}
 
 function TWPZ.WymiarKaryDni(dane: TOrzeczenie): integer;
 begin
@@ -361,6 +436,9 @@ begin
         Result:='3/4';
         fKomunikaty.Add('Wykryto art.65§1 w wierszu '+IntToStr(i+1));
       end;
+
+      if (orzeczenia[i].art.IndexOf(' 77§2')>=0) then
+        fKomunikaty.Add('Wykryto obostrzenie do WPZ art.77§2 w wierszu '+IntToStr(i+1));
     end;
 end;
 
@@ -432,6 +510,11 @@ begin
     postpenit:= IncDay(WPZ, -(6*30));
     validatePostpenit;
 
+    if (OBS_po_ilu div 365)=round(OBS_po_ilu/365) then
+        ulamek_opis:= 'art.77§2 po '+IntToStr(OBS_po_ilu div 365)+' latach'
+      else
+        ulamek_opis:= 'art.77§2 po '+IntToStr(OBS_po_ilu)+' dniach';
+
     fisObliczono:= true;
     Result:= true;
   end;
@@ -449,6 +532,7 @@ begin
     validatePostpenit;
 
     fKomunikaty.Add('Brak uprawnien do WPZ. Kary zastępcze.');
+    ulamek_opis:= 'Brak';
     fisObliczono:= true;
     Result:= true;
   end;
@@ -506,9 +590,18 @@ var owz_wpz: TDate;
     i: integer;
     dni_do_wpz: integer;
 begin
-  fKomunikaty.Add('Zastosowano owz.');
-  // oblicz po roku od osadzenia
-  owz_wpz:= IncDay(data_osadzenia, 365);
+  // oblicz po roku od osadzenia a dla dożywocia po 5 latach
+  if ulamek = 'po 25' then
+      begin
+        owz_wpz:= IncDay(data_osadzenia, 5*365);  // po 5 latach
+        fKomunikaty.Add('Sprawdzam owz, nie wcześniej niż po 5 latach.');
+      end
+    else
+      begin
+        owz_wpz:= IncDay(data_osadzenia, 365); // po roku
+        fKomunikaty.Add('Sprawdzam owz, nie wcześniej niż po roku.');
+      end;
+
   // przesuwamy owz_wpz o kary zastępcze które są przed wyliczoną datą
   for i:=0 to Count-1 do
   begin
@@ -517,7 +610,8 @@ begin
       owz_wpz:= IncDay(owz_wpz, orzeczenia[i].Sdni);
     end;
   end;
-  // wpz nie może być wcześniej niż po roku od osadzenia
+
+  // wpz nie może być wcześniej niż po 1 lub 5 latach od osadzenia
   if wpz<owz_wpz then
   begin
     wpz:= owz_wpz;
@@ -525,7 +619,8 @@ begin
     // jeśli wpz wypada puźniej niż koniec kary to brak uprawnień
     if wpz>orzeczenia[IndexWPZ].koniec_kary then
     begin
-      fKomunikaty.Add('Zastosowano art. 81. Bez uprawnień do WPZ. Kara krótsza niż rok.');
+      fKomunikaty.Add('Zastosowano art. 81. Bez uprawnień do WPZ. WPZ po końcu kary.');
+      ulamek_opis:= ulamek_opis+' art.81 KK';
       wpz:= NullDate;
       przepustki:= NullDate;
       postpenit:= IncDay(orzeczenia[Count-1].koniec_kary, -(6*30)); // 6 msc przed końcem kary
@@ -543,6 +638,7 @@ begin
     validatePostpenit;
 
     fKomunikaty.Add('Zastosowano art. 81. Po roku od osadzenia, uwazględniono przesunięcie o kary zastępcze.');
+    ulamek_opis:= ulamek_opis+' art.81 po roku';
     fisObliczono:= true;
   end;
 end;
@@ -575,12 +671,13 @@ begin
   inherited Destroy;
 end;
 
-function TWPZ.Oblicz: Boolean;
+function TWPZ.Oblicz: Boolean;  // ============================== OBLICZ WPZ ===========================================
 begin
   // inicjiujemy obliczenia
-  fSumaKar:= SumojKary;
-  Result:= false;
+  fSumaKar    := SumojKary;
+  Result      := false;
   fisObliczono:= false;
+  ulamek_opis := ulamek;
 
   if not SprawdzWarunki then exit;
   if ObliczKaryZastepcze then begin Result:= true; exit; end;

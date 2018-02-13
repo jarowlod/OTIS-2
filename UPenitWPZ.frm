@@ -1,11 +1,11 @@
 object PenitWPZ: TPenitWPZ
-  Left = 396
+  Left = 404
   Height = 621
-  Top = 222
-  Width = 1085
+  Top = 224
+  Width = 1066
   Caption = 'PenitWPZ'
   ClientHeight = 621
-  ClientWidth = 1085
+  ClientWidth = 1066
   OnCreate = FormCreate
   LCLVersion = '6.3'
   object Memo2: TMemo
@@ -23,25 +23,24 @@ object PenitWPZ: TPenitWPZ
     TabOrder = 0
   end
   object Panel1: TPanel
-    Left = 344
+    Left = 313
     Height = 573
     Top = 48
-    Width = 741
+    Width = 753
     Align = alRight
     ClientHeight = 573
-    ClientWidth = 741
+    ClientWidth = 753
     TabOrder = 1
     object RxDBGrid2: TRxDBGrid
       Left = 1
       Height = 259
       Top = 33
-      Width = 739
+      Width = 751
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = False
       AutoSort = True
       Columns = <      
         item
-          Alignment = taLeftJustify
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Lp'
@@ -233,10 +232,10 @@ object PenitWPZ: TPenitWPZ
       Left = 1
       Height = 280
       Top = 292
-      Width = 739
+      Width = 751
       Align = alBottom
       ClientHeight = 280
-      ClientWidth = 739
+      ClientWidth = 751
       TabOrder = 1
       object Label2: TLabel
         Left = 8
@@ -314,6 +313,7 @@ object PenitWPZ: TPenitWPZ
           'po 15'
           'po 25'
         )
+        Style = csDropDownList
         TabOrder = 2
         Text = '1/2'
       end
@@ -330,10 +330,11 @@ object PenitWPZ: TPenitWPZ
         Left = 232
         Height = 80
         Top = 96
-        Width = 384
+        Width = 515
+        Anchors = [akTop, akLeft, akRight]
         Caption = 'Wynik'
         ClientHeight = 60
-        ClientWidth = 380
+        ClientWidth = 511
         Color = clBtnFace
         ParentColor = False
         TabOrder = 4
@@ -341,7 +342,7 @@ object PenitWPZ: TPenitWPZ
           Left = 0
           Height = 60
           Top = 0
-          Width = 380
+          Width = 511
           Align = alClient
           BevelWidth = 1
           BevelStyle = bvNone
@@ -415,12 +416,29 @@ object PenitWPZ: TPenitWPZ
           Caption = 'WPZ'
           ParentColor = False
         end
+        object Label10: TLabel
+          Left = 384
+          Height = 15
+          Top = 8
+          Width = 88
+          Caption = 'Ułamek do WPZ:'
+          ParentColor = False
+        end
+        object edUlamekDoWPZ: TEdit
+          Left = 384
+          Height = 23
+          Top = 24
+          Width = 120
+          Anchors = [akTop, akLeft, akRight]
+          MaxLength = 50
+          TabOrder = 3
+        end
       end
       object Memo1: TMemo
         Left = 1
         Height = 97
         Top = 182
-        Width = 737
+        Width = 749
         Align = alBottom
         Anchors = [akTop, akLeft, akRight, akBottom]
         Color = 14680063
@@ -432,7 +450,7 @@ object PenitWPZ: TPenitWPZ
         Left = 407
         Height = 72
         Top = 10
-        Width = 209
+        Width = 153
         Caption = 'Oblicz'
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
@@ -521,7 +539,7 @@ object PenitWPZ: TPenitWPZ
       object btnZapiszTerminarz: TBitBtn
         Left = 63
         Height = 30
-        Hint = 'Zapisuje w terminarzu terminy: Końca Kary, WPZ, Postpenitu, Przepustek.'
+        Hint = 'Zapisuje w terminarzu terminy: Końca Kary, WPZ, Postpenitu, Przepustek, Ułamek do WPZ.'
         Top = 146
         Width = 144
         Caption = 'Zapisz do terminarza'
@@ -565,6 +583,51 @@ object PenitWPZ: TPenitWPZ
         ParentShowHint = False
         ShowHint = True
         TabOrder = 8
+      end
+      object BitBtn1: TBitBtn
+        Left = 568
+        Height = 30
+        Top = 10
+        Width = 153
+        Caption = 'Drukuj'
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          00000000000000000000D7C39BFFECE3D6FFECE3D6FFECE3D6FFECE3D6FFECE3
+          D6FFECE3D6FFD7C39BFF00000000000000000000000000000000958F8FBF9C96
+          96CB9C9696E469636AF1C4AB7FFFEDE1D5FFEDE1D5FFEDE1D5FFEDE1D5FFEDE1
+          D5FFEDE1D5FFC4AB7FFF69636AE99C9696EC9C9696DF999292D3958F8FFFC3C0
+          BFFFC3C0BFFF837D84FFC6A874FFE0CBAEFFE0CBAEFFE0CBAEFFE0CBAEFFE0CB
+          AEFFE0CBAEFFC6A874FF837D84FFC3C0BFFFC3C0BFFF999292FFA49FA1FFD1CF
+          CEFFD1CFCEFFD3D2D1FFD2D2D3FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0
+          D2FFD0D0D2FFD2D2D3FFD3D2D1FFBACAD7FF6E9BE3FFA49FA1FFAAA7A7FFD9D7
+          D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7
+          D7FFD9D7D7FFD9D7D7FFD9D7D7FF8AC3E9FF004BFBFFABA8A8FFB7B3B3FFE6E8
+          E9FFD6C5AFFFBC6B10FFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A
+          0FFFBB6A0FFFBB6A0FFFBC6B10FFD6C5AFFFE6E8E9FFB8B5B5FFBCB9BAFFEEF2
+          F5FFBA7B3EFFE1A942FFE1A842FFE1A842FFE1A842FFE1A842FFE1A842FFE1A8
+          42FFE1A842FFE1A842FFE1A942FFBA7B3EFFEEF2F5FFBFBBBCFFCDC8C9FFF8FC
+          FFFFCD9753FFEEC670FFEEC771FFEEC771FFEEC771FFEEC771FFEEC771FFEEC7
+          71FFEEC771FFEEC771FFEEC670FFCD9753FFF8FCFFFFCECBCCFFD2D0D0FFFCFF
+          FFFFD7A55CFFEDC977FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF
+          68FFE9BF68FFE9BF68FFEDC977FFD7A55CFFFCFFFFFFD4D1D0FFDEDCDBFFFFFF
+          FFFFE8C070FFE0AC54FFB99D6BFFD7BD91FFD7BD91FFD7BD91FFD7BD91FFD7BD
+          91FFD7BD91FFB99D6BFFE0AC54FFE8C070FFFFFFFFFFE3DFDFFFCAC3C5E0B0AF
+          B4D9D8A859D8C9924BE4C4AB7FFFDFCAADFFDFCAADFFDFCAADFFDFCAADFFDFCA
+          ADFFDFCAADFFC4AB7FFFC9924BF0D8A859DFB0AFB4D5CAC2C4E0000000000000
+          00000000000000000000D0BD98FFECDFD1FFECDFD1FFECDFD1FFECDFD1FFECDF
+          D1FFECDFD1FFD0BD98FF00000000000000000000000000000000000000000000
+          00000000000000000000D5C4A4FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4
+          D8FFEFE4D8FFD5C4A4FF00000000000000000000000000000000000000000000
+          00000000000000000000DED0B8FFF5EDE4FFF5EDE4FFF5EDE4FFF5EDE4FFF5ED
+          E4FFF5EDE4FFDED0B8FF00000000000000000000000000000000000000000000
+          00000000000000000000E2D6C1FFF8F3EAFFF8F3EAFFF8F3EAFFF8F3EAFFF8F3
+          EAFFF8F3EAFFE2D6C1FF00000000000000000000000000000000000000000000
+          00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
+          DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
+        }
+        OnClick = BitBtn1Click
+        TabOrder = 9
       end
     end
     object btnPaste: TBitBtn
@@ -617,10 +680,10 @@ object PenitWPZ: TPenitWPZ
     Left = 0
     Height = 48
     Top = 0
-    Width = 1085
+    Width = 1066
     Align = alTop
     ClientHeight = 48
-    ClientWidth = 1085
+    ClientWidth = 1066
     Color = clWhite
     ParentColor = False
     TabOrder = 2
@@ -757,6 +820,7 @@ object PenitWPZ: TPenitWPZ
       item
         Name = 'Lp'
         DataType = ftString
+        Precision = -1
         Size = 2
       end    
       item
@@ -789,6 +853,21 @@ object PenitWPZ: TPenitWPZ
         Name = 'KoniecKary'
         DataType = ftDate
         Precision = -1
+      end    
+      item
+        Name = 'WPZ'
+        DataType = ftDate
+        Precision = -1
+      end    
+      item
+        Name = 'Przepustki'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'WymiarKary'
+        DataType = ftString
+        Size = 100
       end>
     PacketRecords = 0
     Left = 800
@@ -860,6 +939,34 @@ object PenitWPZ: TPenitWPZ
       ReadOnly = False
       Required = False
     end
+    object RxMemoryOrzeczeniaWPZ: TDateField
+      FieldKind = fkData
+      FieldName = 'WPZ'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RxMemoryOrzeczeniaPrzepustki: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'Przepustki'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RxMemoryOrzeczeniaWymiarKary: TStringField
+      FieldKind = fkData
+      FieldName = 'WymiarKary'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
   end
   object DSOrzeczenia: TDataSource
     DataSet = RxMemoryOrzeczenia
@@ -895,5 +1002,18 @@ object PenitWPZ: TPenitWPZ
         Name = 'ido'
         ParamType = ptUnknown
       end>
+  end
+  object frReport1: TfrReport
+    InitialZoom = pzDefault
+    Options = [roSaveAndRestoreBookmarks]
+    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    DataType = dtDataSet
+    Left = 952
+    Top = 178
+  end
+  object frDBDataSet1: TfrDBDataSet
+    DataSet = RxMemoryOrzeczenia
+    Left = 952
+    Top = 242
   end
 end
