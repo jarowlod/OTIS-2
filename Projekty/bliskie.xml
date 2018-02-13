@@ -2,12 +2,12 @@
      <xmlSource>
           <NOE akcja="Start" xf="../xsls/penit/pr/PR_OsBliskie_Pr.xhtml" Tytul="Przeglądarka osób bliskich - 111111 / nnnnnnnnnnnnn">
                <ListaCOB>
-                    <COB ID="1111111" IDO="1111111" NAZ="AAAAA" IME="BBBBB" STS="RDSI" STS_op="Siostra" MSC="1649" MSC_op="ŻARÓW" MSC_op_all="ŻARÓW - DOLNOŚLĄSKIE, ŚWIDNICKI, ŻARÓW" KP="58-130" ULC="WYSPIAŃSKIEGO" DOM="6" LOK="6" RN="1" ZAPDAT="2017-10-13 11:56:19" ZAPDAT_SPR="2017-10-13 11:56:19" ZAPUZYT="T36463" ZAPJP="STZ" Dod_widz="" PDWI="0" PDWI_op="NIE">
+                    <COB ID="1111111" IDO="1111111" NAZ="AAAAA" IME="ALICJAĄĆŃŁ" STS="RDSI" STS_op="Siostra" MSC="1649" MSC_op="ŻARÓW" MSC_op_all="ŻARÓW - DOLNOŚLĄSKIE, ŚWIDNICKI, ŻARÓW" KP="58-130" ULC="WYSPIAŃSKIEGO" DOM="6" LOK="6" RN="1" ZAPDAT="2017-10-13 11:56:19" ZAPDAT_SPR="2017-10-13 11:56:19" ZAPUZYT="T36463" ZAPJP="STZ" Dod_widz="" PDWI="0" PDWI_op="NIE">
                          <COBA OADN="13-10-2017" OADN_d="2017-10-13 00:00:00.0" OBAK="Odebranie prawa do widzeń przez użytkownika" OBMA="RW" JED="STZ" ZAPDAT="2017-10-13 11:56:19" ZAPUZYT="T61379" ZAPJP="SZX"/>
                          <COBA OADN="04-10-2016" OADN_d="2016-10-04 00:00:00.0" OBAK="Przyznanie prawa do widzeń" OBMA="RW" JED="SZX" ZAPDAT="2016-10-04 14:50:25" ZAPUZYT="U92035" ZAPJP="SZX"/>
                          <COBA OADN="24-01-2014" OADN_d="2014-01-24 00:00:00.0" OBAK="Przyznanie prawa do widzeń" OBMA="RW" JED="SZX" ZAPDAT="2014-01-24 10:42:57" ZAPUZYT="T34811" ZAPJP="SZX"/>
                     </COB>
-                    <COB ID="11111111" IDO="1111111" NAZ="AAAAA" IME="BBBBB" STS="RDSI" STS_op="Siostra" MSC="1649" MSC_op="ŻARÓW" MSC_op_all="ŻARÓW - DOLNOŚLĄSKIE, ŚWIDNICKI, ŻARÓW" KP="58-130" ULC="WYSPIAŃSKIEGO" DOM="6" LOK="6" RN="1" ZAPDAT="2017-10-13 11:56:19" ZAPDAT_SPR="2017-10-13 11:56:19" ZAPUZYT="T35672" ZAPJP="STZ" Dod_widz="" PDWI="2" PDWI_op="TAK">
+                    <COB ID="11111111" IDO="1111111" NAZ="AAAAA" IME="ZOSIA" STS="RDSI" STS_op="Siostra" MSC="1649" MSC_op="ŻARÓW" MSC_op_all="ŻARÓW - DOLNOŚLĄSKIE, ŚWIDNICKI, ŻARÓW" KP="58-130" ULC="WYSPIAŃSKIEGO" DOM="6" LOK="6" RN="1" ZAPDAT="2017-10-13 11:56:19" ZAPDAT_SPR="2017-10-13 11:56:19" ZAPUZYT="T35672" ZAPJP="STZ" Dod_widz="" PDWI="2" PDWI_op="TAK">
                          <COBA OADN="13-10-2017" OADN_d="2017-10-13 00:00:00.0" OBAK="Przyznanie prawa do widzeń" OBMA="RW" JED="SZX" ZAPDAT="2017-10-13 11:56:19" ZAPUZYT="T61379" ZAPJP="SZX"/>
                          <COBA OADN="04-10-2016" OADN_d="2016-10-04 00:00:00.0" OBAK="Przyznanie prawa do widzeń" OBMA="RW" JED="SZX" ZAPDAT="2016-10-04 14:50:25" ZAPUZYT="U92035" ZAPJP="SZX"/>
                          <COBA OADN="24-01-2014" OADN_d="2014-01-24 00:00:00.0" OBAK="Odebranie prawa do widzeń przez użytkownika" OBMA="RW" JED="SZX" ZAPDAT="2014-01-24 10:42:57" ZAPUZYT="T34811" ZAPJP="SZX"/>
@@ -34,3 +34,28 @@
           <NOE/>
      </xmlCopy>
 </ALERT>
+
+
+// XML ze schowka
+procedure TForm1.Button5Click(Sender: TObject);
+var FDoc: TXMLDocument;
+    s: string;
+    Strm: TStringStream;
+    i: integer;
+    NodeCOB: TDOMNodeList;
+begin
+  s:= Clipboard.AsText;
+  try
+    Strm:= TStringStream.Create(s);
+    ReadXMLFile(FDoc, Strm);
+
+    NodeCOB:= FDoc.GetElementsByTagName('COB');
+    if Assigned(NodeCOB) then
+    for i:=0 to NodeCOB.Count-1 do
+      Memo1.Append( NodeCOB[i].Attributes.GetNamedItem('IME').NodeValue);
+
+  finally
+    FDoc.Free;
+    Strm.Free;
+  end;
+end;   
