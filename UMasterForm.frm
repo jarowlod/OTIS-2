@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 407
+  Left = 404
   Height = 598
-  Top = 238
+  Top = 224
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1201,6 +1201,9 @@ object MasterForm: TMasterForm
       end
       object MenuItem42: TMenuItem
         Action = ActionWydarzenia
+      end
+      object MenuItem66: TMenuItem
+        Caption = '-'
       end
       object MenuItem65: TMenuItem
         Action = ActionKreatorWPZ

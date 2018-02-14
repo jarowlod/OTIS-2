@@ -15,6 +15,7 @@ type
   { TPenitForm }
 
   TPenitForm = class(TForm)
+    btnKreatorWPZ: TSpeedButton;
     btnRejestrProsb: TBitBtn;
     btnRejestrZat: TBitBtn;
     btnDrukArch: TBitBtn;
@@ -78,6 +79,7 @@ type
     ZQOs: TZQuery;
     ZUOsInfo: TZUpdateSQL;
     ZUOsNotatki: TZUpdateSQL;
+    procedure btnKreatorWPZClick(Sender: TObject);
     procedure btnRejestrProsbClick(Sender: TObject);
     procedure btnRejestrZatClick(Sender: TObject);
     procedure btnDrukArchClick(Sender: TObject);
@@ -110,7 +112,7 @@ type
 //  PenitForm: TPenitForm;
 
 implementation
-uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs;
+uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs, UPenitWPZ;
 {$R *.frm}
 
 { TPenitForm }
@@ -295,6 +297,18 @@ begin
        ShowModal;
        Free;
   end;
+end;
+
+procedure TPenitForm.btnKreatorWPZClick(Sender: TObject);
+begin
+  if SelectIDO = 0 then exit;
+  with TPenitWPZ.Create(Self) do
+  begin
+       SetIDO(SelectIDO);
+       ShowModal;
+       Free;
+  end;
+  RefreshQuery(ZQOsInfo);
 end;
 
 procedure TPenitForm.btnDrukArchClick(Sender: TObject);

@@ -86,6 +86,7 @@ type
     MenuItem63: TMenuItem;
     MenuItem64: TMenuItem;
     MenuItem65: TMenuItem;
+    MenuItem66: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -275,9 +276,7 @@ begin
   // docelowo wszyscy będą mieli podgląd a edycja tylko dla wyznaczonego stanowiska
   ActionSalaWidzen.Enabled     := DM.uprawnienia[6];   // widzenia
 
-  //TODO: TESTOWE
-  ActionKreatorWPZ.Enabled     := DM.uprawnienia[8];
-  // =======
+  ActionKreatorWPZ.Enabled     := true;
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;

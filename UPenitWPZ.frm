@@ -1,26 +1,27 @@
 object PenitWPZ: TPenitWPZ
-  Left = 407
-  Height = 715
-  Top = 238
+  Left = 401
+  Height = 819
+  Top = 71
   Width = 755
   Caption = 'PenitWPZ'
-  ClientHeight = 715
+  ClientHeight = 819
   ClientWidth = 755
   OnCreate = FormCreate
+  Position = poScreenCenter
   LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
-    Height = 667
+    Height = 771
     Top = 48
     Width = 755
     Align = alClient
     BevelOuter = bvNone
-    ClientHeight = 667
+    ClientHeight = 771
     ClientWidth = 755
     TabOrder = 0
     object RxDBGrid2: TRxDBGrid
       Left = 0
-      Height = 354
+      Height = 425
       Top = 33
       Width = 755
       ColumnDefValues.BlobText = '(blob)'
@@ -217,11 +218,12 @@ object PenitWPZ: TPenitWPZ
     end
     object Panel4: TPanel
       Left = 0
-      Height = 280
-      Top = 387
+      Height = 313
+      Top = 458
       Width = 755
       Align = alBottom
-      ClientHeight = 280
+      BevelOuter = bvNone
+      ClientHeight = 313
       ClientWidth = 755
       TabOrder = 1
       object Label2: TLabel
@@ -232,28 +234,15 @@ object PenitWPZ: TPenitWPZ
         Caption = 'Data osadzenia:'
         ParentColor = False
       end
-      object edDataOsadzenia: TDateEdit
-        Left = 104
-        Height = 23
-        Top = 8
-        Width = 103
-        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-        DateOrder = doNone
-        ButtonWidth = 23
-        NumGlyphs = 1
-        MaxLength = 0
-        TabOrder = 0
-        Text = '---'
-      end
       object GroupBox1: TGroupBox
         Left = 232
         Height = 74
         Top = 8
-        Width = 240
+        Width = 248
         Caption = 'WPZ po ...'
         ClientHeight = 54
-        ClientWidth = 236
-        TabOrder = 1
+        ClientWidth = 244
+        TabOrder = 0
         object cbOBS: TCheckBox
           Left = 8
           Height = 19
@@ -315,7 +304,7 @@ object PenitWPZ: TPenitWPZ
         Left = 104
         Height = 23
         Top = 40
-        Width = 103
+        Width = 82
         ItemHeight = 15
         ItemIndex = 0
         Items.Strings = (
@@ -326,7 +315,7 @@ object PenitWPZ: TPenitWPZ
           'po 25'
         )
         Style = csDropDownList
-        TabOrder = 2
+        TabOrder = 1
         Text = '1/2'
       end
       object cbOWZ: TCheckBox
@@ -336,25 +325,25 @@ object PenitWPZ: TPenitWPZ
         Width = 101
         Caption = 'Odwołanie wpz'
         ParentBidiMode = False
-        TabOrder = 3
+        TabOrder = 2
       end
       object GroupBox2: TGroupBox
-        Left = 232
-        Height = 80
+        Left = 136
+        Height = 93
         Top = 96
-        Width = 519
+        Width = 615
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Wynik'
-        ClientHeight = 60
-        ClientWidth = 515
+        ClientHeight = 73
+        ClientWidth = 611
         Color = clBtnFace
         ParentColor = False
-        TabOrder = 4
+        TabOrder = 3
         object plGradient1: TplGradient
           Left = 0
-          Height = 60
+          Height = 73
           Top = 0
-          Width = 515
+          Width = 611
           Align = alClient
           BevelWidth = 1
           BevelStyle = bvNone
@@ -365,47 +354,8 @@ object PenitWPZ: TPenitWPZ
           StepWidth = 1
           Style = gsVertical
         end
-        object edWPZ: TDateEdit
-          Left = 8
-          Height = 23
-          Top = 24
-          Width = 103
-          CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-          DateOrder = doNone
-          ButtonWidth = 23
-          NumGlyphs = 1
-          MaxLength = 0
-          TabOrder = 0
-          Text = '---'
-        end
-        object edPrzepustki: TDateEdit
-          Left = 136
-          Height = 23
-          Top = 24
-          Width = 103
-          CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-          DateOrder = doNone
-          ButtonWidth = 23
-          NumGlyphs = 1
-          MaxLength = 0
-          TabOrder = 1
-          Text = '---'
-        end
-        object edPostpenit: TDateEdit
-          Left = 256
-          Height = 23
-          Top = 24
-          Width = 103
-          CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-          DateOrder = doNone
-          ButtonWidth = 23
-          NumGlyphs = 1
-          MaxLength = 0
-          TabOrder = 2
-          Text = '---'
-        end
         object Label7: TLabel
-          Left = 256
+          Left = 368
           Height = 15
           Top = 8
           Width = 50
@@ -413,7 +363,7 @@ object PenitWPZ: TPenitWPZ
           ParentColor = False
         end
         object Label6: TLabel
-          Left = 136
+          Left = 272
           Height = 15
           Top = 8
           Width = 54
@@ -421,7 +371,7 @@ object PenitWPZ: TPenitWPZ
           ParentColor = False
         end
         object Label5: TLabel
-          Left = 8
+          Left = 176
           Height = 15
           Top = 8
           Width = 25
@@ -429,7 +379,7 @@ object PenitWPZ: TPenitWPZ
           ParentColor = False
         end
         object Label10: TLabel
-          Left = 384
+          Left = 480
           Height = 15
           Top = 8
           Width = 88
@@ -437,32 +387,220 @@ object PenitWPZ: TPenitWPZ
           ParentColor = False
         end
         object edUlamekDoWPZ: TEdit
-          Left = 384
+          Left = 480
           Height = 23
           Top = 24
           Width = 124
           Anchors = [akTop, akLeft, akRight]
           MaxLength = 50
+          TabOrder = 0
+        end
+        object DBText1: TDBText
+          Left = 179
+          Height = 15
+          Hint = 'Termin WPZ z terminarza.'
+          Top = 52
+          Width = 43
+          DataField = 'twpz'
+          DataSource = DSOsInfo
+          Font.Color = clGray
+          ParentColor = False
+          ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object DBText2: TDBText
+          Left = 275
+          Height = 15
+          Hint = 'Termin Przepustek z terminarza.'
+          Top = 52
+          Width = 43
+          DataField = 'tprzepustki'
+          DataSource = DSOsInfo
+          Font.Color = clGray
+          ParentColor = False
+          ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object DBText3: TDBText
+          Left = 371
+          Height = 15
+          Hint = 'Termin Postpenitu z terminarza.'
+          Top = 52
+          Width = 43
+          DataField = 'tpostpenitu'
+          DataSource = DSOsInfo
+          Font.Color = clGray
+          ParentColor = False
+          ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object DBText4: TDBText
+          Left = 483
+          Height = 15
+          Hint = 'Po jakim ułamku z terminarza.'
+          Top = 52
+          Width = 43
+          DataField = 'ulamek_wpz'
+          DataSource = DSOsInfo
+          Font.Color = clGray
+          ParentColor = False
+          ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object Label11: TLabel
+          Left = 80
+          Height = 15
+          Top = 8
+          Width = 62
+          Caption = 'Koniec Kary'
+          ParentColor = False
+        end
+        object dtpKoniecKary: TDateTimePicker
+          Left = 80
+          Height = 23
+          Hint = 'Naciśnij N aby wykasować datę.'
+          Top = 24
+          Width = 83
+          CenturyFrom = 1941
+          MaxDate = 2958465
+          MinDate = -53780
+          TabOrder = 1
+          TrailingSeparator = False
+          TextForNullDate = '---'
+          LeadingZeros = True
+          ShowHint = True
+          ParentShowHint = False
+          Kind = dtkDate
+          TimeFormat = tf24
+          TimeDisplay = tdHMS
+          DateMode = dmComboBox
+          Date = 1.7E308
+          Time = 1.7E308
+          UseDefaultSeparators = True
+          HideDateTimeParts = []
+          MonthNames = 'Long'
+          Options = [dtpoFlatButton]
+        end
+        object DBText5: TDBText
+          Left = 83
+          Height = 15
+          Top = 52
+          Width = 43
+          DataField = 'KoniecKary'
+          DataSource = DSOsInfo
+          Font.Color = clGray
+          ParentColor = False
+          ParentFont = False
+        end
+        object dtpWPZ: TDateTimePicker
+          Left = 176
+          Height = 23
+          Hint = 'Naciśnij N aby wykasować datę.'
+          Top = 24
+          Width = 83
+          CenturyFrom = 1941
+          MaxDate = 2958465
+          MinDate = -53780
+          TabOrder = 2
+          TrailingSeparator = False
+          TextForNullDate = '---'
+          LeadingZeros = True
+          ShowHint = True
+          ParentShowHint = False
+          Kind = dtkDate
+          TimeFormat = tf24
+          TimeDisplay = tdHMS
+          DateMode = dmComboBox
+          Date = 1.7E308
+          Time = 1.7E308
+          UseDefaultSeparators = True
+          HideDateTimeParts = []
+          MonthNames = 'Long'
+          Options = [dtpoFlatButton]
+        end
+        object dtpPrzepustki: TDateTimePicker
+          Left = 272
+          Height = 23
+          Hint = 'Naciśnij N aby wykasować datę.'
+          Top = 24
+          Width = 83
+          CenturyFrom = 1941
+          MaxDate = 2958465
+          MinDate = -53780
           TabOrder = 3
+          TrailingSeparator = False
+          TextForNullDate = '---'
+          LeadingZeros = True
+          ShowHint = True
+          ParentShowHint = False
+          Kind = dtkDate
+          TimeFormat = tf24
+          TimeDisplay = tdHMS
+          DateMode = dmComboBox
+          Date = 1.7E308
+          Time = 1.7E308
+          UseDefaultSeparators = True
+          HideDateTimeParts = []
+          MonthNames = 'Long'
+          Options = [dtpoFlatButton]
+        end
+        object dtpPostpenit: TDateTimePicker
+          Left = 368
+          Height = 23
+          Hint = 'Naciśnij N aby wykasować datę.'
+          Top = 24
+          Width = 83
+          CenturyFrom = 1941
+          MaxDate = 2958465
+          MinDate = -53780
+          TabOrder = 4
+          TrailingSeparator = False
+          TextForNullDate = '---'
+          LeadingZeros = True
+          ShowHint = True
+          ParentShowHint = False
+          Kind = dtkDate
+          TimeFormat = tf24
+          TimeDisplay = tdHMS
+          DateMode = dmComboBox
+          Date = 1.7E308
+          Time = 1.7E308
+          UseDefaultSeparators = True
+          HideDateTimeParts = []
+          MonthNames = 'Long'
+          Options = [dtpoFlatButton]
+        end
+        object Label12: TLabel
+          Left = 8
+          Height = 15
+          Top = 52
+          Width = 69
+          Caption = 'Z terminarza:'
+          ParentColor = False
         end
       end
       object Memo1: TMemo
-        Left = 1
-        Height = 97
-        Top = 182
-        Width = 753
+        Left = 0
+        Height = 121
+        Top = 192
+        Width = 755
         Align = alBottom
         Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderStyle = bsNone
         Color = 14680063
         ScrollBars = ssAutoBoth
-        TabOrder = 5
+        TabOrder = 4
         WordWrap = False
       end
       object btnOblicz: TBitBtn
-        Left = 54
-        Height = 72
-        Top = 104
-        Width = 153
+        Left = 8
+        Height = 48
+        Top = 120
+        Width = 120
         Caption = 'Oblicz'
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
@@ -501,7 +639,7 @@ object PenitWPZ: TPenitWPZ
           9015F1CD8DFFF1D0910600000000000000000000000000000000
         }
         OnClick = btnObliczClick
-        TabOrder = 6
+        TabOrder = 5
       end
       object btnZapiszTerminarz: TBitBtn
         Left = 568
@@ -549,9 +687,9 @@ object PenitWPZ: TPenitWPZ
         OnClick = btnZapiszTerminarzClick
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 7
+        TabOrder = 6
       end
-      object BitBtn1: TBitBtn
+      object btnDrukuj: TBitBtn
         Left = 568
         Height = 30
         Top = 10
@@ -593,16 +731,42 @@ object PenitWPZ: TPenitWPZ
           00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
           DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
         }
-        OnClick = BitBtn1Click
+        OnClick = btnDrukujClick
+        TabOrder = 7
+      end
+      object dtpDataOsadzenia: TDateTimePicker
+        Left = 104
+        Height = 23
+        Hint = 'Naciśnij N aby wykasować datę.'
+        Top = 8
+        Width = 83
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
         TabOrder = 8
+        TrailingSeparator = False
+        TextForNullDate = '---'
+        LeadingZeros = True
+        ShowHint = True
+        ParentShowHint = False
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        Date = 1.7E308
+        Time = 1.7E308
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        Options = [dtpoFlatButton]
       end
     end
     object btnPaste: TBitBtn
       Left = 88
       Height = 30
       Top = 1
-      Width = 147
-      Caption = 'Wklej ze schowka'
+      Width = 208
+      Caption = 'Wklej ze schowka dane z Noe'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         200000000000000400006400000064000000000000000000000000000000328B
@@ -642,6 +806,26 @@ object PenitWPZ: TPenitWPZ
       OnClick = btnPasteClick
       TabOrder = 2
     end
+    object DBNavigator1: TDBNavigator
+      Left = 642
+      Height = 25
+      Top = 8
+      Width = 113
+      Anchors = [akTop, akRight]
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 25
+      ClientWidth = 113
+      DataSource = DSOrzeczenia
+      Options = []
+      TabOrder = 3
+      VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel]
+    end
   end
   object Panel2: TPanel
     Left = 0
@@ -649,11 +833,27 @@ object PenitWPZ: TPenitWPZ
     Top = 0
     Width = 755
     Align = alTop
+    BevelOuter = bvNone
     ClientHeight = 48
     ClientWidth = 755
     Color = clWhite
     ParentColor = False
     TabOrder = 1
+    object plGradient2: TplGradient
+      Left = 0
+      Height = 48
+      Top = 0
+      Width = 755
+      Align = alClient
+      BevelWidth = 1
+      BevelStyle = bvNone
+      Buffered = True
+      Direction = gdUpLeft
+      ColorStart = clSkyBlue
+      ColorEnd = clWhite
+      StepWidth = 1
+      Style = gsHorizontal
+    end
     object Label8: TLabel
       Left = 16
       Height = 23
@@ -661,6 +861,22 @@ object PenitWPZ: TPenitWPZ
       Width = 97
       Caption = 'Kreator WPZ'
       Font.Height = 24
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblDaneOsadzonego: TLabel
+      Left = 232
+      Height = 38
+      Top = 7
+      Width = 156
+      Caption = 'lblDaneOsadzonego'#13#10'POC'
+      Font.CharSet = EASTEUROPE_CHARSET
+      Font.Color = clBlack
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
     end
@@ -846,7 +1062,7 @@ object PenitWPZ: TPenitWPZ
         ParamType = ptUnknown
       end>
     Left = 520
-    Top = 496
+    Top = 368
     ParamData = <    
       item
         DataType = ftUnknown
@@ -866,5 +1082,10 @@ object PenitWPZ: TPenitWPZ
     DataSet = RxMemoryOrzeczenia
     Left = 232
     Top = 208
+  end
+  object DSOsInfo: TDataSource
+    DataSet = ZQOsInfo
+    Left = 520
+    Top = 432
   end
 end

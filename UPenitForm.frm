@@ -183,6 +183,7 @@ object PenitForm: TPenitForm
     object DBDateTimePicker1: TDBDateTimePicker
       Left = 16
       Height = 23
+      Hint = 'Naciśnij N aby wykasować datę.'
       Top = 56
       Width = 83
       DataField = 'KoniecKary'
@@ -193,8 +194,10 @@ object PenitForm: TPenitForm
       MinDate = -53780
       TabOrder = 0
       TrailingSeparator = False
-      TextForNullDate = 'NULL'
+      TextForNullDate = 'BRAK'
       LeadingZeros = True
+      ShowHint = True
+      ParentShowHint = False
       Kind = dtkDate
       TimeFormat = tf24
       TimeDisplay = tdHMS
@@ -206,6 +209,7 @@ object PenitForm: TPenitForm
     object DBDateTimePicker2: TDBDateTimePicker
       Left = 160
       Height = 23
+      Hint = 'Naciśnij N aby wykasować datę.'
       Top = 56
       Width = 83
       DataField = 'toceny'
@@ -216,8 +220,10 @@ object PenitForm: TPenitForm
       MinDate = -53780
       TabOrder = 1
       TrailingSeparator = False
-      TextForNullDate = 'NULL'
+      TextForNullDate = 'BRAK'
       LeadingZeros = True
+      ShowHint = True
+      ParentShowHint = False
       Kind = dtkDate
       TimeFormat = tf24
       TimeDisplay = tdHMS
@@ -229,6 +235,7 @@ object PenitForm: TPenitForm
     object DBDateTimePicker3: TDBDateTimePicker
       Left = 16
       Height = 23
+      Hint = 'Naciśnij N aby wykasować datę.'
       Top = 104
       Width = 83
       DataField = 'twpz'
@@ -239,8 +246,10 @@ object PenitForm: TPenitForm
       MinDate = -53780
       TabOrder = 3
       TrailingSeparator = False
-      TextForNullDate = 'NULL'
+      TextForNullDate = 'BRAK'
       LeadingZeros = True
+      ShowHint = True
+      ParentShowHint = False
       Kind = dtkDate
       TimeFormat = tf24
       TimeDisplay = tdHMS
@@ -252,6 +261,7 @@ object PenitForm: TPenitForm
     object DBDateTimePicker4: TDBDateTimePicker
       Left = 336
       Height = 23
+      Hint = 'Naciśnij N aby wykasować datę.'
       Top = 56
       Width = 83
       DataField = 'tprzepustki'
@@ -262,8 +272,10 @@ object PenitForm: TPenitForm
       MinDate = -53780
       TabOrder = 2
       TrailingSeparator = False
-      TextForNullDate = 'NULL'
+      TextForNullDate = 'BRAK'
       LeadingZeros = True
+      ShowHint = True
+      ParentShowHint = False
       Kind = dtkDate
       TimeFormat = tf24
       TimeDisplay = tdHMS
@@ -275,6 +287,7 @@ object PenitForm: TPenitForm
     object DBDateTimePicker5: TDBDateTimePicker
       Left = 160
       Height = 23
+      Hint = 'Naciśnij N aby wykasować datę.'
       Top = 104
       Width = 83
       DataField = 'tpostpenitu'
@@ -285,8 +298,10 @@ object PenitForm: TPenitForm
       MinDate = -53780
       TabOrder = 4
       TrailingSeparator = False
-      TextForNullDate = 'NULL'
+      TextForNullDate = 'BRAK'
       LeadingZeros = True
+      ShowHint = True
+      ParentShowHint = False
       Kind = dtkDate
       TimeFormat = tf24
       TimeDisplay = tdHMS
@@ -298,6 +313,7 @@ object PenitForm: TPenitForm
     object DBDateTimePicker6: TDBDateTimePicker
       Left = 336
       Height = 23
+      Hint = 'Naciśnij N aby wykasować datę.'
       Top = 104
       Width = 83
       DataField = 'tterapii'
@@ -308,8 +324,10 @@ object PenitForm: TPenitForm
       MinDate = -53780
       TabOrder = 5
       TrailingSeparator = False
-      TextForNullDate = 'NULL'
+      TextForNullDate = 'BRAK'
       LeadingZeros = True
+      ShowHint = True
+      ParentShowHint = False
       Kind = dtkDate
       TimeFormat = tf24
       TimeDisplay = tdHMS
@@ -746,6 +764,54 @@ object PenitForm: TPenitForm
         AD00AFADAB00C1BEBA00C9C0B8FF3D83BDFF357BBAFF327AB8EF
       }
       OnClick = btnDodajDoKoszykaClick
+      ShowHint = True
+      ParentShowHint = False
+    end
+    object btnKreatorWPZ: TSpeedButton
+      Left = 192
+      Height = 25
+      Hint = 'Dodaj osadzonego do koszyka.'
+      Top = 174
+      Width = 93
+      Caption = 'Kreator WPZ'
+      Flat = True
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000B36F30E7A85B
+        1AF4823B0FF384380FF3A65216F3A15113F39D4D13F39C4912F39B4810F39A47
+        10F399470FF39A450EF692410FD99C4F170A0000000000000000C68C4DF8A55A
+        1AFF813008FFC3822DFFF1B740FFD48825FFF1A521FFE6981AFFE5A028FFDD99
+        23FFD9921EFFDE971AFFBF7214FF8A3C143C0000000000000000C28849F3A55A
+        1AFF812E06FFC48B37FFEBA435FF0A0F5EFF273360FF938362FFD48113FFE199
+        1EFFDA9929FFDB9B22FFC8831CFF944414330000000000000000C28849F3A55A
+        1AFF822F06FFBE8538FFFFC646FF714B3AFF79C2FFFF91EBFFFF3887C0FF8461
+        3CFFF59C12FFDEA12CFFC58120FF924314330000000000000000C28849F3A55A
+        1AFF822E05FFC1873DFFF5C658FFD48C2FFFF0E9E8FF6DEEFFFF06A4FFFF047B
+        F0FF8C6A3FFFFAA418FFCA8929FF904212330000000000000000C3884AF3A75B
+        1BFF832F04FFC38A41FFF0C35FFFF3A93AFFB2AE6AFF00FFFFFF00D0FDFF20A0
+        F1FF057BEEFF947443FFE78C11FFA04106340000000000000000C48B4DF3AC5E
+        1EFF873105FFC48E45FFF2C665FFE6B658FFF3A430FF92CA91FF00FFFFFF05D3
+        FDFF20A0F1FF077EF1FF7E502DFF834C242B0000000000000000C68D50F3B064
+        21FF893306FFC6914AFFF4CA6BFFE5B75BFFE9B85BFFFF9E27FF93CB93FF00FF
+        FFFF05D4FDFF23A3F2FF1776D1FF0071D8500000000000000000C89053F3B369
+        25FF8D3907FFC8924EFFF5CF72FFE7BA62FFE6B960FFEBBB5FFFFF9825FF92BB
+        88FF00FFFFFF06D3FEFF28A3EEFF0077E6FF68B6D13D00000000CA9357F3B66B
+        27FF8F3A0AFFCA9651FFF7D277FFE9BD67FFE9BC65FFE6BA62FFE9BE64FFFF9A
+        27FF92BB8BFF04FFFFFF00D8FFFF1A8BCAFFF4DEB1FF4F56D734CC9659F3B971
+        2BFF923D0CFFCC9954FFF9D77DFFEAC26CFFEAC06BFFE9BE67FFE7BE65FFECC2
+        66FFFF9B2AFF8BBD8AFF13E5FFFFFAF0D6FF9687D4FF000DEFFFCD9A5BF3BC75
+        2DFF96410BFFCD9B58FFFAD982FFECC671FFECC56FFFEBC26CFFEABF69FFE7BC
+        67FFEEC36BFFEB9827FFE5B57CFFA5C8FAFF002FEFFF1420F5CDD09C5DF3C279
+        2FFF9A440CFFCD9C5BFFFBDD87FFEEC977FFEEC875FFECC671FFECC36FFFEAC0
+        6BFFE9BF69FFF6CD6DFFDB8822F94094C9BD319FFFA81831F10AD19E5BF3C27B
+        2EFF9C440AFFCD9E5EFFFCDE8BFFEECA79FFEEC977FFEEC774FFECC571FFECC3
+        6EFFEAC069FFEEC871FFE6A040FFA26433170000000000000000D8A96AF8CA89
+        3AFFA34D0DFFD5AA6AFFFFEC9FFFF6D78EFFF6D78AFFF4D487FFF4D385FFF3D1
+        81FFF1CE7CFFF7D681FFE0B365FFBD55003D0000000000000000D29D59E7DFB5
+        71F4C2884CF3CE9B63F3E6C080F3DEB478F3DEB579F3DEB578F3DEB576F3DDB4
+        75F3DDB474F3E3B97AF6CF9954D9B86D260A0000000000000000
+      }
+      OnClick = btnKreatorWPZClick
       ShowHint = True
       ParentShowHint = False
     end
