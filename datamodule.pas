@@ -162,6 +162,7 @@ begin
   DefaultFormatSettings.ThousandSeparator:= ' ';
   DefaultFormatSettings.ShortDateFormat:='dd/mm/yyyy';
   Application.OnException:=@ObslugaBledu;
+  Application.UpdateFormatSettings:= false;
   autologin:= true;
 
   try
@@ -289,6 +290,8 @@ procedure TDM.WczytajUstawienia;
 var ZQ: TZQueryPom;
   i: integer;
 begin
+  DefaultFormatSettings.ShortDateFormat:='dd/mm/yyyy';
+
   login:= ZConnection1.User;
   haslo:= ZConnection1.Password;
 

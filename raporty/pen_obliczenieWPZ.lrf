@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="1899-12-30 00:00:00"/>
-    <ReportLastChange Value="2018-02-13 14:36:34"/>
+    <ReportLastChange Value="2018-02-14 02:58:16"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -17,7 +17,7 @@
     <Pages>
       <PrintToDefault Value="False"/>
       <DoublePass Value="False"/>
-      <SelectedPrinter Value="HP LaserJet Professional P1566"/>
+      <SelectedPrinter Value="Canon Inkjet PIXMA iP1500"/>
       <PageCount Value="1"/>
       <Page1>
         <Name Value="Page1"/>
@@ -348,7 +348,7 @@
           <Cursor Value="0"/>
         </Object7>
         <Object8>
-          <Name Value="Memo5"/>
+          <Name Value="memoUlamek"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
           <Typ Value="gtMemo"/>
@@ -483,7 +483,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[RxMemoryOrzeczenia.&quot;WymiarKary&quot;]&#xD;&#xA;"/>
+            <Memo Value="[MemDB.&quot;WymiarKary&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -595,7 +595,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[RxMemoryOrzeczenia.&quot;Art&quot;]&#xD;&#xA;"/>
+            <Memo Value="[MemDB.&quot;Art&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -651,7 +651,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[RxMemoryOrzeczenia.&quot;KoniecKary&quot;]&#xD;&#xA;"/>
+            <Memo Value="[MemDB.&quot;KoniecKary&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -707,7 +707,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[RxMemoryOrzeczenia.&quot;WPZ&quot;]&#xD;&#xA;"/>
+            <Memo Value="[MemDB.&quot;WPZ&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -763,7 +763,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[RxMemoryOrzeczenia.&quot;Przepustki&quot;]&#xD;&#xA;"/>
+            <Memo Value="[MemDB.&quot;Przepustki&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>

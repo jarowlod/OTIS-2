@@ -38,97 +38,100 @@
         <CommandLineParams Value="&quot;153202jwlo&quot; &quot;molibden&quot;"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="30">
+    <RequiredPackages Count="31">
       <Item1>
-        <PackageName Value="pl_eccontrols"/>
+        <PackageName Value="pl_jujiboutils"/>
       </Item1>
       <Item2>
-        <PackageName Value="pl_shapes"/>
+        <PackageName Value="pl_eccontrols"/>
       </Item2>
       <Item3>
-        <PackageName Value="pl_richview"/>
+        <PackageName Value="pl_shapes"/>
       </Item3>
       <Item4>
-        <PackageName Value="lz_fpweb"/>
+        <PackageName Value="pl_richview"/>
       </Item4>
       <Item5>
-        <PackageName Value="pl_pascalscada"/>
+        <PackageName Value="lz_fpweb"/>
       </Item5>
       <Item6>
-        <PackageName Value="pl_fortesreport"/>
+        <PackageName Value="pl_pascalscada"/>
       </Item6>
       <Item7>
-        <PackageName Value="lz_reportofficeimport"/>
+        <PackageName Value="pl_fortesreport"/>
       </Item7>
       <Item8>
-        <PackageName Value="lz_reportpdfexport"/>
+        <PackageName Value="lz_reportofficeimport"/>
       </Item8>
       <Item9>
-        <PackageName Value="lz_reportimgexport"/>
+        <PackageName Value="lz_reportpdfexport"/>
       </Item9>
       <Item10>
-        <PackageName Value="lz_reportSpreadSheetExport"/>
+        <PackageName Value="lz_reportimgexport"/>
       </Item10>
       <Item11>
-        <PackageName Value="pl_aggpasvs"/>
+        <PackageName Value="lz_reportSpreadSheetExport"/>
       </Item11>
       <Item12>
-        <PackageName Value="pl_cindy"/>
+        <PackageName Value="pl_aggpasvs"/>
       </Item12>
       <Item13>
-        <PackageName Value="lz_rtticontrols"/>
+        <PackageName Value="pl_cindy"/>
       </Item13>
       <Item14>
-        <PackageName Value="pl_KControls"/>
+        <PackageName Value="lz_rtticontrols"/>
       </Item14>
       <Item15>
-        <PackageName Value="YearPlan"/>
+        <PackageName Value="pl_KControls"/>
       </Item15>
       <Item16>
-        <PackageName Value="pl_richmemo"/>
+        <PackageName Value="YearPlan"/>
       </Item16>
       <Item17>
-        <PackageName Value="pl_spktoolbar"/>
+        <PackageName Value="pl_richmemo"/>
       </Item17>
       <Item18>
-        <PackageName Value="pl_excontrols"/>
+        <PackageName Value="pl_spktoolbar"/>
       </Item18>
       <Item19>
-        <PackageName Value="lz_memds"/>
+        <PackageName Value="pl_excontrols"/>
       </Item19>
       <Item20>
-        <PackageName Value="lz_reportzeosdb"/>
+        <PackageName Value="lz_memds"/>
       </Item20>
       <Item21>
-        <PackageName Value="lz_report"/>
+        <PackageName Value="lz_reportzeosdb"/>
       </Item21>
       <Item22>
-        <PackageName Value="pl_solutions"/>
+        <PackageName Value="lz_report"/>
       </Item22>
       <Item23>
-        <PackageName Value="pl_fzcontrols"/>
+        <PackageName Value="pl_solutions"/>
       </Item23>
       <Item24>
-        <PackageName Value="pl_luicontrols"/>
+        <PackageName Value="pl_fzcontrols"/>
       </Item24>
       <Item25>
-        <PackageName Value="lz_datetimectrls"/>
+        <PackageName Value="pl_luicontrols"/>
       </Item25>
       <Item26>
-        <PackageName Value="pl_rx"/>
+        <PackageName Value="lz_datetimectrls"/>
       </Item26>
       <Item27>
-        <PackageName Value="pl_bgracontrols"/>
+        <PackageName Value="pl_rx"/>
       </Item27>
       <Item28>
-        <PackageName Value="adFCL"/>
+        <PackageName Value="pl_bgracontrols"/>
       </Item28>
       <Item29>
-        <PackageName Value="pl_zeosdbo"/>
+        <PackageName Value="adFCL"/>
       </Item29>
       <Item30>
-        <PackageName Value="adLCL"/>
+        <PackageName Value="pl_zeosdbo"/>
       </Item30>
+      <Item31>
+        <PackageName Value="adLCL"/>
+      </Item31>
     </RequiredPackages>
     <Units Count="54">
       <Unit0>
@@ -518,6 +521,9 @@
       <IncludeFiles Value="$(ProjOutDir)"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <CodeGeneration>
+      <TargetOS Value="win32"/>
+    </CodeGeneration>
     <Linking>
       <Options>
         <Win32>

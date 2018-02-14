@@ -1,41 +1,28 @@
 object PenitWPZ: TPenitWPZ
-  Left = 404
-  Height = 621
-  Top = 224
-  Width = 1066
+  Left = 407
+  Height = 715
+  Top = 238
+  Width = 755
   Caption = 'PenitWPZ'
-  ClientHeight = 621
-  ClientWidth = 1066
+  ClientHeight = 715
+  ClientWidth = 755
   OnCreate = FormCreate
   LCLVersion = '6.3'
-  object Memo2: TMemo
-    Left = 8
-    Height = 88
-    Top = 472
-    Width = 150
-    Lines.Strings = (
-      'ID'
-      'DateTime'
-      'User'
-      'WPZ'
-      'KK'
-    )
-    TabOrder = 0
-  end
   object Panel1: TPanel
-    Left = 313
-    Height = 573
+    Left = 0
+    Height = 667
     Top = 48
-    Width = 753
-    Align = alRight
-    ClientHeight = 573
-    ClientWidth = 753
-    TabOrder = 1
+    Width = 755
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 667
+    ClientWidth = 755
+    TabOrder = 0
     object RxDBGrid2: TRxDBGrid
-      Left = 1
-      Height = 259
+      Left = 0
+      Height = 354
       Top = 33
-      Width = 751
+      Width = 755
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = False
       AutoSort = True
@@ -229,13 +216,13 @@ object PenitWPZ: TPenitWPZ
       ParentColor = False
     end
     object Panel4: TPanel
-      Left = 1
+      Left = 0
       Height = 280
-      Top = 292
-      Width = 751
+      Top = 387
+      Width = 755
       Align = alBottom
       ClientHeight = 280
-      ClientWidth = 751
+      ClientWidth = 755
       TabOrder = 1
       object Label2: TLabel
         Left = 8
@@ -262,33 +249,58 @@ object PenitWPZ: TPenitWPZ
         Left = 232
         Height = 74
         Top = 8
-        Width = 144
+        Width = 240
         Caption = 'WPZ po ...'
         ClientHeight = 54
-        ClientWidth = 140
+        ClientWidth = 236
         TabOrder = 1
         object cbOBS: TCheckBox
           Left = 8
           Height = 19
           Top = 0
-          Width = 83
-          Caption = 'Obostrzenie'
+          Width = 228
+          Caption = 'Obostrzenie, po odbyciu kary w dniach:'
           TabOrder = 0
         end
         object edOBS_dni: TSpinEdit
-          Left = 8
+          Left = 152
           Height = 23
           Top = 24
           Width = 75
+          MaxValue = 20000
           TabOrder = 1
         end
         object Label3: TLabel
-          Left = 96
+          Left = 104
           Height = 15
-          Top = 30
-          Width = 17
-          Caption = 'dni'
+          Top = 27
+          Width = 43
+          Caption = '---> dni'
           ParentColor = False
+          ParentFont = False
+        end
+        object edLat: TSpinEdit
+          Left = 32
+          Height = 23
+          Top = 24
+          Width = 52
+          OnChange = edLatChange
+          TabOrder = 2
+        end
+        object Label9: TLabel
+          Left = 9
+          Height = 15
+          Top = 27
+          Width = 16
+          Caption = 'Lat'
+          ParentColor = False
+        end
+        object Bevel1: TBevel
+          Left = 96
+          Height = 34
+          Top = 18
+          Width = 139
+          Shape = bsFrame
         end
       end
       object Label4: TLabel
@@ -330,11 +342,11 @@ object PenitWPZ: TPenitWPZ
         Left = 232
         Height = 80
         Top = 96
-        Width = 515
+        Width = 519
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Wynik'
         ClientHeight = 60
-        ClientWidth = 511
+        ClientWidth = 515
         Color = clBtnFace
         ParentColor = False
         TabOrder = 4
@@ -342,7 +354,7 @@ object PenitWPZ: TPenitWPZ
           Left = 0
           Height = 60
           Top = 0
-          Width = 511
+          Width = 515
           Align = alClient
           BevelWidth = 1
           BevelStyle = bvNone
@@ -428,7 +440,7 @@ object PenitWPZ: TPenitWPZ
           Left = 384
           Height = 23
           Top = 24
-          Width = 120
+          Width = 124
           Anchors = [akTop, akLeft, akRight]
           MaxLength = 50
           TabOrder = 3
@@ -438,7 +450,7 @@ object PenitWPZ: TPenitWPZ
         Left = 1
         Height = 97
         Top = 182
-        Width = 749
+        Width = 753
         Align = alBottom
         Anchors = [akTop, akLeft, akRight, akBottom]
         Color = 14680063
@@ -447,9 +459,9 @@ object PenitWPZ: TPenitWPZ
         WordWrap = False
       end
       object btnOblicz: TBitBtn
-        Left = 407
+        Left = 54
         Height = 72
-        Top = 10
+        Top = 104
         Width = 153
         Caption = 'Oblicz'
         Glyph.Data = {
@@ -491,57 +503,12 @@ object PenitWPZ: TPenitWPZ
         OnClick = btnObliczClick
         TabOrder = 6
       end
-      object btnZapisz: TBitBtn
-        Left = 63
-        Height = 30
-        Top = 112
-        Width = 144
-        Caption = 'Zapisz'
-        Glyph.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000000000000000
-          000000000000000000000000000000000000FCF7F10EE3C69C6FFFFFFE050000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000FFFEFC05CEA05CA6AF6900FF000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          00000000000000000000FFFEFC05CB9E5DA6AB6500FFAF6900FF000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          000000000000FFFFFF02CDA2679CA76100FFBA7400FFAF6900FF000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000FFFEFC05C79A5DA6A45F00FFBD7807FFC68209FFAF6900FF000000000000
-          000000000000000000000000000000000000000000000000000000000000FFFF
-          FF02C99E689CA15C00FFC17F11FFCC8B17FFCC8A17FFAF6900FFB36D00FFB771
-          00FFBB7500FFBE7700FFC17A00FFC37C00FFBE7700FFC37C00FFFFFEFC05C396
-          5DA69F5A00FFC6861EFFD29527FFD29528FFD29528FFD29427FFD29428FFD295
-          27FFD29428FFD29527FFD29428FFD29528FFD29427FFC37C00FFC19359A69F5A
-          00FFCB8F2CFFD9A03AFFD99F39FFD99F39FFD9A039FFD99F3AFFD99F3AFFD99F
-          3AFFD99F39FFD99F39FFD9A039FFD99F39FFD9A039FFC37C00FFBC8A46B79F5A
-          00FFCB8F2CFFE0AB4BFFE0AB4BFFE0AB4CFFE0AB4CFFE0AB4CFFE0AB4CFFE0AB
-          4CFFE0AB4CFFE0AB4CFFE0AB4BFFE0AB4CFFE0AB4CFFC37C00FFFEFCF70ABB88
-          44C09F5A00FFDEA848FFE7B65DFFE7B65DFFE7B65DFFE7B65EFFE7B65EFFE7B6
-          5DFFE7B65EFFE6B65DFFE7B65EFFE7B65EFFE7B65DFFC37C00FF00000000FBF7
-          EE15BF8E49BBA15C00FFE3B054FFEDC06EFFEDC06EFFAF6900FFB36D00FFB771
-          00FFBB7500FFBE7800FFC17A00FFC37C00FFC37C00FFC37C00FF000000000000
-          0000FEFDF80AC1904ABAA45F00FFE7B75EFFF3C97CFFAF6900FF000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          000000000000FBF7EE14C29248BBA76100FFEABB65FFAE6A00FF000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          00000000000000000000FEFDF80AC6954ABAAB6500FFAF6900FF000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000FBF6EC16C28D37CCAF6900FF000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000FBF6EC15E0C38E7CFFFFFF040000
-          0000000000000000000000000000000000000000000000000000
-        }
-        OnClick = btnZapiszClick
-        TabOrder = 7
-      end
       object btnZapiszTerminarz: TBitBtn
-        Left = 63
+        Left = 568
         Height = 30
         Hint = 'Zapisuje w terminarzu terminy: Końca Kary, WPZ, Postpenitu, Przepustek, Ułamek do WPZ.'
-        Top = 146
-        Width = 144
+        Top = 61
+        Width = 152
         Caption = 'Zapisz do terminarza'
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
@@ -582,13 +549,13 @@ object PenitWPZ: TPenitWPZ
         OnClick = btnZapiszTerminarzClick
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 8
+        TabOrder = 7
       end
       object BitBtn1: TBitBtn
         Left = 568
         Height = 30
         Top = 10
-        Width = 153
+        Width = 152
         Caption = 'Drukuj'
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
@@ -627,13 +594,13 @@ object PenitWPZ: TPenitWPZ
           DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
         }
         OnClick = BitBtn1Click
-        TabOrder = 9
+        TabOrder = 8
       end
     end
     object btnPaste: TBitBtn
       Left = 88
       Height = 30
-      Top = 0
+      Top = 1
       Width = 147
       Caption = 'Wklej ze schowka'
       Glyph.Data = {
@@ -680,13 +647,13 @@ object PenitWPZ: TPenitWPZ
     Left = 0
     Height = 48
     Top = 0
-    Width = 1066
+    Width = 755
     Align = alTop
     ClientHeight = 48
-    ClientWidth = 1066
+    ClientWidth = 755
     Color = clWhite
     ParentColor = False
-    TabOrder = 2
+    TabOrder = 1
     object Label8: TLabel
       Left = 16
       Height = 23
@@ -696,123 +663,6 @@ object PenitWPZ: TPenitWPZ
       Font.Height = 24
       ParentColor = False
       ParentFont = False
-    end
-  end
-  object Panel3: TPanel
-    Left = 5
-    Height = 400
-    Top = 56
-    Width = 283
-    ClientHeight = 400
-    ClientWidth = 283
-    TabOrder = 3
-    object RxDBGrid1: TRxDBGrid
-      Left = 1
-      Height = 336
-      Top = 25
-      Width = 281
-      ColumnDefValues.BlobText = '(blob)'
-      TitleButtons = False
-      AutoSort = True
-      KeyStrokes = <      
-        item
-          Command = rxgcShowFindDlg
-          ShortCut = 16454
-          Enabled = True
-        end      
-        item
-          Command = rxgcShowColumnsDlg
-          ShortCut = 16471
-          Enabled = True
-        end      
-        item
-          Command = rxgcShowFilterDlg
-          ShortCut = 16468
-          Enabled = True
-        end      
-        item
-          Command = rxgcShowSortDlg
-          ShortCut = 16467
-          Enabled = True
-        end      
-        item
-          Command = rxgcShowQuickFilter
-          ShortCut = 16465
-          Enabled = True
-        end      
-        item
-          Command = rxgcHideQuickFilter
-          ShortCut = 16456
-          Enabled = True
-        end      
-        item
-          Command = rxgcSelectAll
-          ShortCut = 16449
-          Enabled = True
-        end      
-        item
-          Command = rxgcDeSelectAll
-          ShortCut = 16429
-          Enabled = True
-        end      
-        item
-          Command = rxgcInvertSelection
-          ShortCut = 16426
-          Enabled = True
-        end      
-        item
-          Command = rxgcOptimizeColumnsWidth
-          ShortCut = 16427
-          Enabled = True
-        end      
-        item
-          Command = rxgcCopyCellValue
-          ShortCut = 16451
-          Enabled = True
-        end>
-      FooterOptions.DrawFullLine = False
-      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
-      SearchOptions.FromStart = False
-      OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
-      Align = alTop
-      Color = clWindow
-      DrawFullLine = False
-      FocusColor = clRed
-      SelectedColor = clHighlight
-      GridLineStyle = psSolid
-      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
-      TabOrder = 0
-    end
-    object Button2: TButton
-      Left = 8
-      Height = 25
-      Top = 368
-      Width = 91
-      Anchors = [akLeft, akBottom]
-      Caption = 'Show Dane'
-      TabOrder = 1
-    end
-    object Button1: TButton
-      Left = 112
-      Height = 25
-      Top = 368
-      Width = 91
-      Anchors = [akLeft, akBottom]
-      Caption = 'Show JSON'
-      OnClick = Button1Click
-      TabOrder = 2
-    end
-    object Label9: TLabel
-      Left = 1
-      Height = 24
-      Top = 1
-      Width = 281
-      Align = alTop
-      Alignment = taCenter
-      AutoSize = False
-      Caption = 'Obliczenia'
-      Layout = tlCenter
-      ParentColor = False
     end
   end
   object RxMemoryOrzeczenia: TRxMemoryData
@@ -847,7 +697,6 @@ object PenitWPZ: TPenitWPZ
       item
         Name = 'Zastepcza'
         DataType = ftBoolean
-        Precision = -1
       end    
       item
         Name = 'KoniecKary'
@@ -856,13 +705,13 @@ object PenitWPZ: TPenitWPZ
       end    
       item
         Name = 'WPZ'
-        DataType = ftDate
-        Precision = -1
+        DataType = ftString
+        Size = 10
       end    
       item
         Name = 'Przepustki'
-        DataType = ftDateTime
-        Precision = -1
+        DataType = ftString
+        Size = 10
       end    
       item
         Name = 'WymiarKary'
@@ -870,8 +719,8 @@ object PenitWPZ: TPenitWPZ
         Size = 100
       end>
     PacketRecords = 0
-    Left = 800
-    Top = 178
+    Left = 72
+    Top = 208
     object RxMemoryOrzeczeniaLp: TStringField
       FieldKind = fkData
       FieldName = 'Lp'
@@ -939,39 +788,41 @@ object PenitWPZ: TPenitWPZ
       ReadOnly = False
       Required = False
     end
-    object RxMemoryOrzeczeniaWPZ: TDateField
-      FieldKind = fkData
-      FieldName = 'WPZ'
-      Index = 7
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object RxMemoryOrzeczeniaPrzepustki: TDateTimeField
-      FieldKind = fkData
-      FieldName = 'Przepustki'
-      Index = 8
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
     object RxMemoryOrzeczeniaWymiarKary: TStringField
       FieldKind = fkData
       FieldName = 'WymiarKary'
-      Index = 9
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 100
     end
+    object RxMemoryOrzeczeniaWPZ: TStringField
+      FieldKind = fkData
+      FieldName = 'WPZ'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
+    object RxMemoryOrzeczeniaPrzepustki: TStringField
+      FieldKind = fkData
+      FieldName = 'Przepustki'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
   end
   object DSOrzeczenia: TDataSource
     DataSet = RxMemoryOrzeczenia
-    Left = 694
-    Top = 178
+    Left = 72
+    Top = 152
   end
   object ZQOsInfo: TZQuery
     Connection = DM.ZConnection1
@@ -994,8 +845,8 @@ object PenitWPZ: TPenitWPZ
         Name = 'ido'
         ParamType = ptUnknown
       end>
-    Left = 512
-    Top = 536
+    Left = 520
+    Top = 496
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1008,12 +859,12 @@ object PenitWPZ: TPenitWPZ
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    Left = 952
-    Top = 178
+    Left = 232
+    Top = 152
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = RxMemoryOrzeczenia
-    Left = 952
-    Top = 242
+    Left = 232
+    Top = 208
   end
 end

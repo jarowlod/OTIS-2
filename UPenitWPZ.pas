@@ -5,10 +5,10 @@ unit UPenitWPZ;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, TplGradientUnit, rxdbgrid, rxmemds, Forms,
-  Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, EditBtn, Spin, fpjson,
-  jsonparser, dateutils, Clipbrd, Buttons, datamodule, LR_Class, LR_DBSet,
-  ZDataset, db;
+  Classes, SysUtils, FileUtil, TplGradientUnit, rxdbgrid, rxmemds,
+  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, EditBtn, Spin, fpjson,
+  jsonparser, dateutils, Clipbrd, Buttons, datamodule, LSControls,
+  LR_Class, LR_DBSet, ZDataset, db;
 
 type
   TOrzeczenie = record
@@ -61,8 +61,8 @@ type
       destructor Destroy; override;
       function Oblicz: Boolean;
       function SaveToStr: String;
-      procedure LoadFromStr(value: string);
-      procedure ParseFromDOC(value: string);
+      procedure LoadFromStr(value: string);  // dane w formacjie JOSN
+      procedure ParseFromDOC(value: string); // wklejamy fragment dokumentu (tabelka orzeczeń) z NoeNET
       function Count: integer;
       function IndexWPZ: integer; // index ostatniej kary zasadniczej
       function AddOrzeczenie(Vart: string; Vlat, Vmsc,Vdni: integer; Vzastepcza: Boolean; Vkoniec_kary: TDate): integer;
@@ -71,13 +71,11 @@ type
   { TPenitWPZ }
 
   TPenitWPZ = class(TForm)
+    Bevel1: TBevel;
     BitBtn1: TBitBtn;
-    btnZapisz: TBitBtn;
     btnOblicz: TBitBtn;
     btnPaste: TBitBtn;
     btnZapiszTerminarz: TBitBtn;
-    Button1: TButton;
-    Button2: TButton;
     cbOBS: TCheckBox;
     cbOWZ: TCheckBox;
     cbmUlamek: TComboBox;
@@ -102,13 +100,10 @@ type
     Label8: TLabel;
     Label9: TLabel;
     Memo1: TMemo;
-    Memo2: TMemo;
     Panel1: TPanel;
     Panel2: TPanel;
-    Panel3: TPanel;
     Panel4: TPanel;
     plGradient1: TplGradient;
-    RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     RxMemoryOrzeczenia: TRxMemoryData;
     edOBS_dni: TSpinEdit;
@@ -118,17 +113,18 @@ type
     RxMemoryOrzeczeniaLat: TLongintField;
     RxMemoryOrzeczeniaLp: TStringField;
     RxMemoryOrzeczeniaMsc: TLongintField;
-    RxMemoryOrzeczeniaPrzepustki: TDateTimeField;
-    RxMemoryOrzeczeniaWPZ: TDateField;
+    RxMemoryOrzeczeniaPrzepustki: TStringField;
+    RxMemoryOrzeczeniaWPZ: TStringField;
     RxMemoryOrzeczeniaWymiarKary: TStringField;
     RxMemoryOrzeczeniaZastepcza: TBooleanField;
+    edLat: TSpinEdit;
     ZQOsInfo: TZQuery;
     procedure BitBtn1Click(Sender: TObject);
-    procedure btnZapiszClick(Sender: TObject);
     procedure btnObliczClick(Sender: TObject);
     procedure btnPasteClick(Sender: TObject);
     procedure btnZapiszTerminarzClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure edLatChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure RxMemoryOrzeczeniaLpGetText(Sender: TField; var aText: string;
       DisplayText: Boolean);
@@ -152,7 +148,7 @@ type
 implementation
 uses UPenitForm;
 
-const NullDate = 0.0;
+const NullDate: TDateTime = 0;
 
 {$R *.frm}
 
@@ -163,12 +159,14 @@ begin
   SelectIDO:= 0;
   RxMemoryOrzeczenia.Open;
   btnZapiszTerminarz.Enabled:= false;
+  NoweObliczenia;
 end;
 
 procedure TPenitWPZ.SetIDO(ido: integer);
 begin
   SelectIDO:= ido;
   btnZapiszTerminarz.Enabled:= UprawnieniaDoEdycji(SelectIDO); // From UPenitForm
+  // TODO: wstaw info o owz z zapisanych danych, wstaw poprzednie wyliczenia
 end;
 
 procedure TPenitWPZ.Button1Click(Sender: TObject);
@@ -179,14 +177,17 @@ begin
   WPZ.LoadFromStr(Memo1.Text);
 end;
 
+procedure TPenitWPZ.edLatChange(Sender: TObject);
+begin
+  edOBS_dni.Value:= edLat.Value * 365;
+end;
+
 procedure TPenitWPZ.btnPasteClick(Sender: TObject);
 begin
   NoweObliczenia; // create WPZ
   WPZ.ParseFromDOC(Clipboard.AsText);
   WstawDaneDoTabeli;
-  //cbOBS.Checked       := false;
-  //edOBS_dni.Value     := 0;
-  cbmUlamek.Text      :=  WPZ.GetUlamekArt;
+  cbmUlamek.Text:=  WPZ.GetUlamekArt;
 
 
   Memo1.Text:= WPZ.fKomunikaty.Text;
@@ -227,59 +228,58 @@ begin
   Oblicz;
 end;
 
-procedure TPenitWPZ.btnZapiszClick(Sender: TObject);
-begin
-  // zapisz do bazy danych
-  // Memo1.Append(WPZ.SaveToStr);
-end;
-
 procedure TPenitWPZ.BitBtn1Click(Sender: TObject);
 var i: integer;
     s: string;
+    MemDB: TRxMemoryData;
 begin
-  // dpoisujemy terminy WPZ i Przepustek
+  MemDB:= TRxMemoryData.Create(Self);
+  MemDB.LoadFromDataSet(RxMemoryOrzeczenia, 0, lmCopy);
+  // dopisujemy terminy WPZ i Przepustek
   // uzupełniamy RxMemory wynikiem obliczeń =====================
-  RxMemoryOrzeczenia.First;
-  RxMemoryOrzeczenia.MoveBy(WPZ.IndexWPZ);
+  MemDB.First;
+  MemDB.MoveBy(WPZ.IndexWPZ);
 
-  RxMemoryOrzeczenia.Edit;
-  if edWPZ.Date = NullDate then
-      RxMemoryOrzeczeniaWPZ.Value:= Null
-    else
-      RxMemoryOrzeczeniaWPZ.AsDateTime:= edWPZ.Date;
-
-  if edPrzepustki.Date = NullDate then
-      RxMemoryOrzeczeniaPrzepustki.Value:= Null
-    else
-      RxMemoryOrzeczeniaPrzepustki.AsDateTime:= edPrzepustki.Date;
-  RxMemoryOrzeczenia.Post;
+  MemDB.Edit;
+  MemDB.FieldByName('WPZ').AsString       := edWPZ.Text;
+  MemDB.FieldByName('Przepustki').AsString:= edPrzepustki.Text;
+  MemDB.Post;
   //==============================================================
 
   // uzupełniamy pole Wymiar Kary
-  RxMemoryOrzeczenia.First;
-  while not RxMemoryOrzeczenia.EOF do
+  MemDB.First;
+  while not MemDB.EOF do
   begin
     s:= '';
-    if RxMemoryOrzeczeniaLat.AsInteger = 1 then s:= '1 rok ' else
-    if RxMemoryOrzeczeniaLat.AsInteger > 4 then s:= RxMemoryOrzeczeniaLat.AsString + ' lat ' else
-    if RxMemoryOrzeczeniaLat.AsInteger > 1 then s:= RxMemoryOrzeczeniaLat.AsString + ' lata ';
+    if MemDB.FieldByName('Lat').AsInteger = 1 then s:= '1 rok ' else
+    if MemDB.FieldByName('Lat').AsInteger > 4 then s:= MemDB.FieldByName('Lat').AsString + ' lat ' else
+    if MemDB.FieldByName('Lat').AsInteger > 1 then s:= MemDB.FieldByName('Lat').AsString + ' lata ';
 
-    if RxMemoryOrzeczeniaMsc.AsInteger > 1 then s+= RxMemoryOrzeczeniaMsc.AsString + ' msc ';
-    if RxMemoryOrzeczeniaDni.AsInteger > 1 then s+= RxMemoryOrzeczeniaDni.AsString + ' dni';
+    if MemDB.FieldByName('Msc').AsInteger > 1 then s+= MemDB.FieldByName('Msc').AsString + ' msc ';
+    if MemDB.FieldByName('Dni').AsInteger > 1 then s+= MemDB.FieldByName('Dni').AsString + ' dni';
 
-    RxMemoryOrzeczenia.Edit;
-    RxMemoryOrzeczeniaWymiarKary.AsString:= s;
-    RxMemoryOrzeczenia.Post;
-    RxMemoryOrzeczenia.Next;
+    MemDB.Edit;
+    MemDB.FieldByName('WymiarKary').AsString:= s;
+    MemDB.Post;
+    MemDB.Next;
   end;
-  // uzupełniamy tabelkę pustymi wierszami do 11 pozycji
-  if RxMemoryOrzeczenia.RecordCount>=11 then begin RxMemoryOrzeczenia.Append; RxMemoryOrzeczenia.Post; end;
-  for i:=RxMemoryOrzeczenia.RecordCount to 10 do begin RxMemoryOrzeczenia.Append; RxMemoryOrzeczenia.Post; end;
 
+  // uzupełniamy tabelkę pustymi wierszami do 11 pozycji
+  if MemDB.RecordCount>=11 then begin MemDB.Append; MemDB.Post; end;
+  for i:=MemDB.RecordCount to 10 do begin MemDB.Append; MemDB.Post; end;
+
+  frDBDataSet1.DataSet:= MemDB;
   frReport1.LoadFromFile(DM.Path_Raporty + 'pen_obliczenieWPZ.lrf');
+
+  DM.SetMemoReport(frReport1, 'memoPodpis', DM.GetInicjaly(DM.PelnaNazwa) + ' (' +DateToStr(Date)+ ')');
+  DM.SetMemoReport(frReport1, 'memoPostpenit', edPostpenit.Text);
+  if edUlamekDoWPZ.Text<>'' then
+    DM.SetMemoReport(frReport1, 'memoUlamek', 'Uprawnienia do WPZ po ' + edUlamekDoWPZ.Text);
+
   frReport1.ShowReport;
 
-  // usuwamy wcześniej dodane puste wiersze
+  // usuwamy
+  FreeAndNil(MemDB);
 end;
 
 procedure TPenitWPZ.RxMemoryOrzeczeniaLpGetText(Sender: TField;
@@ -290,10 +290,9 @@ end;
 
 procedure TPenitWPZ.WstawDateToEdit(edDateEdit: TDateEdit; DataValue: TDate);
 begin
+  edDateEdit.Date:= DataValue;
   if DataValue = NullDate then
-      edDateEdit.Text:= '---'
-    else
-      edDateEdit.Date:= DataValue;
+      edDateEdit.Text:= '---';
 end;
 
 procedure TPenitWPZ.WstawDaneDoTabeli;
@@ -343,6 +342,8 @@ end;
 
 procedure TPenitWPZ.Oblicz;
 begin
+  Memo1.Clear;
+  WPZ.fKomunikaty.Clear;
   WPZ.owz            := cbOWZ.Checked;
   WPZ.data_osadzenia := edDataOsadzenia.Date;
   WPZ.OBS_obostrzenie:= cbOBS.Checked;
@@ -372,7 +373,8 @@ begin
   edDataOsadzenia.Date:= DM.ZQOsadzeni.FieldByName('PRZYJ').AsDateTime;
   cbOBS.Checked       := false;
   edOBS_dni.Value     := 0;
-  cbmUlamek.Text      := '';
+  edLat.Value         := 0;
+  cbmUlamek.ItemIndex := 0;
   edUlamekDoWPZ.Text  := '';
   edWPZ.Text          := '';
   edPostpenit.Text    := '';
