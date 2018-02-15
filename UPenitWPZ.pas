@@ -183,7 +183,7 @@ begin
 
   ZQOsInfo.ParamByName('ido').AsInteger:= SelectIDO;
   ZQOsInfo.Open;
-  if not ZQOsInfo.IsEmpty then cbOWZ.Checked:= ( Pos('owz', ZQOsInfo.FieldByName('ulamek_wpz').AsString)>0 );
+  if not ZQOsInfo.IsEmpty then cbOWZ.Checked:= ( Pos('OWZ', UpperCase(ZQOsInfo.FieldByName('ulamek_wpz').AsString))>0 );
 
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'SELECT IDO, PRZYJ, NAZWISKO, IMIE, POC, KLASYF FROM osadzeni WHERE IDO=:ido';
@@ -455,39 +455,42 @@ begin
   for i:=0 to Count-1 do
     if not orzeczenia[i].zastepcza then
     begin
-      if (orzeczenia[i].Sdni=0)and(ranga<4) then
+      if (orzeczenia[i].art<>'')and(orzeczenia[i].Sdni=0)and(ranga<4) then
       begin
         ranga:= 4;
         Result:= 'po 25';
         fKomunikaty.Add('Wykryto karę dożywocia w wierszu '+IntToStr(i+1));
-      end else
+      end;
       if (orzeczenia[i].lat=25)and(ranga<3) then
       begin
         ranga:= 3;
         Result:= 'po 15';
         fKomunikaty.Add('Wykryto karę 25 lat w wierszu '+IntToStr(i+1));
-      end else
-      if (orzeczenia[i].art.IndexOf(' 64§1')>=0)and(ranga<1) then
-      begin
-        ranga:=1;
-        Result:='2/3';
-        fKomunikaty.Add('Wykryto art.64§1 w wierszu '+IntToStr(i+1));
-      end else
+      end;
       if (orzeczenia[i].art.IndexOf(' 64§2')>=0)and(ranga<2) then
       begin
         ranga:=2;
         Result:='3/4';
         fKomunikaty.Add('Wykryto art.64§2 w wierszu '+IntToStr(i+1));
-      end else
-      if (orzeczenia[i].art.IndexOf(' 65§1')>=0)and(ranga<2) then
+      end;
+      if (orzeczenia[i].art.IndexOf(' 65§1')>=0)and(ranga<=2) then
       begin
         ranga:=2;
         Result:='3/4';
         fKomunikaty.Add('Wykryto art.65§1 w wierszu '+IntToStr(i+1));
       end;
+      if (orzeczenia[i].art.IndexOf(' 64§1')>=0)and(ranga<1) then
+      begin
+        ranga:=1;
+        Result:='2/3';
+        fKomunikaty.Add('Wykryto art.64§1 w wierszu '+IntToStr(i+1));
+      end;
 
       if (orzeczenia[i].art.IndexOf(' 77§2')>=0) then
         fKomunikaty.Add('Wykryto obostrzenie do WPZ art.77§2 w wierszu '+IntToStr(i+1));
+
+      if (orzeczenia[i].art.IndexOf(' 207§1')>=0) then
+        fKomunikaty.Add('Wykryto art.207§1 w wierszu '+IntToStr(i+1));
     end;
 end;
 

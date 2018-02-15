@@ -18,6 +18,7 @@ type
     cbWychowawcy: TComboBox;
     DSTerminarz: TDataSource;
     DSKalendarz: TDataSource;
+    Edit1: TEdit;
     frDBDataSet1: TfrDBDataSet;
     frDBDataSet2: TfrDBDataSet;
     frDBDataSet3: TfrDBDataSet;
@@ -98,6 +99,7 @@ type
     ZQZatReport: TZQuery;
     procedure cbWychowawcyChange(Sender: TObject);
     procedure DSTerminarzDataChange(Sender: TObject; Field: TField);
+    procedure Edit1Change(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
@@ -383,6 +385,12 @@ begin
   Timer1.Enabled:= false;
   Timer1.Enabled:= true;
   StatusBarRefresh;
+end;
+
+procedure TPenitTerminarz.Edit1Change(Sender: TObject);
+begin
+  if Edit1.Text<>'' then
+    ZQTerminarz.Locate('NAZWISKO', Edit1.Text, [loPartialKey]);
 end;
 
 procedure TPenitTerminarz.cbWychowawcyChange(Sender: TObject);

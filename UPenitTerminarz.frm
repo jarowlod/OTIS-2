@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 368
+  Left = 43
   Height = 743
-  Top = 364
+  Top = 57
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -102,8 +102,8 @@ object PenitTerminarz: TPenitTerminarz
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
-      ClientHeight = 660
-      ClientWidth = 1174
+      ClientHeight = 935
+      ClientWidth = 1912
       ImageIndex = 16
       OnShow = TabSheet1Show
       object YearPlanner1: TYearPlanner
@@ -428,6 +428,17 @@ object PenitTerminarz: TPenitTerminarz
             Font.Color = clBlue
             ParentColor = False
             ParentFont = False
+          end
+          object Edit1: TEdit
+            Left = 319
+            Height = 23
+            Top = 0
+            Width = 136
+            Anchors = [akTop, akRight]
+            CharCase = ecUppercase
+            OnChange = Edit1Change
+            TabOrder = 0
+            TextHint = 'Wyszukaj nazwisko'
           end
         end
         object RxDBGrid1: TRxDBGrid
