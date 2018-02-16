@@ -26,8 +26,15 @@ type
     DSWidzenia: TDataSource;
     Image1: TImage;
     Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
     lblCelaOchronna: TLabel;
     lblCelaTA: TLabel;
+    MenuItem1: TMenuItem;
+    miRejestrWidzen: TMenuItem;
     miModyfikuj: TMenuItem;
     miRefresh: TMenuItem;
     MenuItem2: TMenuItem;
@@ -58,6 +65,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure miModyfikujClick(Sender: TObject);
     procedure miRefreshClick(Sender: TObject);
+    procedure miRejestrWidzenClick(Sender: TObject);
     procedure miUsunZPoczekalniClick(Sender: TObject);
     procedure TabSheetPoczekalniaShow(Sender: TObject);
     procedure TimerAutoUpdateTimer(Sender: TObject);
@@ -84,7 +92,7 @@ const
   PRAWA_STRONA_SALI = 200;
 
 implementation
-uses dateutils, rxdbutils, UOchAddWidzenie;
+uses dateutils, rxdbutils, UOchAddWidzenie, UOchRejestrWidzen;
 {$R *.frm}
 
 { TOchSalaWidzen }
@@ -109,6 +117,15 @@ end;
 procedure TOchSalaWidzen.miRefreshClick(Sender: TObject);
 begin
   OdswiezPoczekalnie;
+end;
+
+procedure TOchSalaWidzen.miRejestrWidzenClick(Sender: TObject);
+begin
+  with TOchRejestrWidzen.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
 end;
 
 procedure TOchSalaWidzen.miUsunZPoczekalniClick(Sender: TObject);
@@ -183,9 +200,9 @@ begin
   // lewa strona sali
   for i:=0 to 9 do
   begin
-    ii:= i mod 2;
+    ii:= i div 5;      // 1 kolumna od 1 do 5
     FStoliki[i].Left:= ODSTEP_OD_STOLIKOW + (FStoliki[i].Width + ODSTEP_OD_STOLIKOW) * ii;
-    ii:= i div 2;
+    ii:= i mod 5;      //
     FStoliki[i].Top:= ODSTEP_OD_STOLIKOW + (FStoliki[i].Height + ODSTEP_OD_STOLIKOW) * ii;
     FStoliki[i].Show;
   end;
@@ -205,9 +222,9 @@ begin
   // Prawa strona sali
   for i:=10 to 15 do
   begin
-    ii:= ((i-10) mod 2) + 2;   // kolumna
+    ii:= ((i-10) div 3) + 2;   // kolumna
     FStoliki[i].Left:= PRAWA_STRONA_SALI + (FStoliki[i].Width + ODSTEP_OD_STOLIKOW) * ii;
-    ii:= ((i-10) div 2);   // wiersz
+    ii:= ((i-10) mod 3);       // wiersz
     FStoliki[i].Top := PanelBezdozor.Height+81 + (FStoliki[i].Height + ODSTEP_OD_STOLIKOW) * ii;
     FStoliki[i].Show;
   end;

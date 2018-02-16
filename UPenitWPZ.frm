@@ -29,6 +29,7 @@ object PenitWPZ: TPenitWPZ
       AutoSort = True
       Columns = <      
         item
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Lp'
@@ -51,7 +52,7 @@ object PenitWPZ: TPenitWPZ
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Kwalifikacja prawna czynu'
-          Width = 350
+          Width = 367
           FieldName = 'Art'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -64,6 +65,7 @@ object PenitWPZ: TPenitWPZ
         end      
         item
           Alignment = taCenter
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'lat'
@@ -79,6 +81,7 @@ object PenitWPZ: TPenitWPZ
         end      
         item
           Alignment = taCenter
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'msc'
@@ -94,6 +97,7 @@ object PenitWPZ: TPenitWPZ
         end      
         item
           Alignment = taCenter
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'dni'
@@ -108,6 +112,7 @@ object PenitWPZ: TPenitWPZ
           Footers = <>
         end      
         item
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'zastępcza'
@@ -123,6 +128,7 @@ object PenitWPZ: TPenitWPZ
         end      
         item
           Alignment = taCenter
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Termin końca kary'
@@ -198,6 +204,7 @@ object PenitWPZ: TPenitWPZ
       OptionsRx = [rdgDblClickOptimizeColWidth, rdgWordWrap]
       Align = alBottom
       Anchors = [akTop, akLeft, akRight]
+      AutoFillColumns = True
       Color = clWindow
       DrawFullLine = False
       FocusColor = clRed

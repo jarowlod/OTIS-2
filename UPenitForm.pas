@@ -88,6 +88,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnDodajDoKoszykaClick(Sender: TObject);
+    procedure Image_osDblClick(Sender: TObject);
     procedure ZQOsInfoAfterPost(DataSet: TDataSet);
     procedure ZQOsNotatkiAfterPost(DataSet: TDataSet);
   private
@@ -266,6 +267,34 @@ begin
   if SelectIDO<=0 then exit;
   if DM.DodajDoKoszyka(SelectIDO) then
      DM.KomunikatPopUp(Sender, 'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
+end;
+
+procedure TPenitForm.Image_osDblClick(Sender: TObject);
+var Obrazek: TForm;
+    Img: TImage;
+begin
+    Obrazek:= TForm.Create(Self);
+    Obrazek.BorderStyle:= bsSizeable;
+    Obrazek.Caption:= DBText1.Caption;
+      Img:= TImage.Create(Obrazek);
+      img.AutoSize    := false;
+      img.Parent      := Obrazek;
+      img.Stretch     := true;
+      img.Proportional:= true;
+      img.Align       := alClient;
+      img.Visible     := true;
+      Img.Picture.Assign(Image_os.Picture);
+    Obrazek.Height:= Screen.WorkAreaHeight;
+
+    if img.Picture.Width > (Screen.WorkAreaWidth div 2) then
+      Obrazek.Width:= (Screen.WorkAreaWidth div 2)
+    else
+      Obrazek.Width:= img.Picture.Width;
+
+    Obrazek.ShowModal;
+
+    FreeAndNil(img);
+    FreeAndNil(Obrazek);
 end;
 
 procedure TPenitForm.ZQOsInfoAfterPost(DataSet: TDataSet);

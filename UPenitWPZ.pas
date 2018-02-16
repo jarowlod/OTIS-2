@@ -349,7 +349,7 @@ begin
     RxMemoryOrzeczeniaZastepcza.AsBoolean:= WPZ.orzeczenia[i].zastepcza;
 
     if WPZ.orzeczenia[i].koniec_kary = NullDate then
-        RxMemoryOrzeczeniaKoniecKary.AsDateTime:= Null
+        RxMemoryOrzeczeniaKoniecKary.AsVariant:= Null
       else
         RxMemoryOrzeczeniaKoniecKary.AsDateTime:= WPZ.orzeczenia[i].koniec_kary;
 

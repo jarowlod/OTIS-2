@@ -1,7 +1,7 @@
 object OchForm: TOchForm
-  Left = 396
+  Left = 404
   Height = 800
-  Top = 222
+  Top = 224
   Width = 831
   Caption = 'Karta Ochronna'
   ClientHeight = 800
@@ -102,6 +102,7 @@ object OchForm: TOchForm
         AntialiasingMode = amOn
         Align = alClient
         Center = True
+        OnDblClick = Image_osDblClick
         ParentShowHint = False
         Proportional = True
         ShowHint = True

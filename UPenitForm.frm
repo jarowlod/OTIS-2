@@ -602,6 +602,7 @@ object PenitForm: TPenitForm
         AntialiasingMode = amOn
         Align = alClient
         Center = True
+        OnDblClick = Image_osDblClick
         ParentShowHint = False
         Proportional = True
         ShowHint = True

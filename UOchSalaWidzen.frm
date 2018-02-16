@@ -1,14 +1,14 @@
 object OchSalaWidzen: TOchSalaWidzen
-  Left = 143
+  Left = 404
   Height = 856
-  Top = 71
+  Top = 224
   Width = 1278
-  HorzScrollBar.Increment = 109
-  HorzScrollBar.Page = 1096
+  HorzScrollBar.Increment = 40
+  HorzScrollBar.Page = 402
   HorzScrollBar.Smooth = True
   HorzScrollBar.Tracking = True
-  VertScrollBar.Increment = 27
-  VertScrollBar.Page = 279
+  VertScrollBar.Increment = 30
+  VertScrollBar.Page = 306
   VertScrollBar.Smooth = True
   VertScrollBar.Tracking = True
   AutoScroll = True
@@ -25,11 +25,11 @@ object OchSalaWidzen: TOchSalaWidzen
     Height = 856
     Top = 0
     Width = 1278
-    ActivePage = TabSheetSalaWidzen
+    ActivePage = TabSheetPoczekalnia
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 30
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheetSalaWidzen: TTabSheet
       Caption = 'Sala widzeń'
@@ -262,13 +262,13 @@ object OchSalaWidzen: TOchSalaWidzen
     object TabSheetPleksa: TTabSheet
       Caption = 'Pleksa'
       ClientHeight = 818
-      ClientWidth = 1187
+      ClientWidth = 1270
       ImageIndex = 37
       object PanelPleksa: TPanel
         Left = 0
         Height = 818
         Top = 0
-        Width = 1187
+        Width = 1270
         Align = alClient
         BevelOuter = bvNone
         Color = 13027325
@@ -279,14 +279,14 @@ object OchSalaWidzen: TOchSalaWidzen
     object TabSheetPoczekalnia: TTabSheet
       Caption = 'Poczekalnia'
       ClientHeight = 818
-      ClientWidth = 1187
+      ClientWidth = 1270
       ImageIndex = 6
       OnShow = TabSheetPoczekalniaShow
       object RxDBGrid1: TRxDBGrid
         Left = 0
         Height = 600
         Top = 0
-        Width = 1187
+        Width = 1270
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -574,10 +574,10 @@ object OchSalaWidzen: TOchSalaWidzen
         Left = 0
         Height = 218
         Top = 600
-        Width = 1187
+        Width = 1270
         Align = alBottom
         ClientHeight = 218
-        ClientWidth = 1187
+        ClientWidth = 1270
         TabOrder = 1
         object btnWybranyDoWidzenia: TBitBtn
           Left = 168
@@ -634,15 +634,15 @@ object OchSalaWidzen: TOchSalaWidzen
           Stretch = True
         end
         object Panel3: TPanel
-          Left = 456
+          Left = 568
           Height = 216
           Top = 1
-          Width = 730
+          Width = 701
           Align = alRight
           Anchors = [akTop, akLeft, akRight, akBottom]
           BevelOuter = bvLowered
           ClientHeight = 216
-          ClientWidth = 730
+          ClientWidth = 701
           Color = clBtnFace
           ParentColor = False
           TabOrder = 1
@@ -650,7 +650,7 @@ object OchSalaWidzen: TOchSalaWidzen
             Left = 1
             Height = 24
             Top = 1
-            Width = 728
+            Width = 699
             Align = alTop
             Alignment = taCenter
             AutoSize = False
@@ -662,7 +662,7 @@ object OchSalaWidzen: TOchSalaWidzen
             Left = 1
             Height = 190
             Top = 25
-            Width = 728
+            Width = 699
             ColumnDefValues.BlobText = '(blob)'
             TitleButtons = True
             AutoSort = True
@@ -813,78 +813,108 @@ object OchSalaWidzen: TOchSalaWidzen
           end
         end
         object DBlblNazwisko: TDBText
-          Left = 168
-          Height = 15
-          Top = 32
-          Width = 83
+          AnchorSideTop.Control = Label2
+          AnchorSideTop.Side = asrCenter
+          Left = 232
+          Height = 22
+          Top = 28
+          Width = 138
           DataField = 'Nazwisko'
           DataSource = DSWidzenia
+          Font.CharSet = EASTEUROPE_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
         end
         object DBlblImie: TDBText
-          AnchorSideLeft.Control = DBlblNazwisko
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = DBlblNazwisko
-          Left = 261
-          Height = 15
-          Top = 32
-          Width = 55
-          BorderSpacing.Left = 10
+          AnchorSideTop.Control = Label3
+          AnchorSideTop.Side = asrCenter
+          Left = 232
+          Height = 22
+          Top = 51
+          Width = 88
           DataField = 'Imie'
           DataSource = DSWidzenia
+          Font.CharSet = EASTEUROPE_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
         end
         object DBlblOjciec: TDBText
-          Left = 168
-          Height = 15
-          Top = 48
-          Width = 61
+          AnchorSideTop.Control = Label4
+          AnchorSideTop.Side = asrCenter
+          Left = 232
+          Height = 16
+          Top = 77
+          Width = 74
           DataField = 'Ojciec'
           DataSource = DSWidzenia
+          Font.CharSet = EASTEUROPE_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
           ParentColor = False
+          ParentFont = False
         end
         object DBlblPOC: TDBText
-          Left = 168
+          Left = 232
           Height = 15
-          Top = 88
-          Width = 52
+          Top = 104
+          Width = 53
           DataField = 'POC'
           DataSource = DSWidzenia
+          Font.Color = clMaroon
+          Font.Style = [fsBold]
           ParentColor = False
+          ParentFont = False
         end
         object DBlblKlasyf: TDBText
-          Left = 168
+          Left = 232
           Height = 15
-          Top = 64
-          Width = 59
+          Top = 120
+          Width = 63
           DataField = 'Klasyf'
           DataSource = DSWidzenia
+          Font.Color = clMaroon
+          Font.Style = [fsBold]
           ParentColor = False
+          ParentFont = False
         end
         object DBlblIDO: TDBText
-          Left = 168
+          Left = 232
           Height = 15
           Top = 8
           Width = 48
           DataField = 'IDO'
           DataSource = DSWidzenia
+          Font.Color = clMaroon
           ParentColor = False
+          ParentFont = False
         end
         object lblCelaTA: TLabel
           AnchorSideLeft.Side = asrBottom
-          Left = 344
-          Height = 19
-          Top = 8
-          Width = 58
+          Left = 304
+          Height = 16
+          Top = 103
+          Width = 49
           BorderSpacing.Left = 10
           Caption = 'Cela TA'
           Font.CharSet = EASTEUROPE_CHARSET
           Font.Color = clRed
-          Font.Height = -16
+          Font.Height = -13
           Font.Name = 'Arial'
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
@@ -898,9 +928,9 @@ object OchSalaWidzen: TOchSalaWidzen
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = DBcbGR
           AnchorSideTop.Side = asrCenter
-          Left = 250
+          Left = 314
           Height = 15
-          Top = 132
+          Top = 144
           Width = 79
           BorderSpacing.Left = 10
           Caption = 'Cela Ochronna'
@@ -910,9 +940,9 @@ object OchSalaWidzen: TOchSalaWidzen
           Visible = False
         end
         object DBcbGR: TDBCheckBox
-          Left = 168
+          Left = 232
           Height = 23
-          Top = 128
+          Top = 140
           Width = 72
           Caption = 'Grypsuje'
           DataField = 'GR'
@@ -921,6 +951,46 @@ object OchSalaWidzen: TOchSalaWidzen
           TabOrder = 2
           ValueChecked = '1'
           ValueUnchecked = '0'
+        end
+        object Label2: TLabel
+          Left = 168
+          Height = 15
+          Top = 32
+          Width = 53
+          Caption = 'Nazwisko:'
+          ParentColor = False
+        end
+        object Label3: TLabel
+          Left = 195
+          Height = 15
+          Top = 55
+          Width = 26
+          Caption = 'Imię:'
+          ParentColor = False
+        end
+        object Label4: TLabel
+          Left = 185
+          Height = 15
+          Top = 78
+          Width = 36
+          Caption = 'Ojciec:'
+          ParentColor = False
+        end
+        object Label5: TLabel
+          Left = 194
+          Height = 15
+          Top = 104
+          Width = 27
+          Caption = 'POC:'
+          ParentColor = False
+        end
+        object Label6: TLabel
+          Left = 157
+          Height = 15
+          Top = 120
+          Width = 64
+          Caption = 'Klasyfikacja:'
+          ParentColor = False
         end
       end
     end
@@ -1021,19 +1091,135 @@ object OchSalaWidzen: TOchSalaWidzen
     Top = 176
     object miModyfikuj: TMenuItem
       Caption = 'Modyfikuj ...'
+      Bitmap.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        20000000000000040000640000006400000000000000000000000A2B9500021C
+        80FB0024973C1A66D8451766D121000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000092A927B0000
+        58FF4E9FDFFF4CBFF8FF1467D4FF0B30ADB20000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000A81338AAD
+        DCFFC3FFFFFF95EBFFFF58D0FDFF0773D9FF0C33AFD400000000000000000000
+        00000000000000000000000000000000000000000000000000000E42B14692BA
+        E5FFFFFFFFFF79DFFFFF0EA4EEFF0B6DD5FF0E7FE0FF1046BBDA000000000000
+        0000000000000000000000000000000000000000000000000000000000001C4A
+        BCB7DBFFFFFF06DFFAFF00C3FCFF119EEAFF1272D7FF0D80E1FF134BC0D30000
+        0000000000000000000000000000000000000000000000000000000000000016
+        A8B535B9E4FF0AFFFFFF00D8F6FF00C8FEFF119CEAFF1271D6FF0D7FDFFF154D
+        C2DA000000000000000000000000000000000000000000000000000000000000
+        00000B2EB4DA3AD2ECFF12FFFFFF00D9F6FF00C8FEFF119CEAFF1271D5FF0D80
+        DEFF1550C4D30000000000000000000000000000000000000000000000000000
+        000000000000102DB6D339D4EDFF12FFFFFF00D8F6FF00C8FEFF119CEAFF1271
+        D5FF0D7FDFFF1651C9DA00000000000000000000000000000000000000000000
+        000000000000000000001233B8DA3AD1ECFF0CFFFDFF00D9F6FF00C8FEFF119C
+        EAFF126FD5FF0C80DFFF1A5BCBD3000000000000000000000000000000000000
+        00000000000000000000000000001637BDD359F0F6FF07FFFBFF00D8F6FF00C8
+        FEFF119CEAFF1371D6FF0B7FE3FF0047CADA0000000000000000000000000000
+        000000000000000000000000000000000000294CC4DA67F6F8FF03FFFAFF00D8
+        F6FF00C8FEFF0EA9F7FF0052BEFF627590FF5684D3D300000000000000000000
+        000000000000000000000000000000000000000000002D4FC8D368F8F9FF05FF
+        FAFF00E6FFFF00A4E9FF627992FFFFFFE9FF7976B8FF0032CBCB000000000000
+        00000000000000000000000000000000000000000000000000002E53CADA66FF
+        FFFF00E9E1FF639AA3FFFFFFFCFF6B6FAAFF0000DDFF0D27EFFF000000000000
+        0000000000000000000000000000000000000000000000000000000000001E59
+        CFD380B6BCFFFFFFFCFF6D7CADFF0000DAFF0007FFFF0D26E8FF000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00004474E3DA84A6BCFF0C6CE2FF1458FFFF0B21EDFF1130E026000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000953D0C43FADF7F92982EDEE103AEA1F00000000
+      }
       ImageIndex = 39
       OnClick = miModyfikujClick
     end
     object miUsunZPoczekalni: TMenuItem
       Caption = 'Usuń z poczekalni ...'
+      Bitmap.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000000000000606BCD60A10
+        D6E10408CFE10509D0E10508CFE10409CFE10408CEE10407CDE10306CCE10305
+        CBE10205CAE10303CAE10202C7E10502C5E10200C7E10200B6D61820D4FF2C4A
+        F2FF1930EEFF1C31EEFF172DEEFF1629EEFF1328EDFF1223EDFF101FEDFF0F1B
+        ECFF0D16ECFF0C12ECFF0B0EEBFF0A0BEAFF0A07ECFF0301CDFF4A53F2F24674
+        FFFF2148FFFF2A50FFFF294BFFFF2646FFFF2341FFFF203DFFFF1D38FFFF1B35
+        FFFF182DFFFF1628FFFF1421FFFF121CFFFF1118FFFF0705EBF27173F7F381A0
+        FFFF4668FFFF3256FFFF2649FFFF2445FFFF2140FFFF1D3BFFFF1A36FFFF1732
+        FFFF142EFFFF122AFFFF0F25FFFF0D1DFFFF0E1EFFFF0002F1F3696DFDF28EB0
+        FFFF7493FFFF7594FFFF6989FFFF5578FFFF476BFFFF3F60FFFF3252FFFF2E4D
+        FFFF2B49FFFF2944FFFF2541FFFF223AFFFF223CFFFF141BFDF27176FFFFA6C4
+        FFFF91ACFFFF94B1FFFF96AFFFFF95B0FFFF94B0FFFF93B0FFFF93ACFFFF90AA
+        FFFF8EA6FFFF8CA4FFFF8A9FFFFF869CFFFF88A6FFFF6168FFFF524CFFD66C6E
+        FFE16765FFE16766FFE16766FFE16766FFE16766FFE16565FFE16564FFE16664
+        FFE16464FFE16465FFE16562FFE16462FFE16868FFE1504BFFD6000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000
+      }
       ImageIndex = 44
       OnClick = miUsunZPoczekalniClick
     end
     object MenuItem2: TMenuItem
       Caption = '-'
     end
+    object miRejestrWidzen: TMenuItem
+      Caption = 'Rejestr widzeń ...'
+      ImageIndex = 26
+      OnClick = miRejestrWidzenClick
+    end
+    object MenuItem1: TMenuItem
+      Caption = '-'
+    end
     object miRefresh: TMenuItem
       Caption = 'Odśwież'
+      Bitmap.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        00000000000000000000DB730D83D16108C3B75400FFB85500FFB65300FFD05F
+        06C3D86F0C8300000000000000000000000000000000D9710BFF000000000000
+        000000000000D16008FFE39200FFE49600FFE19300FFED9E00FFF9A200FFFDB0
+        0DFFFFBB17FFD56908FFD86F0AFF00000000D9700AFFEC951CFF000000000000
+        0000B55200FFE79B00FFE29300FFDE8F00FFE39000FFFAA500FFF8A708FFF9B0
+        1AFFFCB221FFFFC737FFF6AB28FFD46502FFF6AF2DFFED9621FF00000000C858
+        09FFE89C00FFDF8F00FFE39200FFF0A100FFF19005FFEF8F05FFEC8600FFFFC1
+        29FFFFBE2EFFFFC845FFFFCE50FFFFD964FFFFDC6DFFF3A224FFA24000FFE291
+        00FFE19300FFE39200FFF2A300FFC35508FFC25202FFD2670AFFD06508FFD164
+        07FFFFD965FFFFC945FFFFD058FFFFD767FFFFDC71FFF4A629FFA74200FFEA9C
+        00FFEC9C00FFF0A100FFC35508FF00000000000000000000000000000000F1A8
+        3EFFFFE393FFFFD055FFFFD563FFFFDE78FFFFE486FFF8AE2DFFB35000FFDE81
+        00FFDB7D00FFDD8000FFC65908FF000000000000000000000000DE7508FFFFCF
+        56FFFFEBA7FFFFF2C9FFFFEBA7FFFFDF7DFFFFE78DFFFCB52EFF000000000000
+        000000000000000000000000000000000000000000000000000000000000DD73
+        06FFDB6E00FFED900DFFEF8E0AFFFDC552FFFCC24FFFFECB56FFD47314FFDA7E
+        21FFD97D21FFB24300FFC24F00FFE17803FFE0780AFF00000000000000000000
+        0000000000000000000000000000000000000000000000000000B75300FFEA99
+        00FFF39A00FFFFD858FFFFEA9AFFFFF2C9FFFFDA52FFE0790CFF000000000000
+        000000000000F19718FFEF900FFFFFB71EFFFFB61DFFFEBD2CFFBC5700FFF5A0
+        00FFF8A303FFFCAD10FFF9A814FFFFB517FFD36503FF00000000000000000000
+        000000000000EF8E0AFFFFED97FFFFEB9DFFFFF2C9FFFFB61FFFC65C00FFFBA6
+        00FFF8A308FFFBB321FFFAB525FFFFCF4CFFDE740FFFE4810BFFEE9618FFEC90
+        14FFEF8E0AFFFFED97FFFFE386FFFFE9A7FFFFF6EAFFFFB921FFC95F00FFFBA9
+        04FFFCAE10FFFEB825FFFEB729FFFFC53FFFFFD44EFFFFD75DFFFFD359FFFFCD
+        50FFFFE383FFFFE385FFFFE17EFFFFF6EAFFFFD053FF00000000D16500FFFEAE
+        12FFC75905FFD66B08FFFFC834FFFFC53DFFFFC948FFFFD35EFFFFD765FFFFDC
+        79FFFFDC71FFFFE8A0FFFFF6EAFFFFD053FF0000000000000000D46800FFCB60
+        07FF0000000000000000D56805FFFFD456FFFFD24EFFFFD45EFFFFDB68FFFFDF
+        72FFFFE79CFFFFF6EAFFFFD156FF000000000000000000000000DC750DFF0000
+        0000000000000000000000000000ED8D1383EA8911C3F09212FFF8AA29FFF8A3
+        18FFFDAA15C3FFD0538300000000000000000000000000000000
+      }
       ImageIndex = 45
       OnClick = miRefreshClick
     end

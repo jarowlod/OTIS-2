@@ -55,6 +55,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Image_osDblClick(Sender: TObject);
     procedure sbtnWyslijWiadClick(Sender: TObject);
   private
     SelectIDO  : integer;
@@ -117,6 +118,34 @@ begin
   begin
     close;
   end;
+end;
+
+procedure TOchForm.Image_osDblClick(Sender: TObject);
+var Obrazek: TForm;
+    Img: TImage;
+begin
+    Obrazek:= TForm.Create(Self);
+    Obrazek.BorderStyle:= bsSizeable;
+    Obrazek.Caption:= DBNazwisko.Caption;
+      Img:= TImage.Create(Obrazek);
+      img.AutoSize    := false;
+      img.Parent      := Obrazek;
+      img.Stretch     := true;
+      img.Proportional:= true;
+      img.Align       := alClient;
+      img.Visible     := true;
+      Img.Picture.Assign(Image_os.Picture);
+    Obrazek.Height:= Screen.WorkAreaHeight;
+
+    if img.Picture.Width > (Screen.WorkAreaWidth div 2) then
+      Obrazek.Width:= (Screen.WorkAreaWidth div 2)
+    else
+      Obrazek.Width:= img.Picture.Width;
+
+    Obrazek.ShowModal;
+
+    FreeAndNil(img);
+    FreeAndNil(Obrazek);
 end;
 
 procedure TOchForm.sbtnWyslijWiadClick(Sender: TObject);

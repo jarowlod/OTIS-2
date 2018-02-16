@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   StdCtrls, Menus, datamodule, BGRACustomDrawn,
-  BGRAFlashProgressBar, windows;
+  BGRAFlashProgressBar, windows, LCLType;
 
 type
 
@@ -225,7 +225,10 @@ begin
 
   miOsadzony.Enabled           := (SelectIDO = 0)and(not OchSalaWidzen.ZQWidzenia.IsEmpty);
   miOsadzony.Visible           := miOsadzony.Enabled;
-  if miOsadzony.Enabled then miOsadzony.Caption:= OchSalaWidzen.ZQWidzenia.FieldByName('Nazwisko').AsString+' '+OchSalaWidzen.ZQWidzenia.FieldByName('Imie').AsString;
+  if miOsadzony.Enabled then
+    begin
+      miOsadzony.Caption:= OchSalaWidzen.ZQWidzenia.FieldByName('Nazwisko').AsString+' '+OchSalaWidzen.ZQWidzenia.FieldByName('Imie').AsString;
+    end;
 end;
 
 procedure TViewStolik.Timer1Timer(Sender: TObject);
@@ -311,9 +314,8 @@ begin
       ProgressBar1.Visible    := false;
     end
   else
-    begin
-      // TODO: wczytujemy dane do stolika
-         // zmieniamy zdjęcie tylko jeśli zmieni się IDO
+    begin // wczytujemy dane do stolika
+      // zmieniamy zdjęcie tylko jeśli zmieni się IDO
       if SelectIDO <> ZQPom.FieldByName('IDO').AsInteger then
         begin
           SelectIDO:= ZQPom.FieldByName('IDO').AsInteger;
