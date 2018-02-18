@@ -1,7 +1,7 @@
 object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
-  Left = 407
+  Left = 396
   Height = 371
-  Top = 238
+  Top = 222
   Width = 622
   Caption = 'Osoba uprawniona do widzeń'
   ClientHeight = 371
@@ -160,7 +160,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     MonthNames = 'Long'
   end
   object DBCheckBox1: TDBCheckBox
-    Left = 504
+    Left = 502
     Height = 19
     Top = 188
     Width = 110

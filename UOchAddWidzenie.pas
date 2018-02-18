@@ -15,7 +15,6 @@ type
   { TOchAddWidzenie }
 
   TOchAddWidzenie = class(TForm)
-    btnImortOsob: TBitBtn;
     btnModyfikujOsobe: TBitBtn;
     btnAnuluj: TBitBtn;
     btnDodaj: TBitBtn;
@@ -61,7 +60,6 @@ type
     TabSheetWykazy: TTabSheet;
     TabSheetUwagi: TTabSheet;
     ZQUprawnione: TZQuery;
-    procedure btnImortOsobClick(Sender: TObject);
     procedure btnModyfikujOsobeClick(Sender: TObject);
     procedure btnDodajClick(Sender: TObject);
     procedure btnDopiszOsobeClick(Sender: TObject);
@@ -110,7 +108,7 @@ type
 //  OchAddWidzenie: TOchAddWidzenie;
 
 implementation
-uses URejestrProsbOs, UOsadzeni, UOchAddOsobeWidzenie, UOchSalaWidzen, UOchImportOsobWidzenie;
+uses URejestrProsbOs, UOsadzeni, UOchAddOsobeWidzenie, UOchSalaWidzen;
 {$R *.frm}
 
 { TOchAddWidzenie }
@@ -273,17 +271,6 @@ begin
   with TOchAddOsobeWidzenie.Create(Self) do
   begin
     ModyfikujOsobe(Self.ZQUprawnione.FieldByName('ID').AsInteger);
-    ShowModal;
-    Free;
-  end;
-  RefreshQuery(ZQUprawnione);
-end;
-
-procedure TOchAddWidzenie.btnImortOsobClick(Sender: TObject);
-begin
-  // okno importu osób z NoeNET do osób uprawnionych do widzenia
-  with TOchImportOsobWidzenie.Create(Self) do
-  begin
     ShowModal;
     Free;
   end;
