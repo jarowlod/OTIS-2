@@ -15,11 +15,13 @@ type
   TViewOsobyBliskie = class(TForm)
     btnDopiszOsobe: TBitBtn;
     btnModyfikujOsobe: TBitBtn;
+    btnImortOsob: TBitBtn;
     DSUprawnione: TDataSource;
     Panel6: TPanel;
     RxDBGrid4: TRxDBGrid;
     ZQUprawnione: TZQuery;
     procedure btnDopiszOsobeClick(Sender: TObject);
+    procedure btnImortOsobClick(Sender: TObject);
     procedure btnModyfikujOsobeClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -37,7 +39,7 @@ var
   ViewOsobyBliskie: TViewOsobyBliskie;
 
 implementation
-uses UOchAddOsobeWidzenie, rxdbutils;
+uses UOchAddOsobeWidzenie, UOchImportOsobWidzenie, rxdbutils;
 {$R *.frm}
 
 { TViewOsobyBliskie }
@@ -85,6 +87,17 @@ begin
   with TOchAddOsobeWidzenie.Create(Self) do
   begin
     DodajOsobe(SelectIDO);
+    ShowModal;
+    Free;
+  end;
+  RefreshQuery(ZQUprawnione);
+end;
+
+procedure TViewOsobyBliskie.btnImortOsobClick(Sender: TObject);
+begin
+  // okno importu osób z NoeNET do osób uprawnionych do widzenia
+  with TOchImportOsobWidzenie.Create(Self) do
+  begin
     ShowModal;
     Free;
   end;
