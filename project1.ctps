@@ -19,8 +19,8 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="675"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="489"/>
         <CursorPos Y="677"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -32,10 +32,9 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="121"/>
-        <CursorPos X="20" Y="133"/>
+        <TopLine Value="169"/>
+        <CursorPos X="30" Y="133"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -134,7 +133,7 @@
         <ComponentName Value="Rozmieszczenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="360"/>
         <CursorPos Y="362"/>
         <UsageCount Value="200"/>
@@ -158,12 +157,10 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="261"/>
         <CursorPos X="38" Y="278"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit13>
       <Unit14>
         <Filename Value="UPenitTerminarz.pas"/>
@@ -423,7 +420,7 @@
         <ComponentName Value="OchRejestrWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="289"/>
         <CursorPos X="41" Y="329"/>
         <UsageCount Value="200"/>
@@ -436,9 +433,10 @@
         <ComponentName Value="OchAddWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="389"/>
-        <CursorPos X="51" Y="404"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="96"/>
+        <CursorPos X="22" Y="115"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -471,10 +469,12 @@
         <ComponentName Value="OchAddOsobeWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="112"/>
-        <CursorPos Y="53"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="62"/>
+        <CursorPos X="18" Y="49"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit41>
       <Unit42>
         <Filename Value="UViewUwagiOch.pas"/>
@@ -536,10 +536,10 @@
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="112"/>
         <CursorPos X="45" Y="118"/>
-        <UsageCount Value="191"/>
+        <UsageCount Value="195"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit47>
@@ -549,10 +549,12 @@
         <ComponentName Value="ViewOsobyBliskie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="82"/>
-        <CursorPos Y="85"/>
-        <UsageCount Value="182"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="84"/>
+        <CursorPos Y="98"/>
+        <UsageCount Value="186"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit48>
       <Unit49>
         <Filename Value="UViewPanelZdj.pas"/>
@@ -560,12 +562,10 @@
         <ComponentName Value="ViewPanelZdj"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="23" Y="64"/>
-        <UsageCount Value="166"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="170"/>
       </Unit49>
       <Unit50>
         <Filename Value="UAktualizacjaZdjec.pas"/>
@@ -576,7 +576,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos Y="34"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="137"/>
       </Unit50>
       <Unit51>
         <Filename Value="UOchSalaWidzen.pas"/>
@@ -584,10 +584,10 @@
         <ComponentName Value="OchSalaWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="96"/>
         <CursorPos X="23" Y="119"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="129"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit51>
@@ -597,10 +597,10 @@
         <ComponentName Value="ViewStolik"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="84"/>
         <CursorPos Y="87"/>
-        <UsageCount Value="124"/>
+        <UsageCount Value="128"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit52>
@@ -611,21 +611,23 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="336"/>
-        <CursorPos X="45" Y="343"/>
-        <UsageCount Value="96"/>
+        <TopLine Value="157"/>
+        <CursorPos X="20" Y="173"/>
+        <UsageCount Value="100"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit53>
       <Unit54>
-        <Filename Value="UOchEdycja_Widz.pas"/>
-        <ComponentName Value="OchEdycja_Widz"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <ComponentName Value="OchImportOsobWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="6"/>
-        <CursorPos X="11" Y="32"/>
-        <UsageCount Value="58"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="62"/>
+        <CursorPos X="18" Y="67"/>
+        <UsageCount Value="59"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit54>
       <Unit55>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\dbc\ZDbcIntfs.pas"/>
@@ -643,9 +645,9 @@
       <Unit57>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\db.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1358"/>
-        <CursorPos X="51" Y="1373"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="361"/>
+        <CursorPos X="15" Y="375"/>
+        <UsageCount Value="10"/>
       </Unit57>
       <Unit58>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -864,7 +866,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="1579"/>
         <CursorPos X="13" Y="1592"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit88>
       <Unit89>
@@ -909,9 +911,9 @@
       <Unit95>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\fields.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="368"/>
-        <CursorPos X="3" Y="371"/>
-        <UsageCount Value="7"/>
+        <TopLine Value="905"/>
+        <CursorPos X="3" Y="907"/>
+        <UsageCount Value="10"/>
       </Unit95>
       <Unit96>
         <Filename Value="C:\codetyphon\typhon\lcl\lclmessageglue.pas"/>
@@ -1138,124 +1140,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="638" Column="34" TopLine="625"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="38" Column="13" TopLine="10"/>
       </Position1>
       <Position2>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="186" Column="51" TopLine="173"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="37" Column="13" TopLine="10"/>
       </Position2>
       <Position3>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="47" Column="20" TopLine="38"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="36" Column="13" TopLine="10"/>
       </Position3>
       <Position4>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="322" Column="40" TopLine="301"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="35" Column="13" TopLine="10"/>
       </Position4>
       <Position5>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="181" Column="25" TopLine="177"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="34" Column="13" TopLine="10"/>
       </Position5>
       <Position6>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="248" Column="38" TopLine="227"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="33" Column="13" TopLine="10"/>
       </Position6>
       <Position7>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="249" Column="32" TopLine="232"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="32" Column="13" TopLine="10"/>
       </Position7>
       <Position8>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="242" TopLine="226"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="31" Column="13" TopLine="10"/>
       </Position8>
       <Position9>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="180" Column="13" TopLine="178"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="30" Column="13" TopLine="10"/>
       </Position9>
       <Position10>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="190" Column="13" TopLine="163"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="31" Column="13" TopLine="10"/>
       </Position10>
       <Position11>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="193" Column="33" TopLine="176"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="32" Column="13" TopLine="10"/>
       </Position11>
       <Position12>
-        <Filename Value="UViewStolik.pas"/>
-        <Caret Line="246" Column="17" TopLine="220"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="33" Column="13" TopLine="10"/>
       </Position12>
       <Position13>
-        <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="218" Column="28" TopLine="189"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="34" Column="13" TopLine="10"/>
       </Position13>
       <Position14>
-        <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="219" Column="28" TopLine="190"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="35" Column="13" TopLine="10"/>
       </Position14>
       <Position15>
-        <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="220" Column="28" TopLine="191"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="36" Column="13" TopLine="10"/>
       </Position15>
       <Position16>
-        <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="221" Column="28" TopLine="192"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="35" Column="13" TopLine="10"/>
       </Position16>
       <Position17>
-        <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="222" Column="28" TopLine="193"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="36" Column="33" TopLine="17"/>
       </Position17>
       <Position18>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="378" TopLine="376"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="68" Column="22" TopLine="38"/>
       </Position18>
       <Position19>
-        <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="223" Column="28" TopLine="194"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="53" Column="33" TopLine="39"/>
       </Position19>
       <Position20>
-        <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="230" Column="28" TopLine="201"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="37" Column="16" TopLine="28"/>
       </Position20>
       <Position21>
-        <Filename Value="UOchSalaWidzen.pas"/>
-        <Caret Line="99" Column="6" TopLine="99"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="404" Column="51" TopLine="389"/>
       </Position21>
       <Position22>
-        <Filename Value="UOchForm.pas"/>
-        <Caret Line="273" Column="55" TopLine="240"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="282" Column="3" TopLine="279"/>
       </Position22>
       <Position23>
-        <Filename Value="UOchForm.pas"/>
-        <Caret Line="127" Column="3" TopLine="122"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="270" Column="3" TopLine="268"/>
       </Position23>
       <Position24>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="315" Column="39" TopLine="296"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="272" Column="3" TopLine="270"/>
       </Position24>
       <Position25>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="286" Column="34" TopLine="272"/>
+        <Filename Value="UViewOsobyBliskie.pas"/>
+        <Caret Line="99" Column="30" TopLine="84"/>
       </Position25>
       <Position26>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="278" Column="38" TopLine="261"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="9" Column="71"/>
       </Position26>
       <Position27>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="181" Column="50" TopLine="166"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="95" Column="44" TopLine="81"/>
       </Position27>
       <Position28>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="215" Column="16" TopLine="211"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="105" Column="24" TopLine="81"/>
       </Position28>
       <Position29>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="65" Column="19" TopLine="49"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="106" Column="44" TopLine="87"/>
       </Position29>
       <Position30>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="146" Column="24" TopLine="124"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="128" Column="38" TopLine="99"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
