@@ -32,9 +32,10 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="169"/>
-        <CursorPos X="30" Y="133"/>
+        <TopLine Value="115"/>
+        <CursorPos X="36" Y="132"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -433,9 +434,8 @@
         <ComponentName Value="OchAddWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="96"/>
+        <TopLine Value="99"/>
         <CursorPos X="22" Y="115"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -1141,123 +1141,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="38" Column="13" TopLine="10"/>
+        <Caret Line="33" Column="13" TopLine="10"/>
       </Position1>
       <Position2>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="37" Column="13" TopLine="10"/>
+        <Caret Line="32" Column="13" TopLine="10"/>
       </Position2>
       <Position3>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="36" Column="13" TopLine="10"/>
+        <Caret Line="31" Column="13" TopLine="10"/>
       </Position3>
       <Position4>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="35" Column="13" TopLine="10"/>
+        <Caret Line="30" Column="13" TopLine="10"/>
       </Position4>
       <Position5>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="34" Column="13" TopLine="10"/>
+        <Caret Line="31" Column="13" TopLine="10"/>
       </Position5>
       <Position6>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="33" Column="13" TopLine="10"/>
+        <Caret Line="32" Column="13" TopLine="10"/>
       </Position6>
       <Position7>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="32" Column="13" TopLine="10"/>
+        <Caret Line="33" Column="13" TopLine="10"/>
       </Position7>
       <Position8>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="31" Column="13" TopLine="10"/>
+        <Caret Line="34" Column="13" TopLine="10"/>
       </Position8>
       <Position9>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="30" Column="13" TopLine="10"/>
+        <Caret Line="35" Column="13" TopLine="10"/>
       </Position9>
       <Position10>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="31" Column="13" TopLine="10"/>
+        <Caret Line="36" Column="13" TopLine="10"/>
       </Position10>
       <Position11>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="32" Column="13" TopLine="10"/>
+        <Caret Line="35" Column="13" TopLine="10"/>
       </Position11>
       <Position12>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="33" Column="13" TopLine="10"/>
+        <Caret Line="36" Column="33" TopLine="17"/>
       </Position12>
       <Position13>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="34" Column="13" TopLine="10"/>
+        <Caret Line="68" Column="22" TopLine="38"/>
       </Position13>
       <Position14>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="35" Column="13" TopLine="10"/>
+        <Caret Line="53" Column="33" TopLine="39"/>
       </Position14>
       <Position15>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="36" Column="13" TopLine="10"/>
+        <Caret Line="37" Column="16" TopLine="28"/>
       </Position15>
       <Position16>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="35" Column="13" TopLine="10"/>
-      </Position16>
-      <Position17>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="36" Column="33" TopLine="17"/>
-      </Position17>
-      <Position18>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="68" Column="22" TopLine="38"/>
-      </Position18>
-      <Position19>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="53" Column="33" TopLine="39"/>
-      </Position19>
-      <Position20>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="37" Column="16" TopLine="28"/>
-      </Position20>
-      <Position21>
         <Filename Value="UOchAddWidzenie.pas"/>
         <Caret Line="404" Column="51" TopLine="389"/>
-      </Position21>
-      <Position22>
+      </Position16>
+      <Position17>
         <Filename Value="UOchAddWidzenie.pas"/>
         <Caret Line="282" Column="3" TopLine="279"/>
-      </Position22>
-      <Position23>
+      </Position17>
+      <Position18>
         <Filename Value="UOchAddWidzenie.pas"/>
         <Caret Line="270" Column="3" TopLine="268"/>
-      </Position23>
-      <Position24>
+      </Position18>
+      <Position19>
         <Filename Value="UOchAddWidzenie.pas"/>
         <Caret Line="272" Column="3" TopLine="270"/>
-      </Position24>
-      <Position25>
+      </Position19>
+      <Position20>
         <Filename Value="UViewOsobyBliskie.pas"/>
         <Caret Line="99" Column="30" TopLine="84"/>
-      </Position25>
-      <Position26>
+      </Position20>
+      <Position21>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
         <Caret Line="9" Column="71"/>
-      </Position26>
-      <Position27>
+      </Position21>
+      <Position22>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
         <Caret Line="95" Column="44" TopLine="81"/>
-      </Position27>
-      <Position28>
+      </Position22>
+      <Position23>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
         <Caret Line="105" Column="24" TopLine="81"/>
-      </Position28>
-      <Position29>
+      </Position23>
+      <Position24>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
         <Caret Line="106" Column="44" TopLine="87"/>
-      </Position29>
-      <Position30>
+      </Position24>
+      <Position25>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
         <Caret Line="128" Column="38" TopLine="99"/>
+      </Position25>
+      <Position26>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="9" Column="11" TopLine="154"/>
+      </Position26>
+      <Position27>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="10" Column="82"/>
+      </Position27>
+      <Position28>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="130" Column="28" TopLine="116"/>
+      </Position28>
+      <Position29>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="131" Column="7" TopLine="116"/>
+      </Position29>
+      <Position30>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="129" Column="5" TopLine="115"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
