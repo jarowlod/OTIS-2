@@ -1,7 +1,7 @@
 object ViewOsobyBliskie: TViewOsobyBliskie
-  Left = 407
+  Left = 404
   Height = 478
-  Top = 238
+  Top = 224
   Width = 771
   Align = alClient
   BorderStyle = bsNone
