@@ -1,7 +1,7 @@
 object OchImportOsobWidzenie: TOchImportOsobWidzenie
-  Left = 407
+  Left = 404
   Height = 457
-  Top = 238
+  Top = 224
   Width = 769
   Caption = 'Import osób uprawnionych do widzenia z NoeNET.'
   ClientHeight = 457
@@ -356,6 +356,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       TitleFont.Pitch = fpVariable
       TitleFont.Quality = fqDraft
       TitleStyle = tsNative
+      OnPrepareCanvas = RxDBGrid4PrepareCanvas
     end
   end
   object DSImport: TDataSource
@@ -392,7 +393,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       end    
       item
         Name = 'Skreslona'
-        DataType = ftBoolean
+        DataType = ftInteger
       end>
     PacketRecords = 0
     Left = 100
@@ -447,7 +448,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Required = False
       Size = 100
     end
-    object RxMemoryImportSkreslona: TBooleanField
+    object RxMemoryImportSkreslona: TLongintField
       FieldKind = fkData
       FieldName = 'Skreslona'
       Index = 5
@@ -455,7 +456,6 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      DisplayValues = 'True;False'
     end
   end
 end

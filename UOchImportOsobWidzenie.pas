@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, rxdbgrid, rxmemds, TplGradientUnit, Forms,
-  Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, datamodule;
+  Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, datamodule, Grids, DBGrids;
 
 type
 
@@ -28,11 +28,13 @@ type
     RxMemoryImportImie: TStringField;
     RxMemoryImportNazwisko: TStringField;
     RxMemoryImportPokrew: TStringField;
-    RxMemoryImportSkreslona: TBooleanField;
+    RxMemoryImportSkreslona: TLongintField;
     RxMemoryImportUwagi: TStringField;
     procedure btnImportOsobClick(Sender: TObject);
     procedure btnPasteClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure RxDBGrid4PrepareCanvas(sender: TObject; DataCol: Integer;
+      Column: TColumn; AState: TGridDrawState);
   private
     SelectIDO: integer;
     function ParseXML(Value: string): Boolean;
@@ -52,7 +54,16 @@ uses Clipbrd, Laz2_DOM, laz2_XMLRead, LazUTF8;
 procedure TOchImportOsobWidzenie.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
+  lblDaneOsadzonego.Caption:= 'Nie wybrano osadzonego.';
   btnImportOsob.Enabled:= false;
+end;
+
+procedure TOchImportOsobWidzenie.RxDBGrid4PrepareCanvas(sender: TObject;
+  DataCol: Integer; Column: TColumn; AState: TGridDrawState);
+begin
+  if Column.Field.DataSet.IsEmpty then exit;
+  if Column.Field.DataSet.FieldByName('Skreslona').AsBoolean = true then
+     TRxDBGrid(Sender).Canvas.Brush.Color:= $008080FF;   //Font.StrikeThrough:= true;
 end;
 
 procedure TOchImportOsobWidzenie.btnPasteClick(Sender: TObject);
@@ -89,12 +100,13 @@ var FDoc: TXMLDocument;
     Strm: TStringStream;
     i: integer;
     NodeCOB: TDOMNodeList;
+    s: string;
 begin
   RxMemoryImport.Open;
   Result:= true;
-  try
+  //try
     try
-      Strm:= TStringStream.Create(Value);
+      Strm:= TStringStream.Create(Value, CP_UTF8);
       ReadXMLFile(FDoc, Strm);
 
       NodeCOB:= FDoc.GetElementsByTagName('COB');
@@ -106,16 +118,20 @@ begin
               RxMemoryImport.Append;
               RxMemoryImportNazwisko.AsAnsiString:= NodeCOB[i].Attributes.GetNamedItem('NAZ').NodeValue;
               RxMemoryImportImie.AsAnsiString    := NodeCOB[i].Attributes.GetNamedItem('IME').NodeValue;
-              RxMemoryImportAdres.AsAnsiString   := NodeCOB[i].Attributes.GetNamedItem('MSC_op').NodeValue
-                                                   +' ul.'+NodeCOB[i].Attributes.GetNamedItem('ULC').NodeValue
-                                                   +' '+NodeCOB[i].Attributes.GetNamedItem('DOM').NodeValue
-                                                   +'/'+NodeCOB[i].Attributes.GetNamedItem('LOC').NodeValue;
+              s:= NodeCOB[i].Attributes.GetNamedItem('MSC_op').NodeValue
+                  +' ul.'+NodeCOB[i].Attributes.GetNamedItem('ULC').NodeValue
+                  +' '+NodeCOB[i].Attributes.GetNamedItem('DOM').NodeValue;
+                if Assigned(NodeCOB[i].Attributes.GetNamedItem('LOK')) then
+                   s+= '/'+NodeCOB[i].Attributes.GetNamedItem('LOK').NodeValue;
+              RxMemoryImportAdres.AsString:= s;
               RxMemoryImportPokrew.AsAnsiString  := NodeCOB[i].Attributes.GetNamedItem('STS_op').NodeValue;
-              RxMemoryImportUwagi.AsString       := 'NoeNET';
+              RxMemoryImportUwagi.AsString       := 'NoeNET';  // NodeCOB[i].Attributes.GetNamedItem('KOM').NodeValue;
 
               // 0:NIE 1:Jednorazowe 2:TAK
               if NodeCOB[i].Attributes.GetNamedItem('PDWI_op').NodeValue = 'NIE' then
-                RxMemoryImportSkreslona.AsBoolean:= true;
+                  RxMemoryImportSkreslona.AsBoolean:= true
+                else
+                  RxMemoryImportSkreslona.AsBoolean:= False;
 
               RxMemoryImport.Post;
             end
@@ -128,9 +144,10 @@ begin
       FDoc.Free;
       Strm.Free;
     end;
-  except
-    Result:= false;
-  end;
+  //except
+  //  Result:= false;
+  //  MessageDlg('Wystąpił błąd podczas analizy danych.', mtWarning, [mbOK],0);
+  //end;
   Result:= not RxMemoryImport.IsEmpty;
 end;
 

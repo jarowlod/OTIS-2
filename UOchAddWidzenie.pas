@@ -284,6 +284,7 @@ begin
   // okno importu osób z NoeNET do osób uprawnionych do widzenia
   with TOchImportOsobWidzenie.Create(Self) do
   begin
+    SetIDO(SelectIDO);
     ShowModal;
     Free;
   end;
