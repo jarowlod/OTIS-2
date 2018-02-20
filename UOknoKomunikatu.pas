@@ -5,15 +5,15 @@ unit UOknoKomunikatu;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, rxdbgrid, RichMemo, Forms, Controls,
-  Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, datamodule, db, ZDataset,
-  ZSqlUpdate, rxdbutils;
+  Classes, SysUtils, FileUtil, rxdbgrid, RichMemo, Forms, Controls, Graphics,
+  Dialogs, ExtCtrls, Buttons, StdCtrls, datamodule, BCLabel, db, ZDataset, ZSqlUpdate, rxdbutils;
 
 type
 
   { TOknoKomunikatu }
 
   TOknoKomunikatu = class(TForm)
+    BCLabel1: TBCLabel;
     BitBtn1: TBitBtn;
     btnDrukuj: TBitBtn;
     DSKomOdebrane: TDataSource;

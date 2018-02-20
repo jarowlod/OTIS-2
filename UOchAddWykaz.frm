@@ -1,7 +1,7 @@
 object OchAddWykaz: TOchAddWykaz
-  Left = 396
+  Left = 404
   Height = 453
-  Top = 222
+  Top = 224
   Width = 562
   Caption = 'Edycja wykazu - '
   ClientHeight = 453

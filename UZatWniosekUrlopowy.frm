@@ -1,13 +1,13 @@
 object ZatWniosekUrolopowy: TZatWniosekUrolopowy
-  Left = 445
+  Left = 404
   Height = 609
-  Top = 161
+  Top = 224
   Width = 668
   Caption = 'Wniosek Urolopowy'
   ClientHeight = 609
   ClientWidth = 668
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 40
@@ -923,8 +923,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 600
-    top = 48
+    Left = 600
+    Top = 48
   end
   object ZQZatUrlop: TZQuery
     Connection = DM.ZConnection1
@@ -955,8 +955,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
         Name = 'id'
         ParamType = ptUnknown
       end>
-    left = 464
-    top = 48
+    Left = 464
+    Top = 48
     ParamData = <    
       item
         DataType = ftUnknown
@@ -966,7 +966,7 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
   end
   object DSZatUrlop: TDataSource
     DataSet = ZQZatUrlop
-    left = 536
-    top = 48
+    Left = 536
+    Top = 48
   end
 end

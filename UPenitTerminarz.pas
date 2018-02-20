@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, YearPlanner, rxdbgrid, Forms, Controls, Graphics,
-  Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, datamodule, LR_DBSet,
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, LR_DBSet,
   LR_Class, db, ZDataset, DBGrids, Menus, dateutils, Clipbrd, Buttons,
-  rxdbutils;
+  rxdbutils, datamodule;
 
 type
 

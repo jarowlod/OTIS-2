@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Buttons, StdCtrls, EditBtn, datamodule, DateTimePicker, Types;
+  Buttons, StdCtrls, EditBtn, DateTimePicker, Types, datamodule;
 
 type
 

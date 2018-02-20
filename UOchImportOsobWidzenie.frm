@@ -268,6 +268,24 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
           Footers = <>
+        end      
+        item
+          Color = clSkyBlue
+          Title.Alignment = taCenter
+          Title.Font.CharSet = EASTEUROPE_CHARSET
+          Title.Font.Pitch = fpVariable
+          Title.Font.Quality = fqDraft
+          Title.Font.Style = [fsBold]
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Status Osoby'
+          FieldName = 'StatusOs'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
         end>
       KeyStrokes = <      
         item
@@ -394,6 +412,11 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       item
         Name = 'Skreslona'
         DataType = ftInteger
+      end    
+      item
+        Name = 'StatusOs'
+        DataType = ftString
+        Size = 20
       end>
     PacketRecords = 0
     Left = 100
@@ -404,7 +427,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
+      ReadOnly = True
       Required = False
       Size = 50
     end
@@ -414,7 +437,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
+      ReadOnly = True
       Required = False
       Size = 50
     end
@@ -424,7 +447,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
+      ReadOnly = True
       Required = False
       Size = 100
     end
@@ -434,7 +457,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
+      ReadOnly = True
       Required = False
       Size = 50
     end
@@ -444,7 +467,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
+      ReadOnly = True
       Required = False
       Size = 100
     end
@@ -452,6 +475,15 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       FieldKind = fkData
       FieldName = 'Skreslona'
       Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object RxMemoryImportStatusOs: TStringField
+      FieldKind = fkData
+      FieldName = 'StatusOs'
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

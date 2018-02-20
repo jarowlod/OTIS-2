@@ -29,6 +29,7 @@ type
     RxMemoryImportNazwisko: TStringField;
     RxMemoryImportPokrew: TStringField;
     RxMemoryImportSkreslona: TLongintField;
+    RxMemoryImportStatusOs: TStringField;
     RxMemoryImportUwagi: TStringField;
     procedure btnImportOsobClick(Sender: TObject);
     procedure btnPasteClick(Sender: TObject);
@@ -38,6 +39,7 @@ type
   private
     SelectIDO: integer;
     function ParseXML(Value: string): Boolean;
+    procedure SprawdzStatusOsob;
   public
     procedure SetIDO(ido: integer);
   end;
@@ -69,6 +71,7 @@ end;
 procedure TOchImportOsobWidzenie.btnPasteClick(Sender: TObject);
 begin
   btnImportOsob.Enabled:= ParseXML(Clipboard.AsText);
+  SprawdzStatusOsob;
 end;
 
 procedure TOchImportOsobWidzenie.btnImportOsobClick(Sender: TObject);

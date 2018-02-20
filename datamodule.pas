@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZConnection, ZDataset, Forms,
   Dialogs, DateUtils, controls, IniPropStorage, ShellApi, ExtCtrls, Graphics,
-  rxdbgrid, LMessages, LCLType, LR_Class, Clipbrd, UNotifierPopUp, DateTimePicker, Menus;
+  rxdbgrid, LMessages, LCLType, LR_Class, Clipbrd, UNotifierPopUp, DateTimePicker,
+  DBDateTimePicker, Menus;
 
 type
   TNotifierPopUpStyle = (nots_Info, nots_Warning, nots_Clear);
@@ -140,6 +141,21 @@ type
       constructor Create(AOwner: TComponent); override;
       destructor Destroy; override;
   end;
+
+  { TDBDateTimePicker }
+  // Hack na DBDateTimePicker: dodanie PopUpMenu z funkcjami Kopiuj datę do schowka, wstaw i usuń datę
+  // podpięte skróty Ctrl+C, Ctrl+V
+  TDBDateTimePicker = class(DBDateTimePicker.TDBDateTimePicker)
+    private
+      fPopupMenuEx: TPopupMenu;
+      procedure PopupMenuKopiuj(Sender: TObject);
+      procedure PopupMenuWklej(Sender: TObject);
+      procedure PopupMenuUsun(Sender: TObject);
+    public
+      constructor Create(AOwner: TComponent); override;
+      destructor Destroy; override;
+  end;
+
 
 var
   DM: TDM;
@@ -772,6 +788,61 @@ begin
   FreeAndNil(fPopupMenuEx);
   inherited Destroy;
 end;
+
+{ TDBDateTimePicker }
+
+procedure TDBDateTimePicker.PopupMenuKopiuj(Sender: TObject);
+var obj: TObject;
+begin
+  obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  if TDBDateTimePicker(obj).DateIsNull then Clipboard.AsText:= 'Brak'
+                                       else Clipboard.AsText:= DateToStr(TDBDateTimePicker(obj).Date);
+end;
+
+procedure TDBDateTimePicker.PopupMenuWklej(Sender: TObject);
+var obj: TObject;
+begin
+  obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  TDBDateTimePicker(obj).Date:= StrToDateDef(Clipboard.AsText, NullDate);
+end;
+
+procedure TDBDateTimePicker.PopupMenuUsun(Sender: TObject);
+var obj: TObject;
+begin
+  obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  TDBDateTimePicker(obj).Date:= NullDate;
+end;
+
+constructor TDBDateTimePicker.Create(AOwner: TComponent);
+var
+  Item: TMenuItem;
+begin
+  inherited Create(AOwner);
+  fPopupMenuEx:= TPopupMenu.Create(Self);
+    Item:= TMenuItem.Create(fPopupMenuEx);
+    Item.Caption:= 'Kopiuj';
+    Item.OnClick:= @PopupMenuKopiuj;
+    Item.ShortCut:= ShortCut(Ord('C'), [ssCtrl]);
+  fPopupMenuEx.Items.Add(Item);
+    Item:= TMenuItem.Create(fPopupMenuEx);
+    Item.Caption:= 'Wklej';
+    Item.OnClick:= @PopupMenuWklej;
+    Item.ShortCut:= ShortCut(Ord('V'), [ssCtrl]);
+  fPopupMenuEx.Items.Add(Item);
+    Item:= TMenuItem.Create(fPopupMenuEx);
+    Item.Caption:= 'Usuń';
+    Item.OnClick:= @PopupMenuUsun;
+  fPopupMenuEx.Items.Add(Item);
+  fPopupMenuEx.PopupComponent:= Self;
+  PopupMenu:= fPopupMenuEx;
+end;
+
+destructor TDBDateTimePicker.Destroy;
+begin
+  FreeAndNil(fPopupMenuEx);
+  inherited Destroy;
+end;
+
 
 end.
 

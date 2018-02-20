@@ -7,8 +7,8 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, DateTimePicker, ZDataset, ZSqlUpdate,
   rxdbgrid, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, ComCtrls,
-  DbCtrls, Buttons, Menus, rxdbutils, datamodule, LR_Class, LR_DBSet,
-  LSControls, RTTICtrls, TplGradientUnit, DBGrids, dateutils;
+  DbCtrls, Buttons, Menus, rxdbutils, LR_Class, LR_DBSet, LSControls, RTTICtrls,
+  TplGradientUnit, DBGrids, dateutils, datamodule;
 
 type
 

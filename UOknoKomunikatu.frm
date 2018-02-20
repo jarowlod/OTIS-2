@@ -1,11 +1,11 @@
 object OknoKomunikatu: TOknoKomunikatu
-  Left = 407
+  Left = 404
   Height = 513
-  Top = 229
-  Width = 719
+  Top = 224
+  Width = 827
   Caption = 'Masz wiadomość ...'
   ClientHeight = 513
-  ClientWidth = 719
+  ClientWidth = 827
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
@@ -14,9 +14,11 @@ object OknoKomunikatu: TOknoKomunikatu
     Left = 0
     Height = 58
     Top = 0
-    Width = 719
+    Width = 827
     Align = alTop
-    Caption = 'UWAGA - bardzo ważny komunikat...'
+    BevelOuter = bvNone
+    ClientHeight = 58
+    ClientWidth = 827
     Color = clWhite
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Color = clRed
@@ -28,16 +30,78 @@ object OknoKomunikatu: TOknoKomunikatu
     ParentColor = False
     ParentFont = False
     TabOrder = 0
+    object BCLabel1: TBCLabel
+      Left = 0
+      Height = 58
+      Top = 0
+      Width = 827
+      Align = alClient
+      Background.Color = clWhite
+      Background.ColorOpacity = 255
+      Background.Gradient1.StartColor = clWhite
+      Background.Gradient1.StartColorOpacity = 255
+      Background.Gradient1.DrawMode = dmSet
+      Background.Gradient1.EndColor = clRed
+      Background.Gradient1.EndColorOpacity = 255
+      Background.Gradient1.ColorCorrection = True
+      Background.Gradient1.GradientType = gtLinear
+      Background.Gradient1.Point1XPercent = 0
+      Background.Gradient1.Point1YPercent = 0
+      Background.Gradient1.Point2XPercent = 100
+      Background.Gradient1.Point2YPercent = 100
+      Background.Gradient1.Sinus = False
+      Background.Gradient2.StartColor = clWhite
+      Background.Gradient2.StartColorOpacity = 255
+      Background.Gradient2.DrawMode = dmSet
+      Background.Gradient2.EndColor = clBlack
+      Background.Gradient2.EndColorOpacity = 255
+      Background.Gradient2.ColorCorrection = True
+      Background.Gradient2.GradientType = gtLinear
+      Background.Gradient2.Point1XPercent = 0
+      Background.Gradient2.Point1YPercent = 0
+      Background.Gradient2.Point2XPercent = 0
+      Background.Gradient2.Point2YPercent = 0
+      Background.Gradient2.Sinus = False
+      Background.Gradient1EndPercent = 100
+      Background.Style = bbsGradient
+      Border.Color = clBlack
+      Border.ColorOpacity = 255
+      Border.LightColor = clWhite
+      Border.LightOpacity = 255
+      Border.LightWidth = 0
+      Border.Style = bboNone
+      Border.Width = 1
+      Caption = 'UWAGA - bardzo ważny komunikat...'
+      FontEx.Color = clBlack
+      FontEx.EndEllipsis = False
+      FontEx.FontQuality = fqSystemClearType
+      FontEx.Height = 26
+      FontEx.Name = 'Georgia'
+      FontEx.SingleLine = True
+      FontEx.Shadow = True
+      FontEx.ShadowColor = 136
+      FontEx.ShadowColorOpacity = 255
+      FontEx.ShadowRadius = 8
+      FontEx.ShadowOffsetX = 5
+      FontEx.ShadowOffsetY = 5
+      FontEx.Style = [fsBold]
+      FontEx.TextAlignment = bcaCenter
+      FontEx.WordBreak = False
+      InnerMargin = 0
+      Rounding.RoundX = 1
+      Rounding.RoundY = 1
+      Rounding.RoundOptions = []
+    end
   end
   object Panel2: TPanel
     Left = 0
     Height = 130
     Top = 58
-    Width = 719
+    Width = 827
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 130
-    ClientWidth = 719
+    ClientWidth = 827
     TabOrder = 1
     object Panel4: TPanel
       Left = 0
@@ -503,17 +567,18 @@ object OknoKomunikatu: TOknoKomunikatu
       Left = 304
       Height = 130
       Top = 0
-      Width = 415
+      Width = 523
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
       Columns = <      
         item
           Font.Color = clMaroon
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Data Nadania'
-          Width = 120
+          Width = 130
           FieldName = 'dataNadania'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -524,6 +589,7 @@ object OknoKomunikatu: TOknoKomunikatu
           Footers = <>
         end      
         item
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Nadawca'
@@ -538,10 +604,11 @@ object OknoKomunikatu: TOknoKomunikatu
           Footers = <>
         end      
         item
+          SizePriority = 2
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Temat'
-          Width = 150
+          Width = 210
           FieldName = 'temat'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -617,6 +684,7 @@ object OknoKomunikatu: TOknoKomunikatu
       Align = alClient
       AlternateColor = 16055807
       AutoAdvance = aaNone
+      AutoFillColumns = True
       AutoEdit = False
       Color = clForm
       DrawFullLine = False
@@ -639,13 +707,13 @@ object OknoKomunikatu: TOknoKomunikatu
     Left = 0
     Height = 50
     Top = 463
-    Width = 719
+    Width = 827
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 719
+    ClientWidth = 827
     TabOrder = 2
     object BitBtn1: TBitBtn
-      Left = 303
+      Left = 356
       Height = 30
       Top = 8
       Width = 105
@@ -705,7 +773,7 @@ object OknoKomunikatu: TOknoKomunikatu
     Left = 0
     Height = 275
     Top = 188
-    Width = 719
+    Width = 827
     Align = alClient
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Height = -13

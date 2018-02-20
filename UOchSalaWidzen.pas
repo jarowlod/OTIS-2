@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ExtCtrls, Buttons, DbCtrls, StdCtrls, Menus, datamodule, UViewStolik, db,
-  ZDataset, rxdbgrid, BCPanel, BCLabel;
+  ExtCtrls, Buttons, DbCtrls, StdCtrls, Menus, UViewStolik, db,
+  ZDataset, rxdbgrid, BCPanel, BCLabel, datamodule;
 
 type
 

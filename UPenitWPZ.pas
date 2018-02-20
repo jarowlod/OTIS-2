@@ -7,8 +7,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, TplGradientUnit, rxdbgrid, rxmemds, Forms,
   Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, EditBtn, Spin, fpjson,
-  jsonparser, dateutils, Clipbrd, Buttons, DbCtrls, datamodule, DateTimePicker,
-  LSControls, LR_Class, LR_DBSet, ZDataset, db;
+  jsonparser, dateutils, Clipbrd, Buttons, DbCtrls, DateTimePicker,
+  LSControls, LR_Class, LR_DBSet, ZDataset, db, datamodule;
 
 type
   TOrzeczenie = record
