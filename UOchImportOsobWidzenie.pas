@@ -25,6 +25,7 @@ type
     RxDBGrid4: TRxDBGrid;
     RxMemoryImport: TRxMemoryData;
     RxMemoryImportAdres: TStringField;
+    RxMemoryImportID: TLongintField;
     RxMemoryImportImie: TStringField;
     RxMemoryImportNazwisko: TStringField;
     RxMemoryImportPokrew: TStringField;
@@ -48,7 +49,7 @@ var
   OchImportOsobWidzenie: TOchImportOsobWidzenie;
 
 implementation
-uses Clipbrd, Laz2_DOM, laz2_XMLRead, LazUTF8;
+uses Clipbrd, Laz2_DOM, laz2_XMLRead, LazUTF8, Variants;
 {$R *.frm}
 
 { TOchImportOsobWidzenie }
@@ -65,7 +66,7 @@ procedure TOchImportOsobWidzenie.RxDBGrid4PrepareCanvas(sender: TObject;
 begin
   if Column.Field.DataSet.IsEmpty then exit;
   if Column.Field.DataSet.FieldByName('Skreslona').AsBoolean = true then
-     TRxDBGrid(Sender).Canvas.Brush.Color:= $008080FF;   //Font.StrikeThrough:= true;
+     TRxDBGrid(Sender).Canvas.Brush.Color:= $008080FF;
 end;
 
 procedure TOchImportOsobWidzenie.btnPasteClick(Sender: TObject);
@@ -74,11 +75,53 @@ begin
   SprawdzStatusOsob;
 end;
 
+// sprawdzam czy istnieje (Nazwisko Imie)
+// jeśli istnieje to weryfikuję Adres i prawo do widzeń
+// else dopisuję
 procedure TOchImportOsobWidzenie.btnImportOsobClick(Sender: TObject);
+var ZQPom: TZQueryPom;
 begin
-  // sprawdzam czy istnieje (Nazwisko Imie)
-  // jeśli istnieje to weryfikuję Adres i prawo do widzeń
-  // else dopisuję
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT * FROM uprawnione WHERE IDO=:ido';
+  ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQPom.Open;
+
+  RxMemoryImport.First;
+  while not RxMemoryImport.EOF do
+  begin
+    if RxMemoryImportStatusOs.AsString = 'Nowa' then
+       begin
+         ZQPom.Append;
+         ZQPom.FieldByName('IDO').AsInteger      := SelectIDO;
+         ZQPom.FieldByName('Nazwisko').AsString  := RxMemoryImportNazwisko.AsString;
+         ZQPom.FieldByName('Imie').AsString      := RxMemoryImportImie.AsString;
+         ZQPom.FieldByName('Adres').AsString     := RxMemoryImportAdres.AsString;
+         ZQPom.FieldByName('Pokrew').AsString    := RxMemoryImportPokrew.AsString;
+         ZQPom.FieldByName('Skreslona').AsBoolean:= RxMemoryImportSkreslona.AsBoolean;
+         ZQPom.FieldByName('Uwagi').AsString     := RxMemoryImportUwagi.AsString;
+
+         ZQPom.FieldByName('WPISAL').AsString    := DM.PelnaNazwa;
+         ZQPom.FieldByName('Data_W').AsDateTime  := Now();
+         ZQPom.Post;
+       end else
+    if RxMemoryImportStatusOs.AsString = 'Modyfikuj' then
+       if ZQPom.Locate('ID', RxMemoryImportID.AsInteger, []) then
+       begin
+         ZQPom.Edit;
+         ZQPom.FieldByName('Adres').AsString     := RxMemoryImportAdres.AsString;
+         ZQPom.FieldByName('Pokrew').AsString    := RxMemoryImportPokrew.AsString;
+         ZQPom.FieldByName('Skreslona').AsBoolean:= RxMemoryImportSkreslona.AsBoolean;
+         ZQPom.FieldByName('Uwagi').AsString     := RxMemoryImportUwagi.AsString;
+
+         ZQPom.FieldByName('WPISAL').AsString    := DM.PelnaNazwa;
+         ZQPom.FieldByName('Data_W').AsDateTime  := Now();
+         ZQPom.Post;
+       end;
+
+    RxMemoryImport.Next;
+  end;
+
+  FreeAndNil(ZQPom);
 end;
 
 procedure TOchImportOsobWidzenie.SetIDO(ido: integer);
@@ -107,7 +150,7 @@ var FDoc: TXMLDocument;
 begin
   RxMemoryImport.Open;
   Result:= true;
-  //try
+  try
     try
       Strm:= TStringStream.Create(Value, CP_UTF8);
       ReadXMLFile(FDoc, Strm);
@@ -140,18 +183,80 @@ begin
             end
         else
           MessageDlg('Wklejono błędne dane '+LineEnding+'lub dane innego osadzonego.', mtWarning, [mbOK],0);
-
       end;
 
     finally
       FDoc.Free;
       Strm.Free;
     end;
-  //except
-  //  Result:= false;
-  //  MessageDlg('Wystąpił błąd podczas analizy danych.', mtWarning, [mbOK],0);
-  //end;
+  except
+    Result:= false;
+    MessageDlg('Wystąpił błąd podczas analizy danych.', mtWarning, [mbOK],0);
+  end;
   Result:= not RxMemoryImport.IsEmpty;
+end;
+
+// STATUS OSOBY: [OK, Modyfikuj, Nowa, OTIS].  Modyfikuj(Adres, Pokrewieństwo, Prawo do widzeń)
+procedure TOchImportOsobWidzenie.SprawdzStatusOsob;
+var ZQPom: TZQueryPom;
+begin
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT * FROM uprawnione WHERE IDO=:ido';
+  ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQPom.Open;
+
+  // usuwamy zdublowaną pozycje (Skresloną)
+  // TODO
+  // --------------------------------------
+
+  while not ZQPom.EOF do
+  begin
+    // sprawdzam czy już istnieje Nazwisko i Imię
+    if RxMemoryImport.Locate('Nazwisko;Imie', VarArrayOf([ZQPom.FieldByName('Nazwisko').AsString, ZQPom.FieldByName('Imie').AsString]), [loCaseInsensitive]) then
+      begin
+        RxMemoryImport.Edit;
+        RxMemoryImportID.AsInteger:= ZQPom.FieldByName('ID').AsInteger;
+
+        // sprawdzam czy zgadza się Adres, Pokrewieństwo, prawo do widzeń
+        if (RxMemoryImportAdres.AsString      <> ZQPom.FieldByName('Adres').AsString)or
+           (RxMemoryImportPokrew.AsString     <> ZQPom.FieldByName('Pokrew').AsString)or
+           (RxMemoryImportSkreslona.AsBoolean <> ZQPom.FieldByName('Skreslona').AsBoolean)
+           then RxMemoryImportStatusOs.AsString:= 'Modyfikuj'
+        else
+          RxMemoryImportStatusOs.AsString:= 'OK';
+        RxMemoryImport.Post;
+      end
+    else // jeśli pozycja z OTIS nie istnieje w Noe
+      begin
+        // dopisz z OTIS'a
+        RxMemoryImport.Append;
+        RxMemoryImportStatusOs.AsString  := 'OTIS';
+        RxMemoryImportID.AsInteger       := ZQPom.FieldByName('ID').AsInteger;
+        RxMemoryImportNazwisko.AsString  := ZQPom.FieldByName('Nazwisko').AsString;
+        RxMemoryImportImie.AsString      := ZQPom.FieldByName('Imie').AsString;
+        RxMemoryImportAdres.AsString     := ZQPom.FieldByName('Adres').AsString;
+        RxMemoryImportPokrew.AsString    := ZQPom.FieldByName('Pokrew').AsString;
+        RxMemoryImportSkreslona.AsBoolean:= ZQPom.FieldByName('Skreslona').AsBoolean;
+        RxMemoryImport.Post;
+      end;
+    ZQPom.Next;
+  end;
+
+  // te pozycje co pozostały bez nadanego ID zmieniają status na Nowa
+  RxMemoryImport.First;
+  while not RxMemoryImport.EOF do
+  begin
+    if RxMemoryImportID.IsNull then
+      begin
+        RxMemoryImport.Edit;
+        RxMemoryImportStatusOs.AsString:= 'Nowa';
+        RxMemoryImport.Post;
+      end;
+    RxMemoryImport.Next;
+  end;
+
+  RxMemoryImport.First;
+  FreeAndNil(ZQPom);
 end;
 
 end.

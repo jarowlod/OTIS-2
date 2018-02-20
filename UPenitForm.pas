@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate,
-  DBDateTimePicker, Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
+  Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
   StdCtrls, Buttons, ComCtrls, rxdbutils, rxdbgrid, UZatrudnieni,
   UViewUwagiOch, UViewWykazy, UViewZatrudnienie, datamodule;
 

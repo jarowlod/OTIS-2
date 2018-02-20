@@ -33,8 +33,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="814"/>
-        <CursorPos X="6" Y="813"/>
+        <TopLine Value="119"/>
+        <CursorPos X="3" Y="134"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -150,8 +150,9 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="11"/>
-        <CursorPos X="24" Y="14"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="28"/>
+        <CursorPos X="3" Y="9"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -414,8 +415,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="99"/>
-        <CursorPos X="22" Y="115"/>
+        <TopLine Value="25"/>
+        <CursorPos X="56" Y="11"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -448,8 +449,8 @@
         <ComponentName Value="OchAddOsobeWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
-        <CursorPos X="18" Y="49"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="41" Y="9"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -514,10 +515,10 @@
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="112"/>
         <CursorPos X="45" Y="118"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit47>
@@ -527,12 +528,10 @@
         <ComponentName Value="ViewOsobyBliskie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos Y="98"/>
-        <UsageCount Value="188"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="192"/>
       </Unit48>
       <Unit49>
         <Filename Value="UViewPanelZdj.pas"/>
@@ -543,7 +542,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="23" Y="64"/>
-        <UsageCount Value="172"/>
+        <UsageCount Value="176"/>
       </Unit49>
       <Unit50>
         <Filename Value="UAktualizacjaZdjec.pas"/>
@@ -554,7 +553,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos Y="34"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="143"/>
       </Unit50>
       <Unit51>
         <Filename Value="UOchSalaWidzen.pas"/>
@@ -562,9 +561,9 @@
         <ComponentName Value="OchSalaWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <CursorPos X="51" Y="10"/>
-        <UsageCount Value="131"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit51>
@@ -574,10 +573,10 @@
         <ComponentName Value="ViewStolik"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="84"/>
         <CursorPos Y="87"/>
-        <UsageCount Value="130"/>
+        <UsageCount Value="134"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit52>
@@ -589,7 +588,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
         <CursorPos X="59" Y="11"/>
-        <UsageCount Value="102"/>
+        <UsageCount Value="106"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit53>
@@ -599,10 +598,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="19"/>
-        <CursorPos X="33" Y="42"/>
-        <UsageCount Value="60"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="195"/>
+        <CursorPos X="3" Y="209"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit54>
@@ -623,8 +622,8 @@
       <Unit57>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\db.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="361"/>
-        <CursorPos X="15" Y="375"/>
+        <TopLine Value="2281"/>
+        <CursorPos X="10" Y="2292"/>
         <UsageCount Value="10"/>
       </Unit57>
       <Unit58>
@@ -910,9 +909,9 @@
       <Unit98>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\dataset.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1662"/>
-        <CursorPos X="3" Y="1695"/>
-        <UsageCount Value="7"/>
+        <TopLine Value="1832"/>
+        <CursorPos X="3" Y="1840"/>
+        <UsageCount Value="10"/>
       </Unit98>
       <Unit99>
         <Filename Value="C:\codetyphon\typhon\components\pl_LuiControls\source\datahub\datamodel.pas"/>
@@ -950,9 +949,9 @@
       <Unit104>
         <Filename Value="C:\codetyphon\typhon\components\pl_RX\source\rxmemds.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1575"/>
-        <CursorPos X="3" Y="1598"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="1463"/>
+        <CursorPos X="37" Y="1482"/>
+        <UsageCount Value="11"/>
       </Unit104>
       <Unit105>
         <Filename Value="C:\codetyphon\typhon\lcl\dbctrls.pp"/>
@@ -1115,111 +1114,119 @@
         <UsageCount Value="9"/>
       </Unit127>
     </Units>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="36" Column="33" TopLine="17"/>
+        <Caret Line="9" Column="71"/>
       </Position1>
       <Position2>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="68" Column="22" TopLine="38"/>
+        <Caret Line="95" Column="44" TopLine="81"/>
       </Position2>
       <Position3>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="53" Column="33" TopLine="39"/>
+        <Caret Line="105" Column="24" TopLine="81"/>
       </Position3>
       <Position4>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="37" Column="16" TopLine="28"/>
+        <Caret Line="106" Column="44" TopLine="87"/>
       </Position4>
       <Position5>
-        <Filename Value="UOchAddWidzenie.pas"/>
-        <Caret Line="404" Column="51" TopLine="389"/>
-      </Position5>
-      <Position6>
-        <Filename Value="UOchAddWidzenie.pas"/>
-        <Caret Line="282" Column="3" TopLine="279"/>
-      </Position6>
-      <Position7>
-        <Filename Value="UOchAddWidzenie.pas"/>
-        <Caret Line="270" Column="3" TopLine="268"/>
-      </Position7>
-      <Position8>
-        <Filename Value="UOchAddWidzenie.pas"/>
-        <Caret Line="272" Column="3" TopLine="270"/>
-      </Position8>
-      <Position9>
-        <Filename Value="UViewOsobyBliskie.pas"/>
-        <Caret Line="99" Column="30" TopLine="84"/>
-      </Position9>
-      <Position10>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="9" Column="71"/>
-      </Position10>
-      <Position11>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="95" Column="44" TopLine="81"/>
-      </Position11>
-      <Position12>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="105" Column="24" TopLine="81"/>
-      </Position12>
-      <Position13>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="106" Column="44" TopLine="87"/>
-      </Position13>
-      <Position14>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
         <Caret Line="128" Column="38" TopLine="99"/>
+      </Position5>
+      <Position6>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="10" Column="82"/>
+      </Position6>
+      <Position7>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="130" Column="28" TopLine="116"/>
+      </Position7>
+      <Position8>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="131" Column="7" TopLine="116"/>
+      </Position8>
+      <Position9>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="129" Column="5" TopLine="115"/>
+      </Position9>
+      <Position10>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="11" Column="19"/>
+      </Position10>
+      <Position11>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="13" Column="19"/>
+      </Position11>
+      <Position12>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="11" Column="3"/>
+      </Position12>
+      <Position13>
+        <Filename Value="UPenitForm.pas"/>
+        <Caret Line="11" Column="60"/>
+      </Position13>
+      <Position14>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="155" Column="21" TopLine="125"/>
       </Position14>
       <Position15>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="10" Column="82"/>
+        <Caret Line="798" Column="39" TopLine="790"/>
       </Position15>
       <Position16>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="130" Column="28" TopLine="116"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="67" Column="18" TopLine="61"/>
       </Position16>
       <Position17>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="131" Column="7" TopLine="116"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="73" Column="21" TopLine="53"/>
       </Position17>
       <Position18>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="129" Column="5" TopLine="115"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="42" Column="23" TopLine="28"/>
       </Position18>
       <Position19>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="11" Column="19"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="171" Column="10" TopLine="148"/>
       </Position19>
       <Position20>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="13" Column="19"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="170" Column="35" TopLine="149"/>
       </Position20>
       <Position21>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="11" Column="3"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="160" Column="38" TopLine="170"/>
       </Position21>
       <Position22>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="11" Column="60"/>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="170" Column="121" TopLine="154"/>
       </Position22>
       <Position23>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="155" Column="21" TopLine="125"/>
+        <Filename Value="UPenitForm.pas"/>
+        <Caret Line="9" Column="3" TopLine="28"/>
       </Position23>
       <Position24>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="798" Column="39" TopLine="790"/>
+        <Filename Value="UOchAddOsobeWidzenie.pas"/>
+        <Caret Line="9" Column="69"/>
       </Position24>
       <Position25>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="67" Column="18" TopLine="61"/>
+        <Caret Line="170" Column="121" TopLine="155"/>
       </Position25>
       <Position26>
-        <Filename Value="UOchImportOsobWidzenie.pas"/>
-        <Caret Line="73" Column="21" TopLine="53"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="148" Column="3" TopLine="112"/>
       </Position26>
+      <Position27>
+        <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <Caret Line="170" Column="121" TopLine="155"/>
+      </Position27>
+      <Position28>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="11" Column="56" TopLine="25"/>
+      </Position28>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

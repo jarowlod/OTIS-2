@@ -7,8 +7,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, rxdbgrid, rxmemds, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, Buttons, StdCtrls, Spin, EditBtn, ComCtrls, DbCtrls,
-  datamodule, DateTimePicker, ZDataset, db, rxdbutils, Grids, DBGrids,
-  UViewWykazy, UViewUwagiOch, UViewWidzenia;
+  DateTimePicker, ZDataset, db, rxdbutils, Grids, DBGrids,
+  UViewWykazy, UViewUwagiOch, UViewWidzenia, datamodule;
 
 type
 

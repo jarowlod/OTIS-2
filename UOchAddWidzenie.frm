@@ -1,7 +1,7 @@
 object OchAddWidzenie: TOchAddWidzenie
-  Left = 404
+  Left = 407
   Height = 758
-  Top = 224
+  Top = 238
   Width = 1108
   Caption = 'Dodaj widzenie'
   ClientHeight = 758

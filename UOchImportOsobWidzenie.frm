@@ -1,7 +1,7 @@
 object OchImportOsobWidzenie: TOchImportOsobWidzenie
-  Left = 404
+  Left = 407
   Height = 457
-  Top = 224
+  Top = 238
   Width = 769
   Caption = 'Import osób uprawnionych do widzenia z NoeNET.'
   ClientHeight = 457
@@ -417,6 +417,10 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
         Name = 'StatusOs'
         DataType = ftString
         Size = 20
+      end    
+      item
+        Name = 'ID'
+        DataType = ftInteger
       end>
     PacketRecords = 0
     Left = 100
@@ -484,6 +488,15 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       FieldKind = fkData
       FieldName = 'StatusOs'
       Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RxMemoryImportID: TLongintField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
