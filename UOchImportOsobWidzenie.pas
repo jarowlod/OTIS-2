@@ -41,6 +41,8 @@ type
     SelectIDO: integer;
     function ParseXML(Value: string): Boolean;
     procedure SprawdzStatusOsob;
+    procedure UsunZdublowanePozycje;
+    procedure ImportOsob;
   public
     procedure SetIDO(ido: integer);
   end;
@@ -61,6 +63,23 @@ begin
   btnImportOsob.Enabled:= false;
 end;
 
+procedure TOchImportOsobWidzenie.SetIDO(ido: integer);
+var ZQPom: TZQueryPom;
+begin
+  SelectIDO:= ido;
+
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT IDO, NAZWISKO, IMIE, POC, KLASYF FROM osadzeni WHERE IDO=:ido';
+  ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
+  ZQPom.Open;
+  if not ZQPom.IsEmpty then
+      lblDaneOsadzonego.Caption:= ZQPom.FieldByName('NAZWISKO').AsString+' '+ZQPom.FieldByName('IMIE').AsString+LineEnding+
+                                  ZQPom.FieldByName('POC').AsString+'    '+ZQPom.FieldByName('KLASYF').AsString
+  else
+      lblDaneOsadzonego.Caption:= '';
+  FreeAndNil(ZQPom);
+end;
+
 procedure TOchImportOsobWidzenie.RxDBGrid4PrepareCanvas(sender: TObject;
   DataCol: Integer; Column: TColumn; AState: TGridDrawState);
 begin
@@ -71,14 +90,22 @@ end;
 
 procedure TOchImportOsobWidzenie.btnPasteClick(Sender: TObject);
 begin
-  btnImportOsob.Enabled:= ParseXML(Clipboard.AsText);
-  SprawdzStatusOsob;
+  btnImportOsob.Enabled:= false;
+  if ParseXML(Clipboard.AsText) then
+     begin
+       btnImportOsob.Enabled:=true;
+       SprawdzStatusOsob;
+       UsunZdublowanePozycje;
+     end;
 end;
 
-// sprawdzam czy istnieje (Nazwisko Imie)
-// jeśli istnieje to weryfikuję Adres i prawo do widzeń
-// else dopisuję
 procedure TOchImportOsobWidzenie.btnImportOsobClick(Sender: TObject);
+begin
+  ImportOsob;
+  btnImportOsob.Enabled:= false;
+end;
+
+procedure TOchImportOsobWidzenie.ImportOsob;
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(Self);
@@ -120,24 +147,7 @@ begin
 
     RxMemoryImport.Next;
   end;
-
-  FreeAndNil(ZQPom);
-end;
-
-procedure TOchImportOsobWidzenie.SetIDO(ido: integer);
-var ZQPom: TZQueryPom;
-begin
-  SelectIDO:= ido;
-
-  ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT IDO, NAZWISKO, IMIE, POC, KLASYF FROM osadzeni WHERE IDO=:ido';
-  ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
-  ZQPom.Open;
-  if not ZQPom.IsEmpty then
-      lblDaneOsadzonego.Caption:= ZQPom.FieldByName('NAZWISKO').AsString+' '+ZQPom.FieldByName('IMIE').AsString+LineEnding+
-                                  ZQPom.FieldByName('POC').AsString+'    '+ZQPom.FieldByName('KLASYF').AsString
-  else
-      lblDaneOsadzonego.Caption:= '';
+  DM.KomunikatPopUp(Self, 'Import osób bliskich', 'Zaimportowano osoby bliskie z NoeNET do OTIS.', nots_Info);
   FreeAndNil(ZQPom);
 end;
 
@@ -155,12 +165,14 @@ begin
       Strm:= TStringStream.Create(Value, CP_UTF8);
       ReadXMLFile(FDoc, Strm);
 
-      NodeCOB:= FDoc.GetElementsByTagName('COB');
+      NodeCOB:= FDoc.GetElementsByTagName('ListaCOB');  // lista ListaCOB
+      NodeCOB:= NodeCOB.Item[0].ChildNodes;             // Lista COB  z pierwszego elemętu ListaCOB, w drugim jest zaznaczona pozycja (zdublowana)
       if Assigned(NodeCOB) then
       begin
         if (NodeCOB.Count>=1)and(StrToIntDef(NodeCOB[0].Attributes.GetNamedItem('IDO').NodeValue,0)=SelectIDO) then
           for i:=0 to NodeCOB.Count-1 do
             begin
+              // TODO: przed dodaniem sprawdz czy istnieje duplikat
               RxMemoryImport.Append;
               RxMemoryImportNazwisko.AsAnsiString:= NodeCOB[i].Attributes.GetNamedItem('NAZ').NodeValue;
               RxMemoryImportImie.AsAnsiString    := NodeCOB[i].Attributes.GetNamedItem('IME').NodeValue;
@@ -171,13 +183,19 @@ begin
                    s+= '/'+NodeCOB[i].Attributes.GetNamedItem('LOK').NodeValue;
               RxMemoryImportAdres.AsString:= s;
               RxMemoryImportPokrew.AsAnsiString  := NodeCOB[i].Attributes.GetNamedItem('STS_op').NodeValue;
-              RxMemoryImportUwagi.AsString       := 'NoeNET';  // NodeCOB[i].Attributes.GetNamedItem('KOM').NodeValue;
+              RxMemoryImportUwagi.AsString       := 'NoeNET';
+              if Assigned(NodeCOB[i].Attributes.GetNamedItem('KOM')) then
+                 RxMemoryImportUwagi.AsAnsiString:= RxMemoryImportUwagi.AsString + ', '+NodeCOB[i].Attributes.GetNamedItem('KOM').NodeValue;
 
-              // 0:NIE 1:Jednorazowe 2:TAK
+              // 0:NIE 1:JEDNORAZOWE 2:TAK
               if NodeCOB[i].Attributes.GetNamedItem('PDWI_op').NodeValue = 'NIE' then
                   RxMemoryImportSkreslona.AsBoolean:= true
                 else
-                  RxMemoryImportSkreslona.AsBoolean:= False;
+                  begin
+                    RxMemoryImportSkreslona.AsBoolean:= False;
+                    if NodeCOB[i].Attributes.GetNamedItem('PDWI_op').NodeValue = 'JEDNORAZOWE' then
+                        RxMemoryImportUwagi.AsString:= RxMemoryImportUwagi.AsString + ', Jednorazowo';
+                  end;
 
               RxMemoryImport.Post;
             end
@@ -194,6 +212,8 @@ begin
     MessageDlg('Wystąpił błąd podczas analizy danych.', mtWarning, [mbOK],0);
   end;
   Result:= not RxMemoryImport.IsEmpty;
+  if Result then DM.KomunikatPopUp(Self, 'Import', 'Wklejono poprawne dane', nots_Info)
+            else DM.KomunikatPopUp(Self, 'Import', 'Brak danych.', nots_Warning);
 end;
 
 // STATUS OSOBY: [OK, Modyfikuj, Nowa, OTIS].  Modyfikuj(Adres, Pokrewieństwo, Prawo do widzeń)
@@ -204,10 +224,6 @@ begin
   ZQPom.SQL.Text:= 'SELECT * FROM uprawnione WHERE IDO=:ido';
   ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
   ZQPom.Open;
-
-  // usuwamy zdublowaną pozycje (Skresloną)
-  // TODO
-  // --------------------------------------
 
   while not ZQPom.EOF do
   begin
@@ -229,6 +245,7 @@ begin
     else // jeśli pozycja z OTIS nie istnieje w Noe
       begin
         // dopisz z OTIS'a
+                                 // TODO: przed dodaniem sprawdz czy istnieje duplikat
         RxMemoryImport.Append;
         RxMemoryImportStatusOs.AsString  := 'OTIS';
         RxMemoryImportID.AsInteger       := ZQPom.FieldByName('ID').AsInteger;
@@ -257,6 +274,51 @@ begin
 
   RxMemoryImport.First;
   FreeAndNil(ZQPom);
+end;
+
+procedure TOchImportOsobWidzenie.UsunZdublowanePozycje;
+var fNazwisko: string;
+    fImie    : string;
+    fSkreslona: Boolean;
+    fBufSelect: TBookMark;
+    fBufNew   : TBookMark;
+
+begin
+  // usuwamy zdublowaną pozycje (Skresloną)
+  RxMemoryImport.First;
+  while not RxMemoryImport.EOF do
+  begin
+    fNazwisko := RxMemoryImportNazwisko.AsString;
+    fImie     := RxMemoryImportImie.AsString;
+    fSkreslona:= RxMemoryImportSkreslona.AsBoolean;
+    fBufSelect:= RxMemoryImport.GetBookmark;
+
+    RxMemoryImport.Next;
+    while not RxMemoryImport.EOF do
+    begin
+      if (RxMemoryImportNazwisko.AsString = fNazwisko)and(RxMemoryImportImie.AsString = fImie) then
+        if (RxMemoryImportSkreslona.AsBoolean = true)or(RxMemoryImportSkreslona.AsBoolean = fSkreslona) then
+          begin
+            RxMemoryImport.Delete;
+            RxMemoryImport.Prior;
+          end
+        else
+          begin
+            fBufNew:= RxMemoryImport.GetBookmark;
+            RxMemoryImport.GotoBookmark(fBufSelect);
+            RxMemoryImport.Delete;
+            RxMemoryImport.Prior;
+            if RxMemoryImport.EOF then RxMemoryImport.First;
+            fBufSelect:= RxMemoryImport.GetBookmark; // zapamiętuję kolejny rekord po skasowanym
+
+            RxMemoryImport.GotoBookmark(fBufNew);
+          end;
+      RxMemoryImport.Next;
+    end;
+
+    if fBufSelect<>nil then RxMemoryImport.GotoBookmark(fBufSelect);
+    RxMemoryImport.Next;
+  end;
 end;
 
 end.

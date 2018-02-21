@@ -1,22 +1,22 @@
 object OchImportOsobWidzenie: TOchImportOsobWidzenie
-  Left = 407
+  Left = 404
   Height = 457
-  Top = 238
-  Width = 769
+  Top = 224
+  Width = 795
   Caption = 'Import osób uprawnionych do widzenia z NoeNET.'
   ClientHeight = 457
-  ClientWidth = 769
+  ClientWidth = 795
   OnCreate = FormCreate
   LCLVersion = '6.3'
   object Panel2: TPanel
     Left = 0
     Height = 48
     Top = 0
-    Width = 769
+    Width = 795
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 48
-    ClientWidth = 769
+    ClientWidth = 795
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -24,7 +24,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Left = 0
       Height = 48
       Top = 0
-      Width = 769
+      Width = 795
       Align = alClient
       BevelWidth = 1
       BevelStyle = bvNone
@@ -66,10 +66,10 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
     Left = 0
     Height = 50
     Top = 407
-    Width = 769
+    Width = 795
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 769
+    ClientWidth = 795
     TabOrder = 1
     object btnImportOsob: TBitBtn
       Left = 8
@@ -121,11 +121,11 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
     Left = 0
     Height = 359
     Top = 48
-    Width = 769
+    Width = 795
     Align = alClient
     BevelOuter = bvNone
     ClientHeight = 359
-    ClientWidth = 769
+    ClientWidth = 795
     TabOrder = 2
     object btnPaste: TBitBtn
       Left = 0
@@ -176,7 +176,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Left = 0
       Height = 327
       Top = 32
-      Width = 769
+      Width = 795
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
@@ -278,6 +278,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           Title.Font.Style = [fsBold]
           Title.Orientation = toHorizontal
           Title.Caption = 'Status Osoby'
+          Width = 100
           FieldName = 'StatusOs'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -431,7 +432,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
       Size = 50
     end
@@ -441,7 +442,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
       Size = 50
     end
@@ -451,7 +452,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
       Size = 100
     end
@@ -461,7 +462,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
       Size = 50
     end
@@ -471,7 +472,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
       Size = 100
     end
@@ -481,7 +482,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
     end
     object RxMemoryImportStatusOs: TStringField
