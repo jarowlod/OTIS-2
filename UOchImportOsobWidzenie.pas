@@ -39,9 +39,8 @@ type
       Column: TColumn; AState: TGridDrawState);
   private
     SelectIDO: integer;
-    function ParseXML(Value: string): Boolean;
+    function ParseXML(Value: string): Boolean; // dodaje pozycje bez zduplikowanych
     procedure SprawdzStatusOsob;
-    procedure UsunZdublowanePozycje;
     procedure ImportOsob;
   public
     procedure SetIDO(ido: integer);
@@ -95,7 +94,6 @@ begin
      begin
        btnImportOsob.Enabled:=true;
        SprawdzStatusOsob;
-       UsunZdublowanePozycje;
      end;
 end;
 
@@ -103,6 +101,7 @@ procedure TOchImportOsobWidzenie.btnImportOsobClick(Sender: TObject);
 begin
   ImportOsob;
   btnImportOsob.Enabled:= false;
+  MessageDlg('Zaimportowano osoby bliskie z NoeNET do OTIS.', mtInformation, [mbOK],0);
 end;
 
 procedure TOchImportOsobWidzenie.ImportOsob;
@@ -157,8 +156,12 @@ var FDoc: TXMLDocument;
     i: integer;
     NodeCOB: TDOMNodeList;
     s: string;
+    isDodac: Boolean;
+    fNazwisko: string;
+    fImie    : string;
 begin
   RxMemoryImport.Open;
+  RxMemoryImport.EmptyTable;
   Result:= true;
   try
     try
@@ -172,32 +175,55 @@ begin
         if (NodeCOB.Count>=1)and(StrToIntDef(NodeCOB[0].Attributes.GetNamedItem('IDO').NodeValue,0)=SelectIDO) then
           for i:=0 to NodeCOB.Count-1 do
             begin
-              // TODO: przed dodaniem sprawdz czy istnieje duplikat
-              RxMemoryImport.Append;
-              RxMemoryImportNazwisko.AsAnsiString:= NodeCOB[i].Attributes.GetNamedItem('NAZ').NodeValue;
-              RxMemoryImportImie.AsAnsiString    := NodeCOB[i].Attributes.GetNamedItem('IME').NodeValue;
-              s:= NodeCOB[i].Attributes.GetNamedItem('MSC_op').NodeValue
-                  +' ul.'+NodeCOB[i].Attributes.GetNamedItem('ULC').NodeValue
-                  +' '+NodeCOB[i].Attributes.GetNamedItem('DOM').NodeValue;
-                if Assigned(NodeCOB[i].Attributes.GetNamedItem('LOK')) then
-                   s+= '/'+NodeCOB[i].Attributes.GetNamedItem('LOK').NodeValue;
-              RxMemoryImportAdres.AsString:= s;
-              RxMemoryImportPokrew.AsAnsiString  := NodeCOB[i].Attributes.GetNamedItem('STS_op').NodeValue;
-              RxMemoryImportUwagi.AsString       := 'NoeNET';
-              if Assigned(NodeCOB[i].Attributes.GetNamedItem('KOM')) then
-                 RxMemoryImportUwagi.AsAnsiString:= RxMemoryImportUwagi.AsString + ', '+NodeCOB[i].Attributes.GetNamedItem('KOM').NodeValue;
+              isDodac:= true;
+              // Przed dodaniem sprawdza czy jest duplikat
+              fNazwisko:= NodeCOB[i].Attributes.GetNamedItem('NAZ').NodeValue;
+              fImie    := NodeCOB[i].Attributes.GetNamedItem('IME').NodeValue;
+              if RxMemoryImport.Locate('Nazwisko;Imie',  VarArrayOf([fNazwisko, fImie]), [loCaseInsensitive]) then
+              begin
+                isDodac:= false;  // jeśli duplikat to nie dodawaj nowej pozycji
+                // jeśli nowa pozycja jest lepsza (nie skreślona to usuń duplikat i dodaj nową nie skresloną pozycję)
+                if (RxMemoryImportSkreslona.AsBoolean)and not(NodeCOB[i].Attributes.GetNamedItem('PDWI_op').NodeValue = 'NIE') then
+                   begin
+                     RxMemoryImport.Delete;
+                     isDodac:= true;
+                   end;
+              end;
+              // --------------------------------------------------
 
-              // 0:NIE 1:JEDNORAZOWE 2:TAK
-              if NodeCOB[i].Attributes.GetNamedItem('PDWI_op').NodeValue = 'NIE' then
-                  RxMemoryImportSkreslona.AsBoolean:= true
-                else
-                  begin
-                    RxMemoryImportSkreslona.AsBoolean:= False;
-                    if NodeCOB[i].Attributes.GetNamedItem('PDWI_op').NodeValue = 'JEDNORAZOWE' then
-                        RxMemoryImportUwagi.AsString:= RxMemoryImportUwagi.AsString + ', Jednorazowo';
-                  end;
+              if isDodac then
+              begin
+                RxMemoryImport.Append;
+                RxMemoryImportNazwisko.AsAnsiString:= NodeCOB[i].Attributes.GetNamedItem('NAZ').NodeValue;
+                RxMemoryImportImie.AsAnsiString    := NodeCOB[i].Attributes.GetNamedItem('IME').NodeValue;
+                s:= NodeCOB[i].Attributes.GetNamedItem('MSC_op').NodeValue
+                    +' ul.'+NodeCOB[i].Attributes.GetNamedItem('ULC').NodeValue
+                    +' '+NodeCOB[i].Attributes.GetNamedItem('DOM').NodeValue;
+                  if Assigned(NodeCOB[i].Attributes.GetNamedItem('LOK')) then
+                     s+= '/'+NodeCOB[i].Attributes.GetNamedItem('LOK').NodeValue;
+                RxMemoryImportAdres.AsString:= s;
+                RxMemoryImportPokrew.AsAnsiString  := NodeCOB[i].Attributes.GetNamedItem('STS_op').NodeValue;
+                RxMemoryImportUwagi.AsString       := 'NoeNET';
+                if Assigned(NodeCOB[i].Attributes.GetNamedItem('KOM')) then
+                   RxMemoryImportUwagi.AsAnsiString:= RxMemoryImportUwagi.AsString + ', '+NodeCOB[i].Attributes.GetNamedItem('KOM').NodeValue;
 
-              RxMemoryImport.Post;
+                // 0:NIE 1:JEDNORAZOWE 2:TAK
+                if NodeCOB[i].Attributes.GetNamedItem('PDWI_op').NodeValue = 'NIE' then
+                    RxMemoryImportSkreslona.AsBoolean:= true
+                  else
+                    begin
+                      RxMemoryImportSkreslona.AsBoolean:= False;
+                      if NodeCOB[i].Attributes.GetNamedItem('PDWI_op').NodeValue = 'JEDNORAZOWE' then
+                          RxMemoryImportUwagi.AsString:= RxMemoryImportUwagi.AsString + ', Jednorazowo';
+                    end;
+                // czy ma dodatkowe widzenie na dziecko
+                if Assigned(NodeCOB[i].Attributes.GetNamedItem('Dod_widz')) then
+                   if NodeCOB[i].Attributes.GetNamedItem('Dod_widz').NodeValue = 'Ma' then
+                      RxMemoryImportUwagi.AsString:= RxMemoryImportUwagi.AsString + ', Dod. na dziecko.';
+
+                RxMemoryImport.Post;
+                Application.ProcessMessages;
+              end;
             end
         else
           MessageDlg('Wklejono błędne dane '+LineEnding+'lub dane innego osadzonego.', mtWarning, [mbOK],0);
@@ -245,7 +271,6 @@ begin
     else // jeśli pozycja z OTIS nie istnieje w Noe
       begin
         // dopisz z OTIS'a
-                                 // TODO: przed dodaniem sprawdz czy istnieje duplikat
         RxMemoryImport.Append;
         RxMemoryImportStatusOs.AsString  := 'OTIS';
         RxMemoryImportID.AsInteger       := ZQPom.FieldByName('ID').AsInteger;
@@ -274,51 +299,6 @@ begin
 
   RxMemoryImport.First;
   FreeAndNil(ZQPom);
-end;
-
-procedure TOchImportOsobWidzenie.UsunZdublowanePozycje;
-var fNazwisko: string;
-    fImie    : string;
-    fSkreslona: Boolean;
-    fBufSelect: TBookMark;
-    fBufNew   : TBookMark;
-
-begin
-  // usuwamy zdublowaną pozycje (Skresloną)
-  RxMemoryImport.First;
-  while not RxMemoryImport.EOF do
-  begin
-    fNazwisko := RxMemoryImportNazwisko.AsString;
-    fImie     := RxMemoryImportImie.AsString;
-    fSkreslona:= RxMemoryImportSkreslona.AsBoolean;
-    fBufSelect:= RxMemoryImport.GetBookmark;
-
-    RxMemoryImport.Next;
-    while not RxMemoryImport.EOF do
-    begin
-      if (RxMemoryImportNazwisko.AsString = fNazwisko)and(RxMemoryImportImie.AsString = fImie) then
-        if (RxMemoryImportSkreslona.AsBoolean = true)or(RxMemoryImportSkreslona.AsBoolean = fSkreslona) then
-          begin
-            RxMemoryImport.Delete;
-            RxMemoryImport.Prior;
-          end
-        else
-          begin
-            fBufNew:= RxMemoryImport.GetBookmark;
-            RxMemoryImport.GotoBookmark(fBufSelect);
-            RxMemoryImport.Delete;
-            RxMemoryImport.Prior;
-            if RxMemoryImport.EOF then RxMemoryImport.First;
-            fBufSelect:= RxMemoryImport.GetBookmark; // zapamiętuję kolejny rekord po skasowanym
-
-            RxMemoryImport.GotoBookmark(fBufNew);
-          end;
-      RxMemoryImport.Next;
-    end;
-
-    if fBufSelect<>nil then RxMemoryImport.GotoBookmark(fBufSelect);
-    RxMemoryImport.Next;
-  end;
 end;
 
 end.

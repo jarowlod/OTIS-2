@@ -1,7 +1,7 @@
 object ViewOsobyBliskie: TViewOsobyBliskie
-  Left = 404
+  Left = 394
   Height = 478
-  Top = 224
+  Top = 225
   Width = 771
   Align = alClient
   BorderStyle = bsNone
@@ -21,6 +21,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
     AutoSort = True
     Columns = <    
       item
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Nazwisko'
@@ -36,6 +37,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         Footers = <>
       end    
       item
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Imię'
@@ -50,6 +52,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         Footers = <>
       end    
       item
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Adres'
@@ -64,6 +67,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         Footers = <>
       end    
       item
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Pokrewieństwo'
@@ -78,10 +82,11 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         Footers = <>
       end    
       item
+        SizePriority = 2
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Uwagi'
-        Width = 100
+        Width = 130
         FieldName = 'uwagi'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -93,6 +98,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
       end    
       item
         ButtonStyle = cbsCheckboxColumn
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Prawo do widzeń'
@@ -177,6 +183,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
     Align = alClient
     AlternateColor = 16055807
     AutoAdvance = aaNone
+    AutoFillColumns = True
     AutoEdit = False
     Color = clWindow
     DrawFullLine = False

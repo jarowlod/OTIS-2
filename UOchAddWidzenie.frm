@@ -1,7 +1,7 @@
 object OchAddWidzenie: TOchAddWidzenie
-  Left = 407
+  Left = 404
   Height = 758
-  Top = 238
+  Top = 224
   Width = 1108
   Caption = 'Dodaj widzenie'
   ClientHeight = 758
@@ -1096,6 +1096,7 @@ object OchAddWidzenie: TOchAddWidzenie
           AutoSort = True
           Columns = <          
             item
+              SizePriority = 0
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Nazwisko'
@@ -1111,6 +1112,7 @@ object OchAddWidzenie: TOchAddWidzenie
               Footers = <>
             end          
             item
+              SizePriority = 0
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Imię'
@@ -1125,6 +1127,7 @@ object OchAddWidzenie: TOchAddWidzenie
               Footers = <>
             end          
             item
+              SizePriority = 0
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Adres'
@@ -1139,6 +1142,7 @@ object OchAddWidzenie: TOchAddWidzenie
               Footers = <>
             end          
             item
+              SizePriority = 0
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Pokrewieństwo'
@@ -1153,10 +1157,11 @@ object OchAddWidzenie: TOchAddWidzenie
               Footers = <>
             end          
             item
+              SizePriority = 2
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Uwagi'
-              Width = 100
+              Width = 105
               FieldName = 'uwagi'
               EditButtons = <>
               Filter.DropDownRows = 0
@@ -1168,6 +1173,7 @@ object OchAddWidzenie: TOchAddWidzenie
             end          
             item
               ButtonStyle = cbsCheckboxColumn
+              SizePriority = 0
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Prawo do widzeń'
@@ -1252,6 +1258,7 @@ object OchAddWidzenie: TOchAddWidzenie
           Align = alClient
           AlternateColor = 16055807
           AutoAdvance = aaNone
+          AutoFillColumns = True
           AutoEdit = False
           Color = clWindow
           DrawFullLine = False

@@ -35,6 +35,8 @@ type
     PopupMenu1: TPopupMenu;
     Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
+    procedure FormMouseEnter(Sender: TObject);
+    procedure FormMouseLeave(Sender: TObject);
     procedure Image1DblClick(Sender: TObject);
     procedure miCofnijDoPoczekalniClick(Sender: TObject);
     procedure miKartaOchronnaClick(Sender: TObject);
@@ -81,6 +83,22 @@ procedure TViewStolik.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
   FPopupMenuVisible:= True;
+end;
+
+procedure TViewStolik.FormMouseEnter(Sender: TObject);
+begin
+  Height:= Height + 6;
+  Width := Width + 6;
+  Top:= Top - 3;
+  Left:= Left - 3;
+end;
+
+procedure TViewStolik.FormMouseLeave(Sender: TObject);
+begin
+  Height:= Height - 6;
+  Width := Width - 6;
+  Top:= Top + 3;
+  Left:= Left + 3;
 end;
 
 procedure TViewStolik.Image1DblClick(Sender: TObject);

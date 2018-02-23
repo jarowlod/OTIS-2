@@ -2,21 +2,21 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
   Left = 404
   Height = 457
   Top = 224
-  Width = 795
+  Width = 856
   Caption = 'Import osób uprawnionych do widzenia z NoeNET.'
   ClientHeight = 457
-  ClientWidth = 795
+  ClientWidth = 856
   OnCreate = FormCreate
   LCLVersion = '6.3'
   object Panel2: TPanel
     Left = 0
     Height = 48
     Top = 0
-    Width = 795
+    Width = 856
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 48
-    ClientWidth = 795
+    ClientWidth = 856
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -24,7 +24,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Left = 0
       Height = 48
       Top = 0
-      Width = 795
+      Width = 856
       Align = alClient
       BevelWidth = 1
       BevelStyle = bvNone
@@ -66,10 +66,10 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
     Left = 0
     Height = 50
     Top = 407
-    Width = 795
+    Width = 856
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 795
+    ClientWidth = 856
     TabOrder = 1
     object btnImportOsob: TBitBtn
       Left = 8
@@ -121,14 +121,14 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
     Left = 0
     Height = 359
     Top = 48
-    Width = 795
+    Width = 856
     Align = alClient
     BevelOuter = bvNone
     ClientHeight = 359
-    ClientWidth = 795
+    ClientWidth = 856
     TabOrder = 2
     object btnPaste: TBitBtn
-      Left = 0
+      Left = 8
       Height = 30
       Top = 0
       Width = 208
@@ -176,12 +176,13 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       Left = 0
       Height = 327
       Top = 32
-      Width = 795
+      Width = 856
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
       Columns = <      
         item
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Nazwisko'
@@ -197,6 +198,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           Footers = <>
         end      
         item
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Imię'
@@ -211,10 +213,11 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           Footers = <>
         end      
         item
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Adres'
-          Width = 200
+          Width = 150
           FieldName = 'Adres'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -225,6 +228,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           Footers = <>
         end      
         item
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Pokrewieństwo'
@@ -239,10 +243,11 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           Footers = <>
         end      
         item
+          SizePriority = 2
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Uwagi'
-          Width = 100
+          Width = 243
           FieldName = 'Uwagi'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -254,6 +259,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
         end      
         item
           ButtonStyle = cbsCheckboxColumn
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Prawo do widzeń'
@@ -271,6 +277,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
         end      
         item
           Color = clSkyBlue
+          SizePriority = 0
           Title.Alignment = taCenter
           Title.Font.CharSet = EASTEUROPE_CHARSET
           Title.Font.Pitch = fpVariable
@@ -278,7 +285,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           Title.Font.Style = [fsBold]
           Title.Orientation = toHorizontal
           Title.Caption = 'Status Osoby'
-          Width = 100
+          Width = 70
           FieldName = 'StatusOs'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -358,6 +365,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       AlternateColor = 16055807
       Anchors = [akTop, akLeft, akRight]
       AutoAdvance = aaNone
+      AutoFillColumns = True
       AutoEdit = False
       Color = clWindow
       DrawFullLine = False
