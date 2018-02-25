@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   StdCtrls, Menus, datamodule, BGRACustomDrawn,
-  BGRAFlashProgressBar, windows, LCLType;
+  BGRAFlashProgressBar, windows, LCLType, Buttons;
 
 type
 
@@ -19,7 +19,6 @@ type
     ProgressBar1: TBGRAFlashProgressBar;
     Image1: TImage;
     lblCzas: TLabel;
-    lblUwagi: TLabel;
     lblPodkultura: TLabel;
     lblPozostalo: TLabel;
     lblNazwiskoImie: TLabel;
@@ -33,6 +32,9 @@ type
     miZakonczWidzenie: TMenuItem;
     Panel1: TPanel;
     PopupMenu1: TPopupMenu;
+    sbnWykazy: TSpeedButton;
+    sbnUwagi: TSpeedButton;
+    Shape1: TShape;
     Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormMouseEnter(Sender: TObject);
@@ -46,7 +48,10 @@ type
     procedure miZakonczWidzenieClick(Sender: TObject);
     procedure miZatrzymajWidzenieClick(Sender: TObject);
     procedure PopupMenu1Popup(Sender: TObject);
+    procedure sbnWykazyClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure CMMouseEnter(var Msg: TMessage); message CM_MOUSEENTER;
+    procedure CMMouseLeave(var Msg: TMessage); message CM_MOUSELEAVE;
   private
     FPopupMenuVisible: Boolean;
     SelectIDO : integer;
@@ -89,16 +94,20 @@ procedure TViewStolik.FormMouseEnter(Sender: TObject);
 begin
   Height:= Height + 6;
   Width := Width + 6;
-  Top:= Top - 3;
-  Left:= Left - 3;
+  Top   := Top - 3;
+  Left  := Left - 3;
+  //Panel1.BevelInner:= bvRaised;
+  Panel1.BorderSpacing.Around:= 3;
 end;
 
 procedure TViewStolik.FormMouseLeave(Sender: TObject);
 begin
   Height:= Height - 6;
   Width := Width - 6;
-  Top:= Top + 3;
-  Left:= Left + 3;
+  Top   := Top + 3;
+  Left  := Left + 3;
+  //Panel1.BevelInner:= bvNone;
+  Panel1.BorderSpacing.Around:= 0;
 end;
 
 procedure TViewStolik.Image1DblClick(Sender: TObject);
@@ -249,9 +258,26 @@ begin
     end;
 end;
 
+procedure TViewStolik.sbnWykazyClick(Sender: TObject);
+begin
+  miKartaOchronnaClick(Sender);
+end;
+
 procedure TViewStolik.Timer1Timer(Sender: TObject);
 begin
   IncProgress;
+end;
+
+procedure TViewStolik.CMMouseEnter(var Msg: TMessage);
+begin
+  Msg.Result := WM_CANCELMODE;
+  FormMouseEnter(Self);
+end;
+
+procedure TViewStolik.CMMouseLeave(var Msg: TMessage);
+begin
+  Msg.Result := WM_CANCELMODE;
+  FormMouseLeave(Self);
 end;
 
 procedure TViewStolik.SetNrStolika(AValue: integer);
@@ -304,7 +330,7 @@ begin
 end;
 
 procedure TViewStolik.WczytajDane;
-var ZQPom: TZQueryPom;
+var ZQPom, ZQWykazy: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:='SELECT w.*, o.Nazwisko, o.Imie, o.POC, o.Klasyf, t.Ochronka, u.IDO IDO_u, uk.IDO IDO_uk, inf.GR '+
@@ -328,7 +354,8 @@ begin
       lblPozostalo.Caption    := '';
       lblCzas.Caption         := '';
       lblPodkultura.Caption   := '';
-      lblUwagi.Caption        := '';
+      sbnUwagi.Visible        := false;
+      sbnWykazy.Visible       := false;
       ProgressBar1.Visible    := false;
     end
   else
@@ -347,10 +374,20 @@ begin
       lblPOC.Caption:= ZQPom.FieldByName('POC').AsString;
       lblNazwiskoImie.Caption:= ZQPom.FieldByName('Nazwisko').AsString+' '+ZQPom.FieldByName('Imie').AsString;
       lblPodkultura.Caption  := '';
-      lblUwagi.Caption       := '';
       if ZQPom.FieldByName('Ochronka').AsInteger=1 then lblPodkultura.Caption:= 'Ochronka';
       if ZQPom.FieldByName('GR').AsInteger=1       then lblPodkultura.Caption:= 'GR';
-      if (not ZQPom.FieldByName('IDO_u').IsNull) or (not ZQPom.FieldByName('IDO_uk').IsNull) then lblUwagi.Caption:= 'Uwagi !';
+      // sprawdzamy czy istnieją uwagi na osadzonego
+      sbnUwagi.Visible:= (not ZQPom.FieldByName('IDO_u').IsNull) or (not ZQPom.FieldByName('IDO_uk').IsNull);
+
+      //Sprawdzamy czy istnieją wykazy na osadzonego ----------------------
+      ZQWykazy:= TZQueryPom.Create(Self);
+      ZQWykazy.SQL.Text:= 'SELECT ID, IDO, Kategoria FROM uwagi_wykazy WHERE IDO=:ido';
+      ZQWykazy.ParamByName('ido').AsInteger:= SelectIDO;
+      ZQWykazy.Open;
+
+      sbnWykazy.Visible:= (not ZQWykazy.IsEmpty);
+      FreeAndNil(ZQWykazy);
+      // ------------------------------------------------------------------
 
       // czeka przy stoliku
       if ZQPom.FieldByName('Data_Widzenie').IsNull then

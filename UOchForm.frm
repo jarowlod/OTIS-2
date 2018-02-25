@@ -1,7 +1,7 @@
 object OchForm: TOchForm
-  Left = 404
+  Left = 407
   Height = 800
-  Top = 224
+  Top = 238
   Width = 831
   Caption = 'Karta Ochronna'
   ClientHeight = 800

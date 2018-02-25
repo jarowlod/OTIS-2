@@ -7,49 +7,36 @@ interface
 uses
   Classes, SysUtils, db, memds, FileUtil, ZDataset, rxdbgrid, Forms,
   Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, datamodule, Types,
-  Grids, Menus, ActnList, ComCtrls, RichMemo;
+  Grids, Menus, ActnList, ComCtrls, UViewRichEdit;
 
 type
 
   { TKomunikatorNowaWiad }
 
   TKomunikatorNowaWiad = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
-    BitBtn6: TBitBtn;
-    cbFont: TComboBox;
-    cbFontSize: TComboBox;
-    btnColor: TColorButton;
-    ColorDialog1: TColorDialog;
+    btnOK: TBitBtn;
+    btnCancel: TBitBtn;
+    btnDodaj: TBitBtn;
+    btnUsun: TBitBtn;
+    btnZapiszGrupe: TBitBtn;
+    btnKosz: TBitBtn;
     DSTresc: TDataSource;
     DSOdbiorcy: TDataSource;
     DSUzytkownicy: TDataSource;
     DSGrupy: TDataSource;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    FontDialog1: TFontDialog;
+    edTemat: TEdit;
+    edZnajdz: TEdit;
     Image1: TImage;
     Image2: TImage;
-    ImageList1: TImageList;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
     memOdbiorcy: TMemDataset;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
-    MenuItemKopiuj: TMenuItem;
-    MenuItemWytnij: TMenuItem;
-    MenuItemWklej: TMenuItem;
     Panel1: TPanel;
-    Panel10: TPanel;
+    PanelRichMemoEdytor: TPanel;
     Panel11: TPanel;
-    Panel12: TPanel;
-    Panel13: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
@@ -59,65 +46,32 @@ type
     Panel8: TPanel;
     Panel9: TPanel;
     PopupMenu1: TPopupMenu;
-    PopupMenu2: TPopupMenu;
-    RichMemo1: TRichMemo;
-    RxDBGrid1: TRxDBGrid;
-    RxDBGrid2: TRxDBGrid;
-    RxDBGrid4: TRxDBGrid;
+    RxDBGridUsers: TRxDBGrid;
+    RxDBGridOdbiorcy: TRxDBGrid;
+    RxDBGridGrupy: TRxDBGrid;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
-    ToolBar1: TToolBar;
-    btnBold: TToolButton;
-    btnItalic: TToolButton;
-    btnUnderline: TToolButton;
-    ToolButton1: TToolButton;
-    ToolButton2: TToolButton;
-    ToolButton4: TToolButton;
-    btnLeft: TToolButton;
-    btnCenter: TToolButton;
-    btnRight: TToolButton;
     ZQTresc: TZQuery;
     ZQOdbiorcy: TZQuery;
     ZQUzytkownicy: TZQuery;
     ZQGrupy: TZQuery;
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn3Click(Sender: TObject);
-    procedure BitBtn4Click(Sender: TObject);
-    procedure BitBtn5Click(Sender: TObject);
-    procedure BitBtn6Click(Sender: TObject);
-    procedure btnBoldClick(Sender: TObject);
-    procedure btnCenterClick(Sender: TObject);
-    procedure btnItalicClick(Sender: TObject);
-    procedure btnLeftClick(Sender: TObject);
-    procedure btnRightClick(Sender: TObject);
-    procedure btnUnderlineClick(Sender: TObject);
-    procedure cbFontSelect(Sender: TObject);
-    procedure cbFontSizeSelect(Sender: TObject);
-    procedure ColorDialog1Close(Sender: TObject);
-    procedure Edit2Change(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
+    procedure btnDodajClick(Sender: TObject);
+    procedure btnUsunClick(Sender: TObject);
+    procedure btnZapiszGrupeClick(Sender: TObject);
+    procedure btnKoszClick(Sender: TObject);
+    procedure edZnajdzChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
-    procedure MenuItemKopiujClick(Sender: TObject);
-    procedure MenuItemWklejClick(Sender: TObject);
-    procedure MenuItemWytnijClick(Sender: TObject);
-    procedure RichMemo1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
-      );
-    procedure RichMemo1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure RichMemo1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure RxDBGrid4DataHintShow(Sender: TObject; CursorPos: TPoint;
+    procedure RxDBGridGrupyDataHintShow(Sender: TObject; CursorPos: TPoint;
       Cell: TGridCoord; Column: TRxColumn; var HintStr: string;
       var Processed: boolean);
-    procedure RxDBGrid4DblClick(Sender: TObject);
-    procedure ToolButton2Click(Sender: TObject);
+    procedure RxDBGridGrupyDblClick(Sender: TObject);
   private
-    SelFontFormat: TFontParams;
-    SelParaAlignment: TParaAlignment;
-    procedure PrepareToolbar();
-    procedure FontStyleModify(fs: TFontStyle);
+    fViewRichEdit: TViewRichEdit;
   public
     Procedure OdpiszDo(user: string);
     Procedure OdpiszDoUserByIDO(IDO: integer);
@@ -138,28 +92,36 @@ uses UAktualizacjaOs;
 
 procedure TKomunikatorNowaWiad.FormCreate(Sender: TObject);
 begin
-  Edit2Change(Sender); // Open ZQUzytkownicy;
+  edZnajdzChange(Sender); // Open ZQUzytkownicy;
 
   ZQGrupy.ParamByName('user').AsString:= DM.login;
   ZQGrupy.Open;
 
-  cbFont.Items.Assign( Screen.Fonts);
-  cbFont.ItemIndex:= 0; // we select the first font
+  // tworzymy Rich edytor w PanelRichMemoEdytor
+  fViewRichEdit:= TViewRichEdit.Create(Self);
+  fViewRichEdit.Parent:= PanelRichMemoEdytor;
+  fViewRichEdit.Show;
+end;
+
+procedure TKomunikatorNowaWiad.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  FreeAndNil(fViewRichEdit);
 end;
 
 procedure TKomunikatorNowaWiad.FormShow(Sender: TObject);
 begin
-  RichMemo1.SetFocus;
-  PrepareToolbar();
+  //RichMemo1.SetFocus;
+  //PrepareToolbar();
 end;
 
-procedure TKomunikatorNowaWiad.BitBtn3Click(Sender: TObject);
+procedure TKomunikatorNowaWiad.btnDodajClick(Sender: TObject);
 begin
   if ZQUzytkownicy.IsEmpty then exit;
 
   if memOdbiorcy.Locate('user', ZQUzytkownicy.FieldByName('user').AsString,[]) then
   begin
-    MessageDlg('Użtkownik jest już dodany do odbiorców.', mtInformation, [mbCancel],0);
+    MessageDlg('Użytkownik jest już dodany do odbiorców.', mtInformation, [mbCancel],0);
     exit;
   end;
 
@@ -170,15 +132,15 @@ begin
 end;
 
 // WYSLIJ KOMUNIKAT
-procedure TKomunikatorNowaWiad.BitBtn1Click(Sender: TObject);
+procedure TKomunikatorNowaWiad.btnOKClick(Sender: TObject);
 begin
-  if Trim(RichMemo1.Text)='' then
+  if Trim(fViewRichEdit.Text)='' then
   begin
     MessageDlg('Nie wprowadzono tręści wiadomości.', mtWarning, [mbOK],0);
     ModalResult:= mrNone;
     exit;
   end;
-  if Trim(Edit1.Text)='' then
+  if Trim(edTemat.Text)='' then
   begin
     MessageDlg('Nie wprowadzono tematu wiadomości.', mtWarning, [mbOK],0);
     ModalResult:= mrNone;
@@ -195,8 +157,8 @@ begin
   ZQTresc.Append;
   ZQTresc.FieldByName('nadawca').AsString      := DM.login;
   ZQTresc.FieldByName('dataNadania').AsDateTime:= Now();
-  ZQTresc.FieldByName('temat').AsString        := Edit1.Text;
-  ZQTresc.FieldByName('komunikat').AsString    := RichMemo1.Rtf;
+  ZQTresc.FieldByName('temat').AsString        := edTemat.Text;
+  ZQTresc.FieldByName('komunikat').AsString    := fViewRichEdit.Rtf; //RichMemo1.Rtf;
   ZQTresc.Post;
 
   memOdbiorcy.First;
@@ -216,14 +178,14 @@ begin
   DM.KomunikatPopUp(Sender, 'Nowa wiadomość', 'Wiadomość wysłana.', nots_Info);
 end;
 
-procedure TKomunikatorNowaWiad.BitBtn4Click(Sender: TObject);
+procedure TKomunikatorNowaWiad.btnUsunClick(Sender: TObject);
 begin
   if memOdbiorcy.IsEmpty then exit;
   memOdbiorcy.Delete;
 end;
 
 //zapisz grupę
-procedure TKomunikatorNowaWiad.BitBtn5Click(Sender: TObject);
+procedure TKomunikatorNowaWiad.btnZapiszGrupeClick(Sender: TObject);
 var ValueEdit: string;
     odbiorcy : string;
     Edycja: Boolean;
@@ -259,15 +221,15 @@ begin
   end;
 end;
 
-procedure TKomunikatorNowaWiad.BitBtn6Click(Sender: TObject);
+procedure TKomunikatorNowaWiad.btnKoszClick(Sender: TObject);
 begin
   memOdbiorcy.Clear(false);
 end;
 
-procedure TKomunikatorNowaWiad.Edit2Change(Sender: TObject);
+procedure TKomunikatorNowaWiad.edZnajdzChange(Sender: TObject);
 begin
   ZQUzytkownicy.Close;
-  ZQUzytkownicy.ParamByName('nazwisko').AsString:= Trim(Edit2.Text)+'%';
+  ZQUzytkownicy.ParamByName('nazwisko').AsString:= Trim(edZnajdz.Text)+'%';
   ZQUzytkownicy.Open;
 end;
 
@@ -277,26 +239,26 @@ begin
   ZQGrupy.Delete;
 end;
 
-procedure TKomunikatorNowaWiad.RxDBGrid4DataHintShow(Sender: TObject;
+procedure TKomunikatorNowaWiad.RxDBGridGrupyDataHintShow(Sender: TObject;
   CursorPos: TPoint; Cell: TGridCoord; Column: TRxColumn; var HintStr: string;
   var Processed: boolean);
 var
   ActRec: Integer;
 begin
-  if RxDBGrid4.DataSource.DataSet.Active then
+  if RxDBGridGrupy.DataSource.DataSet.Active then
   begin
-    ActRec := THackGrid(RxDBGrid4).DataLink.ActiveRecord;
+    ActRec := THackGrid(RxDBGridGrupy).DataLink.ActiveRecord;
     try
-      THackGrid(RxDBGrid4).DataLink.ActiveRecord := Cell.Y-1;  // jeśli jest nagłówek to: -1
-      HintStr := RxDBGrid4.DataSource.DataSet.FieldByName('odbiorcy').AsString;
+      THackGrid(RxDBGridGrupy).DataLink.ActiveRecord := Cell.Y-1;  // jeśli jest nagłówek to: -1
+      HintStr := RxDBGridGrupy.DataSource.DataSet.FieldByName('odbiorcy').AsString;
     finally
-      THackGrid(RxDBGrid4).DataLink.ActiveRecord := ActRec;
+      THackGrid(RxDBGridGrupy).DataLink.ActiveRecord := ActRec;
     end;
   end;
   Processed:= true;
 end;
 
-procedure TKomunikatorNowaWiad.RxDBGrid4DblClick(Sender: TObject);
+procedure TKomunikatorNowaWiad.RxDBGridGrupyDblClick(Sender: TObject);
 var lista   : TStringList;
     wiersz  : TStringList;
     i       : integer;
@@ -330,7 +292,7 @@ end;
 procedure TKomunikatorNowaWiad.OdpiszDo(user: string);
 var ZQPom: TZQueryPom;
 begin
-  Edit1.Text:='Odp: ';
+  edTemat.Text:='Odp: ';
 
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'SELECT user, Full_name FROM uprawnienia WHERE user = :user';
@@ -358,7 +320,7 @@ begin
   ZQPom.Open;
   if ZQPom.IsEmpty then exit;
 
-  Edit1.Text:='Dotyczy: '+ ZQPom.FieldByName('NAZWISKO').AsString+' '+ZQPom.FieldByName('IMIE').AsString;;
+  edTemat.Text:='Dotyczy: '+ ZQPom.FieldByName('NAZWISKO').AsString+' '+ZQPom.FieldByName('IMIE').AsString;;
 
   memOdbiorcy.Append;
   memOdbiorcy.FieldByName('user').AsString        := ZQPom.FieldByName('user').AsString;
@@ -372,8 +334,8 @@ procedure TKomunikatorNowaWiad.AutoKomunikat(user_list: TStringList;
   temat: string; tresc: string);
 var i: integer;
 begin
-  Edit1.Text:= temat;
-  RichMemo1.SelText:= tresc;
+  edTemat.Text:= temat;
+  fViewRichEdit.Text:= tresc; //RichMemo1.SelText:= tresc;
 
   for i:=0 to user_list.Count-1 do
     if user_list[i]<>'' then
@@ -383,154 +345,7 @@ begin
       memOdbiorcy.Post;
     end;
 
-  BitBtn1Click(Self); // wyślij
-end;
-
-
-// ###############################################################
-// ############   EDYTOR    ######################################
-
-procedure TKomunikatorNowaWiad.PrepareToolbar;
-begin
-  RichMemo1.GetTextAttributes(RichMemo1.SelStart, SelFontFormat);
-  RichMemo1.GetParaAlignment(RichMemo1.SelStart, SelParaAlignment);
-
-  cbFont.Caption := SelFontFormat.Name;
-  cbFontSize.Caption:= IntToStr(SelFontFormat.Size);
-  btnColor.ButtonColor := SelFontFormat.Color;
-
-  btnBold.Down  := (fsBold in SelFontFormat.Style);
-  btnItalic.Down:= (fsItalic in SelFontFormat.Style);
-  btnUnderline.Down:= (fsUnderline in SelFontFormat.Style);
-
-  btnLeft.Down  := (SelParaAlignment = TParaAlignment.paLeft);
-  btnCenter.Down:= (SelParaAlignment = TParaAlignment.paCenter);
-  btnRight.Down := (SelParaAlignment = TParaAlignment.paRight);
-end;
-
-procedure TKomunikatorNowaWiad.RichMemo1MouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-begin
-  PrepareToolbar;
-  RichMemo1.Refresh;
-end;
-
-procedure TKomunikatorNowaWiad.RichMemo1KeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  PrepareToolbar;
-  RichMemo1.Refresh;
-end;
-
-procedure TKomunikatorNowaWiad.RichMemo1MouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-begin
-  if Button = mbRight then PopupMenu2.PopUp;
-end;
-
-procedure TKomunikatorNowaWiad.btnBoldClick(Sender: TObject);
-begin
-  FontStyleModify(fsBold);
-end;
-
-procedure TKomunikatorNowaWiad.btnItalicClick(Sender: TObject);
-begin
-  FontStyleModify(fsItalic);
-end;
-
-procedure TKomunikatorNowaWiad.btnUnderlineClick(Sender: TObject);
-begin
-  FontStyleModify(fsUnderline);
-end;
-
-procedure TKomunikatorNowaWiad.btnLeftClick(Sender: TObject);
-begin
-  SelParaAlignment:= TParaAlignment.paLeft;
-  RichMemo1.SetParaAlignment( RichMemo1.SelStart, RichMemo1.SelLength, SelParaAlignment);
-  PrepareToolbar();
-end;
-
-procedure TKomunikatorNowaWiad.btnCenterClick(Sender: TObject);
-begin
-  SelParaAlignment:= TParaAlignment.paCenter;
-  RichMemo1.SetParaAlignment( RichMemo1.SelStart, RichMemo1.SelLength, SelParaAlignment);
-  PrepareToolbar();
-end;
-
-procedure TKomunikatorNowaWiad.btnRightClick(Sender: TObject);
-begin
-  SelParaAlignment:= TParaAlignment.paRight;
-  RichMemo1.SetParaAlignment( RichMemo1.SelStart, RichMemo1.SelLength, SelParaAlignment);
-  PrepareToolbar();
-end;
-
-procedure TKomunikatorNowaWiad.cbFontSelect(Sender: TObject);
-begin
-  SelFontFormat.Name:= cbFont.Text;
-  RichMemo1.SetRangeParams(RichMemo1.SelStart, RichMemo1.SelLength, [tmm_Name], SelFontFormat, [],[]);
-  RichMemo1.SetFocus; // get focus to the rich memo
-end;
-
-procedure TKomunikatorNowaWiad.cbFontSizeSelect(Sender: TObject);
-begin
-  SelFontFormat.Size:= StrToInt(cbFontSize.Text);
-  RichMemo1.SetRangeParams(RichMemo1.SelStart, RichMemo1.SelLength, [tmm_Size], SelFontFormat, [],[]);
-  RichMemo1.SetFocus;
-end;
-
-procedure TKomunikatorNowaWiad.ColorDialog1Close(Sender: TObject);
-begin
-  SelFontFormat.Color := TColorDialog(Sender).Color;
-  RichMemo1.SetRangeColor(RichMemo1.SelStart, RichMemo1.SelLength, SelFontFormat.Color);
-end;
-
-procedure TKomunikatorNowaWiad.ToolButton2Click(Sender: TObject);
-begin
-  FontDialog1.Font.Name := SelFontFormat.Name;
-  FontDialog1.Font.Color:= SelFontFormat.Color;
-  FontDialog1.Font.Size := SelFontFormat.Size;
-  FontDialog1.Font.Style:= SelFontFormat.Style;
-
-  if FontDialog1.Execute then
-  begin
-    SelFontFormat.Name := FontDialog1.Font.Name;
-    SelFontFormat.Color:= FontDialog1.Font.Color;
-    SelFontFormat.Size := FontDialog1.Font.Size;
-    SelFontFormat.Style:= FontDialog1.Font.Style;
-
-    RichMemo1.SetRangeParams(RichMemo1.SelStart, RichMemo1.SelLength, [tmm_Color, tmm_Size, tmm_Name], SelFontFormat, [],[]);
-  end;
-end;
-
-procedure TKomunikatorNowaWiad.MenuItemWytnijClick(Sender: TObject);
-begin
-  RichMemo1.CutToClipboard;
-end;
-
-procedure TKomunikatorNowaWiad.MenuItemKopiujClick(Sender: TObject);
-begin
-  RichMemo1.CopyToClipboard;
-end;
-
-procedure TKomunikatorNowaWiad.MenuItemWklejClick(Sender: TObject);
-begin
-  RichMemo1.PasteFromClipboard;
-end;
-
-procedure TKomunikatorNowaWiad.FontStyleModify(fs: TFontStyle);
-var
-  f : TFontParams;
-  rm  : TFontStyles;
-  add : TFontStyles;
-begin
-  RichMemo1.GetTextAttributes(RichMemo1.SelStart, f);
-  if fs in f.Style then begin
-    rm:=[fs]; add:=[];
-  end else begin
-    rm:=[]; add:=[fs];
-  end;
-  RichMemo1.SetRangeParams(RichMemo1.SelStart, RichMemo1.SelLength
-    , [tmm_Styles] , '', 0, 0, add, rm);
+  btnOKClick(Self); // wyślij
 end;
 
 end.
