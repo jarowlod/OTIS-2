@@ -41,6 +41,8 @@ type
     Path_NO_Foto: string;
     Path_Raporty: string;
     Path_NrStolikow: string;
+    Path_KnowHow: string;
+    Path_Temp   : string; // systemowy TEMP
 
     login     : string;
     haslo     : string;
@@ -161,7 +163,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.1.9';
+  wersja = '0.0.1.10';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -271,6 +273,7 @@ begin
       Path_Update              := ZQTemp.FieldByName('Path_Update').AsString;
       Path_Foto                := ZQTemp.FieldByName('Path_Foto').AsString;
       Path_NO_Foto             := ZQTemp.FieldByName('Path_NO_Foto').AsString;
+      Path_KnowHow             := ZQTemp.FieldByName('Path_KnowHow').AsString;;
       Station_Name_For_Widzenia:= ZQTemp.FieldByName('Station_Name_For_Widzenia').AsString;
       TimerInterval            := ZQTemp.FieldByName('TimerInterval').AsInteger;
 
