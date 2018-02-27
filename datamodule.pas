@@ -163,7 +163,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.1.10';
+  wersja = '0.0.1.11';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -273,7 +273,8 @@ begin
       Path_Update              := ZQTemp.FieldByName('Path_Update').AsString;
       Path_Foto                := ZQTemp.FieldByName('Path_Foto').AsString;
       Path_NO_Foto             := ZQTemp.FieldByName('Path_NO_Foto').AsString;
-      Path_KnowHow             := ZQTemp.FieldByName('Path_KnowHow').AsString;;
+      Path_KnowHow             := ZQTemp.FieldByName('Path_KnowHow').AsString;
+      Path_Temp                := GetTempDir;
       Station_Name_For_Widzenia:= ZQTemp.FieldByName('Station_Name_For_Widzenia').AsString;
       TimerInterval            := ZQTemp.FieldByName('TimerInterval').AsInteger;
 

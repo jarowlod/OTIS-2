@@ -30,6 +30,10 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    lblGR: TLabel;
+    lblZatrudnionych: TLabel;
     lblOs: TLabel;
     lblProg: TLabel;
     lblWolne: TLabel;
@@ -132,6 +136,7 @@ type
     WhereSQL: string;
     OrderSQL: string;
     fRecCount: integer;
+    fOldWychowawca: string;
 
     WolneCele: array of record
                           ID: integer;
@@ -181,7 +186,9 @@ uses UDrukWykazOsadz, UKoszyk, UKoszykNowy;
 
 procedure TPenitTerminarz.FormCreate(Sender: TObject);
 begin
+  // zmienne dla zabezpieczenia przed zbędnym odświeżaniem
   fRecCount:= 0;
+  fOldWychowawca:= '';
 
   ZQTerminarz.Close;
   SelectSQL:= ZQTerminarz.SQL.Text;
@@ -408,21 +415,30 @@ var bookmark: TBookMark;
     s       : string;
     system_p   : integer;
     fOsadzonych: integer;
+    fGR        : integer;
+    fZatrudnionych: integer;
 begin
-  if fRecCount = ZQTerminarz.RecordCount then exit;
+  // zabezpieczenie przed zbędnym odświeżaniem
+  if (fRecCount = ZQTerminarz.RecordCount)and(cbWychowawcy.Text=fOldWychowawca) then exit;
+  // -----------------------------------------
   fRecCount:= ZQTerminarz.RecordCount;
+  fOldWychowawca:= cbWychowawcy.Text;
   fOsadzonych:= fRecCount;
 
   ZQTerminarz.DisableControls;
   bookmark:= ZQTerminarz.Bookmark;
   ZQTerminarz.First;
-  system_p:=0;
+  system_p:= 0;
+  fGR     := 0;
+  fZatrudnionych:= 0;
 
   while not ZQTerminarz.EOF do
   begin
     s:= ZQTerminarzKLASYF.AsString;
     if Pos('/P',s)>0 then inc(system_p);
     if ZQTerminarzNazwiskoImie.AsString = 'Wolne' then dec(fOsadzonych);
+    if ZQTerminarzGR.AsBoolean then inc(fGR);
+    if not ZQTerminarzzat_od.IsNull then inc(fZatrudnionych);
     ZQTerminarz.Next;
   end;
 
@@ -432,6 +448,8 @@ begin
   lblOs.Caption   := IntToStr( fOsadzonych );
   lblWolne.Caption:= IntToStr( fWakaty );
   lblProg.Caption := IntToStr( system_p );
+  lblGR.Caption   := IntToStr( fGR );
+  lblZatrudnionych.Caption:= IntToStr( fZatrudnionych );
 end;
 
 procedure TPenitTerminarz.WczytajWakaty;

@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 94
+  Left = 400
   Height = 743
-  Top = 122
+  Top = 512
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -358,20 +358,20 @@ object PenitTerminarz: TPenitTerminarz
         Left = 0
         Height = 660
         Top = 0
-        Width = 456
+        Width = 454
         Align = alClient
         BevelOuter = bvNone
         ClientHeight = 660
-        ClientWidth = 456
+        ClientWidth = 454
         TabOrder = 0
         object Panel4: TPanel
           Left = 0
           Height = 50
           Top = 610
-          Width = 456
+          Width = 454
           Align = alBottom
           ClientHeight = 50
-          ClientWidth = 456
+          ClientWidth = 454
           Color = clForm
           ParentColor = False
           TabOrder = 0
@@ -420,17 +420,21 @@ object PenitTerminarz: TPenitTerminarz
             ParentFont = False
           end
           object lblProg: TLabel
+            AnchorSideLeft.Control = Label5
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = Label5
             Left = 168
             Height = 15
             Top = 6
             Width = 38
+            BorderSpacing.Left = 4
             Caption = 'lblProg'
             Font.Color = clBlue
             ParentColor = False
             ParentFont = False
           end
           object Edit1: TEdit
-            Left = 319
+            Left = 317
             Height = 23
             Top = 0
             Width = 136
@@ -440,12 +444,56 @@ object PenitTerminarz: TPenitTerminarz
             TabOrder = 0
             TextHint = 'Wyszukaj nazwisko'
           end
+          object Label6: TLabel
+            Left = 216
+            Height = 15
+            Top = 6
+            Width = 18
+            Caption = 'GR:'
+            ParentColor = False
+          end
+          object lblGR: TLabel
+            AnchorSideLeft.Control = Label6
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = Label6
+            Left = 238
+            Height = 15
+            Top = 6
+            Width = 28
+            BorderSpacing.Left = 4
+            Caption = 'lblGR'
+            Font.Color = clBlue
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label7: TLabel
+            Left = 153
+            Height = 15
+            Top = 24
+            Width = 81
+            Caption = 'Zatrudnionych:'
+            ParentColor = False
+          end
+          object lblZatrudnionych: TLabel
+            AnchorSideLeft.Control = Label7
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = Label7
+            Left = 238
+            Height = 15
+            Top = 24
+            Width = 91
+            BorderSpacing.Left = 4
+            Caption = 'lblZatrudnionych'
+            Font.Color = clBlue
+            ParentColor = False
+            ParentFont = False
+          end
         end
         object RxDBGrid1: TRxDBGrid
           Left = 0
           Height = 610
           Top = 0
-          Width = 456
+          Width = 454
           ColumnDefValues.BlobText = '(blob)'
           TitleButtons = True
           AutoSort = True
@@ -833,10 +881,10 @@ object PenitTerminarz: TPenitTerminarz
         end
       end
       object Panel3: TPanel
-        Left = 461
+        Left = 459
         Height = 660
         Top = 0
-        Width = 713
+        Width = 715
         Align = alRight
         BevelOuter = bvNone
         Color = clForm
@@ -844,7 +892,7 @@ object PenitTerminarz: TPenitTerminarz
         TabOrder = 1
       end
       object Splitter1: TSplitter
-        Left = 456
+        Left = 454
         Height = 660
         Top = 0
         Width = 5

@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 404
+  Left = 394
   Height = 598
-  Top = 224
+  Top = 225
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1220,6 +1220,9 @@ object MasterForm: TMasterForm
       object MenuItem18: TMenuItem
         Action = ActionRozmieszczenie
       end
+      object MenuItem67: TMenuItem
+        Action = ActionKnowHow
+      end
       object MenuItem23: TMenuItem
         Action = Action_AdresyJednostek
       end
@@ -1351,7 +1354,7 @@ object MasterForm: TMasterForm
       Hint = 'Rozmieszczenie ...'
       ImageIndex = 1
       OnExecute = ActionRozmieszczenieExecute
-      ShortCut = 112
+      ShortCut = 115
     end
     object ActionProsbyOsadzonego: TAction
       Category = 'Rejestr'
@@ -1545,6 +1548,14 @@ object MasterForm: TMasterForm
       Caption = 'Kreator WPZ ...'
       ImageIndex = 3
       OnExecute = ActionKreatorWPZExecute
+    end
+    object ActionKnowHow: TAction
+      Category = 'Dodatki'
+      Caption = 'Know How...'
+      Hint = 'Baza wiedzy praktycznej.'
+      ImageIndex = 46
+      OnExecute = ActionKnowHowExecute
+      ShortCut = 112
     end
   end
   object Timer2Komunikaty: TTimer

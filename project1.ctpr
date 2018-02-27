@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="10"/>
+      <BuildNr Value="11"/>
       <Language Value="0415"/>
       <StringTable CompanyName="ZK Kłodzko" LegalCopyright="Włodarczyk Jarosław" ProductVersion="0.0.0.0"/>
     </VersionInfo>
@@ -133,7 +133,7 @@
         <PackageName Value="adLCL"/>
       </Item31>
     </RequiredPackages>
-    <Units Count="54">
+    <Units Count="55">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -509,6 +509,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit53>
+      <Unit54>
+        <Filename Value="UKnowHow.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="KnowHow"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit54>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

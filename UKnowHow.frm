@@ -1,7 +1,7 @@
 object KnowHow: TKnowHow
-  Left = 407
+  Left = 394
   Height = 554
-  Top = 238
+  Top = 225
   Width = 917
   AllowDropFiles = True
   Caption = 'KnowHow'
@@ -657,7 +657,7 @@ object KnowHow: TKnowHow
     Top = 440
   end
   object ZQKnowHow: TZQuery
-    Connection = ZConnection1
+    Connection = DM.ZConnection1
     SQL.Strings = (
       'SELECT'
       'k.ID,'
@@ -698,7 +698,7 @@ object KnowHow: TKnowHow
       end>
   end
   object ZQKnowHowFiles: TZQuery
-    Connection = ZConnection1
+    Connection = DM.ZConnection1
     SQL.Strings = (
       'SELECT *'
       'FROM know_how_files'
@@ -718,22 +718,5 @@ object KnowHow: TKnowHow
         Name = 'id_know_how'
         ParamType = ptUnknown
       end>
-  end
-  object ZConnection1: TZConnection
-    ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = False
-    Catalog = 'klodzko'
-    Properties.Strings = (
-      'AutoEncodeStrings='
-    )
-    SQLHourGlass = True
-    HostName = 'a172.30.64.11'
-    Port = 3306
-    Database = 'klodzko'
-    User = '153202jwlo'
-    Password = 'molibden'
-    Protocol = 'mysql-5'
-    Left = 832
-    Top = 152
   end
 end

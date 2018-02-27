@@ -5,12 +5,9 @@ unit UKnowHow;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, LSControls,
-  BGRACustomDrawn, DBRichMemo,
-  DateTimePicker, ZDataset, ZConnection, rxdbgrid, rxmemds, TplGradientUnit,
-  Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, DbCtrls, Buttons, LCLIntf,
-  ShellApi;
+  Classes, SysUtils, db, FileUtil, LSControls, BGRACustomDrawn, DBRichMemo,
+  ZDataset, rxdbgrid, rxmemds, TplGradientUnit, Forms, Controls, Graphics,
+  Dialogs, ExtCtrls, StdCtrls, DbCtrls, Buttons, LCLIntf, ShellApi, datamodule;
 
 type
 
@@ -43,7 +40,6 @@ type
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     Splitter1: TSplitter;
-    ZConnection1: TZConnection;
     ZQKnowHow: TZQuery;
     ZQKnowHowFiles: TZQuery;
     procedure DSKnowHowDataChange(Sender: TObject; Field: TField);
@@ -57,8 +53,8 @@ type
 
   end;
 
-var
-  KnowHow: TKnowHow;
+//var
+//  KnowHow: TKnowHow;
 
 implementation
 
@@ -80,8 +76,7 @@ begin
   DragAcceptFiles(RxDBGrid2.Handle, True);
 end;
 
-procedure TKnowHow.FormDropFiles(Sender: TObject; const FileNames: array of String
-  );
+procedure TKnowHow.FormDropFiles(Sender: TObject; const FileNames: array of String);
 var i: integer;
 begin
   for i:= Low(FileNames) to High(FileNames) do
@@ -92,8 +87,8 @@ procedure TKnowHow.RxDBGrid2DblClick(Sender: TObject);
 var fileDest, fileSrc: string;
 begin
   if ZQKnowHowFiles.IsEmpty then exit;
-  fileDest:= 'Temp\'+ZQKnowHowFiles.FieldByName('FileName').AsString;
-  fileSrc:= 'Pliki\'+ZQKnowHowFiles.FieldByName('ID').AsString+ExtractFileExt(ZQKnowHowFiles.FieldByName('FileName').AsString);
+  fileDest:= DM.Path_Temp + ZQKnowHowFiles.FieldByName('FileName').AsString;
+  fileSrc := DM.Path_KnowHow + ZQKnowHowFiles.FieldByName('ID').AsString + ExtractFileExt(ZQKnowHowFiles.FieldByName('FileName').AsString);
   if CopyFile(fileSrc, fileDest, [cffOverwriteFile, cffCreateDestDirectory, cffPreserveTime]) then
     OpenDocument(fileDest);
 end;
@@ -102,18 +97,18 @@ procedure TKnowHow.WstawPlik(fileName: String);
 var fileDest: string;
 begin
   ZQKnowHowFiles.Append;
-  ZQKnowHowFiles.FieldByName('ID_Know_How').AsInteger:= ZQKnowHow.FieldByName('ID').AsInteger;
-  ZQKnowHowFiles.FieldByName('FileName').AsString:= ExtractFileName(fileName);
-  ZQKnowHowFiles.FieldByName('FilePathSrc').AsString:= fileName;
+  ZQKnowHowFiles.FieldByName('ID_Know_How').AsInteger := ZQKnowHow.FieldByName('ID').AsInteger;
+  ZQKnowHowFiles.FieldByName('FileName').AsString     := ExtractFileName(fileName);
+  ZQKnowHowFiles.FieldByName('FilePathSrc').AsString  := fileName;
   ZQKnowHowFiles.FieldByName('DataDodania').AsDateTime:= Now;
-  ZQKnowHowFiles.FieldByName('User').AsString:= 'Jaro';
+  ZQKnowHowFiles.FieldByName('User').AsString         := DM.PelnaNazwa;
   ZQKnowHowFiles.Post;
-  fileDest:='Pliki\'+ZQKnowHowFiles.FieldByName('ID').AsString + ExtractFileExt(fileName);
+  fileDest:= DM.Path_KnowHow + ZQKnowHowFiles.FieldByName('ID').AsString + ExtractFileExt(fileName);
   if not CopyFile(fileName, fileDest, [cffOverwriteFile, cffCreateDestDirectory,cffPreserveTime]) then ZQKnowHowFiles.Delete;
 end;
 
 procedure TKnowHow.DSKnowHowDataChange(Sender: TObject; Field: TField);
-var ZQPom: TZQuery; //pom
+var ZQPom: TZQueryPom; //pom
     s: string;
 begin
   lblTags.Caption:= '';
@@ -122,8 +117,7 @@ begin
   ZQKnowHowFiles.ParamByName('id_know_how').AsInteger:= ZQKnowHow.FieldByName('ID').AsInteger;
   ZQKnowHowFiles.Open;
 
-  ZQPom:= TZQuery.Create(Self);
-  ZQPom.Connection:= ZConnection1;
+  ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'SELECT Tag FROM know_how_tags WHERE ID_Know_How=:id';
   ZQPom.ParamByName('id').AsInteger:= ZQKnowHow.FieldByName('ID').AsInteger;
   ZQPom.Open;

@@ -1,7 +1,7 @@
 object PenitWPZ: TPenitWPZ
-  Left = 404
+  Left = 394
   Height = 819
-  Top = 224
+  Top = 225
   Width = 755
   Caption = 'PenitWPZ'
   ClientHeight = 819

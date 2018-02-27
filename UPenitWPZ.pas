@@ -183,7 +183,8 @@ begin
 
   ZQOsInfo.ParamByName('ido').AsInteger:= SelectIDO;
   ZQOsInfo.Open;
-  if not ZQOsInfo.IsEmpty then cbOWZ.Checked:= ( Pos('OWZ', UpperCase(ZQOsInfo.FieldByName('ulamek_wpz').AsString))>0 );
+  if not ZQOsInfo.IsEmpty then cbOWZ.Checked:= ( Pos('OWZ', UpperCase(ZQOsInfo.FieldByName('ulamek_wpz').AsString))>0 )or
+                                               ( Pos('81', ZQOsInfo.FieldByName('ulamek_wpz').AsString)>0 );
 
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'SELECT IDO, PRZYJ, NAZWISKO, IMIE, POC, KLASYF FROM osadzeni WHERE IDO=:ido';
