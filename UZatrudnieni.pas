@@ -964,7 +964,7 @@ end;
 function TZatrudnieni.ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
 var s: string;
 begin
-  s:= ZQPom.FieldByName('POC').AsString; // nr w arkuszu, doraźnie POC
+  s:= ZQPom.FieldByName('IDO').AsString; // nr w arkuszu, doraźnie POC lub IDO
   s:= s+ #09 +ZQPom.FieldByName('Przyjety').AsString;
   s:= s+ #09 +ZQPom.FieldByName('nr_ewidencyjny').AsString;
   s:= s+ #09 +ZQPom.FieldByName('Nazwisko').AsString;

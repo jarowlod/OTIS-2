@@ -1,7 +1,7 @@
 object AktualizacjaOs: TAktualizacjaOs
-  Left = 396
+  Left = 394
   Height = 515
-  Top = 222
+  Top = 225
   Width = 1163
   Caption = 'AktualizacjaOs'
   ClientHeight = 515
@@ -157,10 +157,11 @@ object AktualizacjaOs: TAktualizacjaOs
     AutoSort = True
     Columns = <    
       item
+        Font.Color = clNavy
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'IDO'
-        Width = 80
+        Width = 70
         FieldName = 'IDO'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -213,10 +214,11 @@ object AktualizacjaOs: TAktualizacjaOs
         Footers = <>
       end    
       item
+        Font.Color = clMaroon
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'URODZ'
-        Width = 70
+        Width = 80
         FieldName = 'URODZ'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -227,10 +229,11 @@ object AktualizacjaOs: TAktualizacjaOs
         Footers = <>
       end    
       item
+        Font.Color = clMaroon
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'PRZYJ'
-        Width = 70
+        Width = 80
         FieldName = 'PRZYJ'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -241,10 +244,11 @@ object AktualizacjaOs: TAktualizacjaOs
         Footers = <>
       end    
       item
+        Font.Color = clGreen
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'KLASYF'
-        Width = 50
+        Width = 60
         FieldName = 'KLASYF'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -255,6 +259,7 @@ object AktualizacjaOs: TAktualizacjaOs
         Footers = <>
       end    
       item
+        Font.Color = clGreen
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'POC'
@@ -272,7 +277,7 @@ object AktualizacjaOs: TAktualizacjaOs
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'STATUS'
-        Width = 50
+        Width = 60
         FieldName = 'STATUS'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -358,13 +363,12 @@ object AktualizacjaOs: TAktualizacjaOs
     DataSource = DataSource1
     DefaultRowHeight = 24
     FixedColor = clNone
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAutoSizeColumns, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
     ReadOnly = True
     TabOrder = 2
     TitleStyle = tsNative
   end
   object MemDataset1: TMemDataset
-    Active = True
     FieldDefs = <    
       item
         Name = 'IDO'

@@ -54,6 +54,7 @@ begin
   Memo1.Lines.Clear;
   btnAktualizujOs.Enabled:=false;
   daneHTML:= TStringList.Create;
+  MemDataset1.Open;
 end;
 
 procedure TAktualizacjaOs.FormDestroy(Sender: TObject);

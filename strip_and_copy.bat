@@ -10,12 +10,12 @@
 
 @ECHO .
 @ECHO Kopiowanie katalogu raporty do katalogu w sieci W:\OTIS2\Update\raporty\ ...
-@copy /Y raporty\*.* "W:\OTIS2\Update\raporty\*.*"
+@xcopy raporty\*.* "W:\OTIS2\Update\raporty\*.*" /D /Y
 @ECHO ---------------------------------
 
 @ECHO .
 @ECHO Kopiowanie katalogu NrStolikow do katalogu w sieci W:\OTIS2\Update\NrStolikow\ ...
-@copy /Y NrStolikow\*.* "W:\OTIS2\Update\NrStolikow\*.*"
+@xcopy NrStolikow\*.* "W:\OTIS2\Update\NrStolikow\*.*" /D /Y
 @ECHO ---------------------------------
 @ECHO Zmien numer wersji w bazie danych !
 @pause
