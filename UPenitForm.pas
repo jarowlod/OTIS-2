@@ -213,7 +213,6 @@ begin
   ZQOs.Close;
   ZQOs.ParamByName('IDO').AsInteger := SelectIDO;
   ZQOs.Open;
-  DBEdit1.Text:='';
   // otwieramy os_info wybranego osadzonego
   ZQOsInfo.Close;
   ZQOsInfo.ParamByName('IDO').AsInteger := SelectIDO;

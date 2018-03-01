@@ -7,13 +7,14 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
   ExtCtrls, Buttons, DbCtrls, StdCtrls, Menus, UViewStolik, db,
-  ZDataset, rxdbgrid, BCPanel, BCLabel, datamodule;
+  ZDataset, rxdbgrid, BCPanel, BCLabel, BGRAShape, datamodule;
 
 type
 
   { TOchSalaWidzen }
 
   TOchSalaWidzen = class(TForm)
+    BGRACienStolika: TBGRAShape;
     btnWybranyDoWidzenia: TBitBtn;
     DBcbGR: TDBCheckBox;
     DBlblNazwisko: TDBText;
@@ -41,9 +42,9 @@ type
     miUsunZPoczekalni: TMenuItem;
     Panel1: TPanel;
     Panel3: TPanel;
-    PanelBezdozor: TBCPanel;
+    BCPanelBezdozor: TBCPanel;
     lblZegar: TBCLabel;
-    BCPanel1: TBCPanel;
+    BCPanelSala: TBCPanel;
     PageControl1: TPageControl;
     PanelPleksa: TPanel;
     PanelSala: TPanel;
@@ -82,6 +83,7 @@ type
     procedure OdswiezPoczekalnie;
   public
     procedure PrzeladujWidzenia;
+    procedure CienStolika(vON: boolean; vNrStolika: integer);
   end;
 
 var
@@ -187,7 +189,7 @@ begin
   for i:=0 to LSTOLIKOW-1 do
   begin
     FStoliki[i]:= TViewStolik.Create(Self);
-    FStoliki[i].Parent:= PanelSala;
+    FStoliki[i].Parent:= BCPanelSala;
     FStoliki[i].NrStolika:= i+1;
     FStoliki[i].PopupMenuVisible:= not isTylkoPodglad; // jeśli tylko podgląd to False
     FStoliki[i].WczytajDane; // zamiast SetIDO sam wczyta sobie co trzeba
@@ -210,14 +212,15 @@ begin
   // Prawa strona Bezdozorowe
   for i:=16 to 17 do
   begin
-    ii:= ((i-16) mod 2) + 2;
-    FStoliki[i].Left:= PRAWA_STRONA_SALI + (FStoliki[i].Width + ODSTEP_OD_STOLIKOW) * ii;
+    FStoliki[i].Parent:= BCPanelBezdozor;
+    ii:= ((i-16) mod 2);
+    FStoliki[i].Left:= 15+ODSTEP_OD_STOLIKOW + (FStoliki[i].Width + ODSTEP_OD_STOLIKOW) * ii;
     FStoliki[i].Top := ODSTEP_OD_STOLIKOW;
     FStoliki[i].Show;
-  end;
-  PanelBezdozor.Left  := FStoliki[16].Left-ODSTEP_OD_STOLIKOW-15;
-  PanelBezdozor.Width := 2 * (FStoliki[16].Width + ODSTEP_OD_STOLIKOW) + ODSTEP_OD_STOLIKOW+15;
-  PanelBezdozor.Height:= FStoliki[16].Height + 2*ODSTEP_OD_STOLIKOW+15;
+  end;                  //(odstęp od poprzednich 2 kolumn ) + (odstęp między lewą a prawą stroną sali)
+  BCPanelBezdozor.Left  := 2 * (FStoliki[16].Width + ODSTEP_OD_STOLIKOW) + PRAWA_STRONA_SALI - (15+ODSTEP_OD_STOLIKOW);
+  BCPanelBezdozor.Width := 2 * (FStoliki[16].Width + ODSTEP_OD_STOLIKOW) + ODSTEP_OD_STOLIKOW+15;
+  BCPanelBezdozor.Height:= FStoliki[16].Height + 2*ODSTEP_OD_STOLIKOW+15;
 
   // Prawa strona sali
   for i:=10 to 15 do
@@ -225,7 +228,7 @@ begin
     ii:= ((i-10) div 3) + 2;   // kolumna
     FStoliki[i].Left:= PRAWA_STRONA_SALI + (FStoliki[i].Width + ODSTEP_OD_STOLIKOW) * ii;
     ii:= ((i-10) mod 3);       // wiersz
-    FStoliki[i].Top := PanelBezdozor.Height+81 + (FStoliki[i].Height + ODSTEP_OD_STOLIKOW) * ii;
+    FStoliki[i].Top := BCPanelBezdozor.Height+81 + (FStoliki[i].Height + ODSTEP_OD_STOLIKOW) * ii;
     FStoliki[i].Show;
   end;
 
@@ -261,6 +264,16 @@ procedure TOchSalaWidzen.PrzeladujWidzenia;
 var i: integer;
 begin
   for i:=0 to LSTOLIKOW-1 do FStoliki[i].WczytajDane;
+end;
+
+procedure TOchSalaWidzen.CienStolika(vON: boolean; vNrStolika: integer);
+begin
+  BGRACienStolika.Visible:= vON;
+  BGRACienStolika.Parent := FStoliki[vNrStolika-1].Parent;
+  BGRACienStolika.Left   := FStoliki[vNrStolika-1].Left-4;
+  BGRACienStolika.Top    := FStoliki[vNrStolika-1].Top-4;
+  BGRACienStolika.Width  := FStoliki[vNrStolika-1].Width+8;
+  BGRACienStolika.Height := FStoliki[vNrStolika-1].Height+8;
 end;
 
 procedure TOchSalaWidzen.WczytajDodatkoweInfo;

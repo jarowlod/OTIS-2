@@ -1,14 +1,14 @@
 object OchSalaWidzen: TOchSalaWidzen
-  Left = 404
+  Left = 394
   Height = 856
-  Top = 224
+  Top = 225
   Width = 1278
   HorzScrollBar.Increment = 109
   HorzScrollBar.Page = 1096
   HorzScrollBar.Smooth = True
   HorzScrollBar.Tracking = True
-  VertScrollBar.Increment = 27
-  VertScrollBar.Page = 279
+  VertScrollBar.Increment = 44
+  VertScrollBar.Page = 449
   VertScrollBar.Smooth = True
   VertScrollBar.Tracking = True
   AutoScroll = True
@@ -48,7 +48,7 @@ object OchSalaWidzen: TOchSalaWidzen
         Color = 16771022
         ParentColor = False
         TabOrder = 0
-        object BCPanel1: TBCPanel
+        object BCPanelSala: TBCPanel
           Left = 0
           Height = 818
           Top = 0
@@ -111,8 +111,8 @@ object OchSalaWidzen: TOchSalaWidzen
           Rounding.RoundOptions = []
           TabOrder = 0
           object lblZegar: TBCLabel
-            AnchorSideLeft.Control = PanelBezdozor
-            AnchorSideTop.Control = PanelBezdozor
+            AnchorSideLeft.Control = BCPanelBezdozor
+            AnchorSideTop.Control = BCPanelBezdozor
             AnchorSideTop.Side = asrBottom
             Left = 552
             Height = 61
@@ -174,7 +174,7 @@ object OchSalaWidzen: TOchSalaWidzen
             Rounding.RoundY = 1
             Rounding.RoundOptions = []
           end
-          object PanelBezdozor: TBCPanel
+          object BCPanelBezdozor: TBCPanel
             Left = 552
             Height = 170
             Top = 0
@@ -255,6 +255,46 @@ object OchSalaWidzen: TOchSalaWidzen
               Brush.Color = clYellow
               Brush.Style = bsBDiagonal
             end
+          end
+          object BGRACienStolika: TBGRAShape
+            Left = 136
+            Height = 155
+            Top = 256
+            Width = 257
+            Angle = 45
+            BorderColor = clWindowText
+            BorderGradient.StartColor = clWhite
+            BorderGradient.StartColorOpacity = 255
+            BorderGradient.DrawMode = dmSet
+            BorderGradient.EndColor = clBlack
+            BorderGradient.EndColorOpacity = 255
+            BorderGradient.ColorCorrection = True
+            BorderGradient.GradientType = gtLinear
+            BorderGradient.Point1XPercent = 0
+            BorderGradient.Point1YPercent = 0
+            BorderGradient.Point2XPercent = 100
+            BorderGradient.Point2YPercent = 100
+            BorderGradient.Sinus = False
+            BorderStyle = psClear
+            FillColor = clBackground
+            FillOpacity = 255
+            FillGradient.StartColor = clWhite
+            FillGradient.StartColorOpacity = 255
+            FillGradient.DrawMode = dmSet
+            FillGradient.EndColor = clBlack
+            FillGradient.EndColorOpacity = 255
+            FillGradient.ColorCorrection = False
+            FillGradient.GradientType = gtLinear
+            FillGradient.Point1XPercent = 0
+            FillGradient.Point1YPercent = 0
+            FillGradient.Point2XPercent = 0
+            FillGradient.Point2YPercent = 100
+            FillGradient.Sinus = False
+            UseFillGradient = True
+            UseBorderGradient = True
+            Caption = 'BGRACienStolika'
+            RoundRadius = 5
+            Visible = False
           end
         end
       end

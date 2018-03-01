@@ -34,7 +34,6 @@ type
     PopupMenu1: TPopupMenu;
     sbnWykazy: TSpeedButton;
     sbnUwagi: TSpeedButton;
-    Shape1: TShape;
     Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormMouseEnter(Sender: TObject);
@@ -92,22 +91,12 @@ end;
 
 procedure TViewStolik.FormMouseEnter(Sender: TObject);
 begin
-  Height:= Height + 6;
-  Width := Width + 6;
-  Top   := Top - 3;
-  Left  := Left - 3;
-  //Panel1.BevelInner:= bvRaised;
-  Panel1.BorderSpacing.Around:= 3;
+  OchSalaWidzen.CienStolika(true, NrStolika);
 end;
 
 procedure TViewStolik.FormMouseLeave(Sender: TObject);
 begin
-  Height:= Height - 6;
-  Width := Width - 6;
-  Top   := Top + 3;
-  Left  := Left + 3;
-  //Panel1.BevelInner:= bvNone;
-  Panel1.BorderSpacing.Around:= 0;
+  OchSalaWidzen.CienStolika(false, NrStolika);
 end;
 
 procedure TViewStolik.Image1DblClick(Sender: TObject);

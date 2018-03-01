@@ -1,7 +1,7 @@
 object ViewStolik: TViewStolik
-  Left = 407
+  Left = 394
   Height = 140
-  Top = 238
+  Top = 225
   Width = 240
   BorderStyle = bsNone
   Caption = 'Stolik'
@@ -11,17 +11,6 @@ object ViewStolik: TViewStolik
   PopupMenu = PopupMenu1
   PopupMode = pmAuto
   LCLVersion = '6.3'
-  object Shape1: TShape
-    Left = 0
-    Height = 140
-    Top = 0
-    Width = 240
-    Align = alClient
-    Brush.Style = bsClear
-    Pen.Color = 4194304
-    Pen.JoinStyle = pjsMiter
-    Pen.Width = 3
-  end
   object Panel1: TPanel
     Left = 0
     Height = 140
