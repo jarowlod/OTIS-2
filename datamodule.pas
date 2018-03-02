@@ -280,7 +280,7 @@ begin
 
       ZQTemp.Close;
     except
-      ShowMessage('Brak uprawnień.');
+      ShowMessage('Brak uprawnień. Błąd podczas aktualizacji.');
       exit;
     end;
 end;
@@ -393,7 +393,8 @@ begin
 
   //odczytujemy tabele ver_otis2,
   //                aktualna wersja, path update, path foto, itp...
-  Aktualizacja;
+  // Aktualizacja jest wywoływana podczas Logowania, jesli logowanie = true to OpenAllTable. Więc tutaj jest zbędna.
+  // Aktualizacja;
 
   //Ładujemy ustawienia z tabeli uprawnienia
   //           w tym PelnaNazwa z mysql.user_info

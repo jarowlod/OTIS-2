@@ -236,7 +236,7 @@ end;
 
 procedure TOchAddWidzenie.DodajOsobeDoWidzenia(aID: integer; aNazwisko, aImie, aPokrewienstwo: string);
 begin
-  if MemOsoby.Locate('ID',aID, []) then
+  if MemOsoby.Locate('ID', aID, []) then
   begin
     DM.KomunikatPopUp(Self, 'Widzenia', 'Osoba uprawniona do widzenia jest już dodana.', nots_Info);
     exit;
