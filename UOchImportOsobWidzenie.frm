@@ -1,7 +1,7 @@
 object OchImportOsobWidzenie: TOchImportOsobWidzenie
-  Left = 404
+  Left = 394
   Height = 457
-  Top = 224
+  Top = 225
   Width = 856
   Caption = 'Import osób uprawnionych do widzenia z NoeNET.'
   ClientHeight = 457

@@ -9,8 +9,7 @@ object MasterForm: TMasterForm
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
-  Position = poDesktopCenter
-  SessionProperties = 'Left;Top'
+  Position = poScreenCenter
   LCLVersion = '6.3'
   object StatusBar1: TStatusBar
     Left = 0

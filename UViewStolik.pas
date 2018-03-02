@@ -67,6 +67,7 @@ type
     procedure IncProgress;
     procedure SetPopupMenuVisible(AValue: Boolean);
     procedure UpdateProgress;
+    procedure JednorazoweOdbierzPrawo(ID_widzenia: integer);
   public
     // wczytuje dane z bazy po nr stolika i Etapie widzenia
     procedure WczytajDane;
@@ -213,6 +214,8 @@ begin
   ZQPom.ParamByName('id').AsInteger:= fID;
   ZQPom.ExecSQL;
 
+  JednorazoweOdbierzPrawo(fID);
+
   WczytajDane;
 end;
 
@@ -316,6 +319,41 @@ begin
   begin
     MessageBeep(1);
   end;
+end;
+
+procedure TViewStolik.JednorazoweOdbierzPrawo(ID_widzenia: integer);
+var ZQPom, ZQPom_Upr: TZQueryPom;
+begin
+  ZQPom_Upr:= TZQueryPom.Create(Self);
+  ZQPom_Upr.SQL.Text:='UPDATE uprawnione SET Skreslona=:skreslona, Skreslil=:skreslil, Data_Skreslenia=:data_skreslenia WHERE ID=:id';
+
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT w.ID_widzenia, w.ID_uprawnione, u.ID, u.Uwagi, u.Nazwisko, u.Imie FROM widzenia_upr w'+
+                   ' LEFT JOIN uprawnione u ON (w.ID_uprawnione=u.ID)'+
+                   'WHERE ID_widzenia=:id_w';
+  ZQPom.ParamByName('id_w').AsInteger:= ID_widzenia;
+  ZQPom.Open;
+  while not ZQPom.EOF do
+  begin
+    if ZQPom.FieldByName('Uwagi').AsString.IndexOf('Jednorazowo')>0 then
+    begin
+      //odbieramy prawo do widzeń
+      try
+        ZQPom_Upr.ParamByName('ID').AsInteger              := ZQPom.FieldByName('ID').AsInteger;
+        ZQPom_Upr.ParamByName('Skreslona').AsBoolean       := true;
+        ZQPom_Upr.ParamByName('Skreslil').AsString         := DM.PelnaNazwa;
+        ZQPom_Upr.ParamByName('Data_Skreslenia').AsDateTime:= Now();
+        ZQPom_Upr.ExecSQL;
+      finally
+        DM.KomunikatPopUp(Self, 'Widzenie','Odebrano prawo do widzeń osobie z prawem do jednorazowego widzenia.'+LineEnding+
+                                ZQPom.FieldByName('Nazwisko').AsString+' '+ZQPom.FieldByName('Imie').AsString, nots_Info);
+      end;
+    end;
+    ZQPom.Next;
+  end;
+
+  FreeAndNil( ZQPom);
+  FreeAndNil( ZQPom_Upr);
 end;
 
 procedure TViewStolik.WczytajDane;
