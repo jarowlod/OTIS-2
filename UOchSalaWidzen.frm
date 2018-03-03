@@ -3,12 +3,12 @@ object OchSalaWidzen: TOchSalaWidzen
   Height = 856
   Top = 225
   Width = 1278
-  HorzScrollBar.Increment = 109
-  HorzScrollBar.Page = 1096
+  HorzScrollBar.Increment = 84
+  HorzScrollBar.Page = 840
   HorzScrollBar.Smooth = True
   HorzScrollBar.Tracking = True
-  VertScrollBar.Increment = 44
-  VertScrollBar.Page = 449
+  VertScrollBar.Increment = 47
+  VertScrollBar.Page = 470
   VertScrollBar.Smooth = True
   VertScrollBar.Tracking = True
   AutoScroll = True
@@ -18,6 +18,7 @@ object OchSalaWidzen: TOchSalaWidzen
   Color = 16771022
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '6.3'
   object PageControl1: TPageControl
@@ -25,11 +26,11 @@ object OchSalaWidzen: TOchSalaWidzen
     Height = 856
     Top = 0
     Width = 1278
-    ActivePage = TabSheetSalaWidzen
+    ActivePage = TabSheetPleksa
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 30
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object TabSheetSalaWidzen: TTabSheet
       Caption = 'Sala widzeń'
@@ -257,9 +258,9 @@ object OchSalaWidzen: TOchSalaWidzen
             end
           end
           object BGRACienStolika: TBGRAShape
-            Left = 136
+            Left = 8
             Height = 155
-            Top = 256
+            Top = 8
             Width = 257
             Angle = 45
             BorderColor = clWindowText
@@ -296,6 +297,50 @@ object OchSalaWidzen: TOchSalaWidzen
             RoundRadius = 5
             Visible = False
           end
+          object SpeedButton1: TSpeedButton
+            Left = 1246
+            Height = 24
+            Top = 0
+            Width = 24
+            Anchors = [akTop, akRight]
+            Glyph.Data = {
+              36040000424D3604000000000000360000002800000010000000100000000100
+              2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF0039864003347E3A78FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF004191499C3B8842D2FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF004EA3579066B06EFF61AA68FF3D8B44FF37833EFF327B
+              37FF2C7432EA276D2CB7236627701F61231DFFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF005BB4658473BD7CFF96D19FFF94CF9CFF8FCD96FF8ACA91FF85C7
+              8BFF7ABE81FF65AD6CFF4B9251FF246829B020632439FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF0060BC6C8A79C483FF9ED7A7FF9BD4A4FF97D29FFF92CF9AFF8DCC
+              95FF88CA90FF7AC282FF7EC485FF5DA463FF266B2AB02265251DFFFFFF00FFFF
+              FF00FFFFFF00FFFFFF0062BE6D937BC785FF77C281FF54AB5EFF4EA357FF499B
+              51FF63AC6BFF83C38BFF87C98FFF82C689FF509756FF276D2C70FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF0063C06E9F5FBB6AD2FFFFFF00FFFFFF00FFFF
+              FF004B9E538D45964DE186C68EFF88C98FFF6FB376FF2E7633B745964D613F8E
+              466139864061347E3A612E76336167C6730364C2707BFFFFFF00FFFFFF00FFFF
+              FF00FFFFFF004DA1558347994FED419149F63B8842F835803CE84DA155E84799
+              4FF8419149F63B8842ED35803C83FFFFFF00FFFFFF00FFFFFF00FFFFFF001E5F
+              217B1B5B1E0354AB5E614EA35761499B516143934B613D8B446154AB5EB780C3
+              89FF8DCC95FF83C48AFF3D8B44E137833E8DFFFFFF00FFFFFF00FFFFFF002366
+              27D21F61239FFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF005BB4657075BF
+              7EFF98D2A1FF94CF9CFF86C78DFF5EA765FF398640FF347E3AFF2E7633FF4990
+              4FFF458B4AFF20632493FFFFFF00FFFFFF00FFFFFF00FFFFFF0060BC6C1D5CB6
+              67B085C98EFF9BD4A4FF8FCE98FF92CF9AFF8DCC95FF88CA90FF83C68BFF7EC4
+              85FF79C17FFF478D4CFF2265258AFFFFFF00FFFFFF00FFFFFF00FFFFFF0062BE
+              6D395EB968B079C383FF89CA92FF94D09CFF95D19EFF90CF99FF8CCB94FF87C9
+              8FFF80C487FF4E9554FF276D2C84FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF0063C06E1D5FBB6A705BB465B756AD5FEA50A65AFF4B9E53FF45964DFF60A8
+              68FF5BA262FF347E3A90FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF004799
+              4FD24191499CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+              FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF004EA3
+              5778499B5103FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+            }
+            OnClick = SpeedButton1Click
+          end
         end
       end
     end
@@ -311,9 +356,318 @@ object OchSalaWidzen: TOchSalaWidzen
         Width = 1270
         Align = alClient
         BevelOuter = bvNone
+        ClientHeight = 818
+        ClientWidth = 1270
         Color = 13027325
         ParentColor = False
         TabOrder = 0
+        object BCPanelPleksa: TBCPanel
+          Left = 16
+          Height = 344
+          Top = 88
+          Width = 816
+          Background.Color = clWhite
+          Background.ColorOpacity = 255
+          Background.Gradient1.StartColor = 15132390
+          Background.Gradient1.StartColorOpacity = 255
+          Background.Gradient1.DrawMode = dmSet
+          Background.Gradient1.EndColor = 7434751
+          Background.Gradient1.EndColorOpacity = 255
+          Background.Gradient1.ColorCorrection = False
+          Background.Gradient1.GradientType = gtLinear
+          Background.Gradient1.Point1XPercent = 0
+          Background.Gradient1.Point1YPercent = 0
+          Background.Gradient1.Point2XPercent = 100
+          Background.Gradient1.Point2YPercent = 100
+          Background.Gradient1.Sinus = False
+          Background.Gradient2.StartColor = clWhite
+          Background.Gradient2.StartColorOpacity = 255
+          Background.Gradient2.DrawMode = dmSet
+          Background.Gradient2.EndColor = clBlack
+          Background.Gradient2.EndColorOpacity = 255
+          Background.Gradient2.ColorCorrection = True
+          Background.Gradient2.GradientType = gtLinear
+          Background.Gradient2.Point1XPercent = 0
+          Background.Gradient2.Point1YPercent = 0
+          Background.Gradient2.Point2XPercent = 0
+          Background.Gradient2.Point2YPercent = 100
+          Background.Gradient2.Sinus = False
+          Background.Gradient1EndPercent = 100
+          Background.Style = bbsGradient
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BevelWidth = 1
+          Border.Color = clBlack
+          Border.ColorOpacity = 255
+          Border.LightColor = clWhite
+          Border.LightOpacity = 255
+          Border.LightWidth = 0
+          Border.Style = bboSolid
+          Border.Width = 1
+          BorderBCStyle = bpsBorder
+          FontEx.Color = clDefault
+          FontEx.EndEllipsis = False
+          FontEx.FontQuality = fqSystemClearType
+          FontEx.Height = 0
+          FontEx.SingleLine = True
+          FontEx.Shadow = False
+          FontEx.ShadowColor = clBlack
+          FontEx.ShadowColorOpacity = 255
+          FontEx.ShadowRadius = 5
+          FontEx.ShadowOffsetX = 5
+          FontEx.ShadowOffsetY = 5
+          FontEx.Style = []
+          FontEx.TextAlignment = bcaCenter
+          FontEx.WordBreak = False
+          Rounding.RoundX = 20
+          Rounding.RoundY = 20
+          Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
+          TabOrder = 0
+          object Shape3: TShape
+            Left = 0
+            Height = 15
+            Top = 100
+            Width = 816
+            Align = alCustom
+            Anchors = [akTop, akLeft, akRight]
+            Brush.Color = clYellow
+            Brush.Style = bsBDiagonal
+          end
+          object Shape4: TShape
+            Left = 0
+            Height = 329
+            Top = 0
+            Width = 15
+            Align = alLeft
+            Brush.Color = clYellow
+            Brush.Style = bsBDiagonal
+          end
+          object Shape5: TShape
+            Left = 801
+            Height = 329
+            Top = 0
+            Width = 15
+            Align = alRight
+            Brush.Color = clYellow
+            Brush.Style = bsBDiagonal
+          end
+          object Przegroda1: TShape
+            Left = 320
+            Height = 344
+            Top = 0
+            Width = 15
+            Align = alCustom
+            Anchors = [akTop, akLeft, akBottom]
+            Brush.Color = clYellow
+            Brush.Style = bsBDiagonal
+          end
+          object Przegroda2: TShape
+            Left = 576
+            Height = 344
+            Top = 0
+            Width = 15
+            Align = alCustom
+            Anchors = [akTop, akLeft, akBottom]
+            Brush.Color = clYellow
+            Brush.Style = bsBDiagonal
+          end
+          object Shape8: TShape
+            Left = 0
+            Height = 15
+            Top = 329
+            Width = 816
+            Align = alBottom
+            Anchors = [akLeft]
+            Brush.Color = clYellow
+            Brush.Style = bsBDiagonal
+          end
+          object lblBoks1: TBCLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 145
+            Height = 99
+            Top = 1
+            Width = 50
+            Anchors = []
+            Background.Color = clBlack
+            Background.ColorOpacity = 255
+            Background.Gradient1.StartColor = clWhite
+            Background.Gradient1.StartColorOpacity = 255
+            Background.Gradient1.DrawMode = dmSet
+            Background.Gradient1.EndColor = clBlack
+            Background.Gradient1.EndColorOpacity = 255
+            Background.Gradient1.ColorCorrection = True
+            Background.Gradient1.GradientType = gtLinear
+            Background.Gradient1.Point1XPercent = 0
+            Background.Gradient1.Point1YPercent = 0
+            Background.Gradient1.Point2XPercent = 0
+            Background.Gradient1.Point2YPercent = 100
+            Background.Gradient1.Sinus = False
+            Background.Gradient2.StartColor = clWhite
+            Background.Gradient2.StartColorOpacity = 255
+            Background.Gradient2.DrawMode = dmSet
+            Background.Gradient2.EndColor = clBlack
+            Background.Gradient2.EndColorOpacity = 255
+            Background.Gradient2.ColorCorrection = True
+            Background.Gradient2.GradientType = gtLinear
+            Background.Gradient2.Point1XPercent = 0
+            Background.Gradient2.Point1YPercent = 0
+            Background.Gradient2.Point2XPercent = 0
+            Background.Gradient2.Point2YPercent = 100
+            Background.Gradient2.Sinus = False
+            Background.Gradient1EndPercent = 35
+            Background.Style = bbsClear
+            Border.Color = clBlack
+            Border.ColorOpacity = 255
+            Border.LightColor = clWhite
+            Border.LightOpacity = 255
+            Border.LightWidth = 0
+            Border.Style = bboNone
+            Border.Width = 1
+            Caption = '1'
+            FontEx.Color = clCream
+            FontEx.EndEllipsis = False
+            FontEx.FontQuality = fqFineAntialiasing
+            FontEx.Height = 62
+            FontEx.SingleLine = True
+            FontEx.Shadow = True
+            FontEx.ShadowColor = clBlack
+            FontEx.ShadowColorOpacity = 255
+            FontEx.ShadowRadius = 5
+            FontEx.ShadowOffsetX = 3
+            FontEx.ShadowOffsetY = 3
+            FontEx.Style = []
+            FontEx.TextAlignment = bcaCenter
+            FontEx.WordBreak = False
+            InnerMargin = 0
+            Rounding.RoundX = 1
+            Rounding.RoundY = 1
+            Rounding.RoundOptions = []
+          end
+          object lblBoks2: TBCLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 440
+            Height = 99
+            Top = 1
+            Width = 50
+            Anchors = []
+            Background.Color = clBlack
+            Background.ColorOpacity = 255
+            Background.Gradient1.StartColor = clWhite
+            Background.Gradient1.StartColorOpacity = 255
+            Background.Gradient1.DrawMode = dmSet
+            Background.Gradient1.EndColor = clBlack
+            Background.Gradient1.EndColorOpacity = 255
+            Background.Gradient1.ColorCorrection = True
+            Background.Gradient1.GradientType = gtLinear
+            Background.Gradient1.Point1XPercent = 0
+            Background.Gradient1.Point1YPercent = 0
+            Background.Gradient1.Point2XPercent = 0
+            Background.Gradient1.Point2YPercent = 100
+            Background.Gradient1.Sinus = False
+            Background.Gradient2.StartColor = clWhite
+            Background.Gradient2.StartColorOpacity = 255
+            Background.Gradient2.DrawMode = dmSet
+            Background.Gradient2.EndColor = clBlack
+            Background.Gradient2.EndColorOpacity = 255
+            Background.Gradient2.ColorCorrection = True
+            Background.Gradient2.GradientType = gtLinear
+            Background.Gradient2.Point1XPercent = 0
+            Background.Gradient2.Point1YPercent = 0
+            Background.Gradient2.Point2XPercent = 0
+            Background.Gradient2.Point2YPercent = 100
+            Background.Gradient2.Sinus = False
+            Background.Gradient1EndPercent = 35
+            Background.Style = bbsClear
+            Border.Color = clBlack
+            Border.ColorOpacity = 255
+            Border.LightColor = clWhite
+            Border.LightOpacity = 255
+            Border.LightWidth = 0
+            Border.Style = bboNone
+            Border.Width = 1
+            Caption = '2'
+            FontEx.Color = clCream
+            FontEx.EndEllipsis = False
+            FontEx.FontQuality = fqFineAntialiasing
+            FontEx.Height = 62
+            FontEx.SingleLine = True
+            FontEx.Shadow = True
+            FontEx.ShadowColor = clBlack
+            FontEx.ShadowColorOpacity = 255
+            FontEx.ShadowRadius = 5
+            FontEx.ShadowOffsetX = 3
+            FontEx.ShadowOffsetY = 3
+            FontEx.Style = []
+            FontEx.TextAlignment = bcaCenter
+            FontEx.WordBreak = False
+            InnerMargin = 0
+            Rounding.RoundX = 1
+            Rounding.RoundY = 1
+            Rounding.RoundOptions = []
+          end
+          object lblBoks3: TBCLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 680
+            Height = 99
+            Top = 1
+            Width = 50
+            Anchors = []
+            Background.Color = clBlack
+            Background.ColorOpacity = 255
+            Background.Gradient1.StartColor = clWhite
+            Background.Gradient1.StartColorOpacity = 255
+            Background.Gradient1.DrawMode = dmSet
+            Background.Gradient1.EndColor = clBlack
+            Background.Gradient1.EndColorOpacity = 255
+            Background.Gradient1.ColorCorrection = True
+            Background.Gradient1.GradientType = gtLinear
+            Background.Gradient1.Point1XPercent = 0
+            Background.Gradient1.Point1YPercent = 0
+            Background.Gradient1.Point2XPercent = 0
+            Background.Gradient1.Point2YPercent = 100
+            Background.Gradient1.Sinus = False
+            Background.Gradient2.StartColor = clWhite
+            Background.Gradient2.StartColorOpacity = 255
+            Background.Gradient2.DrawMode = dmSet
+            Background.Gradient2.EndColor = clBlack
+            Background.Gradient2.EndColorOpacity = 255
+            Background.Gradient2.ColorCorrection = True
+            Background.Gradient2.GradientType = gtLinear
+            Background.Gradient2.Point1XPercent = 0
+            Background.Gradient2.Point1YPercent = 0
+            Background.Gradient2.Point2XPercent = 0
+            Background.Gradient2.Point2YPercent = 100
+            Background.Gradient2.Sinus = False
+            Background.Gradient1EndPercent = 35
+            Background.Style = bbsClear
+            Border.Color = clBlack
+            Border.ColorOpacity = 255
+            Border.LightColor = clWhite
+            Border.LightOpacity = 255
+            Border.LightWidth = 0
+            Border.Style = bboNone
+            Border.Width = 1
+            Caption = '3'
+            FontEx.Color = clCream
+            FontEx.EndEllipsis = False
+            FontEx.FontQuality = fqFineAntialiasing
+            FontEx.Height = 62
+            FontEx.SingleLine = True
+            FontEx.Shadow = True
+            FontEx.ShadowColor = clBlack
+            FontEx.ShadowColorOpacity = 255
+            FontEx.ShadowRadius = 5
+            FontEx.ShadowOffsetX = 3
+            FontEx.ShadowOffsetY = 3
+            FontEx.Style = []
+            FontEx.TextAlignment = bcaCenter
+            FontEx.WordBreak = False
+            InnerMargin = 0
+            Rounding.RoundX = 1
+            Rounding.RoundY = 1
+            Rounding.RoundOptions = []
+          end
+        end
       end
     end
     object TabSheetPoczekalnia: TTabSheet
@@ -1072,6 +1426,7 @@ object OchSalaWidzen: TOchSalaWidzen
       'LEFT JOIN os_info inf ON (inf.IDO=o.IDO)'
       'WHERE'
       '  (w.Etap=1)and(w.IDO=o.IDO)'
+      'ORDER BY Data_Oczekuje'
     )
     Params = <>
     Left = 296

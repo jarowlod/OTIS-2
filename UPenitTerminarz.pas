@@ -43,6 +43,10 @@ type
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
+    MenuItem15: TMenuItem;
+    MenuItem16: TMenuItem;
+    miZatZmienOpis: TMenuItem;
+    MenuItem18: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -60,8 +64,8 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
-    PopupMenu1: TPopupMenu;
-    PopupMenu2: TPopupMenu;
+    PopupMenuTerminy: TPopupMenu;
+    PopupMenuKalendarz: TPopupMenu;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     Splitter1: TSplitter;
@@ -119,8 +123,9 @@ type
     procedure MenuItem9Click(Sender: TObject);
     procedure MenuItemDoKoszykaClick(Sender: TObject);
     procedure MenuWykazDoSchowkaKalClick(Sender: TObject);
+    procedure miZatZmienOpisClick(Sender: TObject);
     procedure OnTimerDataChange(Sender: TObject);
-    procedure PopupMenu1Popup(Sender: TObject);
+    procedure PopupMenuTerminyPopup(Sender: TObject);
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
     procedure TabSheet1Show(Sender: TObject);
@@ -170,6 +175,7 @@ type
     Procedure MakeSQLTerminy(var ZQ: TZQuery; DataOd, DataDo: TDate);
     procedure WczytajDaneTerminarza;
     Function OsadzeniFieldsToString(ZQPom: TZQuery): string;
+    Function ZmienOpisZatrudnienia(vIDO: integer): Boolean;
   public
     Procedure NewSelect;
   end;
@@ -255,7 +261,7 @@ end;
 
 //======================================================================================================================
 //-------------------------------- KOSZYK ------------------------------------------------------------------------------
-procedure TPenitTerminarz.PopupMenu1Popup(Sender: TObject);
+procedure TPenitTerminarz.PopupMenuTerminyPopup(Sender: TObject);
 var koszyk_name: string;
 begin
    koszyk_name:='';
@@ -831,6 +837,32 @@ begin
   Result:= s;
 end;
 
+function TPenitTerminarz.ZmienOpisZatrudnienia(vIDO: integer): Boolean;
+var ZQPom: TZQueryPom;
+    Opis: string;
+begin
+  Result:= false;
+  Opis:= '';
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT s.Nazwa, z.zat_od FROM zat_zatrudnieni z, zat_stanowiska s WHERE (z.IDO=:ido)AND(z.status_zatrudnienia="zatrudniony")AND(z.id_stanowiska=s.ID) LIMIT 1';
+  ZQPom.ParamByName('ido').AsInteger:= vIDO;
+  ZQPom.Open;
+  if not ZQPom.IsEmpty then Opis:= ZQPom.FieldByName('Nazwa').AsString+' od '+ ZQPom.FieldByName('zat_od').AsString;
+
+  ZQPom.SQL.Text:= 'SELECT Zatrudnienie FROM os_info WHERE IDO=:ido';
+  ZQPom.ParamByName('ido').AsInteger:= vIDO;
+  ZQPom.Open;
+  if ZQPom.FieldByName('Zatrudnienie').AsString<>Opis then
+    begin
+      ZQPom.Edit;
+      ZQPom.FieldByName('Zatrudnienie').AsString:= Opis;
+      ZQPom.Post;
+      Result:= true;
+    end;
+
+  FreeAndNil(ZQPom);
+end;
+
 procedure TPenitTerminarz.MenuItem3Click(Sender: TObject);
 begin
   ZQTerminarz.Filtered:= false;
@@ -936,6 +968,13 @@ begin
   SetToBookmark(ZQKalendarz, bookmark);
   ZQKalendarz.EnableControls;
   DM.KomunikatPopUp(Sender, 'Terminarz','Dodano osadzonych do schowka.', nots_Info);
+end;
+
+procedure TPenitTerminarz.miZatZmienOpisClick(Sender: TObject);
+begin
+  if (ZQKalendarz.IsEmpty)or(ZQKalendarz.FieldByName('IDO').IsNull) then exit;
+  if ZmienOpisZatrudnienia(ZQKalendarz.FieldByName('IDO').AsInteger) then
+       DM.KomunikatPopUp(Self, 'Terminarz', 'Zmodyfikowano opis zatrudnienia zgodnie z aktualnym zatrudnieniem.', nots_Info);
 end;
 
 

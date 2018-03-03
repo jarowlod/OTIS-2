@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, Menus, windows, ExtCtrls, StdCtrls, DBGrids, ActnList, rxdbutils,
-  db, datamodule, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Grids, Clipbrd,
-  dateutils, LCLType;
+  ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, rxdbutils, Grids,
+  db, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Clipbrd, dateutils, LCLType,
+  datamodule;
 
 type
 

@@ -22,6 +22,7 @@ object DM: TDM
       'codepage=utf8'
       'controls_cp=CP_UTF8'
     )
+    SQLHourGlass = True
     HostName = '172.30.64.11'
     Port = 3306
     Database = 'klodzko'

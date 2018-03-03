@@ -5,15 +5,16 @@ unit UViewStolik;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Menus, datamodule, BGRACustomDrawn,
-  BGRAFlashProgressBar, windows, LCLType, Buttons;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  StdCtrls, Menus, BGRACustomDrawn, BGRAFlashProgressBar, BCPanel, windows, Buttons,
+  datamodule;
 
 type
 
   { TViewStolik }
 
   TViewStolik = class(TForm)
+    BCPrzyslona: TBCPanel;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     ProgressBar1: TBGRAFlashProgressBar;
@@ -88,6 +89,16 @@ procedure TViewStolik.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
   FPopupMenuVisible:= True;
+  // czyścimy lbl'e
+  lblPOC.Caption          := '';
+  lblNazwiskoImie.Caption := '';
+  lblPozostalo.Caption    := '';
+  lblCzas.Caption         := '';
+  lblPodkultura.Caption   := '';
+  sbnUwagi.Visible        := false;
+  sbnWykazy.Visible       := false;
+  ProgressBar1.Visible    := false;
+  BCPrzyslona.BoundsRect:= Bounds(0,0, Width, Height);
 end;
 
 procedure TViewStolik.FormMouseEnter(Sender: TObject);
@@ -358,7 +369,12 @@ end;
 
 procedure TViewStolik.WczytajDane;
 var ZQPom, ZQWykazy: TZQueryPom;
+    wykazyHint: string;
 begin
+  if not Visible then exit;
+  BCPrzyslona.Visible:= true;
+  Application.ProcessMessages;
+
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:='SELECT w.*, o.Nazwisko, o.Imie, o.POC, o.Klasyf, t.Ochronka, u.IDO IDO_u, uk.IDO IDO_uk, inf.GR '+
                   'FROM widzenia w, osadzeni o LEFT JOIN typ_cel t ON (o.POC=t.POC) '+
@@ -373,7 +389,7 @@ begin
     begin
       SelectIDO:= 0;
       fStart   := false;
-      Image1.Picture.Clear;
+      //Image1.Picture.Clear;
       TLoadFotoThread.Create(DM.Path_NrStolikow+IntToStr(NrStolika)+'.jpg', Image1 );
       // czyścimy lbl'e
       lblPOC.Caption          := '';
@@ -408,11 +424,19 @@ begin
 
       //Sprawdzamy czy istnieją wykazy na osadzonego ----------------------
       ZQWykazy:= TZQueryPom.Create(Self);
-      ZQWykazy.SQL.Text:= 'SELECT ID, IDO, Kategoria FROM uwagi_wykazy WHERE IDO=:ido';
+      ZQWykazy.SQL.Text:= 'SELECT w.IDO, w.Kategoria, k.Opis FROM uwagi_wykazy w, katalog_wykazow k WHERE (w.IDO=:ido)AND(w.Kategoria=k.ID)';
       ZQWykazy.ParamByName('ido').AsInteger:= SelectIDO;
       ZQWykazy.Open;
 
+      wykazyHint:= '';
       sbnWykazy.Visible:= (not ZQWykazy.IsEmpty);
+      while not ZQWykazy.EOF do
+      begin
+        if wykazyHint<>'' then wykazyHint+= LineEnding;
+        wykazyHint+= ZQWykazy.FieldByName('Opis').AsString;
+        ZQWykazy.Next;
+      end;
+      sbnWykazy.Hint:= 'Osadzony widnieje na wykazach:' + LineEnding + wykazyHint;
       FreeAndNil(ZQWykazy);
       // ------------------------------------------------------------------
 
@@ -447,6 +471,7 @@ begin
   Timer1.Enabled := fStart;
 
   FreeAndNil(ZQPom);
+  BCPrzyslona.Visible:= false;
 end;
 
 

@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 400
+  Left = 86
   Height = 743
-  Top = 512
+  Top = 85
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -102,8 +102,8 @@ object PenitTerminarz: TPenitTerminarz
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
-      ClientHeight = 935
-      ClientWidth = 1912
+      ClientHeight = 660
+      ClientWidth = 1174
       ImageIndex = 16
       OnShow = TabSheet1Show
       object YearPlanner1: TYearPlanner
@@ -328,7 +328,7 @@ object PenitTerminarz: TPenitTerminarz
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
           ParentFont = False
           ParentShowHint = False
-          PopupMenu = PopupMenu2
+          PopupMenu = PopupMenuKalendarz
           ReadOnly = True
           ShowHint = True
           TabOrder = 0
@@ -873,7 +873,7 @@ object PenitTerminarz: TPenitTerminarz
           FixedColor = clNone
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
           ParentShowHint = False
-          PopupMenu = PopupMenu1
+          PopupMenu = PopupMenuTerminy
           ReadOnly = True
           ShowHint = True
           TabOrder = 1
@@ -1867,9 +1867,9 @@ object PenitTerminarz: TPenitTerminarz
       15B6B06113FFAF6111C0AE5F1153
     }
   end
-  object PopupMenu1: TPopupMenu
+  object PopupMenuTerminy: TPopupMenu
     Images = DM.ImageList1
-    OnPopup = PopupMenu1Popup
+    OnPopup = PopupMenuTerminyPopup
     Left = 280
     Top = 292
     object MenuItem1: TMenuItem
@@ -2206,6 +2206,19 @@ object PenitTerminarz: TPenitTerminarz
     object MenuItem10: TMenuItem
       Caption = '-'
     end
+    object MenuItem15: TMenuItem
+      Caption = 'Zatrudnienie'
+      object miZatZmienOpis: TMenuItem
+        Caption = 'Zmien opis na aktualny.'
+        OnClick = miZatZmienOpisClick
+      end
+      object MenuItem18: TMenuItem
+        Caption = 'Zmień opisy wszystkim.'
+      end
+    end
+    object MenuItem16: TMenuItem
+      Caption = '-'
+    end
     object MenuItem8: TMenuItem
       Caption = 'Koszyk'
       Bitmap.Data = {
@@ -2455,7 +2468,7 @@ object PenitTerminarz: TPenitTerminarz
     Left = 624
     Top = 424
   end
-  object PopupMenu2: TPopupMenu
+  object PopupMenuKalendarz: TPopupMenu
     Images = DM.ImageList1
     Left = 920
     Top = 248
