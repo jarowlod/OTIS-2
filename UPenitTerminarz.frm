@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 86
+  Left = 180
   Height = 743
-  Top = 85
+  Top = 178
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -2209,11 +2209,12 @@ object PenitTerminarz: TPenitTerminarz
     object MenuItem15: TMenuItem
       Caption = 'Zatrudnienie'
       object miZatZmienOpis: TMenuItem
-        Caption = 'Zmien opis na aktualny.'
+        Caption = 'Zmień opis na aktualny.'
         OnClick = miZatZmienOpisClick
       end
-      object MenuItem18: TMenuItem
-        Caption = 'Zmień opisy wszystkim.'
+      object miZatZmienOpisAll: TMenuItem
+        Caption = 'Zmień opisy wszystkim zatrudnionym.'
+        OnClick = miZatZmienOpisAllClick
       end
     end
     object MenuItem16: TMenuItem

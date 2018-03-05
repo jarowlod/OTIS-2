@@ -46,7 +46,7 @@ type
     MenuItem15: TMenuItem;
     MenuItem16: TMenuItem;
     miZatZmienOpis: TMenuItem;
-    MenuItem18: TMenuItem;
+    miZatZmienOpisAll: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -123,6 +123,7 @@ type
     procedure MenuItem9Click(Sender: TObject);
     procedure MenuItemDoKoszykaClick(Sender: TObject);
     procedure MenuWykazDoSchowkaKalClick(Sender: TObject);
+    procedure miZatZmienOpisAllClick(Sender: TObject);
     procedure miZatZmienOpisClick(Sender: TObject);
     procedure OnTimerDataChange(Sender: TObject);
     procedure PopupMenuTerminyPopup(Sender: TObject);
@@ -299,6 +300,7 @@ begin
        Free;
   end;
 end;
+
 //======================================================================================================================
 //--------------------------------END KOSZYK ---------------------------------------------------------------------------
 
@@ -843,21 +845,26 @@ var ZQPom: TZQueryPom;
 begin
   Result:= false;
   Opis:= '';
-  ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT s.Nazwa, z.zat_od FROM zat_zatrudnieni z, zat_stanowiska s WHERE (z.IDO=:ido)AND(z.status_zatrudnienia="zatrudniony")AND(z.id_stanowiska=s.ID) LIMIT 1';
-  ZQPom.ParamByName('ido').AsInteger:= vIDO;
-  ZQPom.Open;
-  if not ZQPom.IsEmpty then Opis:= ZQPom.FieldByName('Nazwa').AsString+' od '+ ZQPom.FieldByName('zat_od').AsString;
 
-  ZQPom.SQL.Text:= 'SELECT Zatrudnienie FROM os_info WHERE IDO=:ido';
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT z.IDO, s.Nazwa, z.zat_od FROM zat_zatrudnieni z, zat_stanowiska s WHERE (z.IDO=:ido)AND(z.status_zatrudnienia="zatrudniony")AND(z.id_stanowiska=s.ID) LIMIT 1';
   ZQPom.ParamByName('ido').AsInteger:= vIDO;
   ZQPom.Open;
-  if ZQPom.FieldByName('Zatrudnienie').AsString<>Opis then
+  if not ZQPom.IsEmpty then
     begin
-      ZQPom.Edit;
-      ZQPom.FieldByName('Zatrudnienie').AsString:= Opis;
-      ZQPom.Post;
-      Result:= true;
+      Opis:= ZQPom.FieldByName('Nazwa').AsString+' od '+ ZQPom.FieldByName('zat_od').AsString;
+
+      ZQPom.Close;
+      ZQPom.SQL.Text:= 'SELECT IDO, Zatrudnienie FROM os_info WHERE IDO=:ido';
+      ZQPom.ParamByName('ido').AsInteger:= vIDO;
+      ZQPom.Open;
+      if ZQPom.FieldByName('Zatrudnienie').AsString<>Opis then
+        begin
+          ZQPom.Edit;
+          ZQPom.FieldByName('Zatrudnienie').AsString:= Opis;
+          ZQPom.Post;
+          Result:= true;
+        end;
     end;
 
   FreeAndNil(ZQPom);
@@ -970,11 +977,40 @@ begin
   DM.KomunikatPopUp(Sender, 'Terminarz','Dodano osadzonych do schowka.', nots_Info);
 end;
 
+procedure TPenitTerminarz.miZatZmienOpisAllClick(Sender: TObject);
+var bookmark: TBookMark;
+    i: integer;
+begin
+  if ZQTerminarz.IsEmpty then exit;
+  bookmark:= ZQTerminarz.GetBookmark;
+  ZQTerminarz.DisableControls;
+
+  i:=0;
+  ZQTerminarz.First;
+  while not ZQTerminarz.EOF do
+  begin
+    if (not ZQTerminarz.FieldByName('IDO').IsNull)and(ZmienOpisZatrudnienia(ZQTerminarz.FieldByName('IDO').AsInteger)) then inc(i);
+    ZQTerminarz.Next;
+  end;
+
+  ZQTerminarz.Close;
+  ZQTerminarz.Open;
+  SetToBookmark(ZQTerminarz, bookmark);
+  ZQTerminarz.EnableControls;
+  //if Assigned(PanelOsInfo) then RefreshQuery(PanelOsInfo.ZQOsInfo);
+
+  DM.KomunikatPopUp(Self, 'Terminarz', 'Zmodyfikowano opisy zatrudnienia zgodnie z aktualnym zatrudnieniem. Zmodyfikowano: '+IntToStr(i)+' pozycji.', nots_Info);
+end;
+
 procedure TPenitTerminarz.miZatZmienOpisClick(Sender: TObject);
 begin
-  if (ZQKalendarz.IsEmpty)or(ZQKalendarz.FieldByName('IDO').IsNull) then exit;
-  if ZmienOpisZatrudnienia(ZQKalendarz.FieldByName('IDO').AsInteger) then
-       DM.KomunikatPopUp(Self, 'Terminarz', 'Zmodyfikowano opis zatrudnienia zgodnie z aktualnym zatrudnieniem.', nots_Info);
+  if (ZQTerminarz.IsEmpty)or(ZQTerminarz.FieldByName('IDO').IsNull) then exit;
+  if ZmienOpisZatrudnienia(ZQTerminarz.FieldByName('IDO').AsInteger) then
+    begin
+      if Assigned(PanelOsInfo) then RefreshQuery(PanelOsInfo.ZQOsInfo);
+      RefreshQuery( ZQTerminarz );
+      DM.KomunikatPopUp(Self, 'Terminarz', 'Zmodyfikowano opis zatrudnienia zgodnie z aktualnym zatrudnieniem.', nots_Info);
+    end;
 end;
 
 
