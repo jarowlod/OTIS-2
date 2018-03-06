@@ -30,10 +30,9 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="142"/>
-        <CursorPos X="55" Y="155"/>
+        <CursorPos X="53" Y="155"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -55,9 +54,13 @@
         <ComponentName Value="Stanowiska"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="61" Y="291"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="235"/>
+        <CursorPos X="18" Y="193"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="UAddStanowiska.pas"/>
@@ -587,7 +590,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="172"/>
         <CursorPos X="110" Y="187"/>
-        <UsageCount Value="172"/>
+        <UsageCount Value="173"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit53>
@@ -600,7 +603,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="80"/>
         <CursorPos X="31" Y="99"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="59"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit54>
@@ -613,7 +616,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="272"/>
         <CursorPos X="79" Y="134"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit55>
       <Unit56>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\dbc\ZDbcIntfs.pas"/>
@@ -693,7 +696,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="386"/>
         <CursorPos X="14" Y="400"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit66>
       <Unit67>
         <Filename Value="C:\codetyphon\typhon\lcl\controls.pp"/>
@@ -822,7 +825,7 @@
       <Unit85>
         <Filename Value="C:\codetyphon\typhon\components\pl_RX\source\rxutils.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit85>
       <Unit86>
         <Filename Value="UNotifierPopUp.pas"/>
@@ -906,14 +909,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="161"/>
         <CursorPos X="20" Y="173"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit97>
       <Unit98>
         <Filename Value="C:\codetyphon\typhon\lcl\include\dbedit.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="55"/>
         <CursorPos X="3" Y="26"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit98>
       <Unit99>
         <Filename Value="C:\codetyphon\typhon\lcl\maskedit.pp"/>
@@ -921,7 +924,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2109"/>
         <CursorPos X="3" Y="2115"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit99>
       <Unit100>
         <Filename Value="C:\codetyphon\typhon\components\pl_RX\source\rxdbutils.pas"/>
@@ -935,14 +938,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="680"/>
         <CursorPos X="15" Y="680"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit101>
       <Unit102>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\stringl.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="933"/>
         <CursorPos X="3" Y="935"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit102>
       <Unit103>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\dsparams.inc"/>
@@ -1138,63 +1141,63 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="861" TopLine="842"/>
+        <Caret Line="869" TopLine="842"/>
       </Position1>
       <Position2>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="862" TopLine="842"/>
+        <Caret Line="983" TopLine="958"/>
       </Position2>
       <Position3>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="863" TopLine="842"/>
+        <Caret Line="858" TopLine="842"/>
       </Position3>
       <Position4>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="864" TopLine="842"/>
+        <Caret Line="859" TopLine="842"/>
       </Position4>
       <Position5>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="868" TopLine="842"/>
+        <Caret Line="861" TopLine="842"/>
       </Position5>
       <Position6>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="869" TopLine="842"/>
+        <Caret Line="862" TopLine="842"/>
       </Position6>
       <Position7>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="983" TopLine="958"/>
+        <Caret Line="863" TopLine="842"/>
       </Position7>
       <Position8>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="858" TopLine="842"/>
+        <Caret Line="864" TopLine="842"/>
       </Position8>
       <Position9>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="859" TopLine="842"/>
+        <Caret Line="868" TopLine="842"/>
       </Position9>
       <Position10>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="861" TopLine="842"/>
+        <Caret Line="869" TopLine="842"/>
       </Position10>
       <Position11>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="862" TopLine="842"/>
+        <Caret Line="858" TopLine="842"/>
       </Position11>
       <Position12>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="863" TopLine="842"/>
+        <Caret Line="859" TopLine="842"/>
       </Position12>
       <Position13>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="864" TopLine="842"/>
+        <Caret Line="868" TopLine="842"/>
       </Position13>
       <Position14>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="868" TopLine="842"/>
+        <Caret Line="869" TopLine="842"/>
       </Position14>
       <Position15>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="869" TopLine="842"/>
+        <Caret Line="987" TopLine="958"/>
       </Position15>
       <Position16>
         <Filename Value="UPenitTerminarz.pas"/>
@@ -1206,55 +1209,55 @@
       </Position17>
       <Position18>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="868" TopLine="842"/>
+        <Caret Line="861" TopLine="842"/>
       </Position18>
       <Position19>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="869" TopLine="842"/>
+        <Caret Line="862" TopLine="842"/>
       </Position19>
       <Position20>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="987" TopLine="958"/>
+        <Caret Line="863" TopLine="842"/>
       </Position20>
       <Position21>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="858" TopLine="842"/>
+        <Caret Line="864" TopLine="842"/>
       </Position21>
       <Position22>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="859" TopLine="842"/>
+        <Caret Line="991" Column="43" TopLine="965"/>
       </Position22>
       <Position23>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="861" TopLine="842"/>
+        <Caret Line="303" Column="11" TopLine="298"/>
       </Position23>
       <Position24>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="862" TopLine="842"/>
+        <Caret Line="1000" Column="5" TopLine="984"/>
       </Position24>
       <Position25>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="863" TopLine="842"/>
+        <Caret Line="992" Column="119" TopLine="975"/>
       </Position25>
       <Position26>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="864" TopLine="842"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="291" Column="61"/>
       </Position26>
       <Position27>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="991" Column="43" TopLine="965"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="278" Column="32" TopLine="268"/>
       </Position27>
       <Position28>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="303" Column="11" TopLine="298"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="279" Column="32" TopLine="269"/>
       </Position28>
       <Position29>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="1000" Column="5" TopLine="984"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="280" Column="32" TopLine="270"/>
       </Position29>
       <Position30>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="992" Column="119" TopLine="975"/>
+        <Filename Value="UStanowiska.pas"/>
+        <Caret Line="282" Column="32" TopLine="272"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
