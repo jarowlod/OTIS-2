@@ -1,7 +1,7 @@
 object OchForm: TOchForm
-  Left = 407
+  Left = 470
   Height = 800
-  Top = 238
+  Top = 231
   Width = 831
   Caption = 'Karta Ochronna'
   ClientHeight = 800
@@ -73,32 +73,32 @@ object OchForm: TOchForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 226
+    Height = 222
     Top = 42
     Width = 831
     Align = alTop
     BorderSpacing.Bottom = 4
-    ClientHeight = 226
+    ClientHeight = 222
     ClientWidth = 831
     TabOrder = 1
     object Panel_1: TPanel
       Left = 1
-      Height = 224
+      Height = 220
       Top = 1
-      Width = 168
+      Width = 172
       Align = alLeft
       BevelOuter = bvNone
       BorderStyle = bsSingle
-      ClientHeight = 220
-      ClientWidth = 164
+      ClientHeight = 216
+      ClientWidth = 168
       Color = clBtnFace
       ParentColor = False
       TabOrder = 0
       object Image_os: TImage
         Left = 0
-        Height = 220
+        Height = 216
         Top = 0
-        Width = 164
+        Width = 168
         AntialiasingMode = amOn
         Align = alClient
         Center = True
@@ -110,14 +110,14 @@ object OchForm: TOchForm
       end
     end
     object Panel3: TPanel
-      Left = 169
-      Height = 224
+      Left = 173
+      Height = 220
       Top = 1
-      Width = 661
+      Width = 657
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 224
-      ClientWidth = 661
+      ClientHeight = 220
+      ClientWidth = 657
       TabOrder = 1
       object Label2: TLabel
         Left = 16
@@ -461,8 +461,8 @@ object OchForm: TOchForm
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 528
-    Top = 272
+    Height = 532
+    Top = 268
     Width = 831
     ActivePage = TabSheetUwagi
     Align = alClient

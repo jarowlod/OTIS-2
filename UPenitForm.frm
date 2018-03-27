@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
-  Left = 394
+  Left = 470
   Height = 795
-  Top = 225
+  Top = 231
   Width = 715
   Caption = 'Karta Penitencjarna'
   ClientHeight = 795
@@ -584,19 +584,19 @@ object PenitForm: TPenitForm
     end
     object Panel_1: TPanel
       Left = 480
-      Height = 310
+      Height = 274
       Top = 8
       Width = 214
       BevelOuter = bvNone
       BorderStyle = bsSingle
-      ClientHeight = 306
+      ClientHeight = 270
       ClientWidth = 210
       Color = clBtnFace
       ParentColor = False
       TabOrder = 17
       object Image_os: TImage
         Left = 0
-        Height = 306
+        Height = 270
         Top = 0
         Width = 210
         AntialiasingMode = amOn

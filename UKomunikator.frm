@@ -1,7 +1,7 @@
 object Komunikator: TKomunikator
-  Left = 407
+  Left = 389
   Height = 560
-  Top = 229
+  Top = 232
   Width = 736
   Caption = 'Komunikator'
   ClientHeight = 560
@@ -460,6 +460,9 @@ object Komunikator: TKomunikator
         Width = 728
         Align = alClient
         HideSelection = False
+        Lines.Strings = (
+          ''
+        )
         ReadOnly = True
         Rtf = '{\rtf1\ansi\ansicpg1250\deff0\deflang1045{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\lang1033\f0\fs18\par'#13#10'}'#13#10#0
         ScrollBars = ssAutoBoth

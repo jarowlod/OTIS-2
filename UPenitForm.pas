@@ -271,6 +271,7 @@ end;
 procedure TPenitForm.Image_osDblClick(Sender: TObject);
 var Obrazek: TForm;
     Img: TImage;
+    lblHeader: TLabel;
 begin
     Obrazek:= TForm.Create(Self);
     Obrazek.BorderStyle:= bsSizeable;
@@ -282,6 +283,7 @@ begin
       img.Proportional:= true;
       img.Align       := alClient;
       img.Visible     := true;
+      img.AntialiasingMode:= amOn;
       Img.Picture.Assign(Image_os.Picture);
     Obrazek.Height:= Screen.WorkAreaHeight;
 
@@ -290,6 +292,15 @@ begin
     else
       Obrazek.Width:= img.Picture.Width;
 
+    {
+    lblHeader:= TLabel.Create(Obrazek);
+    lblHeader.Align:= alTop;
+    lblHeader.Parent:= Obrazek;
+    lblHeader.WordWrap:= false;
+    lblHeader.BorderSpacing.Around:= 10;
+    lblHeader.Caption:= Format('Rozmiar: %d : %d', [img.Picture.Height, img.Picture.Width])+LineEnding+
+                        Format('Data modyfikacji: %s', [FileAge(img.)]);
+    }
     Obrazek.ShowModal;
 
     FreeAndNil(img);

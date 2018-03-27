@@ -288,8 +288,8 @@ begin
     if MemDB.FieldByName('Lat').AsInteger > 4 then s:= MemDB.FieldByName('Lat').AsString + ' lat ' else
     if MemDB.FieldByName('Lat').AsInteger > 1 then s:= MemDB.FieldByName('Lat').AsString + ' lata ';
 
-    if MemDB.FieldByName('Msc').AsInteger > 1 then s+= MemDB.FieldByName('Msc').AsString + ' msc ';
-    if MemDB.FieldByName('Dni').AsInteger > 1 then s+= MemDB.FieldByName('Dni').AsString + ' dni';
+    if MemDB.FieldByName('Msc').AsInteger > 0 then s+= MemDB.FieldByName('Msc').AsString + ' msc ';
+    if MemDB.FieldByName('Dni').AsInteger > 0 then s+= MemDB.FieldByName('Dni').AsString + ' dni';
 
     MemDB.Edit;
     MemDB.FieldByName('WymiarKary').AsString:= s;
