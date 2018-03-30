@@ -800,7 +800,7 @@ procedure TDBDateTimePicker.PopupMenuKopiuj(Sender: TObject);
 var obj: TObject;
 begin
   obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
-  if TDBDateTimePicker(obj).DateIsNull then Clipboard.AsText:= 'Brak'
+  if TDBDateTimePicker(obj).DateIsNull then Clipboard.AsText:= TDBDateTimePicker(obj).TextForNullDate
                                        else Clipboard.AsText:= DateToStr(TDBDateTimePicker(obj).Date);
 end;
 
@@ -809,6 +809,7 @@ var obj: TObject;
 begin
   obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
   TDBDateTimePicker(obj).Date:= StrToDateDef(Clipboard.AsText, NullDate);
+  TDBDateTimePicker(obj).Change;
 end;
 
 procedure TDBDateTimePicker.PopupMenuUsun(Sender: TObject);
@@ -816,6 +817,7 @@ var obj: TObject;
 begin
   obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
   TDBDateTimePicker(obj).Date:= NullDate;
+  TDBDateTimePicker(obj).Change;
 end;
 
 constructor TDBDateTimePicker.Create(AOwner: TComponent);

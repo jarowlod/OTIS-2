@@ -31,8 +31,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="817"/>
-        <CursorPos X="53" Y="155"/>
+        <TopLine Value="794"/>
+        <CursorPos X="34" Y="812"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -420,8 +420,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="506"/>
-        <CursorPos Y="520"/>
+        <TopLine Value="281"/>
+        <CursorPos X="23" Y="288"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -454,12 +454,10 @@
         <ComponentName Value="OchAddOsobeWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="60"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="59"/>
         <CursorPos X="23" Y="101"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit41>
       <Unit42>
         <Filename Value="UViewUwagiOch.pas"/>
@@ -532,9 +530,9 @@
         <ComponentName Value="ViewOsobyBliskie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="21"/>
-        <CursorPos Y="98"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="83"/>
+        <CursorPos X="17" Y="102"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -587,11 +585,10 @@
         <ComponentName Value="PenitWPZ"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="277"/>
         <CursorPos X="51" Y="292"/>
-        <UsageCount Value="189"/>
+        <UsageCount Value="190"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit53>
@@ -604,7 +601,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="80"/>
         <CursorPos X="31" Y="99"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="76"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit54>
@@ -614,10 +611,13 @@
         <ComponentName Value="OchImportOsobWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="272"/>
-        <CursorPos X="79" Y="134"/>
-        <UsageCount Value="122"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="224"/>
+        <CursorPos X="10" Y="103"/>
+        <UsageCount Value="123"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit55>
       <Unit56>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\dbc\ZDbcIntfs.pas"/>
@@ -629,9 +629,9 @@
         <Filename Value="C:\codetyphon\typhon\components\lz_DateTimeCtrls\source\dbdatetimepicker.pas"/>
         <UnitName Value="DBDateTimePicker"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="186"/>
-        <CursorPos X="2" Y="177"/>
-        <UsageCount Value="4"/>
+        <TopLine Value="234"/>
+        <CursorPos X="3" Y="237"/>
+        <UsageCount Value="10"/>
       </Unit57>
       <Unit58>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\db.pas"/>
@@ -993,9 +993,9 @@
         <Filename Value="C:\codetyphon\typhon\components\lz_DateTimeCtrls\source\datetimepicker.pas"/>
         <UnitName Value="DateTimePicker"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="532"/>
-        <CursorPos X="10" Y="549"/>
-        <UsageCount Value="4"/>
+        <TopLine Value="3158"/>
+        <CursorPos X="3" Y="3164"/>
+        <UsageCount Value="10"/>
       </Unit109>
       <Unit110>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\math.pp"/>
@@ -1135,35 +1135,35 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="858" TopLine="842"/>
+        <Caret Line="864" TopLine="842"/>
       </Position1>
       <Position2>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="859" TopLine="842"/>
+        <Caret Line="868" TopLine="842"/>
       </Position2>
       <Position3>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="861" TopLine="842"/>
+        <Caret Line="869" TopLine="842"/>
       </Position3>
       <Position4>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="862" TopLine="842"/>
+        <Caret Line="858" TopLine="842"/>
       </Position4>
       <Position5>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="863" TopLine="842"/>
+        <Caret Line="859" TopLine="842"/>
       </Position5>
       <Position6>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="864" TopLine="842"/>
+        <Caret Line="868" TopLine="842"/>
       </Position6>
       <Position7>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="868" TopLine="842"/>
+        <Caret Line="869" TopLine="842"/>
       </Position7>
       <Position8>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="869" TopLine="842"/>
+        <Caret Line="987" TopLine="958"/>
       </Position8>
       <Position9>
         <Filename Value="UPenitTerminarz.pas"/>
@@ -1175,83 +1175,83 @@
       </Position10>
       <Position11>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="868" TopLine="842"/>
+        <Caret Line="861" TopLine="842"/>
       </Position11>
       <Position12>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="869" TopLine="842"/>
+        <Caret Line="862" TopLine="842"/>
       </Position12>
       <Position13>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="987" TopLine="958"/>
+        <Caret Line="863" TopLine="842"/>
       </Position13>
       <Position14>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="858" TopLine="842"/>
+        <Caret Line="864" TopLine="842"/>
       </Position14>
       <Position15>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="859" TopLine="842"/>
+        <Caret Line="991" Column="43" TopLine="965"/>
       </Position15>
       <Position16>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="861" TopLine="842"/>
+        <Caret Line="303" Column="11" TopLine="298"/>
       </Position16>
       <Position17>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="862" TopLine="842"/>
+        <Caret Line="1000" Column="5" TopLine="984"/>
       </Position17>
       <Position18>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="863" TopLine="842"/>
+        <Caret Line="992" Column="119" TopLine="975"/>
       </Position18>
       <Position19>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="864" TopLine="842"/>
-      </Position19>
-      <Position20>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="991" Column="43" TopLine="965"/>
-      </Position20>
-      <Position21>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="303" Column="11" TopLine="298"/>
-      </Position21>
-      <Position22>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="1000" Column="5" TopLine="984"/>
-      </Position22>
-      <Position23>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="992" Column="119" TopLine="975"/>
-      </Position23>
-      <Position24>
         <Filename Value="UStanowiska.pas"/>
         <Caret Line="291" Column="61"/>
-      </Position24>
-      <Position25>
+      </Position19>
+      <Position20>
         <Filename Value="UStanowiska.pas"/>
         <Caret Line="278" Column="32" TopLine="268"/>
-      </Position25>
-      <Position26>
+      </Position20>
+      <Position21>
         <Filename Value="UStanowiska.pas"/>
         <Caret Line="279" Column="32" TopLine="269"/>
-      </Position26>
-      <Position27>
+      </Position21>
+      <Position22>
         <Filename Value="UStanowiska.pas"/>
         <Caret Line="280" Column="32" TopLine="270"/>
-      </Position27>
-      <Position28>
+      </Position22>
+      <Position23>
         <Filename Value="UStanowiska.pas"/>
         <Caret Line="282" Column="32" TopLine="272"/>
-      </Position28>
-      <Position29>
+      </Position23>
+      <Position24>
         <Filename Value="UPenitForm.pas"/>
         <Caret Line="302" Column="45" TopLine="286"/>
-      </Position29>
-      <Position30>
+      </Position24>
+      <Position25>
         <Filename Value="UPenitWPZ.pas"/>
         <Caret Line="187" Column="110" TopLine="172"/>
+      </Position25>
+      <Position26>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="820" Column="37" TopLine="802"/>
+      </Position26>
+      <Position27>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="812" Column="32" TopLine="794"/>
+      </Position27>
+      <Position28>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="812" Column="38" TopLine="794"/>
+      </Position28>
+      <Position29>
+        <Filename Value="UViewOsobyBliskie.pas"/>
+        <Caret Line="98" TopLine="21"/>
+      </Position29>
+      <Position30>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="520" TopLine="506"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

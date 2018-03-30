@@ -20,7 +20,7 @@ object PenitForm: TPenitForm
     Align = alTop
     ClientHeight = 58
     ClientWidth = 715
-    TabOrder = 0
+    TabOrder = 1
     object DBText1: TDBText
       Left = 16
       Height = 25
@@ -115,7 +115,7 @@ object PenitForm: TPenitForm
     Align = alTop
     ClientHeight = 390
     ClientWidth = 715
-    TabOrder = 1
+    TabOrder = 2
     object Label2: TLabel
       Left = 16
       Height = 15
@@ -827,7 +827,7 @@ object PenitForm: TPenitForm
     Images = DM.ImageList1
     TabHeight = 25
     TabIndex = 0
-    TabOrder = 2
+    TabOrder = 0
     object TabSheetNotatnik: TTabSheet
       Caption = 'Notatnik'
       ClientHeight = 314
@@ -844,7 +844,7 @@ object PenitForm: TPenitForm
         ClientWidth = 707
         Color = clForm
         ParentColor = False
-        TabOrder = 0
+        TabOrder = 1
         object DBText7: TDBText
           Left = 112
           Height = 15
@@ -896,7 +896,7 @@ object PenitForm: TPenitForm
         DataField = 'notatka'
         DataSource = DSOsNotatki
         ScrollBars = ssAutoBoth
-        TabOrder = 1
+        TabOrder = 0
       end
     end
     object TabSheetZatrudnienie: TTabSheet
