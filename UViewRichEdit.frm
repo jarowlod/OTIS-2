@@ -1,7 +1,7 @@
 object ViewRichEdit: TViewRichEdit
-  Left = 407
+  Left = 470
   Height = 491
-  Top = 238
+  Top = 231
   Width = 685
   Align = alClient
   BorderStyle = bsNone

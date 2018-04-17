@@ -1,7 +1,7 @@
 object OknoKomunikatu: TOknoKomunikatu
-  Left = 404
+  Left = 470
   Height = 513
-  Top = 224
+  Top = 231
   Width = 827
   Caption = 'Masz wiadomość ...'
   ClientHeight = 513

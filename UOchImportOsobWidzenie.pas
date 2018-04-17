@@ -146,7 +146,6 @@ begin
 
     RxMemoryImport.Next;
   end;
-  DM.KomunikatPopUp(Self, 'Import osób bliskich', 'Zaimportowano osoby bliskie z NoeNET do OTIS.', nots_Info);
   FreeAndNil(ZQPom);
 end;
 
@@ -238,8 +237,9 @@ begin
     MessageDlg('Wystąpił błąd podczas analizy danych.', mtWarning, [mbOK],0);
   end;
   Result:= not RxMemoryImport.IsEmpty;
-  if Result then DM.KomunikatPopUp(Self, 'Import', 'Wklejono poprawne dane', nots_Info)
-            else DM.KomunikatPopUp(Self, 'Import', 'Brak danych.', nots_Warning);
+  {******************************************************* Blokuje program ???? }
+  //if Result then DM.KomunikatPopUp(Self, 'Import', 'Wklejono poprawne dane', nots_Info)
+  //          else DM.KomunikatPopUp(Self, 'Import', 'Brak danych.', nots_Warning);
 end;
 
 // STATUS OSOBY: [OK, Modyfikuj, Nowa, OTIS].  Modyfikuj(Adres, Pokrewieństwo, Prawo do widzeń)

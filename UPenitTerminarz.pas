@@ -980,16 +980,23 @@ end;
 procedure TPenitTerminarz.miZatZmienOpisAllClick(Sender: TObject);
 var bookmark: TBookMark;
     i: integer;
+    listaZmian: string;
 begin
   if ZQTerminarz.IsEmpty then exit;
   bookmark:= ZQTerminarz.GetBookmark;
   ZQTerminarz.DisableControls;
 
   i:=0;
+  listaZmian:= '';
   ZQTerminarz.First;
   while not ZQTerminarz.EOF do
   begin
-    if (not ZQTerminarz.FieldByName('IDO').IsNull)and(ZmienOpisZatrudnienia(ZQTerminarz.FieldByName('IDO').AsInteger)) then inc(i);
+    if (not ZQTerminarz.FieldByName('IDO').IsNull)and(ZmienOpisZatrudnienia(ZQTerminarz.FieldByName('IDO').AsInteger)) then
+      begin
+        inc(i);
+        if listaZmian<>'' then listaZmian:= listaZmian+', ';
+        listaZmian:= listaZmian + ZQTerminarz.FieldByName('NazwiskoImie').AsString;
+      end;
     ZQTerminarz.Next;
   end;
 
@@ -997,9 +1004,8 @@ begin
   ZQTerminarz.Open;
   SetToBookmark(ZQTerminarz, bookmark);
   ZQTerminarz.EnableControls;
-  //if Assigned(PanelOsInfo) then RefreshQuery(PanelOsInfo.ZQOsInfo);
 
-  DM.KomunikatPopUp(Self, 'Terminarz', 'Zmodyfikowano opisy zatrudnienia zgodnie z aktualnym zatrudnieniem. Zmodyfikowano: '+IntToStr(i)+' pozycji.', nots_Info);
+  MessageDlg('Zmodyfikowano opisy zatrudnienia zgodnie z aktualnym zatrudnieniem. Poz: '+IntToStr(i)+LineEnding+listaZmian, mtInformation, [mbOK],0);
 end;
 
 procedure TPenitTerminarz.miZatZmienOpisClick(Sender: TObject);

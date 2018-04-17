@@ -163,7 +163,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.1.12';
+  wersja = '0.0.1.15';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -230,7 +230,7 @@ begin
                     'ZPRX | CZYNNOŚĆ ZAKOŃCZONA - TRANSPORT NIE DOSZEDŁ DO SKUTKU WSKUTEK PRZESZKODY'+#13+
                     'ZTRX | CZYNNOŚĆ ZAKOŃCZONA - TRANSPORT ZREALIZOWANY';
 
-  KomunikatyPopUp:= TNotifierPopUp.Create(Self);
+  KomunikatyPopUp:= TNotifierPopUp.Create(Application);
 end;
 
 procedure TDM.DataModuleDestroy(Sender: TObject);

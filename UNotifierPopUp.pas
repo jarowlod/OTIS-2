@@ -127,7 +127,7 @@ begin
   lblText.OnClick     := @HideForm;
 
   Timer1:= TTimer.Create(Self);
-  Timer1.Interval     := 2000;
+  Timer1.Interval     := 3000;
   Timer1.Enabled      := false;
   Timer1.OnTimer      := @Timer1Timer;
 
@@ -320,7 +320,7 @@ begin
   fTop     := 0;
   fWidth   := 350;
   fHeight  := 80;
-  fInterval:= 2000;
+  fInterval:= 3000;         // czas wygaśnięcia okienka
   fIcon    := TPicture.Create;
   fColorTop:= clBlack;
   fColor   := $DCFFFF;

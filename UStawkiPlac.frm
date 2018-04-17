@@ -1,12 +1,13 @@
 object StawkiPlac: TStawkiPlac
-  Left = 445
-  Height = 328
-  Top = 161
+  Left = 470
+  Height = 332
+  Top = 231
   Width = 828
   Caption = 'Wyciąg z decyzji w sprawie stawki zaszeregowania.'
-  ClientHeight = 328
+  ClientHeight = 332
   ClientWidth = 828
-  LCLVersion = '5.9'
+  OnCloseQuery = FormCloseQuery
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 40
@@ -29,7 +30,7 @@ object StawkiPlac: TStawkiPlac
   object Panel3: TPanel
     Left = 0
     Height = 43
-    Top = 285
+    Top = 289
     Width = 828
     Align = alBottom
     BevelOuter = bvNone
@@ -85,17 +86,17 @@ object StawkiPlac: TStawkiPlac
   end
   object Panel2: TPanel
     Left = 0
-    Height = 245
+    Height = 249
     Top = 40
     Width = 828
     Align = alClient
     BevelOuter = bvLowered
-    ClientHeight = 245
+    ClientHeight = 249
     ClientWidth = 828
     TabOrder = 2
     object RxDBGrid2: TRxDBGrid
       Left = 1
-      Height = 243
+      Height = 247
       Top = 1
       Width = 127
       ColumnDefValues.BlobText = '(blob)'
@@ -108,8 +109,6 @@ object StawkiPlac: TStawkiPlac
           Title.Caption = 'ROK'
           FieldName = 'rok'
           EditButtons = <>
-          Filter.IsNull = False
-          Filter.IsAll = True
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
           Filter.AllValue = '(All values)'
@@ -176,6 +175,8 @@ object StawkiPlac: TStawkiPlac
       FooterOptions.RowCount = 1
       FooterOptions.Style = tsNative
       FooterOptions.DrawFullLine = False
+      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+      SearchOptions.FromStart = False
       OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alLeft
@@ -192,7 +193,6 @@ object StawkiPlac: TStawkiPlac
       DefaultRowHeight = 22
       FixedColor = clNone
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgCellEllipsis]
-      ParentColor = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
@@ -302,8 +302,8 @@ object StawkiPlac: TStawkiPlac
       Left = 147
       Height = 15
       Top = 15
-      Width = 70
-      Caption = 'Opis misięcy:'
+      Width = 76
+      Caption = 'Opis miesięcy:'
       ParentColor = False
     end
     object Label2: TLabel
@@ -331,6 +331,7 @@ object StawkiPlac: TStawkiPlac
       DataSource = DSStawkiPlac
       Options = []
       TabOrder = 11
+      VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
     end
   end
   object frReport1: TfrReport
@@ -338,25 +339,24 @@ object StawkiPlac: TStawkiPlac
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 712
-    top = 8
+    Left = 712
+    Top = 8
   end
   object DSStawkiPlac: TDataSource
     DataSet = ZQStawkiPlac
-    left = 632
-    top = 8
+    Left = 632
+    Top = 8
   end
   object ZQStawkiPlac: TZQuery
     Connection = DM.ZConnection1
-    SortType = stDescending
     OnNewRecord = ZQStawkiPlacNewRecord
     SQL.Strings = (
       'SELECT *'
       'FROM zat_stawki_plac;'
     )
     Params = <>
-    left = 552
-    top = 8
+    Left = 552
+    Top = 8
     object ZQStawkiPlacID: TLongintField
       FieldKind = fkData
       FieldName = 'ID'
@@ -524,8 +524,8 @@ object StawkiPlac: TStawkiPlac
         Name = 'id'
         ParamType = ptUnknown
       end>
-    left = 552
-    top = 64
+    Left = 552
+    Top = 64
     ParamData = <    
       item
         DataType = ftUnknown
@@ -535,7 +535,7 @@ object StawkiPlac: TStawkiPlac
   end
   object DSZatOs: TDataSource
     DataSet = ZQZatOs
-    left = 632
-    top = 64
+    Left = 632
+    Top = 64
   end
 end

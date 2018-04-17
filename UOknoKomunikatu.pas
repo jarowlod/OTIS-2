@@ -64,7 +64,8 @@ begin
   end;
 
   str:= ZQKomunikat.FieldByName('komunikat').AsString;
-  if Pos('{\rtf', str)>0 then
+  //if Pos('{\rtf', str)>0 then
+  if Copy(str,0,5) = '{\rtf' then
           RichMemo1.Rtf:= str
        else
           RichMemo1.Text:= str;

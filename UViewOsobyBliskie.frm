@@ -1,7 +1,7 @@
 object ViewOsobyBliskie: TViewOsobyBliskie
-  Left = 394
+  Left = 470
   Height = 478
-  Top = 225
+  Top = 231
   Width = 771
   Align = alClient
   BorderStyle = bsNone
@@ -195,7 +195,9 @@ object ViewOsobyBliskie: TViewOsobyBliskie
     DefaultRowHeight = 19
     FixedColor = clNone
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
+    ParentShowHint = False
     ReadOnly = True
+    ShowHint = True
     TabOrder = 0
     TitleFont.CharSet = EASTEUROPE_CHARSET
     TitleFont.Pitch = fpVariable

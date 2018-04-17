@@ -6,16 +6,19 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, LR_Class, Forms, Controls,
-  Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, DbCtrls, DateTimePicker,
-  DateUtils, math, datamodule;
+  Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, DbCtrls, MaskEdit,
+  DateTimePicker, DateUtils, math, datamodule, LSControls;
 
 type
 
   { TZatWniosekUrolopowy }
 
   TZatWniosekUrolopowy = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    btn_StawkiPlac: TBitBtn;
+    btn_Drukuj_urlop: TBitBtn;
+    btn_Oblicz: TBitBtn;
+    btn_Zapisz_daty: TBitBtn;
+    btn_Drukuj_decyzje: TBitBtn;
     DBEdit4: TDBEdit;
     DBEdit5: TDBEdit;
     dtp_urlop_planowany: TDateTimePicker;
@@ -47,11 +50,24 @@ type
     DSZatUrlop: TDataSource;
     ed_dni1: TEdit;
     ed_dni2: TEdit;
+    ed_przepracowane_godz2: TLSCurrencyEdit;
+    ed_przepracowane_godz3: TLSCurrencyEdit;
     ed_przerwa: TEdit;
     ed_miesiac1: TEdit;
     ed_godz1: TEdit;
     ed_godz2: TEdit;
     ed_miesiac2: TEdit;
+    ed_stawka_godz1: TLSCurrencyEdit;
+    ed_stawka_godz2: TLSCurrencyEdit;
+    ed_stawka_godz3: TLSCurrencyEdit;
+    ed_przepracowane_godz1: TLSCurrencyEdit;
+    ed_stawka_wyliczeniowa2: TLSCurrencyEdit;
+    ed_stawka_za_msc1: TLSCurrencyEdit;
+    ed_stawka_wyliczeniowa: TLSCurrencyEdit;
+    ed_stawka_za_msc2: TLSCurrencyEdit;
+    ed_stawka_wyliczeniowa1: TLSCurrencyEdit;
+    ed_wyplata1: TLSCurrencyEdit;
+    ed_wyplata2: TLSCurrencyEdit;
     frReport1: TfrReport;
     Label1: TLabel;
     Label10: TLabel;
@@ -66,6 +82,20 @@ type
     Label19: TLabel;
     Label2: TLabel;
     Label20: TLabel;
+    Label21: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    Label29: TLabel;
+    lbl_stawka1: TLabel;
+    lbl_stawka2: TLabel;
+    lbl_msc1: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    lbl_msc2: TLabel;
+    lbl_msc3: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -76,17 +106,29 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
+    Panel_urlop_platny: TPanel;
+    Panel5: TPanel;
+    Panel6: TPanel;
     ZQZatUrlop: TZQuery;
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure btn_Drukuj_decyzjeClick(Sender: TObject);
+    procedure btn_Drukuj_urlopClick(Sender: TObject);
+    procedure btn_ObliczClick(Sender: TObject);
+    procedure btn_StawkiPlacClick(Sender: TObject);
+    procedure btn_Zapisz_datyClick(Sender: TObject);
     procedure dtp_urlopod1EditingDone(Sender: TObject);
+    procedure ed_stawka_godz1Change(Sender: TObject);
+    procedure ed_stawka_wyliczeniowaChange(Sender: TObject);
+    procedure ed_stawka_za_msc1EditingDone(Sender: TObject);
   private
      fIDO: integer; // IDO osadzonego
      fID : integer; // ID zat_zatrudnieni
+     fData_Urlopu: TDate; // zapamiętuje datę urlopu w celu sprawdzenia czy user zmienił miesiąc. Dot. wyliczeń płatnego.
      procedure Oblicz_Urlop;
      procedure Oblicz_Date_Planowanego_Urlopu;
      function DateToStrOrNull(d: TDate): string;
      function DateToStrOrNull(d: TDate; nullstr: string): string;
+     procedure Wczytaj_Dane_Platnego_Urlopu;
+     function WczytajStawkeZaMSC(d: TDate): float;
   public
      procedure SetIDO(sIDO, sID: integer);
   end;
@@ -95,7 +137,7 @@ var
   ZatWniosekUrolopowy: TZatWniosekUrolopowy;
 
 implementation
-
+uses UStawkiPlac;
 {$R *.frm}
 
 { TZatWniosekUrolopowy }
@@ -105,7 +147,7 @@ begin
   fIDO:= sIDO;
   fID := sID;
   //uprawnienia
-  BitBtn2.Enabled:= DM.uprawnienia[15]; // Zatrudnienie
+  btn_Zapisz_daty.Enabled:= DM.uprawnienia[15]; // Zatrudnienie
 
 
   //wczytujemy potrzebne dane do kontrolek formy
@@ -130,10 +172,21 @@ begin
             if not ZQZatUrlop.FieldByName('data_nastepnego_urlopu').IsNull then
               dtp_urlopod1.Date:= ZQZatUrlop.FieldByName('data_nastepnego_urlopu').AsDateTime;
           end;
-     end;
+     end
+  else  // jeśli nie ma ustalonego urlopu to bierzemy jeśli jest datę planowanego urlopu
+     if not ZQZatUrlop.FieldByName('data_nastepnego_urlopu').IsNull then
+              dtp_urlopod1.Date:= ZQZatUrlop.FieldByName('data_nastepnego_urlopu').AsDateTime;
+
+  // WYLICZENIA URLOPU PŁATNEGO
+  lbl_msc1.Caption:= '';
+  lbl_msc2.Caption:= '';
+  lbl_msc3.Caption:= '';
+  Panel_urlop_platny.Enabled := (ZQZatUrlop.FieldByName('forma').AsString = 'ODPŁATNIE');
+  fData_Urlopu:= dtp_urlopod1.Date;
+  Wczytaj_Dane_Platnego_Urlopu;
 end;
 
-procedure TZatWniosekUrolopowy.BitBtn1Click(Sender: TObject);
+procedure TZatWniosekUrolopowy.btn_Drukuj_urlopClick(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_WniosekUrlopowy.lrf');
   DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
@@ -180,8 +233,63 @@ begin
   frReport1.ShowReport;
 end;
 
+procedure TZatWniosekUrolopowy.btn_Drukuj_decyzjeClick(Sender: TObject);
+begin
+  frReport1.LoadFromFile(DM.Path_Raporty + 'zat_DecUrlopPlatny.lrf');
+  DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
+
+  DM.SetMemoReport(frReport1, 'Memo_msc1', lbl_msc1.Caption );
+  DM.SetMemoReport(frReport1, 'Memo_msc2', lbl_msc2.Caption );
+  DM.SetMemoReport(frReport1, 'Memo_msc3', lbl_msc3.Caption );
+
+  DM.SetMemoReport(frReport1, 'Memo_kwota1', ed_stawka_godz1.Text );
+  DM.SetMemoReport(frReport1, 'Memo_kwota2', ed_stawka_godz2.Text );
+  DM.SetMemoReport(frReport1, 'Memo_kwota3', ed_stawka_godz3.Text );
+
+  DM.SetMemoReport(frReport1, 'Memo_godzin1', ed_przepracowane_godz1.Text );
+  DM.SetMemoReport(frReport1, 'Memo_godzin2', ed_przepracowane_godz2.Text );
+  DM.SetMemoReport(frReport1, 'Memo_godzin3', ed_przepracowane_godz3.Text );
+
+  DM.SetMemoReport(frReport1, 'Memo_stawka', ed_stawka_wyliczeniowa.Text );
+
+  DM.SetMemoReport(frReport1, 'Memo_urlopod1', DateToStrOrNull( dtp_urlopod1.Date) );
+  DM.SetMemoReport(frReport1, 'Memo_urlopod2', DateToStrOrNull( dtp_urlopod2.Date) );
+  DM.SetMemoReport(frReport1, 'Memo_urlopdo1', DateToStrOrNull( dtp_urlopdo1.Date) );
+  DM.SetMemoReport(frReport1, 'Memo_urlopdo2', DateToStrOrNull( dtp_urlopdo2.Date) );
+
+  DM.SetMemoReport(frReport1, 'Memo_dni1', ed_dni1.Text );
+  DM.SetMemoReport(frReport1, 'Memo_dni2', ed_dni2.Text );
+  DM.SetMemoReport(frReport1, 'Memo_godz1', ed_godz1.Text );
+  DM.SetMemoReport(frReport1, 'Memo_godz2', ed_godz2.Text );
+  DM.SetMemoReport(frReport1, 'Memo_miesiac1', ed_miesiac1.Text );
+  DM.SetMemoReport(frReport1, 'Memo_miesiac2', ed_miesiac2.Text );
+
+  DM.SetMemoReport(frReport1, 'Memo_urlopod', DateToStrOrNull( dtp_urlopod1.Date) );
+  if dtp_urlopdo2.DateIsNull then DM.SetMemoReport(frReport1, 'Memo_urlopdo', DateToStrOrNull( dtp_urlopdo1.Date) )
+                             else DM.SetMemoReport(frReport1, 'Memo_urlopdo', DateToStrOrNull( dtp_urlopdo2.Date) );
+
+  DM.SetMemoReport(frReport1, 'Memo_stawka1', Format('%m', [ed_stawka_za_msc1.Value + ed_stawka_wyliczeniowa.Value]) );
+  DM.SetMemoReport(frReport1, 'Memo_stawka2', Format('%m', [ed_stawka_za_msc2.Value + ed_stawka_wyliczeniowa.Value]) );
+
+  DM.SetMemoReport(frReport1, 'Memo_wynagrodzenie1', ed_wyplata1.Text );
+  DM.SetMemoReport(frReport1, 'Memo_wynagrodzenie2', ed_wyplata2.Text );
+
+  if dtp_urlopdo2.DateIsNull then
+  begin
+    DM.SetMemoReport(frReport1, 'Memo_stawka2', '---' );
+    DM.SetMemoReport(frReport1, 'Memo_wynagrodzenie2', '---' );
+  end;
+
+  frReport1.ShowReport;
+end;
+
+procedure TZatWniosekUrolopowy.btn_ObliczClick(Sender: TObject);
+begin
+  Oblicz_Urlop;
+end;
+
 // zapisz daty urlopu.
-procedure TZatWniosekUrolopowy.BitBtn2Click(Sender: TObject);
+procedure TZatWniosekUrolopowy.btn_Zapisz_datyClick(Sender: TObject);
 var ZQ: TZQueryPom;
 begin
   ZQ:= TZQueryPom.Create(Self);
@@ -289,13 +397,15 @@ begin
                   ed_godz2.Text:= IntToStr(godziny);
                 end;
   Oblicz_Date_Planowanego_Urlopu;
+
+  Wczytaj_Dane_Platnego_Urlopu;
 end;
 
 procedure TZatWniosekUrolopowy.Oblicz_Date_Planowanego_Urlopu;
 var Y,M,D: Word;
 begin
   DecodeDate(dtp_od1.Date, Y, M, D);
-  Y:= YearOf(Date); // zwiększamy o 1 bierzący rok
+  Y:= YearOf(Date); // zwiększamy o 1 bieżący rok
   Inc(Y);
   dtp_urlop_planowany.Date:= EncodeDate(Y, M, D); // obliczamy datę urlopu przypadającą na przyszły rok
 end;
@@ -312,6 +422,103 @@ begin
   result:= nullstr;
   if d = NullDate then exit;
   result:= DateToStr(d);
+end;
+
+//=====================================================================================================================
+//                                       WYLICZENIA PŁATNEGO URLOPU
+//=====================================================================================================================
+
+procedure TZatWniosekUrolopowy.ed_stawka_wyliczeniowaChange(Sender: TObject);
+begin
+  ed_stawka_wyliczeniowa1.Value:= ed_stawka_wyliczeniowa.Value;
+  ed_stawka_wyliczeniowa2.Value:= ed_stawka_wyliczeniowa.Value;
+  ed_stawka_za_msc1EditingDone(Sender);
+end;
+
+procedure TZatWniosekUrolopowy.ed_stawka_za_msc1EditingDone(Sender: TObject);
+begin
+  ed_wyplata1.Value:= (ed_stawka_za_msc1.Value + ed_stawka_wyliczeniowa1.Value) * StrToIntDef(ed_godz1.Text, 0);
+  ed_wyplata2.Value:= (ed_stawka_za_msc2.Value + ed_stawka_wyliczeniowa2.Value) * StrToIntDef(ed_godz2.Text, 0);
+
+  lbl_stawka1.Caption:= Format('%m', [ed_stawka_za_msc1.Value + ed_stawka_wyliczeniowa1.Value]);
+  lbl_stawka2.Caption:= Format('%m', [ed_stawka_za_msc2.Value + ed_stawka_wyliczeniowa2.Value]);
+end;
+
+procedure TZatWniosekUrolopowy.ed_stawka_godz1Change(Sender: TObject);
+var stawka_godzinowa: float;
+    suma_kwot, suma_godz: float;
+begin
+  suma_kwot:= ed_stawka_godz1.Value + ed_stawka_godz2.Value + ed_stawka_godz3.Value;
+  suma_godz:= ed_przepracowane_godz1.Value + ed_przepracowane_godz2.Value + ed_przepracowane_godz3.Value;
+
+  if suma_godz>0 then stawka_godzinowa:= (suma_kwot / suma_godz)
+                 else stawka_godzinowa:= 0;
+
+  stawka_godzinowa:= SimpleRoundTo(stawka_godzinowa, -2);
+  ed_stawka_wyliczeniowa.Value:= stawka_godzinowa;
+  ed_stawka_wyliczeniowaChange(Sender);
+end;
+
+procedure TZatWniosekUrolopowy.btn_StawkiPlacClick(Sender: TObject);
+begin
+  with TStawkiPlac.Create(Self) do
+  begin
+    SetIDO(fIDO, fID);
+    ShowModal;
+    Free;
+  end;
+end;
+
+procedure TZatWniosekUrolopowy.Wczytaj_Dane_Platnego_Urlopu;
+var data1, data2,data3: TDate;
+begin
+  // zerujemy wartości nadgodzin jak zmienił się miesiąc urlopu
+  if MonthOf(fData_Urlopu) <> MonthOf(dtp_urlopod1.Date) then
+    begin
+      ed_stawka_godz1.Value:= 0;
+      ed_stawka_godz2.Value:= 0;
+      ed_stawka_godz3.Value:= 0;
+      ed_przepracowane_godz1.Value:= 0;
+      ed_przepracowane_godz2.Value:= 0;
+      ed_przepracowane_godz3.Value:= 0;
+      ed_stawka_wyliczeniowa.Value:= 0;
+    end;
+
+  data3:= IncMonth(dtp_urlopod1.Date, -1);
+  data2:= IncMonth(data3, -1);
+  data1:= IncMonth(data2, -1);
+  lbl_msc1.Caption:='za '+ FormatDateTime('MMMM YYYY', data1,[]);
+  lbl_msc2.Caption:='za '+ FormatDateTime('MMMM YYYY', data2,[]);
+  lbl_msc3.Caption:='za '+ FormatDateTime('MMMM YYYY', data3,[]);
+
+  // wczytujemy stawki za w/w miesiące
+  ed_stawka_za_msc1.Value:= WczytajStawkeZaMSC(dtp_urlopod1.Date);
+  ed_stawka_za_msc2.Value:= WczytajStawkeZaMSC(dtp_urlopod2.Date);
+
+  // oblicz wypłatę
+  ed_stawka_godz1Change(Self); // edycja kaskadowo zmienia kolejne wartości zależne
+end;
+
+function TZatWniosekUrolopowy.WczytajStawkeZaMSC(d: TDate): float;
+var ZQPom: TZQueryPom;
+    i: integer;
+begin
+  Result:= 0;
+  if d=NullDate then exit;
+  try
+    ZQPom:= TZQueryPom.Create(Self);
+    ZQPom.SQL.Text:= 'SELECT * FROM zat_stawki_plac WHERE rok=:rok';
+    ZQPom.ParamByName('rok').AsInteger:= YearOf(d);
+    ZQPom.Open;
+    if not ZQPom.IsEmpty then
+    begin
+      for i:=1 to 5 do
+        if ZQPom.FieldByName('nazwa_'+IntToStr(i)).AsString.IndexOf(FormatDateTime('MMMM', d,[]))>0 then
+           Result:= ZQPom.FieldByName('stawka_'+IntToStr(i)).AsCurrency;
+    end;
+  finally
+    FreeAndNil(ZQPom);
+  end;
 end;
 
 

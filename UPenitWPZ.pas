@@ -56,6 +56,7 @@ type
       procedure ObliczUlamek;
       procedure ObliczOwz;
       function ObliczDozywocie: Boolean;
+      function ObliczPostpenit(p_wpz: TDate): TDate;
     public
       constructor Create;
       destructor Destroy; override;
@@ -560,7 +561,7 @@ begin
     przepustki:= IncDay(WPZ, -Trunc(OBS_po_ilu / 2));
     validatePrzepustki;
 
-    postpenit:= IncDay(WPZ, -(6*30));
+    postpenit:= ObliczPostpenit(wpz); // IncDay(WPZ, -(6*30));
     validatePostpenit;
 
     if (OBS_po_ilu div 365)=round(OBS_po_ilu/365) then
@@ -581,7 +582,7 @@ begin
   begin
     WPZ       := NullDate;
     przepustki:= NullDate;
-    postpenit := IncDay(orzeczenia[Count-1].koniec_kary, -(6*30));
+    postpenit := ObliczPostpenit(orzeczenia[Count-1].koniec_kary); // IncDay(orzeczenia[Count-1].koniec_kary, -(6*30));
     validatePostpenit;
 
     fKomunikaty.Add('Brak uprawnien do WPZ. Kary zastępcze.');
@@ -632,7 +633,7 @@ begin
   przepustki:= IncDay(wpz, -dni_do_przpustki);
   validatePrzepustki;
 
-  postpenit:= IncDay(wpz, -(6*30));
+  postpenit:= ObliczPostpenit(wpz); // IncDay(wpz, -(6*30));
   validatePostpenit;
 
   fisObliczono:= true;
@@ -677,7 +678,7 @@ begin
       ulamek_opis:= ulamek_opis+' art.81, KK';
       wpz:= NullDate;
       przepustki:= NullDate;
-      postpenit:= IncDay(orzeczenia[Count-1].koniec_kary, -(6*30)); // 6 msc przed końcem kary
+      postpenit:= ObliczPostpenit(orzeczenia[Count-1].koniec_kary); // IncDay(orzeczenia[Count-1].koniec_kary, -(6*30)); // 6 msc przed końcem kary
       validatePostpenit;
       fisObliczono:= true;
       exit;
@@ -688,7 +689,7 @@ begin
     przepustki:= IncDay(wpz, -Trunc(dni_do_wpz / 2));
     validatePrzepustki;
 
-    postpenit:= IncDay(wpz, -(6*30));
+    postpenit:= ObliczPostpenit(wpz); //IncDay(wpz, -(6*30));
     validatePostpenit;
 
     fKomunikaty.Add('Zastosowano art. 81. Po roku od osadzenia, uwazględniono przesunięcie o kary zastępcze.');
@@ -704,12 +705,21 @@ begin
   przepustki:= IncDay(wpz, -4562); // 25 lat / 2 = 4562 dni
   validatePrzepustki;
 
-  postpenit:= IncDay(wpz, -(6*30));
+  postpenit:= ObliczPostpenit(wpz); // zmieniono na polecenie Kierownika: IncDay(wpz, -(6*30));
   validatePostpenit;
 
   fKomunikaty.Add('Obliczono wpz dla dożywocia.');
   fisObliczono:= true;
   Result:= true;
+end;
+
+function TWPZ.ObliczPostpenit(p_wpz: TDate): TDate;
+begin
+  // wylicza w miesiącach
+  Result:= IncMonth(p_wpz, -6);
+
+  // wylicza w dniach
+  // Result:= IncDay(wpz, -(6*30));
 end;
 
 constructor TWPZ.Create;
