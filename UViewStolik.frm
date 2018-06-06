@@ -1,7 +1,7 @@
 object ViewStolik: TViewStolik
-  Left = 394
+  Left = 470
   Height = 140
-  Top = 225
+  Top = 231
   Width = 240
   BorderStyle = bsNone
   Caption = 'Stolik'

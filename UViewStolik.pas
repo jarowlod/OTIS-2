@@ -350,10 +350,10 @@ begin
     begin
       //odbieramy prawo do widzeń
       try
-        ZQPom_Upr.ParamByName('ID').AsInteger              := ZQPom.FieldByName('ID').AsInteger;
-        ZQPom_Upr.ParamByName('Skreslona').AsBoolean       := true;
-        ZQPom_Upr.ParamByName('Skreslil').AsString         := DM.PelnaNazwa;
-        ZQPom_Upr.ParamByName('Data_Skreslenia').AsDateTime:= Now();
+        ZQPom_Upr.ParamByName('id').AsInteger              := ZQPom.FieldByName('ID').AsInteger;
+        ZQPom_Upr.ParamByName('skreslona').AsInteger       := 1; // true
+        ZQPom_Upr.ParamByName('skreslil').AsString         := DM.PelnaNazwa;
+        ZQPom_Upr.ParamByName('data_Skreslenia').AsDateTime:= Now();
         ZQPom_Upr.ExecSQL;
       finally
         DM.KomunikatPopUp(Self, 'Widzenie','Odebrano prawo do widzeń osobie z prawem do jednorazowego widzenia.'+LineEnding+

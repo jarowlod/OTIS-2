@@ -1,14 +1,14 @@
 object OchSalaWidzen: TOchSalaWidzen
-  Left = 394
+  Left = 470
   Height = 856
-  Top = 225
+  Top = 231
   Width = 1278
-  HorzScrollBar.Increment = 84
-  HorzScrollBar.Page = 840
+  HorzScrollBar.Increment = 109
+  HorzScrollBar.Page = 1096
   HorzScrollBar.Smooth = True
   HorzScrollBar.Tracking = True
-  VertScrollBar.Increment = 47
-  VertScrollBar.Page = 470
+  VertScrollBar.Increment = 27
+  VertScrollBar.Page = 279
   VertScrollBar.Smooth = True
   VertScrollBar.Tracking = True
   AutoScroll = True
@@ -26,11 +26,11 @@ object OchSalaWidzen: TOchSalaWidzen
     Height = 856
     Top = 0
     Width = 1278
-    ActivePage = TabSheetPleksa
+    ActivePage = TabSheetSalaWidzen
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 30
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object TabSheetSalaWidzen: TTabSheet
       Caption = 'Sala widzeń'
