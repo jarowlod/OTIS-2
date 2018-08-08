@@ -151,7 +151,6 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="9"/>
         <TopLine Value="255"/>
         <CursorPos X="5" Y="274"/>
@@ -318,11 +317,9 @@
         <ComponentName Value="ZatWniosekUrolopowy"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="60" Y="9"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit28>
       <Unit29>
         <Filename Value="UStawkiPlac.pas"/>
@@ -340,10 +337,13 @@
         <ComponentName Value="ZatStatystyka"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="116"/>
-        <CursorPos Y="122"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="214"/>
+        <CursorPos X="53" Y="242"/>
         <UsageCount Value="202"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit30>
       <Unit31>
         <Filename Value="UPenitWydarzenia.pas"/>
@@ -394,6 +394,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
+        <TopLine Value="219"/>
         <CursorPos Y="75"/>
         <UsageCount Value="202"/>
       </Unit35>
@@ -593,10 +594,12 @@
         <ComponentName Value="PenitWPZ"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="519"/>
-        <CursorPos X="51" Y="532"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="893"/>
+        <CursorPos X="3" Y="262"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit53>
       <Unit54>
         <Filename Value="UKnowHow.pas"/>
@@ -607,7 +610,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="80"/>
         <CursorPos X="31" Y="99"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="105"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit54>
@@ -620,7 +623,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos Y="149"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="152"/>
       </Unit55>
       <Unit56>
         <Filename Value="UViewRichEdit.pas"/>
@@ -631,7 +634,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="156"/>
         <CursorPos X="22" Y="164"/>
-        <UsageCount Value="46"/>
+        <UsageCount Value="48"/>
       </Unit56>
       <Unit57>
         <Filename Value="UNotifierPopUp.pas"/>
@@ -639,7 +642,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="372"/>
         <CursorPos X="22" Y="80"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="44"/>
       </Unit57>
       <Unit58>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\dbc\ZDbcIntfs.pas"/>
@@ -1231,87 +1234,19 @@
         <UsageCount Value="10"/>
       </Unit141>
     </Units>
-    <JumpHistory Count="20" HistoryIndex="19">
+    <JumpHistory Count="3" HistoryIndex="2">
       <Position1>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="454" Column="90" TopLine="426"/>
-      </Position1>
-      <Position2>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="458" TopLine="433"/>
-      </Position2>
-      <Position3>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="448" Column="26" TopLine="434"/>
-      </Position3>
-      <Position4>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="435" Column="3" TopLine="419"/>
-      </Position4>
-      <Position5>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="187" TopLine="173"/>
-      </Position5>
-      <Position6>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="234" Column="64" TopLine="217"/>
-      </Position6>
-      <Position7>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="268" Column="116" TopLine="243"/>
-      </Position7>
-      <Position8>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="261" Column="82" TopLine="248"/>
-      </Position8>
-      <Position9>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="263" Column="82" TopLine="250"/>
-      </Position9>
-      <Position10>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="265" Column="82" TopLine="252"/>
-      </Position10>
-      <Position11>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="438" Column="14" TopLine="431"/>
-      </Position11>
-      <Position12>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="437" Column="14" TopLine="430"/>
-      </Position12>
-      <Position13>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="438" Column="14" TopLine="431"/>
-      </Position13>
-      <Position14>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="437" Column="14" TopLine="430"/>
-      </Position14>
-      <Position15>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="438" Column="14" TopLine="431"/>
-      </Position15>
-      <Position16>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="437" Column="14" TopLine="430"/>
-      </Position16>
-      <Position17>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="438" Column="14" TopLine="431"/>
-      </Position17>
-      <Position18>
-        <Filename Value="UZatWniosekUrlopowy.pas"/>
-        <Caret Line="278" Column="76" TopLine="254"/>
-      </Position18>
-      <Position19>
         <Filename Value="UOchAddWidzenie.pas"/>
         <Caret Line="289" Column="32" TopLine="12"/>
-      </Position19>
-      <Position20>
+      </Position1>
+      <Position2>
         <Filename Value="datamodule.pas"/>
         <Caret Line="170" Column="39" TopLine="160"/>
-      </Position20>
+      </Position2>
+      <Position3>
+        <Filename Value="UPenitWPZ.pas"/>
+        <Caret Line="532" Column="51" TopLine="519"/>
+      </Position3>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
