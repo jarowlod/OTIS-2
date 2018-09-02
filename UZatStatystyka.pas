@@ -59,6 +59,8 @@ end;
 procedure TZatStatystyka.GetStat;
 var ZQPom: TZQueryPom;
     inne : integer;
+    sumaNieodplatnych: integer;
+    sNazwiska: string;
 begin
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
@@ -213,6 +215,32 @@ begin
   inne:= ZQPom.FieldByName('ile').AsInteger;
   memStat.AppendRecord(['OGÓŁ ZATRUDNIONYCH', '---', inne]);
 
+  // TEST POPRAWNOŚCI
+  // sprawdzam poprawność zatrudnionych nieopłatnie
+  sumaNieodplatnych:= poz15+poz16+poz17+poz19;
+  if poz13<>sumaNieodplatnych then
+  begin
+    ZQPom.SQL.Text:= 'SELECT Nazwisko'+
+                     ' FROM zat_zatrudnieni as zat'+
+                     '  LEFT OUTER JOIN zat_stanowiska as sta'+
+                     '  ON zat.id_stanowiska = sta.id'+
+                     ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+                     '       (sta.forma="NIEODPŁATNIE") and'+
+                     '       (zat.rodzaj_zatrudnienia not LIKE "123a§%")';
+    ZQPom.Open;
+
+    sNazwiska:='';
+    while not ZQPom.EOF do
+    begin
+      if sNazwiska<>'' then sNazwiska:= sNazwiska+', ';
+      sNazwiska:= sNazwiska+ ZQPom.FieldByName('Nazwisko').AsString;
+      ZQPom.Next;
+    end;
+
+    MessageDlg('Istnieje różnica pomiędzy ilością zatrudnionych nieodpłatnie a sumą poszczególnych paragrafów.'+LineEnding+
+                                   'Różnica nieodpłatnych: '+(poz13-sumaNieodplatnych).ToString+ LineEnding+
+                                   '('+ sNazwiska +')', mtWarning, [mbOK],0);
+  end;
 
   FreeAndNil(ZQPom);
 end;

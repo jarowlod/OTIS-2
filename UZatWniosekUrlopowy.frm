@@ -965,426 +965,767 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
       HideDateTimeParts = []
       MonthNames = 'Long'
     end
-    object Panel_urlop_platny: TPanel
-      Left = 680
-      Height = 344
-      Top = 176
-      Width = 392
-      ClientHeight = 344
-      ClientWidth = 392
+    object PageControlUrlopPlatny: TPageControl
+      Left = 664
+      Height = 372
+      Top = 152
+      Width = 400
+      ActivePage = TabSheet1
+      TabIndex = 0
       TabOrder = 35
-      object Panel5: TPanel
-        Left = 1
-        Height = 23
-        Top = 1
-        Width = 390
-        Align = alTop
-        BevelOuter = bvNone
-        Caption = 'Urlop płatny'
-        Color = 11579392
-        Font.CharSet = EASTEUROPE_CHARSET
-        Font.Color = clWhite
-        Font.Height = -13
-        Font.Name = 'Arial'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-        TabOrder = 0
-      end
-      object btn_Drukuj_decyzje: TBitBtn
-        Left = 8
-        Height = 30
-        Top = 304
-        Width = 120
-        Anchors = [akLeft, akBottom]
-        Caption = 'Drukuj decyzję'
-        Glyph.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000000000000000
-          00000000000000000000D7C39BFFECE3D6FFECE3D6FFECE3D6FFECE3D6FFECE3
-          D6FFECE3D6FFD7C39BFF00000000000000000000000000000000958F8FBF9C96
-          96CB9C9696E469636AF1C4AB7FFFEDE1D5FFEDE1D5FFEDE1D5FFEDE1D5FFEDE1
-          D5FFEDE1D5FFC4AB7FFF69636AE99C9696EC9C9696DF999292D3958F8FFFC3C0
-          BFFFC3C0BFFF837D84FFC6A874FFE0CBAEFFE0CBAEFFE0CBAEFFE0CBAEFFE0CB
-          AEFFE0CBAEFFC6A874FF837D84FFC3C0BFFFC3C0BFFF999292FFA49FA1FFD1CF
-          CEFFD1CFCEFFD3D2D1FFD2D2D3FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0
-          D2FFD0D0D2FFD2D2D3FFD3D2D1FFBACAD7FF6E9BE3FFA49FA1FFAAA7A7FFD9D7
-          D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7
-          D7FFD9D7D7FFD9D7D7FFD9D7D7FF8AC3E9FF004BFBFFABA8A8FFB7B3B3FFE6E8
-          E9FFD6C5AFFFBC6B10FFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A
-          0FFFBB6A0FFFBB6A0FFFBC6B10FFD6C5AFFFE6E8E9FFB8B5B5FFBCB9BAFFEEF2
-          F5FFBA7B3EFFE1A942FFE1A842FFE1A842FFE1A842FFE1A842FFE1A842FFE1A8
-          42FFE1A842FFE1A842FFE1A942FFBA7B3EFFEEF2F5FFBFBBBCFFCDC8C9FFF8FC
-          FFFFCD9753FFEEC670FFEEC771FFEEC771FFEEC771FFEEC771FFEEC771FFEEC7
-          71FFEEC771FFEEC771FFEEC670FFCD9753FFF8FCFFFFCECBCCFFD2D0D0FFFCFF
-          FFFFD7A55CFFEDC977FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF
-          68FFE9BF68FFE9BF68FFEDC977FFD7A55CFFFCFFFFFFD4D1D0FFDEDCDBFFFFFF
-          FFFFE8C070FFE0AC54FFB99D6BFFD7BD91FFD7BD91FFD7BD91FFD7BD91FFD7BD
-          91FFD7BD91FFB99D6BFFE0AC54FFE8C070FFFFFFFFFFE3DFDFFFCAC3C5E0B0AF
-          B4D9D8A859D8C9924BE4C4AB7FFFDFCAADFFDFCAADFFDFCAADFFDFCAADFFDFCA
-          ADFFDFCAADFFC4AB7FFFC9924BF0D8A859DFB0AFB4D5CAC2C4E0000000000000
-          00000000000000000000D0BD98FFECDFD1FFECDFD1FFECDFD1FFECDFD1FFECDF
-          D1FFECDFD1FFD0BD98FF00000000000000000000000000000000000000000000
-          00000000000000000000D5C4A4FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4
-          D8FFEFE4D8FFD5C4A4FF00000000000000000000000000000000000000000000
-          00000000000000000000DED0B8FFF5EDE4FFF5EDE4FFF5EDE4FFF5EDE4FFF5ED
-          E4FFF5EDE4FFDED0B8FF00000000000000000000000000000000000000000000
-          00000000000000000000E2D6C1FFF8F3EAFFF8F3EAFFF8F3EAFFF8F3EAFFF8F3
-          EAFFF8F3EAFFE2D6C1FF00000000000000000000000000000000000000000000
-          00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
-          DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
-        }
-        OnClick = btn_Drukuj_decyzjeClick
-        TabOrder = 1
-      end
-      object Label22: TLabel
-        Left = 56
-        Height = 15
-        Top = 30
-        Width = 176
-        Caption = 'Wypłacone kwoty za nadgodziny:'
-        ParentColor = False
-      end
-      object Label23: TLabel
-        Left = 256
-        Height = 15
-        Top = 30
-        Width = 128
-        Caption = 'Przepracowane godziny:'
-        ParentColor = False
-      end
-      object Label25: TLabel
-        Left = 182
-        Height = 32
-        Top = 176
-        Width = 156
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = 'Wypłata za okres urlopu w/g stawek za dany miesiąc:'
-        ParentColor = False
-        WordWrap = True
-      end
-      object Panel6: TPanel
-        Left = 8
-        Height = 38
-        Top = 120
-        Width = 376
-        BevelInner = bvLowered
-        BevelOuter = bvNone
-        ClientHeight = 38
-        ClientWidth = 376
-        TabOrder = 2
-        object Label24: TLabel
-          Left = 48
-          Height = 15
-          Top = 10
-          Width = 179
-          Caption = 'Stawka doliczana za nadgodziny:'
-          Font.Style = [fsBold]
+      object TabSheet1: TTabSheet
+        Caption = 'Nowe'
+        ClientHeight = 344
+        ClientWidth = 392
+        object Panel_urlop_platny1: TPanel
+          Left = 0
+          Height = 344
+          Top = 0
+          Width = 392
+          ClientHeight = 344
+          ClientWidth = 392
+          Color = clBtnFace
           ParentColor = False
-          ParentFont = False
-        end
-        object ed_stawka_wyliczeniowa: TLSCurrencyEdit
-          Left = 248
-          Height = 23
-          Top = 8
-          Width = 80
-          DisplayFormat = ',0.00 zł;-,0.00 zł'
-          Font.Style = [fsBold]
-          FloatFormat = ffCurrency
-          MaxValue = 0
-          MinValue = 0
-          OnEditingDone = ed_stawka_wyliczeniowaChange
-          ParentFont = False
-          Round = True
           TabOrder = 0
-          Value = 0
+          object Panel7: TPanel
+            Left = 1
+            Height = 23
+            Top = 1
+            Width = 390
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Urlop płatny'
+            Color = 11579392
+            Font.CharSet = EASTEUROPE_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Arial'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+            TabOrder = 0
+          end
+          object btn_Drukuj_decyzje1: TBitBtn
+            Left = 8
+            Height = 30
+            Top = 304
+            Width = 120
+            Anchors = [akLeft, akBottom]
+            Caption = 'Drukuj decyzję'
+            Glyph.Data = {
+              36040000424D3604000000000000360000002800000010000000100000000100
+              2000000000000004000064000000640000000000000000000000000000000000
+              00000000000000000000D7C39BFFECE3D6FFECE3D6FFECE3D6FFECE3D6FFECE3
+              D6FFECE3D6FFD7C39BFF00000000000000000000000000000000958F8FBF9C96
+              96CB9C9696E469636AF1C4AB7FFFEDE1D5FFEDE1D5FFEDE1D5FFEDE1D5FFEDE1
+              D5FFEDE1D5FFC4AB7FFF69636AE99C9696EC9C9696DF999292D3958F8FFFC3C0
+              BFFFC3C0BFFF837D84FFC6A874FFE0CBAEFFE0CBAEFFE0CBAEFFE0CBAEFFE0CB
+              AEFFE0CBAEFFC6A874FF837D84FFC3C0BFFFC3C0BFFF999292FFA49FA1FFD1CF
+              CEFFD1CFCEFFD3D2D1FFD2D2D3FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0
+              D2FFD0D0D2FFD2D2D3FFD3D2D1FFBACAD7FF6E9BE3FFA49FA1FFAAA7A7FFD9D7
+              D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7
+              D7FFD9D7D7FFD9D7D7FFD9D7D7FF8AC3E9FF004BFBFFABA8A8FFB7B3B3FFE6E8
+              E9FFD6C5AFFFBC6B10FFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A
+              0FFFBB6A0FFFBB6A0FFFBC6B10FFD6C5AFFFE6E8E9FFB8B5B5FFBCB9BAFFEEF2
+              F5FFBA7B3EFFE1A942FFE1A842FFE1A842FFE1A842FFE1A842FFE1A842FFE1A8
+              42FFE1A842FFE1A842FFE1A942FFBA7B3EFFEEF2F5FFBFBBBCFFCDC8C9FFF8FC
+              FFFFCD9753FFEEC670FFEEC771FFEEC771FFEEC771FFEEC771FFEEC771FFEEC7
+              71FFEEC771FFEEC771FFEEC670FFCD9753FFF8FCFFFFCECBCCFFD2D0D0FFFCFF
+              FFFFD7A55CFFEDC977FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF
+              68FFE9BF68FFE9BF68FFEDC977FFD7A55CFFFCFFFFFFD4D1D0FFDEDCDBFFFFFF
+              FFFFE8C070FFE0AC54FFB99D6BFFD7BD91FFD7BD91FFD7BD91FFD7BD91FFD7BD
+              91FFD7BD91FFB99D6BFFE0AC54FFE8C070FFFFFFFFFFE3DFDFFFCAC3C5E0B0AF
+              B4D9D8A859D8C9924BE4C4AB7FFFDFCAADFFDFCAADFFDFCAADFFDFCAADFFDFCA
+              ADFFDFCAADFFC4AB7FFFC9924BF0D8A859DFB0AFB4D5CAC2C4E0000000000000
+              00000000000000000000D0BD98FFECDFD1FFECDFD1FFECDFD1FFECDFD1FFECDF
+              D1FFECDFD1FFD0BD98FF00000000000000000000000000000000000000000000
+              00000000000000000000D5C4A4FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4
+              D8FFEFE4D8FFD5C4A4FF00000000000000000000000000000000000000000000
+              00000000000000000000DED0B8FFF5EDE4FFF5EDE4FFF5EDE4FFF5EDE4FFF5ED
+              E4FFF5EDE4FFDED0B8FF00000000000000000000000000000000000000000000
+              00000000000000000000E2D6C1FFF8F3EAFFF8F3EAFFF8F3EAFFF8F3EAFFF8F3
+              EAFFF8F3EAFFE2D6C1FF00000000000000000000000000000000000000000000
+              00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
+              DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
+            }
+            OnClick = btn_Drukuj_decyzje1Click
+            TabOrder = 1
+          end
+          object Label30: TLabel
+            Left = 56
+            Height = 15
+            Top = 30
+            Width = 180
+            Caption = 'Wypłacone kwoty wynagrodzenia:'
+            ParentColor = False
+          end
+          object Label31: TLabel
+            Left = 256
+            Height = 15
+            Top = 30
+            Width = 128
+            Caption = 'Przepracowane godziny:'
+            ParentColor = False
+          end
+          object Label32: TLabel
+            Left = 182
+            Height = 32
+            Top = 176
+            Width = 156
+            Alignment = taRightJustify
+            AutoSize = False
+            Caption = 'Wypłata za okres urlopu w/g stawek za dany miesiąc:'
+            ParentColor = False
+            WordWrap = True
+          end
+          object Panel8: TPanel
+            Left = 8
+            Height = 38
+            Top = 120
+            Width = 376
+            BevelInner = bvLowered
+            BevelOuter = bvNone
+            ClientHeight = 38
+            ClientWidth = 376
+            TabOrder = 2
+            object Label33: TLabel
+              Left = 80
+              Height = 15
+              Top = 10
+              Width = 149
+              Caption = 'Średnia stawka za godzinę:'
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
+            object ed_stawka_wyliczeniowa3: TLSCurrencyEdit
+              Left = 248
+              Height = 23
+              Top = 8
+              Width = 80
+              DisplayFormat = ',0.00 zł;-,0.00 zł'
+              Font.Style = [fsBold]
+              FloatFormat = ffCurrency
+              MaxValue = 0
+              MinValue = 0
+              OnEditingDone = ed_stawka_wyliczeniowa3EditingDone
+              ParentFont = False
+              Round = True
+              TabOrder = 0
+              Value = 0
+            end
+          end
+          object lbl_msc4: TLabel
+            Left = 8
+            Height = 15
+            Top = 53
+            Width = 65
+            Caption = 'za STYCZEŃ'
+            Font.Color = clGray
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lbl_msc5: TLabel
+            Left = 8
+            Height = 15
+            Top = 77
+            Width = 44
+            Caption = 'za LUTY'
+            Font.Color = clGray
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lbl_msc6: TLabel
+            Left = 8
+            Height = 15
+            Top = 101
+            Width = 62
+            Caption = 'za MARZEC'
+            Font.Color = clGray
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object ed_stawka_godz4: TLSCurrencyEdit
+            Left = 160
+            Height = 23
+            Top = 48
+            Width = 73
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz4EditingDone
+            TabOrder = 3
+            Value = 0
+          end
+          object ed_stawka_godz5: TLSCurrencyEdit
+            Left = 160
+            Height = 23
+            Top = 72
+            Width = 73
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz4EditingDone
+            TabOrder = 4
+            Value = 0
+          end
+          object ed_stawka_godz6: TLSCurrencyEdit
+            Left = 160
+            Height = 23
+            Top = 96
+            Width = 73
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz4EditingDone
+            TabOrder = 5
+            Value = 0
+          end
+          object ed_wyplata3: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 216
+            Width = 82
+            Color = clYellow
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            Font.Style = [fsBold]
+            MaxValue = 0
+            MinValue = 0
+            ParentFont = False
+            TabOrder = 6
+            Value = 0
+          end
+          object ed_wyplata4: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 240
+            Width = 82
+            Color = clYellow
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            Font.Style = [fsBold]
+            MaxValue = 0
+            MinValue = 0
+            ParentFont = False
+            TabOrder = 7
+            Value = 0
+          end
+          object btn_StawkiPlac1: TBitBtn
+            Left = 264
+            Height = 30
+            Top = 304
+            Width = 120
+            Anchors = [akLeft, akBottom]
+            Caption = 'Stawki płac'
+            Glyph.Data = {
+              36040000424D3604000000000000360000002800000010000000100000000100
+              2000000000000004000064000000640000000000000000000000000000000000
+              000000000000C9843EEDC9843EFFC7813CFFC6803AFFC57E38FFC37B35FFC176
+              30FFC1752EFFBD6F29FFB26227FA000000000000000000000000000000000000
+              0000CE8C46AAF8E9D5FFF8E9D5FFF0D49FFFF8E9D5FFF8E9D5FFF0D49FFFF0D4
+              9FFFF0D49FFFF0D49FFFEAC689FFB26227E60000000000000000000000000000
+              0000D08F49A9F8E9D5FFD59850FFD59850FFF5E2C0FFD59850FFD59850FFEDCA
+              80FFD59850FFD59850FFECCA8EFFB26227E40000000000000000000000000000
+              0000D3944BA9F8EAD6FFFAF2EAFFEACFA7FFF8ECDEFFFAF2E8FFF5E9DAFFF3DD
+              BAFFF9F0E5FFEBD3AFFFECCB90FFB26227E40000000000000000000000000000
+              0000D59850AAF9EADAFFF6E8D4FFF0D49FFFF8ECDCFFF3E1C7FFF0D49FFFF1DA
+              B8FFF0D49FFFECCA8EFFECCA8EFFB26227E50000000000000000000000000000
+              0000D99E52A9FAEFE3FFDEAE69FFDEAE69FFF5E2C0FFDEAE69FFDEAE69FFF0D1
+              8DFFDEAE69FFDEAE69FFECCB90FFBD6F29E40000000000000000000000000000
+              0000DBA253AAFAEFE3FFFAF2EAFFEACFA7FFF8EAD6FFFAF2E8FFF5E9DAFFF2DC
+              B5FFF9F0E5FFEBD3AFFFECCB90FFBD6F29E50000000000000000000000000000
+              0000DFA857A9F9ECDBFFF3E1CBFFF3E1CBFFF8EBDCFFF3E1CBFFF3E1CBFFF3DF
+              C1FFF3DFC1FFE5C5A1FFECCB90FFBD6F29E50000000000000000000000000000
+              0000E0AD5BA9FAEFE3FFD39B5AFFD39B5AFFF5E3C4FFD59850FFD59850FFF3DF
+              C1FF1A25F2FF3026B8FFECCB90FFBD6F29E50000000000000000000000000000
+              0000E3B060A9FAEFE3FFFBF4ECFFEAD1ABFFF6E7CFFFFAF2EAFFF6EADDFFF3DF
+              C1FF7A81F6FF8064B9FFECCB90FFBD6F29E40000000000000000000000000000
+              0000E4B460A9FAEFE3FFF6E7CCFFF8ECDEFFF8ECDEFFF6E8D4FFF3E1C7FFF3DF
+              C1FFEED19EFFEED19EFFECCB90FFC1752EE40000000000000000000000000000
+              0000E7B964A9EAB951FFEAB84BFFE5AB39FFE3A42FFFDE981FFFDB9219FFD98D
+              14FFD98D14FFD78A14FFCD8431FFCD8431E60000000000000000000000000000
+              0000E9BD66A9FAECC7FFFAECC5FFF8E7BDFFF7E5B8FFF3DDA4FFF2D794FFEFD0
+              84FFEECD7BFFEDCF81FFEDCF81FFD28A2FE40000000000000000000000000000
+              0000ECC36CA9FAECC7FFFAECC7FFFAECC7FFF9EBC3FFF7E7BAFFF6E3B5FFF4DF
+              AAFFF3DDA4FFF0D697FFF0D697FFD78A14E40000000000000000000000000000
+              0000EEC76D9EEAB951FFEAB84BFFE5AB39FFE3A42FFFDE981FFFDB9219FFD98D
+              14FFD98D14FFD78A14FFD78A14FFD78A14E30000000000000000000000000000
+              000000000000EEC86FC5EEC86FFFEEC76DFFEEC76DFFEDC369FFECC266FFEBBE
+              60FFEABC5DFFE9B656FFE9B351E4000000000000000000000000
+            }
+            OnClick = btn_StawkiPlacClick
+            TabOrder = 8
+          end
+          object ed_przepracowane_godz4: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 48
+            Width = 73
+            DisplayFormat = ',0.00;-,0.00'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz4EditingDone
+            TabOrder = 9
+            Value = 0
+          end
+          object ed_przepracowane_godz5: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 72
+            Width = 73
+            DisplayFormat = ',0.00;-,0.00'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz4EditingDone
+            TabOrder = 10
+            Value = 0
+          end
+          object ed_przepracowane_godz6: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 96
+            Width = 73
+            DisplayFormat = ',0.00;-,0.00'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz4EditingDone
+            TabOrder = 11
+            Value = 0
+          end
         end
       end
-      object lbl_msc1: TLabel
-        Left = 8
-        Height = 15
-        Top = 53
-        Width = 65
-        Caption = 'za STYCZEŃ'
-        Font.Color = clGray
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object lbl_msc2: TLabel
-        Left = 8
-        Height = 15
-        Top = 77
-        Width = 44
-        Caption = 'za LUTY'
-        Font.Color = clGray
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object lbl_msc3: TLabel
-        Left = 8
-        Height = 15
-        Top = 101
-        Width = 62
-        Caption = 'za MARZEC'
-        Font.Color = clGray
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label21: TLabel
-        Left = 8
-        Height = 15
-        Top = 193
-        Width = 79
-        Caption = 'Stawka za msc:'
-        ParentColor = False
-      end
-      object Label26: TLabel
-        Left = 92
-        Height = 15
-        Top = 219
-        Width = 8
-        Caption = '+'
-        ParentColor = False
-      end
-      object Label27: TLabel
-        Left = 92
-        Height = 15
-        Top = 243
-        Width = 8
-        Caption = '+'
-        ParentColor = False
-      end
-      object ed_stawka_godz1: TLSCurrencyEdit
-        Left = 160
-        Height = 23
-        Top = 48
-        Width = 73
-        DisplayFormat = ',0.00 zł;-,0.00 zł'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_godz1Change
-        TabOrder = 3
-        Value = 0
-      end
-      object ed_stawka_godz2: TLSCurrencyEdit
-        Left = 160
-        Height = 23
-        Top = 72
-        Width = 73
-        DisplayFormat = ',0.00 zł;-,0.00 zł'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_godz1Change
-        TabOrder = 4
-        Value = 0
-      end
-      object ed_stawka_godz3: TLSCurrencyEdit
-        Left = 160
-        Height = 23
-        Top = 96
-        Width = 73
-        DisplayFormat = ',0.00 zł;-,0.00 zł'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_godz1Change
-        TabOrder = 5
-        Value = 0
-      end
-      object ed_stawka_za_msc1: TLSCurrencyEdit
-        Left = 14
-        Height = 23
-        Top = 216
-        Width = 73
-        DisplayFormat = ',0.00 zł;-,0.00 zł'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_za_msc1EditingDone
-        TabOrder = 6
-        Value = 0
-      end
-      object ed_stawka_za_msc2: TLSCurrencyEdit
-        Left = 14
-        Height = 23
-        Top = 240
-        Width = 73
-        DisplayFormat = ',0.00 zł;-,0.00 zł'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_za_msc1EditingDone
-        TabOrder = 7
-        Value = 0
-      end
-      object ed_stawka_wyliczeniowa1: TLSCurrencyEdit
-        Left = 104
-        Height = 23
-        Top = 216
-        Width = 49
-        DisplayFormat = ',0.00 zł;-,0.00 zł'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_za_msc1EditingDone
-        TabOrder = 8
-        Value = 0
-      end
-      object ed_stawka_wyliczeniowa2: TLSCurrencyEdit
-        Left = 104
-        Height = 23
-        Top = 240
-        Width = 49
-        DisplayFormat = ',0.00 zł;-,0.00 zł'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_za_msc1EditingDone
-        TabOrder = 9
-        Value = 0
-      end
-      object ed_wyplata1: TLSCurrencyEdit
-        Left = 256
-        Height = 23
-        Top = 216
-        Width = 82
-        Color = clYellow
-        DisplayFormat = ',0.00 zł;-,0.00 zł'
-        Font.Style = [fsBold]
-        MaxValue = 0
-        MinValue = 0
-        ParentFont = False
-        TabOrder = 10
-        Value = 0
-      end
-      object ed_wyplata2: TLSCurrencyEdit
-        Left = 256
-        Height = 23
-        Top = 240
-        Width = 82
-        Color = clYellow
-        DisplayFormat = ',0.00 zł;-,0.00 zł'
-        Font.Style = [fsBold]
-        MaxValue = 0
-        MinValue = 0
-        ParentFont = False
-        TabOrder = 11
-        Value = 0
-      end
-      object btn_StawkiPlac: TBitBtn
-        Left = 264
-        Height = 30
-        Top = 304
-        Width = 120
-        Anchors = [akLeft, akBottom]
-        Caption = 'Stawki płac'
-        Glyph.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000000000000000
-          000000000000C9843EEDC9843EFFC7813CFFC6803AFFC57E38FFC37B35FFC176
-          30FFC1752EFFBD6F29FFB26227FA000000000000000000000000000000000000
-          0000CE8C46AAF8E9D5FFF8E9D5FFF0D49FFFF8E9D5FFF8E9D5FFF0D49FFFF0D4
-          9FFFF0D49FFFF0D49FFFEAC689FFB26227E60000000000000000000000000000
-          0000D08F49A9F8E9D5FFD59850FFD59850FFF5E2C0FFD59850FFD59850FFEDCA
-          80FFD59850FFD59850FFECCA8EFFB26227E40000000000000000000000000000
-          0000D3944BA9F8EAD6FFFAF2EAFFEACFA7FFF8ECDEFFFAF2E8FFF5E9DAFFF3DD
-          BAFFF9F0E5FFEBD3AFFFECCB90FFB26227E40000000000000000000000000000
-          0000D59850AAF9EADAFFF6E8D4FFF0D49FFFF8ECDCFFF3E1C7FFF0D49FFFF1DA
-          B8FFF0D49FFFECCA8EFFECCA8EFFB26227E50000000000000000000000000000
-          0000D99E52A9FAEFE3FFDEAE69FFDEAE69FFF5E2C0FFDEAE69FFDEAE69FFF0D1
-          8DFFDEAE69FFDEAE69FFECCB90FFBD6F29E40000000000000000000000000000
-          0000DBA253AAFAEFE3FFFAF2EAFFEACFA7FFF8EAD6FFFAF2E8FFF5E9DAFFF2DC
-          B5FFF9F0E5FFEBD3AFFFECCB90FFBD6F29E50000000000000000000000000000
-          0000DFA857A9F9ECDBFFF3E1CBFFF3E1CBFFF8EBDCFFF3E1CBFFF3E1CBFFF3DF
-          C1FFF3DFC1FFE5C5A1FFECCB90FFBD6F29E50000000000000000000000000000
-          0000E0AD5BA9FAEFE3FFD39B5AFFD39B5AFFF5E3C4FFD59850FFD59850FFF3DF
-          C1FF1A25F2FF3026B8FFECCB90FFBD6F29E50000000000000000000000000000
-          0000E3B060A9FAEFE3FFFBF4ECFFEAD1ABFFF6E7CFFFFAF2EAFFF6EADDFFF3DF
-          C1FF7A81F6FF8064B9FFECCB90FFBD6F29E40000000000000000000000000000
-          0000E4B460A9FAEFE3FFF6E7CCFFF8ECDEFFF8ECDEFFF6E8D4FFF3E1C7FFF3DF
-          C1FFEED19EFFEED19EFFECCB90FFC1752EE40000000000000000000000000000
-          0000E7B964A9EAB951FFEAB84BFFE5AB39FFE3A42FFFDE981FFFDB9219FFD98D
-          14FFD98D14FFD78A14FFCD8431FFCD8431E60000000000000000000000000000
-          0000E9BD66A9FAECC7FFFAECC5FFF8E7BDFFF7E5B8FFF3DDA4FFF2D794FFEFD0
-          84FFEECD7BFFEDCF81FFEDCF81FFD28A2FE40000000000000000000000000000
-          0000ECC36CA9FAECC7FFFAECC7FFFAECC7FFF9EBC3FFF7E7BAFFF6E3B5FFF4DF
-          AAFFF3DDA4FFF0D697FFF0D697FFD78A14E40000000000000000000000000000
-          0000EEC76D9EEAB951FFEAB84BFFE5AB39FFE3A42FFFDE981FFFDB9219FFD98D
-          14FFD98D14FFD78A14FFD78A14FFD78A14E30000000000000000000000000000
-          000000000000EEC86FC5EEC86FFFEEC76DFFEEC76DFFEDC369FFECC266FFEBBE
-          60FFEABC5DFFE9B656FFE9B351E4000000000000000000000000
-        }
-        OnClick = btn_StawkiPlacClick
-        TabOrder = 12
-      end
-      object Label28: TLabel
-        Left = 160
-        Height = 15
-        Top = 219
-        Width = 8
-        Caption = '='
-        ParentColor = False
-      end
-      object Label29: TLabel
-        Left = 160
-        Height = 15
-        Top = 243
-        Width = 8
-        Caption = '='
-        ParentColor = False
-      end
-      object lbl_stawka1: TLabel
-        Left = 176
-        Height = 15
-        Top = 219
-        Width = 17
-        Caption = '0 zł'
-        ParentColor = False
-      end
-      object lbl_stawka2: TLabel
-        Left = 176
-        Height = 15
-        Top = 243
-        Width = 17
-        Caption = '0 zł'
-        ParentColor = False
-      end
-      object ed_przepracowane_godz1: TLSCurrencyEdit
-        Left = 256
-        Height = 23
-        Top = 48
-        Width = 73
-        DisplayFormat = ',0.00;-,0.00'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_godz1Change
-        TabOrder = 13
-        Value = 0
-      end
-      object ed_przepracowane_godz2: TLSCurrencyEdit
-        Left = 256
-        Height = 23
-        Top = 72
-        Width = 73
-        DisplayFormat = ',0.00;-,0.00'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_godz1Change
-        TabOrder = 14
-        Value = 0
-      end
-      object ed_przepracowane_godz3: TLSCurrencyEdit
-        Left = 256
-        Height = 23
-        Top = 96
-        Width = 73
-        DisplayFormat = ',0.00;-,0.00'
-        MaxValue = 0
-        MinValue = 0
-        OnEditingDone = ed_stawka_godz1Change
-        TabOrder = 15
-        Value = 0
+      object TabSheet2: TTabSheet
+        Caption = 'Poprzednie'
+        ClientHeight = 344
+        ClientWidth = 392
+        object Panel_urlop_platny: TPanel
+          Left = 0
+          Height = 344
+          Top = 0
+          Width = 392
+          ClientHeight = 344
+          ClientWidth = 392
+          Color = clBtnFace
+          ParentColor = False
+          TabOrder = 0
+          object Panel5: TPanel
+            Left = 1
+            Height = 23
+            Top = 1
+            Width = 390
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Urlop płatny'
+            Color = 11579392
+            Font.CharSet = EASTEUROPE_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Arial'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+            TabOrder = 0
+          end
+          object btn_Drukuj_decyzje: TBitBtn
+            Left = 8
+            Height = 30
+            Top = 304
+            Width = 120
+            Anchors = [akLeft, akBottom]
+            Caption = 'Drukuj decyzję'
+            Glyph.Data = {
+              36040000424D3604000000000000360000002800000010000000100000000100
+              2000000000000004000064000000640000000000000000000000000000000000
+              00000000000000000000D7C39BFFECE3D6FFECE3D6FFECE3D6FFECE3D6FFECE3
+              D6FFECE3D6FFD7C39BFF00000000000000000000000000000000958F8FBF9C96
+              96CB9C9696E469636AF1C4AB7FFFEDE1D5FFEDE1D5FFEDE1D5FFEDE1D5FFEDE1
+              D5FFEDE1D5FFC4AB7FFF69636AE99C9696EC9C9696DF999292D3958F8FFFC3C0
+              BFFFC3C0BFFF837D84FFC6A874FFE0CBAEFFE0CBAEFFE0CBAEFFE0CBAEFFE0CB
+              AEFFE0CBAEFFC6A874FF837D84FFC3C0BFFFC3C0BFFF999292FFA49FA1FFD1CF
+              CEFFD1CFCEFFD3D2D1FFD2D2D3FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0
+              D2FFD0D0D2FFD2D2D3FFD3D2D1FFBACAD7FF6E9BE3FFA49FA1FFAAA7A7FFD9D7
+              D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7
+              D7FFD9D7D7FFD9D7D7FFD9D7D7FF8AC3E9FF004BFBFFABA8A8FFB7B3B3FFE6E8
+              E9FFD6C5AFFFBC6B10FFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A
+              0FFFBB6A0FFFBB6A0FFFBC6B10FFD6C5AFFFE6E8E9FFB8B5B5FFBCB9BAFFEEF2
+              F5FFBA7B3EFFE1A942FFE1A842FFE1A842FFE1A842FFE1A842FFE1A842FFE1A8
+              42FFE1A842FFE1A842FFE1A942FFBA7B3EFFEEF2F5FFBFBBBCFFCDC8C9FFF8FC
+              FFFFCD9753FFEEC670FFEEC771FFEEC771FFEEC771FFEEC771FFEEC771FFEEC7
+              71FFEEC771FFEEC771FFEEC670FFCD9753FFF8FCFFFFCECBCCFFD2D0D0FFFCFF
+              FFFFD7A55CFFEDC977FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF
+              68FFE9BF68FFE9BF68FFEDC977FFD7A55CFFFCFFFFFFD4D1D0FFDEDCDBFFFFFF
+              FFFFE8C070FFE0AC54FFB99D6BFFD7BD91FFD7BD91FFD7BD91FFD7BD91FFD7BD
+              91FFD7BD91FFB99D6BFFE0AC54FFE8C070FFFFFFFFFFE3DFDFFFCAC3C5E0B0AF
+              B4D9D8A859D8C9924BE4C4AB7FFFDFCAADFFDFCAADFFDFCAADFFDFCAADFFDFCA
+              ADFFDFCAADFFC4AB7FFFC9924BF0D8A859DFB0AFB4D5CAC2C4E0000000000000
+              00000000000000000000D0BD98FFECDFD1FFECDFD1FFECDFD1FFECDFD1FFECDF
+              D1FFECDFD1FFD0BD98FF00000000000000000000000000000000000000000000
+              00000000000000000000D5C4A4FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4
+              D8FFEFE4D8FFD5C4A4FF00000000000000000000000000000000000000000000
+              00000000000000000000DED0B8FFF5EDE4FFF5EDE4FFF5EDE4FFF5EDE4FFF5ED
+              E4FFF5EDE4FFDED0B8FF00000000000000000000000000000000000000000000
+              00000000000000000000E2D6C1FFF8F3EAFFF8F3EAFFF8F3EAFFF8F3EAFFF8F3
+              EAFFF8F3EAFFE2D6C1FF00000000000000000000000000000000000000000000
+              00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
+              DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
+            }
+            OnClick = btn_Drukuj_decyzjeClick
+            TabOrder = 1
+          end
+          object Label22: TLabel
+            Left = 56
+            Height = 15
+            Top = 30
+            Width = 176
+            Caption = 'Wypłacone kwoty za nadgodziny:'
+            ParentColor = False
+          end
+          object Label23: TLabel
+            Left = 256
+            Height = 15
+            Top = 30
+            Width = 128
+            Caption = 'Przepracowane godziny:'
+            ParentColor = False
+          end
+          object Label25: TLabel
+            Left = 182
+            Height = 32
+            Top = 176
+            Width = 156
+            Alignment = taRightJustify
+            AutoSize = False
+            Caption = 'Wypłata za okres urlopu w/g stawek za dany miesiąc:'
+            ParentColor = False
+            WordWrap = True
+          end
+          object Panel6: TPanel
+            Left = 8
+            Height = 38
+            Top = 120
+            Width = 376
+            BevelInner = bvLowered
+            BevelOuter = bvNone
+            ClientHeight = 38
+            ClientWidth = 376
+            TabOrder = 2
+            object Label24: TLabel
+              Left = 48
+              Height = 15
+              Top = 10
+              Width = 179
+              Caption = 'Stawka doliczana za nadgodziny:'
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
+            object ed_stawka_wyliczeniowa: TLSCurrencyEdit
+              Left = 248
+              Height = 23
+              Top = 8
+              Width = 80
+              DisplayFormat = ',0.00 zł;-,0.00 zł'
+              Font.Style = [fsBold]
+              FloatFormat = ffCurrency
+              MaxValue = 0
+              MinValue = 0
+              OnEditingDone = ed_stawka_wyliczeniowaChange
+              ParentFont = False
+              Round = True
+              TabOrder = 0
+              Value = 0
+            end
+          end
+          object lbl_msc1: TLabel
+            Left = 8
+            Height = 15
+            Top = 53
+            Width = 65
+            Caption = 'za STYCZEŃ'
+            Font.Color = clGray
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lbl_msc2: TLabel
+            Left = 8
+            Height = 15
+            Top = 77
+            Width = 44
+            Caption = 'za LUTY'
+            Font.Color = clGray
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lbl_msc3: TLabel
+            Left = 8
+            Height = 15
+            Top = 101
+            Width = 62
+            Caption = 'za MARZEC'
+            Font.Color = clGray
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label21: TLabel
+            Left = 8
+            Height = 15
+            Top = 193
+            Width = 79
+            Caption = 'Stawka za msc:'
+            ParentColor = False
+          end
+          object Label26: TLabel
+            Left = 92
+            Height = 15
+            Top = 219
+            Width = 8
+            Caption = '+'
+            ParentColor = False
+          end
+          object Label27: TLabel
+            Left = 92
+            Height = 15
+            Top = 243
+            Width = 8
+            Caption = '+'
+            ParentColor = False
+          end
+          object ed_stawka_godz1: TLSCurrencyEdit
+            Left = 160
+            Height = 23
+            Top = 48
+            Width = 73
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz1Change
+            TabOrder = 3
+            Value = 0
+          end
+          object ed_stawka_godz2: TLSCurrencyEdit
+            Left = 160
+            Height = 23
+            Top = 72
+            Width = 73
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz1Change
+            TabOrder = 4
+            Value = 0
+          end
+          object ed_stawka_godz3: TLSCurrencyEdit
+            Left = 160
+            Height = 23
+            Top = 96
+            Width = 73
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz1Change
+            TabOrder = 5
+            Value = 0
+          end
+          object ed_stawka_za_msc1: TLSCurrencyEdit
+            Left = 14
+            Height = 23
+            Top = 216
+            Width = 73
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_za_msc1EditingDone
+            TabOrder = 6
+            Value = 0
+          end
+          object ed_stawka_za_msc2: TLSCurrencyEdit
+            Left = 14
+            Height = 23
+            Top = 240
+            Width = 73
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_za_msc1EditingDone
+            TabOrder = 7
+            Value = 0
+          end
+          object ed_stawka_wyliczeniowa1: TLSCurrencyEdit
+            Left = 104
+            Height = 23
+            Top = 216
+            Width = 49
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_za_msc1EditingDone
+            TabOrder = 8
+            Value = 0
+          end
+          object ed_stawka_wyliczeniowa2: TLSCurrencyEdit
+            Left = 104
+            Height = 23
+            Top = 240
+            Width = 49
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_za_msc1EditingDone
+            TabOrder = 9
+            Value = 0
+          end
+          object ed_wyplata1: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 216
+            Width = 82
+            Color = clYellow
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            Font.Style = [fsBold]
+            MaxValue = 0
+            MinValue = 0
+            ParentFont = False
+            TabOrder = 10
+            Value = 0
+          end
+          object ed_wyplata2: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 240
+            Width = 82
+            Color = clYellow
+            DisplayFormat = ',0.00 zł;-,0.00 zł'
+            Font.Style = [fsBold]
+            MaxValue = 0
+            MinValue = 0
+            ParentFont = False
+            TabOrder = 11
+            Value = 0
+          end
+          object btn_StawkiPlac: TBitBtn
+            Left = 264
+            Height = 30
+            Top = 304
+            Width = 120
+            Anchors = [akLeft, akBottom]
+            Caption = 'Stawki płac'
+            Glyph.Data = {
+              36040000424D3604000000000000360000002800000010000000100000000100
+              2000000000000004000064000000640000000000000000000000000000000000
+              000000000000C9843EEDC9843EFFC7813CFFC6803AFFC57E38FFC37B35FFC176
+              30FFC1752EFFBD6F29FFB26227FA000000000000000000000000000000000000
+              0000CE8C46AAF8E9D5FFF8E9D5FFF0D49FFFF8E9D5FFF8E9D5FFF0D49FFFF0D4
+              9FFFF0D49FFFF0D49FFFEAC689FFB26227E60000000000000000000000000000
+              0000D08F49A9F8E9D5FFD59850FFD59850FFF5E2C0FFD59850FFD59850FFEDCA
+              80FFD59850FFD59850FFECCA8EFFB26227E40000000000000000000000000000
+              0000D3944BA9F8EAD6FFFAF2EAFFEACFA7FFF8ECDEFFFAF2E8FFF5E9DAFFF3DD
+              BAFFF9F0E5FFEBD3AFFFECCB90FFB26227E40000000000000000000000000000
+              0000D59850AAF9EADAFFF6E8D4FFF0D49FFFF8ECDCFFF3E1C7FFF0D49FFFF1DA
+              B8FFF0D49FFFECCA8EFFECCA8EFFB26227E50000000000000000000000000000
+              0000D99E52A9FAEFE3FFDEAE69FFDEAE69FFF5E2C0FFDEAE69FFDEAE69FFF0D1
+              8DFFDEAE69FFDEAE69FFECCB90FFBD6F29E40000000000000000000000000000
+              0000DBA253AAFAEFE3FFFAF2EAFFEACFA7FFF8EAD6FFFAF2E8FFF5E9DAFFF2DC
+              B5FFF9F0E5FFEBD3AFFFECCB90FFBD6F29E50000000000000000000000000000
+              0000DFA857A9F9ECDBFFF3E1CBFFF3E1CBFFF8EBDCFFF3E1CBFFF3E1CBFFF3DF
+              C1FFF3DFC1FFE5C5A1FFECCB90FFBD6F29E50000000000000000000000000000
+              0000E0AD5BA9FAEFE3FFD39B5AFFD39B5AFFF5E3C4FFD59850FFD59850FFF3DF
+              C1FF1A25F2FF3026B8FFECCB90FFBD6F29E50000000000000000000000000000
+              0000E3B060A9FAEFE3FFFBF4ECFFEAD1ABFFF6E7CFFFFAF2EAFFF6EADDFFF3DF
+              C1FF7A81F6FF8064B9FFECCB90FFBD6F29E40000000000000000000000000000
+              0000E4B460A9FAEFE3FFF6E7CCFFF8ECDEFFF8ECDEFFF6E8D4FFF3E1C7FFF3DF
+              C1FFEED19EFFEED19EFFECCB90FFC1752EE40000000000000000000000000000
+              0000E7B964A9EAB951FFEAB84BFFE5AB39FFE3A42FFFDE981FFFDB9219FFD98D
+              14FFD98D14FFD78A14FFCD8431FFCD8431E60000000000000000000000000000
+              0000E9BD66A9FAECC7FFFAECC5FFF8E7BDFFF7E5B8FFF3DDA4FFF2D794FFEFD0
+              84FFEECD7BFFEDCF81FFEDCF81FFD28A2FE40000000000000000000000000000
+              0000ECC36CA9FAECC7FFFAECC7FFFAECC7FFF9EBC3FFF7E7BAFFF6E3B5FFF4DF
+              AAFFF3DDA4FFF0D697FFF0D697FFD78A14E40000000000000000000000000000
+              0000EEC76D9EEAB951FFEAB84BFFE5AB39FFE3A42FFFDE981FFFDB9219FFD98D
+              14FFD98D14FFD78A14FFD78A14FFD78A14E30000000000000000000000000000
+              000000000000EEC86FC5EEC86FFFEEC76DFFEEC76DFFEDC369FFECC266FFEBBE
+              60FFEABC5DFFE9B656FFE9B351E4000000000000000000000000
+            }
+            OnClick = btn_StawkiPlacClick
+            TabOrder = 12
+          end
+          object Label28: TLabel
+            Left = 160
+            Height = 15
+            Top = 219
+            Width = 8
+            Caption = '='
+            ParentColor = False
+          end
+          object Label29: TLabel
+            Left = 160
+            Height = 15
+            Top = 243
+            Width = 8
+            Caption = '='
+            ParentColor = False
+          end
+          object lbl_stawka1: TLabel
+            Left = 176
+            Height = 15
+            Top = 219
+            Width = 17
+            Caption = '0 zł'
+            ParentColor = False
+          end
+          object lbl_stawka2: TLabel
+            Left = 176
+            Height = 15
+            Top = 243
+            Width = 17
+            Caption = '0 zł'
+            ParentColor = False
+          end
+          object ed_przepracowane_godz1: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 48
+            Width = 73
+            DisplayFormat = ',0.00;-,0.00'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz1Change
+            TabOrder = 13
+            Value = 0
+          end
+          object ed_przepracowane_godz2: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 72
+            Width = 73
+            DisplayFormat = ',0.00;-,0.00'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz1Change
+            TabOrder = 14
+            Value = 0
+          end
+          object ed_przepracowane_godz3: TLSCurrencyEdit
+            Left = 256
+            Height = 23
+            Top = 96
+            Width = 73
+            DisplayFormat = ',0.00;-,0.00'
+            MaxValue = 0
+            MinValue = 0
+            OnEditingDone = ed_stawka_godz1Change
+            TabOrder = 15
+            Value = 0
+          end
+        end
       end
     end
   end
