@@ -1653,6 +1653,7 @@ begin
   { Create the off screen bitmap }
   fControl := TBitmap.Create;
   { Setup the calender }
+  DoubleBuffered:= true;
   SetupHeadings;
   CalculateCalendar;
   CalculateData;
@@ -1798,6 +1799,7 @@ var
   HintH, HintLines, HintSH, HintW: Integer;
   Dy,Mn: Byte;
   swapTmp:integer;
+  pomStartDate, pomEndDate: TDateTime;   //by Jaro
 begin
   { If the control is destroying we cannot continue }
   if hWaitingToDestroy then Exit;
@@ -1845,9 +1847,12 @@ begin
       end;
     end;
     { Process the selection coordinates }
+      pomStartDate:= fStartDate;                                 // by Jaro
+      pomEndDate:= fEndDate;                                     // by Jaro
     ProcessSelection;
     { Repaint the control }
-    Invalidate;
+    if (fStartDate<>pomStartDate)or(fEndDate<>pomEndDate) then   // by Jaro
+        Invalidate;
     Exit;
   end;
   { Is this cell a calender day? }
