@@ -3,8 +3,8 @@ object DM: TDM
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 514
-  HorizontalOffset = 470
-  VerticalOffset = 231
+  HorizontalOffset = 388
+  VerticalOffset = 232
   Width = 697
   object IniPropStorage1: TIniPropStorage
     StoredValues = <>
@@ -28,7 +28,7 @@ object DM: TDM
     Database = 'klodzko'
     User = '153202jwlo'
     Password = 'molibden'
-    Protocol = 'mysql-5'
+    Protocol = 'mysql'
     Left = 28
     Top = 18
   end

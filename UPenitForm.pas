@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate,
   Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
   StdCtrls, Buttons, ComCtrls, rxdbutils, rxdbgrid, UZatrudnieni,
-  UViewUwagiOch, UViewWykazy, UViewZatrudnienie, datamodule;
+  UViewUwagiOch, UViewWykazy, UViewZatrudnienie, datamodule, DBDateTimePicker;
 
 type
 
@@ -159,6 +159,7 @@ end;
 
 procedure TPenitForm.SetIDO(ido: integer);
 var ReadOnlyOs: Boolean;
+    pomSQL: string;
 begin
   if SelectIDO = ido then exit;
 
@@ -210,22 +211,40 @@ begin
   //--------------------------------
 
   // otwieramy tabele osadzeni, wybranego osadzonego
+//    pomSQL:= ZQOs.SQL.Text;
   ZQOs.Close;
+    //FreeAndNil(ZQOs);
+    //ZQOs:= TZQueryPom.Create(nil);
+    //ZQOs.SQL.Text:= pomSQL;
   ZQOs.ParamByName('IDO').AsInteger := SelectIDO;
   ZQOs.Open;
+//    DSOs.DataSet:= ZQOs;
+
   // otwieramy os_info wybranego osadzonego
+//    pomSQL:= ZQOsInfo.SQL.Text;
   ZQOsInfo.Close;
+    //FreeAndNil(ZQOsInfo);
+    //ZQOsInfo:= TZQueryPom.Create(nil);
+    //ZQOsInfo.SQL.Text:= pomSQL;
+    //ZQOsInfo.UpdateObject:= ZUOsInfo;
   ZQOsInfo.ParamByName('IDO').AsInteger := SelectIDO;
    ZUOsInfo.Params.ParamByName('AutoryzacjaEd').AsString := DM.Wychowawca;
    ZUOsInfo.Params.ParamByName('IDOEd').AsInteger := SelectIDO;
   ZQOsInfo.Open;
+//    DSOsInfo.DataSet:= ZQOsInfo;
 
   //otwieramy os_notatki wybranego osadzonego
+//    pomSQL:= ZQOsNotatki.SQL.Text;
   ZQOsNotatki.Close;
+//    FreeAndNil(ZQOsNotatki);
+//    ZQOsNotatki:= TZQueryPom.Create(nil);
+//    ZQOsNotatki.SQL.Text:= pomSQL;
+//    ZQOsNotatki.UpdateObject:= ZUOsNotatki;
   ZQOsNotatki.ParamByName('IDO').AsInteger := SelectIDO;
    ZUOsNotatki.Params.ParamByName('wychEd').AsString := DM.Wychowawca;
    ZUOsNotatki.Params.ParamByName('IDOEd').AsInteger := SelectIDO;
   ZQOsNotatki.Open;
+//    DSOsInfo.DataSet:= ZQOsNotatki;
 
   //typ celi dla określenia Ochronki i palenia
   WczytajTypCeli;
@@ -378,7 +397,7 @@ begin
   lblCelaOchronna.Visible:= false;
   lblCelaPalaca.Visible  := false;
 
-  if ZQOs.FieldByName('POC').AsString = '' then exit;
+  if (not ZQOs.Active)or(ZQOs.FieldByName('POC').AsString = '') then exit;
   ZQPom := TZQueryPom.Create(Self);
   ZQPom.SQL.Text := 'SELECT Pali, Ochronka FROM typ_cel WHERE POC=:poc';
   ZQPom.ParamByName('poc').AsString := ZQOs.FieldByName('POC').AsString;

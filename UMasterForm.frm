@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 394
+  Left = 388
   Height = 598
-  Top = 225
+  Top = 232
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -10,7 +10,7 @@ object MasterForm: TMasterForm
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
@@ -556,9 +556,11 @@ object MasterForm: TMasterForm
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
+        Filter.Style = rxfstManualEdit
         Footer.Font.CharSet = EASTEUROPE_CHARSET
         Footer.Font.Color = clBlack
         Footer.Font.Height = -11
@@ -577,9 +579,11 @@ object MasterForm: TMasterForm
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
+        Filter.Style = rxfstManualEdit
         Footers = <>
       end    
       item
@@ -592,9 +596,11 @@ object MasterForm: TMasterForm
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
+        Filter.Style = rxfstManualEdit
         Footers = <>
       end    
       item
@@ -607,9 +613,11 @@ object MasterForm: TMasterForm
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
+        Filter.Style = rxfstManualEdit
         Footers = <>
       end    
       item
@@ -624,6 +632,7 @@ object MasterForm: TMasterForm
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -641,6 +650,7 @@ object MasterForm: TMasterForm
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -658,9 +668,11 @@ object MasterForm: TMasterForm
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
+        Filter.Style = rxfstDialog
         Footers = <>
       end    
       item
@@ -675,9 +687,11 @@ object MasterForm: TMasterForm
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
+        Filter.Style = rxfstManualEdit
         Footers = <>
       end    
       item
@@ -691,9 +705,11 @@ object MasterForm: TMasterForm
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
+        Filter.Style = rxfstDialog
         Footers = <>
       end>
     KeyStrokes = <    
@@ -1283,42 +1299,6 @@ object MasterForm: TMasterForm
     end
     object MenuItemKoszykShow: TMenuItem
       Caption = 'Koszyk'
-      Bitmap.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        200000000000000400006400000064000000000000000000000000000000B362
-        0E01AC5F10D8AD5F10FFAD5E10A6000000000000000000000000000000000000
-        00000000000000000000B16415B6B06113FFAF6111C0AE5F1153CB893F10CC8B
-        428FBE701BDBB5681617C27520FFD08C433C0000000000000000000000000000
-        000000000000E0A7663AC1751BD7B86A1814C47823FFC67E2AE7FBD29F01FACF
-        9A62EEB66AD7F8C27522F8CA8CE6EEBE83030000000000000000000000000000
-        000000000000FFDEB003FED08EA6FBC87D1EEDB76FFFEFBE80D0000000000000
-        0000F5C88A85D3923BFFD3983FFBB96E0AC4AF5E00CEB36400CFB36400CFB364
-        00CFAC5900CEBE721BC4D1913EFFD2923BFFE3B069C9FBD59F3A000000000000
-        0000C27208FFC17102FFBE6C00FFB86700FFB86700FFB86700FFB86700FFB867
-        00FFB86700FFB86700FFB86700FFB86700FFB86700FFB86700FF000000000000
-        0000C57A1AFFAE620A3400000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000CD8228FFAB5D0EFFA35509FFA5570AFFA5560AFFA6570AFFA6570CFFA556
-        0AFFA6570CFFA5560BFFA5570BFFA6580CFFA6570CFFA6580AFF000000000000
-        0000D38A2FFFB96C1BFF0000000000000000B66A1AFF0000000000000000B669
-        1AFF0000000000000000B46917FF0000000000000000B46917FF000000000000
-        0000D89138FFC2761FFFC17620FFC88027FFC27622FFC67C26FFC67D26FFC277
-        23FFC87F27FFC87F27FFC47923FFC88027FFC0741DFFC0731DFF000000000000
-        0000DE9A41FFD99847FF0000000000000000CF8529FF0000000000000000CF84
-        28FF0000000000000000CD8329FF0000000000000000DFA65DFF000000000000
-        0000E2A047FFEDB86EFF0000000000000000EBAC5DFF0000000000000000E7A6
-        52FF0000000000000000F1B96DFF0000000000000000F0BA76FF000000000000
-        0000EAAC54FFF8C57BFFFCC67CFFF6C177FFFFC87EFFF7C279FFFAC479FFFFCA
-        80FFFAC478FFFCC77CFFFCC77BFFF6C177FFFCC77DFFFDC87CFF000000000000
-        0000F0B761FFFCCC86FF0000000000000000FFD189FF0000000000000000FFD0
-        88FF0000000000000000FFD48FFF0000000000000000FECB7FFF00000000E5A4
-        4428F8CB84FFFCD190FFFCD190FFFCD190FFFCD190FFFCD190FFFCD190FFFCD1
-        90FFFCD190FFFCD190FFFCD190FFFCD190FFFCD190FFFCD190FFEEB05569F6C7
-        78F1F9CB82F20000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000F9C063D3F9C4
-        6BFFEFAF4E1B0000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000
-      }
       ImageIndex = 30
       object MenuItemDoKoszyka: TMenuItem
         Action = ActionDodajDoKoszyka

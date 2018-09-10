@@ -112,10 +112,12 @@ type
     Label8: TLabel;
     Label9: TLabel;
     Memo1: TMemo;
+    Memo2: TMemo;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel4: TPanel;
     plGradient1: TplGradient;
+    plGradient2: TplGradient;
     RxDBGrid2: TRxDBGrid;
     RxMemoryOrzeczenia: TRxMemoryData;
     edOBS_dni: TSpinEdit;
@@ -444,7 +446,10 @@ var i: integer;
 begin
   Result:= 0;
   for i:=0 to Count-1 do
+  begin
+    orzeczenia[i].Sdni:= WymiarKaryDni(orzeczenia[i]);
     if not orzeczenia[i].zastepcza then Result+= orzeczenia[i].Sdni;
+  end;
 end;
 
 function TWPZ.GetUlamekArt: string;

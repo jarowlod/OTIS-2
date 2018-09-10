@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="10"/>
+    <Version Value="11"/>
     <PathDelim Value="\"/>
     <General>
       <Flags>
@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="17"/>
+      <BuildNr Value="19"/>
       <Language Value="0415"/>
       <StringTable CompanyName="ZK Kłodzko" LegalCopyright="Włodarczyk Jarosław" ProductVersion="0.0.0.0"/>
     </VersionInfo>
@@ -34,9 +34,16 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <FormatVersion Value="1"/>
         <CommandLineParams Value="&quot;153202jwlo&quot; &quot;molibden&quot;"/>
       </local>
+      <FormatVersion Value="2"/>
+      <Modes Count="1">
+        <Mode0 Name="default">
+          <local>
+            <CommandLineParams Value="&quot;153202jwlo&quot; &quot;molibden&quot;"/>
+          </local>
+        </Mode0>
+      </Modes>
     </RunParams>
     <RequiredPackages Count="31">
       <Item1>

@@ -1,14 +1,14 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 86
+  Left = 180
   Height = 856
-  Top = 85
+  Top = 178
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
   ClientWidth = 1359
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   WindowState = wsMaximized
   object Panel2: TPanel
     Left = 0
@@ -424,9 +424,11 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstManualEdit
             Footer.DisplayFormat = 'Ilość: %d'
             Footer.ValueType = fvtCount
             Footers = <>
@@ -440,9 +442,11 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstManualEdit
             Footers = <>
           end        
           item
@@ -454,9 +458,11 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstManualEdit
             Footers = <>
           end        
           item
@@ -470,9 +476,11 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstDialog
             Footers = <>
           end        
           item
@@ -486,9 +494,11 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstManualEdit
             Footers = <>
           end        
           item
@@ -501,6 +511,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -515,9 +526,11 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstDialog
             Footers = <>
           end        
           item
@@ -531,6 +544,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -547,6 +561,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -561,9 +576,11 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstDialog
             Footers = <>
           end        
           item
@@ -575,6 +592,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -594,6 +612,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -617,6 +636,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -635,6 +655,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -650,6 +671,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -666,6 +688,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -681,6 +704,7 @@ object Zatrudnieni: TZatrudnieni
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -790,7 +814,7 @@ object Zatrudnieni: TZatrudnieni
       TabOrder = 1
       object tabSzczegolyOs: TTabSheet
         Caption = 'Szczegóły osadzonego'
-        ClientHeight = 651
+        ClientHeight = 813
         ClientWidth = 498
         ImageIndex = 5
         object Panel5: TPanel
@@ -1200,7 +1224,7 @@ object Zatrudnieni: TZatrudnieni
           TabOrder = 1
           object tabInfoZat: TTabSheet
             Caption = 'Informacje o zatrudnieniu'
-            ClientHeight = 524
+            ClientHeight = 362
             ClientWidth = 490
             ImageIndex = 6
             object plGradient1: TplGradient
@@ -1552,7 +1576,7 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInfoStanowisko: TTabSheet
             Caption = 'Informacje o Stanowisku'
-            ClientHeight = 524
+            ClientHeight = 362
             ClientWidth = 490
             ImageIndex = 7
             object Label15: TLabel

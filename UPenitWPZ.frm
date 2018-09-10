@@ -1,14 +1,14 @@
 object PenitWPZ: TPenitWPZ
-  Left = 470
+  Left = 388
   Height = 819
-  Top = 231
+  Top = 232
   Width = 755
   Caption = 'PenitWPZ'
   ClientHeight = 819
   ClientWidth = 755
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object Panel1: TPanel
     Left = 0
     Height = 771
@@ -38,6 +38,7 @@ object PenitWPZ: TPenitWPZ
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -57,6 +58,7 @@ object PenitWPZ: TPenitWPZ
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -74,6 +76,7 @@ object PenitWPZ: TPenitWPZ
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -90,6 +93,7 @@ object PenitWPZ: TPenitWPZ
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -106,6 +110,7 @@ object PenitWPZ: TPenitWPZ
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -121,6 +126,7 @@ object PenitWPZ: TPenitWPZ
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -137,6 +143,7 @@ object PenitWPZ: TPenitWPZ
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -766,6 +773,16 @@ object PenitWPZ: TPenitWPZ
         HideDateTimeParts = []
         MonthNames = 'Long'
         Options = [dtpoFlatButton]
+      end
+      object Memo2: TMemo
+        Left = 352
+        Height = 90
+        Top = 192
+        Width = 376
+        Lines.Strings = (
+          'Memo2'
+        )
+        TabOrder = 9
       end
     end
     object btnPaste: TBitBtn
