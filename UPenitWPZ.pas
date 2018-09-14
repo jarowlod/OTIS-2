@@ -112,7 +112,6 @@ type
     Label8: TLabel;
     Label9: TLabel;
     Memo1: TMemo;
-    Memo2: TMemo;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel4: TPanel;

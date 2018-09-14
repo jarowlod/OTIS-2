@@ -32,8 +32,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="593"/>
-        <CursorPos X="65" Y="183"/>
+        <TopLine Value="157"/>
+        <CursorPos X="27" Y="166"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -77,9 +77,10 @@
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="883"/>
-        <CursorPos Y="887"/>
+        <TopLine Value="410"/>
+        <CursorPos X="69" Y="425"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -156,8 +157,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="199"/>
-        <CursorPos X="55" Y="218"/>
+        <CursorPos X="58" Y="25"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -168,7 +168,6 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="394"/>
         <CursorPos X="46" Y="408"/>
@@ -595,8 +594,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="301"/>
-        <CursorPos X="42" Y="332"/>
+        <TopLine Value="300"/>
+        <CursorPos X="42" Y="331"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -610,7 +609,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="80"/>
         <CursorPos X="31" Y="99"/>
-        <UsageCount Value="124"/>
+        <UsageCount Value="127"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit54>
@@ -623,7 +622,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="243"/>
         <CursorPos X="104" Y="257"/>
-        <UsageCount Value="171"/>
+        <UsageCount Value="174"/>
       </Unit55>
       <Unit56>
         <Filename Value="UViewRichEdit.pas"/>
@@ -634,7 +633,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="156"/>
         <CursorPos X="22" Y="164"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="70"/>
       </Unit56>
       <Unit57>
         <Filename Value="UNotifierPopUp.pas"/>
@@ -642,7 +641,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="372"/>
         <CursorPos X="22" Y="80"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="66"/>
       </Unit57>
       <Unit58>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\dbc\ZDbcIntfs.pas"/>
@@ -1287,123 +1286,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="203" TopLine="180"/>
+        <Caret Line="218" TopLine="202"/>
       </Position1>
       <Position2>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="204" TopLine="181"/>
+        <Caret Line="216" TopLine="197"/>
       </Position2>
       <Position3>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="205" TopLine="182"/>
+        <Caret Line="111" Column="12" TopLine="96"/>
       </Position3>
       <Position4>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="208" TopLine="185"/>
+        <Caret Line="383" Column="20" TopLine="356"/>
       </Position4>
       <Position5>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="216" TopLine="202"/>
+        <Caret Line="214" Column="22" TopLine="202"/>
       </Position5>
       <Position6>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="217" TopLine="202"/>
+        <Caret Line="230" Column="26" TopLine="208"/>
       </Position6>
       <Position7>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="218" TopLine="202"/>
+        <Caret Line="229" Column="26" TopLine="207"/>
       </Position7>
       <Position8>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="216" TopLine="197"/>
+        <Caret Line="244" Column="7" TopLine="219"/>
       </Position8>
       <Position9>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="111" Column="12" TopLine="96"/>
+        <Caret Line="215" Column="34" TopLine="199"/>
       </Position9>
       <Position10>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="383" Column="20" TopLine="356"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="408" Column="46" TopLine="394"/>
       </Position10>
       <Position11>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="214" Column="22" TopLine="202"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="239" Column="31" TopLine="225"/>
       </Position11>
       <Position12>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="230" Column="26" TopLine="208"/>
+        <Filename Value="UOchAddWidzenie.pas"/>
+        <Caret Line="239" Column="31" TopLine="225"/>
       </Position12>
       <Position13>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="229" Column="26" TopLine="207"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="408" Column="46" TopLine="394"/>
       </Position13>
       <Position14>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="244" Column="7" TopLine="219"/>
+        <Filename Value="UPenitWPZ.pas"/>
+        <Caret Line="217" Column="10" TopLine="213"/>
       </Position14>
       <Position15>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="215" Column="34" TopLine="199"/>
+        <Filename Value="UPenitWPZ.pas"/>
+        <Caret Line="147" Column="15" TopLine="134"/>
       </Position15>
       <Position16>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="408" Column="46" TopLine="394"/>
+        <Filename Value="UPenitWPZ.pas"/>
+        <Caret Line="393" Column="9" TopLine="379"/>
       </Position16>
       <Position17>
-        <Filename Value="UOchAddWidzenie.pas"/>
-        <Caret Line="239" Column="31" TopLine="225"/>
+        <Filename Value="UPenitWPZ.pas"/>
+        <Caret Line="148" Column="15" TopLine="132"/>
       </Position17>
       <Position18>
-        <Filename Value="UOchAddWidzenie.pas"/>
-        <Caret Line="239" Column="31" TopLine="225"/>
+        <Filename Value="UPenitWPZ.pas"/>
+        <Caret Line="375" Column="48" TopLine="361"/>
       </Position18>
       <Position19>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="408" Column="46" TopLine="394"/>
+        <Filename Value="UPenitWPZ.pas"/>
+        <Caret Line="404" Column="38" TopLine="385"/>
       </Position19>
       <Position20>
         <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="217" Column="10" TopLine="213"/>
+        <Caret Line="415" TopLine="386"/>
       </Position20>
       <Position21>
         <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="147" Column="15" TopLine="134"/>
+        <Caret Line="63" Column="16" TopLine="47"/>
       </Position21>
       <Position22>
         <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="393" Column="9" TopLine="379"/>
+        <Caret Line="754" TopLine="739"/>
       </Position22>
       <Position23>
         <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="148" Column="15" TopLine="132"/>
+        <Caret Line="46" Column="16" TopLine="31"/>
       </Position23>
       <Position24>
         <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="375" Column="48" TopLine="361"/>
+        <Caret Line="382" TopLine="369"/>
       </Position24>
       <Position25>
         <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="404" Column="38" TopLine="385"/>
+        <Caret Line="332" Column="42" TopLine="301"/>
       </Position25>
       <Position26>
         <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="415" TopLine="386"/>
+        <Caret Line="331" Column="42" TopLine="300"/>
       </Position26>
       <Position27>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="63" Column="16" TopLine="47"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="894" Column="74" TopLine="834"/>
       </Position27>
       <Position28>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="754" TopLine="739"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="430" Column="3" TopLine="416"/>
       </Position28>
       <Position29>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="46" Column="16" TopLine="31"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="432" Column="3" TopLine="418"/>
       </Position29>
       <Position30>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="382" TopLine="369"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="663" Column="13" TopLine="573"/>
       </Position30>
     </JumpHistory>
     <RunParams>
@@ -1412,7 +1411,7 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="4">
+    <BreakPoints Count="1">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -1420,27 +1419,6 @@
         <Source Value="UPenitTerminarz.pas"/>
         <Line Value="225"/>
       </Item1>
-      <Item2>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="UPenitForm.pas"/>
-        <Line Value="223"/>
-      </Item2>
-      <Item3>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="UPenitForm.pas"/>
-        <Line Value="236"/>
-      </Item3>
-      <Item4>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="UPenitForm.pas"/>
-        <Line Value="213"/>
-      </Item4>
     </BreakPoints>
     <Watches Count="2">
       <Item1>

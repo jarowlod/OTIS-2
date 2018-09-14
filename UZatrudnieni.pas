@@ -28,6 +28,7 @@ type
     cbZmianyKlasyf: TCheckBox;
     cbZmianyPobytow: TCheckBox;
     cbMiejsce: TCheckBox;
+    cbDuplikaty: TCheckBox;
     ComboBox1: TComboBox;
     DateTimePicker1: TDateTimePicker;
     DateTimePicker2: TDateTimePicker;
@@ -268,6 +269,7 @@ type
     procedure cbNazwaGrupyChange(Sender: TObject);
     procedure cbZmianyPOCChange(Sender: TObject);
     procedure cbMiejsceChange(Sender: TObject);
+    procedure cbDuplikatyChange(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure DateTimePicker1Change(Sender: TObject);
     procedure DateTimePicker2Change(Sender: TObject);
@@ -425,6 +427,10 @@ begin
      begin
        ZQZatrudnieni.SQL.Add(' (zat.Klasyf <> os.Klasyf) AND');
      end;
+
+  // duplikaty zatrudnionych
+  if cbDuplikaty.Checked then
+     ZQZatrudnieni.SQL.Add(' exists (SELECT id, ido, status_zatrudnienia FROM zat_zatrudnieni zat1 WHERE (zat.ido = zat1.ido) and (zat.id <> zat1.id) and (zat1.status_zatrudnienia = zat.status_zatrudnienia)) AND');
 
   // PO STANOWISKU
   sstanowisko:= Trim(edNazwaGrupy.Text);
@@ -649,6 +655,11 @@ end;
 procedure TZatrudnieni.cbMiejsceChange(Sender: TObject);
 begin
   edMiejsce.Enabled:= cbMiejsce.Checked;
+  NewSelect;
+end;
+
+procedure TZatrudnieni.cbDuplikatyChange(Sender: TObject);
+begin
   NewSelect;
 end;
 

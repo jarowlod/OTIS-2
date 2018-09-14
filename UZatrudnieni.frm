@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 180
+  Left = 86
   Height = 856
-  Top = 178
+  Top = 57
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -383,6 +383,16 @@ object Zatrudnieni: TZatrudnieni
       OnSelectionChanged = rgStatusPobytuSelectionChanged
       TabOrder = 6
     end
+    object cbDuplikaty: TCheckBox
+      Left = 1056
+      Height = 19
+      Top = 93
+      Width = 70
+      Anchors = [akTop, akRight]
+      Caption = 'Duplikaty'
+      OnChange = cbDuplikatyChange
+      TabOrder = 9
+    end
   end
   object Panel3: TPanel
     Left = 0
@@ -530,7 +540,7 @@ object Zatrudnieni: TZatrudnieni
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
-            Filter.Style = rxfstDialog
+            Filter.Style = rxfstBoth
             Footers = <>
           end        
           item

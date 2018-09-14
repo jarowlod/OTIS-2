@@ -774,16 +774,6 @@ object PenitWPZ: TPenitWPZ
         MonthNames = 'Long'
         Options = [dtpoFlatButton]
       end
-      object Memo2: TMemo
-        Left = 352
-        Height = 90
-        Top = 192
-        Width = 376
-        Lines.Strings = (
-          'Memo2'
-        )
-        TabOrder = 9
-      end
     end
     object btnPaste: TBitBtn
       Left = 88
