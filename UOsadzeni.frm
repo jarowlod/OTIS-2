@@ -1,14 +1,14 @@
 object Osadzeni: TOsadzeni
-  Left = 443
+  Left = 404
   Height = 568
-  Top = 158
+  Top = 224
   Width = 841
   Caption = 'Osadzeni'
   ClientHeight = 568
   ClientWidth = 841
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel1: TPanel
     Left = 0
     Height = 46
@@ -64,8 +64,6 @@ object Osadzeni: TOsadzeni
         Width = 65
         FieldName = 'IDO'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -87,8 +85,6 @@ object Osadzeni: TOsadzeni
         Width = 120
         FieldName = 'NAZWISKO'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -104,8 +100,6 @@ object Osadzeni: TOsadzeni
         Width = 120
         FieldName = 'IMIE'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -121,8 +115,6 @@ object Osadzeni: TOsadzeni
         Width = 120
         FieldName = 'OJCIEC'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -140,8 +132,6 @@ object Osadzeni: TOsadzeni
         Width = 80
         FieldName = 'URODZ'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -159,8 +149,6 @@ object Osadzeni: TOsadzeni
         Width = 80
         FieldName = 'PRZYJ'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -178,8 +166,6 @@ object Osadzeni: TOsadzeni
         Width = 85
         FieldName = 'KLASYF'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -197,8 +183,6 @@ object Osadzeni: TOsadzeni
         Width = 65
         FieldName = 'POC'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -215,8 +199,6 @@ object Osadzeni: TOsadzeni
         Width = 65
         FieldName = 'STATUS'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -283,6 +265,8 @@ object Osadzeni: TOsadzeni
     FooterOptions.RowCount = 1
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
+    SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+    SearchOptions.FromStart = False
     OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
     FooterRowCount = 1
     Align = alClient
@@ -299,7 +283,6 @@ object Osadzeni: TOsadzeni
     DefaultRowHeight = 24
     FixedColor = clNone
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-    ParentColor = False
     ReadOnly = True
     TabOrder = 1
     TitleStyle = tsNative
@@ -357,8 +340,8 @@ object Osadzeni: TOsadzeni
         Name = 'nazwisko'
         ParamType = ptUnknown
       end>
-    left = 637
-    top = 25
+    Left = 637
+    Top = 25
     ParamData = <    
       item
         DataType = ftUnknown
@@ -368,7 +351,7 @@ object Osadzeni: TOsadzeni
   end
   object DSOs: TDataSource
     DataSet = ZQOs
-    left = 704
-    top = 25
+    Left = 704
+    Top = 25
   end
 end

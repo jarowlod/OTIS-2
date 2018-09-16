@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZConnection, ZDataset, Forms,
   Dialogs, DateUtils, controls, IniPropStorage, ShellApi, ExtCtrls, Graphics,
-  rxdbgrid, LMessages, LCLType, LR_Class, Clipbrd, UNotifierPopUp;
+  rxdbgrid, LMessages, LCLType, LR_Class, Clipbrd, UNotifierPopUp, DateTimePicker,
+  DBDateTimePicker, Menus;
 
 type
   TNotifierPopUpStyle = (nots_Info, nots_Warning, nots_Clear);
@@ -40,6 +41,8 @@ type
     Path_NO_Foto: string;
     Path_Raporty: string;
     Path_NrStolikow: string;
+    Path_KnowHow: string;
+    Path_Temp   : string; // systemowy TEMP
 
     login     : string;
     haslo     : string;
@@ -126,11 +129,41 @@ type
 
   function SetToBookmark(ADataSet: TDataSet; ABookmark: TBookmark): Boolean;
 
+type
+  { TDateTimePicker }
+  // Hack na DateTimePicker: dodanie PopUpMenu z funkcjami Kopiuj datę do schowka, wstaw i usuń datę
+  // podpięte skróty Ctrl+C, Ctrl+V
+  TDateTimePicker = class(DateTimePicker.TDateTimePicker)
+    private
+      fPopupMenuEx: TPopupMenu;
+      procedure PopupMenuKopiuj(Sender: TObject);
+      procedure PopupMenuWklej(Sender: TObject);
+      procedure PopupMenuUsun(Sender: TObject);
+    public
+      constructor Create(AOwner: TComponent); override;
+      destructor Destroy; override;
+  end;
+
+  { TDBDateTimePicker }
+  // Hack na DBDateTimePicker: dodanie PopUpMenu z funkcjami Kopiuj datę do schowka, wstaw i usuń datę
+  // podpięte skróty Ctrl+C, Ctrl+V
+  TDBDateTimePicker = class(DBDateTimePicker.TDBDateTimePicker)
+    private
+      fPopupMenuEx: TPopupMenu;
+      procedure PopupMenuKopiuj(Sender: TObject);
+      procedure PopupMenuWklej(Sender: TObject);
+      procedure PopupMenuUsun(Sender: TObject);
+    public
+      constructor Create(AOwner: TComponent); override;
+      destructor Destroy; override;
+  end;
+
+
 var
   DM: TDM;
 
 const
-  wersja = '0.0.1.7';
+  wersja = '0.0.1.18';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -162,6 +195,7 @@ begin
   DefaultFormatSettings.ThousandSeparator:= ' ';
   DefaultFormatSettings.ShortDateFormat:='dd/mm/yyyy';
   Application.OnException:=@ObslugaBledu;
+  {$WARNINGS OFF}Application.UpdateFormatSettings:= false;{$WARNINGS ON}
   autologin:= true;
 
   try
@@ -196,7 +230,7 @@ begin
                     'ZPRX | CZYNNOŚĆ ZAKOŃCZONA - TRANSPORT NIE DOSZEDŁ DO SKUTKU WSKUTEK PRZESZKODY'+#13+
                     'ZTRX | CZYNNOŚĆ ZAKOŃCZONA - TRANSPORT ZREALIZOWANY';
 
-  KomunikatyPopUp:= TNotifierPopUp.Create(Self);
+  KomunikatyPopUp:= TNotifierPopUp.Create(Application);
 end;
 
 procedure TDM.DataModuleDestroy(Sender: TObject);
@@ -239,12 +273,14 @@ begin
       Path_Update              := ZQTemp.FieldByName('Path_Update').AsString;
       Path_Foto                := ZQTemp.FieldByName('Path_Foto').AsString;
       Path_NO_Foto             := ZQTemp.FieldByName('Path_NO_Foto').AsString;
+      Path_KnowHow             := ZQTemp.FieldByName('Path_KnowHow').AsString;
+      Path_Temp                := GetTempDir;
       Station_Name_For_Widzenia:= ZQTemp.FieldByName('Station_Name_For_Widzenia').AsString;
       TimerInterval            := ZQTemp.FieldByName('TimerInterval').AsInteger;
 
       ZQTemp.Close;
     except
-      ShowMessage('Brak uprawnień.');
+      ShowMessage('Brak uprawnień. Błąd podczas aktualizacji.');
       exit;
     end;
 end;
@@ -289,6 +325,8 @@ procedure TDM.WczytajUstawienia;
 var ZQ: TZQueryPom;
   i: integer;
 begin
+  DefaultFormatSettings.ShortDateFormat:='dd/mm/yyyy';
+
   login:= ZConnection1.User;
   haslo:= ZConnection1.Password;
 
@@ -355,7 +393,8 @@ begin
 
   //odczytujemy tabele ver_otis2,
   //                aktualna wersja, path update, path foto, itp...
-  Aktualizacja;
+  // Aktualizacja jest wywoływana podczas Logowania, jesli logowanie = true to OpenAllTable. Więc tutaj jest zbędna.
+  // Aktualizacja;
 
   //Ładujemy ustawienia z tabeli uprawnienia
   //           w tym PelnaNazwa z mysql.user_info
@@ -700,6 +739,117 @@ begin
     except
     end;
 end;
+
+{ TDateTimePicker }
+
+procedure TDateTimePicker.PopupMenuKopiuj(Sender: TObject);
+var obj: TObject;
+begin
+  obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  if TDateTimePicker(obj).Date = NullDate then Clipboard.AsText:= 'Brak'
+                                          else Clipboard.AsText:= DateToStr(TDateTimePicker(obj).Date);
+end;
+
+procedure TDateTimePicker.PopupMenuWklej(Sender: TObject);
+var obj: TObject;
+begin
+  obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  TDateTimePicker(obj).Date:= StrToDateDef(Clipboard.AsText, NullDate);
+end;
+
+procedure TDateTimePicker.PopupMenuUsun(Sender: TObject);
+var obj: TObject;
+begin
+  obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  TDateTimePicker(obj).Date:= NullDate;
+end;
+
+constructor TDateTimePicker.Create(AOwner: TComponent);
+var
+  Item: TMenuItem;
+begin
+  inherited Create(AOwner);
+  fPopupMenuEx:= TPopupMenu.Create(Self);
+    Item:= TMenuItem.Create(fPopupMenuEx);
+    Item.Caption:= 'Kopiuj';
+    Item.OnClick:= @PopupMenuKopiuj;
+    Item.ShortCut:= ShortCut(Ord('C'), [ssCtrl]);
+  fPopupMenuEx.Items.Add(Item);
+    Item:= TMenuItem.Create(fPopupMenuEx);
+    Item.Caption:= 'Wklej';
+    Item.OnClick:= @PopupMenuWklej;
+    Item.ShortCut:= ShortCut(Ord('V'), [ssCtrl]);
+  fPopupMenuEx.Items.Add(Item);
+    Item:= TMenuItem.Create(fPopupMenuEx);
+    Item.Caption:= 'Usuń';
+    Item.OnClick:= @PopupMenuUsun;
+  fPopupMenuEx.Items.Add(Item);
+  fPopupMenuEx.PopupComponent:= Self;
+  PopupMenu:= fPopupMenuEx;
+end;
+
+destructor TDateTimePicker.Destroy;
+begin
+  FreeAndNil(fPopupMenuEx);
+  inherited Destroy;
+end;
+
+{ TDBDateTimePicker }
+
+procedure TDBDateTimePicker.PopupMenuKopiuj(Sender: TObject);
+var obj: TObject;
+begin
+  obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  if TDBDateTimePicker(obj).DateIsNull then Clipboard.AsText:= TDBDateTimePicker(obj).TextForNullDate
+                                       else Clipboard.AsText:= DateToStr(TDBDateTimePicker(obj).Date);
+end;
+
+procedure TDBDateTimePicker.PopupMenuWklej(Sender: TObject);
+var obj: TObject;
+begin
+  obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  TDBDateTimePicker(obj).Date:= StrToDateDef(Clipboard.AsText, NullDate);
+  TDBDateTimePicker(obj).Change;
+end;
+
+procedure TDBDateTimePicker.PopupMenuUsun(Sender: TObject);
+var obj: TObject;
+begin
+  obj:= ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  TDBDateTimePicker(obj).Date:= NullDate;
+  TDBDateTimePicker(obj).Change;
+end;
+
+constructor TDBDateTimePicker.Create(AOwner: TComponent);
+var
+  Item: TMenuItem;
+begin
+  inherited Create(AOwner);
+  fPopupMenuEx:= TPopupMenu.Create(Self);
+    Item:= TMenuItem.Create(fPopupMenuEx);
+    Item.Caption:= 'Kopiuj';
+    Item.OnClick:= @PopupMenuKopiuj;
+    Item.ShortCut:= ShortCut(Ord('C'), [ssCtrl]);
+  fPopupMenuEx.Items.Add(Item);
+    Item:= TMenuItem.Create(fPopupMenuEx);
+    Item.Caption:= 'Wklej';
+    Item.OnClick:= @PopupMenuWklej;
+    Item.ShortCut:= ShortCut(Ord('V'), [ssCtrl]);
+  fPopupMenuEx.Items.Add(Item);
+    Item:= TMenuItem.Create(fPopupMenuEx);
+    Item.Caption:= 'Usuń';
+    Item.OnClick:= @PopupMenuUsun;
+  fPopupMenuEx.Items.Add(Item);
+  fPopupMenuEx.PopupComponent:= Self;
+  PopupMenu:= fPopupMenuEx;
+end;
+
+destructor TDBDateTimePicker.Destroy;
+begin
+  FreeAndNil(fPopupMenuEx);
+  inherited Destroy;
+end;
+
 
 end.
 

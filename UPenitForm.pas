@@ -6,15 +6,16 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate,
-  DBDateTimePicker, Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
-  StdCtrls, Buttons, ComCtrls, datamodule, rxdbutils, rxdbgrid, UZatrudnieni,
-  UViewUwagiOch, UViewWykazy, UViewZatrudnienie;
+  Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
+  StdCtrls, Buttons, ComCtrls, rxdbutils, rxdbgrid, UZatrudnieni,
+  UViewUwagiOch, UViewWykazy, UViewZatrudnienie, datamodule;
 
 type
 
   { TPenitForm }
 
   TPenitForm = class(TForm)
+    btnKreatorWPZ: TSpeedButton;
     btnRejestrProsb: TBitBtn;
     btnRejestrZat: TBitBtn;
     btnDrukArch: TBitBtn;
@@ -78,6 +79,7 @@ type
     ZQOs: TZQuery;
     ZUOsInfo: TZUpdateSQL;
     ZUOsNotatki: TZUpdateSQL;
+    procedure btnKreatorWPZClick(Sender: TObject);
     procedure btnRejestrProsbClick(Sender: TObject);
     procedure btnRejestrZatClick(Sender: TObject);
     procedure btnDrukArchClick(Sender: TObject);
@@ -86,6 +88,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnDodajDoKoszykaClick(Sender: TObject);
+    procedure Image_osDblClick(Sender: TObject);
     procedure ZQOsInfoAfterPost(DataSet: TDataSet);
     procedure ZQOsNotatkiAfterPost(DataSet: TDataSet);
   private
@@ -110,7 +113,7 @@ type
 //  PenitForm: TPenitForm;
 
 implementation
-uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs;
+uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs, UPenitWPZ;
 {$R *.frm}
 
 { TPenitForm }
@@ -210,7 +213,7 @@ begin
   ZQOs.Close;
   ZQOs.ParamByName('IDO').AsInteger := SelectIDO;
   ZQOs.Open;
-  DBEdit1.Text:='';
+
   // otwieramy os_info wybranego osadzonego
   ZQOsInfo.Close;
   ZQOsInfo.ParamByName('IDO').AsInteger := SelectIDO;
@@ -266,6 +269,45 @@ begin
      DM.KomunikatPopUp(Sender, 'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
 end;
 
+procedure TPenitForm.Image_osDblClick(Sender: TObject);
+var Obrazek: TForm;
+    Img: TImage;
+    lblHeader: TLabel;
+begin
+    Obrazek:= TForm.Create(Self);
+    Obrazek.BorderStyle:= bsSizeable;
+    Obrazek.Caption:= DBText1.Caption;
+      Img:= TImage.Create(Obrazek);
+      img.AutoSize    := false;
+      img.Parent      := Obrazek;
+      img.Stretch     := true;
+      img.Proportional:= true;
+      img.Align       := alClient;
+      img.Visible     := true;
+      img.AntialiasingMode:= amOn;
+      Img.Picture.Assign(Image_os.Picture);
+    Obrazek.Height:= Screen.WorkAreaHeight;
+
+    if img.Picture.Width > (Screen.WorkAreaWidth div 2) then
+      Obrazek.Width:= (Screen.WorkAreaWidth div 2)
+    else
+      Obrazek.Width:= img.Picture.Width;
+
+    {
+    lblHeader:= TLabel.Create(Obrazek);
+    lblHeader.Align:= alTop;
+    lblHeader.Parent:= Obrazek;
+    lblHeader.WordWrap:= false;
+    lblHeader.BorderSpacing.Around:= 10;
+    lblHeader.Caption:= Format('Rozmiar: %d : %d', [img.Picture.Height, img.Picture.Width])+LineEnding+
+                        Format('Data modyfikacji: %s', [FileAge(img.)]);
+    }
+    Obrazek.ShowModal;
+
+    FreeAndNil(img);
+    FreeAndNil(Obrazek);
+end;
+
 procedure TPenitForm.ZQOsInfoAfterPost(DataSet: TDataSet);
 begin
   if fRefresh then RefreshQuery(SourceQuery);
@@ -297,6 +339,18 @@ begin
   end;
 end;
 
+procedure TPenitForm.btnKreatorWPZClick(Sender: TObject);
+begin
+  if SelectIDO = 0 then exit;
+  with TPenitWPZ.Create(Self) do
+  begin
+       SetIDO(SelectIDO);
+       ShowModal;
+       Free;
+  end;
+  RefreshQuery(ZQOsInfo);
+end;
+
 procedure TPenitForm.btnDrukArchClick(Sender: TObject);
 begin
   if SelectIDO = 0 then exit;
@@ -325,7 +379,7 @@ begin
   lblCelaOchronna.Visible:= false;
   lblCelaPalaca.Visible  := false;
 
-  if ZQOs.FieldByName('POC').AsString = '' then exit;
+  if (not ZQOs.Active)or(ZQOs.FieldByName('POC').AsString = '') then exit;
   ZQPom := TZQueryPom.Create(Self);
   ZQPom.SQL.Text := 'SELECT Pali, Ochronka FROM typ_cel WHERE POC=:poc';
   ZQPom.ParamByName('poc').AsString := ZQOs.FieldByName('POC').AsString;

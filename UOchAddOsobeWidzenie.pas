@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, Buttons, DbCtrls, StdCtrls, datamodule, DBDateTimePicker;
+  ExtCtrls, Buttons, DbCtrls, StdCtrls, datamodule;
 
 type
 

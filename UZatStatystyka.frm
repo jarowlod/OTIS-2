@@ -1,7 +1,7 @@
 object ZatStatystyka: TZatStatystyka
-  Left = 445
+  Left = 470
   Height = 588
-  Top = 161
+  Top = 231
   Width = 748
   Caption = 'Statystyka zatrudnienia'
   ClientHeight = 588
@@ -46,7 +46,7 @@ object ZatStatystyka: TZatStatystyka
     0000
   }
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.3'
   object Panel5: TPanel
     Left = 0
     Height = 50
@@ -134,8 +134,6 @@ object ZatStatystyka: TZatStatystyka
         Width = 600
         FieldName = 'Opis'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -152,8 +150,6 @@ object ZatStatystyka: TZatStatystyka
         Width = 25
         FieldName = 'Nr'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -168,8 +164,6 @@ object ZatStatystyka: TZatStatystyka
         Title.Caption = 'Ogółem'
         FieldName = 'Ogolem'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
         Filter.AllValue = '(All values)'
@@ -236,6 +230,8 @@ object ZatStatystyka: TZatStatystyka
     FooterOptions.RowCount = 1
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
+    SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+    SearchOptions.FromStart = False
     OptionsRx = [rdgWordWrap]
     FooterRowCount = 1
     Align = alCustom
@@ -254,7 +250,6 @@ object ZatStatystyka: TZatStatystyka
     FixedColor = clNone
     FixedCols = 0
     Options = [dgTitles, dgColumnResize, dgColLines, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
-    ParentColor = False
     ParentShowHint = False
     ReadOnly = True
     ShowHint = True
@@ -309,8 +304,8 @@ object ZatStatystyka: TZatStatystyka
   end
   object DSStat: TDataSource
     DataSet = memStat
-    left = 48
-    top = 176
+    Left = 48
+    Top = 176
   end
   object memStat: TMemDataset
     Active = True
@@ -330,20 +325,20 @@ object ZatStatystyka: TZatStatystyka
         DataType = ftString
         Size = 10
       end>
-    left = 48
-    top = 128
+    Left = 48
+    Top = 128
   end
   object frReport1: TfrReport
     InitialZoom = pzDefault
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 48
-    top = 248
+    Left = 48
+    Top = 248
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = memStat
-    left = 120
-    top = 248
+    Left = 120
+    Top = 248
   end
 end

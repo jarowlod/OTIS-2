@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, YearPlanner, rxdbgrid, Forms, Controls, Graphics,
-  Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, datamodule, LR_DBSet,
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, LR_DBSet,
   LR_Class, db, ZDataset, DBGrids, Menus, dateutils, Clipbrd, Buttons,
-  rxdbutils;
+  rxdbutils, datamodule;
 
 type
 
@@ -18,6 +18,7 @@ type
     cbWychowawcy: TComboBox;
     DSTerminarz: TDataSource;
     DSKalendarz: TDataSource;
+    Edit1: TEdit;
     frDBDataSet1: TfrDBDataSet;
     frDBDataSet2: TfrDBDataSet;
     frDBDataSet3: TfrDBDataSet;
@@ -29,6 +30,10 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    lblGR: TLabel;
+    lblZatrudnionych: TLabel;
     lblOs: TLabel;
     lblProg: TLabel;
     lblWolne: TLabel;
@@ -38,6 +43,10 @@ type
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
+    MenuItem15: TMenuItem;
+    MenuItem16: TMenuItem;
+    miZatZmienOpis: TMenuItem;
+    miZatZmienOpisAll: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -55,8 +64,8 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
-    PopupMenu1: TPopupMenu;
-    PopupMenu2: TPopupMenu;
+    PopupMenuTerminy: TPopupMenu;
+    PopupMenuKalendarz: TPopupMenu;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     Splitter1: TSplitter;
@@ -98,6 +107,7 @@ type
     ZQZatReport: TZQuery;
     procedure cbWychowawcyChange(Sender: TObject);
     procedure DSTerminarzDataChange(Sender: TObject; Field: TField);
+    procedure Edit1Change(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
@@ -113,8 +123,10 @@ type
     procedure MenuItem9Click(Sender: TObject);
     procedure MenuItemDoKoszykaClick(Sender: TObject);
     procedure MenuWykazDoSchowkaKalClick(Sender: TObject);
+    procedure miZatZmienOpisAllClick(Sender: TObject);
+    procedure miZatZmienOpisClick(Sender: TObject);
     procedure OnTimerDataChange(Sender: TObject);
-    procedure PopupMenu1Popup(Sender: TObject);
+    procedure PopupMenuTerminyPopup(Sender: TObject);
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
     procedure TabSheet1Show(Sender: TObject);
@@ -130,6 +142,7 @@ type
     WhereSQL: string;
     OrderSQL: string;
     fRecCount: integer;
+    fOldWychowawca: string;
 
     WolneCele: array of record
                           ID: integer;
@@ -163,6 +176,7 @@ type
     Procedure MakeSQLTerminy(var ZQ: TZQuery; DataOd, DataDo: TDate);
     procedure WczytajDaneTerminarza;
     Function OsadzeniFieldsToString(ZQPom: TZQuery): string;
+    Function ZmienOpisZatrudnienia(vIDO: integer): Boolean;
   public
     Procedure NewSelect;
   end;
@@ -179,7 +193,9 @@ uses UDrukWykazOsadz, UKoszyk, UKoszykNowy;
 
 procedure TPenitTerminarz.FormCreate(Sender: TObject);
 begin
+  // zmienne dla zabezpieczenia przed zbędnym odświeżaniem
   fRecCount:= 0;
+  fOldWychowawca:= '';
 
   ZQTerminarz.Close;
   SelectSQL:= ZQTerminarz.SQL.Text;
@@ -246,7 +262,7 @@ end;
 
 //======================================================================================================================
 //-------------------------------- KOSZYK ------------------------------------------------------------------------------
-procedure TPenitTerminarz.PopupMenu1Popup(Sender: TObject);
+procedure TPenitTerminarz.PopupMenuTerminyPopup(Sender: TObject);
 var koszyk_name: string;
 begin
    koszyk_name:='';
@@ -284,6 +300,7 @@ begin
        Free;
   end;
 end;
+
 //======================================================================================================================
 //--------------------------------END KOSZYK ---------------------------------------------------------------------------
 
@@ -385,6 +402,12 @@ begin
   StatusBarRefresh;
 end;
 
+procedure TPenitTerminarz.Edit1Change(Sender: TObject);
+begin
+  if Edit1.Text<>'' then
+    ZQTerminarz.Locate('NAZWISKO', Edit1.Text, [loPartialKey]);
+end;
+
 procedure TPenitTerminarz.cbWychowawcyChange(Sender: TObject);
 begin
   NewSelect;
@@ -400,21 +423,30 @@ var bookmark: TBookMark;
     s       : string;
     system_p   : integer;
     fOsadzonych: integer;
+    fGR        : integer;
+    fZatrudnionych: integer;
 begin
-  if fRecCount = ZQTerminarz.RecordCount then exit;
+  // zabezpieczenie przed zbędnym odświeżaniem
+  if (fRecCount = ZQTerminarz.RecordCount)and(cbWychowawcy.Text=fOldWychowawca) then exit;
+  // -----------------------------------------
   fRecCount:= ZQTerminarz.RecordCount;
+  fOldWychowawca:= cbWychowawcy.Text;
   fOsadzonych:= fRecCount;
 
   ZQTerminarz.DisableControls;
   bookmark:= ZQTerminarz.Bookmark;
   ZQTerminarz.First;
-  system_p:=0;
+  system_p:= 0;
+  fGR     := 0;
+  fZatrudnionych:= 0;
 
   while not ZQTerminarz.EOF do
   begin
     s:= ZQTerminarzKLASYF.AsString;
     if Pos('/P',s)>0 then inc(system_p);
     if ZQTerminarzNazwiskoImie.AsString = 'Wolne' then dec(fOsadzonych);
+    if ZQTerminarzGR.AsBoolean then inc(fGR);
+    if not ZQTerminarzzat_od.IsNull then inc(fZatrudnionych);
     ZQTerminarz.Next;
   end;
 
@@ -424,6 +456,8 @@ begin
   lblOs.Caption   := IntToStr( fOsadzonych );
   lblWolne.Caption:= IntToStr( fWakaty );
   lblProg.Caption := IntToStr( system_p );
+  lblGR.Caption   := IntToStr( fGR );
+  lblZatrudnionych.Caption:= IntToStr( fZatrudnionych );
 end;
 
 procedure TPenitTerminarz.WczytajWakaty;
@@ -805,6 +839,37 @@ begin
   Result:= s;
 end;
 
+function TPenitTerminarz.ZmienOpisZatrudnienia(vIDO: integer): Boolean;
+var ZQPom: TZQueryPom;
+    Opis: string;
+begin
+  Result:= false;
+  Opis:= '';
+
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT z.IDO, s.Nazwa, z.zat_od FROM zat_zatrudnieni z, zat_stanowiska s WHERE (z.IDO=:ido)AND(z.status_zatrudnienia="zatrudniony")AND(z.id_stanowiska=s.ID) LIMIT 1';
+  ZQPom.ParamByName('ido').AsInteger:= vIDO;
+  ZQPom.Open;
+  if not ZQPom.IsEmpty then
+    begin
+      Opis:= ZQPom.FieldByName('Nazwa').AsString+' od '+ ZQPom.FieldByName('zat_od').AsString;
+
+      ZQPom.Close;
+      ZQPom.SQL.Text:= 'SELECT IDO, Zatrudnienie FROM os_info WHERE IDO=:ido';
+      ZQPom.ParamByName('ido').AsInteger:= vIDO;
+      ZQPom.Open;
+      if ZQPom.FieldByName('Zatrudnienie').AsString<>Opis then
+        begin
+          ZQPom.Edit;
+          ZQPom.FieldByName('Zatrudnienie').AsString:= Opis;
+          ZQPom.Post;
+          Result:= true;
+        end;
+    end;
+
+  FreeAndNil(ZQPom);
+end;
+
 procedure TPenitTerminarz.MenuItem3Click(Sender: TObject);
 begin
   ZQTerminarz.Filtered:= false;
@@ -910,6 +975,48 @@ begin
   SetToBookmark(ZQKalendarz, bookmark);
   ZQKalendarz.EnableControls;
   DM.KomunikatPopUp(Sender, 'Terminarz','Dodano osadzonych do schowka.', nots_Info);
+end;
+
+procedure TPenitTerminarz.miZatZmienOpisAllClick(Sender: TObject);
+var bookmark: TBookMark;
+    i: integer;
+    listaZmian: string;
+begin
+  if ZQTerminarz.IsEmpty then exit;
+  bookmark:= ZQTerminarz.GetBookmark;
+  ZQTerminarz.DisableControls;
+
+  i:=0;
+  listaZmian:= '';
+  ZQTerminarz.First;
+  while not ZQTerminarz.EOF do
+  begin
+    if (not ZQTerminarz.FieldByName('IDO').IsNull)and(ZmienOpisZatrudnienia(ZQTerminarz.FieldByName('IDO').AsInteger)) then
+      begin
+        inc(i);
+        if listaZmian<>'' then listaZmian:= listaZmian+', ';
+        listaZmian:= listaZmian + ZQTerminarz.FieldByName('NazwiskoImie').AsString;
+      end;
+    ZQTerminarz.Next;
+  end;
+
+  ZQTerminarz.Close;
+  ZQTerminarz.Open;
+  SetToBookmark(ZQTerminarz, bookmark);
+  ZQTerminarz.EnableControls;
+
+  MessageDlg('Zmodyfikowano opisy zatrudnienia zgodnie z aktualnym zatrudnieniem. Poz: '+IntToStr(i)+LineEnding+listaZmian, mtInformation, [mbOK],0);
+end;
+
+procedure TPenitTerminarz.miZatZmienOpisClick(Sender: TObject);
+begin
+  if (ZQTerminarz.IsEmpty)or(ZQTerminarz.FieldByName('IDO').IsNull) then exit;
+  if ZmienOpisZatrudnienia(ZQTerminarz.FieldByName('IDO').AsInteger) then
+    begin
+      if Assigned(PanelOsInfo) then RefreshQuery(PanelOsInfo.ZQOsInfo);
+      RefreshQuery( ZQTerminarz );
+      DM.KomunikatPopUp(Self, 'Terminarz', 'Zmodyfikowano opis zatrudnienia zgodnie z aktualnym zatrudnieniem.', nots_Info);
+    end;
 end;
 
 

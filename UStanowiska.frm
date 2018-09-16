@@ -1,7 +1,7 @@
 object Stanowiska: TStanowiska
-  Left = 396
+  Left = 394
   Height = 677
-  Top = 222
+  Top = 225
   Width = 1215
   Caption = 'Stanowiska / Grupy'
   ClientHeight = 677
@@ -497,11 +497,11 @@ object Stanowiska: TStanowiska
       Height = 529
       Top = 0
       Width = 620
-      ActivePage = TabSheet2
+      ActivePage = TabSheet4
       Align = alRight
       Images = DM.ImageList1
       TabHeight = 25
-      TabIndex = 1
+      TabIndex = 2
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Szczegóły stanowiska'
@@ -1171,6 +1171,257 @@ object Stanowiska: TStanowiska
           SelectedColor = clHighlight
           GridLineStyle = psSolid
           DataSource = DSZatrudnieni
+          DefaultRowHeight = 24
+          FixedColor = clNone
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
+          PopupMenu = PopupMenu2
+          TabOrder = 0
+          TitleStyle = tsNative
+          OnCellClick = RxDBGrid2CellClick
+        end
+      end
+      object TabSheet4: TTabSheet
+        Caption = 'Osadzeni wycofani'
+        ClientHeight = 496
+        ClientWidth = 612
+        ImageIndex = 8
+        object RxDBGrid3: TRxDBGrid
+          Left = 0
+          Height = 496
+          Top = 0
+          Width = 612
+          ColumnDefValues.BlobText = '(blob)'
+          TitleButtons = True
+          AutoSort = True
+          Columns = <          
+            item
+              ReadOnly = True
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Nazwisko'
+              Width = 90
+              FieldName = 'Nazwisko'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footer.DisplayFormat = 'Ilość: %d'
+              Footer.ValueType = fvtCount
+              Footers = <>
+            end          
+            item
+              ReadOnly = True
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Imię'
+              Width = 74
+              FieldName = 'Imie'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              ReadOnly = True
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Ojciec'
+              Width = 74
+              FieldName = 'Ojciec'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              ReadOnly = True
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'zat. od'
+              Width = 74
+              FieldName = 'zat_od'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              ReadOnly = True
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'zat. do'
+              Width = 74
+              FieldName = 'zat_do'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'pobyt'
+              Width = 60
+              FieldName = 'pobyt'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Alignment = taCenter
+              ReadOnly = True
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Klasyf.'
+              Width = 50
+              FieldName = 'Klasyf'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              ReadOnly = True
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'POC'
+              Width = 50
+              FieldName = 'POC'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'rodzaj'
+              Width = 50
+              FieldName = 'rodzaj_zatrudnienia'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'etat'
+              Width = 50
+              FieldName = 'etat'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end>
+          KeyStrokes = <          
+            item
+              Command = rxgcShowFindDlg
+              ShortCut = 16454
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowColumnsDlg
+              ShortCut = 16471
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowFilterDlg
+              ShortCut = 16468
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowSortDlg
+              ShortCut = 16467
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowQuickFilter
+              ShortCut = 16465
+              Enabled = True
+            end          
+            item
+              Command = rxgcHideQuickFilter
+              ShortCut = 16456
+              Enabled = True
+            end          
+            item
+              Command = rxgcSelectAll
+              ShortCut = 16449
+              Enabled = True
+            end          
+            item
+              Command = rxgcDeSelectAll
+              ShortCut = 16429
+              Enabled = True
+            end          
+            item
+              Command = rxgcInvertSelection
+              ShortCut = 16426
+              Enabled = True
+            end          
+            item
+              Command = rxgcOptimizeColumnsWidth
+              ShortCut = 16427
+              Enabled = True
+            end          
+            item
+              Command = rxgcCopyCellValue
+              ShortCut = 16451
+              Enabled = True
+            end>
+          FooterOptions.Active = True
+          FooterOptions.Color = clSilver
+          FooterOptions.RowCount = 1
+          FooterOptions.Style = tsNative
+          FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
+          OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+          FooterColor = clSilver
+          FooterRowCount = 1
+          Align = alClient
+          AlternateColor = 16055807
+          AutoAdvance = aaNone
+          AutoEdit = False
+          Color = clWindow
+          DrawFullLine = False
+          FocusColor = clHighlight
+          FixedHotColor = clNone
+          SelectedColor = clHighlight
+          GridLineStyle = psSolid
+          DataSource = DSWycofani
           DefaultRowHeight = 24
           FixedColor = clNone
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
@@ -2582,5 +2833,44 @@ object Stanowiska: TStanowiska
     DataType = dtDataSet
     Left = 304
     Top = 440
+  end
+  object ZQWycofani: TZQuery
+    Connection = DM.ZConnection1
+    SortedFields = 'zat_do'
+    SortType = stDescending
+    ReadOnly = True
+    SQL.Strings = (
+      'SELECT'
+      'zat.id,'
+      'zat.ido,'
+      'zat.id_stanowiska,'
+      'zat.Nazwisko,'
+      'zat.Imie,'
+      'zat.Ojciec,'
+      'os.Klasyf,'
+      'os.POC,'
+      'zat_od,'
+      'zat_do,'
+      'zat.status_zatrudnienia,'
+      'zat.etat,'
+      'zat.rodzaj_zatrudnienia,'
+      'zat.pobyt'
+      'FROM zat_zatrudnieni as zat'
+      'LEFT JOIN osadzeni as os ON zat.ido = os.ido'
+      'WHERE'
+      'zat.status_zatrudnienia =''wycofany'''
+    )
+    Params = <>
+    MasterFields = 'id'
+    MasterSource = DSStanowiska
+    LinkedFields = 'id_stanowiska'
+    IndexFieldNames = 'zat_do Desc'
+    Left = 496
+    Top = 168
+  end
+  object DSWycofani: TDataSource
+    DataSet = ZQWycofani
+    Left = 496
+    Top = 224
   end
 end

@@ -49,6 +49,7 @@ type
     ZQStawkiPlacstawka_5: TFloatField;
     ZQZatOs: TZQuery;
     procedure BitBtn1Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure ZQStawkiPlacNewRecord(DataSet: TDataSet);
   private
      fIDO: integer; // IDO osadzonego
@@ -78,6 +79,7 @@ begin
   ZQStawkiPlac.ReadOnly:= not DM.uprawnienia[15]; // zatrudnienie
   DBNavigator1.Visible := DM.uprawnienia[15];
   ZQStawkiPlac.Open;
+  ZQStawkiPlac.Last;
 end;
 
 procedure TStawkiPlac.ZQStawkiPlacNewRecord(DataSet: TDataSet);
@@ -95,6 +97,16 @@ begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_StawkaZaszeregowania.lrf');
   DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
   frReport1.ShowReport;
+end;
+
+procedure TStawkiPlac.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+begin
+  if ZQStawkiPlac.State in [dsEdit, dsInsert] then
+    if MessageDlg('Czy zapisać zmiany?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
+        ZQStawkiPlac.Post
+      else
+        ZQStawkiPlac.Cancel;
+  CanClose:= true;
 end;
 
 end.

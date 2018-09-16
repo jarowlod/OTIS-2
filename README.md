@@ -29,3 +29,11 @@ w pliku config.ini podajemy lokalizację bazy MySQL.<br>
 HostName=192.168.1.1
 Port=3306
 ```
+OTIS2
+![otis](Projekty/Screeny/otis2.jpg)
+Zatrudnienie
+![zatrudnienie](Projekty/Screeny/zatrudnienie.jpg)
+Terminarz penitencjarny
+![terminarz](Projekty/Screeny/terminarz.jpg)
+Rozmieszczenie
+![rozmieszczenie](Projekty/Screeny/rozmieszczenie.jpg)

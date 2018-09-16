@@ -6,15 +6,16 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, Menus, windows, ExtCtrls, StdCtrls, DBGrids, ActnList, rxdbutils,
-  db, datamodule, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Grids, Clipbrd,
-  dateutils, LCLType;
+  ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, rxdbutils, Grids,
+  db, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Clipbrd, dateutils, LCLType,
+  datamodule;
 
 type
 
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionKnowHow: TAction;
     ActionKreatorWPZ: TAction;
     ActionZdjeciaBraki: TAction;
     ActionSalaWidzen: TAction;
@@ -86,6 +87,8 @@ type
     MenuItem63: TMenuItem;
     MenuItem64: TMenuItem;
     MenuItem65: TMenuItem;
+    MenuItem66: TMenuItem;
+    MenuItem67: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -159,6 +162,7 @@ type
     procedure ActionDrukujWykazOsExecute(Sender: TObject);
     procedure ActionKartaOchronnaExecute(Sender: TObject);
     procedure ActionKartaOsadzonegoExecute(Sender: TObject);
+    procedure ActionKnowHowExecute(Sender: TObject);
     procedure ActionKomunikatDoExecute(Sender: TObject);
     procedure ActionKomunikatNowyExecute(Sender: TObject);
     procedure ActionKomunikatorExecute(Sender: TObject);
@@ -229,7 +233,7 @@ uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec,
-     UOchSalaWidzen, UPenitWPZ;
+     UOchSalaWidzen, UPenitWPZ, UKnowHow;
 {$R *.frm}
 
 { TMasterForm }
@@ -275,9 +279,8 @@ begin
   // docelowo wszyscy będą mieli podgląd a edycja tylko dla wyznaczonego stanowiska
   ActionSalaWidzen.Enabled     := DM.uprawnienia[6];   // widzenia
 
-  //TODO: TESTOWE
-  ActionKreatorWPZ.Enabled     := DM.uprawnienia[8];
-  // =======
+  ActionKreatorWPZ.Enabled     := true;
+  ActionKnowHow.Enabled        := DM.uprawnienia[8];
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
@@ -562,6 +565,14 @@ begin
        SetIDO( DM.ZQOsadzeni.FieldByName('ido').AsInteger );
        ShowModal;
        Free;
+  end;
+end;
+
+procedure TMasterForm.ActionKnowHowExecute(Sender: TObject);
+begin
+  with TKnowHow.Create(Self) do
+  begin
+       Show;
   end;
 end;
 

@@ -20,7 +20,7 @@ begin
   if Logowanie.ShowModal= mrOK then
       begin
         DM.OpenAllTable;                          // sprawdzamy akutualizacje i otwieramy tabele
-  Application.CreateForm(TMasterForm, MasterForm);
+        Application.CreateForm(TMasterForm, MasterForm);
       end
   else
       Application.Terminate;

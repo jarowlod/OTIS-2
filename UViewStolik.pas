@@ -5,21 +5,21 @@ unit UViewStolik;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Menus, datamodule, BGRACustomDrawn,
-  BGRAFlashProgressBar, windows;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  StdCtrls, Menus, BGRACustomDrawn, BGRAFlashProgressBar, BCPanel, windows, Buttons,
+  datamodule;
 
 type
 
   { TViewStolik }
 
   TViewStolik = class(TForm)
+    BCPrzyslona: TBCPanel;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     ProgressBar1: TBGRAFlashProgressBar;
     Image1: TImage;
     lblCzas: TLabel;
-    lblUwagi: TLabel;
     lblPodkultura: TLabel;
     lblPozostalo: TLabel;
     lblNazwiskoImie: TLabel;
@@ -33,8 +33,12 @@ type
     miZakonczWidzenie: TMenuItem;
     Panel1: TPanel;
     PopupMenu1: TPopupMenu;
+    sbnWykazy: TSpeedButton;
+    sbnUwagi: TSpeedButton;
     Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
+    procedure FormMouseEnter(Sender: TObject);
+    procedure FormMouseLeave(Sender: TObject);
     procedure Image1DblClick(Sender: TObject);
     procedure miCofnijDoPoczekalniClick(Sender: TObject);
     procedure miKartaOchronnaClick(Sender: TObject);
@@ -44,7 +48,10 @@ type
     procedure miZakonczWidzenieClick(Sender: TObject);
     procedure miZatrzymajWidzenieClick(Sender: TObject);
     procedure PopupMenu1Popup(Sender: TObject);
+    procedure sbnWykazyClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure CMMouseEnter(var Msg: TMessage); message CM_MOUSEENTER;
+    procedure CMMouseLeave(var Msg: TMessage); message CM_MOUSELEAVE;
   private
     FPopupMenuVisible: Boolean;
     SelectIDO : integer;
@@ -61,6 +68,7 @@ type
     procedure IncProgress;
     procedure SetPopupMenuVisible(AValue: Boolean);
     procedure UpdateProgress;
+    procedure JednorazoweOdbierzPrawo(ID_widzenia: integer);
   public
     // wczytuje dane z bazy po nr stolika i Etapie widzenia
     procedure WczytajDane;
@@ -81,6 +89,26 @@ procedure TViewStolik.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
   FPopupMenuVisible:= True;
+  // czyścimy lbl'e
+  lblPOC.Caption          := '';
+  lblNazwiskoImie.Caption := '';
+  lblPozostalo.Caption    := '';
+  lblCzas.Caption         := '';
+  lblPodkultura.Caption   := '';
+  sbnUwagi.Visible        := false;
+  sbnWykazy.Visible       := false;
+  ProgressBar1.Visible    := false;
+  BCPrzyslona.BoundsRect:= Bounds(0,0, Width, Height);
+end;
+
+procedure TViewStolik.FormMouseEnter(Sender: TObject);
+begin
+  OchSalaWidzen.CienStolika(true, NrStolika);
+end;
+
+procedure TViewStolik.FormMouseLeave(Sender: TObject);
+begin
+  OchSalaWidzen.CienStolika(false, NrStolika);
 end;
 
 procedure TViewStolik.Image1DblClick(Sender: TObject);
@@ -197,6 +225,8 @@ begin
   ZQPom.ParamByName('id').AsInteger:= fID;
   ZQPom.ExecSQL;
 
+  JednorazoweOdbierzPrawo(fID);
+
   WczytajDane;
 end;
 
@@ -225,12 +255,32 @@ begin
 
   miOsadzony.Enabled           := (SelectIDO = 0)and(not OchSalaWidzen.ZQWidzenia.IsEmpty);
   miOsadzony.Visible           := miOsadzony.Enabled;
-  if miOsadzony.Enabled then miOsadzony.Caption:= OchSalaWidzen.ZQWidzenia.FieldByName('Nazwisko').AsString+' '+OchSalaWidzen.ZQWidzenia.FieldByName('Imie').AsString;
+  if miOsadzony.Enabled then
+    begin
+      miOsadzony.Caption:= OchSalaWidzen.ZQWidzenia.FieldByName('Nazwisko').AsString+' '+OchSalaWidzen.ZQWidzenia.FieldByName('Imie').AsString;
+    end;
+end;
+
+procedure TViewStolik.sbnWykazyClick(Sender: TObject);
+begin
+  miKartaOchronnaClick(Sender);
 end;
 
 procedure TViewStolik.Timer1Timer(Sender: TObject);
 begin
   IncProgress;
+end;
+
+procedure TViewStolik.CMMouseEnter(var Msg: TMessage);
+begin
+  Msg.Result := WM_CANCELMODE;
+  FormMouseEnter(Self);
+end;
+
+procedure TViewStolik.CMMouseLeave(var Msg: TMessage);
+begin
+  Msg.Result := WM_CANCELMODE;
+  FormMouseLeave(Self);
 end;
 
 procedure TViewStolik.SetNrStolika(AValue: integer);
@@ -282,9 +332,49 @@ begin
   end;
 end;
 
-procedure TViewStolik.WczytajDane;
-var ZQPom: TZQueryPom;
+procedure TViewStolik.JednorazoweOdbierzPrawo(ID_widzenia: integer);
+var ZQPom, ZQPom_Upr: TZQueryPom;
 begin
+  ZQPom_Upr:= TZQueryPom.Create(Self);
+  ZQPom_Upr.SQL.Text:='UPDATE uprawnione SET Skreslona=:skreslona, Skreslil=:skreslil, Data_Skreslenia=:data_skreslenia WHERE ID=:id';
+
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT w.ID_widzenia, w.ID_uprawnione, u.ID, u.Uwagi, u.Nazwisko, u.Imie FROM widzenia_upr w'+
+                   ' LEFT JOIN uprawnione u ON (w.ID_uprawnione=u.ID)'+
+                   'WHERE ID_widzenia=:id_w';
+  ZQPom.ParamByName('id_w').AsInteger:= ID_widzenia;
+  ZQPom.Open;
+  while not ZQPom.EOF do
+  begin
+    if ZQPom.FieldByName('Uwagi').AsString.IndexOf('Jednorazowo')>0 then
+    begin
+      //odbieramy prawo do widzeń
+      try
+        ZQPom_Upr.ParamByName('id').AsInteger              := ZQPom.FieldByName('ID').AsInteger;
+        ZQPom_Upr.ParamByName('skreslona').AsInteger       := 1; // true
+        ZQPom_Upr.ParamByName('skreslil').AsString         := DM.PelnaNazwa;
+        ZQPom_Upr.ParamByName('data_Skreslenia').AsDateTime:= Now();
+        ZQPom_Upr.ExecSQL;
+      finally
+        DM.KomunikatPopUp(Self, 'Widzenie','Odebrano prawo do widzeń osobie z prawem do jednorazowego widzenia.'+LineEnding+
+                                ZQPom.FieldByName('Nazwisko').AsString+' '+ZQPom.FieldByName('Imie').AsString, nots_Info);
+      end;
+    end;
+    ZQPom.Next;
+  end;
+
+  FreeAndNil( ZQPom);
+  FreeAndNil( ZQPom_Upr);
+end;
+
+procedure TViewStolik.WczytajDane;
+var ZQPom, ZQWykazy: TZQueryPom;
+    wykazyHint: string;
+begin
+  if not Visible then exit;
+  BCPrzyslona.Visible:= true;
+  Application.ProcessMessages;
+
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:='SELECT w.*, o.Nazwisko, o.Imie, o.POC, o.Klasyf, t.Ochronka, u.IDO IDO_u, uk.IDO IDO_uk, inf.GR '+
                   'FROM widzenia w, osadzeni o LEFT JOIN typ_cel t ON (o.POC=t.POC) '+
@@ -299,7 +389,7 @@ begin
     begin
       SelectIDO:= 0;
       fStart   := false;
-      Image1.Picture.Clear;
+      //Image1.Picture.Clear;
       TLoadFotoThread.Create(DM.Path_NrStolikow+IntToStr(NrStolika)+'.jpg', Image1 );
       // czyścimy lbl'e
       lblPOC.Caption          := '';
@@ -307,13 +397,13 @@ begin
       lblPozostalo.Caption    := '';
       lblCzas.Caption         := '';
       lblPodkultura.Caption   := '';
-      lblUwagi.Caption        := '';
+      sbnUwagi.Visible        := false;
+      sbnWykazy.Visible       := false;
       ProgressBar1.Visible    := false;
     end
   else
-    begin
-      // TODO: wczytujemy dane do stolika
-         // zmieniamy zdjęcie tylko jeśli zmieni się IDO
+    begin // wczytujemy dane do stolika
+      // zmieniamy zdjęcie tylko jeśli zmieni się IDO
       if SelectIDO <> ZQPom.FieldByName('IDO').AsInteger then
         begin
           SelectIDO:= ZQPom.FieldByName('IDO').AsInteger;
@@ -327,10 +417,28 @@ begin
       lblPOC.Caption:= ZQPom.FieldByName('POC').AsString;
       lblNazwiskoImie.Caption:= ZQPom.FieldByName('Nazwisko').AsString+' '+ZQPom.FieldByName('Imie').AsString;
       lblPodkultura.Caption  := '';
-      lblUwagi.Caption       := '';
       if ZQPom.FieldByName('Ochronka').AsInteger=1 then lblPodkultura.Caption:= 'Ochronka';
       if ZQPom.FieldByName('GR').AsInteger=1       then lblPodkultura.Caption:= 'GR';
-      if (not ZQPom.FieldByName('IDO_u').IsNull) or (not ZQPom.FieldByName('IDO_uk').IsNull) then lblUwagi.Caption:= 'Uwagi !';
+      // sprawdzamy czy istnieją uwagi na osadzonego
+      sbnUwagi.Visible:= (not ZQPom.FieldByName('IDO_u').IsNull) or (not ZQPom.FieldByName('IDO_uk').IsNull);
+
+      //Sprawdzamy czy istnieją wykazy na osadzonego ----------------------
+      ZQWykazy:= TZQueryPom.Create(Self);
+      ZQWykazy.SQL.Text:= 'SELECT w.IDO, w.Kategoria, k.Opis FROM uwagi_wykazy w, katalog_wykazow k WHERE (w.IDO=:ido)AND(w.Kategoria=k.ID)';
+      ZQWykazy.ParamByName('ido').AsInteger:= SelectIDO;
+      ZQWykazy.Open;
+
+      wykazyHint:= '';
+      sbnWykazy.Visible:= (not ZQWykazy.IsEmpty);
+      while not ZQWykazy.EOF do
+      begin
+        if wykazyHint<>'' then wykazyHint+= LineEnding;
+        wykazyHint+= ZQWykazy.FieldByName('Opis').AsString;
+        ZQWykazy.Next;
+      end;
+      sbnWykazy.Hint:= 'Osadzony widnieje na wykazach:' + LineEnding + wykazyHint;
+      FreeAndNil(ZQWykazy);
+      // ------------------------------------------------------------------
 
       // czeka przy stoliku
       if ZQPom.FieldByName('Data_Widzenie').IsNull then
@@ -363,6 +471,7 @@ begin
   Timer1.Enabled := fStart;
 
   FreeAndNil(ZQPom);
+  BCPrzyslona.Visible:= false;
 end;
 
 

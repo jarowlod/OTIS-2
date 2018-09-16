@@ -1,13 +1,13 @@
 object ViewZatrudnienie: TViewZatrudnienie
-  Left = 396
+  Left = 394
   Height = 434
-  Top = 222
-  Width = 679
+  Top = 225
+  Width = 657
   Align = alClient
   BorderStyle = bsNone
   Caption = 'ViewZatrudnienie'
   ClientHeight = 434
-  ClientWidth = 679
+  ClientWidth = 657
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '6.3'
@@ -15,13 +15,14 @@ object ViewZatrudnienie: TViewZatrudnienie
     Left = 0
     Height = 434
     Top = 0
-    Width = 679
+    Width = 657
     ColumnDefValues.BlobText = '(blob)'
     TitleButtons = True
     AutoSort = True
     Columns = <    
       item
         Alignment = taCenter
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Status'
@@ -37,10 +38,11 @@ object ViewZatrudnienie: TViewZatrudnienie
         Footers = <>
       end    
       item
+        SizePriority = 2
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Nazwa grupy'
-        Width = 200
+        Width = 193
         FieldName = 'nazwa'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -53,6 +55,7 @@ object ViewZatrudnienie: TViewZatrudnienie
       item
         Alignment = taCenter
         Font.Color = clMaroon
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'zat_od'
@@ -69,6 +72,7 @@ object ViewZatrudnienie: TViewZatrudnienie
       item
         Alignment = taCenter
         Font.Color = clMaroon
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'zat_do'
@@ -83,10 +87,11 @@ object ViewZatrudnienie: TViewZatrudnienie
         Footers = <>
       end    
       item
+        SizePriority = 2
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Powód wycofania'
-        Width = 200
+        Width = 193
         FieldName = 'powod_wycofania'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -165,6 +170,7 @@ object ViewZatrudnienie: TViewZatrudnienie
     Align = alClient
     AlternateColor = 16055807
     AutoAdvance = aaNone
+    AutoFillColumns = True
     AutoEdit = False
     Color = clWindow
     DrawFullLine = False

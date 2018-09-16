@@ -5,8 +5,8 @@ unit UAddStanowiska;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, ZDataset,
-  Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, DbCtrls, StdCtrls;
+  Classes, SysUtils, db, FileUtil, ZDataset, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  Buttons, DbCtrls, StdCtrls, datamodule;
 
 type
 
@@ -53,7 +53,6 @@ var
   AddStanowiska: TAddStanowiska;
 
 implementation
-uses datamodule;
 {$R *.frm}
 
 { TAddStanowiska }

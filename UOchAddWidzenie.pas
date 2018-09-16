@@ -7,14 +7,15 @@ interface
 uses
   Classes, SysUtils, FileUtil, rxdbgrid, rxmemds, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, Buttons, StdCtrls, Spin, EditBtn, ComCtrls, DbCtrls,
-  datamodule, DateTimePicker, ZDataset, db, rxdbutils, Grids, DBGrids,
-  UViewWykazy, UViewUwagiOch, UViewWidzenia;
+  DateTimePicker, ZDataset, db, rxdbutils, Grids, DBGrids,
+  UViewWykazy, UViewUwagiOch, UViewWidzenia, datamodule;
 
 type
 
   { TOchAddWidzenie }
 
   TOchAddWidzenie = class(TForm)
+    btnImortOsob: TBitBtn;
     btnModyfikujOsobe: TBitBtn;
     btnAnuluj: TBitBtn;
     btnDodaj: TBitBtn;
@@ -60,6 +61,7 @@ type
     TabSheetWykazy: TTabSheet;
     TabSheetUwagi: TTabSheet;
     ZQUprawnione: TZQuery;
+    procedure btnImortOsobClick(Sender: TObject);
     procedure btnModyfikujOsobeClick(Sender: TObject);
     procedure btnDodajClick(Sender: TObject);
     procedure btnDopiszOsobeClick(Sender: TObject);
@@ -108,7 +110,7 @@ type
 //  OchAddWidzenie: TOchAddWidzenie;
 
 implementation
-uses URejestrProsbOs, UOsadzeni, UOchAddOsobeWidzenie, UOchSalaWidzen;
+uses URejestrProsbOs, UOsadzeni, UOchAddOsobeWidzenie, UOchSalaWidzen, UOchImportOsobWidzenie;
 {$R *.frm}
 
 { TOchAddWidzenie }
@@ -234,7 +236,7 @@ end;
 
 procedure TOchAddWidzenie.DodajOsobeDoWidzenia(aID: integer; aNazwisko, aImie, aPokrewienstwo: string);
 begin
-  if MemOsoby.Locate('ID',aID, []) then
+  if MemOsoby.Locate('ID', aID, []) then
   begin
     DM.KomunikatPopUp(Self, 'Widzenia', 'Osoba uprawniona do widzenia jest już dodana.', nots_Info);
     exit;
@@ -271,6 +273,18 @@ begin
   with TOchAddOsobeWidzenie.Create(Self) do
   begin
     ModyfikujOsobe(Self.ZQUprawnione.FieldByName('ID').AsInteger);
+    ShowModal;
+    Free;
+  end;
+  RefreshQuery(ZQUprawnione);
+end;
+
+procedure TOchAddWidzenie.btnImortOsobClick(Sender: TObject);
+begin
+  // okno importu osób z NoeNET do osób uprawnionych do widzenia
+  with TOchImportOsobWidzenie.Create(Self) do
+  begin
+    SetIDO(SelectIDO);
     ShowModal;
     Free;
   end;

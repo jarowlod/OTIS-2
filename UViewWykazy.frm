@@ -1,13 +1,13 @@
 object ViewWykazy: TViewWykazy
-  Left = 407
+  Left = 394
   Height = 339
-  Top = 229
-  Width = 674
+  Top = 225
+  Width = 641
   Align = alClient
   BorderStyle = bsNone
   Caption = 'ViewWykazy'
   ClientHeight = 339
-  ClientWidth = 674
+  ClientWidth = 641
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '6.3'
@@ -15,12 +15,13 @@ object ViewWykazy: TViewWykazy
     Left = 0
     Height = 339
     Top = 0
-    Width = 674
+    Width = 641
     ColumnDefValues.BlobText = '(blob)'
     TitleButtons = True
     AutoSort = True
     Columns = <    
       item
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Kategoria'
@@ -35,10 +36,11 @@ object ViewWykazy: TViewWykazy
         Footers = <>
       end    
       item
+        SizePriority = 2
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Uwagi'
-        Width = 300
+        Width = 280
         FieldName = 'Uwagi'
         EditButtons = <>
         Filter.DropDownRows = 0
@@ -49,6 +51,7 @@ object ViewWykazy: TViewWykazy
         Footers = <>
       end    
       item
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Użytkownik'
@@ -63,6 +66,7 @@ object ViewWykazy: TViewWykazy
         Footers = <>
       end    
       item
+        SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
         Title.Caption = 'Data'
@@ -140,6 +144,7 @@ object ViewWykazy: TViewWykazy
     Align = alClient
     AlternateColor = 16055807
     AutoAdvance = aaNone
+    AutoFillColumns = True
     AutoEdit = False
     Color = clWindow
     DrawFullLine = False

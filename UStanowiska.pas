@@ -52,6 +52,7 @@ type
     DBEdit6: TDBEdit;
     DBMemo1: TDBMemo;
     DSStanowiska: TDataSource;
+    DSWycofani: TDataSource;
     Edit1: TEdit;
     frDBDataSet1: TfrDBDataSet;
     frDBDataSet2: TfrDBDataSet;
@@ -103,10 +104,12 @@ type
     RadioGroup2: TRadioGroup;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
+    RxDBGrid3: TRxDBGrid;
     Splitter1: TSplitter;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
     ZQStanowiska: TZQuery;
     ZQStanowiskadata_dodania: TDateTimeField;
     ZQStanowiskadata_modyfikacji: TDateTimeField;
@@ -123,6 +126,7 @@ type
     ZQStanowiskauser_dodania: TStringField;
     ZQStanowiskauser_modyfikacji: TStringField;
     ZQZatrudnieni: TZQuery;
+    ZQWycofani: TZQuery;
     ZUZatrudnieni: TZUpdateSQL;
     procedure BitBtn12Click(Sender: TObject);
     procedure BitBtn13Click(Sender: TObject);
@@ -186,6 +190,7 @@ begin
 
   NewSelect; // stanowiska open
   ZQZatrudnieni.Open;
+  ZQWycofani.Open;
   DateTimePicker2.Date:= Date;
   PageControl1.TabIndex:= 0;
 end;
@@ -271,7 +276,7 @@ function TStanowiska.isZatrudnieniEmpty_byStanowisko(id_stanowisko: integer): Bo
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT id_stanowiska FROM zat_stanowiska WHERE id_stanowiska=:id_stanowiska';
+  ZQPom.SQL.Text:= 'SELECT id_stanowiska FROM zat_zatrudnieni WHERE id_stanowiska=:id_stanowiska';
   ZQPom.ParamByName('id_stanowiska').AsInteger:= id_stanowisko;
   ZQPom.Open;
 
@@ -512,7 +517,7 @@ begin
                                   else Fid_stanowiska:= ZQStanowiska.FieldByName('id').AsInteger;
 end;
 
-// Przygotowuje Frome do wyboru Stanowiska/Grupy - zmienia działanie formy na jako wyszukiwarka
+// Przygotowuje Forme do wyboru Stanowiska/Grupy - zmienia działanie formy na jako wyszukiwarka
 // ukrywa przycisk ZAMKNIJ i pokazuje OK i ANULUJ
 procedure TStanowiska.WybierzGrupe;
 begin

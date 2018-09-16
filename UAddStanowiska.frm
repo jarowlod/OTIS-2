@@ -1,7 +1,7 @@
 object AddStanowiska: TAddStanowiska
-  Left = 396
+  Left = 404
   Height = 573
-  Top = 222
+  Top = 224
   Width = 602
   Caption = 'Stanowisko / Grupa'
   ClientHeight = 573
