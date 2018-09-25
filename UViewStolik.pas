@@ -99,6 +99,7 @@ begin
   sbnWykazy.Visible       := false;
   ProgressBar1.Visible    := false;
   BCPrzyslona.BoundsRect:= Bounds(0,0, Width, Height);
+  BCPrzyslona.DoubleBuffered:= true;
 end;
 
 procedure TViewStolik.FormMouseEnter(Sender: TObject);

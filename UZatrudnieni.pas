@@ -21,6 +21,7 @@ type
     BitBtn4: TBitBtn;
     btnZapiszZmiany: TBitBtn;
     btnDodajDoKoszyka: TSpeedButton;
+    cbZatNaMsc: TCheckBox;
     CheckBox1: TCheckBox;
     cbNazwaGrupy: TCheckBox;
     cbZatNaDzien: TCheckBox;
@@ -91,6 +92,7 @@ type
     DBText8: TDBText;
     DBText9: TDBText;
     DSZatrudnieni: TDataSource;
+    dtZatNaMsc: TDateTimePicker;
     Edit1: TEdit;
     edNazwaGrupy: TEdit;
     edMiejsce: TEdit;
@@ -139,6 +141,7 @@ type
     Label4: TLabel;
     Label40: TLabel;
     Label41: TLabel;
+    lblSkierowanieNaBadania: TLabel;
     lblPoprzedniePOC: TLabel;
     lblPoprzedniaKlasyf: TLabel;
     lblAktualnyPobyt: TLabel;
@@ -171,6 +174,7 @@ type
     MenuItem11: TMenuItem;
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
+    MenuItem14: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
@@ -265,6 +269,7 @@ type
     procedure btnZapiszZmianyClick(Sender: TObject);
     procedure btnDodajDoKoszykaClick(Sender: TObject);
     procedure cbZatNaDzienChange(Sender: TObject);
+    procedure cbZatNaMscChange(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure cbNazwaGrupyChange(Sender: TObject);
     procedure cbZmianyPOCChange(Sender: TObject);
@@ -274,6 +279,7 @@ type
     procedure DateTimePicker1Change(Sender: TObject);
     procedure DateTimePicker2Change(Sender: TObject);
     procedure dtZatNaDzienChange(Sender: TObject);
+    procedure dtZatNaMscChange(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
@@ -291,6 +297,7 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure lblKartaPracyClick(Sender: TObject);
     procedure lblOswiadczenieNieodplatnaClick(Sender: TObject);
+    procedure lblSkierowanieNaBadaniaClick(Sender: TObject);
     procedure lblStawkaClick(Sender: TObject);
     procedure lblWniosekOZatrudnienieClick(Sender: TObject);
     procedure lblWniosekUrlopowyClick(Sender: TObject);
@@ -340,6 +347,7 @@ begin
   DateTimePicker1.Date:= IncMonth(Date(), -1);
   DateTimePicker2.Date:= Date();
   dtZatNaDzien.Date   := Date();
+  dtZatNaMsc.Date     := date();
   DisableNewSelect:= false;
 
   NewSelect;
@@ -415,6 +423,14 @@ begin
       begin
         ZQZatrudnieni.SQL.Add(' (:data_na_dzien BETWEEN zat.zat_od AND IFNULL(zat.zat_do, CURDATE() ) ) AND');
         ZQZatrudnieni.ParamByName('data_na_dzien').AsDate:= dtZatNaDzien.Date;
+      end;
+
+  // ZATRUDNIENI NA DANY MIESIĄC
+  if cbZatNaMsc.Checked then
+      begin
+        ZQZatrudnieni.SQL.Add(' (zat.zat_od <= :data_na_last_day AND IFNULL(zat.zat_do, CURDATE()) >= :data_na_first_day) AND');
+        ZQZatrudnieni.ParamByName('data_na_first_day').AsDate:= StartOfTheMonth(dtZatNaMsc.Date);
+        ZQZatrudnieni.ParamByName('data_na_last_day').AsDate := EndOfTheMonth(dtZatNaMsc.Date);
       end;
 
   //Zmienili Celę
@@ -734,6 +750,26 @@ begin
   NewSelect;
 end;
 
+procedure TZatrudnieni.cbZatNaMscChange(Sender: TObject);
+begin
+  DisableNewSelect:= true;  // wyłączamy działeanie kontrolek NewSelect;
+
+  if cbZatNaMsc.Checked then
+      begin
+        rgStatusZat.ItemIndex:= 3;    // status zatrudnienia na wszystkie
+        rgStatusPobytu.ItemIndex:= 2;    // pobyty na wszystkie
+
+        dtZatNaMsc.Enabled:= true;
+      end
+  else
+      begin
+        dtZatNaMsc.Enabled:= false;
+      end;
+
+  DisableNewSelect:= false;     //Włączamy kontrolki
+  NewSelect;
+end;
+
 // DODAJ OSADZONEGO DO ZATRUDNIENIA
 procedure TZatrudnieni.BitBtn1Click(Sender: TObject);
 begin
@@ -775,6 +811,11 @@ end;
 procedure TZatrudnieni.dtZatNaDzienChange(Sender: TObject);
 begin
   if cbZatNaDzien.Checked then NewSelect;
+end;
+
+procedure TZatrudnieni.dtZatNaMscChange(Sender: TObject);
+begin
+  if cbZatNaMsc.Checked then NewSelect;
 end;
 
 procedure TZatrudnieni.ComboBox1Change(Sender: TObject);
@@ -880,6 +921,13 @@ begin
      else
        frReport1.LoadFromFile(DM.Path_Raporty + 'zat_OswiadczeniePraca.lrf');
 
+  DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
+  frReport1.ShowReport;
+end;
+
+procedure TZatrudnieni.lblSkierowanieNaBadaniaClick(Sender: TObject);
+begin
+  frReport1.LoadFromFile(DM.Path_Raporty + 'zat_SkierowanieBadania.lrf');
   DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
   frReport1.ShowReport;
 end;

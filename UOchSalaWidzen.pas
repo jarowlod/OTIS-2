@@ -124,6 +124,7 @@ begin
   //  PrzeladujWidzenia;   // wczytujemy dane tylko widocznych stolików, przeniesione do onShow Stolika
   ZQWidzenia.Open;
   //AutoAdjustLayout(lapAutoAdjustForDPI, 96, 110, Width, Width);
+  BCPanelSala.DoubleBuffered:= true;
 end;
 
 procedure TOchSalaWidzen.FormShow(Sender: TObject);

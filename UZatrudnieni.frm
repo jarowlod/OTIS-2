@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 86
+  Left = 180
   Height = 856
-  Top = 57
+  Top = 122
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -122,14 +122,14 @@ object Zatrudnieni: TZatrudnieni
       TabOrder = 7
     end
     object GroupBox1: TGroupBox
-      Left = 785
+      Left = 632
       Height = 112
       Top = 0
-      Width = 264
+      Width = 417
       Anchors = [akTop, akRight]
       Caption = 'Kryteria wyszukiwania:'
       ClientHeight = 92
-      ClientWidth = 260
+      ClientWidth = 413
       TabOrder = 4
       object CheckBox1: TCheckBox
         Left = 8
@@ -141,9 +141,9 @@ object Zatrudnieni: TZatrudnieni
         TabOrder = 0
       end
       object DateTimePicker1: TDateTimePicker
-        Left = 8
+        Left = 168
         Height = 23
-        Top = 40
+        Top = 16
         Width = 83
         CenturyFrom = 1941
         MaxDate = 2958465
@@ -165,9 +165,9 @@ object Zatrudnieni: TZatrudnieni
         OnChange = DateTimePicker1Change
       end
       object DateTimePicker2: TDateTimePicker
-        Left = 168
+        Left = 325
         Height = 23
-        Top = 40
+        Top = 16
         Width = 83
         CenturyFrom = 1941
         MaxDate = 2958465
@@ -189,9 +189,9 @@ object Zatrudnieni: TZatrudnieni
         OnChange = DateTimePicker2Change
       end
       object ComboBox1: TComboBox
-        Left = 8
+        Left = 168
         Height = 23
-        Top = 16
+        Top = -8
         Width = 240
         Enabled = False
         ItemHeight = 15
@@ -215,16 +215,18 @@ object Zatrudnieni: TZatrudnieni
       object cbZatNaDzien: TCheckBox
         Left = 8
         Height = 19
-        Top = 68
+        Top = 44
         Width = 160
         Caption = 'Zatrudnieni na dany dzień:'
         OnChange = cbZatNaDzienChange
         TabOrder = 4
       end
       object dtZatNaDzien: TDateTimePicker
-        Left = 168
+        AnchorSideTop.Control = cbZatNaDzien
+        AnchorSideTop.Side = asrCenter
+        Left = 192
         Height = 23
-        Top = 64
+        Top = 42
         Width = 83
         CenturyFrom = 1941
         MaxDate = 2958465
@@ -244,6 +246,41 @@ object Zatrudnieni: TZatrudnieni
         HideDateTimeParts = []
         MonthNames = 'Long'
         OnChange = dtZatNaDzienChange
+      end
+      object cbZatNaMsc: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 70
+        Width = 186
+        Caption = 'Zatrudnieni w danym miesiącu:'
+        OnChange = cbZatNaMscChange
+        TabOrder = 6
+      end
+      object dtZatNaMsc: TDateTimePicker
+        AnchorSideTop.Control = cbZatNaMsc
+        AnchorSideTop.Side = asrCenter
+        Left = 192
+        Height = 23
+        Top = 68
+        Width = 83
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 7
+        Enabled = False
+        TrailingSeparator = False
+        TextForNullDate = 'NULL'
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        Date = 42762
+        Time = 0.398035810183501
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnChange = dtZatNaMscChange
       end
     end
     object GroupBox2: TGroupBox
@@ -2435,6 +2472,27 @@ object Zatrudnieni: TZatrudnieni
           MonthNames = 'Long'
           ShowMonthNames = True
         end
+        object lblSkierowanieNaBadania: TLabel
+          Cursor = crHandPoint
+          Left = 16
+          Height = 16
+          Top = 376
+          Width = 193
+          Caption = 'Skierowanie na badania lekarskie'
+          Font.CharSet = EASTEUROPE_CHARSET
+          Font.Color = clHighlight
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentColor = False
+          ParentFont = False
+          OnClick = lblSkierowanieNaBadaniaClick
+          OnMouseDown = lblActionMouseDown
+          OnMouseEnter = lblActionMouseEnter
+          OnMouseLeave = lblActionMouseLeave
+          OnMouseUp = lblActionMouseUp
+        end
       end
     end
     object Splitter1: TSplitter
@@ -3580,6 +3638,10 @@ object Zatrudnieni: TZatrudnieni
       object MenuItem12: TMenuItem
         Caption = 'Karta Pracy'
         OnClick = lblKartaPracyClick
+      end
+      object MenuItem14: TMenuItem
+        Caption = 'Skierowanie do lekarza'
+        OnClick = lblSkierowanieNaBadaniaClick
       end
     end
     object MenuItem13: TMenuItem
