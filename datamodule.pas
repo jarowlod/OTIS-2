@@ -163,7 +163,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.1.18';
+  wersja = '0.0.1.19';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -634,7 +634,6 @@ end;
 //-------------- wczytywanie zdjecia w tle do TImage
 constructor TLoadFotoThread.Create(str : string; img: TImage);
 begin
-  inherited Create(False); // wywołanie wątku
   Fimg:= img;
   path:= str;
 
@@ -642,6 +641,7 @@ begin
   // zapobiega to wyświetleniu zdjęć na miejscu którym mają wyświetlać się nowe/kolejne zdjęcia.
   Fimg.Tag:= Fimg.Tag + 1;
   Ftag:= Fimg.Tag;
+  inherited Create(False); // wywołanie wątku, uruchomienie automatyczne
 end;
 
 destructor TLoadFotoThread.Destroy;
