@@ -350,3 +350,120 @@ end;
 
 end.
 
+
+
+
+
+  object ZQuery1: TZQuery
+    Connection = ZConnection1
+    SQL.Strings = (
+      'SELECT'
+      'typ_cel.Wychowawca,'
+      'uprawnienia.`user`,'
+      'uprawnienia.ZastepstwaWych'
+      'FROM'
+      'typ_cel'
+      'Inner Join uprawnienia ON typ_cel.Wychowawca = uprawnienia.Wychowawca AND typ_cel.Wychowawca <> '''''
+      'GROUP BY'
+      'typ_cel.Wychowawca'
+	  
+	  
+	  
+  object ZQuery2: TZQuery
+    Connection = ZConnection1
+    SortedFields = 'Opis'
+    UpdateObject = ZUpdateSQL1
+    SQL.Strings = (
+      'SELECT'
+      'wykaz_bledow.id,'
+      'wykaz_bledow.Opis,'
+      'osadzeni.NAZWISKO,'
+      'osadzeni.IMIE,'
+      'osadzeni.OJCIEC,'
+      'osadzeni.KLASYF,'
+      'osadzeni.POC,'
+      'wykaz_bledow.IDO,'
+      'wykaz_bledow.data_wpisu,'
+      'wykaz_bledow.ID_Sesji,'
+      'typ_cel.Wychowawca'
+      'FROM'
+      'wykaz_bledow'
+      'Left Join osadzeni ON wykaz_bledow.IDO = osadzeni.IDO'
+      'Left Join typ_cel ON osadzeni.POC = typ_cel.POC'
+      'WHERE (ID_Sesji = :ID_Sesji)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ID_Sesji'
+        ParamType = ptUnknown
+      end>
+    MasterFields = 'Wychowawca'
+    MasterSource = Datasource1
+    LinkedFields = 'Wychowawca'
+    IndexFieldNames = 'Opis Asc'
+    left = 784
+    top = 160
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ID_Sesji'
+        ParamType = ptUnknown
+      end>
+  end
+  object Datasource2: TDataSource
+    DataSet = ZQuery2
+    left = 784
+    top = 213
+  end
+  object ZUpdateSQL1: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'DELETE FROM wykaz_bledow'
+      'WHERE'
+      '  wykaz_bledow.id = :OLD_id'
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO wykaz_bledow'
+      '  (data_wpisu, IDO, Opis, ID_Sesji)'
+      'VALUES'
+      '  (CURDATE(), :IDO, :Opis, :ID_Sesji)'
+    )
+    ModifySQL.Strings = (
+      'UPDATE wykaz_bledow SET'
+      '  IDO = :IDO,'
+      '  Opis = :Opis'
+      'WHERE'
+      '  wykaz_bledow.id = :OLD_id'
+    )
+	
+	
+	
+	
+	
+	        Items.Strings = (
+          'Uruchom nagrodę.'
+          'Uruchom Karę.'
+          'Nagrody do zaopiniowania.'
+          'Kary do zaopiniowania.'
+          'Przeterminowany termin oceny.'
+          'Przeterminowany termin weryfikacji potrzeb.'
+          'Przeterminowany termin udokumentowania wykształcenia.'
+          'Przeterminowany: PRAWO DO ŁĄCZENIA WIDZEŃ DO DNIA'
+          'Przeterminowany: TERMIN PRZYJĘCIA DO ODDZIAŁU TERAPEUTYCZNEGO'
+          'Przeterminowany: TERMIN OCENY WERYFIKACJI IPO'
+          'Przeterminowany: TERMIN REALIZACJI PRZEZ SKAZANEGO ZADANIA WYNIKAJĄCEGO Z IPO'
+          'Brak Poziomu wykształcenia, Typu szkoły.'
+          'Konflikt palenia.'
+        )
+
+
+		
+=======================================
+Update wykaz_bledow w
+inner join osadzeni os ON os.IDO=w.IDO
+inner join typ_cel c ON c.POC=os.POC and c.Wychowawca<>''
+inner join uprawnienia u ON u.Wychowawca=c.Wychowawca
+SET
+w.POC = os.POC, w.NAZWISKO=os.NAZWISKO, w.IMIE=os.IMIE, w.OJCIEC=os.OJCIEC, w.KLASYF=os.KLASYF,
+w.Wychowawca=c.Wychowawca, w.wych_login=u.user
+WHERE w.POC is null	

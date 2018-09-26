@@ -74,7 +74,8 @@ type
                                                // 14: Edycja rejestru próśb
                                                // 15: Zatrudnienie (dodaj).
                                                // 16: Środki Trwałe (depozyt).
-    uprawnienia: array[1..16] of Boolean;
+                                               // 17: Moduł do testowania poprawności NoeNet
+    uprawnienia: array[1..17] of Boolean;
 
     Function VersionStringToNumber(AVersionString: string): integer;
     Function fGetVersionAndConfig: string;
@@ -362,6 +363,7 @@ begin
       uprawnienia[13]:= ZQ.FieldByName('Mod13').AsInteger = 1;
       uprawnienia[14]:= ZQ.FieldByName('Mod14').AsInteger = 1;
       uprawnienia[15]:= ZQ.FieldByName('Mod15').AsInteger = 1;
+      uprawnienia[17]:= ZQ.FieldByName('Mod17').AsInteger = 1;
 
       PelnaNazwa  := ZQ.FieldByName('full_name').AsString;
       // Dla kompatybilności z użtkownikiem dodanym przez Paczkownię
