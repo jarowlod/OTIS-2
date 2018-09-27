@@ -1,14 +1,14 @@
 object Uprawnienia: TUprawnienia
-  Left = 396
+  Left = 388
   Height = 635
-  Top = 222
+  Top = 232
   Width = 1003
   Caption = 'Uprawnienia'
   ClientHeight = 635
   ClientWidth = 1003
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -186,6 +186,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -201,6 +202,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -215,6 +217,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -229,6 +232,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -243,6 +247,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -257,6 +262,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -271,6 +277,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -284,6 +291,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -300,6 +308,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -316,6 +325,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -332,6 +342,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -348,6 +359,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -364,6 +376,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -380,6 +393,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -396,6 +410,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -412,6 +427,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -428,6 +444,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -444,6 +461,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -460,6 +478,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -476,6 +495,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -492,6 +512,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -508,6 +529,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -524,6 +546,7 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -540,6 +563,25 @@ object Uprawnienia: TUprawnienia
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          ButtonStyle = cbsCheckboxColumn
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.ShowHint = True
+          Title.Caption = 'Mod17'
+          Width = 30
+          FieldName = 'Mod17'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -1025,6 +1067,19 @@ object Uprawnienia: TUprawnienia
         DataField = 'Mod16'
         DataSource = DSUsers
         TabOrder = 15
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox17: TDBCheckBox
+        Left = 16
+        Height = 19
+        Top = 360
+        Width = 208
+        AutoSize = True
+        Caption = 'NeoNet - sprawdzanie poprawności'
+        DataField = 'Mod17'
+        DataSource = DSUsers
+        TabOrder = 16
         ValueChecked = '1'
         ValueUnchecked = '0'
       end

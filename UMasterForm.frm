@@ -1229,6 +1229,12 @@ object MasterForm: TMasterForm
       object MenuItem44: TMenuItem
         Action = ActionKoszyk
       end
+      object MenuItem69: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem68: TMenuItem
+        Action = ActionNoeNetTest
+      end
     end
     object MenuItem17: TMenuItem
       Caption = 'Dodatki'
@@ -1535,6 +1541,12 @@ object MasterForm: TMasterForm
       ImageIndex = 46
       OnExecute = ActionKnowHowExecute
       ShortCut = 112
+    end
+    object ActionNoeNetTest: TAction
+      Category = 'Penit'
+      Caption = 'NoeNet - sprawdzian poprawności danych ...'
+      ImageIndex = 26
+      OnExecute = ActionNoeNetTestExecute
     end
   end
   object Timer2Komunikaty: TTimer

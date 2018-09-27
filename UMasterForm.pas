@@ -15,6 +15,7 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionNoeNetTest: TAction;
     ActionKnowHow: TAction;
     ActionKreatorWPZ: TAction;
     ActionZdjeciaBraki: TAction;
@@ -89,6 +90,8 @@ type
     MenuItem65: TMenuItem;
     MenuItem66: TMenuItem;
     MenuItem67: TMenuItem;
+    MenuItem68: TMenuItem;
+    MenuItem69: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -169,6 +172,7 @@ type
     procedure ActionKoszykExecute(Sender: TObject);
     procedure ActionKreatorWPZExecute(Sender: TObject);
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
+    procedure ActionNoeNetTestExecute(Sender: TObject);
     procedure ActionNowyKoszykExecute(Sender: TObject);
     procedure ActionProsbyOsadzonegoExecute(Sender: TObject);
     procedure ActionProsbyOsadzonychExecute(Sender: TObject);
@@ -233,7 +237,7 @@ uses UStanowiska, UZatrudnieni, UAddZatrudnienie, ULogowanie, UUprawnienia, UUpr
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec,
-     UOchSalaWidzen, UPenitWPZ, UKnowHow;
+     UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNeoNetTest;
 {$R *.frm}
 
 { TMasterForm }
@@ -281,6 +285,8 @@ begin
 
   ActionKreatorWPZ.Enabled     := true;
   ActionKnowHow.Enabled        := DM.uprawnienia[8];
+
+  ActionNoeNetTest.Enabled     := DM.uprawnienia[17];
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
@@ -658,6 +664,15 @@ end;
 procedure TMasterForm.ActionNieZatrudnieniExecute(Sender: TObject);
 begin
   with TZatNieZatrudnieni.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.ActionNoeNetTestExecute(Sender: TObject);
+begin
+  with TPenitNeoNetTest.Create(Self) do
   begin
        ShowModal;
        Free;

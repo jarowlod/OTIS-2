@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 86
+  Left = 180
   Height = 743
-  Top = 85
+  Top = 178
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -703,6 +703,7 @@ object PenitTerminarz: TPenitTerminarz
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
+              Filter.Style = rxfstManualEdit
               Footers = <>
             end          
             item

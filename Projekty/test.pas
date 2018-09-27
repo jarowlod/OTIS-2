@@ -260,29 +260,6 @@ begin
   ShowMessage('OK. Wyczyszczono tabelę z nieprawidłowościami.');
 end;
 
-procedure TForm1.BitBtn5Click(Sender: TObject);
-var sPom : TStringStream;
-begin
-  if lzRichEdit1.Lines.Text = '' then exit;
-
-  sPom:= TStringStream.Create('');
-  lzRichEdit1.SaveRichText(sPom);
-  ZQuery1.First;
-  while not ZQuery1.EOF do
-  begin
-    ZQPom1.SQL.Text := 'INSERT INTO komunikaty (odbiorca, dataNadania, nadawca, komunikat, status) VALUES (:odbiorca, NOW(), :nadawca, :komunikat, :status)';
-    ZQPom1.ParamByName('odbiorca').AsString := ZQuery1.FieldByName('user').AsString;
-    ZQPom1.ParamByName('nadawca').AsString := ZConnection1.User;
-    ZQPom1.ParamByName('status').AsInteger := 0;
-    ZQPom1.ParamByName('komunikat').AsMemo := sPom.DataString;
-    ZQPom1.ExecSQL;
-    ZQPom1.Close;
-
-    ZQuery1.Next;
-  end;
-  sPom.Free;
-  ShowMessage('OK. Wysłane do wszystkich.');
-end;
 
 procedure TForm1.BitBtn6Click(Sender: TObject);
 begin
@@ -320,15 +297,6 @@ begin
   if ZConnection1.Connected then BitBtn6.Caption:='Rozłącz' else BitBtn6.Caption:='Połącz';
 end;
 
-procedure TForm1.BitBtn7Click(Sender: TObject);
-begin
-  ShowMessage('2013-2017 - program do wysyłania komunikatów o nieprawidłowościach w Noe. Wersja 2');
-end;
-
-procedure TForm1.FormShow(Sender: TObject);
-begin
-  LabeledEdit1.Text:=GetUserName;
-end;
 
 procedure TForm1.SpeedButton1Click(Sender: TObject);
 begin
@@ -440,24 +408,6 @@ end.
 	
 	
 	
-	        Items.Strings = (
-          'Uruchom nagrodę.'
-          'Uruchom Karę.'
-          'Nagrody do zaopiniowania.'
-          'Kary do zaopiniowania.'
-          'Przeterminowany termin oceny.'
-          'Przeterminowany termin weryfikacji potrzeb.'
-          'Przeterminowany termin udokumentowania wykształcenia.'
-          'Przeterminowany: PRAWO DO ŁĄCZENIA WIDZEŃ DO DNIA'
-          'Przeterminowany: TERMIN PRZYJĘCIA DO ODDZIAŁU TERAPEUTYCZNEGO'
-          'Przeterminowany: TERMIN OCENY WERYFIKACJI IPO'
-          'Przeterminowany: TERMIN REALIZACJI PRZEZ SKAZANEGO ZADANIA WYNIKAJĄCEGO Z IPO'
-          'Brak Poziomu wykształcenia, Typu szkoły.'
-          'Konflikt palenia.'
-        )
-
-
-		
 =======================================
 Update wykaz_bledow w
 inner join osadzeni os ON os.IDO=w.IDO
