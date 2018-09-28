@@ -72,10 +72,11 @@ type
     procedure RxDBGridGrupyDblClick(Sender: TObject);
   private
     fViewRichEdit: TViewRichEdit;
+    Function GetFullName(user_login: string): string;
   public
     Procedure OdpiszDo(user: string);
     Procedure OdpiszDoUserByIDO(IDO: integer);
-    Procedure AutoKomunikat(user_list: TStringList; temat: string; tresc: string);
+    Procedure AutoKomunikat(user_list: TStringList; temat: string; tresc: string; autoSend: Boolean = true);
   end;
 
 type
@@ -289,6 +290,14 @@ begin
   FreeAndNil(wiersz);
 end;
 
+function TKomunikatorNowaWiad.GetFullName(user_login: string): string;
+begin
+  if ZQUzytkownicy.Locate('user', user_login,[]) then
+     Result:= ZQUzytkownicy.FieldByName('Full_name').AsString
+     else
+     Result:= '';
+end;
+
 procedure TKomunikatorNowaWiad.OdpiszDo(user: string);
 var ZQPom: TZQueryPom;
 begin
@@ -330,22 +339,22 @@ begin
   FreeAndNil(ZQPom);
 end;
 
-procedure TKomunikatorNowaWiad.AutoKomunikat(user_list: TStringList;
-  temat: string; tresc: string);
+procedure TKomunikatorNowaWiad.AutoKomunikat(user_list: TStringList; temat: string; tresc: string; autoSend: Boolean);
 var i: integer;
 begin
   edTemat.Text:= temat;
-  fViewRichEdit.Text:= tresc; //RichMemo1.SelText:= tresc;
+  fViewRichEdit.SelText:= tresc; //RichMemo1.SelText:= tresc;
 
   for i:=0 to user_list.Count-1 do
     if user_list[i]<>'' then
     begin
       memOdbiorcy.Append;
       memOdbiorcy.FieldByName('user').AsString := user_list[i];
+      memOdbiorcy.FieldByName('NazwiskoImie').AsString:= GetFullName(user_list[i]);
       memOdbiorcy.Post;
     end;
 
-  btnOKClick(Self); // wyślij
+  if autoSend then btnOKClick(Self); // wyślij
 end;
 
 end.

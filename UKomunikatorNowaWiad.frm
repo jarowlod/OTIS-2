@@ -1,7 +1,7 @@
 object KomunikatorNowaWiad: TKomunikatorNowaWiad
-  Left = 407
+  Left = 388
   Height = 658
-  Top = 238
+  Top = 232
   Width = 1039
   Caption = 'Nowa wiadomość'
   ClientHeight = 658
@@ -11,7 +11,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
   OnShow = FormShow
   Position = poOwnerFormCenter
   ShowHint = True
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object Panel1: TPanel
     Left = 0
     Height = 558
@@ -50,6 +50,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -64,6 +65,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -78,6 +80,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -91,6 +94,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -250,6 +254,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -390,6 +395,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -404,6 +410,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1

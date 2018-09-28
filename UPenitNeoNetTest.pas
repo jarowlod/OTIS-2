@@ -14,18 +14,22 @@ type
   { TPenitNeoNetTest }
 
   TPenitNeoNetTest = class(TForm)
-    BitBtn1: TBitBtn;
+    btnWyslijAll: TBitBtn;
     btnUstawIDSesji: TBitBtn;
     btnAnaliza: TBitBtn;
     cbIDO_2Kolumna: TCheckBox;
     cmbOpis: TComboBox;
+    DSWychowawcy: TDataSource;
+    DSBledyGrup: TDataSource;
     DBNavigator1: TDBNavigator;
     DSBledy: TDataSource;
     DSSesje: TDataSource;
     Label1: TLabel;
+    lblNrSesji: TLabel;
     Label8: TLabel;
     Memo1: TMemo;
     PageControl1: TPageControl;
+    PageControl2: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -33,16 +37,24 @@ type
     ProgressBar1: TProgressBar;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
+    RxDBGrid3: TRxDBGrid;
+    RxDBGrid4: TRxDBGrid;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
+    TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
     ZQSesje: TZQuery;
     ZQBledy: TZQuery;
+    ZQWychowawcy: TZQuery;
+    ZQBledyGrup: TZQuery;
     procedure btnAnalizaClick(Sender: TObject);
     procedure btnUstawIDSesjiClick(Sender: TObject);
+    procedure btnWyslijAllClick(Sender: TObject);
     procedure DSSesjeDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
   private
     FID_Sesji: integer;
+    Function GetWiadomoscFromTable(ZQWPom: TZQuery): String;
   public
 
   end;
@@ -51,7 +63,7 @@ var
   PenitNeoNetTest: TPenitNeoNetTest;
 
 implementation
-
+uses UKomunikatorNowaWiad;
 {$R *.frm}
 
 { TPenitNeoNetTest }
@@ -59,8 +71,19 @@ implementation
 procedure TPenitNeoNetTest.DSSesjeDataChange(Sender: TObject; Field: TField);
 begin
   ZQBledy.Close;
+  ZQWychowawcy.Close;
+  ZQBledyGrup.Close;
+
+  if ZQSesje.IsEmpty then exit;
+
   ZQBledy.ParamByName('ID_Sesji').AsInteger:= ZQSesje.FieldByName('ID_Sesji').AsInteger;
   ZQBledy.Open;
+
+  ZQWychowawcy.ParamByName('ID_Sesji').AsInteger:= ZQSesje.FieldByName('ID_Sesji').AsInteger;
+  ZQWychowawcy.Open;
+
+  ZQBledyGrup.ParamByName('ID_Sesji').AsInteger:= ZQSesje.FieldByName('ID_Sesji').AsInteger;
+  ZQBledyGrup.Open;
 end;
 
 procedure TPenitNeoNetTest.FormCreate(Sender: TObject);
@@ -69,6 +92,37 @@ begin
   if ZQSesje.IsEmpty then FID_Sesji:= 0
   else
     FID_Sesji:= ZQSesje.FieldByName('ID_Sesji').AsInteger+1; // ustalamy nowy numer sesji o jeden większy niż ostatnia sesja (pierwsza jest ostatnią, sort DESC)
+
+  lblNrSesji.Caption:= 'Nr Sesji: '+ IntToStr(FID_Sesji);
+end;
+
+// Przekazujemy wskaźnik na otwartą tabelę ZQWPom.
+// Wynikiem jest gotowa wiadomość zwierająca osadzonych
+function TPenitNeoNetTest.GetWiadomoscFromTable(ZQWPom: TZQuery): String;
+var opis: string;
+    wiadomosc: TStringList;
+begin
+  opis:='';
+  wiadomosc:= TStringList.Create;
+
+  ZQWPom.First;
+  while not ZQWPom.EOF do
+   begin
+     if (opis = '')or(opis<>ZQWPom.FieldByName('Opis').AsString) then
+     begin
+       if opis<>'' then wiadomosc.Add('');
+       opis:= ZQWPom.FieldByName('Opis').AsString;
+       wiadomosc.Add(opis);
+     end;
+     wiadomosc.Add( ZQWPom.FieldByName('POC').AsString + ' ' +
+                    ZQWPom.FieldByName('NAZWISKO').AsString + ' ' +
+                    ZQWPom.FieldByName('IMIE').AsString + ' ' +
+                    ZQWPom.FieldByName('OJCIEC').AsString + ' ' +
+                    ZQWPom.FieldByName('Klasyf').AsString);
+     ZQWPom.Next;
+   end;
+  Result:= wiadomosc.Text;
+  wiadomosc.Free;
 end;
 
 procedure TPenitNeoNetTest.btnAnalizaClick(Sender: TObject);
@@ -137,7 +191,70 @@ end;
 
 procedure TPenitNeoNetTest.btnUstawIDSesjiClick(Sender: TObject);
 begin
-  if MessageDlg('Czy napewno dodawać wyniki analizy do obecnie wybranej sesji?', mtWarning, [mbOK, mbCancel], 0)= mrOK then FID_Sesji:= ZQSesje.FieldByName('ID_Sesji').AsInteger;
+  if MessageDlg('Czy napewno dodawać wyniki analizy do obecnie wybranej sesji?', mtWarning, [mbOK, mbCancel], 0)= mrOK then
+  begin
+    FID_Sesji:= ZQSesje.FieldByName('ID_Sesji').AsInteger;
+    lblNrSesji.Caption:= 'Nr Sesji: '+ IntToStr(FID_Sesji);
+  end;
+end;
+
+procedure TPenitNeoNetTest.btnWyslijAllClick(Sender: TObject);
+var wiadomosc, user_list: TStringList;
+    pomWiad : string;
+    ZQWychowawcyPom, ZQPom: TZQueryPom;
+begin
+  wiadomosc:= TStringList.Create;
+  user_list:= TStringList.Create;
+  ZQWychowawcyPom:= TZQueryPom.Create(Self);
+  ZQPom       := TZQueryPom.Create(Self);
+
+  ZQPom.SQL.Text:= 'SELECT * FROM wykaz_bledow WHERE ID_Sesji=:ID_Sesji AND Wychowawca=:Wychowawca';
+
+  ZQWychowawcyPom.SQL.Text:= 'SELECT Wychowawca, wych_login FROM wykaz_bledow WHERE ID_Sesji=:ID_Sesji AND Wychowawca IS NOT NULL GROUP BY Wychowawca';
+  ZQWychowawcyPom.ParamByName('ID_Sesji').AsInteger:= FID_Sesji;
+  ZQWychowawcyPom.Open;
+
+  if ZQWychowawcyPom.IsEmpty then exit;
+
+  wiadomosc.Add('Stwierdzono następujące nieprawidłowości do uzupełnienia.');
+  wiadomosc.Add('---------------------------------------------------------');
+
+  while not ZQWychowawcyPom.EOF do
+  begin
+    wiadomosc.Add('');
+    wiadomosc.Add('=========================================================');
+    wiadomosc.Add('= Wychowawca: ' + ZQWychowawcyPom.FieldByName('Wychowawca').AsString );
+    wiadomosc.Add('=========================================================');
+
+    ZQPom.Close;
+    ZQPom.ParamByName('Wychowawca').AsString:= ZQWychowawcyPom.FieldByName('Wychowawca').AsString;
+    ZQPom.ParamByName('ID_Sesji').AsInteger:= FID_Sesji;
+    ZQPom.Open;
+
+    pomWiad:= GetWiadomoscFromTable(ZQPom);
+    wiadomosc.Add(pomWiad);
+
+    ZQWychowawcyPom.Next;
+  end;
+
+  // dodajemu wychowawców do listy wysyłkowej
+  ZQWychowawcyPom.First;
+  while not ZQWychowawcyPom.EOF do
+  begin
+    user_list.Add( ZQWychowawcyPom.FieldByName('wych_login').AsString );
+    ZQWychowawcyPom.Next;
+  end;
+
+  with TKomunikatorNowaWiad.Create(Self) do
+  begin
+       AutoKomunikat(user_list, 'Sprawdzenie poprawności danych w NoeNet', wiadomosc.Text, false);
+       ShowModal;
+       Free;
+  end;
+
+  //ShowMessage('OK. Wysłane do wszystkich.');
+  wiadomosc.Free;
+  user_list.Free;
 end;
 
 end.
