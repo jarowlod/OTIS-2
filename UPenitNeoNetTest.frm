@@ -1,7 +1,7 @@
 object PenitNeoNetTest: TPenitNeoNetTest
-  Left = 388
+  Left = 440
   Height = 641
-  Top = 232
+  Top = 236
   Width = 1024
   Caption = 'NeoNet - sprawdzanie poprwaności danych'
   ClientHeight = 641
@@ -51,9 +51,9 @@ object PenitNeoNetTest: TPenitNeoNetTest
     Height = 593
     Top = 48
     Width = 1024
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Sesje'
@@ -131,6 +131,7 @@ object PenitNeoNetTest: TPenitNeoNetTest
           ShowHint = True
           TabOrder = 0
           TitleStyle = tsNative
+          OnDblClick = RxDBGrid2DblClick
         end
         object PageControl2: TPageControl
           Left = 96
@@ -616,7 +617,7 @@ object PenitNeoNetTest: TPenitNeoNetTest
         ParentColor = False
         TabOrder = 1
         object btnUstawIDSesji: TBitBtn
-          Left = 488
+          Left = 440
           Height = 30
           Top = 8
           Width = 184
@@ -701,23 +702,32 @@ object PenitNeoNetTest: TPenitNeoNetTest
         Width = 1000
         Anchors = [akTop, akLeft, akRight]
         AutoComplete = True
-        AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
-        DropDownCount = 10
+        AutoCompleteText = [cbactEnabled, cbactRetainPrefixCase, cbactSearchAscending]
+        DropDownCount = 15
         ItemHeight = 15
         Items.Strings = (
           'Uruchom nagrodę.'
           'Uruchom Karę.'
           'Nagrody do zaopiniowania.'
           'Kary do zaopiniowania.'
+          'Terminy na czerwono.'
+          'Terminy WPZ + przepustki do akceptacji.'
           'Przeterminowany termin oceny.'
+          'Brak terminu oceny okresowej.'
           'Przeterminowany termin weryfikacji potrzeb.'
-          'Przeterminowany termin udokumentowania wykształcenia.'
+          'Brak terminu weryfikacji potrzeb.'
           'Przeterminowane: PRAWO DO ŁĄCZENIA WIDZEŃ DO DNIA'
           'Przeterminowany: TERMIN PRZYJĘCIA DO ODDZIAŁU TERAPEUTYCZNEGO'
           'Przeterminowany: TERMIN OCENY WERYFIKACJI IPO'
           'Przeterminowany: TERMIN REALIZACJI PRZEZ SKAZANEGO ZADANIA WYNIKAJĄCEGO Z IPO'
           'Brak Poziomu wykształcenia, Typu szkoły.'
-          'Konflikt palenia'
+          'Przeterminowany termin udokumentowania wykształcenia.'
+          'Brak terminu udokumentowania wykształcenia.'
+          'Wykształcenie udokumentowane ale nie potwierdzone.'
+          'Zatrudnienie do zaopiniowania.'
+          'Brak dodanej pomocy postpenitencjarnej (wywiad środowiskowy).'
+          'Konflikt palenia.'
+          'Cela przejściowa ponad 14 dni.'
         )
         TabOrder = 0
       end
@@ -762,6 +772,7 @@ object PenitNeoNetTest: TPenitNeoNetTest
         Height = 20
         Top = 8
         Width = 408
+        Step = 1
         TabOrder = 4
         Visible = False
       end

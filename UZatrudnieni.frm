@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 180
+  Left = 368
   Height = 856
-  Top = 122
+  Top = 252
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -2493,6 +2493,47 @@ object Zatrudnieni: TZatrudnieni
           OnMouseLeave = lblActionMouseLeave
           OnMouseUp = lblActionMouseUp
         end
+        object btnZmienOpisStanowiska: TBitBtn
+          AnchorSideLeft.Control = cbSkierowanie
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbSkierowanie
+          AnchorSideTop.Side = asrCenter
+          Left = 333
+          Height = 30
+          Hint = 'Zmień opis stanowisk pokrewnych w skierowaniu na badania...'
+          Top = 369
+          Width = 35
+          BorderSpacing.Left = 5
+          Images = DM.ImageList1
+          ImageIndex = 3
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 1
+        end
+        object cbSkierowanie: TComboBox
+          AnchorSideLeft.Control = lblSkierowanieNaBadania
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = lblSkierowanieNaBadania
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = lblSkierowanieNaBadania
+          AnchorSideRight.Side = asrBottom
+          Left = 216
+          Height = 23
+          Top = 373
+          Width = 112
+          Anchors = [akTop]
+          AutoDropDown = True
+          ItemHeight = 15
+          ItemIndex = 0
+          Items.Strings = (
+            'WSTĘPNE'
+            'OKRESOWE'
+            'KONTROLNE'
+          )
+          Style = csDropDownList
+          TabOrder = 2
+          Text = 'WSTĘPNE'
+        end
       end
     end
     object Splitter1: TSplitter
@@ -2714,6 +2755,7 @@ object Zatrudnieni: TZatrudnieni
   object ZQZatrudnieni: TZQuery
     Connection = DM.ZConnection1
     UpdateObject = ZUZatrudnieni
+    Active = True
     SQL.Strings = (
       'SELECT '
       'zat.id, '

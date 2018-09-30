@@ -19,6 +19,7 @@ type
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
+    btnZmienOpisStanowiska: TBitBtn;
     btnZapiszZmiany: TBitBtn;
     btnDodajDoKoszyka: TSpeedButton;
     cbZatNaMsc: TCheckBox;
@@ -31,6 +32,7 @@ type
     cbMiejsce: TCheckBox;
     cbDuplikaty: TCheckBox;
     ComboBox1: TComboBox;
+    cbSkierowanie: TComboBox;
     DateTimePicker1: TDateTimePicker;
     DateTimePicker2: TDateTimePicker;
     DateTimePicker3: TDateTimePicker;
@@ -314,6 +316,7 @@ type
     DisableNewSelect: Boolean;
     ShowOsIDO: integer; // jeśli wchodzimy poprzez ShowZatrudnienieOsadzonego to zapisujemy jego IDO
     Function ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
+    Procedure SetMemoReportColor(Raport: TfrReport; memo_name: string; bkcolor: TColor);
   public
     { public declarations }
     SQLZatrudnieni: string;       // ładujemy podczas Create z kontrolki ZQZatrudnieni.SQL
@@ -929,6 +932,11 @@ procedure TZatrudnieni.lblSkierowanieNaBadaniaClick(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_SkierowanieBadania.lrf');
   DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
+  case cbSkierowanie.ItemIndex of
+       0: SetMemoReportColor(frReport1,'memo_wstepne', clSilver );
+       1: SetMemoReportColor(frReport1,'memo_okresowe', clSilver );
+       2: SetMemoReportColor(frReport1,'memo_kontrolne', clSilver );
+  end;
   frReport1.ShowReport;
 end;
 
@@ -1070,6 +1078,16 @@ begin
   s:= s+ #09 +ZQPom.FieldByName('powod_wycofania').AsString;
   s:= s+ #09 +'PRACA FIZYCZNA';
   Result:= s;
+end;
+
+procedure TZatrudnieni.SetMemoReportColor(Raport: TfrReport; memo_name: string; bkcolor: TColor);
+var p_memo: TfrMemoView;
+begin
+  p_memo:= (Raport.FindObject(memo_name) as TfrMemoView);
+  if Assigned(p_memo) then
+     begin
+       p_memo.FillColor:= bkcolor;
+     end;
 end;
 
 end.

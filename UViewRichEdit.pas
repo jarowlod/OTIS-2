@@ -5,8 +5,8 @@ unit UViewRichEdit;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, RichMemo, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, ComCtrls, StdCtrls, Menus;
+  Classes, SysUtils, FileUtil, RichMemo, Forms, Controls, Graphics,
+  Dialogs, ExtCtrls, ComCtrls, StdCtrls, Menus;
 
 type
 
@@ -90,6 +90,7 @@ procedure TViewRichEdit.FormCreate(Sender: TObject);
 begin
   cbFont.Items.Assign( Screen.Fonts);
   cbFont.ItemIndex:= 0; // we select the first font
+  RichMemo1.SetTextAttributes(0,1, RichMemo1.Font);
 end;
 
 procedure TViewRichEdit.btnBoldClick(Sender: TObject);
@@ -190,6 +191,7 @@ begin
 end;
 
 procedure TViewRichEdit.ToolButton2Click(Sender: TObject);
+var rmStyles: TFontStyles;
 begin
   FontDialog1.Font.Name := SelFontFormat.Name;
   FontDialog1.Font.Color:= SelFontFormat.Color;
@@ -201,9 +203,14 @@ begin
     SelFontFormat.Name := FontDialog1.Font.Name;
     SelFontFormat.Color:= FontDialog1.Font.Color;
     SelFontFormat.Size := FontDialog1.Font.Size;
-    SelFontFormat.Style:= FontDialog1.Font.Style;
-
-    RichMemo1.SetRangeParams(RichMemo1.SelStart, RichMemo1.SelLength, [tmm_Color, tmm_Size, tmm_Name], SelFontFormat, [],[]);
+    if SelFontFormat.Style<>FontDialog1.Font.Style then
+      begin
+        rmStyles:= [fsBold, fsItalic, fsUnderline, fsStrikeOut];
+        SelFontFormat.Style:= FontDialog1.Font.Style;
+        RichMemo1.SetRangeParams(RichMemo1.SelStart, RichMemo1.SelLength, [tmm_Color, tmm_Size, tmm_Name, tmm_Styles], SelFontFormat, SelFontFormat.Style, rmStyles);
+      end
+    else
+      RichMemo1.SetRangeParams(RichMemo1.SelStart, RichMemo1.SelLength, [tmm_Color, tmm_Size, tmm_Name], SelFontFormat, [],[]);
   end;
 end;
 

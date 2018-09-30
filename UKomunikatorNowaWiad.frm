@@ -1,7 +1,7 @@
 object KomunikatorNowaWiad: TKomunikatorNowaWiad
-  Left = 388
+  Left = 440
   Height = 658
-  Top = 232
+  Top = 236
   Width = 1039
   Caption = 'Nowa wiadomość'
   ClientHeight = 658

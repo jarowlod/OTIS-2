@@ -13,8 +13,8 @@ type
   { TAddStanowiska }
 
   TAddStanowiska = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    btnOK: TBitBtn;
+    btnAnuluj: TBitBtn;
     DBComboBox1: TDBComboBox;
     DBComboBox2: TDBComboBox;
     DBEdit3: TDBEdit;
@@ -36,8 +36,8 @@ type
     Panel5: TPanel;
     RadioGroup1: TRadioGroup;
     ZQST: TZQuery;
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
+    procedure btnAnulujClick(Sender: TObject);
     procedure DBEdit3EditingDone(Sender: TObject);
   private
     { private declarations }
@@ -57,7 +57,7 @@ implementation
 
 { TAddStanowiska }
 
-procedure TAddStanowiska.BitBtn1Click(Sender: TObject);
+procedure TAddStanowiska.btnOKClick(Sender: TObject);
 begin
   if CzyNowe then
     begin
@@ -86,7 +86,7 @@ begin
     end;
 end;
 
-procedure TAddStanowiska.BitBtn2Click(Sender: TObject);
+procedure TAddStanowiska.btnAnulujClick(Sender: TObject);
 begin
   ZQST.Cancel;
   ZQST.Close;

@@ -52,6 +52,7 @@ type
     procedure btnWyslijAllClick(Sender: TObject);
     procedure DSSesjeDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
+    procedure RxDBGrid2DblClick(Sender: TObject);
   private
     FID_Sesji: integer;
     Function GetWiadomoscFromTable(ZQWPom: TZQuery): String;
@@ -96,6 +97,11 @@ begin
   lblNrSesji.Caption:= 'Nr Sesji: '+ IntToStr(FID_Sesji);
 end;
 
+procedure TPenitNeoNetTest.RxDBGrid2DblClick(Sender: TObject);
+begin
+  btnUstawIDSesjiClick(Sender);
+end;
+
 // Przekazujemy wskaźnik na otwartą tabelę ZQWPom.
 // Wynikiem jest gotowa wiadomość zwierająca osadzonych
 function TPenitNeoNetTest.GetWiadomoscFromTable(ZQWPom: TZQuery): String;
@@ -130,6 +136,9 @@ var i,p1,ido: integer;
     s,n: string;
     ZQPom: TZQueryPom;
 begin
+  if Memo1.Lines.Text='' then exit;
+  if cmbOpis.Text='' then exit;
+
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'INSERT INTO wykaz_bledow (data_wpisu, user, ID_Sesji, IDO, Opis) VALUES (CURDATE(), :user, :ID_Sesji, :IDO, :Opis)';
 
@@ -163,19 +172,19 @@ begin
        end;
       except
         ShowMessage('Niewłaściwy format danych wejścionych (wiersz '+IntToStr(i+1)+'). Wklej dane z NoeNet.');
+        ProgressBar1.Visible:= false;
+        // TODO: zrobić transakcje izolowaną i cofnąć zmiany, obecnie tracimy w tym rozwiązaniu UPDATE który jest poniżej.
         exit;
       end;
       Memo1.Lines.Delete(i);
      end;
    end;
-  ProgressBar1.Position:= ProgressBar1.Max;
-  Application.ProcessMessages;
   Memo1.Lines.Clear;
 
   // UPDATE wykaz_bledow w celu uzupełnienia o kolejne dane
   ZQPom.SQL.Text:= 'UPDATE wykaz_bledow w' +
                    ' inner join osadzeni os ON os.IDO=w.IDO' +
-                   ' inner join typ_cel c ON c.POC=os.POC and c.Wychowawca<>``'+
+                   ' inner join typ_cel c ON c.POC=os.POC and c.Wychowawca<>""'+
                    ' inner join uprawnienia u ON u.Wychowawca=c.Wychowawca'+
                    ' SET'+
                    ' w.POC = os.POC, w.NAZWISKO=os.NAZWISKO, w.IMIE=os.IMIE, w.OJCIEC=os.OJCIEC, w.KLASYF=os.KLASYF, w.Wychowawca=c.Wychowawca, w.wych_login=u.user'+
@@ -183,6 +192,8 @@ begin
   ZQPom.ParamByName('ID_Sesji').AsInteger:= FID_Sesji;
   ZQPom.ExecSQL;
 
+  ProgressBar1.Position:= ProgressBar1.Max;
+  Application.ProcessMessages;
   ShowMessage('OK');
   ProgressBar1.Visible:= false;
 

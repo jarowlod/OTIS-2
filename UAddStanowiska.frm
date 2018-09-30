@@ -1,13 +1,13 @@
 object AddStanowiska: TAddStanowiska
-  Left = 404
+  Left = 440
   Height = 573
-  Top = 224
+  Top = 236
   Width = 602
   Caption = 'Stanowisko / Grupa'
   ClientHeight = 573
   ClientWidth = 602
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object Panel1: TPanel
     Left = 0
     Height = 46
@@ -18,7 +18,7 @@ object AddStanowiska: TAddStanowiska
     ClientHeight = 46
     ClientWidth = 602
     TabOrder = 0
-    object BitBtn1: TBitBtn
+    object btnOK: TBitBtn
       Left = 369
       Height = 30
       Top = 8
@@ -27,10 +27,10 @@ object AddStanowiska: TAddStanowiska
       DefaultCaption = True
       Kind = bkOK
       ModalResult = 1
-      OnClick = BitBtn1Click
+      OnClick = btnOKClick
       TabOrder = 0
     end
-    object BitBtn2: TBitBtn
+    object btnAnuluj: TBitBtn
       Left = 489
       Height = 30
       Top = 8
@@ -40,7 +40,7 @@ object AddStanowiska: TAddStanowiska
       DefaultCaption = True
       Kind = bkCancel
       ModalResult = 2
-      OnClick = BitBtn2Click
+      OnClick = btnAnulujClick
       TabOrder = 1
     end
   end

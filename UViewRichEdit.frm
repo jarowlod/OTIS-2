@@ -1,7 +1,7 @@
 object ViewRichEdit: TViewRichEdit
-  Left = 470
+  Left = 440
   Height = 491
-  Top = 231
+  Top = 236
   Width = 685
   Align = alClient
   BorderStyle = bsNone
@@ -10,7 +10,7 @@ object ViewRichEdit: TViewRichEdit
   ClientWidth = 685
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object RichMemo1: TRichMemo
     Left = 0
     Height = 467
@@ -18,8 +18,9 @@ object ViewRichEdit: TViewRichEdit
     Width = 685
     Align = alClient
     Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = clBlack
     Font.Height = -13
-    Font.Name = 'Arial'
+    Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     HideSelection = False
@@ -211,7 +212,8 @@ object ViewRichEdit: TViewRichEdit
   object FontDialog1: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
-    Options = [fdTrueTypeOnly, fdEffects, fdForceFontExist, fdNoStyleSel, fdNoVectorFonts]
+    Options = [fdTrueTypeOnly, fdEffects, fdForceFontExist, fdNoVectorFonts]
+    PreviewText = 'Przykładowy tekst'
     Left = 504
     Top = 152
   end
