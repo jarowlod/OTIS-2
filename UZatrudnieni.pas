@@ -270,6 +270,7 @@ type
     procedure BitBtn3Click(Sender: TObject);
     procedure btnZapiszZmianyClick(Sender: TObject);
     procedure btnDodajDoKoszykaClick(Sender: TObject);
+    procedure btnZmienOpisStanowiskaClick(Sender: TObject);
     procedure cbZatNaDzienChange(Sender: TObject);
     procedure cbZatNaMscChange(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -317,6 +318,7 @@ type
     ShowOsIDO: integer; // jeśli wchodzimy poprzez ShowZatrudnienieOsadzonego to zapisujemy jego IDO
     Function ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
     Procedure SetMemoReportColor(Raport: TfrReport; memo_name: string; bkcolor: TColor);
+    Function GetStanowiskaPokrewne(Stanowisko: string): string;
   public
     { public declarations }
     SQLZatrudnieni: string;       // ładujemy podczas Create z kontrolki ZQZatrudnieni.SQL
@@ -328,7 +330,7 @@ type
 //  Zatrudnieni: TZatrudnieni;
 
 implementation
-uses UAddZatrudnienie, Clipbrd, UZatZaswiadczenie, UZatWniosekUrlopowy, UStawkiPlac, LR_DSet;
+uses UAddZatrudnienie, Clipbrd, UZatZaswiadczenie, UZatWniosekUrlopowy, UStawkiPlac, LR_DSet, UZatAddStanowiskaPokrewne;
 {$R *.frm}
 
 { TZatrudnieni }
@@ -342,6 +344,7 @@ begin
   MenuItemDodaj.Enabled     := DM.uprawnienia[15];
   MenuItemModyfikuj.Enabled := DM.uprawnienia[15];
   MenuItemUsun.Enabled      := DM.uprawnienia[15];
+  btnZmienOpisStanowiska.Enabled:= DM.uprawnienia[15];
 
   ZQZatrudnieni.ReadOnly    := not DM.uprawnienia[15];  // zatrudnienie; prawo do edycji notatki
 
@@ -733,6 +736,16 @@ begin
      DM.KomunikatPopUp(Sender, 'Koszyk', 'Dodano osadzonego do koszyka.', nots_Info);
 end;
 
+procedure TZatrudnieni.btnZmienOpisStanowiskaClick(Sender: TObject);
+begin
+  with TZatAddStanowiskaPokrewne.Create(Self) do
+      begin
+        EditStanowiskaPokrewne( ZQZatrudnieni.FieldByName('Stanowisko').AsString );
+        ShowModal;
+        Free;
+      end;
+end;
+
 procedure TZatrudnieni.cbZatNaDzienChange(Sender: TObject);
 begin
   DisableNewSelect:= true;  // wyłączamy działeanie kontrolek NewSelect;
@@ -929,7 +942,10 @@ begin
 end;
 
 procedure TZatrudnieni.lblSkierowanieNaBadaniaClick(Sender: TObject);
+var StanowiskaPokrewne: string;
 begin
+  StanowiskaPokrewne:= GetStanowiskaPokrewne(ZQZatrudnieni.FieldByName('Stanowisko').AsString);
+
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_SkierowanieBadania.lrf');
   DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
   case cbSkierowanie.ItemIndex of
@@ -937,6 +953,7 @@ begin
        1: SetMemoReportColor(frReport1,'memo_okresowe', clSilver );
        2: SetMemoReportColor(frReport1,'memo_kontrolne', clSilver );
   end;
+  DM.SetMemoReport(frReport1,'memo_pokrewne', StanowiskaPokrewne);
   frReport1.ShowReport;
 end;
 
@@ -1088,6 +1105,34 @@ begin
      begin
        p_memo.FillColor:= bkcolor;
      end;
+end;
+
+function TZatrudnieni.GetStanowiskaPokrewne(Stanowisko: string): string;
+var ZQPom: TZQueryPom;
+begin
+  Result:= '---'; // brak stanowisk pokrewnych
+  try
+    ZQPom:= TZQueryPom.Create(Self);
+    ZQPom.SQL.Text:= 'SELECT * FROM zat_stanowiska_pokrewne WHERE stanowisko=:stanowisko';
+    ZQPom.ParamByName('stanowisko').AsString:= Stanowisko;
+    ZQPom.Open;
+    if ZQPom.IsEmpty then
+       begin
+         if DM.uprawnienia[15] then // jeśli masz uprawnienia zatrudnienia to możesz dodać Stanowiska pokrewne.
+            with TZatAddStanowiskaPokrewne.Create(Self) do
+                begin
+                  AddStanowiskaPokrewne( Stanowisko );
+                  if ShowModal = mrOK then Result:= StanowiskaPokrewne;
+                  Free;
+                end;
+         exit;
+       end
+     else
+       Result:= ZQPom.FieldByName('pokrewne').AsString;
+
+  finally
+    FreeAndNil(ZQPom);
+  end;
 end;
 
 end.

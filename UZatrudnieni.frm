@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 368
+  Left = 115
   Height = 856
-  Top = 252
+  Top = 71
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -2498,7 +2498,7 @@ object Zatrudnieni: TZatrudnieni
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = cbSkierowanie
           AnchorSideTop.Side = asrCenter
-          Left = 333
+          Left = 347
           Height = 30
           Hint = 'Zmień opis stanowisk pokrewnych w skierowaniu na badania...'
           Top = 369
@@ -2506,6 +2506,7 @@ object Zatrudnieni: TZatrudnieni
           BorderSpacing.Left = 5
           Images = DM.ImageList1
           ImageIndex = 3
+          OnClick = btnZmienOpisStanowiskaClick
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
@@ -2517,7 +2518,7 @@ object Zatrudnieni: TZatrudnieni
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = lblSkierowanieNaBadania
           AnchorSideRight.Side = asrBottom
-          Left = 216
+          Left = 230
           Height = 23
           Top = 373
           Width = 112
@@ -2755,7 +2756,6 @@ object Zatrudnieni: TZatrudnieni
   object ZQZatrudnieni: TZQuery
     Connection = DM.ZConnection1
     UpdateObject = ZUZatrudnieni
-    Active = True
     SQL.Strings = (
       'SELECT '
       'zat.id, '

@@ -23,7 +23,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="19"/>
+      <BuildNr Value="20"/>
       <Language Value="0415"/>
       <StringTable CompanyName="ZK Kłodzko" LegalCopyright="Włodarczyk Jarosław" ProductVersion="0.0.0.0"/>
     </VersionInfo>
@@ -141,7 +141,7 @@
         <PackageName Value="adLCL"/>
       </Item31>
     </RequiredPackages>
-    <Units Count="59">
+    <Units Count="60">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -549,6 +549,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit58>
+      <Unit59>
+        <Filename Value="UZatAddStanowiskaPokrewne.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ZatAddStanowiskaPokrewne"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit59>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -60,8 +60,8 @@ type
 
   end;
 
-var
-  PenitNeoNetTest: TPenitNeoNetTest;
+//var
+//  PenitNeoNetTest: TPenitNeoNetTest;
 
 implementation
 uses UKomunikatorNowaWiad;
