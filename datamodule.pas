@@ -408,6 +408,11 @@ begin
   ZQKoszyk_sl.ParamByName('user').AsString:= login;
   ZQKoszyk_sl.Open;
   ZQKoszyk.Open;
+
+  //TODO: tablica DataSet'ów uzupelniana dynamicznie w celu odtworzenia polaczenia.
+  //      for DS in DataSets do if Assign(DS) then DS.Open else DataSets(DS).Delete;
+  //      Procedure AddToAutoOpenTables(ADataSet: TDataSet);
+  //      DataSets: TList<TDataSet>
 end;
 
 procedure TDM.ObslugaBledu(Sender: TObject; e: exception);
