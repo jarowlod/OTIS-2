@@ -168,16 +168,16 @@
         <ResourceBaseClass Value="Form"/>
       </Unit3>
       <Unit4>
-        <Filename Value="UStanowiska.pas"/>
+        <Filename Value="UZatStanowiska.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Stanowiska"/>
+        <ComponentName Value="ZatStanowiska"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit4>
       <Unit5>
-        <Filename Value="UAddStanowiska.pas"/>
+        <Filename Value="UZatAddStanowiska.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="AddStanowiska"/>
+        <ComponentName Value="ZatAddStanowiska"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit5>
@@ -189,9 +189,9 @@
         <ResourceBaseClass Value="Form"/>
       </Unit6>
       <Unit7>
-        <Filename Value="UAddZatrudnienie.pas"/>
+        <Filename Value="UZatAddZatrudnienie.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="AddZatrudnienie"/>
+        <ComponentName Value="ZatAddZatrudnienie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit7>
@@ -343,9 +343,9 @@
         <ResourceBaseClass Value="Form"/>
       </Unit28>
       <Unit29>
-        <Filename Value="UStawkiPlac.pas"/>
+        <Filename Value="UZatStawkiPlac.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="StawkiPlac"/>
+        <ComponentName Value="ZatStawkiPlac"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit29>
@@ -553,6 +553,7 @@
         <Filename Value="UZatAddStanowiskaPokrewne.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatAddStanowiskaPokrewne"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit59>
     </Units>

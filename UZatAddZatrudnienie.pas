@@ -1,4 +1,4 @@
-unit UAddZatrudnienie;
+unit UZatAddZatrudnienie;
 
 {$mode objfpc}{$H+}
 
@@ -11,9 +11,9 @@ uses
 
 type
 
-  { TAddZatrudnienie }
+  { TZatAddZatrudnienie }
 
-  TAddZatrudnienie = class(TForm)
+  TZatAddZatrudnienie = class(TForm)
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
@@ -140,22 +140,22 @@ type
   end;
 
 var
-  AddZatrudnienie: TAddZatrudnienie;
+  ZatAddZatrudnienie: TZatAddZatrudnienie;
 
 implementation
-uses UOsadzeni, UStanowiska, DateUtils, UKomunikatorNowaWiad;
+uses UOsadzeni, UZatStanowiska, DateUtils, UKomunikatorNowaWiad;
 {$R *.frm}
 
-{ TAddZatrudnienie }
+{ TZatAddZatrudnienie }
 
 // ANULUJ
-procedure TAddZatrudnienie.BitBtn2Click(Sender: TObject);
+procedure TZatAddZatrudnienie.BitBtn2Click(Sender: TObject);
 begin
 // Close OnClose;
 end;
 
 // WYBIERZ OSADZONEGO
-procedure TAddZatrudnienie.BitBtn3Click(Sender: TObject);
+procedure TZatAddZatrudnienie.BitBtn3Click(Sender: TObject);
 var ido: integer;
 begin
   with TOsadzeni.Create(Application) do
@@ -170,10 +170,10 @@ begin
 end;
 
 // WYBIERZ STANOWISKO
-procedure TAddZatrudnienie.BitBtn4Click(Sender: TObject);
+procedure TZatAddZatrudnienie.BitBtn4Click(Sender: TObject);
 var id_stanowiska: integer;
 begin
-  with TStanowiska.Create(Application) do
+  with TZatStanowiska.Create(Application) do
   begin
     WybierzGrupe;
     if ShowModal = mrOK then
@@ -185,7 +185,7 @@ begin
   end;
 end;
 
-procedure TAddZatrudnienie.DBComboBox1Select(Sender: TObject);
+procedure TZatAddZatrudnienie.DBComboBox1Select(Sender: TObject);
 begin
   case ZQZat.FieldByName('status_zatrudnienia').AsString of
        sz_Oczekujacy : begin
@@ -233,13 +233,13 @@ begin
   end;
 end;
 
-procedure TAddZatrudnienie.DBDateTimePicker3EditingDone(Sender: TObject);
+procedure TZatAddZatrudnienie.DBDateTimePicker3EditingDone(Sender: TObject);
 begin
   if ZQZat.FieldByName('data_badania').IsNull then exit;
   ZQZat.FieldByName('data_nastepnego_badania').AsDateTime:= IncYear(ZQZat.FieldByName('data_badania').AsDateTime, 1);
 end;
 
-procedure TAddZatrudnienie.FormClose(Sender: TObject;
+procedure TZatAddZatrudnienie.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   ZQZat.Cancel;
@@ -247,7 +247,7 @@ begin
 end;
 
 //DODAJ
-procedure TAddZatrudnienie.BitBtn1Click(Sender: TObject);
+procedure TZatAddZatrudnienie.BitBtn1Click(Sender: TObject);
 begin
   if CzyNowe then
     begin
@@ -266,7 +266,7 @@ begin
     end;
 end;
 
-procedure TAddZatrudnienie.NoweZatrudnienie(ido: integer);
+procedure TZatAddZatrudnienie.NoweZatrudnienie(ido: integer);
 begin
   CzyNowe:= True;
   ZQZat.SQL.Text:='SELECT * FROM zat_zatrudnieni LIMIT 1;';
@@ -280,7 +280,7 @@ begin
   if SprawdzStatusZatrudnienia(ido) then WstawDaneOsadzonego(ido);
 end;
 
-procedure TAddZatrudnienie.NoweZatrudnienieStanowisko(id_stanowiska: integer);
+procedure TZatAddZatrudnienie.NoweZatrudnienieStanowisko(id_stanowiska: integer);
 begin
   CzyNowe:= True;
   ZQZat.SQL.Text:='SELECT * FROM zat_zatrudnieni LIMIT 1;';
@@ -295,7 +295,7 @@ begin
   WstawDaneStanowiska(id_stanowiska);
 end;
 
-procedure TAddZatrudnienie.ModyfikujZatrudnienie(edit_id: integer);
+procedure TZatAddZatrudnienie.ModyfikujZatrudnienie(edit_id: integer);
 begin
   CzyNowe:= False;
   BitBtn3.Enabled:= False;
@@ -310,7 +310,7 @@ begin
   WstawDaneStanowiska( ZQZat.FieldByName('id_stanowiska').AsInteger );
 end;
 
-procedure TAddZatrudnienie.WstawDaneOsadzonego(ido: integer);
+procedure TZatAddZatrudnienie.WstawDaneOsadzonego(ido: integer);
 var ZQPom: TZQueryPom;
 begin
   DM.ZQTemp.SQL.Text:='SELECT * FROM osadzeni WHERE ido= :ido;';
@@ -353,7 +353,7 @@ begin
   CzyZapisac;
 end;
 
-procedure TAddZatrudnienie.WstawDaneStanowiska(id_stanowiska: integer);
+procedure TZatAddZatrudnienie.WstawDaneStanowiska(id_stanowiska: integer);
 begin
   DM.ZQTemp.SQL.Text:='SELECT * FROM zat_stanowiska WHERE id= :id;';
   DM.ZQTemp.ParamByName('id').AsInteger:= id_stanowiska;
@@ -381,7 +381,7 @@ begin
 end;
 
 // USUŃ wybrane stanowisko
-procedure TAddZatrudnienie.BitBtn5Click(Sender: TObject);
+procedure TZatAddZatrudnienie.BitBtn5Click(Sender: TObject);
 begin
   ZQZat.FieldByName('id_stanowiska').Value:= NULL;
   lblNazwa.Caption     := '(Brak)';
@@ -399,7 +399,7 @@ begin
 end;
 
 // Uzupełnij dane z poprzedniego zatrudnienia osadzonego.
-procedure TAddZatrudnienie.BitBtn6Click(Sender: TObject);
+procedure TZatAddZatrudnienie.BitBtn6Click(Sender: TObject);
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(self);
@@ -421,7 +421,7 @@ begin
 end;
 
 // Uzupełnij dane z poprzedniego zatrudnienia osadzonego. Tylko daty badań.
-procedure TAddZatrudnienie.BitBtn8Click(Sender: TObject);
+procedure TZatAddZatrudnienie.BitBtn8Click(Sender: TObject);
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(self);
@@ -444,7 +444,7 @@ begin
 end;
 
 // True - dodaj osadzonego, false - nie dodawaj
-function TAddZatrudnienie.SprawdzStatusZatrudnienia(ido: integer): Boolean;
+function TZatAddZatrudnienie.SprawdzStatusZatrudnienia(ido: integer): Boolean;
 begin
   DM.ZQTemp.SQL.Text:='SELECT zat.id, zat.ido, zat.status_zatrudnienia, zat.data_dodania, zat.pobyt '+
                       //'IF(os.ido=zat.ido, "Aktualny", "Uprzedni")as pobyt '+ WYLICZY POBYT
@@ -493,7 +493,7 @@ begin
   end;
 end;
 
-procedure TAddZatrudnienie.CzyZapisac;
+procedure TZatAddZatrudnienie.CzyZapisac;
 begin
   //OK
   if ZQZat.FieldByName('ido').IsNull then
@@ -536,12 +536,12 @@ begin
   end;
 end;
 
-procedure TAddZatrudnienie.BitBtn7Click(Sender: TObject);
+procedure TZatAddZatrudnienie.BitBtn7Click(Sender: TObject);
 begin
   WyslijKomunikaty;
 end;
 
-procedure TAddZatrudnienie.WyslijKomunikaty;
+procedure TZatAddZatrudnienie.WyslijKomunikaty;
 var user_list: TStringList;
     temat, tresc: string;
     ZQPom: TZQueryPom;
@@ -585,7 +585,7 @@ end;
 {
 
 
-procedure TAddZatrudnienie.Button1Click(Sender: TObject);
+procedure TZatAddZatrudnienie.Button1Click(Sender: TObject);
 var i: integer;
   st: TStringList;
   s: string;
@@ -613,7 +613,7 @@ begin
   FreeAndNil(st);
 end;
 
-procedure TAddZatrudnienie.Button2Click(Sender: TObject);
+procedure TZatAddZatrudnienie.Button2Click(Sender: TObject);
 begin
   ZQZat.Close;
   ZQZat.SQL.Text:='SELECT * FROM zat_zatrudnieni LIMIT 1;';
@@ -648,7 +648,7 @@ begin
   if MemDataset1.FieldByName('MemDataset1Field18').AsString= 'NIE' then ZQZat.FieldByName('zawod_potwierdzony').AsString := '0';
 end;
 
-procedure TAddZatrudnienie.Button3Click(Sender: TObject);
+procedure TZatAddZatrudnienie.Button3Click(Sender: TObject);
 begin
   ZQZat.FieldByName('data_dodania').AsDateTime:= Now();
   ZQZat.FieldByName('user_dodania').Value:= DM.PelnaNazwa;

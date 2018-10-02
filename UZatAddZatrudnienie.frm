@@ -1,14 +1,14 @@
-object AddZatrudnienie: TAddZatrudnienie
-  Left = 396
+object ZatAddZatrudnienie: TZatAddZatrudnienie
+  Left = 440
   Height = 762
-  Top = 222
+  Top = 236
   Width = 931
   Caption = 'Zatrudnienie - Nowy'
   ClientHeight = 762
   ClientWidth = 931
   OnClose = FormClose
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object GroupBox2: TGroupBox
     Left = 0
     Height = 412

@@ -1,4 +1,4 @@
-unit UAddStanowiska;
+unit UZatAddStanowiska;
 
 {$mode objfpc}{$H+}
 
@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TAddStanowiska }
+  { TZatAddStanowiska }
 
-  TAddStanowiska = class(TForm)
+  TZatAddStanowiska = class(TForm)
     btnOK: TBitBtn;
     btnAnuluj: TBitBtn;
     DBComboBox1: TDBComboBox;
@@ -50,14 +50,14 @@ type
   end;
 
 var
-  AddStanowiska: TAddStanowiska;
+  ZatAddStanowiska: TZatAddStanowiska;
 
 implementation
 {$R *.frm}
 
-{ TAddStanowiska }
+{ TZatAddStanowiska }
 
-procedure TAddStanowiska.btnOKClick(Sender: TObject);
+procedure TZatAddStanowiska.btnOKClick(Sender: TObject);
 begin
   if CzyNowe then
     begin
@@ -86,7 +86,7 @@ begin
     end;
 end;
 
-procedure TAddStanowiska.btnAnulujClick(Sender: TObject);
+procedure TZatAddStanowiska.btnAnulujClick(Sender: TObject);
 begin
   ZQST.Cancel;
   ZQST.Close;
@@ -95,7 +95,7 @@ end;
 // Validacja wpisanej godziny
 // jeśli puste to zamień na null
 // sprawdzam zakres
-procedure TAddStanowiska.DBEdit3EditingDone(Sender: TObject);
+procedure TZatAddStanowiska.DBEdit3EditingDone(Sender: TObject);
 var s: string;
     g,m: integer;
 begin
@@ -114,7 +114,7 @@ begin
   TDBEdit(Sender).Field.Value:= s;
 end;
 
-procedure TAddStanowiska.NoweStanowisko;
+procedure TZatAddStanowiska.NoweStanowisko;
 begin
   CzyNowe:= True;
   RadioGroup1.Hide;
@@ -127,7 +127,7 @@ begin
   ZQST.Append;
 end;
 
-procedure TAddStanowiska.ModyfikujStanowisko(edit_id: integer);
+procedure TZatAddStanowiska.ModyfikujStanowisko(edit_id: integer);
 var status: integer;
 begin
   CzyNowe:= False;

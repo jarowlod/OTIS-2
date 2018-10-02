@@ -1,4 +1,4 @@
-unit UStanowiska;
+unit UZatStanowiska;
 
 {$mode objfpc}{$H+}
 
@@ -12,9 +12,9 @@ uses
 
 type
 
-  { TStanowiska }
+  { TZatStanowiska }
 
-  TStanowiska = class(TForm)
+  TZatStanowiska = class(TForm)
     BitBtn1: TBitBtn;
     BitBtn10: TBitBtn;
     BitBtn11: TBitBtn;
@@ -165,15 +165,15 @@ type
   end;
 
 var
-  Stanowiska: TStanowiska;
+  ZatStanowiska: TZatStanowiska;
 
 implementation
-uses UAddStanowiska, LR_DSet, UZatrudnienieGrafik, UAddZatrudnienie, UZatrudnieni, Clipbrd;
+uses UZatAddStanowiska, LR_DSet, UZatrudnienieGrafik, UZatAddZatrudnienie, UZatrudnieni, Clipbrd;
 {$R *.frm}
 
-{ TStanowiska }
+{ TZatStanowiska }
 
-procedure TStanowiska.FormCreate(Sender: TObject);
+procedure TZatStanowiska.FormCreate(Sender: TObject);
 begin
   BitBtn1.Enabled            := DM.uprawnienia[15];  // zatrudnienie
   BitBtn2.Enabled            := DM.uprawnienia[15];  // zatrudnienie
@@ -188,14 +188,14 @@ begin
 
   ZQZatrudnieni.ReadOnly     := not DM.uprawnienia[15];
 
-  NewSelect; // stanowiska open
+  NewSelect; // ZatStanowiska open
   ZQZatrudnieni.Open;
   ZQWycofani.Open;
   DateTimePicker2.Date:= Date;
   PageControl1.TabIndex:= 0;
 end;
 
-procedure TStanowiska.NewSelect;
+procedure TZatStanowiska.NewSelect;
 var sstatus: char;
     snazwa: string;
 begin
@@ -229,19 +229,19 @@ begin
   ZQStanowiska.Open;
 end;
 
-procedure TStanowiska.RadioGroup1SelectionChanged(Sender: TObject);
+procedure TZatStanowiska.RadioGroup1SelectionChanged(Sender: TObject);
 begin
   NewSelect;
 end;
 
-procedure TStanowiska.RxDBGrid1DataHintShow(Sender: TObject; CursorPos: TPoint;
+procedure TZatStanowiska.RxDBGrid1DataHintShow(Sender: TObject; CursorPos: TPoint;
   Cell: TGridCoord; Column: TRxColumn; var HintStr: string;
   var Processed: boolean);
 begin
   Processed:= true;
 end;
 
-procedure TStanowiska.RxDBGrid2CellClick(Column: TColumn);
+procedure TZatStanowiska.RxDBGrid2CellClick(Column: TColumn);
 var bookmark: TBookMark;
 begin
   if Column.FieldName = 'drukuj' then
@@ -254,7 +254,7 @@ begin
   end;
 end;
 
-procedure TStanowiska.WydrukKartyPracy(file_name: string);
+procedure TZatStanowiska.WydrukKartyPracy(file_name: string);
 begin
   if RadioGroup2.ItemIndex = 1 then
   begin
@@ -272,7 +272,7 @@ begin
   frDBDataSet1.RangeEnd  := reLast;
 end;
 
-function TStanowiska.isZatrudnieniEmpty_byStanowisko(id_stanowisko: integer): Boolean;
+function TZatStanowiska.isZatrudnieniEmpty_byStanowisko(id_stanowisko: integer): Boolean;
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(Self);
@@ -286,7 +286,7 @@ begin
 end;
 
 // USUŃ STANOWISKO
-procedure TStanowiska.btnUsunStanowiskoClick(Sender: TObject);
+procedure TZatStanowiska.btnUsunStanowiskoClick(Sender: TObject);
 begin
   if IsDataSetEmpty(ZQStanowiska) then exit;
 
@@ -312,13 +312,13 @@ begin
     end;
 end;
 
-procedure TStanowiska.Edit1Change(Sender: TObject);
+procedure TZatStanowiska.Edit1Change(Sender: TObject);
 begin
   NewSelect;
 end;
 
 // DRUKUJ przepustka zbiorcza
-procedure TStanowiska.druk_przepustka_zbiorczaClick(Sender: TObject);
+procedure TZatStanowiska.druk_przepustka_zbiorczaClick(Sender: TObject);
 var tmp_SQL: string;
 begin
   // drukujemy tylko zaznaczonych do druku
@@ -347,7 +347,7 @@ begin
   ZQZatrudnieni.EnableControls;
 end;
 
-procedure TStanowiska.druk_przepustka_zbiorcza_AllClick(Sender: TObject);
+procedure TZatStanowiska.druk_przepustka_zbiorcza_AllClick(Sender: TObject);
 var tmp_SQL: string;
 begin
   if MessageDlg('Czy napewno wydrukować wszystkie grupy zewnętrzne?', mtInformation, [mbOK, mbCancel],0) = mrCancel then exit;
@@ -389,7 +389,7 @@ begin
 end;
 
 //DRUKUJ wykaz osadzonych
-procedure TStanowiska.druk_wykaz_osClick(Sender: TObject);
+procedure TZatStanowiska.druk_wykaz_osClick(Sender: TObject);
 var Nazwa_Grupy: string;
 begin
   with TZatrudnienieGrafik.Create(Self) do
@@ -402,7 +402,7 @@ begin
   end;
 end;
 
-procedure TStanowiska.MenuItemKartaZatrudnieniaClick(Sender: TObject);
+procedure TZatStanowiska.MenuItemKartaZatrudnieniaClick(Sender: TObject);
 begin
   with TZatrudnieni.Create(Self) do
   begin
@@ -412,41 +412,41 @@ begin
   end;
 end;
 
-procedure TStanowiska.druk_karta_pracy90Click(Sender: TObject);
+procedure TZatStanowiska.druk_karta_pracy90Click(Sender: TObject);
 begin
   WydrukKartyPracy('zat_karta_pracy90.lrf');
 end;
 
-procedure TStanowiska.druk_karta_pracyEtatClick(Sender: TObject);
+procedure TZatStanowiska.druk_karta_pracyEtatClick(Sender: TObject);
 begin
   WydrukKartyPracy('zat_karta_pracy_etat.lrf');
 end;
 
-procedure TStanowiska.druk_karta_pracyEtat_str1_Click(Sender: TObject);
+procedure TZatStanowiska.druk_karta_pracyEtat_str1_Click(Sender: TObject);
 begin
   WydrukKartyPracy('zat_karta_pracy_etat_str1.lrf');
 end;
 
-procedure TStanowiska.druk_karta_pracyOdplatnieClick(Sender: TObject);
+procedure TZatStanowiska.druk_karta_pracyOdplatnieClick(Sender: TObject);
 begin
   WydrukKartyPracy('zat_karta_pracy_odplatnie.lrf');
 end;
 
-procedure TStanowiska.druk_karta_pracyOdplatnie_str2_Click(Sender: TObject);
+procedure TZatStanowiska.druk_karta_pracyOdplatnie_str2_Click(Sender: TObject);
 begin
   WydrukKartyPracy('zat_karta_pracy_odplatnie_str2.lrf');
 end;
 
-procedure TStanowiska.druk_karta_pracyOdplatnie_str1_Click(Sender: TObject);
+procedure TZatStanowiska.druk_karta_pracyOdplatnie_str1_Click(Sender: TObject);
 begin
   WydrukKartyPracy('zat_karta_pracy_odplatnie_str1.lrf');
 end;
 
 // MODYFIKUJ OSADZONEGO
-procedure TStanowiska.BitBtn12Click(Sender: TObject);
+procedure TZatStanowiska.BitBtn12Click(Sender: TObject);
 begin
   if ZQZatrudnieni.IsEmpty then exit;
-  with TAddZatrudnienie.Create(Self) do
+  with TZatAddZatrudnienie.Create(Self) do
   begin
     ModyfikujZatrudnienie( ZQZatrudnieni.FieldByName('id').AsInteger );
     if ShowModal = mrOK then RefreshQuery(ZQZatrudnieni);
@@ -455,18 +455,18 @@ begin
 end;
 
 // USUŃ OSADZONEGO z bazy zatrudnionych
-procedure TStanowiska.BitBtn13Click(Sender: TObject);
+procedure TZatStanowiska.BitBtn13Click(Sender: TObject);
 begin
   if ZQZatrudnieni.IsEmpty then exit;
   if MessageDlg('Czy jesteś pewien aby usunąć osadzonego ?', mtWarning, [mbYes, mbNo],0) = mrYes then
      ZQZatrudnieni.Delete;
 end;
 
-// DODAJ osadzonego ??? do wybranego stanowiska
-procedure TStanowiska.BitBtn14Click(Sender: TObject);
+// DODAJ osadzonego ??? do wybranego ZatStanowiska
+procedure TZatStanowiska.BitBtn14Click(Sender: TObject);
 begin
   if ZQStanowiska.IsEmpty then exit;
-  with TAddZatrudnienie.Create(Self) do
+  with TZatAddZatrudnienie.Create(Self) do
   begin
     NoweZatrudnienieStanowisko( ZQStanowiska.FieldByName('id').AsInteger );
     if ShowModal = mrOK then RefreshQuery(ZQZatrudnieni);
@@ -474,7 +474,7 @@ begin
   end;
 end;
 
-procedure TStanowiska.btnWykazGrupClick(Sender: TObject);
+procedure TZatStanowiska.btnWykazGrupClick(Sender: TObject);
 begin
   //RxDBGrid1.DataSource:=nil;
   ZQZatrudnieni.DisableControls;
@@ -486,10 +486,10 @@ begin
   ZQZatrudnieni.EnableControls;
 end;
 
-procedure TStanowiska.BitBtn1Click(Sender: TObject);
+procedure TZatStanowiska.BitBtn1Click(Sender: TObject);
 begin
   //okno dodania grupy
-  with TAddStanowiska.Create(Self) do
+  with TZatAddStanowiska.Create(Self) do
   begin
     NoweStanowisko;
     if ShowModal = mrOK then RefreshQuery(ZQStanowiska);
@@ -497,11 +497,11 @@ begin
   end;
 end;
 
-procedure TStanowiska.BitBtn2Click(Sender: TObject);
+procedure TZatStanowiska.BitBtn2Click(Sender: TObject);
 begin
   //okno modyfikacji grupy
   if ZQStanowiska.IsEmpty then exit;
-  with TAddStanowiska.Create(Self) do
+  with TZatAddStanowiska.Create(Self) do
   begin
     ModyfikujStanowisko( ZQStanowiska.FieldByName('id').AsInteger );
     if ShowModal = mrOK then RefreshQuery(ZQStanowiska);
@@ -511,15 +511,15 @@ end;
 
 //=============== TRYB WYBORU GRUPY
 // OK
-procedure TStanowiska.BitBtn6Click(Sender: TObject);
+procedure TZatStanowiska.BitBtn6Click(Sender: TObject);
 begin
   if IsDataSetEmpty(ZQStanowiska) then Fid_stanowiska:=0
                                   else Fid_stanowiska:= ZQStanowiska.FieldByName('id').AsInteger;
 end;
 
-// Przygotowuje Forme do wyboru Stanowiska/Grupy - zmienia działanie formy na jako wyszukiwarka
+// Przygotowuje Forme do wyboru ZatStanowiska/Grupy - zmienia działanie formy na jako wyszukiwarka
 // ukrywa przycisk ZAMKNIJ i pokazuje OK i ANULUJ
-procedure TStanowiska.WybierzGrupe;
+procedure TZatStanowiska.WybierzGrupe;
 begin
   Fid_stanowiska:=0;
   BitBtn4.Enabled:= false;

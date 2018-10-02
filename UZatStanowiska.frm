@@ -1,7 +1,7 @@
-object Stanowiska: TStanowiska
-  Left = 394
+object ZatStanowiska: TZatStanowiska
+  Left = 440
   Height = 677
-  Top = 225
+  Top = 236
   Width = 1215
   Caption = 'Stanowiska / Grupy'
   ClientHeight = 677
@@ -9,7 +9,7 @@ object Stanowiska: TStanowiska
   Constraints.MinWidth = 850
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object Panel1: TPanel
     Left = 0
     Height = 52
@@ -340,6 +340,7 @@ object Stanowiska: TStanowiska
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -356,6 +357,7 @@ object Stanowiska: TStanowiska
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -377,6 +379,7 @@ object Stanowiska: TStanowiska
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -398,6 +401,7 @@ object Stanowiska: TStanowiska
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -952,6 +956,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -967,6 +972,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -984,6 +990,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -999,6 +1006,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1014,6 +1022,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1029,6 +1038,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1045,6 +1055,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1060,6 +1071,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1074,6 +1086,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1089,6 +1102,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1204,6 +1218,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1221,6 +1236,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1236,6 +1252,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1251,6 +1268,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1266,6 +1284,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1280,6 +1299,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1296,6 +1316,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1311,6 +1332,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1325,6 +1347,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -1340,6 +1363,7 @@ object Stanowiska: TStanowiska
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1

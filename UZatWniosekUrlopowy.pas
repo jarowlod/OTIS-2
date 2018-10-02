@@ -165,7 +165,7 @@ var
   ZatWniosekUrolopowy: TZatWniosekUrolopowy;
 
 implementation
-uses UStawkiPlac;
+uses UZatStawkiPlac;
 {$R *.frm}
 
 { TZatWniosekUrolopowy }
@@ -621,7 +621,7 @@ end;
 
 procedure TZatWniosekUrolopowy.btn_StawkiPlacClick(Sender: TObject);
 begin
-  with TStawkiPlac.Create(Self) do
+  with TZatStawkiPlac.Create(Self) do
   begin
     SetIDO(fIDO, fID);
     ShowModal;

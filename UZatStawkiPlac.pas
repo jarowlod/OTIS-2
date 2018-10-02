@@ -1,4 +1,4 @@
-unit UStawkiPlac;
+unit UZatStawkiPlac;
 
 {$mode objfpc}{$H+}
 
@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TStawkiPlac }
+  { TZatStawkiPlac }
 
-  TStawkiPlac = class(TForm)
+  TZatStawkiPlac = class(TForm)
     BitBtn1: TBitBtn;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
@@ -59,15 +59,15 @@ type
   end;
 
 var
-  StawkiPlac: TStawkiPlac;
+  ZatStawkiPlac: TZatStawkiPlac;
 
 implementation
 
 {$R *.frm}
 
-{ TStawkiPlac }
+{ TZatStawkiPlac }
 
-procedure TStawkiPlac.SetIDO(sIDO, sID: integer);
+procedure TZatStawkiPlac.SetIDO(sIDO, sID: integer);
 begin
   fIDO:= sIDO;
   fID := sID;
@@ -82,7 +82,7 @@ begin
   ZQStawkiPlac.Last;
 end;
 
-procedure TStawkiPlac.ZQStawkiPlacNewRecord(DataSet: TDataSet);
+procedure TZatStawkiPlac.ZQStawkiPlacNewRecord(DataSet: TDataSet);
 begin
   ZQStawkiPlac.FieldByName('rok').AsInteger:= YearOf( Date() );
   ZQStawkiPlac.FieldByName('nazwa_1').AsString:= '(184 godz.)'+LineEnding+'marzec';
@@ -92,14 +92,14 @@ begin
   ZQStawkiPlac.FieldByName('nazwa_5').AsString:= '(160 godz.)'+LineEnding+'luty, maj, listopad';
 end;
 
-procedure TStawkiPlac.BitBtn1Click(Sender: TObject);
+procedure TZatStawkiPlac.BitBtn1Click(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_StawkaZaszeregowania.lrf');
   DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
   frReport1.ShowReport;
 end;
 
-procedure TStawkiPlac.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+procedure TZatStawkiPlac.FormCloseQuery(Sender: TObject; var CanClose: boolean);
 begin
   if ZQStawkiPlac.State in [dsEdit, dsInsert] then
     if MessageDlg('Czy zapisać zmiany?', mtConfirmation, [mbYes, mbNo],0) = mrYes then

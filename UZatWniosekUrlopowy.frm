@@ -1,13 +1,13 @@
 object ZatWniosekUrolopowy: TZatWniosekUrolopowy
-  Left = 470
+  Left = 440
   Height = 609
-  Top = 231
+  Top = 236
   Width = 1079
   Caption = 'Wniosek Urolopowy'
   ClientHeight = 609
   ClientWidth = 1079
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object Panel1: TPanel
     Left = 0
     Height = 40
@@ -1108,13 +1108,10 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
               DisplayFormat = ',0.00 zł;-,0.00 zł'
               Font.Style = [fsBold]
               FloatFormat = ffCurrency
-              MaxValue = 0
-              MinValue = 0
               OnEditingDone = ed_stawka_wyliczeniowa3EditingDone
               ParentFont = False
               Round = True
               TabOrder = 0
-              Value = 0
             end
           end
           object lbl_msc4: TLabel
@@ -1156,11 +1153,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 48
             Width = 73
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz4EditingDone
             TabOrder = 3
-            Value = 0
           end
           object ed_stawka_godz5: TLSCurrencyEdit
             Left = 160
@@ -1168,11 +1162,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 72
             Width = 73
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz4EditingDone
             TabOrder = 4
-            Value = 0
           end
           object ed_stawka_godz6: TLSCurrencyEdit
             Left = 160
@@ -1180,11 +1171,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 96
             Width = 73
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz4EditingDone
             TabOrder = 5
-            Value = 0
           end
           object ed_wyplata3: TLSCurrencyEdit
             Left = 256
@@ -1194,11 +1182,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Color = clYellow
             DisplayFormat = ',0.00 zł;-,0.00 zł'
             Font.Style = [fsBold]
-            MaxValue = 0
-            MinValue = 0
             ParentFont = False
             TabOrder = 6
-            Value = 0
           end
           object ed_wyplata4: TLSCurrencyEdit
             Left = 256
@@ -1208,11 +1193,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Color = clYellow
             DisplayFormat = ',0.00 zł;-,0.00 zł'
             Font.Style = [fsBold]
-            MaxValue = 0
-            MinValue = 0
             ParentFont = False
             TabOrder = 7
-            Value = 0
           end
           object btn_StawkiPlac1: TBitBtn
             Left = 264
@@ -1266,11 +1248,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 48
             Width = 73
             DisplayFormat = ',0.00;-,0.00'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz4EditingDone
             TabOrder = 9
-            Value = 0
           end
           object ed_przepracowane_godz5: TLSCurrencyEdit
             Left = 256
@@ -1278,11 +1257,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 72
             Width = 73
             DisplayFormat = ',0.00;-,0.00'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz4EditingDone
             TabOrder = 10
-            Value = 0
           end
           object ed_przepracowane_godz6: TLSCurrencyEdit
             Left = 256
@@ -1290,11 +1266,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 96
             Width = 73
             DisplayFormat = ',0.00;-,0.00'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz4EditingDone
             TabOrder = 11
-            Value = 0
           end
         end
       end
@@ -1433,13 +1406,10 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
               DisplayFormat = ',0.00 zł;-,0.00 zł'
               Font.Style = [fsBold]
               FloatFormat = ffCurrency
-              MaxValue = 0
-              MinValue = 0
               OnEditingDone = ed_stawka_wyliczeniowaChange
               ParentFont = False
               Round = True
               TabOrder = 0
-              Value = 0
             end
           end
           object lbl_msc1: TLabel
@@ -1505,11 +1475,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 48
             Width = 73
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz1Change
             TabOrder = 3
-            Value = 0
           end
           object ed_stawka_godz2: TLSCurrencyEdit
             Left = 160
@@ -1517,11 +1484,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 72
             Width = 73
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz1Change
             TabOrder = 4
-            Value = 0
           end
           object ed_stawka_godz3: TLSCurrencyEdit
             Left = 160
@@ -1529,11 +1493,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 96
             Width = 73
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz1Change
             TabOrder = 5
-            Value = 0
           end
           object ed_stawka_za_msc1: TLSCurrencyEdit
             Left = 14
@@ -1541,11 +1502,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 216
             Width = 73
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_za_msc1EditingDone
             TabOrder = 6
-            Value = 0
           end
           object ed_stawka_za_msc2: TLSCurrencyEdit
             Left = 14
@@ -1553,11 +1511,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 240
             Width = 73
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_za_msc1EditingDone
             TabOrder = 7
-            Value = 0
           end
           object ed_stawka_wyliczeniowa1: TLSCurrencyEdit
             Left = 104
@@ -1565,11 +1520,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 216
             Width = 49
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_za_msc1EditingDone
             TabOrder = 8
-            Value = 0
           end
           object ed_stawka_wyliczeniowa2: TLSCurrencyEdit
             Left = 104
@@ -1577,11 +1529,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 240
             Width = 49
             DisplayFormat = ',0.00 zł;-,0.00 zł'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_za_msc1EditingDone
             TabOrder = 9
-            Value = 0
           end
           object ed_wyplata1: TLSCurrencyEdit
             Left = 256
@@ -1591,11 +1540,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Color = clYellow
             DisplayFormat = ',0.00 zł;-,0.00 zł'
             Font.Style = [fsBold]
-            MaxValue = 0
-            MinValue = 0
             ParentFont = False
             TabOrder = 10
-            Value = 0
           end
           object ed_wyplata2: TLSCurrencyEdit
             Left = 256
@@ -1605,11 +1551,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Color = clYellow
             DisplayFormat = ',0.00 zł;-,0.00 zł'
             Font.Style = [fsBold]
-            MaxValue = 0
-            MinValue = 0
             ParentFont = False
             TabOrder = 11
-            Value = 0
           end
           object btn_StawkiPlac: TBitBtn
             Left = 264
@@ -1695,11 +1638,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 48
             Width = 73
             DisplayFormat = ',0.00;-,0.00'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz1Change
             TabOrder = 13
-            Value = 0
           end
           object ed_przepracowane_godz2: TLSCurrencyEdit
             Left = 256
@@ -1707,11 +1647,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 72
             Width = 73
             DisplayFormat = ',0.00;-,0.00'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz1Change
             TabOrder = 14
-            Value = 0
           end
           object ed_przepracowane_godz3: TLSCurrencyEdit
             Left = 256
@@ -1719,11 +1656,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
             Top = 96
             Width = 73
             DisplayFormat = ',0.00;-,0.00'
-            MaxValue = 0
-            MinValue = 0
             OnEditingDone = ed_stawka_godz1Change
             TabOrder = 15
-            Value = 0
           end
         end
       end

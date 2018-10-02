@@ -1,4 +1,4 @@
-object AddStanowiska: TAddStanowiska
+object ZatAddStanowiska: TZatAddStanowiska
   Left = 440
   Height = 573
   Top = 236

@@ -326,11 +326,18 @@ type
     Procedure ShowZatrudnienieOsadzonego(ido: integer; nazwisko: string);
   end;
 
+  TBadania = (bd_wstepne, bd_okresowe, bd_kontrolne);
+  TStatusPobytu = (spAktualny, spUprzedni, spWszystkie);
+  TStatusZatrudnienia = (szZatrudniony, szWycofany, szOczekujacy, szWszystkie);
+
+  //const
+  //  statusy : array[TBadania] of string = ('wstepne', 'okresowe', 'kontrolne');
+
 //var
 //  Zatrudnieni: TZatrudnieni;
 
 implementation
-uses UAddZatrudnienie, Clipbrd, UZatZaswiadczenie, UZatWniosekUrlopowy, UStawkiPlac, LR_DSet, UZatAddStanowiskaPokrewne;
+uses UZatAddZatrudnienie, Clipbrd, UZatZaswiadczenie, UZatWniosekUrlopowy, UZatStawkiPlac, LR_DSet, UZatAddStanowiskaPokrewne;
 {$R *.frm}
 
 { TZatrudnieni }
@@ -381,10 +388,10 @@ begin
   ZQZatrudnieni.SQL.Text:= SQLZatrudnieni + ' WHERE';
 
   // STATUS POBYTU
-  case rgStatusPobytu.ItemIndex of
-       0: spobyt:= sp_Aktualny;
-       1: spobyt:= sp_Uprzedni;
-       2: spobyt:='%';
+  case TStatusPobytu(rgStatusPobytu.ItemIndex) of
+       spAktualny : spobyt:= sp_Aktualny;
+       spUprzedni : spobyt:= sp_Uprzedni;
+       spWszystkie: spobyt:='%';
   end;
   if spobyt<>'%' then
       begin
@@ -393,11 +400,11 @@ begin
       end;
 
   // STATUS ZATRUDNIENIA
-  case rgStatusZat.ItemIndex of
-       0: sstatus_zatrudnienia:= sz_Zatrudniony;
-       1: sstatus_zatrudnienia:= sz_Wycofany;
-       2: sstatus_zatrudnienia:= sz_Oczekujacy;
-       3: sstatus_zatrudnienia:= '%'; //wszystkie
+  case TStatusZatrudnienia(rgStatusZat.ItemIndex) of
+       szZatrudniony: sstatus_zatrudnienia:= sz_Zatrudniony;
+       szWycofany   : sstatus_zatrudnienia:= sz_Wycofany;
+       szOczekujacy : sstatus_zatrudnienia:= sz_Oczekujacy;
+       szWszystkie  : sstatus_zatrudnienia:= '%'; //wszystkie
   end;
   if sstatus_zatrudnienia<>'%' then
       begin
@@ -479,8 +486,11 @@ begin
      begin
        ZQZatrudnieni.SQL.Add(' HAVING new_pobyt <> pobyt');
      end;
+  try
+    ZQZatrudnieni.Open;
+  except
 
-  ZQZatrudnieni.Open;
+  end;
 end;
 
 procedure TZatrudnieni.rgStatusZatSelectionChanged(Sender: TObject);
@@ -618,8 +628,7 @@ begin
       begin
         DisableNewSelect:= true;  // wyłączamy działeanie kontrolek NewSelect;
 
-        rgStatusZat.ItemIndex   := 3;    // 0 Zatrudniony, 3 - wszystkie
-        rgStatusPobytu.ItemIndex:= 0;    // pobyty na aktualne
+        rgStatusPobytu.ItemIndex:= Ord(spAktualny);    // 0 pobyty na aktualne
 
         btnZapiszZmiany.Visible    := true;      // ZAPISZ
 
@@ -636,21 +645,21 @@ begin
                                cbZmianyPobytow.Checked := False; //Ubyli
                                lblPoprzedniePOC.Visible:= true;    // POC
                                DBPoprzedniePOC.Visible := true;   // POC
-                               rgStatusZat.ItemIndex   := 0;    // 0 Zatrudniony, 3 - wszystkie
+                               rgStatusZat.ItemIndex   := Ord(szZatrudniony);    // 0 Zatrudniony, 3 - wszystkie
                              end;
              'Klasyfikacji': begin
                                cbZmianyPOC.Checked        := False; //Celi
                                cbZmianyPobytow.Checked    := False; //Ubyli
                                lblPoprzedniaKlasyf.Visible:= true;   // Klasyf
                                DBPoprzedniaKlasyf.Visible := true;   // Klasyf
-                               rgStatusZat.ItemIndex   := 0;    // 0 Zatrudniony, 3 - wszystkie
+                               rgStatusZat.ItemIndex   := Ord(szZatrudniony);    // 0 Zatrudniony, 3 - wszystkie
                              end;
              'Ubyli':         begin
                                cbZmianyPOC.Checked     := False; //Celi
                                cbZmianyKlasyf.Checked  := False; //klasyfikacji
                                lblAktualnyPobyt.Visible:= true;   // pobyt
                                DBAktualnyPobyt.Visible := true;   // pobyt
-                               rgStatusZat.ItemIndex   := 3;    // 0 Zatrudniony, 3 - wszystkie
+                               rgStatusZat.ItemIndex   := Ord(szWszystkie);    // 0 Zatrudniony, 3 - wszystkie
                              end;
         end;
 
@@ -668,7 +677,7 @@ begin
         DBAktualnyPobyt.Visible    := false;
 
         btnZapiszZmiany.Visible    := false;
-        rgStatusZat.ItemIndex      := 0;    // 0 Zatrudniony, 3 - wszystkie
+        rgStatusZat.ItemIndex      := Ord(szZatrudniony);    // 0 Zatrudniony, 3 - wszystkie
 
         NewSelect;
       end;
@@ -789,7 +798,7 @@ end;
 // DODAJ OSADZONEGO DO ZATRUDNIENIA
 procedure TZatrudnieni.BitBtn1Click(Sender: TObject);
 begin
-  with TAddZatrudnienie.Create(Self) do
+  with TZatAddZatrudnienie.Create(Self) do
   begin
     if (ShowOsIDO>0) and (ZQZatrudnieni.IsEmpty) then
        NoweZatrudnienie(ShowOsIDO)
@@ -805,7 +814,7 @@ end;
 procedure TZatrudnieni.BitBtn2Click(Sender: TObject);
 begin
   if IsDataSetEmpty(ZQZatrudnieni) then exit;
-  with TAddZatrudnienie.Create(Self) do
+  with TZatAddZatrudnienie.Create(Self) do
   begin
     ModyfikujZatrudnienie( ZQZatrudnieni.FieldByName('id').AsInteger );
     if ShowModal = mrOK then RefreshQuery(ZQZatrudnieni);
@@ -851,8 +860,8 @@ begin
   ZQZatrudnieni.Open;
 
   Edit1.Text:= nazwisko;
-  rgStatusZat.ItemIndex:= 3;   //select status all
-  rgStatusPobytu.ItemIndex:= 2;   //select pobyt all
+  rgStatusZat.ItemIndex   := Ord(szWszystkie);   //select status all
+  rgStatusPobytu.ItemIndex:= Ord(spWszystkie);   //select pobyt all
   DisableNewSelect:= false;
 end;
 
@@ -948,10 +957,10 @@ begin
 
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_SkierowanieBadania.lrf');
   DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
-  case cbSkierowanie.ItemIndex of
-       0: SetMemoReportColor(frReport1,'memo_wstepne', clSilver );
-       1: SetMemoReportColor(frReport1,'memo_okresowe', clSilver );
-       2: SetMemoReportColor(frReport1,'memo_kontrolne', clSilver );
+  case TBadania(cbSkierowanie.ItemIndex) of
+       bd_wstepne  : SetMemoReportColor(frReport1,'memo_wstepne', clSilver );
+       bd_okresowe : SetMemoReportColor(frReport1,'memo_okresowe', clSilver );
+       bd_kontrolne: SetMemoReportColor(frReport1,'memo_kontrolne', clSilver );
   end;
   DM.SetMemoReport(frReport1,'memo_pokrewne', StanowiskaPokrewne);
   frReport1.ShowReport;
@@ -968,7 +977,7 @@ procedure TZatrudnieni.lblStawkaClick(Sender: TObject);
 begin
   if ZQZatrudnieni.IsEmpty then exit;
 
-  with TStawkiPlac.Create(Self) do
+  with TZatStawkiPlac.Create(Self) do
   begin
     SetIDO(ZQZatrudnieniido.AsInteger, ZQZatrudnieniid.AsInteger);
     ShowModal;

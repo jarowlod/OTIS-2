@@ -1,13 +1,13 @@
-object StawkiPlac: TStawkiPlac
-  Left = 470
+object ZatStawkiPlac: TZatStawkiPlac
+  Left = 440
   Height = 332
-  Top = 231
+  Top = 236
   Width = 828
   Caption = 'Wyciąg z decyzji w sprawie stawki zaszeregowania.'
   ClientHeight = 332
   ClientWidth = 828
   OnCloseQuery = FormCloseQuery
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object Panel1: TPanel
     Left = 0
     Height = 40
@@ -111,6 +111,7 @@ object StawkiPlac: TStawkiPlac
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -396,8 +397,6 @@ object StawkiPlac: TStawkiPlac
       DisplayFormat = '# ### ##0.00'
       EditFormat = '###0.00'
       Currency = True
-      MaxValue = 0
-      MinValue = 0
       Precision = 7
     end
     object ZQStawkiPlacnazwa_2: TStringField
@@ -421,8 +420,6 @@ object StawkiPlac: TStawkiPlac
       DisplayFormat = '# ### ##0.00'
       EditFormat = '###0.00'
       Currency = True
-      MaxValue = 0
-      MinValue = 0
       Precision = 7
     end
     object ZQStawkiPlacnazwa_3: TStringField
@@ -446,8 +443,6 @@ object StawkiPlac: TStawkiPlac
       DisplayFormat = '# ### ##0.00'
       EditFormat = '###0.00'
       Currency = True
-      MaxValue = 0
-      MinValue = 0
       Precision = 7
     end
     object ZQStawkiPlacnazwa_4: TStringField
@@ -471,8 +466,6 @@ object StawkiPlac: TStawkiPlac
       DisplayFormat = '# ### ##0.00'
       EditFormat = '###0.00'
       Currency = True
-      MaxValue = 0
-      MinValue = 0
       Precision = 7
     end
     object ZQStawkiPlacnazwa_5: TStringField
@@ -496,8 +489,6 @@ object StawkiPlac: TStawkiPlac
       DisplayFormat = '# ### ##0.00'
       EditFormat = '###0.00'
       Currency = True
-      MaxValue = 0
-      MinValue = 0
       Precision = 7
     end
   end
