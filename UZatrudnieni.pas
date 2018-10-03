@@ -286,6 +286,7 @@ type
     procedure Edit1Change(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure lblAktaRejestrClick(Sender: TObject);
     procedure lblAktaZatrudnienioweClick(Sender: TObject);
     procedure lblDaneOsadzonegoClick(Sender: TObject);
@@ -371,6 +372,13 @@ begin
   PageControl2.TabIndex:= 0;
 
   btnDodajDoKoszyka.Hint:= 'Dodaj osadzonego do koszyka: '+ DM.ZQKoszyk_sl.FieldByName('nazwa').AsString;
+
+  DM.DataSetArray.AddDataSet(ZQZatrudnieni);
+end;
+
+procedure TZatrudnieni.FormDestroy(Sender: TObject);
+begin
+  DM.DataSetArray.RemoveNullDataSet;
 end;
 
 procedure TZatrudnieni.NewSelect;
@@ -486,10 +494,12 @@ begin
      begin
        ZQZatrudnieni.SQL.Add(' HAVING new_pobyt <> pobyt');
      end;
+
   try
     ZQZatrudnieni.Open;
   except
-
+    ShowMessage('Połączenie zostało zerwane. Zaloguj się ponownie. (Zat001)');
+    DM.Zaloguj;
   end;
 end;
 

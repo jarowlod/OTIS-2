@@ -13,6 +13,16 @@ uses
 type
   TNotifierPopUpStyle = (nots_Info, nots_Warning, nots_Clear);
 
+  { TDataSetArray }
+
+  TDataSetArray = class(TList)
+    private
+    public
+      procedure RemoveNullDataSet;
+      function AddDataSet(Item: TDataSet): integer;
+      procedure OpenAllDataSet;
+  end;
+
   { TDM }
 
   TDM = class(TDataModule)
@@ -33,6 +43,7 @@ type
   public
     { public declarations }
     KomunikatyPopUp: TNotifierPopUp;  // znikające komunikaty
+    DataSetArray   : TDataSetArray;   // Lista otwartych ZQuery - auto reconnect
 
     fStatusList : TStringList;     // statusy transportowe
     Path_Update : string;
@@ -97,6 +108,7 @@ type
 
     function DodajDoKoszyka(vIDO: integer): Boolean;
     Procedure KomunikatPopUp(Sender: TObject; ATitle, AText: string; Style: TNotifierPopUpStyle);
+    procedure Zaloguj;
   end;
 
   TZQueryPom = class(TZQuery)
@@ -159,7 +171,6 @@ type
       destructor Destroy; override;
   end;
 
-
 var
   DM: TDM;
 
@@ -185,8 +196,28 @@ const
 // END ETAPY WIDZENIA
 
 implementation
-uses strutils, UKoszykNowy;
+uses strutils, UKoszykNowy, UMasterForm, ULogowanie;
 {$R *.frm}
+
+{ TDataSetArray }
+
+function TDataSetArray.AddDataSet(Item: TDataSet): integer;
+begin
+  Result:= Add(Item);
+end;
+
+procedure TDataSetArray.RemoveNullDataSet;
+begin
+  Clear;
+end;
+
+procedure TDataSetArray.OpenAllDataSet;
+var
+  i: Integer;
+begin
+  for i:=0 to Count-1 do
+    if Assigned(Items[i]) then TDataSet(Items[i]).Open;
+end;
 
 { TDM }
 
@@ -232,6 +263,7 @@ begin
                     'ZTRX | CZYNNOŚĆ ZAKOŃCZONA - TRANSPORT ZREALIZOWANY';
 
   KomunikatyPopUp:= TNotifierPopUp.Create(Application);
+  DataSetArray   := TDataSetArray.Create;
 end;
 
 procedure TDM.DataModuleDestroy(Sender: TObject);
@@ -239,6 +271,7 @@ begin
   ZConnection1.Disconnect;
   fStatusList.Free;
   KomunikatyPopUp.Free;
+  DataSetArray.Free;
 end;
 
 function TDM.VersionStringToNumber(AVersionString: string): integer;
@@ -413,6 +446,7 @@ begin
   //      for DS in DataSets do if Assign(DS) then DS.Open else DataSets(DS).Delete;
   //      Procedure AddToAutoOpenTables(ADataSet: TDataSet);
   //      DataSets: TList<TDataSet>
+  DataSetArray.OpenAllDataSet;
 end;
 
 procedure TDM.ObslugaBledu(Sender: TObject; e: exception);
@@ -635,6 +669,22 @@ begin
 
   //TForm(Sender).SetFocus;
   FreeAndNil(img);
+end;
+
+procedure TDM.Zaloguj;
+begin
+  autologin:= false;
+  try
+    Logowanie:= TLogowanie.Create(Self);  // uruchamiamy dostęp do bazy (login i hasło)
+    if Logowanie.ShowModal= mrOK then
+          OpenAllTable
+       else
+          Application.Terminate;
+
+    MasterForm.RefreshUprawnienia;
+  finally
+    FreeAndNil(Logowanie);
+  end;
 end;
 
 //------------------------------------------------------------------------

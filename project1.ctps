@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="151">
+    <Units Count="152">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -18,9 +18,10 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="710"/>
-        <CursorPos X="12" Y="727"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="218"/>
+        <CursorPos X="57" Y="235"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -31,10 +32,9 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="388"/>
-        <CursorPos X="61" Y="414"/>
+        <TopLine Value="203"/>
+        <CursorPos X="55" Y="227"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -78,9 +78,9 @@
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="963"/>
-        <CursorPos X="12" Y="980"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="258"/>
+        <CursorPos Y="274"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -156,7 +156,7 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="39"/>
         <CursorPos X="58" Y="25"/>
         <UsageCount Value="201"/>
@@ -169,7 +169,7 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="67"/>
         <CursorPos X="46" Y="408"/>
         <UsageCount Value="200"/>
@@ -267,9 +267,9 @@
         <ComponentName Value="OknoKomunikatu"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="90"/>
-        <CursorPos X="2" Y="189"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="143"/>
+        <CursorPos X="8" Y="170"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -450,10 +450,12 @@
         <ComponentName Value="Koszyk"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="87"/>
         <CursorPos X="65" Y="96"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit40>
       <Unit41>
         <Filename Value="UOchAddOsobeWidzenie.pas"/>
@@ -602,10 +604,10 @@
         <ComponentName Value="KnowHow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="80"/>
         <CursorPos X="31" Y="99"/>
-        <UsageCount Value="184"/>
+        <UsageCount Value="188"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit54>
@@ -628,7 +630,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="8"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="131"/>
       </Unit56>
       <Unit57>
         <Filename Value="UNotifierPopUp.pas"/>
@@ -636,7 +638,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="372"/>
         <CursorPos X="22" Y="80"/>
-        <UsageCount Value="123"/>
+        <UsageCount Value="127"/>
       </Unit57>
       <Unit58>
         <Filename Value="UPenitNeoNetTest.pas"/>
@@ -644,10 +646,10 @@
         <ComponentName Value="PenitNeoNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="35"/>
         <CursorPos Y="63"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="69"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit58>
@@ -660,7 +662,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="45"/>
         <CursorPos X="60" Y="73"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="34"/>
       </Unit59>
       <Unit60>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\dbc\ZDbcIntfs.pas"/>
@@ -947,9 +949,9 @@
       <Unit100>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1667"/>
-        <CursorPos X="15" Y="1683"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="309"/>
+        <CursorPos X="15" Y="326"/>
+        <UsageCount Value="11"/>
       </Unit100>
       <Unit101>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\stringl.inc"/>
@@ -1101,14 +1103,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="52" Y="22"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit122>
       <Unit123>
         <Filename Value="C:\codetyphon\typhon\components\pl_BGRAcontrols\source\bgracustomdrawn.pas"/>
         <UnitName Value="BGRACustomDrawn"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="956"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit123>
       <Unit124>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\dbc\ZDbcUtils.pas"/>
@@ -1303,104 +1305,87 @@
         <CursorPos X="63" Y="375"/>
         <UsageCount Value="10"/>
       </Unit150>
+      <Unit151>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\lists.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="731"/>
+        <CursorPos X="3" Y="734"/>
+        <UsageCount Value="11"/>
+      </Unit151>
     </Units>
-    <JumpHistory Count="24" HistoryIndex="23">
+    <JumpHistory Count="18" HistoryIndex="17">
       <Position1>
-        <Filename Value="UPenitNeoNetTest.pas"/>
-        <Caret Line="140" Column="3" TopLine="133"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="224" Column="7" TopLine="219"/>
       </Position1>
       <Position2>
         <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="357" Column="103" TopLine="335"/>
+        <Caret Line="498" Column="7" TopLine="481"/>
       </Position2>
       <Position3>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="319" Column="87" TopLine="294"/>
+        <Filename Value="UOknoKomunikatu.pas"/>
+        <Caret Line="170" Column="8" TopLine="143"/>
       </Position3>
       <Position4>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="936" Column="67" TopLine="916"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="408" Column="46" TopLine="383"/>
       </Position4>
       <Position5>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="935" Column="35" TopLine="916"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="460" Column="62" TopLine="448"/>
       </Position5>
       <Position6>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="102" Column="5" TopLine="86"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="845" Column="73" TopLine="826"/>
       </Position6>
       <Position7>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="320" Column="16" TopLine="296"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="96" Column="21" TopLine="90"/>
       </Position7>
       <Position8>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="346" Column="54" TopLine="324"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="214" Column="24" TopLine="197"/>
       </Position8>
       <Position9>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="408" Column="46" TopLine="67"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="214" Column="29" TopLine="197"/>
       </Position9>
       <Position10>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="1120" Column="53" TopLine="1096"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="214" Column="54" TopLine="197"/>
       </Position10>
       <Position11>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="744" TopLine="727"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="209" Column="29" TopLine="197"/>
       </Position11>
       <Position12>
         <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="952" Column="13" TopLine="931"/>
+        <Caret Line="378" Column="48" TopLine="364"/>
       </Position12>
       <Position13>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="386" Column="8" TopLine="365"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="21" Column="35" TopLine="3"/>
       </Position13>
       <Position14>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="953" Column="12" TopLine="938"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="215" Column="12" TopLine="209"/>
       </Position14>
       <Position15>
         <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="386" Column="17" TopLine="381"/>
+        <Caret Line="772" TopLine="747"/>
       </Position15>
       <Position16>
         <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="628" Column="47" TopLine="613"/>
+        <Caret Line="771" TopLine="746"/>
       </Position16>
       <Position17>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="403" Column="12" TopLine="393"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="769" TopLine="746"/>
       </Position17>
       <Position18>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="224" Column="18" TopLine="196"/>
+        <Filename Value="UKoszyk.pas"/>
+        <Caret Line="96" Column="65" TopLine="87"/>
       </Position18>
-      <Position19>
-        <Filename Value="project1.ppr"/>
-        <Caret Line="29" Column="8"/>
-      </Position19>
-      <Position20>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="680" Column="57" TopLine="659"/>
-      </Position20>
-      <Position21>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="864" Column="46" TopLine="846"/>
-      </Position21>
-      <Position22>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="523" Column="5"/>
-      </Position22>
-      <Position23>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="817" Column="12" TopLine="802"/>
-      </Position23>
-      <Position24>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="85" Column="19" TopLine="72"/>
-      </Position24>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -1408,7 +1393,7 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
+    <BreakPoints Count="2">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -1416,6 +1401,13 @@
         <Source Value="UPenitTerminarz.pas"/>
         <Line Value="225"/>
       </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="UZatrudnieni.pas"/>
+        <Line Value="376"/>
+      </Item2>
     </BreakPoints>
     <Watches Count="2">
       <Item1>

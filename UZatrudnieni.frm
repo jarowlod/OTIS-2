@@ -1,12 +1,13 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 976
+  Left = 86
   Height = 856
-  Top = 624
+  Top = 85
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
   ClientWidth = 1359
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   Position = poOwnerFormCenter
   LCLVersion = '6.5'
   WindowState = wsMaximized

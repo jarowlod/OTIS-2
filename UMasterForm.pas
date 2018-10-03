@@ -221,7 +221,7 @@ type
     isExecuteSQL: boolean;
     Procedure WyborDomyslny;
     Procedure RefreshUprawnienia; // odswieża aktywność kontrolek względem uprawnień
-    Procedure Zaloguj;
+    //Procedure Zaloguj;
   end;
 
 var
@@ -232,7 +232,7 @@ const
   SQLSelectedOsadzeni = 'SELECT * FROM osadzeni WHERE (NAZWISKO LIKE :nazwisko) OR (POC LIKE :poc)';
 
 implementation
-uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, ULogowanie, UUprawnienia, UUpr_ZmianaHasla, URozmieszczenie,
+uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_ZmianaHasla, URozmieszczenie,
      UOchUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
@@ -397,21 +397,21 @@ end;
 //======================================================================================================================
 //--------------------------------END KOSZYK ---------------------------------------------------------------------------
 
-procedure TMasterForm.Zaloguj;
-begin
-  DM.autologin:= false;
-  try
-    Logowanie:= TLogowanie.Create(Self);  // uruchamiamy dostęp do bazy (login i hasło)
-    if Logowanie.ShowModal= mrOK then
-          DM.OpenAllTable
-       else
-          Application.Terminate;
-
-    RefreshUprawnienia;
-  finally
-    FreeAndNil(Logowanie);
-  end;
-end;
+//procedure TMasterForm.Zaloguj;
+//begin
+//  DM.autologin:= false;
+//  try
+//    Logowanie:= TLogowanie.Create(Self);  // uruchamiamy dostęp do bazy (login i hasło)
+//    if Logowanie.ShowModal= mrOK then
+//          DM.OpenAllTable
+//       else
+//          Application.Terminate;
+//
+//    RefreshUprawnienia;
+//  finally
+//    FreeAndNil(Logowanie);
+//  end;
+//end;
 
 procedure TMasterForm.MenuItem3Click(Sender: TObject);
 begin
@@ -461,7 +461,7 @@ begin
       isExecuteSQL := true;
     except
       ShowMessage('Połączenie zostało zerwane. Zaloguj się ponownie.');
-      Zaloguj;
+      DM.Zaloguj;
     end;
 end;
 
@@ -840,7 +840,7 @@ end;
 //wylogowanie i login od nowa
 procedure TMasterForm.MenuItem25Click(Sender: TObject);
 begin
-  Zaloguj;
+  DM.Zaloguj;
 end;
 
 

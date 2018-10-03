@@ -1,7 +1,7 @@
 object OknoKomunikatu: TOknoKomunikatu
-  Left = 388
+  Left = 440
   Height = 513
-  Top = 232
+  Top = 236
   Width = 827
   Caption = 'Masz wiadomość ...'
   ClientHeight = 513
@@ -55,6 +55,7 @@ object OknoKomunikatu: TOknoKomunikatu
       Background.Gradient2.EndColorOpacity = 255
       Background.Gradient2.ColorCorrection = True
       Background.Gradient2.GradientType = gtLinear
+      Background.Gradient2.Point2YPercent = 100
       Background.Gradient2.Sinus = False
       Background.Gradient1EndPercent = 100
       Background.Style = bbsGradient

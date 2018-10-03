@@ -157,7 +157,7 @@ begin
     ZQKomunikat.Open;
   except
     ShowMessage('Połączenie zostało zerwane. Zaloguj się ponownie. K001.');
-    MasterForm.Zaloguj;
+    DM.Zaloguj;
     ZQKomunikat.Open;
   end;
 // END STARE
@@ -167,7 +167,7 @@ begin
     ZQKomOdebrane.Open;
   except
     ShowMessage('Połączenie zostało zerwane. Zaloguj się ponownie. K002');
-    MasterForm.Zaloguj;
+    DM.Zaloguj;
     ZQKomOdebrane.Open;
   end;
 

@@ -22,7 +22,6 @@ object DM: TDM
       'codepage=utf8'
       'controls_cp=CP_UTF8'
     )
-    Connected = True
     SQLHourGlass = True
     HostName = '172.30.64.11'
     Port = 3306
@@ -31,7 +30,7 @@ object DM: TDM
     Password = 'molibden'
     Protocol = 'mysql'
     Left = 28
-    Top = 18
+    Top = 16
   end
   object ZQOsadzeni: TZQuery
     Connection = ZConnection1
