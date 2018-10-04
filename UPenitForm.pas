@@ -138,6 +138,10 @@ begin
   fViewUwagiOch:= TViewUwagiOch.Create(Self); //CreateParented//(TabSheet1.Handle);
   fViewUwagiOch.Parent:= TabSheetUwagi;
   fViewUwagiOch.Show;
+
+  DM.DataSetList.Add(ZQOs);
+  DM.DataSetList.Add(ZQOsInfo);
+  DM.DataSetList.Add(ZQOsNotatki);
 end;
 
 procedure TPenitForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -147,6 +151,10 @@ begin
   FreeAndNil(fViewUwagiOch);
   FreeAndNil(fViewWykazy);
   FreeAndNil(fViewZatrudnienie);
+
+  DM.DataSetList.Remove(ZQOs);
+  DM.DataSetList.Remove(ZQOsInfo);
+  DM.DataSetList.Remove(ZQOsNotatki);
 end;
 
 procedure TPenitForm.ZapiszZmiany;

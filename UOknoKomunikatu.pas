@@ -55,7 +55,6 @@ var
   OknoKomunikatu: TOknoKomunikatu;
 
 implementation
-uses UMasterForm;
 {$R *.frm}
 
 { TOknoKomunikatu }

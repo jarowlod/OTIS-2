@@ -13,13 +13,12 @@ uses
 type
   TNotifierPopUpStyle = (nots_Info, nots_Warning, nots_Clear);
 
-  { TDataSetArray }
+  //TFPGDataSetList = specialize TFPGList<TDataSet>;
+  { TDataSetList }
 
-  TDataSetArray = class(TList)
+  TDataSetList = class(TList)
     private
     public
-      procedure RemoveNullDataSet;
-      function AddDataSet(Item: TDataSet): integer;
       procedure OpenAllDataSet;
   end;
 
@@ -43,7 +42,7 @@ type
   public
     { public declarations }
     KomunikatyPopUp: TNotifierPopUp;  // znikające komunikaty
-    DataSetArray   : TDataSetArray;   // Lista otwartych ZQuery - auto reconnect
+    DataSetList   : TDataSetList;   // Lista otwartych ZQuery - auto reconnect
 
     fStatusList : TStringList;     // statusy transportowe
     Path_Update : string;
@@ -199,26 +198,6 @@ implementation
 uses strutils, UKoszykNowy, UMasterForm, ULogowanie;
 {$R *.frm}
 
-{ TDataSetArray }
-
-function TDataSetArray.AddDataSet(Item: TDataSet): integer;
-begin
-  Result:= Add(Item);
-end;
-
-procedure TDataSetArray.RemoveNullDataSet;
-begin
-  Clear;
-end;
-
-procedure TDataSetArray.OpenAllDataSet;
-var
-  i: Integer;
-begin
-  for i:=0 to Count-1 do
-    if Assigned(Items[i]) then TDataSet(Items[i]).Open;
-end;
-
 { TDM }
 
 procedure TDM.DataModuleCreate(Sender: TObject);
@@ -263,7 +242,7 @@ begin
                     'ZTRX | CZYNNOŚĆ ZAKOŃCZONA - TRANSPORT ZREALIZOWANY';
 
   KomunikatyPopUp:= TNotifierPopUp.Create(Application);
-  DataSetArray   := TDataSetArray.Create;
+  DataSetList    := TDataSetList.Create;
 end;
 
 procedure TDM.DataModuleDestroy(Sender: TObject);
@@ -271,7 +250,7 @@ begin
   ZConnection1.Disconnect;
   fStatusList.Free;
   KomunikatyPopUp.Free;
-  DataSetArray.Free;
+  DataSetList.Free;
 end;
 
 function TDM.VersionStringToNumber(AVersionString: string): integer;
@@ -446,7 +425,7 @@ begin
   //      for DS in DataSets do if Assign(DS) then DS.Open else DataSets(DS).Delete;
   //      Procedure AddToAutoOpenTables(ADataSet: TDataSet);
   //      DataSets: TList<TDataSet>
-  DataSetArray.OpenAllDataSet;
+  DataSetList.OpenAllDataSet;
 end;
 
 procedure TDM.ObslugaBledu(Sender: TObject; e: exception);
@@ -907,6 +886,24 @@ begin
   inherited Destroy;
 end;
 
+{ TDataSetList }
+
+procedure TDataSetList.OpenAllDataSet;
+var
+  i: Integer;
+begin
+  // otwiera DataSety lub gdy puste to je usuwa
+  //    ShowMessage( Count.ToString );
+  for i:=Count-1 downto 0 do
+  begin
+    try
+      TDataSet(Items[i]).Open;
+    except
+      // jeśli DataSet nie istnieje to usuń z listy
+      Delete(i);
+    end;
+  end;
+end;
 
 end.
 

@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
-  Left = 388
+  Left = 440
   Height = 795
-  Top = 232
+  Top = 236
   Width = 715
   Caption = 'Karta Penitencjarna'
   ClientHeight = 795

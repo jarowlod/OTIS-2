@@ -373,12 +373,12 @@ begin
 
   btnDodajDoKoszyka.Hint:= 'Dodaj osadzonego do koszyka: '+ DM.ZQKoszyk_sl.FieldByName('nazwa').AsString;
 
-  DM.DataSetArray.AddDataSet(ZQZatrudnieni);
+  DM.DataSetList.Add(ZQZatrudnieni);
 end;
 
 procedure TZatrudnieni.FormDestroy(Sender: TObject);
 begin
-  DM.DataSetArray.RemoveNullDataSet;
+  DM.DataSetList.Remove(ZQZatrudnieni); //RemoveAllDataSet;
 end;
 
 procedure TZatrudnieni.NewSelect;

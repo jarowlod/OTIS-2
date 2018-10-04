@@ -217,6 +217,10 @@ begin
 
   FirstShowTerminarz:= true;
   PageControl1.TabIndex:= 1;
+
+  // save DataSet to List
+  DM.DataSetList.Add(ZQKalendarz);
+  DM.DataSetList.Add(ZQTerminarz);
 end;
 
 procedure TPenitTerminarz.FormClose(Sender: TObject;
@@ -224,6 +228,10 @@ procedure TPenitTerminarz.FormClose(Sender: TObject;
 begin
   PanelOsInfo.Close;
   FreeAndNil(PanelOsInfo);
+
+  // remove DataSet from List
+  DM.DataSetList.Remove(ZQKalendarz);
+  DM.DataSetList.Remove(ZQTerminarz);
 end;
 
 procedure TPenitTerminarz.NewSelect;
