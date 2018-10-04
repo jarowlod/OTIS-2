@@ -32,7 +32,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="8" Y="906"/>
+        <TopLine Value="250"/>
+        <CursorPos X="22" Y="255"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -154,10 +155,9 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="131"/>
-        <CursorPos X="43" Y="139"/>
+        <TopLine Value="121"/>
+        <CursorPos X="65" Y="129"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -168,9 +168,10 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="201"/>
-        <CursorPos X="37" Y="223"/>
+        <TopLine Value="656"/>
+        <CursorPos X="26" Y="675"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1321,123 +1322,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="225" Column="16" TopLine="207"/>
+        <Caret Line="222" Column="64" TopLine="208"/>
       </Position1>
       <Position2>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="222" Column="64" TopLine="208"/>
+        <Caret Line="224" Column="25" TopLine="207"/>
       </Position2>
       <Position3>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="222" Column="64" TopLine="208"/>
+        <Caret Line="227" Column="24" TopLine="210"/>
       </Position3>
       <Position4>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="224" Column="25" TopLine="207"/>
+        <Caret Line="224" Column="27" TopLine="208"/>
       </Position4>
       <Position5>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="227" Column="24" TopLine="210"/>
-      </Position5>
-      <Position6>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="224" Column="27" TopLine="208"/>
-      </Position6>
-      <Position7>
         <Filename Value="UZatrudnieni.pas"/>
         <Caret Line="376" TopLine="365"/>
-      </Position7>
-      <Position8>
+      </Position5>
+      <Position6>
         <Filename Value="UZatrudnieni.pas"/>
         <Caret Line="378" TopLine="367"/>
+      </Position6>
+      <Position7>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="224" Column="51" TopLine="207"/>
+      </Position7>
+      <Position8>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="242" Column="39" TopLine="220"/>
       </Position8>
       <Position9>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="224" Column="51" TopLine="207"/>
+        <Caret Line="207" TopLine="202"/>
       </Position9>
       <Position10>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="242" Column="39" TopLine="220"/>
+        <Caret Line="48" Column="40" TopLine="31"/>
       </Position10>
       <Position11>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="207" TopLine="202"/>
+        <Caret Line="281" Column="20" TopLine="252"/>
       </Position11>
       <Position12>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="48" Column="40" TopLine="31"/>
+        <Caret Line="279" Column="8" TopLine="257"/>
       </Position12>
       <Position13>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="281" Column="20" TopLine="252"/>
+        <Caret Line="283" Column="14" TopLine="266"/>
       </Position13>
       <Position14>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="279" Column="8" TopLine="257"/>
+        <Caret Line="47" Column="5" TopLine="31"/>
       </Position14>
       <Position15>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="283" Column="14" TopLine="266"/>
+        <Caret Line="16" Column="41"/>
       </Position15>
       <Position16>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="47" Column="5" TopLine="31"/>
+        <Caret Line="16" Column="45"/>
       </Position16>
       <Position17>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="16" Column="41"/>
+        <Caret Line="91" Column="25" TopLine="74"/>
       </Position17>
       <Position18>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="16" Column="45"/>
+        <Caret Line="283" Column="26" TopLine="266"/>
       </Position18>
       <Position19>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="91" Column="25" TopLine="74"/>
+        <Caret Line="19" Column="15"/>
       </Position19>
       <Position20>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="283" Column="26" TopLine="266"/>
+        <Caret Line="208" Column="10" TopLine="190"/>
       </Position20>
       <Position21>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="19" Column="15"/>
+        <Caret Line="90" Column="5" TopLine="65"/>
       </Position21>
       <Position22>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="208" Column="10" TopLine="190"/>
+        <Caret Line="11" Column="26"/>
       </Position22>
       <Position23>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="90" Column="5" TopLine="65"/>
-      </Position23>
-      <Position24>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="11" Column="26"/>
-      </Position24>
-      <Position25>
         <Filename Value="UPenitForm.pas"/>
         <Caret Line="25" Column="58" TopLine="38"/>
-      </Position25>
-      <Position26>
+      </Position23>
+      <Position24>
         <Filename Value="UPenitForm.pas"/>
         <Caret Line="145" Column="3" TopLine="143"/>
+      </Position24>
+      <Position25>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="383" Column="65" TopLine="370"/>
+      </Position25>
+      <Position26>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="382" Column="65" TopLine="369"/>
       </Position26>
       <Position27>
         <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="383" Column="65" TopLine="370"/>
+        <Caret Line="768" TopLine="761"/>
       </Position27>
       <Position28>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="382" Column="65" TopLine="369"/>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="408" Column="46" TopLine="67"/>
       </Position28>
       <Position29>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="768" TopLine="761"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="912" Column="8" TopLine="878"/>
       </Position29>
       <Position30>
         <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="408" Column="46" TopLine="67"/>
+        <Caret Line="176" Column="22" TopLine="156"/>
       </Position30>
     </JumpHistory>
     <RunParams>
