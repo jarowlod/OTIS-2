@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 368
+  Left = 86
   Height = 743
-  Top = 364
+  Top = 85
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -94,16 +94,16 @@ object PenitTerminarz: TPenitTerminarz
     Height = 693
     Top = 50
     Width = 1182
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
-      ClientHeight = 935
-      ClientWidth = 1912
+      ClientHeight = 660
+      ClientWidth = 1174
       ImageIndex = 16
       OnShow = TabSheet1Show
       object YearPlanner1: TYearPlanner
@@ -164,8 +164,8 @@ object PenitTerminarz: TPenitTerminarz
         TabOrder = 1
         object RxDBGrid2: TRxDBGrid
           Left = 0
-          Height = 660
-          Top = 0
+          Height = 554
+          Top = 64
           Width = 371
           ColumnDefValues.BlobText = '(blob)'
           TitleButtons = True
@@ -343,6 +343,332 @@ object PenitTerminarz: TPenitTerminarz
           TitleFont.Pitch = fpVariable
           TitleFont.Quality = fqDraft
           TitleStyle = tsNative
+        end
+        object Panel6: TPanel
+          Left = 0
+          Height = 64
+          Top = 0
+          Width = 371
+          Align = alTop
+          BevelOuter = bvNone
+          BorderStyle = bsSingle
+          ClientHeight = 60
+          ClientWidth = 367
+          TabOrder = 1
+          object cbListTerminy: TCheckListBox
+            Left = 0
+            Height = 42
+            Top = 18
+            Width = 367
+            Align = alClient
+            BorderStyle = bsNone
+            Columns = 2
+            Items.Strings = (
+              'Termin Oceny'
+              'Termin WPZ'
+              'Termin Postpenitu'
+              'Termin Końca kary'
+            )
+            ItemHeight = 17
+            ItemIndex = 0
+            MultiSelect = True
+            OnClickCheck = cbListTerminyClickCheck
+            TabOrder = 0
+            Data = {
+              0400000001010101
+            }
+          end
+          object Label8: TLabel
+            Left = 0
+            Height = 18
+            Top = 0
+            Width = 367
+            Align = alTop
+            AutoSize = False
+            Caption = 'Rodzaj terminu:'
+            Color = 16767927
+            Layout = tlCenter
+            ParentColor = False
+            ParentFont = False
+            Transparent = False
+          end
+        end
+        object Panel7: TPanel
+          Left = 0
+          Height = 42
+          Top = 618
+          Width = 371
+          Align = alBottom
+          BevelOuter = bvNone
+          ClientHeight = 42
+          ClientWidth = 371
+          Color = clWhite
+          ParentColor = False
+          TabOrder = 2
+          object BCPanel1: TBCPanel
+            Left = 8
+            Height = 34
+            Top = 5
+            Width = 16
+            Background.Color = clBtnFace
+            Background.ColorOpacity = 255
+            Background.Gradient1.StartColor = 14540287
+            Background.Gradient1.StartColorOpacity = 255
+            Background.Gradient1.DrawMode = dmSet
+            Background.Gradient1.EndColor = clRed
+            Background.Gradient1.EndColorOpacity = 255
+            Background.Gradient1.ColorCorrection = False
+            Background.Gradient1.GradientType = gtLinear
+            Background.Gradient1.Point1XPercent = 100
+            Background.Gradient1.Sinus = False
+            Background.Gradient2.StartColor = clWhite
+            Background.Gradient2.StartColorOpacity = 255
+            Background.Gradient2.DrawMode = dmSet
+            Background.Gradient2.EndColor = clBlack
+            Background.Gradient2.EndColorOpacity = 255
+            Background.Gradient2.ColorCorrection = True
+            Background.Gradient2.GradientType = gtLinear
+            Background.Gradient2.Point2YPercent = 100
+            Background.Gradient2.Sinus = False
+            Background.Gradient1EndPercent = 100
+            Background.Style = bbsGradient
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BevelWidth = 1
+            Border.Color = clBlack
+            Border.ColorOpacity = 255
+            Border.LightColor = clWhite
+            Border.LightOpacity = 255
+            Border.LightWidth = 0
+            Border.Style = bboNone
+            Border.Width = 1
+            FontEx.Color = clDefault
+            FontEx.EndEllipsis = False
+            FontEx.FontQuality = fqSystemClearType
+            FontEx.Height = 0
+            FontEx.SingleLine = True
+            FontEx.Shadow = False
+            FontEx.ShadowColor = clBlack
+            FontEx.ShadowColorOpacity = 255
+            FontEx.ShadowRadius = 5
+            FontEx.ShadowOffsetX = 5
+            FontEx.ShadowOffsetY = 5
+            FontEx.Style = []
+            FontEx.TextAlignment = bcaCenter
+            FontEx.WordBreak = False
+            Rounding.RoundX = 1
+            Rounding.RoundY = 1
+            Rounding.RoundOptions = []
+            TabOrder = 0
+          end
+          object BCPanel2: TBCPanel
+            Left = 72
+            Height = 34
+            Top = 5
+            Width = 16
+            Background.Color = clBtnFace
+            Background.ColorOpacity = 255
+            Background.Gradient1.StartColor = 15794162
+            Background.Gradient1.StartColorOpacity = 255
+            Background.Gradient1.DrawMode = dmSet
+            Background.Gradient1.EndColor = 32026
+            Background.Gradient1.EndColorOpacity = 255
+            Background.Gradient1.ColorCorrection = False
+            Background.Gradient1.GradientType = gtLinear
+            Background.Gradient1.Point1XPercent = 100
+            Background.Gradient1.Sinus = False
+            Background.Gradient2.StartColor = clWhite
+            Background.Gradient2.StartColorOpacity = 255
+            Background.Gradient2.DrawMode = dmSet
+            Background.Gradient2.EndColor = clBlack
+            Background.Gradient2.EndColorOpacity = 255
+            Background.Gradient2.ColorCorrection = True
+            Background.Gradient2.GradientType = gtLinear
+            Background.Gradient2.Point2YPercent = 100
+            Background.Gradient2.Sinus = False
+            Background.Gradient1EndPercent = 100
+            Background.Style = bbsGradient
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BevelWidth = 1
+            Border.Color = clBlack
+            Border.ColorOpacity = 255
+            Border.LightColor = clWhite
+            Border.LightOpacity = 255
+            Border.LightWidth = 0
+            Border.Style = bboNone
+            Border.Width = 1
+            FontEx.Color = clDefault
+            FontEx.EndEllipsis = False
+            FontEx.FontQuality = fqSystemClearType
+            FontEx.Height = 0
+            FontEx.SingleLine = True
+            FontEx.Shadow = False
+            FontEx.ShadowColor = clBlack
+            FontEx.ShadowColorOpacity = 255
+            FontEx.ShadowRadius = 5
+            FontEx.ShadowOffsetX = 5
+            FontEx.ShadowOffsetY = 5
+            FontEx.Style = []
+            FontEx.TextAlignment = bcaCenter
+            FontEx.WordBreak = False
+            Rounding.RoundX = 1
+            Rounding.RoundY = 1
+            Rounding.RoundOptions = []
+            TabOrder = 1
+          end
+          object BCPanel3: TBCPanel
+            Left = 144
+            Height = 34
+            Top = 5
+            Width = 16
+            Background.Color = clBtnFace
+            Background.ColorOpacity = 255
+            Background.Gradient1.StartColor = 16770790
+            Background.Gradient1.StartColorOpacity = 255
+            Background.Gradient1.DrawMode = dmSet
+            Background.Gradient1.EndColor = clBlue
+            Background.Gradient1.EndColorOpacity = 255
+            Background.Gradient1.ColorCorrection = False
+            Background.Gradient1.GradientType = gtLinear
+            Background.Gradient1.Point1XPercent = 100
+            Background.Gradient1.Sinus = False
+            Background.Gradient2.StartColor = clWhite
+            Background.Gradient2.StartColorOpacity = 255
+            Background.Gradient2.DrawMode = dmSet
+            Background.Gradient2.EndColor = clBlack
+            Background.Gradient2.EndColorOpacity = 255
+            Background.Gradient2.ColorCorrection = True
+            Background.Gradient2.GradientType = gtLinear
+            Background.Gradient2.Point2YPercent = 100
+            Background.Gradient2.Sinus = False
+            Background.Gradient1EndPercent = 100
+            Background.Style = bbsGradient
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BevelWidth = 1
+            Border.Color = clBlack
+            Border.ColorOpacity = 255
+            Border.LightColor = clWhite
+            Border.LightOpacity = 255
+            Border.LightWidth = 0
+            Border.Style = bboNone
+            Border.Width = 1
+            FontEx.Color = clDefault
+            FontEx.EndEllipsis = False
+            FontEx.FontQuality = fqSystemClearType
+            FontEx.Height = 0
+            FontEx.SingleLine = True
+            FontEx.Shadow = False
+            FontEx.ShadowColor = clBlack
+            FontEx.ShadowColorOpacity = 255
+            FontEx.ShadowRadius = 5
+            FontEx.ShadowOffsetX = 5
+            FontEx.ShadowOffsetY = 5
+            FontEx.Style = []
+            FontEx.TextAlignment = bcaCenter
+            FontEx.WordBreak = False
+            Rounding.RoundX = 1
+            Rounding.RoundY = 1
+            Rounding.RoundOptions = []
+            TabOrder = 2
+          end
+          object BCPanel4: TBCPanel
+            Left = 224
+            Height = 34
+            Top = 5
+            Width = 16
+            Background.Color = clBtnFace
+            Background.ColorOpacity = 255
+            Background.Gradient1.StartColor = 16771828
+            Background.Gradient1.StartColorOpacity = 255
+            Background.Gradient1.DrawMode = dmSet
+            Background.Gradient1.EndColor = 13762665
+            Background.Gradient1.EndColorOpacity = 255
+            Background.Gradient1.ColorCorrection = False
+            Background.Gradient1.GradientType = gtLinear
+            Background.Gradient1.Point1XPercent = 100
+            Background.Gradient1.Sinus = False
+            Background.Gradient2.StartColor = clWhite
+            Background.Gradient2.StartColorOpacity = 255
+            Background.Gradient2.DrawMode = dmSet
+            Background.Gradient2.EndColor = clBlack
+            Background.Gradient2.EndColorOpacity = 255
+            Background.Gradient2.ColorCorrection = True
+            Background.Gradient2.GradientType = gtLinear
+            Background.Gradient2.Point2YPercent = 100
+            Background.Gradient2.Sinus = False
+            Background.Gradient1EndPercent = 100
+            Background.Style = bbsGradient
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BevelWidth = 1
+            Border.Color = clBlack
+            Border.ColorOpacity = 255
+            Border.LightColor = clWhite
+            Border.LightOpacity = 255
+            Border.LightWidth = 0
+            Border.Style = bboNone
+            Border.Width = 1
+            FontEx.Color = clDefault
+            FontEx.EndEllipsis = False
+            FontEx.FontQuality = fqSystemClearType
+            FontEx.Height = 0
+            FontEx.SingleLine = True
+            FontEx.Shadow = False
+            FontEx.ShadowColor = clBlack
+            FontEx.ShadowColorOpacity = 255
+            FontEx.ShadowRadius = 5
+            FontEx.ShadowOffsetX = 5
+            FontEx.ShadowOffsetY = 5
+            FontEx.Style = []
+            FontEx.TextAlignment = bcaCenter
+            FontEx.WordBreak = False
+            Rounding.RoundX = 1
+            Rounding.RoundY = 1
+            Rounding.RoundOptions = []
+            TabOrder = 3
+          end
+          object Oceny: TLabel
+            Left = 24
+            Height = 15
+            Top = 16
+            Width = 34
+            Caption = 'Oceny'
+            Font.Color = clRed
+            ParentColor = False
+            ParentFont = False
+          end
+          object Oceny1: TLabel
+            Left = 88
+            Height = 15
+            Top = 16
+            Width = 25
+            Caption = 'WPZ'
+            Font.Color = 32026
+            ParentColor = False
+            ParentFont = False
+          end
+          object Oceny2: TLabel
+            Left = 160
+            Height = 15
+            Top = 16
+            Width = 50
+            Caption = 'Postpenit'
+            Font.Color = clBlue
+            ParentColor = False
+            ParentFont = False
+          end
+          object Oceny3: TLabel
+            Left = 240
+            Height = 15
+            Top = 16
+            Width = 14
+            Caption = 'KK'
+            Font.Color = 13762665
+            ParentColor = False
+            ParentFont = False
+          end
         end
       end
       object Splitter2: TSplitter

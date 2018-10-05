@@ -6,16 +6,54 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, YearPlanner, rxdbgrid, Forms, Controls, Graphics,
-  Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, LR_DBSet,
-  LR_Class, db, ZDataset, DBGrids, Menus, dateutils, Clipbrd, Buttons,
-  rxdbutils, datamodule;
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, LR_DBSet, LR_Class, db,
+  ZDataset, DBGrids, Menus, dateutils, Clipbrd, Buttons, CheckLst, rxdbutils,
+  datamodule, BGRANeoButton, BGRASpeedButton, BCButtonFocus, BCButton, BCLabel,
+  BCPanel;
 
 type
+  { TTerminyEvent }
+
+  TTerminyEvent = class
+    fSumOcen     : integer;
+    fSumWPZ      : integer;
+    fSumPostpenit: integer;
+    fSumKK       : integer;
+  private
+  public
+    procedure DrawCell(TheCanvas: TCanvas; Rect: TRect);
+    procedure Clear;
+    procedure IncTermin(rodzaj: string);
+  published
+    property SumOcen     : integer read FSumOcen write fSumOcen default 0;
+    property SumWPZ      : integer read FSumWPZ write fSumWPZ default 0;
+    property SumPostpenit: integer read FSumPostpenit write fSumPostpenit default 0;
+    property SumKK       : integer read FSumKK write fSumKK default 0;
+  end;
+
+  { TTerminyEvents }
+
+  TTerminyEvents = class
+    fDaneTerminarza: array[1..12,1..31] of TTerminyEvent;
+  private
+    function GetDaneTerminarza(msc, day: integer): TTerminyEvent;
+    procedure SetDaneTerminarza(msc, day: integer; AValue: TTerminyEvent);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    procedure Clear;
+    property DaneTerminarza[msc, day: integer]: TTerminyEvent read GetDaneTerminarza write SetDaneTerminarza; default;
+  end;
 
   { TPenitTerminarz }
 
   TPenitTerminarz = class(TForm)
+    BCPanel1: TBCPanel;
+    BCPanel2: TBCPanel;
+    BCPanel3: TBCPanel;
+    BCPanel4: TBCPanel;
     cbWychowawcy: TComboBox;
+    cbListTerminy: TCheckListBox;
     DSTerminarz: TDataSource;
     DSKalendarz: TDataSource;
     Edit1: TEdit;
@@ -32,6 +70,8 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
+    Oceny: TLabel;
     lblGR: TLabel;
     lblZatrudnionych: TLabel;
     lblOs: TLabel;
@@ -58,12 +98,17 @@ type
     MenuItem9: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
     MenuWykazDoSchowkaKal: TMenuItem;
+    Oceny1: TLabel;
+    Oceny2: TLabel;
+    Oceny3: TLabel;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
     PopupMenuTerminy: TPopupMenu;
     PopupMenuKalendarz: TPopupMenu;
     RxDBGrid1: TRxDBGrid;
@@ -106,6 +151,7 @@ type
     ZQTerminarzzat_od: TDateField;
     ZQZatReport: TZQuery;
     procedure cbWychowawcyChange(Sender: TObject);
+    procedure cbListTerminyClickCheck(Sender: TObject);
     procedure DSTerminarzDataChange(Sender: TObject; Field: TField);
     procedure Edit1Change(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -158,13 +204,14 @@ type
                          odd: Boolean;
                        end;
 
-    DaneTerminarza : array[1..12,1..31] of
-                                        record
-                                          SumOcen: integer;
-                                          SumWPZ : integer;
-                                          SumPostpenit: integer;
-                                          SumKK  : integer;
-                                        end;
+    Terminy: TTerminyEvents;
+    //DaneTerminarza : array[1..12,1..31] of
+    //                                    record
+    //                                      SumOcen: integer;
+    //                                      SumWPZ : integer;
+    //                                      SumPostpenit: integer;
+    //                                      SumKK  : integer;
+    //                                    end;
     FirstShowTerminarz: Boolean; // jeżeli true to ustaw Date terminarza na bierzącą
     procedure StatusBarRefresh;
     procedure WczytajWakaty;
@@ -221,6 +268,8 @@ begin
   // save DataSet to List
   DM.DataSetList.Add(ZQKalendarz);
   DM.DataSetList.Add(ZQTerminarz);
+
+  Terminy:= TTerminyEvents.Create;
 end;
 
 procedure TPenitTerminarz.FormClose(Sender: TObject;
@@ -228,6 +277,7 @@ procedure TPenitTerminarz.FormClose(Sender: TObject;
 begin
   PanelOsInfo.Close;
   FreeAndNil(PanelOsInfo);
+  FreeAndNil(Terminy);
 
   // remove DataSet from List
   DM.DataSetList.Remove(ZQKalendarz);
@@ -426,6 +476,12 @@ begin
     end;
 end;
 
+procedure TPenitTerminarz.cbListTerminyClickCheck(Sender: TObject);
+begin
+  YearPlanner1.ClearCells;
+  WczytajDaneTerminarza;
+end;
+
 procedure TPenitTerminarz.StatusBarRefresh;
 var bookmark: TBookMark;
     s       : string;
@@ -569,79 +625,54 @@ end;
 //==================================================================
 //=================== TERMINARZ ====================================
 
-procedure TPenitTerminarz.MakeSQLTerminy(var ZQ: TZQuery; DataOd, DataDo: TDate
-  );
+procedure TPenitTerminarz.MakeSQLTerminy(var ZQ: TZQuery; DataOd, DataDo: TDate);
+var i: integer;
+
+procedure AddSelect(AValue: integer);
+begin
+  if ZQ.SQL.Text<>'' then ZQ.SQL.Text:= ZQ.SQL.Text+' UNION ALL '+#13;
+  case AValue of
+    0: ZQ.SQL.Text:= ZQ.SQL.Text
+                    +'SELECT o.IDO, o.NAZWISKO, o.IMIE, o.OJCIEC, o.POC, o.KLASYF, t.ID, t.Wychowawca,'
+                    +' i.toceny as Termin, "Ocena" as Rodzaj '
+                    +'FROM typ_cel t'
+                    +' Inner Join osadzeni o ON t.Wychowawca = :wych AND o.POC = t.POC '
+                    +' Inner Join os_info i ON i.IDO = o.IDO AND i.toceny BETWEEN :dataOd AND :dataDo ';
+    1: ZQ.SQL.Text:= ZQ.SQL.Text
+                    +'SELECT o.IDO, o.NAZWISKO, o.IMIE, o.OJCIEC, o.POC, o.KLASYF, t.ID, t.Wychowawca,'
+                    +' i.twpz as Termin, "WPZ" as Rodzaj '
+                    +'FROM typ_cel t'
+                    +' Inner Join osadzeni o ON t.Wychowawca = :wych AND o.POC = t.POC '
+                    +' Inner Join os_info i ON i.IDO = o.IDO AND wpz_stanowisko = 0 AND i.twpz BETWEEN :dataOd AND :dataDo ';
+    2: ZQ.SQL.Text:= ZQ.SQL.Text
+                    +'SELECT o.IDO, o.NAZWISKO, o.IMIE, o.OJCIEC, o.POC, o.KLASYF, t.ID, t.Wychowawca,'
+                    +' i.KoniecKary as Termin, "KK" as Rodzaj '
+                    +'FROM typ_cel t'
+                    +' Inner Join osadzeni o ON t.Wychowawca = :wych AND o.POC = t.POC '
+                    +' Inner Join os_info i ON i.IDO = o.IDO AND i.KoniecKary BETWEEN :dataOd AND :dataDo ';
+    3: ZQ.SQL.Text:= ZQ.SQL.Text
+                    +'SELECT o.IDO, o.NAZWISKO, o.IMIE, o.OJCIEC, o.POC, o.KLASYF, t.ID, t.Wychowawca,'
+                    +' i.tPostpenitu as Termin, "Postpenit" as Rodzaj '
+                    +'FROM typ_cel t'
+                    +' Inner Join osadzeni o ON t.Wychowawca = :wych AND o.POC = t.POC '
+                    +' Inner Join os_info i ON i.IDO = o.IDO AND postpenit_notatka = 0 AND i.tPostpenitu BETWEEN :dataOd AND :dataDo ';
+  end;
+end;
+
 begin
     ZQ.Close;
-        ZQ.SQL.Text:='SELECT'
-                    +' osadzeni.IDO, '
-                    +' osadzeni.NAZWISKO,'
-                    +' osadzeni.IMIE,'
-                    +' osadzeni.OJCIEC,'
-                    +' osadzeni.POC,'
-                    +' osadzeni.KLASYF,'
-                    +' typ_cel.ID,'
-                    +' typ_cel.Wychowawca,'
-                    +' os_info.toceny as Termin, '
-                    +' "Ocena" as Rodzaj '
-                    +'FROM'
-                    +' typ_cel'
-                    +' Inner Join osadzeni ON typ_cel.Wychowawca = :wych AND osadzeni.POC = typ_cel.POC '
-                    +' Inner Join os_info ON os_info.IDO = osadzeni.IDO AND os_info.toceny BETWEEN :dataOd AND :dataDo '
-          +' UNION ALL '+#13
-                    +'SELECT'
-                    +' osadzeni.IDO, '
-                    +' osadzeni.NAZWISKO,'
-                    +' osadzeni.IMIE,'
-                    +' osadzeni.OJCIEC,'
-                    +' osadzeni.POC,'
-                    +' osadzeni.KLASYF,'
-                    +' typ_cel.ID,'
-                    +' typ_cel.Wychowawca,'
-                    +' os_info.twpz as Termin, '
-                    +' "WPZ" as Rodzaj '
-                    +'FROM'
-                    +' typ_cel'
-                    +' Inner Join osadzeni ON typ_cel.Wychowawca = :wych AND osadzeni.POC = typ_cel.POC '
-                    +' Inner Join os_info ON os_info.IDO = osadzeni.IDO AND wpz_stanowisko = 0 AND os_info.twpz BETWEEN :dataOd AND :dataDo '
-          +' UNION ALL ' +#13
-                    +'SELECT'
-                    +' osadzeni.IDO, '
-                    +' osadzeni.NAZWISKO,'
-                    +' osadzeni.IMIE,'
-                    +' osadzeni.OJCIEC,'
-                    +' osadzeni.POC,'
-                    +' osadzeni.KLASYF,'
-                    +' typ_cel.ID,'
-                    +' typ_cel.Wychowawca,'
-                    +' os_info.KoniecKary as Termin, '
-                    +' "KK" as Rodzaj '
-                    +'FROM'
-                    +' typ_cel'
-                    +' Inner Join osadzeni ON typ_cel.Wychowawca = :wych AND osadzeni.POC = typ_cel.POC '
-                    +' Inner Join os_info ON os_info.IDO = osadzeni.IDO AND os_info.KoniecKary BETWEEN :dataOd AND :dataDo '
-          +' UNION ALL ' +#13
-                    +'SELECT'
-                    +' osadzeni.IDO, '
-                    +' osadzeni.NAZWISKO,'
-                    +' osadzeni.IMIE,'
-                    +' osadzeni.OJCIEC,'
-                    +' osadzeni.POC,'
-                    +' osadzeni.KLASYF,'
-                    +' typ_cel.ID,'
-                    +' typ_cel.Wychowawca,'
-                    +' os_info.tPostpenitu as Termin, '
-                    +' "Postpenit" as Rodzaj '
-                    +'FROM'
-                    +' typ_cel'
-                    +' Inner Join osadzeni ON typ_cel.Wychowawca = :wych AND osadzeni.POC = typ_cel.POC '
-                    +' Inner Join os_info ON os_info.IDO = osadzeni.IDO AND postpenit_notatka = 0 AND os_info.tPostpenitu BETWEEN :dataOd AND :dataDo '
-                    ;
+    ZQ.SQL.Text:= '';
 
+    for i:=0 to cbListTerminy.Count-1 do
+      if cbListTerminy.Checked[i] then AddSelect(i);
+
+   if ZQ.SQL.Text<>'' then
+     begin;
         ZQ.ParamByName('wych').AsString:= cbWychowawcy.Text;
         ZQ.ParamByName('dataOd').AsDate:= DataOd;
         ZQ.ParamByName('dataDo').AsDate:= DataDo;
-    ZQ.Open;
+        ZQ.Open;
+     end;
 end;
 
 procedure TPenitTerminarz.WczytajDaneTerminarza;
@@ -651,15 +682,7 @@ var ZQPom: TZQueryPom;
     pomData: TDate;
     //oc,kk, nr_img: integer;
 begin
-  for m:=1 to 12 do
-    for d:=1 to 31 do
-    begin
-      //czyszczenie całej tabeli danych do terminarza
-      DaneTerminarza[m][d].SumOcen:=0;
-      DaneTerminarza[m][d].SumWPZ:=0;
-      DaneTerminarza[m][d].SumPostpenit:=0;
-      DaneTerminarza[m][d].SumKK:=0;
-    end;
+  Terminy.Clear;
 
   ZQPom:= TZQueryPom.Create(Self);
 
@@ -672,10 +695,8 @@ begin
 
     m:= MonthOf( pomData );
     d:= DayOf( pomData );
-    if (rodzaj = 'Ocena')or(rodzaj = 'WPZ') then
-       Inc(DaneTerminarza[m][d].SumOcen)
-       else
-       Inc(DaneTerminarza[m][d].SumKK);
+
+    Terminy[m,d].IncTermin(rodzaj);
 
     ZQPom.Next;
   end;
@@ -719,51 +740,11 @@ end;
 
 procedure TPenitTerminarz.YearPlanner1DrawCell(Sender: TCustomControl;
   TheCanvas: TCanvas; Rect: TRect; CellData: TCellData; CellText: String);
-var x,h,h1: integer;
-    M,D: integer;
-    DesRect: TRect;
+var m,d: integer;
 begin
-  h:= Rect.Height - 12; // ustalam wysokość komórki
-  if h<=0 then h:=1;
-  x:= Rect.Width div 2;  // szerokosc słupka
-  M:= MonthOf( CellData.CellDate );
-  D:= DayOf( CellData.CellDate );
-
-  // rysujemy pierwszy słupek ocen i WPZ
-  if DaneTerminarza[M][D].SumOcen > 0 then
-    begin
-      h1:= round(h* DaneTerminarza[M][D].SumOcen / 8);  // 8 to jest 100% wysokości
-      if h1=0 then h1:=1; // minimalna wysokość to 1
-      if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
-
-      DesRect.Bottom:= Rect.Bottom;
-      DesRect.Left  := Rect.Left  + 1;
-      DesRect.Right := Rect.Left  + x+1;
-      DesRect.Top   := Rect.Bottom- h1;
-      //TheCanvas.FillRect( DesRect);
-      TheCanvas.GradientFill(DesRect, clRed,$00DDDDFF, gdHorizontal);
-      //TheCanvas.Pen.Color:= clSilver; // oceny
-      //TheCanvas.Brush.Style:= bsClear;
-      //TheCanvas.Rectangle(DesRect);
-    end;
-
-  // teraz drugi słupek z innymi terminami KK i pospenit
-  if DaneTerminarza[M][D].SumKK > 0 then
-    begin
-      h1:= Round(h* DaneTerminarza[M][D].SumKK / 8);  // 8 to jest 100% wysokości
-      if h1=0 then h1:=1; // minimalna wysokość to 1
-      if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
-
-      DesRect.Bottom:= Rect.Bottom;
-      DesRect.Left  := Rect.Left + x+1;
-      DesRect.Right := Rect.Right;
-      DesRect.Top   := Rect.Bottom- h1;
-      //TheCanvas.FillRect( DesRect);
-      TheCanvas.GradientFill(DesRect, clBlue,$00FFE6E6, gdHorizontal);
-      //TheCanvas.Pen.Color:= clSilver; // KK
-      //TheCanvas.Brush.Style:= bsClear;
-      //TheCanvas.Rectangle(DesRect);
-    end;
+  m:= MonthOf( CellData.CellDate );
+  d:= DayOf( CellData.CellDate );
+  Terminy[m,d].DrawCell(TheCanvas, Rect);
 end;
 
 procedure TPenitTerminarz.YearPlanner1SelectionEnd(Sender: TObject);
@@ -1027,6 +1008,111 @@ begin
     end;
 end;
 
+
+{ TTerminyEvent }
+
+procedure TTerminyEvent.DrawCell(TheCanvas: TCanvas; Rect: TRect);
+var h,h1,x: integer;
+    DesRect: TRect;
+    kol, ckol: integer;
+
+procedure DrawKolumn(AValue: integer; AStart, AStop: TColor);
+begin
+  //inc(ckol);   // kolumny wyświetlane na stałym miejscu
+  if AValue<=0 then exit;
+  inc(ckol); // kolumny wyświetlane po koleji
+
+  h1:= round(h* AValue / 8);  // 8 to jest 100% wysokości
+  if h1=0 then h1:=1; // minimalna wysokość to 1
+  if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
+
+  DesRect.Bottom:= Rect.Bottom;
+  DesRect.Left  := Rect.Left  + 1 + x*(ckol-1);
+  DesRect.Right := Rect.Left  + 1 + x*ckol;
+  DesRect.Top   := Rect.Bottom- h1;
+  if ckol=kol then DesRect.Right:= Rect.Right; // ostatnia kol równa do prawej krawędzi
+
+  TheCanvas.GradientFill(DesRect, AStart, AStop, gdHorizontal);
+end;
+
+begin
+  // ustalamy liczbę kolumn
+  kol:=0;
+  if SumOcen>0 then inc(kol);
+  if SumKK>0 then inc(kol);
+  if SumPostpenit>0 then inc(kol);
+  if SumWPZ>0 then inc(kol);
+  if kol=0 then exit; // nie ma co wyswietlac
+
+  //kol:=4; // ustalamy że kolumn ma być 4
+
+  h:= Rect.Height - 12;    // ustalamy max wysokość kolumny
+  if h<=0 then h:=1;
+  x:= Rect.Width div 4 {kol};  // szerokosc słupka
+
+    Rect.Left:= Rect.Left+ (x*4-x*kol)div 2; // wypośrodkowanie
+    kol:=4;
+
+  ckol:=0; // zerujemy licznik kolumny
+  DrawKolumn(SumOcen     , clRed    , $00DDDDFF);
+  DrawKolumn(SumWPZ      , $00007D1A, $00F0FFF2);
+  DrawKolumn(SumKK       , clBlue   , $00FFE6E6);
+  DrawKolumn(SumPostpenit, $00D20069, $00FFEAF4);
+end;
+
+procedure TTerminyEvent.Clear;
+begin
+  SumOcen     := 0;
+  SumWPZ      := 0;
+  SumPostpenit:= 0;
+  SumKK       := 0;
+end;
+
+procedure TTerminyEvent.IncTermin(rodzaj: string);
+begin
+  if (rodzaj = 'Ocena') then inc(fSumOcen) else
+   if (rodzaj = 'KK') then inc(fSumKK) else
+    if (rodzaj = 'Postpenit') then inc(fSumPostpenit) else
+     if (rodzaj = 'WPZ') then inc(fSumWPZ);
+end;
+
+{ TTerminyEvents }
+
+function TTerminyEvents.GetDaneTerminarza(msc, day: integer): TTerminyEvent;
+begin
+  Result:= fDaneTerminarza[msc, day];
+end;
+
+procedure TTerminyEvents.SetDaneTerminarza(msc, day: integer; AValue: TTerminyEvent);
+begin
+  fDaneTerminarza[msc, day]:= AValue
+end;
+
+constructor TTerminyEvents.Create;
+var
+  m, d: Integer;
+begin
+  for m:=1 to 12 do
+    for d:=1 to 31 do DaneTerminarza[m, d]:= TTerminyEvent.Create;
+  inherited Create;
+end;
+
+destructor TTerminyEvents.Destroy;
+var
+  m, d: Integer;
+begin
+  for m:=1 to 12 do
+    for d:=1 to 31 do DaneTerminarza[m, d].Free;
+  inherited Destroy;
+end;
+
+procedure TTerminyEvents.Clear;
+var
+  m, d: Integer;
+begin
+  for m:=1 to 12 do
+    for d:=1 to 31 do DaneTerminarza[m, d].Clear;
+end;
 
 end.
 
