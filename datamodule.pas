@@ -421,10 +421,7 @@ begin
   ZQKoszyk_sl.Open;
   ZQKoszyk.Open;
 
-  //TODO: tablica DataSet'ów uzupelniana dynamicznie w celu odtworzenia polaczenia.
-  //      for DS in DataSets do if Assign(DS) then DS.Open else DataSets(DS).Delete;
-  //      Procedure AddToAutoOpenTables(ADataSet: TDataSet);
-  //      DataSets: TList<TDataSet>
+  //tablica DataSet'ów uzupelniana dynamicznie w celu odtworzenia polaczenia.
   DataSetList.OpenAllDataSet;
 end;
 

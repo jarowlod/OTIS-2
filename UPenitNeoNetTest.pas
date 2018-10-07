@@ -146,40 +146,43 @@ begin
   ProgressBar1.Max     := Memo1.Lines.Count;
   ProgressBar1.Position:= 0;
   ProgressBar1.Visible := true;
-  while i<Memo1.Lines.Count do
-   begin
-     ProgressBar1.Position:= ProgressBar1.Max - Memo1.Lines.Count;
-     Application.ProcessMessages;  // nie zawieszamy programu
-     if Memo1.Lines.Strings[i]<>'' then
+
+  ZQPom.Connection.StartTransaction;
+  try
+    while i<Memo1.Lines.Count do
      begin
-      try
-       s:= Memo1.Lines.Strings[i];
-       p1:= Pos(' ',s);
-       n:= copy(s,1,p1-1);
-       if cbIDO_2Kolumna.Checked then //IDO w drugiej kolumnie
+       ProgressBar1.Position:= ProgressBar1.Max - Memo1.Lines.Count;
+       Application.ProcessMessages;  // nie zawieszamy programu
+       if Memo1.Lines.Strings[i]<>'' then
        begin
-         delete(s,1,p1);
+         s:= Memo1.Lines.Strings[i];
          p1:= Pos(' ',s);
          n:= copy(s,1,p1-1);
+         if cbIDO_2Kolumna.Checked then //IDO w drugiej kolumnie
+         begin
+           delete(s,1,p1);
+           p1:= Pos(' ',s);
+           n:= copy(s,1,p1-1);
+         end;
+         if TryStrToInt(n, ido) then //zapisz jeśli poprawne IDO
+         begin
+           ZQPom.ParamByName('user').AsString     := DM.PelnaNazwa;
+           ZQPom.ParamByName('ID_Sesji').AsInteger:= FID_Sesji;
+           ZQPom.ParamByName('IDO').AsInteger     := ido;
+           ZQPom.ParamByName('Opis').AsString     := cmbOpis.Text;
+           ZQPom.ExecSQL;
+         end;
+        Memo1.Lines.Delete(i);
        end;
-       if TryStrToInt(n, ido) then //zapisz jeśli poprawne IDO
-       begin
-         ZQPom.ParamByName('user').AsString     := DM.PelnaNazwa;
-         ZQPom.ParamByName('ID_Sesji').AsInteger:= FID_Sesji;
-         ZQPom.ParamByName('IDO').AsInteger     := ido;
-         ZQPom.ParamByName('Opis').AsString     := cmbOpis.Text;
-         ZQPom.ExecSQL;
-       end;
-      except
-        ShowMessage('Niewłaściwy format danych wejścionych (wiersz '+IntToStr(i+1)+'). Wklej dane z NoeNet.');
-        ProgressBar1.Visible:= false;
-        // TODO: zrobić transakcje izolowaną i cofnąć zmiany, obecnie tracimy w tym rozwiązaniu UPDATE który jest poniżej.
-        exit;
-      end;
-      Memo1.Lines.Delete(i);
      end;
-   end;
-  Memo1.Lines.Clear;
+    Memo1.Lines.Clear;
+  except
+    ShowMessage('Niewłaściwy format danych wejścionych (wiersz '+IntToStr(ProgressBar1.Position+1)+'). Wklej dane z NoeNet.');
+    ProgressBar1.Visible:= false;
+    ZQPom.Connection.Rollback;
+    exit;
+  end;
+  ZQPom.Connection.Commit;
 
   // UPDATE wykaz_bledow w celu uzupełnienia o kolejne dane
   ZQPom.SQL.Text:= 'UPDATE wykaz_bledow w' +

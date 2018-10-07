@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 86
+  Left = 180
   Height = 743
-  Top = 85
+  Top = 178
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -9,7 +9,7 @@ object PenitTerminarz: TPenitTerminarz
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   WindowState = wsMaximized
   object Panel1: TPanel
     Left = 0
@@ -420,6 +420,7 @@ object PenitTerminarz: TPenitTerminarz
             Background.Gradient1.ColorCorrection = False
             Background.Gradient1.GradientType = gtLinear
             Background.Gradient1.Point1XPercent = 100
+            Background.Gradient1.Point2YPercent = 100
             Background.Gradient1.Sinus = False
             Background.Gradient2.StartColor = clWhite
             Background.Gradient2.StartColorOpacity = 255
@@ -476,6 +477,7 @@ object PenitTerminarz: TPenitTerminarz
             Background.Gradient1.ColorCorrection = False
             Background.Gradient1.GradientType = gtLinear
             Background.Gradient1.Point1XPercent = 100
+            Background.Gradient1.Point2YPercent = 100
             Background.Gradient1.Sinus = False
             Background.Gradient2.StartColor = clWhite
             Background.Gradient2.StartColorOpacity = 255
@@ -532,6 +534,7 @@ object PenitTerminarz: TPenitTerminarz
             Background.Gradient1.ColorCorrection = False
             Background.Gradient1.GradientType = gtLinear
             Background.Gradient1.Point1XPercent = 100
+            Background.Gradient1.Point2YPercent = 100
             Background.Gradient1.Sinus = False
             Background.Gradient2.StartColor = clWhite
             Background.Gradient2.StartColorOpacity = 255
@@ -588,6 +591,7 @@ object PenitTerminarz: TPenitTerminarz
             Background.Gradient1.ColorCorrection = False
             Background.Gradient1.GradientType = gtLinear
             Background.Gradient1.Point1XPercent = 100
+            Background.Gradient1.Point2YPercent = 100
             Background.Gradient1.Sinus = False
             Background.Gradient2.StartColor = clWhite
             Background.Gradient2.StartColorOpacity = 255
@@ -682,8 +686,8 @@ object PenitTerminarz: TPenitTerminarz
     end
     object TabSheet2: TTabSheet
       Caption = 'Terminy'
-      ClientHeight = 660
-      ClientWidth = 1174
+      ClientHeight = 935
+      ClientWidth = 1912
       ImageIndex = 24
       object Panel2: TPanel
         Left = 0

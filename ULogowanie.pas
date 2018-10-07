@@ -97,7 +97,7 @@ begin
 end;
 
 function TLogowanie.fGetUserName: string;
-    var SLogin  : string;
+    var SLogin  : string='';
         buffsize: dword;
 begin
     buffsize:=128;

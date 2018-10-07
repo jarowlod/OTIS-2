@@ -8,8 +8,7 @@ uses
   Classes, SysUtils, FileUtil, YearPlanner, rxdbgrid, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, LR_DBSet, LR_Class, db,
   ZDataset, DBGrids, Menus, dateutils, Clipbrd, Buttons, CheckLst, rxdbutils,
-  datamodule, BGRANeoButton, BGRASpeedButton, BCButtonFocus, BCButton, BCLabel,
-  BCPanel;
+  datamodule, BCPanel;
 
 type
   { TTerminyEvent }
