@@ -1303,6 +1303,16 @@ object MasterForm: TMasterForm
     object MenuItem54: TMenuItem
       Caption = '-'
     end
+    object MenuItem70: TMenuItem
+      Caption = 'Kopiuj ...'
+      object MenuItem71: TMenuItem
+        Action = ActionKopiujIDO
+        ShortCut = 16457
+      end
+      object MenuItem72: TMenuItem
+        Action = ActionKopiujWszystko
+      end
+    end
     object MenuItemKoszykShow: TMenuItem
       Caption = 'Koszyk'
       ImageIndex = 30
@@ -1547,6 +1557,18 @@ object MasterForm: TMasterForm
       Caption = 'NoeNet - sprawdzian poprawności danych ...'
       ImageIndex = 26
       OnExecute = ActionNoeNetTestExecute
+    end
+    object ActionKopiujIDO: TAction
+      Category = 'Dodatki'
+      Caption = 'Kopiuj IDO'
+      ImageIndex = 32
+      OnExecute = ActionKopiujIDOExecute
+    end
+    object ActionKopiujWszystko: TAction
+      Category = 'Dodatki'
+      Caption = 'Kopiuj wszystkie wiersze'
+      ImageIndex = 32
+      OnExecute = ActionKopiujWszystkoExecute
     end
   end
   object Timer2Komunikaty: TTimer

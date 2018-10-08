@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="166">
+    <Units Count="169">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -18,10 +18,9 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="627"/>
-        <CursorPos X="3" Y="627"/>
+        <TopLine Value="675"/>
+        <CursorPos X="28" Y="682"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,8 +32,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="262"/>
-        <CursorPos X="3" Y="269"/>
+        <TopLine Value="746"/>
+        <CursorPos X="17" Y="756"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -78,7 +77,7 @@
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="750"/>
         <CursorPos Y="277"/>
         <UsageCount Value="200"/>
@@ -156,7 +155,7 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="121"/>
         <CursorPos X="65" Y="129"/>
         <UsageCount Value="201"/>
@@ -169,8 +168,9 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
-        <CursorPos X="14" Y="11"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="374"/>
+        <CursorPos X="47" Y="388"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -266,8 +266,9 @@
         <ComponentName Value="OknoKomunikatu"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
-        <CursorPos Y="58"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="103"/>
+        <CursorPos X="3" Y="106"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -342,10 +343,12 @@
         <ComponentName Value="ZatStatystyka"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="214"/>
-        <CursorPos X="53" Y="242"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="71" Y="9"/>
         <UsageCount Value="202"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit30>
       <Unit31>
         <Filename Value="UPenitWydarzenia.pas"/>
@@ -426,7 +429,7 @@
         <ComponentName Value="OchAddWidzenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="163"/>
         <CursorPos X="84" Y="181"/>
         <UsageCount Value="200"/>
@@ -495,8 +498,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="23"/>
-        <CursorPos X="30" Y="63"/>
+        <TopLine Value="45"/>
+        <CursorPos X="25" Y="58"/>
         <UsageCount Value="200"/>
       </Unit44>
       <Unit45>
@@ -603,7 +606,7 @@
         <ComponentName Value="KnowHow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="82"/>
         <CursorPos X="31" Y="99"/>
         <UsageCount Value="201"/>
@@ -629,7 +632,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="8"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="152"/>
       </Unit56>
       <Unit57>
         <Filename Value="UNotifierPopUp.pas"/>
@@ -637,7 +640,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="372"/>
         <CursorPos X="22" Y="80"/>
-        <UsageCount Value="146"/>
+        <UsageCount Value="148"/>
       </Unit57>
       <Unit58>
         <Filename Value="UPenitNeoNetTest.pas"/>
@@ -645,10 +648,10 @@
         <ComponentName Value="PenitNeoNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="244"/>
         <CursorPos Y="206"/>
-        <UsageCount Value="88"/>
+        <UsageCount Value="90"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit58>
@@ -661,7 +664,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="45"/>
         <CursorPos X="60" Y="73"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="55"/>
       </Unit59>
       <Unit60>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\dbc\ZDbcIntfs.pas"/>
@@ -688,9 +691,9 @@
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
         <UnitName Value="Graphics"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1945"/>
-        <CursorPos X="18" Y="1976"/>
-        <UsageCount Value="1"/>
+        <TopLine Value="54"/>
+        <CursorPos X="23" Y="71"/>
+        <UsageCount Value="10"/>
       </Unit63>
       <Unit64>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysinth.inc"/>
@@ -1191,10 +1194,11 @@
       <Unit135>
         <Filename Value="C:\codetyphon\typhon\components\pl_RichMemo\source\richmemo.pas"/>
         <UnitName Value="RichMemo"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="197"/>
-        <CursorPos X="15" Y="212"/>
-        <UsageCount Value="1"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="1091"/>
+        <CursorPos X="3" Y="1095"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit135>
       <Unit136>
         <Filename Value="C:\codetyphon\typhon\components\pl_RichMemo\source\wsrichmemo.pas"/>
@@ -1285,9 +1289,8 @@
         <Filename Value="C:\codetyphon\typhon\components\lz_Report\source\lr_class.pas"/>
         <UnitName Value="LR_Class"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="526"/>
-        <CursorPos X="3" Y="1131"/>
-        <UsageCount Value="6"/>
+        <CursorPos X="3" Y="11359"/>
+        <UsageCount Value="10"/>
       </Unit148>
       <Unit149>
         <Filename Value="C:\codetyphon\typhon\components\YearPlan\yearplanner.pas"/>
@@ -1402,40 +1405,139 @@
         <TopLine Value="1190"/>
         <UsageCount Value="10"/>
       </Unit165>
+      <Unit166>
+        <Filename Value="C:\codetyphon\typhon\lcl\clipbrd.pp"/>
+        <UnitName Value="Clipbrd"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="163"/>
+        <CursorPos X="15" Y="180"/>
+        <UsageCount Value="10"/>
+      </Unit166>
+      <Unit167>
+        <Filename Value="C:\codetyphon\typhon\lcl\include\clipbrd.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="232"/>
+        <CursorPos X="3" Y="234"/>
+        <UsageCount Value="10"/>
+      </Unit167>
+      <Unit168>
+        <Filename Value="C:\codetyphon\typhon\lcl\printers.pas"/>
+        <UnitName Value="Printers"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="188"/>
+        <CursorPos X="15" Y="205"/>
+        <UsageCount Value="10"/>
+      </Unit168>
     </Units>
-    <JumpHistory Count="8" HistoryIndex="7">
+    <JumpHistory Count="27" HistoryIndex="26">
       <Position1>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="210" Column="33" TopLine="13"/>
-      </Position1>
-      <Position2>
         <Filename Value="UPenitNeoNetTest.pas"/>
         <Caret Line="39" Column="35" TopLine="25"/>
+      </Position1>
+      <Position2>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="214" Column="45"/>
       </Position2>
       <Position3>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="214" Column="45"/>
+        <Caret Line="183" Column="20" TopLine="175"/>
       </Position3>
       <Position4>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="183" Column="20" TopLine="175"/>
+        <Caret Line="11" Column="30"/>
       </Position4>
       <Position5>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="11" Column="30"/>
+        <Caret Line="183" Column="17" TopLine="156"/>
       </Position5>
       <Position6>
         <Filename Value="datamodule.pas"/>
-        <Caret Line="183" Column="17" TopLine="156"/>
+        <Caret Line="39" Column="24" TopLine="32"/>
       </Position6>
       <Position7>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="39" Column="24" TopLine="32"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="861" Column="86" TopLine="847"/>
       </Position7>
       <Position8>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="861" Column="86" TopLine="847"/>
+        <Caret Line="627" Column="3" TopLine="627"/>
       </Position8>
+      <Position9>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="628" Column="3" TopLine="628"/>
+      </Position9>
+      <Position10>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="630" Column="3" TopLine="630"/>
+      </Position10>
+      <Position11>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="674" Column="15" TopLine="672"/>
+      </Position11>
+      <Position12>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="756" Column="17" TopLine="746"/>
+      </Position12>
+      <Position13>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="679" Column="28" TopLine="672"/>
+      </Position13>
+      <Position14>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="680" Column="28" TopLine="673"/>
+      </Position14>
+      <Position15>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="679" Column="28" TopLine="672"/>
+      </Position15>
+      <Position16>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="680" Column="28" TopLine="673"/>
+      </Position16>
+      <Position17>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="681" Column="28" TopLine="674"/>
+      </Position17>
+      <Position18>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="11" Column="14"/>
+      </Position18>
+      <Position19>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="87" Column="56" TopLine="54"/>
+      </Position19>
+      <Position20>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="70" Column="28" TopLine="54"/>
+      </Position20>
+      <Position21>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="68" Column="38" TopLine="54"/>
+      </Position21>
+      <Position22>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="57" Column="25" TopLine="54"/>
+      </Position22>
+      <Position23>
+        <Filename Value="UOknoKomunikatu.pas"/>
+        <Caret Line="58"/>
+      </Position23>
+      <Position24>
+        <Filename Value="UOknoKomunikatu.pas"/>
+        <Caret Line="106" Column="3" TopLine="103"/>
+      </Position24>
+      <Position25>
+        <Filename Value="C:\codetyphon\typhon\components\pl_RichMemo\source\richmemo.pas"/>
+        <Caret Line="258" Column="14" TopLine="242"/>
+      </Position25>
+      <Position26>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="9" Column="81"/>
+      </Position26>
+      <Position27>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="58" Column="58" TopLine="40"/>
+      </Position27>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

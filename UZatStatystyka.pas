@@ -24,6 +24,7 @@ type
     Panel5: TPanel;
     RxDBGrid1: TRxDBGrid;
     procedure BitBtn17Click(Sender: TObject);
+    procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField; AFont: TFont; var Background: TColor);
   private
     poz02: integer;  // OGÓŁEM ODPŁATNIE
     poz05: integer;  // ZIGB
@@ -56,6 +57,18 @@ begin
   frReport1.ShowReport;
 end;
 
+procedure TZatStatystyka.RxDBGrid1GetCellProps(Sender: TObject; Field: TField; AFont: TFont; var Background: TColor);
+begin
+  if not Assigned(Field) then exit;
+  if Field.IsNull then exit;
+
+  if (memStat.FieldByName('Nr').AsString= '02')or(memStat.FieldByName('Nr').AsString= '13') then
+  begin
+     AFont.Style:= [fsBold];
+     Background:= $C1C1FF;
+  end;
+end;
+
 procedure TZatStatystyka.GetStat;
 var ZQPom: TZQueryPom;
     inne : integer;
@@ -78,7 +91,7 @@ begin
                    '  ON zat.id_stanowiska = sta.id'+
                    ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
                    '       (sta.forma="ODPŁATNIE") and'+
-                   '       (sta.miejsce LIKE "ZIGB%")';
+                   '       (sta.miejsce LIKE "MIGB%")';
   ZQPom.Open;
   poz05:= ZQPom.FieldByName('ile').AsInteger;
 
@@ -88,7 +101,7 @@ begin
                    '  ON zat.id_stanowiska = sta.id'+
                    ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
                    '       (sta.forma="ODPŁATNIE") and'+
-                   '       (sta.miejsce not LIKE "ZIGB%") and'+
+                   '       (sta.miejsce not LIKE "MIGB%") and'+
                    '       (sta.miejsce not LIKE "DZIAŁ%")';
   ZQPom.Open;
   poz07:= ZQPom.FieldByName('ile').AsInteger;

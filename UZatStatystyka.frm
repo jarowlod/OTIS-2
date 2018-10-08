@@ -1,7 +1,7 @@
 object ZatStatystyka: TZatStatystyka
-  Left = 470
+  Left = 440
   Height = 588
-  Top = 231
+  Top = 236
   Width = 748
   Caption = 'Statystyka zatrudnienia'
   ClientHeight = 588
@@ -46,7 +46,7 @@ object ZatStatystyka: TZatStatystyka
     0000
   }
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.5'
   object Panel5: TPanel
     Left = 0
     Height = 50
@@ -125,6 +125,7 @@ object ZatStatystyka: TZatStatystyka
     ColumnDefValues.BlobText = '(blob)'
     TitleButtons = True
     AutoSort = False
+    OnGetCellProps = RxDBGrid1GetCellProps
     Columns = <    
       item
         Color = 15329769
@@ -136,6 +137,7 @@ object ZatStatystyka: TZatStatystyka
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -152,6 +154,7 @@ object ZatStatystyka: TZatStatystyka
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -166,6 +169,7 @@ object ZatStatystyka: TZatStatystyka
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1

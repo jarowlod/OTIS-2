@@ -15,6 +15,8 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionKopiujWszystko: TAction;
+    ActionKopiujIDO: TAction;
     ActionNoeNetTest: TAction;
     ActionKnowHow: TAction;
     ActionKreatorWPZ: TAction;
@@ -92,6 +94,9 @@ type
     MenuItem67: TMenuItem;
     MenuItem68: TMenuItem;
     MenuItem69: TMenuItem;
+    MenuItem70: TMenuItem;
+    MenuItem71: TMenuItem;
+    MenuItem72: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -169,6 +174,8 @@ type
     procedure ActionKomunikatDoExecute(Sender: TObject);
     procedure ActionKomunikatNowyExecute(Sender: TObject);
     procedure ActionKomunikatorExecute(Sender: TObject);
+    procedure ActionKopiujIDOExecute(Sender: TObject);
+    procedure ActionKopiujWszystkoExecute(Sender: TObject);
     procedure ActionKoszykExecute(Sender: TObject);
     procedure ActionKreatorWPZExecute(Sender: TObject);
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
@@ -663,6 +670,16 @@ begin
        ShowModal;
        Free;
   end;
+end;
+
+procedure TMasterForm.ActionKopiujIDOExecute(Sender: TObject);
+begin
+  Clipboard.AsText:= DM.ZQOsadzeni.FieldByName('IDO').AsString;
+end;
+
+procedure TMasterForm.ActionKopiujWszystkoExecute(Sender: TObject);
+begin
+  RxDBGrid1.CopyToClipboard;
 end;
 
 procedure TMasterForm.ActionNieZatrudnieniExecute(Sender: TObject);
