@@ -148,6 +148,7 @@ begin
   ProgressBar1.Visible := true;
 
   ZQPom.Connection.StartTransaction;
+  ShowSQLWait;
   try
     while i<Memo1.Lines.Count do
      begin
@@ -180,6 +181,7 @@ begin
     ShowMessage('Niewłaściwy format danych wejścionych (wiersz '+IntToStr(ProgressBar1.Position+1)+'). Wklej dane z NoeNet.');
     ProgressBar1.Visible:= false;
     ZQPom.Connection.Rollback;
+    HideSQLWait;
     exit;
   end;
   ZQPom.Connection.Commit;
@@ -201,6 +203,7 @@ begin
   ProgressBar1.Visible:= false;
 
   RefreshQuery(ZQSesje);
+  HideSQLWait;
 end;
 
 procedure TPenitNeoNetTest.btnUstawIDSesjiClick(Sender: TObject);

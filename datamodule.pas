@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, db, FileUtil, ZConnection, ZDataset, Forms,
   Dialogs, DateUtils, controls, IniPropStorage, ShellApi, ExtCtrls, Graphics,
   rxdbgrid, LMessages, LCLType, LR_Class, Clipbrd, UNotifierPopUp, DateTimePicker,
-  DBDateTimePicker, Menus;
+  DBDateTimePicker, Menus {, ZCompatibility};
 
 type
   TNotifierPopUpStyle = (nots_Info, nots_Warning, nots_Clear);
@@ -170,6 +170,18 @@ type
       destructor Destroy; override;
   end;
 
+  { TDBScreenApplication }
+
+{ // Dodaje obsługę kursora ale spowalnia pracę (???)
+  // dlatego wskazane jest ręczne ustawianie SQLHourGlass
+
+  TDBScreenApplication = class(TInterfacedObject, IDBScreen)
+    function GetCursor: TDBScreenCursor;
+    procedure SetCursor(Cursor: TDBScreenCursor);
+  end;
+}
+  Procedure ShowSQLWait;
+  Procedure HideSQLWait;
 var
   DM: TDM;
 
@@ -243,6 +255,9 @@ begin
 
   KomunikatyPopUp:= TNotifierPopUp.Create(Application);
   DataSetList    := TDataSetList.Create;
+{ // Dodana obsługa kursora, niestety spowalnia program.
+  DBScreen:= TDBScreenApplication.Create as IDBScreen;
+}
 end;
 
 procedure TDM.DataModuleDestroy(Sender: TObject);
@@ -901,6 +916,39 @@ begin
     end;
   end;
 end;
+
+procedure ShowSQLWait;
+begin
+  Screen.Cursor:= crSQLWait;
+end;
+
+procedure HideSQLWait;
+begin
+  Screen.Cursor:= crDefault;
+end;
+
+{ TDBScreenApplication
+
+function TDBScreenApplication.GetCursor: TDBScreenCursor;
+begin
+  case Screen.Cursor of
+    crDefault: Result := dcrDefault;
+    crHourGlass: Result := dcrHourGlass;
+    crSQLWait: Result := dcrSQLWait;
+  else
+    Result := dcrOther;
+  end;
+end;
+
+procedure TDBScreenApplication.SetCursor(Cursor: TDBScreenCursor);
+begin
+  case Cursor of
+    dcrDefault: Screen.Cursor := crDefault;
+    dcrHourGlass: Screen.Cursor := crHourGlass;
+    dcrSQLWait: ;//begin Screen.Cursor := crSQLWait; end;
+  end;
+end;
+}
 
 end.
 
