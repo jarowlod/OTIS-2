@@ -1,13 +1,13 @@
 object PenitNeoNetTest: TPenitNeoNetTest
-  Left = 440
+  Left = 389
   Height = 641
-  Top = 236
+  Top = 231
   Width = 1024
   Caption = 'NeoNet - sprawdzanie poprwaności danych'
   ClientHeight = 641
   ClientWidth = 1024
   OnCreate = FormCreate
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel2: TPanel
     Left = 0
     Height = 48
@@ -835,7 +835,7 @@ object PenitNeoNetTest: TPenitNeoNetTest
     SQL.Strings = (
       'SELECT Wychowawca, ID_Sesji FROM wykaz_bledow'
       'WHERE ID_Sesji=:ID_Sesji AND Wychowawca IS NOT NULL'
-      'GROUP BY Wychowawca'
+      'GROUP BY Wychowawca, ID_Sesji'
     )
     Params = <    
       item

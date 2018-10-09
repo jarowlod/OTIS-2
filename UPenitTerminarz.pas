@@ -204,13 +204,7 @@ type
                        end;
 
     Terminy: TTerminyEvents;
-    //DaneTerminarza : array[1..12,1..31] of
-    //                                    record
-    //                                      SumOcen: integer;
-    //                                      SumWPZ : integer;
-    //                                      SumPostpenit: integer;
-    //                                      SumKK  : integer;
-    //                                    end;
+
     FirstShowTerminarz: Boolean; // jeżeli true to ustaw Date terminarza na bierzącą
     procedure StatusBarRefresh;
     procedure WczytajWakaty;
@@ -922,8 +916,6 @@ begin
 
   SetToBookmark(ZQKalendarz, bookmark);
   ZQKalendarz.EnableControls;
-  //frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_grupowy.lrf');
-  //frReport1.ShowReport;
 end;
 
 procedure TPenitTerminarz.MenuWykazDoSchowkaKalClick(Sender: TObject);

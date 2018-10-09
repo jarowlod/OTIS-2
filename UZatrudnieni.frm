@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 180
+  Left = 72
   Height = 856
-  Top = 178
+  Top = 99
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -9,7 +9,7 @@ object Zatrudnieni: TZatrudnieni
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poOwnerFormCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   WindowState = wsMaximized
   object Panel2: TPanel
     Left = 0
@@ -2499,7 +2499,7 @@ object Zatrudnieni: TZatrudnieni
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = cbSkierowanie
           AnchorSideTop.Side = asrCenter
-          Left = 347
+          Left = 381
           Height = 30
           Hint = 'Zmień opis stanowisk pokrewnych w skierowaniu na badania...'
           Top = 369
@@ -2519,7 +2519,7 @@ object Zatrudnieni: TZatrudnieni
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = lblSkierowanieNaBadania
           AnchorSideRight.Side = asrBottom
-          Left = 230
+          Left = 264
           Height = 23
           Top = 373
           Width = 112

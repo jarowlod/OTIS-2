@@ -1,7 +1,7 @@
 object ZatStatystyka: TZatStatystyka
-  Left = 440
+  Left = 389
   Height = 588
-  Top = 236
+  Top = 231
   Width = 748
   Caption = 'Statystyka zatrudnienia'
   ClientHeight = 588
@@ -45,8 +45,9 @@ object ZatStatystyka: TZatStatystyka
     0000000000000000000000000000000000000000000000000000000000000000
     0000
   }
+  OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel5: TPanel
     Left = 0
     Height = 50

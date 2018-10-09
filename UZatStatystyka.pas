@@ -10,6 +10,26 @@ uses
 
 type
 
+  { TStatZatGen }
+
+  TStatZatGen = class
+  private
+    fKodMZK: string;
+    FNazwa: string;
+    fSql: string;
+    fNzawa: string;
+    fWynik: string;
+    procedure SetSql(AValue: string);
+    procedure OpenSql;
+  public
+    constructor Create(nazwa, kodMZK, sql: string);
+  published
+    property Sql: string read FSql write SetSql;
+    property Nazwa: string read FNazwa write fNzawa;
+    property Wynik: string read fWynik write fWynik;
+    property KodMZK: string read fKodMZK write fKodMZK;
+  end;
+
   { TZatStatystyka }
 
   TZatStatystyka = class(TForm)
@@ -24,22 +44,32 @@ type
     Panel5: TPanel;
     RxDBGrid1: TRxDBGrid;
     procedure BitBtn17Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField; AFont: TFont; var Background: TColor);
   private
-    poz02: integer;  // OGÓŁEM ODPŁATNIE
-    poz05: integer;  // ZIGB
-    poz07: integer;  // kontrahenci zewnętrzni
-    poz11: integer;  // prace porządkowe na rzecz jednostki
-    poz12: Currency; // poz11 w przeliczeniu na pełen etat
+    WynikiList: TList;
+    function GetPlatneOgolem: TStatZatGen;                   // OGÓŁEM ZATRUDNIENI ODPŁATNIE
+    function GetPlatneGospodartwoBudzetowe: TStatZatGen;     // instytucje gospodarki budżetowej
+    function GetPlatneKontrahenciPozawiezienni: TStatZatGen; // kontrahenci pozawięzienni
+    function GetPlatnePracePorzadkowe: TStatZatGen;          // prace porządkowe oraz pomocnicze na rzecz jednostki
+    function GetPlatnePracePorzadkoweKwota: TStatZatGen;     // wiersz 11 w przeliczeniu na pełnozatrudnionych
 
-    poz13: integer;  // NIEODPŁATNIE
-    //poz14: integer;  // 123a§1 - prace na cele społeczne na rzecz samorządu 90 godz. i więcej
-    poz15: integer;  // na rzecz organizacji pożytku publicznego (123a§2, poza ZK)
-    poz16: integer;  // 123a§1 - na rzecz SW, do 90 godz.
-    poz17: integer;  // 123a§2 - na rzecz SW
-    poz19: integer;  // 123a§3
+    function GetNPOgolem: TStatZatGen;                       // OGÓŁEM ZATRUDNIENI NIEODPŁATNIE
+    function GetNPSpoleczne: TStatZatGen;                    // prace społeczne na rzecz podmiotów art. 56§3 oraz pożytku publicznego - art. 123a§2 kkw
+    function GetNPPorzadkowePar1: TStatZatGen;               // prace porządkowe oraz pomocnicze na rzecz SW - art. 123a§1 kkw
+    function GetNPPorzadkowePar2: TStatZatGen;               // prace porządkowe oraz pomocnicze na rzecz SW - art. 123a§1 kkw
+    function GetNPGospodarstwoBudzetowePar3: TStatZatGen;    // instytucje gospodarki budżetowej na podstawie art. 123a§3 kkw
+
+    function GetR2pawB: TStatZatGen;                // osadzonych z R-2 w paw. B
+    function GetR2pawBPraca: TStatZatGen;           // osadzonych z R-2 w paw. B - pracujących
+    function GetR2pawBPracaBezKonwoju: TStatZatGen; // osadzonych z R-2 w paw. B - pracujących bez konwojenta
+    function GetOgolZatrudnionych: TStatZatGen;     // OGÓŁ ZATRUDNIONYCH
+
+    procedure TestPoprawnosci;
   public
-    Procedure GetStat;
+    constructor Create(TheOwner: TComponent); override;
+    destructor Destroy; override;
+    procedure GetStat;
   end;
 
 var
@@ -49,12 +79,50 @@ implementation
 
 {$R *.frm}
 
+{ TStatZatGen }
+
+procedure TStatZatGen.SetSql(AValue: string);
+begin
+  if FSql=AValue then Exit;
+  FSql:=AValue;
+  OpenSql;
+end;
+
+procedure TStatZatGen.OpenSql;
+var ZQPom: TZQueryPom;
+begin
+  try
+    ZQPom:= TZQueryPom.Create(nil);
+    ZQPom.SQL.Text:= FSql;
+    ZQPom.Open;
+    if not ZQPom.IsEmpty then
+      fWynik:= ZQPom.FieldByName('ile').AsString;
+    ZQPom.Close;
+    if fWynik='' then fWynik:= '0';
+  finally
+    FreeAndNil(ZQPom);
+  end;
+end;
+
+constructor TStatZatGen.Create(nazwa, kodMZK, sql: string);
+begin
+  fNazwa:= nazwa;
+  fSql:= sql;
+  fKodMZK:= kodMZK;
+  OpenSql;
+end;
+
 { TZatStatystyka }
 
 procedure TZatStatystyka.BitBtn17Click(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_Statystyki.lrf');
   frReport1.ShowReport;
+end;
+
+procedure TZatStatystyka.FormShow(Sender: TObject);
+begin
+  GetStat;
 end;
 
 procedure TZatStatystyka.RxDBGrid1GetCellProps(Sender: TObject; Field: TField; AFont: TFont; var Background: TColor);
@@ -69,170 +137,218 @@ begin
   end;
 end;
 
-procedure TZatStatystyka.GetStat;
+function TZatStatystyka.GetPlatneOgolem: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="ODPŁATNIE")';
+
+  Result:= TStatZatGen.Create('OGÓŁEM ZATRUDNIENI ODPŁATNIE', '02', sql);
+end;
+
+function TZatStatystyka.GetPlatneGospodartwoBudzetowe: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="ODPŁATNIE") and'+
+        '       (sta.miejsce LIKE "MIGB%")';
+
+  Result:= TStatZatGen.Create('instytucje gospodarki budżetowej', '05', sql);
+end;
+
+function TZatStatystyka.GetPlatneKontrahenciPozawiezienni: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="ODPŁATNIE") and'+
+        '       (sta.miejsce not LIKE "MIGB%") and'+
+        '       (sta.miejsce not LIKE "DZIAŁ%")';
+
+  Result:= TStatZatGen.Create('kontrahenci pozawięzienni', '07', sql);
+end;
+
+function TZatStatystyka.GetPlatnePracePorzadkowe: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="ODPŁATNIE") and'+
+        '       (sta.miejsce LIKE "DZIAŁ%")';
+
+  Result:= TStatZatGen.Create('prace porządkowe oraz pomocnicze na rzecz jednostki', '11', sql);
+end;
+
+function TZatStatystyka.GetPlatnePracePorzadkoweKwota: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as c, round(sum(zat.etat)/8+0.005,2)as ile'+    //ceil(sum((zat.etat )/8)*100)/100 as suma'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="ODPŁATNIE") and'+
+        '       (sta.miejsce LIKE "DZIAŁ%")';
+
+  Result:= TStatZatGen.Create('wiersz 11 w przeliczeniu na pełnozatrudnionych', '12', sql);
+end;
+
+function TZatStatystyka.GetNPOgolem: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="NIEODPŁATNIE")';
+
+  Result:= TStatZatGen.Create('OGÓŁEM ZATRUDNIENI NIEODPŁATNIE', '13', sql);
+end;
+
+function TZatStatystyka.GetNPSpoleczne: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="NIEODPŁATNIE") and'+
+        '       (zat.rodzaj_zatrudnienia="123a§2") and'+
+        '       (sta.system="BEZ KONWOJENTA") and'+
+        '       (sta.miejsce NOT LIKE "DZIAŁ%")';
+
+  Result:= TStatZatGen.Create('prace społeczne na rzecz podmiotów art. 56§3 oraz pożytku publicznego - art. 123a§2 kkw', '15', sql);
+end;
+
+function TZatStatystyka.GetNPPorzadkowePar1: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="NIEODPŁATNIE") and'+
+        '       (zat.rodzaj_zatrudnienia="123a§1") and'+
+        '       (sta.miejsce LIKE "DZIAŁ%")';
+
+  Result:= TStatZatGen.Create('prace porządkowe oraz pomocnicze na rzecz SW - art. 123a§1 kkw', '16', sql);
+end;
+
+function TZatStatystyka.GetNPPorzadkowePar2: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="NIEODPŁATNIE") and'+
+        '       (zat.rodzaj_zatrudnienia="123a§2") and'+
+        '       (sta.miejsce LIKE "DZIAŁ%")';
+
+  Result:= TStatZatGen.Create('prace porządkowe oraz pomocnicze na rzecz SW - art. 123a§2 kkw', '17', sql);
+end;
+
+function TZatStatystyka.GetNPGospodarstwoBudzetowePar3: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="NIEODPŁATNIE") and'+
+        '       (zat.rodzaj_zatrudnienia="123a§3")';
+
+  Result:= TStatZatGen.Create('instytucje gospodarki budżetowej na podstawie art. 123a§3 kkw', '19', sql);
+end;
+
+function TZatStatystyka.GetR2pawB: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM osadzeni'+
+        ' WHERE (klasyf LIKE "R-2/%") and'+
+        '       (POC LIKE "B-%")';
+
+  Result:= TStatZatGen.Create('osadzonych z R-2 w paw. B', '---', sql);
+end;
+
+function TZatStatystyka.GetR2pawBPraca: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN osadzeni as os'+
+        '   ON zat.ido = os.ido'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (os.klasyf LIKE "R-2/%") and'+
+        '       (os.POC LIKE "B-%")';
+
+  Result:= TStatZatGen.Create('osadzonych z R-2 w paw. B - pracujących', '---', sql);
+end;
+
+function TZatStatystyka.GetR2pawBPracaBezKonwoju: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '   ON zat.id_stanowiska = sta.id'+
+        '  LEFT OUTER JOIN osadzeni as os'+
+        '   ON zat.ido = os.ido'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.system = "BEZ KONWOJENTA") and'+
+        '       (os.klasyf LIKE "R-2/%") and'+
+        '       (os.POC LIKE "B-%")';
+
+  Result:= TStatZatGen.Create('osadzonych z R-2 w paw. B - pracujących bez konwojenta', '---', sql);
+end;
+
+function TZatStatystyka.GetOgolZatrudnionych: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni as zat'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony")';
+
+  Result:= TStatZatGen.Create('OGÓŁ ZATRUDNIONYCH', '---', sql);
+end;
+
+// TEST POPRAWNOŚCI
+// sprawdzam poprawność zatrudnionych nieopłatnie
+procedure TZatStatystyka.TestPoprawnosci;
 var ZQPom: TZQueryPom;
-    inne : integer;
     sumaNieodplatnych: integer;
+    NieodplatnychOgolem: integer;
     sNazwiska: string;
 begin
-  ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '  ON zat.id_stanowiska = sta.id'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.forma="ODPŁATNIE")';
-  ZQPom.Open;
-  poz02:= ZQPom.FieldByName('ile').AsInteger;
+  sumaNieodplatnych:= StrToIntDef(TStatZatGen(WynikiList[6]).Wynik, 0)+
+                      StrToIntDef(TStatZatGen(WynikiList[7]).Wynik, 0)+
+                      StrToIntDef(TStatZatGen(WynikiList[8]).Wynik, 0)+
+                      StrToIntDef(TStatZatGen(WynikiList[9]).Wynik, 0);
+  NieodplatnychOgolem:= StrToIntDef(TStatZatGen(WynikiList[5]).Wynik, 0);
+  if NieodplatnychOgolem=sumaNieodplatnych then exit;
 
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '  ON zat.id_stanowiska = sta.id'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.forma="ODPŁATNIE") and'+
-                   '       (sta.miejsce LIKE "MIGB%")';
-  ZQPom.Open;
-  poz05:= ZQPom.FieldByName('ile').AsInteger;
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '  ON zat.id_stanowiska = sta.id'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.forma="ODPŁATNIE") and'+
-                   '       (sta.miejsce not LIKE "MIGB%") and'+
-                   '       (sta.miejsce not LIKE "DZIAŁ%")';
-  ZQPom.Open;
-  poz07:= ZQPom.FieldByName('ile').AsInteger;
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile, round(sum(zat.etat)/8+0.005,2)as suma'+    //ceil(sum((zat.etat )/8)*100)/100 as suma'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '  ON zat.id_stanowiska = sta.id'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.forma="ODPŁATNIE") and'+
-                   '       (sta.miejsce LIKE "DZIAŁ%")';
-  ZQPom.Open;
-  poz11:= ZQPom.FieldByName('ile').AsInteger;
-  poz12:= ZQPom.FieldByName('suma').AsCurrency;
-
-  memStat.AppendRecord(['OGÓŁEM ZATRUDNIENI ODPŁATNIE', '02', poz02]);
-  memStat.AppendRecord(['instytucje gospodarki budżetowej', '05', poz05]);
-  memStat.AppendRecord(['kontrahenci pozawięzienni', '07', poz07]);
-  memStat.AppendRecord(['prace porządkowe oraz pomocnicze na rzecz jednostki', '11', poz11]);
-  memStat.AppendRecord(['wiersz 11 w przeliczeniu na pełnozatrudnionych', '12', poz12]);
-
-  // =========================================================================
-  // NIEODPŁATNIE
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '  ON zat.id_stanowiska = sta.id'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.forma="NIEODPŁATNIE")';
-  ZQPom.Open;
-  poz13:= ZQPom.FieldByName('ile').AsInteger;
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '  ON zat.id_stanowiska = sta.id'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.forma="NIEODPŁATNIE") and'+
-                   '       (zat.rodzaj_zatrudnienia="123a§2") and'+
-                   '       (sta.system="BEZ KONWOJENTA") and'+
-                   '       (sta.miejsce NOT LIKE "DZIAŁ%")';
-  ZQPom.Open;
-  poz15:= ZQPom.FieldByName('ile').AsInteger;
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '  ON zat.id_stanowiska = sta.id'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.forma="NIEODPŁATNIE") and'+
-                   '       (zat.rodzaj_zatrudnienia="123a§1") and'+
-                   '       (sta.miejsce LIKE "DZIAŁ%")';
-  ZQPom.Open;
-  poz16:= ZQPom.FieldByName('ile').AsInteger;
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '  ON zat.id_stanowiska = sta.id'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.forma="NIEODPŁATNIE") and'+
-                   '       (zat.rodzaj_zatrudnienia="123a§2") and'+
-                   '       (sta.miejsce LIKE "DZIAŁ%")';
-  ZQPom.Open;
-  poz17:= ZQPom.FieldByName('ile').AsInteger;
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '  ON zat.id_stanowiska = sta.id'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.forma="NIEODPŁATNIE") and'+
-                   '       (zat.rodzaj_zatrudnienia="123a§3")';
-  ZQPom.Open;
-  poz19:= ZQPom.FieldByName('ile').AsInteger;
-
-  memStat.AppendRecord(['OGÓŁEM ZATRUDNIENI NIEODPŁATNIE', '13', poz13]);
-  memStat.AppendRecord(['prace społeczne na rzecz podmiotów art. 56§3 oraz pożytku publicznego - art. 123a§2 kkw', '15', poz15]);
-  memStat.AppendRecord(['prace porządkowe oraz pomocnicze na rzecz SW - art. 123a§1 kkw', '16', poz16]);
-  memStat.AppendRecord(['prace porządkowe oraz pomocnicze na rzecz SW - art. 123a§2 kkw', '17', poz17]);
-  memStat.AppendRecord(['instytucje gospodarki budżetowej na podstawie art. 123a§3 kkw', '19', poz19]);
-
-  //==============================================================================
-  // dodatkowe statystyki
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM osadzeni'+
-                   ' WHERE (klasyf LIKE "R-2/%") and'+
-                   '       (POC LIKE "B-%")';
-  ZQPom.Open;
-  inne:= ZQPom.FieldByName('ile').AsInteger;
-  memStat.AppendRecord(['osadzonych z R-2 w paw. B', '---', inne]);
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN osadzeni as os'+
-                   '   ON zat.ido = os.ido'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (os.klasyf LIKE "R-2/%") and'+
-                   '       (os.POC LIKE "B-%")';
-  ZQPom.Open;
-  inne:= ZQPom.FieldByName('ile').AsInteger;
-  memStat.AppendRecord(['osadzonych z R-2 w paw. B - pracujących', '---', inne]);
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   '  LEFT OUTER JOIN zat_stanowiska as sta'+
-                   '   ON zat.id_stanowiska = sta.id'+
-                   '  LEFT OUTER JOIN osadzeni as os'+
-                   '   ON zat.ido = os.ido'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
-                   '       (sta.system = "BEZ KONWOJENTA") and'+
-                   '       (os.klasyf LIKE "R-2/%") and'+
-                   '       (os.POC LIKE "B-%")';
-
-  ZQPom.Open;
-  inne:= ZQPom.FieldByName('ile').AsInteger;
-  memStat.AppendRecord(['osadzonych z R-2 w paw. B - pracujących bez konwojenta', '---', inne]);
-
-  ZQPom.SQL.Text:= 'SELECT count(*) as ile'+
-                   ' FROM zat_zatrudnieni as zat'+
-                   ' WHERE (zat.status_zatrudnienia = "zatrudniony")';
-  ZQPom.Open;
-  inne:= ZQPom.FieldByName('ile').AsInteger;
-  memStat.AppendRecord(['OGÓŁ ZATRUDNIONYCH', '---', inne]);
-
-  // TEST POPRAWNOŚCI
-  // sprawdzam poprawność zatrudnionych nieopłatnie
-  sumaNieodplatnych:= poz15+poz16+poz17+poz19;
-  if poz13<>sumaNieodplatnych then
-  begin
+  ZQPom:= TZQueryPom.Create(nil);
+  try
     ZQPom.SQL.Text:= 'SELECT Nazwisko'+
                      ' FROM zat_zatrudnieni as zat'+
                      '  LEFT OUTER JOIN zat_stanowiska as sta'+
@@ -249,13 +365,56 @@ begin
       sNazwiska:= sNazwiska+ ZQPom.FieldByName('Nazwisko').AsString;
       ZQPom.Next;
     end;
-
-    MessageDlg('Istnieje różnica pomiędzy ilością zatrudnionych nieodpłatnie a sumą poszczególnych paragrafów.'+LineEnding+
-                                   'Różnica nieodpłatnych: '+(poz13-sumaNieodplatnych).ToString+ LineEnding+
-                                   '('+ sNazwiska +')', mtWarning, [mbOK],0);
+  finally
+    FreeAndNil(ZQPom);
   end;
 
-  FreeAndNil(ZQPom);
+  MessageDlg('Istnieje różnica pomiędzy ilością zatrudnionych nieodpłatnie a sumą poszczególnych paragrafów.'+LineEnding+
+             'Różnica nieodpłatnych: '+(NieodplatnychOgolem-sumaNieodplatnych).ToString+ LineEnding+
+             '('+ sNazwiska +')', mtWarning, [mbOK],0);
+end;
+
+constructor TZatStatystyka.Create(TheOwner: TComponent);
+begin
+  inherited Create(TheOwner);
+  WynikiList:= TList.Create;
+end;
+
+destructor TZatStatystyka.Destroy;
+begin
+  FreeAndNil(WynikiList);
+  inherited Destroy;
+end;
+
+procedure TZatStatystyka.GetStat;
+var wynik: TStatZatGen;
+  i: Integer;
+begin
+  WynikiList.Add(GetPlatneOgolem);                     // index 0
+  WynikiList.Add(GetPlatneGospodartwoBudzetowe);       // index 1
+  WynikiList.Add(GetPlatneKontrahenciPozawiezienni);   // index 2
+  WynikiList.Add(GetPlatnePracePorzadkowe);            // index 3
+  WynikiList.Add(GetPlatnePracePorzadkoweKwota);       // index 4
+
+  WynikiList.Add(GetNPOgolem);                         // index 5
+  WynikiList.Add(GetNPSpoleczne);                      // index 6
+  WynikiList.Add(GetNPPorzadkowePar1);                 // index 7
+  WynikiList.Add(GetNPPorzadkowePar2);                 // index 8
+  WynikiList.Add(GetNPGospodarstwoBudzetowePar3);      // index 9
+
+  WynikiList.Add(GetR2pawB);                           // index 10
+  WynikiList.Add(GetR2pawBPraca);                      // index 11
+  WynikiList.Add(GetR2pawBPracaBezKonwoju);            // index 12
+  WynikiList.Add(GetOgolZatrudnionych);                // index 13
+
+  //dodajemy wyniki do memStat;
+  for i:=0 to WynikiList.Count-1 do
+  begin
+    wynik:= TStatZatGen(WynikiList[i]);
+    memStat.AppendRecord([wynik.Nazwa, wynik.kodMZK, wynik.Wynik]);
+  end;
+
+  TestPoprawnosci;
 end;
 
 end.

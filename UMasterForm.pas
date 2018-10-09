@@ -752,7 +752,6 @@ procedure TMasterForm.ActionStatystykaExecute(Sender: TObject);
 begin
   with TZatStatystyka.Create(Self) do
   begin
-       GetStat;
        ShowModal;
        Free;
   end;

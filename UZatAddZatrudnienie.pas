@@ -14,26 +14,26 @@ type
   { TZatAddZatrudnienie }
 
   TZatAddZatrudnienie = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    btnOK: TBitBtn;
+    btnAnuluj: TBitBtn;
     BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
     BitBtn5: TBitBtn;
-    BitBtn6: TBitBtn;
-    BitBtn7: TBitBtn;
-    BitBtn8: TBitBtn;
+    btnWprowadzPoprzednieDaneOs: TBitBtn;
+    btnWyslijKomunikaty: TBitBtn;
+    btnWprowadzPoprzednieDaneZat: TBitBtn;
     DBCheckBox1: TDBCheckBox;
     DBCheckBox2: TDBCheckBox;
     DBCheckBox3: TDBCheckBox;
     DBCheckBox4: TDBCheckBox;
-    DBComboBox1: TDBComboBox;
-    DBComboBox2: TDBComboBox;
+    DBcbStatusZatrudnienia: TDBComboBox;
+    DBcbPrzyczynaWycofania: TDBComboBox;
     DBComboBox3: TDBComboBox;
     DBComboBox4: TDBComboBox;
     DBComboBox5: TDBComboBox;
     DBComboBox6: TDBComboBox;
-    DBDateTimePicker1: TDBDateTimePicker;
-    DBDateTimePicker2: TDBDateTimePicker;
+    DBDataZatrudnienia: TDBDateTimePicker;
+    DBDataWycofania: TDBDateTimePicker;
     DBDateTimePicker3: TDBDateTimePicker;
     DBDateTimePicker4: TDBDateTimePicker;
     DBDateTimePicker5: TDBDateTimePicker;
@@ -113,19 +113,20 @@ type
     Panel5: TPanel;
     plGradient1: TplGradient;
     ZQZat: TZQuery;
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
+    procedure btnAnulujClick(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
-    procedure BitBtn6Click(Sender: TObject);
-    procedure BitBtn7Click(Sender: TObject);
-    procedure BitBtn8Click(Sender: TObject);
-    procedure DBComboBox1Select(Sender: TObject);
+    procedure btnWprowadzPoprzednieDaneOsClick(Sender: TObject);
+    procedure btnWyslijKomunikatyClick(Sender: TObject);
+    procedure btnWprowadzPoprzednieDaneZatClick(Sender: TObject);
+    procedure DBcbStatusZatrudnieniaSelect(Sender: TObject);
     procedure DBDateTimePicker3EditingDone(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
     procedure WyslijKomunikaty;
+    function SprawdzPoprawnoscDanych: Boolean;
   public
     id: integer;
     STANOWISKOID: integer;
@@ -149,7 +150,7 @@ uses UOsadzeni, UZatStanowiska, DateUtils, UKomunikatorNowaWiad;
 { TZatAddZatrudnienie }
 
 // ANULUJ
-procedure TZatAddZatrudnienie.BitBtn2Click(Sender: TObject);
+procedure TZatAddZatrudnienie.btnAnulujClick(Sender: TObject);
 begin
 // Close OnClose;
 end;
@@ -185,9 +186,10 @@ begin
   end;
 end;
 
-procedure TZatAddZatrudnienie.DBComboBox1Select(Sender: TObject);
+procedure TZatAddZatrudnienie.DBcbStatusZatrudnieniaSelect(Sender: TObject);
 begin
-  case ZQZat.FieldByName('status_zatrudnienia').AsString of
+  //case ZQZat.FieldByName('status_zatrudnienia').AsString of
+  case DBcbStatusZatrudnienia.Text of
        sz_Oczekujacy : begin
                          //jesli są daty to zapytać czy je wyzerować
                          if (not ZQZat.FieldByName('zat_od').IsNull) OR (not ZQZat.FieldByName('zat_do').IsNull) then
@@ -197,9 +199,9 @@ begin
                              ZQZat.FieldByName('zat_do').Value:= NULL;
                              ZQZat.FieldByName('powod_wycofania').Value:= NULL;
                            end;
-                         DBDateTimePicker1.Enabled:= False;
-                         DBDateTimePicker2.Enabled:= False;
-                         DBComboBox2.Enabled:= false;
+                         DBDataZatrudnienia.Enabled:= False;
+                         DBDataWycofania.Enabled:= False;
+                         DBcbPrzyczynaWycofania.Enabled:= false;
                        end;
        sz_Zatrudniony: begin
                          //jesli jest data to zapytać czy wstawić bierzącą
@@ -211,9 +213,9 @@ begin
                              ZQZat.FieldByName('powod_wycofania').Value:= NULL;
                              ZQZat.FieldByName('data_nastepnego_urlopu').Value:= IncYear(Date());
                            end;
-                         DBDateTimePicker1.Enabled:= True;
-                         DBDateTimePicker2.Enabled:= False;
-                         DBComboBox2.Enabled:= false;
+                         DBDataZatrudnienia.Enabled:= True;
+                         DBDataWycofania.Enabled:= False;
+                         DBcbPrzyczynaWycofania.Enabled:= false;
                        end;
        sz_Wycofany  :  begin
                          //jesli jest data to zapytać czy wstawić bierzącą
@@ -226,9 +228,9 @@ begin
                               ZQZat.FieldByName('zat_do').Value:= Date();
                             end;
                          //ZQZat.FieldByName('powod_wycofania').Value:= NULL;
-                         DBDateTimePicker1.Enabled:= True;
-                         DBDateTimePicker2.Enabled:= True;
-                         DBComboBox2.Enabled:= true;
+                         DBDataZatrudnienia.Enabled:= True;
+                         DBDataWycofania.Enabled:= True;
+                         DBcbPrzyczynaWycofania.Enabled:= true;
                        end;
   end;
 end;
@@ -247,8 +249,14 @@ begin
 end;
 
 //DODAJ
-procedure TZatAddZatrudnienie.BitBtn1Click(Sender: TObject);
+procedure TZatAddZatrudnienie.btnOKClick(Sender: TObject);
 begin
+  if not SprawdzPoprawnoscDanych then
+  begin
+    ModalResult:= mrNone;
+    exit;
+  end;
+
   if CzyNowe then
     begin
       ZQZat.FieldByName('data_dodania').AsDateTime:= Now();
@@ -278,6 +286,7 @@ begin
   ZQZat.FieldByName('pobyt').AsString              := sp_Aktualny;
 
   if SprawdzStatusZatrudnienia(ido) then WstawDaneOsadzonego(ido);
+  CzyZapisac;
 end;
 
 procedure TZatAddZatrudnienie.NoweZatrudnienieStanowisko(id_stanowiska: integer);
@@ -399,7 +408,7 @@ begin
 end;
 
 // Uzupełnij dane z poprzedniego zatrudnienia osadzonego.
-procedure TZatAddZatrudnienie.BitBtn6Click(Sender: TObject);
+procedure TZatAddZatrudnienie.btnWprowadzPoprzednieDaneOsClick(Sender: TObject);
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(self);
@@ -421,7 +430,7 @@ begin
 end;
 
 // Uzupełnij dane z poprzedniego zatrudnienia osadzonego. Tylko daty badań.
-procedure TZatAddZatrudnienie.BitBtn8Click(Sender: TObject);
+procedure TZatAddZatrudnienie.btnWprowadzPoprzednieDaneZatClick(Sender: TObject);
 var ZQPom: TZQueryPom;
 begin
   ZQPom:= TZQueryPom.Create(self);
@@ -498,45 +507,45 @@ begin
   //OK
   if ZQZat.FieldByName('ido').IsNull then
        begin
-         BitBtn1.Enabled:= false;
-         BitBtn6.Enabled:= false;
+         btnOK.Enabled:= false;
+         btnWprowadzPoprzednieDaneOs.Enabled:= false;
        end
     else
        begin
-         BitBtn1.Enabled:= true;
-         BitBtn6.Enabled:= true;
+         btnOK.Enabled:= true;
+         btnWprowadzPoprzednieDaneOs.Enabled:= true;
        end;
 
   // Edycja statusu i daty zatrudnienia
   if ZQZat.FieldByName('id_stanowiska').IsNull then
       begin
-        DBComboBox1.Enabled:= False;
+        DBcbStatusZatrudnienia.Enabled:= False;
       end
   else
       begin
-        DBComboBox1.Enabled:= True;
+        DBcbStatusZatrudnienia.Enabled:= True;
       end;
 
   case ZQZat.FieldByName('status_zatrudnienia').AsString of
        sz_Oczekujacy : begin
-                         DBDateTimePicker1.Enabled:= False;
-                         DBDateTimePicker2.Enabled:= False;
-                         DBComboBox2.Enabled:= false;
+                         DBDataZatrudnienia.Enabled:= False;
+                         DBDataWycofania.Enabled:= False;
+                         DBcbPrzyczynaWycofania.Enabled:= false;
                        end;
        sz_Zatrudniony: begin
-                         DBDateTimePicker1.Enabled:= True;
-                         DBDateTimePicker2.Enabled:= False;
-                         DBComboBox2.Enabled:= false;
+                         DBDataZatrudnienia.Enabled:= True;
+                         DBDataWycofania.Enabled:= False;
+                         DBcbPrzyczynaWycofania.Enabled:= false;
                        end;
        sz_Wycofany  :  begin
-                         DBDateTimePicker1.Enabled:= True;
-                         DBDateTimePicker2.Enabled:= True;
-                         DBComboBox2.Enabled:= true;
+                         DBDataZatrudnienia.Enabled:= True;
+                         DBDataWycofania.Enabled:= True;
+                         DBcbPrzyczynaWycofania.Enabled:= true;
                        end;
   end;
 end;
 
-procedure TZatAddZatrudnienie.BitBtn7Click(Sender: TObject);
+procedure TZatAddZatrudnienie.btnWyslijKomunikatyClick(Sender: TObject);
 begin
   WyslijKomunikaty;
 end;
@@ -580,6 +589,60 @@ begin
 
   DM.KomunikatPopUp(Self, 'Zatrudnienie', tresc, nots_Info);
   FreeAndNil(user_List);
+end;
+
+function TZatAddZatrudnienie.SprawdzPoprawnoscDanych: Boolean;
+begin
+  Result:= False;
+  if ZQZat.FieldByName('ido').IsNull then begin
+    MessageDlg('Nie wybrano osadzonego.', mtWarning, [mbCancel],0);
+    exit;
+  end;
+
+  if ZQZat.FieldByName('status_zatrudnienia').AsString= sz_Zatrudniony then
+  begin
+    if ZQZat.FieldByName('id_stanowiska').IsNull then
+    begin
+      MessageDlg('Nie wybrano stanowiska pracy.', mtWarning, [mbCancel],0);
+      exit;
+    end;
+    if ZQZat.FieldByName('zat_od').IsNull then
+    begin
+      MessageDlg('Nie wprowadzono daty zatrudnienia.', mtWarning, [mbCancel],0);
+      exit;
+    end;
+    if ZQZat.FieldByName('etat').IsNull or (ZQZat.FieldByName('etat').AsString='') then
+    begin
+      MessageDlg('Nie wybrano wymiaru etatu.', mtWarning, [mbCancel],0);
+      exit;
+    end;
+    if ZQZat.FieldByName('rodzaj_zatrudnienia').IsNull or (ZQZat.FieldByName('rodzaj_zatrudnienia').AsString='') then
+    begin
+      MessageDlg('Nie wybrano rodzaju zatrudnienia.', mtWarning, [mbCancel],0);
+      exit;
+    end;
+  end;
+
+  if ZQZat.FieldByName('status_zatrudnienia').AsString= sz_Wycofany then
+  begin
+    if ZQZat.FieldByName('zat_od').IsNull then
+    begin
+      MessageDlg('Nie wprowadzono daty zatrudnienia.', mtWarning, [mbCancel],0);
+      exit;
+    end;
+    if ZQZat.FieldByName('zat_do').IsNull then
+    begin
+      MessageDlg('Nie wprowadzono daty wycofania z zatrudnienia.', mtWarning, [mbCancel],0);
+      exit;
+    end;
+    if ZQZat.FieldByName('powod_wycofania').IsNull or (ZQZat.FieldByName('powod_wycofania').AsString='') then
+    begin
+      MessageDlg('Nie wpisano powodu wycofania.', mtWarning, [mbCancel],0);
+      exit;
+    end;
+  end;
+
+  Result:= True;
 end;
 
 {

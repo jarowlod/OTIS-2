@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="1899-12-30 00:00:00"/>
-    <ReportLastChange Value="2017-11-20 13:41:59"/>
+    <ReportLastChange Value="2018-10-09 22:25:41"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -17,7 +17,7 @@
     <Pages>
       <PrintToDefault Value="False"/>
       <DoublePass Value="True"/>
-      <SelectedPrinter Value="HP LaserJet Professional P1566"/>
+      <SelectedPrinter Value="doPDF 9"/>
       <PageCount Value="1"/>
       <Page1>
         <Name Value="Page1"/>
@@ -399,7 +399,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;IDO&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;IDO&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -511,7 +511,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;POC&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;POC&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -623,7 +623,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;Nazwisko&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;Nazwisko&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -735,7 +735,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;IMIE&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;IMIE&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -847,7 +847,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;OJCIEC&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;OJCIEC&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -959,7 +959,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;KLASYF&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;KLASYF&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1071,7 +1071,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;Zatrudnienie&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;Zatrudnienie&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1183,7 +1183,7 @@
           <Data>
             <Format Value="67371054"/>
             <FormatStr Value=" ;X"/>
-            <Memo Value="[ZQZatrudnieni.&quot;GR&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;GR&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1295,7 +1295,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;PRZYJ&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;PRZYJ&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1407,7 +1407,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;KoniecKary&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;KoniecKary&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1519,7 +1519,7 @@
           <Data>
             <Format Value="67371054"/>
             <FormatStr Value=" ;X"/>
-            <Memo Value="[ZQZatrudnieni.&quot;Arch&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;Arch&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1631,7 +1631,7 @@
           <Data>
             <Format Value="67371054"/>
             <FormatStr Value=" ;X"/>
-            <Memo Value="[ZQZatrudnieni.&quot;Wywiad&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;Wywiad&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1743,7 +1743,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;twpz&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;twpz&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1855,7 +1855,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;ulamek_wpz&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;ulamek_wpz&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1967,7 +1967,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;Autoryzacja&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;Autoryzacja&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -2079,7 +2079,7 @@
           <Data>
             <Format Value="33816622"/>
             <FormatStr Value="dd.mm.yyyy"/>
-            <Memo Value="[ZQZatrudnieni.&quot;data_autoryzacji&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQBezrobotni.&quot;data_autoryzacji&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>

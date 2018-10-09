@@ -1,14 +1,14 @@
 object ZatAddZatrudnienie: TZatAddZatrudnienie
-  Left = 440
+  Left = 389
   Height = 762
-  Top = 236
+  Top = 231
   Width = 931
   Caption = 'Zatrudnienie - Nowy'
   ClientHeight = 762
   ClientWidth = 931
   OnClose = FormClose
   Position = poOwnerFormCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object GroupBox2: TGroupBox
     Left = 0
     Height = 412
@@ -42,7 +42,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       Caption = 'Status zatrudnienia:'
       ParentColor = False
     end
-    object DBComboBox1: TDBComboBox
+    object DBcbStatusZatrudnienia: TDBComboBox
       Left = 129
       Height = 23
       Top = 0
@@ -56,7 +56,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
         'wycofany'
       )
       MaxLength = 0
-      OnSelect = DBComboBox1Select
+      OnSelect = DBcbStatusZatrudnieniaSelect
       Style = csDropDownList
       TabOrder = 0
     end
@@ -144,7 +144,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       ParentColor = False
       ParentFont = False
     end
-    object DBDateTimePicker1: TDBDateTimePicker
+    object DBDataZatrudnienia: TDBDateTimePicker
       Left = 129
       Height = 23
       Top = 32
@@ -167,7 +167,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       HideDateTimeParts = []
       MonthNames = 'Long'
     end
-    object DBDateTimePicker2: TDBDateTimePicker
+    object DBDataWycofania: TDBDateTimePicker
       Left = 377
       Height = 23
       Top = 32
@@ -330,7 +330,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       ValueChecked = '1'
       ValueUnchecked = '0'
     end
-    object DBComboBox2: TDBComboBox
+    object DBcbPrzyczynaWycofania: TDBComboBox
       Left = 377
       Height = 23
       Top = 56
@@ -555,7 +555,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
         MaxLength = 11
         TabOrder = 8
       end
-      object BitBtn6: TBitBtn
+      object btnWprowadzPoprzednieDaneOs: TBitBtn
         Left = 7
         Height = 30
         Top = 128
@@ -597,7 +597,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
           00000000000000000000000000000000000048CC62085ED57D9C67DA87B651CC
           690F000000000000000000000000000000000000000000000000
         }
-        OnClick = BitBtn6Click
+        OnClick = btnWprowadzPoprzednieDaneOsClick
         TabOrder = 9
       end
       object DBComboBox5: TDBComboBox
@@ -640,6 +640,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       DropDownCount = 9
       ItemHeight = 15
       Items.Strings = (
+        ''
         '1/8'
         '2/8'
         '3/8'
@@ -652,6 +653,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       )
       MaxLength = 20
       Sorted = True
+      Style = csDropDownList
       TabOrder = 12
     end
     object Label13: TLabel
@@ -684,9 +686,10 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       )
       MaxLength = 10
       Sorted = True
+      Style = csDropDownList
       TabOrder = 13
     end
-    object BitBtn8: TBitBtn
+    object btnWprowadzPoprzednieDaneZat: TBitBtn
       Left = 792
       Height = 79
       Top = 120
@@ -728,7 +731,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
         99FB76D39DF373D299F371D199F371D199F371D298F372D59BF372D59DF371D3
         9BF373D39AF374D39BF376D59DF378D7A1F379D39DFB70C68271
       }
-      OnClick = BitBtn8Click
+      OnClick = btnWprowadzPoprzednieDaneZatClick
       TabOrder = 14
     end
     object DBDateTimePicker8: TDBDateTimePicker
@@ -1234,7 +1237,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
     ClientHeight = 46
     ClientWidth = 931
     TabOrder = 2
-    object BitBtn1: TBitBtn
+    object btnOK: TBitBtn
       Left = 698
       Height = 30
       Top = 8
@@ -1243,10 +1246,10 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       DefaultCaption = True
       Kind = bkOK
       ModalResult = 1
-      OnClick = BitBtn1Click
+      OnClick = btnOKClick
       TabOrder = 0
     end
-    object BitBtn2: TBitBtn
+    object btnAnuluj: TBitBtn
       Left = 818
       Height = 30
       Top = 8
@@ -1256,10 +1259,10 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       DefaultCaption = True
       Kind = bkCancel
       ModalResult = 2
-      OnClick = BitBtn2Click
+      OnClick = btnAnulujClick
       TabOrder = 1
     end
-    object BitBtn7: TBitBtn
+    object btnWyslijKomunikaty: TBitBtn
       Left = 336
       Height = 30
       Hint = 'Przesyła komunikty do właściwego wychowawcy, BHP, kierownika.'
@@ -1302,7 +1305,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
-      OnClick = BitBtn7Click
+      OnClick = btnWyslijKomunikatyClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 2

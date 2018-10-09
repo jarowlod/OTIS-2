@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 440
+  Left = 389
   Height = 598
-  Top = 236
+  Top = 231
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -10,7 +10,7 @@ object MasterForm: TMasterForm
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23

@@ -757,6 +757,7 @@ end;
 
 procedure TZatrudnieni.btnZmienOpisStanowiskaClick(Sender: TObject);
 begin
+  if ZQZatrudnieni.IsEmpty then exit;
   with TZatAddStanowiskaPokrewne.Create(Self) do
       begin
         EditStanowiskaPokrewne( ZQZatrudnieni.FieldByName('Stanowisko').AsString );
@@ -963,6 +964,7 @@ end;
 procedure TZatrudnieni.lblSkierowanieNaBadaniaClick(Sender: TObject);
 var StanowiskaPokrewne: string;
 begin
+  if ZQZatrudnieni.IsEmpty then exit;
   StanowiskaPokrewne:= GetStanowiskaPokrewne(ZQZatrudnieni.FieldByName('Stanowisko').AsString);
 
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_SkierowanieBadania.lrf');

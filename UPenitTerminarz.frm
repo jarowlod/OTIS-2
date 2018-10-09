@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 368
+  Left = 180
   Height = 743
-  Top = 364
+  Top = 178
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -9,7 +9,7 @@ object PenitTerminarz: TPenitTerminarz
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   WindowState = wsMaximized
   object Panel1: TPanel
     Left = 0
@@ -102,8 +102,8 @@ object PenitTerminarz: TPenitTerminarz
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
-      ClientHeight = 660
-      ClientWidth = 1174
+      ClientHeight = 935
+      ClientWidth = 1912
       ImageIndex = 16
       OnShow = TabSheet1Show
       object YearPlanner1: TYearPlanner

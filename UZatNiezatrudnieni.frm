@@ -1,14 +1,14 @@
 object ZatNieZatrudnieni: TZatNieZatrudnieni
-  Left = 388
+  Left = 389
   Height = 692
-  Top = 232
+  Top = 231
   Width = 1471
   Caption = 'Wykaz osadzonych niezatrudnionych'
   ClientHeight = 692
   ClientWidth = 1471
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel5: TPanel
     Left = 0
     Height = 50
