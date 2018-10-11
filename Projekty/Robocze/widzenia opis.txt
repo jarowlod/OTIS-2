@@ -1,0 +1,39 @@
+Zaplanowaæ:
+- tylko wobec daty >= Now
+- uprawnienia (dodatkowe do planowania widzeñ bezdozorowych)
+- wybór z poœród ustalonych godzin (od 9 do 14), z wy³¹czeniem zajêtych
+- mo¿liwoœæ wpisania godziny rêcznie.
+- wybór godziny domyœlnie wybrany z Widoku lub pierwszy wolny.
+- pole Uwagi
+- wybór osadzonego, lub domyœlnie wybrany osadzony z (Osadzeni, karty Och lub penit)
+- wybór osoby bliskiej z osób bliskich
+- zapis do bazy z powielonymi danymi (dane nie ulegaj¹ zmianom)
+
+
+Usuñ:
+- tylko osoba która wpisa³a
+- tylko takie które daty >= Now
+
+Widok Osadzonych:
+- widok generowany rêcznie, wed³ug godzin od 9:00 do 14:00
+- widok na podstawie kalêdarza rocznego, wybranego dnia.
+- jeœli inna godzina to dopisz do widoku.
+
+
+BAZA:
+CREATE TABLE IF NOT EXISTS `widzenia_rezerwacje` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `IDO` int(11) DEFAULT NULL,
+  `DataGodz` datetime DEFAULT NULL,                    unikatowe
+  `NazwiskoImie` varchar(100) DEFAULT NULL,
+  `POC` varchar(10) DEFAULT NULL,
+  `Osoba` varchar(100) DEFAULT NULL,
+  `Pokrewienstwo` varchar(100) DEFAULT NULL,
+  `User` varchar(45) DEFAULT NULL,
+  `data_zap` datetime
+  `Uwagi` varchar(100)
+  
+??  `data_mod` datetime
+??  `Active` int(11) DEFAULT '1' COMMENT '1 - true, 0- false',
+jeœli tak to DataGodz nie mo¿e byæ unikatowa
+  PRIMARY KEY (`ID`)

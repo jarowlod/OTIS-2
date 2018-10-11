@@ -3,8 +3,8 @@ object DM: TDM
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 514
-  HorizontalOffset = 440
-  VerticalOffset = 236
+  HorizontalOffset = 348
+  VerticalOffset = 286
   Width = 697
   object IniPropStorage1: TIniPropStorage
     StoredValues = <>
@@ -23,7 +23,8 @@ object DM: TDM
       'controls_cp=CP_UTF8'
     )
     TransactIsolationLevel = tiRepeatableRead
-    HostName = '172.30.64.11'
+    Connected = True
+    HostName = 'a172.30.64.11'
     Port = 3306
     Database = 'klodzko'
     User = '153202jwlo'

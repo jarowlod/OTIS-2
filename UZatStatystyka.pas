@@ -23,7 +23,7 @@ type
     procedure OpenSql;
   public
     constructor Create(nazwa, kodMZK, sql: string);
-  published
+
     property Sql: string read FSql write SetSql;
     property Nazwa: string read FNazwa write fNzawa;
     property Wynik: string read fWynik write fWynik;

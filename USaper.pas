@@ -256,7 +256,7 @@ end;
 
 procedure TSaper.Zaminuj(lmin: integer);
 var x, i,j, ti: integer;
-    tab: array of TPoint;
+    tab: array of TPoint = ();
 begin
   liczba_min:= lmin;
 

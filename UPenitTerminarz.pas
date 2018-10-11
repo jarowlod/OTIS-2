@@ -14,16 +14,16 @@ type
   { TTerminyEvent }
 
   TTerminyEvent = class
+  private
     fSumOcen     : integer;
     fSumWPZ      : integer;
     fSumPostpenit: integer;
     fSumKK       : integer;
-  private
   public
     procedure DrawCell(TheCanvas: TCanvas; Rect: TRect);
     procedure Clear;
     procedure IncTermin(rodzaj: string);
-  published
+
     property SumOcen     : integer read FSumOcen write fSumOcen default 0;
     property SumWPZ      : integer read FSumWPZ write fSumWPZ default 0;
     property SumPostpenit: integer read FSumPostpenit write fSumPostpenit default 0;
@@ -33,8 +33,8 @@ type
   { TTerminyEvents }
 
   TTerminyEvents = class
-    fDaneTerminarza: array[1..12,1..31] of TTerminyEvent;
   private
+    fDaneTerminarza: array[1..12,1..31] of TTerminyEvent;
     function GetDaneTerminarza(msc, day: integer): TTerminyEvent;
     procedure SetDaneTerminarza(msc, day: integer; AValue: TTerminyEvent);
   public
@@ -375,8 +375,9 @@ begin
           begin
              Background := clGreen;
              AFont.Color:= clWhite;
-          end else
-          if (ZQTerminarzAutoryzacja.IsNull)or(ZQTerminarzAutoryzacja.AsString <> cbWychowawcy.Text) then
+          end else                              // wyróżnij nowych (null), obcych ( <> wych. w zastępstwie or DM.wychowawca),
+          if (ZQTerminarzAutoryzacja.IsNull) or (ZQTerminarzAutoryzacja.AsString <> cbWychowawcy.Text)  // wychowawca w zastępstwie
+                                             or (ZQTerminarzAutoryzacja.AsString <> DM.Wychowawca) then // wychowawca właściwy
           begin
             Background := clLime;
             AFont.Color:= clBlack;
@@ -1061,10 +1062,12 @@ end;
 
 procedure TTerminyEvent.IncTermin(rodzaj: string);
 begin
-  if (rodzaj = 'Ocena') then inc(fSumOcen) else
-   if (rodzaj = 'KK') then inc(fSumKK) else
-    if (rodzaj = 'Postpenit') then inc(fSumPostpenit) else
-     if (rodzaj = 'WPZ') then inc(fSumWPZ);
+  case rodzaj of
+     'Ocena'    : inc(fSumOcen);
+     'KK'       : inc(fSumKK);
+     'Postpenit': inc(fSumPostpenit);
+     'WPZ'      :inc(fSumWPZ);
+  end;
 end;
 
 { TTerminyEvents }
