@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 389
+  Left = 332
   Height = 598
-  Top = 231
+  Top = 263
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1401,6 +1401,7 @@ object MasterForm: TMasterForm
       Category = 'Widzenia'
       Caption = 'Bezdozorowe ...'
       ImageIndex = 22
+      OnExecute = ActionBezdozoroweExecute
     end
     object ActionSkype: TAction
       Category = 'Widzenia'

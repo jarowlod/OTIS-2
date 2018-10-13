@@ -11,6 +11,7 @@
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
       <Title Value="OTIS 2"/>
+      <Scaled Value="True"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
@@ -141,13 +142,14 @@
         <PackageName Value="adLCL"/>
       </Item31>
     </RequiredPackages>
-    <Units Count="60">
+    <Units Count="61">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="UMasterForm.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
@@ -155,6 +157,7 @@
       </Unit1>
       <Unit2>
         <Filename Value="datamodule.pas"/>
+        <FRMtype Value="300"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
@@ -162,6 +165,7 @@
       </Unit2>
       <Unit3>
         <Filename Value="ULogowanie.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Logowanie"/>
         <HasResources Value="True"/>
@@ -169,6 +173,7 @@
       </Unit3>
       <Unit4>
         <Filename Value="UZatStanowiska.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatStanowiska"/>
         <HasResources Value="True"/>
@@ -176,6 +181,7 @@
       </Unit4>
       <Unit5>
         <Filename Value="UZatAddStanowiska.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatAddStanowiska"/>
         <HasResources Value="True"/>
@@ -183,6 +189,7 @@
       </Unit5>
       <Unit6>
         <Filename Value="UZatrudnieni.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
@@ -190,6 +197,7 @@
       </Unit6>
       <Unit7>
         <Filename Value="UZatAddZatrudnienie.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatAddZatrudnienie"/>
         <HasResources Value="True"/>
@@ -197,6 +205,7 @@
       </Unit7>
       <Unit8>
         <Filename Value="UOsadzeni.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Osadzeni"/>
         <HasResources Value="True"/>
@@ -204,6 +213,7 @@
       </Unit8>
       <Unit9>
         <Filename Value="UUprawnienia.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Uprawnienia"/>
         <HasResources Value="True"/>
@@ -211,6 +221,7 @@
       </Unit9>
       <Unit10>
         <Filename Value="UZatrudnienieGrafik.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatrudnienieGrafik"/>
         <HasResources Value="True"/>
@@ -218,6 +229,7 @@
       </Unit10>
       <Unit11>
         <Filename Value="URozmieszczenie.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Rozmieszczenie"/>
         <HasResources Value="True"/>
@@ -225,6 +237,7 @@
       </Unit11>
       <Unit12>
         <Filename Value="UOchUpdPodkultury.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchUpdPodkultury"/>
         <HasResources Value="True"/>
@@ -232,6 +245,7 @@
       </Unit12>
       <Unit13>
         <Filename Value="UPenitForm.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
@@ -239,6 +253,7 @@
       </Unit13>
       <Unit14>
         <Filename Value="UPenitTerminarz.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
@@ -246,6 +261,7 @@
       </Unit14>
       <Unit15>
         <Filename Value="UPenitAktaArch.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PenitAktaArch"/>
         <HasResources Value="True"/>
@@ -253,6 +269,7 @@
       </Unit15>
       <Unit16>
         <Filename Value="UAdresyJednostek.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="AdresyJednostek"/>
         <HasResources Value="True"/>
@@ -260,6 +277,7 @@
       </Unit16>
       <Unit17>
         <Filename Value="UPenitWywiad.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PenitWywiad"/>
         <HasResources Value="True"/>
@@ -267,6 +285,7 @@
       </Unit17>
       <Unit18>
         <Filename Value="UAktualizacjaOs.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="AktualizacjaOs"/>
         <HasResources Value="True"/>
@@ -274,6 +293,7 @@
       </Unit18>
       <Unit19>
         <Filename Value="UAktualizacjaRejestr.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="AktualizacjaRejestr"/>
         <HasResources Value="True"/>
@@ -281,6 +301,7 @@
       </Unit19>
       <Unit20>
         <Filename Value="URejestrProsbOs.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="RejestrProsbOs"/>
         <HasResources Value="True"/>
@@ -288,6 +309,7 @@
       </Unit20>
       <Unit21>
         <Filename Value="URejestrProsbDodaj.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="RejestrProsbDodaj"/>
         <HasResources Value="True"/>
@@ -295,6 +317,7 @@
       </Unit21>
       <Unit22>
         <Filename Value="URejestrProsbAll.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="RejestrProsbAll"/>
         <HasResources Value="True"/>
@@ -302,6 +325,7 @@
       </Unit22>
       <Unit23>
         <Filename Value="UOknoKomunikatu.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OknoKomunikatu"/>
         <HasResources Value="True"/>
@@ -309,6 +333,7 @@
       </Unit23>
       <Unit24>
         <Filename Value="UZatZaswiadczenie.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatZaswiadczenie"/>
         <HasResources Value="True"/>
@@ -316,6 +341,7 @@
       </Unit24>
       <Unit25>
         <Filename Value="UKomunikator.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Komunikator"/>
         <HasResources Value="True"/>
@@ -323,6 +349,7 @@
       </Unit25>
       <Unit26>
         <Filename Value="UKomunikatorNowaWiad.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="KomunikatorNowaWiad"/>
         <HasResources Value="True"/>
@@ -330,6 +357,7 @@
       </Unit26>
       <Unit27>
         <Filename Value="UUpr_ZmianaHasla.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Upr_ZmianaHasla"/>
         <HasResources Value="True"/>
@@ -337,6 +365,7 @@
       </Unit27>
       <Unit28>
         <Filename Value="UZatWniosekUrlopowy.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatWniosekUrolopowy"/>
         <HasResources Value="True"/>
@@ -344,6 +373,7 @@
       </Unit28>
       <Unit29>
         <Filename Value="UZatStawkiPlac.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatStawkiPlac"/>
         <HasResources Value="True"/>
@@ -351,6 +381,7 @@
       </Unit29>
       <Unit30>
         <Filename Value="UZatStatystyka.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatStatystyka"/>
         <HasResources Value="True"/>
@@ -358,6 +389,7 @@
       </Unit30>
       <Unit31>
         <Filename Value="UPenitWydarzenia.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PenitWydarzenia"/>
         <HasResources Value="True"/>
@@ -365,6 +397,7 @@
       </Unit31>
       <Unit32>
         <Filename Value="USaper.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SaperForm"/>
         <HasResources Value="True"/>
@@ -372,6 +405,7 @@
       </Unit32>
       <Unit33>
         <Filename Value="UZatNiezatrudnieni.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatNieZatrudnieni"/>
         <HasResources Value="True"/>
@@ -379,6 +413,7 @@
       </Unit33>
       <Unit34>
         <Filename Value="UDrukWykazOsadz.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DrukWykazOsadz"/>
         <HasResources Value="True"/>
@@ -386,6 +421,7 @@
       </Unit34>
       <Unit35>
         <Filename Value="UOchRejestrWykazow.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchRejestrWykazow"/>
         <HasResources Value="True"/>
@@ -393,6 +429,7 @@
       </Unit35>
       <Unit36>
         <Filename Value="UOchAddWykaz.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchAddWykaz"/>
         <HasResources Value="True"/>
@@ -400,6 +437,7 @@
       </Unit36>
       <Unit37>
         <Filename Value="UOchRejestrWidzen.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchRejestrWidzen"/>
         <HasResources Value="True"/>
@@ -407,6 +445,7 @@
       </Unit37>
       <Unit38>
         <Filename Value="UOchAddWidzenie.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchAddWidzenie"/>
         <HasResources Value="True"/>
@@ -414,6 +453,7 @@
       </Unit38>
       <Unit39>
         <Filename Value="UKoszykNowy.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="KoszykNowy"/>
         <HasResources Value="True"/>
@@ -421,6 +461,7 @@
       </Unit39>
       <Unit40>
         <Filename Value="UKoszyk.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Koszyk"/>
         <HasResources Value="True"/>
@@ -428,6 +469,7 @@
       </Unit40>
       <Unit41>
         <Filename Value="UOchAddOsobeWidzenie.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchAddOsobeWidzenie"/>
         <HasResources Value="True"/>
@@ -435,6 +477,7 @@
       </Unit41>
       <Unit42>
         <Filename Value="UViewUwagiOch.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewUwagiOch"/>
         <HasResources Value="True"/>
@@ -442,6 +485,7 @@
       </Unit42>
       <Unit43>
         <Filename Value="UViewWykazy.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewWykazy"/>
         <HasResources Value="True"/>
@@ -449,6 +493,7 @@
       </Unit43>
       <Unit44>
         <Filename Value="UViewZatrudnienie.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewZatrudnienie"/>
         <HasResources Value="True"/>
@@ -456,6 +501,7 @@
       </Unit44>
       <Unit45>
         <Filename Value="UViewWidzenia.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewWidzenia"/>
         <HasResources Value="True"/>
@@ -463,6 +509,7 @@
       </Unit45>
       <Unit46>
         <Filename Value="UKoszykDostep.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="KoszykDostep"/>
         <HasResources Value="True"/>
@@ -470,6 +517,7 @@
       </Unit46>
       <Unit47>
         <Filename Value="UOchForm.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
@@ -477,6 +525,7 @@
       </Unit47>
       <Unit48>
         <Filename Value="UViewOsobyBliskie.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewOsobyBliskie"/>
         <HasResources Value="True"/>
@@ -484,6 +533,7 @@
       </Unit48>
       <Unit49>
         <Filename Value="UViewPanelZdj.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewPanelZdj"/>
         <HasResources Value="True"/>
@@ -491,6 +541,7 @@
       </Unit49>
       <Unit50>
         <Filename Value="UAktualizacjaZdjec.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="AktualizacjaZdjec"/>
         <HasResources Value="True"/>
@@ -498,6 +549,7 @@
       </Unit50>
       <Unit51>
         <Filename Value="UOchSalaWidzen.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchSalaWidzen"/>
         <HasResources Value="True"/>
@@ -505,6 +557,7 @@
       </Unit51>
       <Unit52>
         <Filename Value="UViewStolik.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewStolik"/>
         <HasResources Value="True"/>
@@ -512,6 +565,7 @@
       </Unit52>
       <Unit53>
         <Filename Value="UPenitWPZ.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PenitWPZ"/>
         <HasResources Value="True"/>
@@ -519,6 +573,7 @@
       </Unit53>
       <Unit54>
         <Filename Value="UKnowHow.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="KnowHow"/>
         <HasResources Value="True"/>
@@ -526,6 +581,7 @@
       </Unit54>
       <Unit55>
         <Filename Value="UOchImportOsobWidzenie.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchImportOsobWidzenie"/>
         <HasResources Value="True"/>
@@ -533,6 +589,7 @@
       </Unit55>
       <Unit56>
         <Filename Value="UViewRichEdit.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewRichEdit"/>
         <HasResources Value="True"/>
@@ -544,6 +601,7 @@
       </Unit57>
       <Unit58>
         <Filename Value="UPenitNeoNetTest.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PenitNeoNetTest"/>
         <HasResources Value="True"/>
@@ -551,11 +609,20 @@
       </Unit58>
       <Unit59>
         <Filename Value="UZatAddStanowiskaPokrewne.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZatAddStanowiskaPokrewne"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit59>
+      <Unit60>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OchRezerwacjaWidzen"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit60>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -568,9 +635,6 @@
       <IncludeFiles Value="$(ProjOutDir)"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
-    <CodeGeneration>
-      <TargetOS Value="win32"/>
-    </CodeGeneration>
     <Linking>
       <Options>
         <Win32>

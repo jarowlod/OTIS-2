@@ -1,14 +1,14 @@
 object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
-  Left = 407
+  Left = 332
   Height = 371
-  Top = 238
+  Top = 263
   Width = 622
   Caption = 'Osoba uprawniona do widzeń'
   ClientHeight = 371
   ClientWidth = 622
   KeyPreview = True
   Position = poScreenCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Label6: TLabel
     AnchorSideTop.Side = asrCenter
     Left = 96
@@ -28,7 +28,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     DataSource = DSUprawnione
     Anchors = [akTop, akLeft, akRight]
     CharCase = ecUppercase
-    MaxLength = 0
+    MaxLength = 45
     TabOrder = 0
   end
   object Label1: TLabel
@@ -54,7 +54,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     DataSource = DSUprawnione
     Anchors = [akTop, akLeft, akRight]
     CharCase = ecUppercase
-    MaxLength = 0
+    MaxLength = 45
     TabOrder = 1
   end
   object Label2: TLabel
@@ -79,7 +79,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     DataSource = DSUprawnione
     Anchors = [akTop, akLeft, akRight]
     CharCase = ecUppercase
-    MaxLength = 0
+    MaxLength = 100
     TabOrder = 2
   end
   object Label3: TLabel
@@ -115,7 +115,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     DataSource = DSUprawnione
     Anchors = [akTop, akLeft, akRight]
     CharCase = ecUppercase
-    MaxLength = 0
+    MaxLength = 100
     TabOrder = 3
   end
   object Label5: TLabel
@@ -331,7 +331,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
       'WUJEK'
       'ŻONA'
     )
-    MaxLength = 0
+    MaxLength = 45
     TabOrder = 8
   end
   object CheckBox1: TCheckBox

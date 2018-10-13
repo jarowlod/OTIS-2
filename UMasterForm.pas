@@ -165,6 +165,7 @@ type
     procedure ActionAddWidzenieExecute(Sender: TObject);
     procedure ActionAddWykazExecute(Sender: TObject);
     procedure ActionAktualizacjaPodkulturyExecute(Sender: TObject);
+    procedure ActionBezdozoroweExecute(Sender: TObject);
     procedure ActionDodajDoKoszykaExecute(Sender: TObject);
     procedure ActionDodajOsobeBliskaExecute(Sender: TObject);
     procedure ActionDrukujWykazOsExecute(Sender: TObject);
@@ -244,7 +245,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec,
-     UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNeoNetTest;
+     UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNeoNetTest, UOchRezerwacjaWidzen;
 {$R *.frm}
 
 { TMasterForm }
@@ -629,6 +630,15 @@ begin
   begin
     ShowModal;
     Free;
+  end;
+end;
+
+procedure TMasterForm.ActionBezdozoroweExecute(Sender: TObject);
+begin
+  with TOchRezerwacjaWidzen.Create(Self) do
+  begin
+       ShowModal;
+       Free;
   end;
 end;
 

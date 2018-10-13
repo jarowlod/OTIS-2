@@ -1,13 +1,13 @@
 object OchImportOsobWidzenie: TOchImportOsobWidzenie
-  Left = 470
+  Left = 332
   Height = 457
-  Top = 231
+  Top = 263
   Width = 856
   Caption = 'Import osób uprawnionych do widzenia z NoeNET.'
   ClientHeight = 457
   ClientWidth = 856
   OnCreate = FormCreate
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel2: TPanel
     Left = 0
     Height = 48
@@ -191,6 +191,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -207,6 +208,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -222,6 +224,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -237,6 +240,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -252,6 +256,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -270,6 +275,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -290,6 +296,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -396,12 +403,12 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       item
         Name = 'Nazwisko'
         DataType = ftString
-        Size = 50
+        Size = 45
       end    
       item
         Name = 'Imie'
         DataType = ftString
-        Size = 50
+        Size = 45
       end    
       item
         Name = 'Adres'
@@ -411,7 +418,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       item
         Name = 'Pokrew'
         DataType = ftString
-        Size = 50
+        Size = 45
       end    
       item
         Name = 'Uwagi'
