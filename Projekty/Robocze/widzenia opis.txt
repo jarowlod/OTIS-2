@@ -21,19 +21,23 @@ Widok Osadzonych:
 
 
 BAZA:
-CREATE TABLE IF NOT EXISTS `widzenia_rezerwacje` (
-  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `IDO` int(11) DEFAULT NULL,
-  `DataGodz` datetime DEFAULT NULL,                    unikatowe
-  `NazwiskoImie` varchar(100) DEFAULT NULL,
-  `POC` varchar(10) DEFAULT NULL,
-  `Osoba` varchar(100) DEFAULT NULL,
-  `Pokrewienstwo` varchar(100) DEFAULT NULL,
-  `User` varchar(45) DEFAULT NULL,
-  `data_zap` datetime
-  `Uwagi` varchar(100)
-  
-??  `data_mod` datetime
-??  `Active` int(11) DEFAULT '1' COMMENT '1 - true, 0- false',
-jeœli tak to DataGodz nie mo¿e byæ unikatowa
-  PRIMARY KEY (`ID`)
+CREATE TABLE `widzenia_skype` (
+	`ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`DataGodz` DATETIME NOT NULL,
+	`IDO` INT(11) NOT NULL,
+	`Nazwisko` VARCHAR(45) NOT NULL,
+	`Imie` VARCHAR(45) NOT NULL,
+	`POC` VARCHAR(10) NULL DEFAULT NULL,
+	`Osoba` VARCHAR(100) NULL DEFAULT NULL,
+	`Pokrewienstwo` VARCHAR(100) NULL DEFAULT NULL,
+	`Uwagi` VARCHAR(100) NULL DEFAULT NULL,
+	`User` VARCHAR(60) NOT NULL,
+	`data_zap` DATETIME NOT NULL,
+	PRIMARY KEY (`ID`),
+	UNIQUE INDEX `DataGodz` (`DataGodz`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+ROW_FORMAT=DYNAMIC
+AUTO_INCREMENT=28
+;
