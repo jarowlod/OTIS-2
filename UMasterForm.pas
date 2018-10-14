@@ -188,6 +188,7 @@ type
     procedure ActionRejestrWykazowExecute(Sender: TObject);
     procedure ActionRozmieszczenieExecute(Sender: TObject);
     procedure ActionSalaWidzenExecute(Sender: TObject);
+    procedure ActionSkypeExecute(Sender: TObject);
     procedure ActionStanowiskaExecute(Sender: TObject);
     procedure ActionStatystykaExecute(Sender: TObject);
     procedure ActionTerminarzExecute(Sender: TObject);
@@ -245,7 +246,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec,
-     UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNeoNetTest, UOchRezerwacjaWidzen;
+     UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNeoNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype;
 {$R *.frm}
 
 { TMasterForm }
@@ -573,6 +574,15 @@ begin
   OchSalaWidzen:= TOchSalaWidzen.Create(Self);
   OchSalaWidzen.ShowModal;
   FreeAndNil(OchSalaWidzen);
+end;
+
+procedure TMasterForm.ActionSkypeExecute(Sender: TObject);
+begin
+  with TOchRezerwacjaSkype.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
 end;
 
 procedure TMasterForm.ActionKartaOsadzonegoExecute(Sender: TObject);

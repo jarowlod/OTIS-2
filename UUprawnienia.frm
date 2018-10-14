@@ -1,22 +1,22 @@
 object Uprawnienia: TUprawnienia
-  Left = 388
-  Height = 635
-  Top = 232
-  Width = 1003
+  Left = 332
+  Height = 636
+  Top = 263
+  Width = 1065
   Caption = 'Uprawnienia'
-  ClientHeight = 635
-  ClientWidth = 1003
+  ClientHeight = 636
+  ClientWidth = 1065
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 50
     Top = 0
-    Width = 1003
+    Width = 1065
     Align = alTop
     ClientHeight = 50
-    ClientWidth = 1003
+    ClientWidth = 1065
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -77,22 +77,22 @@ object Uprawnienia: TUprawnienia
   end
   object Panel2: TPanel
     Left = 0
-    Height = 585
+    Height = 586
     Top = 50
-    Width = 352
+    Width = 358
     Align = alClient
-    ClientHeight = 585
-    ClientWidth = 352
+    ClientHeight = 586
+    ClientWidth = 358
     TabOrder = 1
     object Panel3: TPanel
       Left = 1
       Height = 50
       Top = 1
-      Width = 350
+      Width = 356
       Align = alTop
       BevelOuter = bvNone
       ClientHeight = 50
-      ClientWidth = 350
+      ClientWidth = 356
       TabOrder = 0
       object Image2: TImage
         Left = 8
@@ -153,7 +153,7 @@ object Uprawnienia: TUprawnienia
         Left = 40
         Height = 26
         Top = 14
-        Width = 296
+        Width = 302
         Anchors = [akTop, akLeft, akRight]
         AutoSelect = False
         Font.CharSet = EASTEUROPE_CHARSET
@@ -169,9 +169,9 @@ object Uprawnienia: TUprawnienia
     end
     object RxDBGrid1: TRxDBGrid
       Left = 1
-      Height = 487
+      Height = 488
       Top = 51
-      Width = 350
+      Width = 356
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
@@ -586,6 +586,24 @@ object Uprawnienia: TUprawnienia
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
           Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          ButtonStyle = cbsCheckboxColumn
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.ShowHint = True
+          Title.Caption = 'Mod18'
+          Width = 30
+          FieldName = 'Mod18'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
         end>
       KeyStrokes = <      
         item
@@ -672,12 +690,12 @@ object Uprawnienia: TUprawnienia
     object Panel5: TPanel
       Left = 1
       Height = 46
-      Top = 538
-      Width = 350
+      Top = 539
+      Width = 356
       Align = alBottom
       BevelOuter = bvNone
       ClientHeight = 46
-      ClientWidth = 350
+      ClientWidth = 356
       TabOrder = 2
       object BitBtn2: TBitBtn
         Left = 8
@@ -772,21 +790,21 @@ object Uprawnienia: TUprawnienia
     end
   end
   object Splitter1: TSplitter
-    Left = 352
-    Height = 585
+    Left = 358
+    Height = 586
     Top = 50
     Width = 5
     Align = alRight
     ResizeAnchor = akRight
   end
   object Panel4: TPanel
-    Left = 357
-    Height = 585
+    Left = 363
+    Height = 586
     Top = 50
-    Width = 646
+    Width = 702
     Align = alRight
-    ClientHeight = 585
-    ClientWidth = 646
+    ClientHeight = 586
+    ClientWidth = 702
     TabOrder = 3
     object Label2: TLabel
       Left = 89
@@ -855,12 +873,12 @@ object Uprawnienia: TUprawnienia
     end
     object GroupBox1: TGroupBox
       Left = 8
-      Height = 416
+      Height = 448
       Top = 128
-      Width = 240
+      Width = 280
       Caption = 'Uprawnienia'
-      ClientHeight = 396
-      ClientWidth = 236
+      ClientHeight = 428
+      ClientWidth = 276
       TabOrder = 0
       object DBCheckBox1: TDBCheckBox
         Left = 16
@@ -1083,11 +1101,24 @@ object Uprawnienia: TUprawnienia
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
+      object DBCheckBox18: TDBCheckBox
+        Left = 16
+        Height = 19
+        Top = 384
+        Width = 246
+        AutoSize = True
+        Caption = 'Rezerwacja widzeń bezdozorowych / Skype'
+        DataField = 'Mod18'
+        DataSource = DSUsers
+        TabOrder = 17
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
     end
     object BitBtn1: TBitBtn
-      Left = 503
+      Left = 556
       Height = 30
-      Top = 514
+      Top = 546
       Width = 129
       Caption = 'Zmień hasło'
       Glyph.Data = {
@@ -1130,7 +1161,7 @@ object Uprawnienia: TUprawnienia
       TabOrder = 7
     end
     object Label6: TLabel
-      Left = 280
+      Left = 320
       Height = 15
       Top = 125
       Width = 127
@@ -1138,7 +1169,7 @@ object Uprawnienia: TUprawnienia
       ParentColor = False
     end
     object DBEdit1: TDBEdit
-      Left = 416
+      Left = 456
       Height = 23
       Top = 120
       Width = 216
@@ -1149,7 +1180,7 @@ object Uprawnienia: TUprawnienia
       TabOrder = 2
     end
     object Label7: TLabel
-      Left = 256
+      Left = 296
       Height = 15
       Top = 152
       Width = 151
@@ -1157,7 +1188,7 @@ object Uprawnienia: TUprawnienia
       ParentColor = False
     end
     object DBMemo1: TDBMemo
-      Left = 416
+      Left = 456
       Height = 114
       Top = 152
       Width = 216
@@ -1167,7 +1198,7 @@ object Uprawnienia: TUprawnienia
       TabOrder = 3
     end
     object Label8: TLabel
-      Left = 379
+      Left = 419
       Height = 15
       Top = 389
       Width = 28
@@ -1175,7 +1206,7 @@ object Uprawnienia: TUprawnienia
       ParentColor = False
     end
     object DBComboBox1: TDBComboBox
-      Left = 416
+      Left = 456
       Height = 23
       Top = 384
       Width = 216
@@ -1192,9 +1223,9 @@ object Uprawnienia: TUprawnienia
       TabOrder = 5
     end
     object DBNavigator1: TDBNavigator
-      Left = 256
+      Left = 309
       Height = 30
-      Top = 514
+      Top = 546
       Width = 218
       BevelOuter = bvNone
       ChildSizing.EnlargeHorizontal = crsScaleChilds
@@ -1224,7 +1255,7 @@ object Uprawnienia: TUprawnienia
       TabOrder = 1
     end
     object Label9: TLabel
-      Left = 368
+      Left = 408
       Height = 15
       Top = 278
       Width = 39
@@ -1232,7 +1263,7 @@ object Uprawnienia: TUprawnienia
       ParentColor = False
     end
     object DBMemo2: TDBMemo
-      Left = 416
+      Left = 456
       Height = 90
       Top = 278
       Width = 216
@@ -1244,9 +1275,9 @@ object Uprawnienia: TUprawnienia
     end
   end
   object Panel6: TPanel
-    Left = 824
+    Left = 904
     Height = 248
-    Top = 280
+    Top = 288
     Width = 456
     Align = alCustom
     BevelInner = bvRaised
@@ -1411,7 +1442,7 @@ object Uprawnienia: TUprawnienia
     end
   end
   object Panel8: TPanel
-    Left = 824
+    Left = 904
     Height = 248
     Top = 24
     Width = 424

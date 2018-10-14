@@ -29,6 +29,7 @@ type
     DBCheckBox15: TDBCheckBox;
     DBCheckBox16: TDBCheckBox;
     DBCheckBox17: TDBCheckBox;
+    DBCheckBox18: TDBCheckBox;
     DBCheckBox2: TDBCheckBox;
     DBCheckBox3: TDBCheckBox;
     DBCheckBox4: TDBCheckBox;
@@ -154,7 +155,7 @@ begin
   Edit7.SetFocus;
 end;
 
-// Nowy użtkownik
+// Nowy użytkownik
 procedure TUprawnienia.BitBtn2Click(Sender: TObject);
 begin
   Panel2.Enabled:= False;
@@ -171,7 +172,7 @@ begin
   Edit2.SetFocus;
 end;
 
-// Usuń użtykownika
+// Usuń użytykownika
 procedure TUprawnienia.BitBtn3Click(Sender: TObject);
 var ZQ: TZQueryPom;
 begin
@@ -205,7 +206,7 @@ begin
   ZQUsers.Open;
 end;
 
-// OK - ZAPISZ Nowego Uzytkownika
+// OK - ZAPISZ Nowego Użytkownika
 procedure TUprawnienia.BitBtn4Click(Sender: TObject);
 var ZQ: TZQueryPom;
 begin

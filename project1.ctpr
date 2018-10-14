@@ -142,7 +142,7 @@
         <PackageName Value="adLCL"/>
       </Item31>
     </RequiredPackages>
-    <Units Count="61">
+    <Units Count="62">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -616,13 +616,21 @@
         <ResourceBaseClass Value="Form"/>
       </Unit59>
       <Unit60>
-        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Filename Value="UOchRezerwacjaSkype.pas"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="OchRezerwacjaWidzen"/>
+        <ComponentName Value="OchRezerwacjaSkype"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit60>
+      <Unit61>
+        <Filename Value="UOchAddRezerwacjaSkype.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OchAddRezerwacjaSkype"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit61>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

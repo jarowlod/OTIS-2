@@ -176,8 +176,6 @@ begin
     end;
   // --------------------------------------------------------
 
-  // TODO: sprawdzamy czy osadzony przebywa w celi aresztowej
-
   // sprawdzamy czy osadzony jest już dodany do poczekalni
   if CzyJestDodanyDoPoczekalni then
     begin
@@ -392,84 +390,92 @@ begin
   end;
   // koniec walidacji --------------------------------------------------------------------------------------------------
 
-  // zakladamy rekord widzenia o ETAPIE 1 - oczekuje
-  ZQPom:= TZQueryPom.Create(Self);
-  // ---------------------------------------------INSERT----------------------------------------------------------------
-  if cbCzyZrealizowane.Checked then
-    begin // Dodaj gotowe widzenie
-      ZQPom.SQL.Text:= 'INSERT INTO widzenia (IDO,Etap,Data_Widzenie,Czas_widzenia,Sposob,Uwagi,Nadzor,Czas_reg,Czas_dod,Dodatkowe,Data_Dod) VALUES (:ido,3,:data_w,:czas,:sposob,:uwagi,:nadzor,:czas_r,:czas_d,:dod,:dd);';
-      ZQPom.ParamByName('data_w').AsDate:= dtDataWidzenia.Date;
-    end
-  else  // Dodaj do poczekalni
-    ZQPom.SQL.Text:= 'INSERT INTO widzenia (IDO,Etap,Data_Oczekuje,Czas_widzenia,Sposob,Uwagi,Nadzor,Czas_reg,Czas_dod,Dodatkowe,Data_Dod) VALUES (:ido,1,Now(),:czas,:sposob,:uwagi,:nadzor,:czas_r,:czas_d,:dod,:dd);';
+  DM.ZConnection1.StartTransaction;
+  try
+    try
+    // zakladamy rekord widzenia o ETAPIE 1 - oczekuje
+    ZQPom:= TZQueryPom.Create(Self);
+    // ---------------------------------------------INSERT----------------------------------------------------------------
+    if cbCzyZrealizowane.Checked then
+      begin // Dodaj gotowe widzenie
+        ZQPom.SQL.Text:= 'INSERT INTO widzenia (IDO,Etap,Data_Widzenie,Czas_widzenia,Sposob,Uwagi,Nadzor,Czas_reg,Czas_dod,Dodatkowe,Data_Dod) VALUES (:ido,3,:data_w,:czas,:sposob,:uwagi,:nadzor,:czas_r,:czas_d,:dod,:dd);';
+        ZQPom.ParamByName('data_w').AsDate:= dtDataWidzenia.Date;
+      end
+    else  // Dodaj do poczekalni
+      ZQPom.SQL.Text:= 'INSERT INTO widzenia (IDO,Etap,Data_Oczekuje,Czas_widzenia,Sposob,Uwagi,Nadzor,Czas_reg,Czas_dod,Dodatkowe,Data_Dod) VALUES (:ido,1,Now(),:czas,:sposob,:uwagi,:nadzor,:czas_r,:czas_d,:dod,:dd);';
 
-  ZQPom.ParamByName('ido').AsInteger   := SelectIDO;
-  ZQPom.ParamByName('nadzor').AsString := DM.PelnaNazwa;
-  // ------------------------------------------END etap INSERTU
+    ZQPom.ParamByName('ido').AsInteger   := SelectIDO;
+    ZQPom.ParamByName('nadzor').AsString := DM.PelnaNazwa;
+    // ------------------------------------------END etap INSERTU
 
-  // ------------------------------------------UPDATE ------------------------------------------------------------------
-  if isModyfikacja then
-    begin
-      ZQPom.SQL.Text:= 'UPDATE widzenia SET Czas_widzenia=:czas, Sposob=:sposob, Uwagi=:uwagi, Czas_reg=:czas_r, Czas_dod=:czas_d, Dodatkowe=:dod, Data_Dod=:dd, Stolik=:stolik WHERE ID=:id_widzenia';
-      ZQPom.ParamByName('id_widzenia').AsInteger:= SelectID;
-      if GroupBoxNrStolika.Visible then
-          ZQPom.ParamByName('stolik').AsInteger:= StrToInt(cbNrStolika.Text)
-        else
-          ZQPom.ParamByName('stolik').Value:= null;
+    // ------------------------------------------UPDATE ------------------------------------------------------------------
+    if isModyfikacja then
+      begin
+        ZQPom.SQL.Text:= 'UPDATE widzenia SET Czas_widzenia=:czas, Sposob=:sposob, Uwagi=:uwagi, Czas_reg=:czas_r, Czas_dod=:czas_d, Dodatkowe=:dod, Data_Dod=:dd, Stolik=:stolik WHERE ID=:id_widzenia';
+        ZQPom.ParamByName('id_widzenia').AsInteger:= SelectID;
+        if GroupBoxNrStolika.Visible then
+            ZQPom.ParamByName('stolik').AsInteger:= StrToInt(cbNrStolika.Text)
+          else
+            ZQPom.ParamByName('stolik').Value:= null;
+      end;
+    // ------------------------------------------END etap UPDATE
+    // ----------------------------------------- część wspólna dla INSERT i UPDATE
+    ZQPom.ParamByName('czas').AsInteger  := edRegulamin.Value + edDodatkowe.Value;
+    ZQPom.ParamByName('czas_r').AsInteger:= edRegulamin.Value;
+    ZQPom.ParamByName('czas_d').AsInteger:= edDodatkowe.Value;
+    case cbSposob.ItemIndex of
+      0: sposob:='K';
+      1: sposob:='BO';
+      2: sposob:='OP';
+      3: sposob:='BK';
     end;
-  // ------------------------------------------END etap UPDATE
-  // ----------------------------------------- część wspólna dla INSERT i UPDATE
-  ZQPom.ParamByName('czas').AsInteger  := edRegulamin.Value + edDodatkowe.Value;
-  ZQPom.ParamByName('czas_r').AsInteger:= edRegulamin.Value;
-  ZQPom.ParamByName('czas_d').AsInteger:= edDodatkowe.Value;
-  case cbSposob.ItemIndex of
-    0: sposob:='K';
-    1: sposob:='BO';
-    2: sposob:='OP';
-    3: sposob:='BK';
-  end;
-  ZQPom.ParamByName('sposob').AsString := sposob;
-  ZQPom.ParamByName('uwagi').AsString  := edUwagi.Text;
-  if edDodatkowe.Value=0 then
-    begin
-     ZQPom.ParamByName('dod').AsString:= '';
-     ZQPom.ParamByName('dd').Value    := NULL;
-    end
-  else
-    begin
-      ZQPom.ParamByName('dod').AsString:= 'D';
-      ZQPom.ParamByName('dd').AsString := cbDodatkowe.Text;
-    end;
+    ZQPom.ParamByName('sposob').AsString := sposob;
+    ZQPom.ParamByName('uwagi').AsString  := edUwagi.Text;
+    if edDodatkowe.Value=0 then
+      begin
+       ZQPom.ParamByName('dod').AsString:= '';
+       ZQPom.ParamByName('dd').Value    := NULL;
+      end
+    else
+      begin
+        ZQPom.ParamByName('dod').AsString:= 'D';
+        ZQPom.ParamByName('dd').AsString := cbDodatkowe.Text;
+      end;
 
-  ZQPom.ExecSQL;
-
-  if isModyfikacja then
-    begin  // w przypadku modyfikacji usuwamy przypisane osoby uprawnione do widzenia aby dodać po nowemu
-      ZQPom.SQL.Text:= 'DELETE FROM widzenia_upr WHERE ID_widzenia=:id_w';
-      ZQPom.ParamByName('id_w').AsInteger:= SelectID;
-      ZQPom.ExecSQL;
-    end
-  else
-    begin
-      // odczytujemy ID widzenia, gdy dodajemy widzenie
-      ZQPom.SQL.Text:= 'SELECT LAST_INSERT_ID() as id;';
-      ZQPom.Open;
-      SelectID:= ZQPom.FieldByName('ID').AsInteger;
-    end;
-
-  // dodajemy osoby uprawnione do widzenia_upr (ID_widzenia, ID_uprawnione)
-  ZQPom.SQL.Text:= 'INSERT INTO widzenia_upr (ID_widzenia,ID_uprawnione) VALUES (:id_w,:id_u);';
-  ZQPom.ParamByName('id_w').AsInteger:= SelectID;
-  MemOsoby.First;
-  while not MemOsoby.EOF do
-  begin
-    ZQPom.ParamByName('id_u').AsInteger:= MemOsoby.FieldByName('ID').AsInteger;
     ZQPom.ExecSQL;
-    MemOsoby.Next;
+
+    if isModyfikacja then
+      begin  // w przypadku modyfikacji usuwamy przypisane osoby uprawnione do widzenia aby dodać po nowemu
+        ZQPom.SQL.Text:= 'DELETE FROM widzenia_upr WHERE ID_widzenia=:id_w';
+        ZQPom.ParamByName('id_w').AsInteger:= SelectID;
+        ZQPom.ExecSQL;
+      end
+    else
+      begin
+        // odczytujemy ID widzenia, gdy dodajemy widzenie
+        ZQPom.SQL.Text:= 'SELECT LAST_INSERT_ID() as id;';
+        ZQPom.Open;
+        SelectID:= ZQPom.FieldByName('ID').AsInteger;
+      end;
+
+    // dodajemy osoby uprawnione do widzenia_upr (ID_widzenia, ID_uprawnione)
+    ZQPom.SQL.Text:= 'INSERT INTO widzenia_upr (ID_widzenia,ID_uprawnione) VALUES (:id_w,:id_u);';
+    ZQPom.ParamByName('id_w').AsInteger:= SelectID;
+    MemOsoby.First;
+    while not MemOsoby.EOF do
+    begin
+      ZQPom.ParamByName('id_u').AsInteger:= MemOsoby.FieldByName('ID').AsInteger;
+      ZQPom.ExecSQL;
+      MemOsoby.Next;
+    end;
+
+    DM.ZConnection1.Commit;
+    finally
+      FreeAndNil( ZQPom);
+    end;
+  except
+    DM.ZConnection1.Rollback;
   end;
-
-  FreeAndNil( ZQPom);
-
   // Komunikat na zakończenie zapisywania
   if isModyfikacja then
     DM.KomunikatPopUp(Self, 'Widzenia','Zmodyfikowano dane widzenia.', nots_Info)

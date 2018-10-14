@@ -1407,6 +1407,7 @@ object MasterForm: TMasterForm
       Category = 'Widzenia'
       Caption = 'Skype ...'
       ImageIndex = 20
+      OnExecute = ActionSkypeExecute
     end
     object ActionKomunikator: TAction
       Category = 'Dodatki'

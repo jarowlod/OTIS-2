@@ -116,7 +116,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     Anchors = [akTop, akLeft, akRight]
     CharCase = ecUppercase
     MaxLength = 100
-    TabOrder = 3
+    TabOrder = 4
   end
   object Label5: TLabel
     AnchorSideTop.Control = DBEdit5
@@ -146,7 +146,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 4
+    TabOrder = 5
     BorderSpacing.Left = 10
     TrailingSeparator = False
     TextForNullDate = 'NULL'
@@ -170,7 +170,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     Caption = 'Prawo do widzeń'
     DataField = 'Skreslona'
     DataSource = DSUprawnione
-    TabOrder = 5
+    TabOrder = 6
     ValueChecked = '0'
     ValueUnchecked = '1'
   end
@@ -186,7 +186,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     Font.Color = 7039851
     ParentColor = False
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 8
     object DBText1: TDBText
       Left = 88
       Height = 15
@@ -265,7 +265,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     BevelOuter = bvNone
     ClientHeight = 38
     ClientWidth = 622
-    TabOrder = 7
+    TabOrder = 9
     object btnOK: TBitBtn
       Left = 405
       Height = 30
@@ -332,7 +332,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
       'ŻONA'
     )
     MaxLength = 45
-    TabOrder = 8
+    TabOrder = 3
   end
   object CheckBox1: TCheckBox
     Left = 96
@@ -342,7 +342,7 @@ object OchAddOsobeWidzenie: TOchAddOsobeWidzenie
     Caption = 'Dodatkowe widzenie (na dziecko)'
     Enabled = False
     ParentBidiMode = False
-    TabOrder = 9
+    TabOrder = 7
   end
   object ZQUprawnione: TZQuery
     Connection = DM.ZConnection1

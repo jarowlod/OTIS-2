@@ -1,28 +1,188 @@
-object OchAddWidzenie: TOchAddWidzenie
-  Left = 301
-  Height = 758
-  Top = 114
-  Width = 1108
-  Caption = 'Dodaj widzenie'
-  ClientHeight = 758
-  ClientWidth = 1108
+object OchAddRezerwacjaSkype: TOchAddRezerwacjaSkype
+  Left = 332
+  Height = 596
+  Top = 263
+  Width = 1121
+  Caption = 'Zarezerwuj Skype.'
+  ClientHeight = 596
+  ClientWidth = 1121
+  Icon.Data = {
+    7E04000000000100010010100000010020006804000016000000280000001000
+    0000200000000100200000000000000400006400000064000000000000000000
+    0000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00AA830000AA830000AA820000A67E0000AD880C28C0A0376ECCB1
+    5392CBAF5294D5BB64AFEBD794E7EBD894E7D4BB65ACAE8A1132A7800000FFFF
+    FF00FFFFFF00AA830000A9820000A780010BC8A9428EF0D67EF1FDE182FFFFE3
+    81FFFFE380FFFFE37EFFFFE17CFFFFE27FFFFFE98FFFEAD27DE9B18C1230FFFF
+    FF00FFFFFF00AA830000A881030AD1B34EB3FBDA6BFFFBD75EFFFBE292FFFCEB
+    B3FFFCEBB2FFFAE18DFFF7D153FFF7CF49FFF8D04CFFFDDB6AFFDBBB4DADFFFF
+    FF00FFFFFF00AF860000C8A73686F2CE54FFEFC846FFF9F0D3FFFEFFFFFFF9FA
+    FFFFF9FAFFFFFEFFFFFFF8EEC9FFEDC53DFFEDC02CFFEEC335FFEBC84FE9FFFF
+    FF00FFFFFF00C097091CE8C44FF0EBBA17FFF0DC99FFFEFFFFFFE7D495FFE0B8
+    34FFE0B833FFE6D28CFFFEFFFFFFF0D889FFE9B712FFEABC23FFEFC844E9FFFF
+    FF00FFFFFF00D4AB1C60EFC537FFECB90BFFE7C450FFE6CE7DFFE8B409FFEEB7
+    00FFEEB704FFEBC649FFFFFFFFFFEFDD9FFFE9B505FFEEBF23FFF2C62FADFFFF
+    FF00FFFFFF00E5BA2884F6CA35FFF2BF15FFF0BB07FFEEB906FFF3CE52FFF6DE
+    8BFFF9E9B5FFFEFEF9FFF6F6F2FFE9C449FFF2BD0BFFF6C832FFEABE298CFFFF
+    FF00FFFFFF00E6B92680FCCD40FFFBC82AFFF9CB34FFFAEAB7FFFDFFFFFFFAFD
+    FFFFF6F5F2FFEFE1B6FFEEC955FFF9C625FFFBC92DFFFCCD41FFEEC12E8FFFFF
+    FF00FFFFFF00E3BA3DACFDC93EFFFCC224FFF7D472FFFDFFFFFFF1E0AFFFEDC2
+    48FFF3C131FFF7C840FFFCD461FFFDC836FFFBC42DFFFCCA49FFF4C3216AFFFF
+    FF00FFFFFF00F2C856E8FCC641FFFCC333FFF0CC6FFFFBFFFFFFFCEBC0FFFDD6
+    72FFFCD87AFFFDF1CFFFFBFBFDFFF4C64FFFFCC53CFFFACF58F4F4C21422FFFF
+    FF00FFFFFF00F8CF60E5FACB5AFFFAC951FFF5C551FFEDDAADFFF8F9FAFFFAFC
+    FFFFFAFDFFFFF7F7F8FFECD8A7FFF6C652FFFCD26EFFF7CC458AF4C31700FFFF
+    FF00FFFFFF00F8CF50A2FBD584FFFACE6CFFFBCF6BFFF7CA67FFEECB7DFFEED1
+    94FFEED192FFEECA7AFFF8CC6CFFFCD785FFF8D362B3F5C6250BF5C62700FFFF
+    FF00FFFFFF00F5C72826FAD982DFFBDA99FFFAD58AFFFBD589FFFCD88EFFFCD8
+    8DFFFCD88EFFFCDB94FFFBDB90EDF8D3618AF5C82C0BF5C72800F5C72900FFFF
+    FF00FFFFFF00F5C62300F6CA3626F9D877A0FAE09DE0FAE09DE2F9D97DA8F9D9
+    7588F9DA7988F8D66665F6CE4522F6CA3400F5C82D00F5C72900F5C72900FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000
+  }
   OnClose = FormClose
   OnCreate = FormCreate
-  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '6.6'
+  object Panel5: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 1121
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 50
+    ClientWidth = 1121
+    Color = clWhite
+    ParentColor = False
+    TabOrder = 0
+    object plGradient2: TplGradient
+      Left = 0
+      Height = 50
+      Top = 0
+      Width = 1121
+      Align = alClient
+      BevelWidth = 1
+      BevelStyle = bvNone
+      Buffered = True
+      Direction = gdUpLeft
+      ColorStart = clSkyBlue
+      ColorEnd = clWhite
+      StepWidth = 1
+      Style = gsHorizontal
+    end
+    object Label1: TLabel
+      Left = 64
+      Height = 19
+      Top = 16
+      Width = 350
+      Caption = 'Zarezerwuj rozmowę poprzez Skype na godz:'
+      Font.CharSet = EASTEUROPE_CHARSET
+      Font.Color = 16731983
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Image1: TImage
+      Left = 4
+      Height = 50
+      Top = 0
+      Width = 50
+      AntialiasingMode = amOn
+      Picture.Data = {
+        1754506F727461626C654E6574776F726B47726170686963BB05000089504E47
+        0D0A1A0A0000000D49484452000000320000003208060000001E3F88B1000000
+        017352474200AECE1CE90000000467414D410000B18F0BFC6105000000097048
+        597300000EC300000EC301C76FA86400000550494441546843ED585B681C5518
+        1E76D3A25641256D051F44A8880A5E405F44ADD18222FAE2056FE08322825A7D
+        F0494154ACFA205A051FBCB422BD39B3A949AC6D4D6BDAB441DBB4D5A6AD4DA4
+        B4B5455B73516B32337BBF1CBF7FF654DDD9FFCC9CD94BB6603EF8C86639E79F
+        EFDFFF76CE18339841ABF1919815379D4571D37D3F66391B6296BB1F9F87F1B7
+        0FDF2F8F5BF6FD4662FC5CB9FA0C4442CC8E99CE62889E885BAE08A4E9A4E064
+        4FDCB4DF89996E279CDC8EBDDF97E96EA3EFB0E60DCFE92F9C79F209D3006BEA
+        7238F0132BBA5E9A4E094E0F82CF1ADD7F9D2F9FD878B459F6423CF0549580E6
+        708A22D57887D64E5D86484C320F6C36C790868F4A15750235D1B474D2E7AABA
+        1B0772F639C6F0B4931A84B1C6992F654584D762DD71CE708B78C8B0ECB9529D
+        3E50708B18632D2532644FE4344334DEE38C45E5055D49D1B1352D9EDC9D112F
+        EECF7A5CFC4356DCB12D2DE67527D93D8134DD9552A21EE07D2F6B4893776D4F
+        8BCDA305912D0A258A2521BEFBBD201EDF95116777F2763846EA6670641F6724
+        8C172202EB4E16A4547D1C768A622122C7D96438A63D67B078C4B73994F4ABEE
+        FA23200421A0E8DD33A0EB8CF3A6941A0CEF00C81A50F3D51FB35252257210B8
+        65AC203EFD392F3E3B96177DF89C51F83B91297975C5D9AF2086B45654D0B596
+        B106149C9D70C5C91492DE078AD0A55F550B6B47A17F78242F5755E26ECDA8C4
+        4CFB6929570D3A95729B555CB03E296554E2CA8D2976FD69BE7CA03A8AB76AD6
+        0AEA78A7941B00F46BE4619A33C0F1E62D6929E35F50CEB7316BFD7C092D99D2
+        AF80807E7038A7B5A74CA768ACB6DBA56235E0710F6FA09AD7F4A6A4FC4A3CBF
+        37CBAEF773CE5A579C13A105FF43D3BE4FCA55038BDE653733A402A5B9C0A117
+        F3E4E11D99DA0660184D678994AB061626AA36067013040781FC1C992A7ADD8B
+        86E01521F5A345D335A55C35D08207D8CD0A5EBB2925921167E168BA24961DCD
+        8B1BFB6A738AAECD52AE1A380A0C719B83787B7FDA13570B7A4E14C4453DD1D2
+        0F75BC57CA558316719BC33817B5B06438C7CE95301C9C2C46AA254D47A2A596
+        9FB3302429655EC1C4DF3A5E1029CDB45B8E1AE2EC71D44A2D2C8C54EC61A416
+        7B1B52EFB58339F12D4EBDAA78D1FCA1C9CFD9A8A24EB1D3DB0C767383485D6B
+        E8147FE8D23DA6C413F6DB52AE1A70E40176B3820F61560C4C14C4D7BF15B4BB
+        D0D58A41FAD49E0CBBDE4FD448B7941B00DC91E14C8933E0E755F875E988711A
+        93B99237EDB9B5FF25A510874776EA39027D69ADEB2F3C1E640DF8F820A2E1C7
+        F164495CB22E38D79FC01598C30D9B23CC159D630A1C7986DDECE37518861CC8
+        993B71EDF51F04A9A33D36986107E809B46DFD8323683A1F4BB901C0E5058BA7
+        AA3633A416ABC251B724BA31F0E80EB2F2785E1CC1D556057A39C1D9571163E2
+        1BA93618F0F82DCE809F9446C720B81E6C40A3A04B1A673F8023526A08CA5119
+        F36D6679F19749EFB45B0B56E01A7C1E660D6737887494924AC341AF6038232A
+        D27BABCE5FF2221DE2130DBFAE5FF3DEA0E4ECE81075BC51CAD403BD1CE30C05
+        F12C5C96AE4707A2C2A64B16BDA07B6128EB75AB9B70ABA469CFED8BC8A552A2
+        26D0AFE1FD6EC6506B693A1D526104D090B4DC4355C65A45D31935FA459B5417
+        116B9CF9F4AA9F353CCDD47A251408EF2D8BBBCA6F783A8923FC81DAA3E183D7
+        CD105EEE414DA5E9FE6958930BA48C0681E64CF9C8AF7502A89B70A2CDB46F91
+        4F6F02E0109DCD10A51DF4F28C155127BD746A782482B0DA6E8F7F6EDF0B875E
+        C72F68E13CD44F0DC2233ED3777429C2FF5D88668A135D41A4AF57D88DAA89A6
+        6045694EF95DB3F3091D00E1E43022BB0F4EAE87134BE144C799EDC00CFE1730
+        8CBF014EA1CDC28AD36BA60000000049454E44AE426082
+      }
+      Proportional = True
+      Stretch = True
+    end
+    object lblGodzinaWidzenia: TLabel
+      Left = 424
+      Height = 32
+      Top = 9
+      Width = 80
+      Alignment = taCenter
+      AutoSize = False
+      Caption = '9:00'
+      Color = 13303807
+      Font.CharSet = EASTEUROPE_CHARSET
+      Font.Color = 206
+      Font.Height = -19
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+    end
+  end
   object Panel2: TPanel
     Left = 0
     Height = 40
-    Top = 718
-    Width = 1108
+    Top = 556
+    Width = 1121
     Align = alBottom
     BevelOuter = bvNone
     ClientHeight = 40
-    ClientWidth = 1108
-    TabOrder = 0
+    ClientWidth = 1121
+    TabOrder = 1
     object btnOK: TBitBtn
-      Left = 891
+      Left = 904
       Height = 30
       Top = 8
       Width = 100
@@ -34,7 +194,7 @@ object OchAddWidzenie: TOchAddWidzenie
       TabOrder = 0
     end
     object btnAnuluj: TBitBtn
-      Left = 1002
+      Left = 1015
       Height = 30
       Top = 8
       Width = 100
@@ -48,345 +208,142 @@ object OchAddWidzenie: TOchAddWidzenie
   end
   object Panel1: TPanel
     Left = 0
-    Height = 218
-    Top = 0
-    Width = 1108
+    Height = 94
+    Top = 50
+    Width = 1121
     Align = alTop
-    ClientHeight = 218
-    ClientWidth = 1108
-    TabOrder = 1
-    object Label1: TLabel
-      Left = 15
-      Height = 15
-      Top = 59
-      Width = 205
-      Caption = 'Czas trwania widzenia (regulaminowe):'
-      ParentColor = False
+    BevelOuter = bvNone
+    ClientHeight = 94
+    ClientWidth = 1121
+    TabOrder = 2
+    object edUwagi: TEdit
+      Left = 592
+      Height = 23
+      Top = 8
+      Width = 523
+      MaxLength = 100
+      TabOrder = 0
+      TextHint = 'Ewentualne uwagi ...'
     end
     object Label2: TLabel
-      Left = 15
+      AnchorSideTop.Control = edUwagi
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = edUwagi
+      Left = 554
       Height = 15
-      Top = 156
-      Width = 147
-      Caption = 'Sposób udzielenia widzenia:'
-      ParentColor = False
-    end
-    object cbSposob: TComboBox
-      Left = 168
-      Height = 23
-      Top = 152
-      Width = 312
-      DropDownCount = 10
-      ItemHeight = 15
-      ItemIndex = 0
-      Items.Strings = (
-        'K - UMOŻLIWIAJĄCE BEZPOŚREDNI KONTAKT'
-        'BO - BEZ DOZORU'
-        'OP - W ODDZIELNYM POMIESZCZENIU BEZ DOZORU'
-        'BK - UNIEMOŻLIWIAJĄCE BEZPOŚREDNI KONTAKT'
-      )
-      Style = csDropDownList
-      TabOrder = 0
-      Text = 'K - UMOŻLIWIAJĄCE BEZPOŚREDNI KONTAKT'
-    end
-    object Label3: TLabel
-      Left = 15
-      Height = 15
-      Top = 188
-      Width = 36
-      Caption = 'Uwagi:'
-      ParentColor = False
-    end
-    object edUwagi: TEdit
-      Left = 56
-      Height = 23
-      Top = 185
-      Width = 424
-      MaxLength = 100
-      TabOrder = 1
-    end
-    object edRegulamin: TSpinEdit
-      Left = 224
-      Height = 23
-      Top = 56
-      Width = 50
-      Increment = 60
-      MaxValue = 180
-      TabOrder = 2
-      Value = 60
-    end
-    object edDodatkowe: TSpinEdit
-      Left = 224
-      Height = 23
-      Top = 80
-      Width = 50
-      Increment = 60
-      MaxValue = 180
-      OnChange = edDodatkoweChange
-      TabOrder = 3
-    end
-    object btnRejestrProsb: TBitBtn
-      Left = 950
-      Height = 30
-      Top = 184
-      Width = 152
-      Anchors = [akRight, akBottom]
-      Caption = 'Rejestr próśb'
-      Glyph.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000000000000000
-        00009F804BFF977641FF977641FF977641FF977641FF977641FF977641FF9776
-        41FF977641FF977641FF977641FF987343FF987343FF00000000000000000000
-        0000A07F50FFFFFFFFFFF9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8C6524FF00000000000000000000
-        0000AC8755FFE7FCFFFF0087FAFFBBE4ECFFCB8C69FFBB8767FFBA8867FFB886
-        65FFB78566FFB37B5AFFD2AD9CFFF5F7F0FF8C6524FF00000000000000000000
-        0000AF9162FFFFFFFFFFFEF6F1FFFDF6F1FFFAF9F5FFFAFBF9FFFAFBF9FFFBFC
-        F7FFF7FBF2FFF8F9F5FFFFFFFEFFF1EBE4FF8C6524FF00000000000000000000
-        0000BB9869FFD9F4FFFF0087FAFFBAE2E9FFCF906CFFBF8969FFC08C6CFFC08B
-        6CFFC28C6EFFBD825FFFD7B39FFFF5F3EDFF8C6524FF00000000000000000000
-        0000B09465FFFFFFFFFFFEF6F1FFFEF6F2FFFBF9F4FFF8FBF8FFFBFDFAFFFBFB
-        FAFFFFFEFFFFFEFCFBFFFFFFFFFFF1ECE3FF8C6524FF00000000000000000000
-        0000B99867FFD8F5FFFF0087FAFFBAE2E8FFCE8E6BFFBE8869FFC38B6EFFC591
-        6CFFC59172FFBF8362FFD5B09AFFF6F6F0FF8C6524FF00000000000000000000
-        0000B0946BFFFFFFFFFFFEF6EFFFFBF6F0FFF9F9F4FFFCFAFCFFFEFFFEFFFFFF
-        FFFFFFFFFFFFF8F6F3FFF9F7F3FFF2EDE6FF8C6524FF00000000000000000000
-        0000B9A17DFFE3F7FFFF0087FAFFBFEAEDFFD1916FFFBF8B6CFFC28C6EFFC08C
-        6EFFBB8764FFAE7554FFC6A38DFFECE4D9FF8C6524FF00000000000000000000
-        0000BCA686FFFFFFFFFFFFFFFEFFFFFFFCFFFFFFFFFFFEFFFFFFFFFFFFFFFAFE
-        F8FFF6F8F4FFEDEBE5FFEAE3DCFFD8CDB7FF8C6524FF00000000000000000000
-        0000CCB390FFE1F3FBFF0087FAFFBEE8F3FFD09171FFC08C6AFFBF8A67FFBB86
-        64FFA66C44FF985427FFAB7A56FFC3B08EFF8C6524FF00000000000000000000
-        0000C8B595FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCFFF8FFF9FAF8FFE4DD
-        D2FFD3C6A9FFF6F7F3FFE8E4D5FFB79D73FF8C6524FF00000000000000000000
-        0000CFB69AFFDFF3F9FF0087FAFFC0EAF1FFCA8C67FFB2795AFFB67B5CFF985E
-        37FFCCB99CFFFFFFFFFFCFBAA0FFA07D46FF8F68290A00000000000000000000
-        0000C7B79AFFFFFFFFFFFFFFFFFFFFFDF7FFFCFDFBFFEFF1EDFFEEE9DDFFD4C5
-        A9FFBCAC89FFD7C9B5FF997335FF000000000000000000000000000000000000
-        0000CBBDA1FFFFFFFFFFFFFFFFFFF9F7F7FFF0E7DEFFDFD7C7FFD8C5B0FFC1AA
-        85FFAA9161FFA17E47FF00000000000000000000000000000000000000000000
-        0000C3B191FECCBBA0F8C9B79BF3C6B295F3C5B293F3C1AB86F3BFA67DF3AA91
-        61FF936C32FF0000000000000000000000000000000000000000
-      }
-      OnClick = btnRejestrProsbClick
-      TabOrder = 4
-    end
-    object Panel3: TPanel
-      Left = 1
-      Height = 39
-      Top = 1
-      Width = 1106
-      Align = alTop
-      BevelOuter = bvNone
-      ClientHeight = 39
-      ClientWidth = 1106
-      Color = clWhite
-      ParentColor = False
-      TabOrder = 5
-      object lblNazwisko: TLabel
-        Left = 15
-        Height = 19
-        Top = 8
-        Width = 110
-        Caption = 'Nazwisko Imię'
-        Font.CharSet = EASTEUROPE_CHARSET
-        Font.Height = -16
-        Font.Name = 'Arial'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object lblKlasyf: TLabel
-        AnchorSideLeft.Control = lblNazwisko
-        AnchorSideLeft.Side = asrBottom
-        Left = 175
-        Height = 18
-        Top = 8
-        Width = 42
-        BorderSpacing.Left = 50
-        Caption = 'Klasyf'
-        Font.CharSet = EASTEUROPE_CHARSET
-        Font.Height = -16
-        Font.Name = 'Arial'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        ParentColor = False
-        ParentFont = False
-      end
-      object lblPoc: TLabel
-        AnchorSideLeft.Control = lblKlasyf
-        AnchorSideLeft.Side = asrBottom
-        Left = 267
-        Height = 18
-        Top = 8
-        Width = 35
-        BorderSpacing.Left = 50
-        Caption = 'POC'
-        Font.CharSet = EASTEUROPE_CHARSET
-        Font.Height = -16
-        Font.Name = 'Arial'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        ParentColor = False
-        ParentFont = False
-      end
-      object lblCelaTA: TLabel
-        AnchorSideLeft.Side = asrBottom
-        Left = 752
-        Height = 19
-        Top = 8
-        Width = 58
-        BorderSpacing.Left = 10
-        Caption = 'Cela TA'
-        Font.CharSet = EASTEUROPE_CHARSET
-        Font.Color = clRed
-        Font.Height = -16
-        Font.Name = 'Arial'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-        Visible = False
-      end
-    end
-    object Label6: TLabel
-      Left = 157
-      Height = 15
-      Top = 85
-      Width = 63
-      Caption = 'Dodatkowe:'
+      Top = 12
+      Width = 33
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Uwagi'
       ParentColor = False
     end
     object GroupBox1: TGroupBox
-      Left = 352
-      Height = 91
-      Top = 40
-      Width = 256
-      Caption = 'Widzenie zrealizowane:'
-      ClientHeight = 71
-      ClientWidth = 252
-      TabOrder = 6
-      object cbCzyZrealizowane: TCheckBox
+      Left = 4
+      Height = 80
+      Top = 8
+      Width = 540
+      Caption = 'Dane osadzonego:'
+      ClientHeight = 60
+      ClientWidth = 536
+      TabOrder = 1
+      object Label3: TLabel
         Left = 8
-        Height = 19
-        Top = 8
-        Width = 237
-        Caption = 'Wprowadź widzenie zrealizowane w dniu:'
-        OnChange = cbCzyZrealizowaneChange
-        TabOrder = 0
+        Height = 15
+        Top = 3
+        Width = 50
+        Caption = 'Nazwisko'
+        ParentColor = False
       end
-      object dtDataWidzenia: TDateTimePicker
+      object Label6: TLabel
         Left = 8
-        Height = 23
-        Top = 32
-        Width = 83
-        CenturyFrom = 1941
-        MaxDate = 2958465
-        MinDate = -53780
-        TabOrder = 1
-        TrailingSeparator = False
-        TextForNullDate = 'NULL'
-        LeadingZeros = True
-        Kind = dtkDate
-        TimeFormat = tf24
-        TimeDisplay = tdHMS
-        DateMode = dmComboBox
-        Date = 43085
-        Time = 0.832286273151112
-        UseDefaultSeparators = True
-        HideDateTimeParts = []
-        MonthNames = 'Long'
+        Height = 15
+        Top = 24
+        Width = 23
+        Caption = 'Imię'
+        ParentColor = False
       end
-    end
-    object memoUwagi: TMemo
-      Left = 753
-      Height = 122
-      Top = 48
-      Width = 349
-      Color = clInfoBk
-      Enabled = False
-      Lines.Strings = (
-        'Przed dodaniem do poczekalni sprawdzamy:'
-        '- Kary (widzenia za pleksą)'
-        '- Uwagi'
-        '- Nagrody i ulgi (dodatkowe widzenia)'
-        '- zgodę na połączenie widzeń (wykazy)'
-      )
-      ReadOnly = True
-      TabOrder = 7
-    end
-    object cbDodatkowe: TComboBox
-      Left = 15
-      Height = 23
-      Top = 108
-      Width = 259
-      AutoComplete = True
-      AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
-      DropDownCount = 10
-      Enabled = False
-      ItemHeight = 15
-      ItemIndex = 0
-      Items.Strings = (
-        ''
-        'na dziecko'
-        'nagrodowe'
-      )
-      MaxLength = 100
-      TabOrder = 8
-    end
-    object GroupBoxNrStolika: TGroupBox
-      Left = 504
-      Height = 64
-      Top = 144
-      Width = 104
-      Caption = 'Nr stolika'
-      ClientHeight = 44
-      ClientWidth = 100
-      TabOrder = 9
-      Visible = False
-      object cbNrStolika: TComboBox
-        Left = 8
-        Height = 23
-        Top = 8
-        Width = 68
-        ItemHeight = 15
-        Style = csDropDownList
+      object Label7: TLabel
+        Left = 272
+        Height = 15
+        Top = 3
+        Width = 24
+        Caption = 'POC'
+        ParentColor = False
+      end
+      object lblNazwisko: TLabel
+        Left = 72
+        Height = 15
+        Top = 3
+        Width = 66
+        Caption = 'lblNazwisko'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblImie: TLabel
+        Left = 72
+        Height = 15
+        Top = 24
+        Width = 38
+        Caption = 'lblImie'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblPOC: TLabel
+        Left = 304
+        Height = 15
+        Top = 3
+        Width = 36
+        Caption = 'lblPOC'
+        Font.Color = clGreen
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object btnOsadzony: TBitBtn
+        Left = 368
+        Height = 32
+        Top = 0
+        Width = 163
+        Caption = 'Znajdź osadzonego'
+        Images = DM.ImageList1
+        ImageIndex = 5
+        OnClick = btnOsadzonyClick
         TabOrder = 0
       end
     end
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 500
-    Top = 218
-    Width = 1108
+    Height = 412
+    Top = 144
+    Width = 1121
     ActivePage = TabSheetOsoby
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
     TabIndex = 0
-    TabOrder = 2
+    TabOrder = 3
     object TabSheetOsoby: TTabSheet
       Caption = 'Osoby uprawnione do widzenia'
-      ClientHeight = 467
-      ClientWidth = 1100
+      ClientHeight = 379
+      ClientWidth = 1113
       ImageIndex = 8
-      object Panel5: TPanel
+      object Panel6: TPanel
         Left = 0
-        Height = 467
+        Height = 379
         Top = 0
         Width = 338
         Align = alLeft
         BevelOuter = bvNone
-        ClientHeight = 467
+        ClientHeight = 379
         ClientWidth = 338
         TabOrder = 0
         object RxDBGrid3: TRxDBGrid
           Left = 0
-          Height = 443
+          Height = 355
           Top = 24
           Width = 338
           ColumnDefValues.BlobText = '(blob)'
@@ -525,7 +482,6 @@ object OchAddWidzenie: TOchAddWidzenie
           TitleFont.Pitch = fpVariable
           TitleFont.Quality = fqDraft
           TitleStyle = tsNative
-          OnDblClick = RxDBGrid3DblClick
         end
         object Label4: TLabel
           Left = 0
@@ -535,7 +491,7 @@ object OchAddWidzenie: TOchAddWidzenie
           Align = alTop
           Alignment = taCenter
           AutoSize = False
-          Caption = 'Osoby odwiedzające'
+          Caption = 'Osoby odwiedzające: wybierz jedną właściwą'
           Font.CharSet = EASTEUROPE_CHARSET
           Font.Color = clGray
           Font.Height = -13
@@ -548,13 +504,13 @@ object OchAddWidzenie: TOchAddWidzenie
           ParentFont = False
         end
       end
-      object Panel6: TPanel
+      object Panel7: TPanel
         Left = 338
-        Height = 467
+        Height = 379
         Top = 0
         Width = 64
         Align = alLeft
-        ClientHeight = 467
+        ClientHeight = 379
         ClientWidth = 64
         TabOrder = 1
         object btnDodaj: TBitBtn
@@ -1079,21 +1035,21 @@ object OchAddWidzenie: TOchAddWidzenie
           TabOrder = 4
         end
       end
-      object Panel7: TPanel
+      object Panel8: TPanel
         Left = 402
-        Height = 467
+        Height = 379
         Top = 0
-        Width = 698
+        Width = 711
         Align = alClient
         BevelOuter = bvNone
-        ClientHeight = 467
-        ClientWidth = 698
+        ClientHeight = 379
+        ClientWidth = 711
         TabOrder = 2
         object RxDBGrid4: TRxDBGrid
           Left = 0
-          Height = 443
+          Height = 355
           Top = 24
-          Width = 698
+          Width = 711
           ColumnDefValues.BlobText = '(blob)'
           TitleButtons = True
           AutoSort = True
@@ -1168,7 +1124,7 @@ object OchAddWidzenie: TOchAddWidzenie
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Uwagi'
-              Width = 105
+              Width = 118
               FieldName = 'uwagi'
               EditButtons = <>
               Filter.DropDownRows = 0
@@ -1292,7 +1248,7 @@ object OchAddWidzenie: TOchAddWidzenie
           Left = 0
           Height = 24
           Top = 0
-          Width = 698
+          Width = 711
           Align = alTop
           Alignment = taCenter
           AutoSize = False
@@ -1323,36 +1279,6 @@ object OchAddWidzenie: TOchAddWidzenie
       ImageIndex = 28
     end
   end
-  object MemOsoby: TRxMemoryData
-    FieldDefs = <    
-      item
-        Name = 'ID'
-        DataType = ftInteger
-      end    
-      item
-        Name = 'Nazwisko'
-        DataType = ftString
-        Size = 100
-      end    
-      item
-        Name = 'Imie'
-        DataType = ftString
-        Size = 100
-      end    
-      item
-        Name = 'Pokrewienstwo'
-        DataType = ftString
-        Size = 100
-      end>
-    PacketRecords = 0
-    Left = 56
-    Top = 408
-  end
-  object DSOsoby: TDataSource
-    DataSet = MemOsoby
-    Left = 56
-    Top = 464
-  end
   object ZQUprawnione: TZQuery
     Connection = DM.ZConnection1
     ReadOnly = True
@@ -1376,8 +1302,8 @@ object OchAddWidzenie: TOchAddWidzenie
         Name = 'ido'
         ParamType = ptUnknown
       end>
-    Left = 144
-    Top = 408
+    Left = 176
+    Top = 272
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1385,9 +1311,39 @@ object OchAddWidzenie: TOchAddWidzenie
         ParamType = ptUnknown
       end>
   end
+  object MemOsoby: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'ID'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'Nazwisko'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'Imie'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'Pokrewienstwo'
+        DataType = ftString
+        Size = 100
+      end>
+    PacketRecords = 0
+    Left = 88
+    Top = 272
+  end
+  object DSOsoby: TDataSource
+    DataSet = MemOsoby
+    Left = 88
+    Top = 328
+  end
   object DSUprawnione: TDataSource
     DataSet = ZQUprawnione
-    Left = 144
-    Top = 464
+    Left = 176
+    Top = 328
   end
 end

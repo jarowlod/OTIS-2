@@ -2,10 +2,10 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
   Left = 368
   Height = 558
   Top = 364
-  Width = 1059
+  Width = 1238
   Caption = 'Rezerwacja Widzeń Bezdozorowych'
   ClientHeight = 558
-  ClientWidth = 1059
+  ClientWidth = 1238
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '6.6'
@@ -14,11 +14,11 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
     Left = 0
     Height = 50
     Top = 0
-    Width = 1059
+    Width = 1238
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 50
-    ClientWidth = 1059
+    ClientWidth = 1238
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -26,7 +26,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
       Left = 0
       Height = 50
       Top = 0
-      Width = 1059
+      Width = 1238
       Align = alClient
       BevelWidth = 1
       BevelStyle = bvNone
@@ -287,11 +287,11 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
     Left = 0
     Height = 243
     Top = 315
-    Width = 1059
+    Width = 1238
     Align = alBottom
     BevelOuter = bvLowered
     ClientHeight = 243
-    ClientWidth = 1059
+    ClientWidth = 1238
     TabOrder = 1
     object Panel2: TPanel
       Left = 1
@@ -329,18 +329,19 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
       Left = 144
       Height = 241
       Top = 1
-      Width = 914
+      Width = 1093
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
-      AutoSort = False
+      AutoSort = True
       Columns = <      
         item
+          Color = clWindow
+          Font.Color = clMaroon
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'DataGodz'
-          Width = 150
+          Title.Caption = 'Data / Godzina'
+          Width = 100
           FieldName = 'DataGodz'
-          DisplayFormat = 'hh:nn'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -348,6 +349,140 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Nazwisko'
+          Width = 120
+          FieldName = 'Nazwisko'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Imie'
+          Width = 100
+          FieldName = 'Imie'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Color = clWindow
+          Font.Color = clGreen
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'POC'
+          Width = 50
+          FieldName = 'POC'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Osoba'
+          Width = 200
+          FieldName = 'Osoba'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Pokrewienstwo'
+          Width = 100
+          FieldName = 'Pokrewienstwo'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstBoth
+          Footers = <>
+        end      
+        item
+          Font.Color = 145
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Uwagi'
+          Width = 200
+          FieldName = 'Uwagi'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
+          Footers = <>
+        end      
+        item
+          Color = clWindow
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'User'
+          Width = 100
+          FieldName = 'User'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Color = clWindow
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Data zapisu'
+          FieldName = 'data_zap'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footers = <>
         end>
       KeyStrokes = <      
@@ -411,10 +546,10 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
       FooterOptions.DrawFullLine = False
       SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
       SearchOptions.FromStart = False
-      OptionsRx = [rdgWordWrap]
+      OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
       FooterRowCount = 1
       Align = alClient
-      AlternateColor = 16055807
+      AlternateColor = 15268863
       AutoAdvance = aaNone
       AutoEdit = False
       Color = clWindow
@@ -426,8 +561,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
       DataSource = DSMemWidzenia
       DefaultRowHeight = 22
       FixedColor = clNone
-      FixedCols = 0
-      Options = [dgTitles, dgColumnResize, dgColLines, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis, dgDblClickAutoSize]
       ParentShowHint = False
       ReadOnly = True
       ShowHint = True
@@ -437,9 +571,9 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
   end
   object YearPlanner1: TYearPlanner
     Left = 0
-    Height = 265
+    Height = 260
     Top = 50
-    Width = 1059
+    Width = 1238
     Align = alClient
     DayFont.Color = 3355443
     DayFont.Height = -11
@@ -477,66 +611,87 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
     OnSelectionEnd = YearPlanner1SelectionEnd
     OnYearChanged = YearPlanner1YearChanged
   end
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 5
+    Top = 310
+    Width = 1238
+    Align = alBottom
+    ResizeAnchor = akBottom
+  end
   object DSMemWidzenia: TDataSource
     DataSet = MemWidzenia
     OnDataChange = DSMemWidzeniaDataChange
     Left = 258
     Top = 402
   end
-  object MemWidzenia: TMemDataset
+  object MemWidzenia: TRxMemoryData
     Active = True
     FieldDefs = <    
       item
         Name = 'ID'
         DataType = ftInteger
+        Precision = -1
       end    
       item
         Name = 'DataGodz'
         DataType = ftDateTime
+        Precision = -1
       end    
       item
         Name = 'IDO'
         DataType = ftInteger
+        Precision = -1
       end    
       item
         Name = 'Nazwisko'
         DataType = ftString
+        Precision = -1
         Size = 45
       end    
       item
         Name = 'Imie'
         DataType = ftString
+        Precision = -1
         Size = 45
       end    
       item
         Name = 'POC'
         DataType = ftString
+        Precision = -1
         Size = 10
       end    
       item
         Name = 'Osoba'
         DataType = ftString
+        Precision = -1
         Size = 100
       end    
       item
         Name = 'Pokrewienstwo'
         DataType = ftString
+        Precision = -1
         Size = 100
       end    
       item
         Name = 'Uwagi'
         DataType = ftString
+        Precision = -1
         Size = 100
       end    
       item
         Name = 'User'
         DataType = ftString
+        Precision = -1
         Size = 60
       end    
       item
         Name = 'data_zap'
         DataType = ftDateTime
+        Precision = -1
       end>
+    PacketRecords = 0
     Left = 258
     Top = 344
   end
