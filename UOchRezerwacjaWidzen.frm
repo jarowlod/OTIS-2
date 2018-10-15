@@ -1,7 +1,7 @@
 object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
-  Left = 368
+  Left = 86
   Height = 558
-  Top = 364
+  Top = 85
   Width = 1238
   Caption = 'Rezerwacja Widzeń Bezdozorowych'
   ClientHeight = 558
@@ -335,7 +335,6 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
       AutoSort = True
       Columns = <      
         item
-          Color = clWindow
           Font.Color = clMaroon
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -386,7 +385,6 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
         end      
         item
           Alignment = taCenter
-          Color = clWindow
           Font.Color = clGreen
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -454,7 +452,6 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
           Footers = <>
         end      
         item
-          Color = clWindow
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'User'
@@ -470,7 +467,6 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
           Footers = <>
         end      
         item
-          Color = clWindow
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Data zapisu'

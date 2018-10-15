@@ -1,7 +1,7 @@
 object OchAddRezerwacjaWidzen: TOchAddRezerwacjaWidzen
-  Left = 332
+  Left = 328
   Height = 596
-  Top = 263
+  Top = 230
   Width = 1121
   Caption = 'Zarezerwuj widzenie bezdozorowe.'
   ClientHeight = 596

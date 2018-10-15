@@ -79,8 +79,8 @@ uses DateUtils, UOchAddRezerwacjaSkype;
 {$R *.frm}
 
 const
-  SKYPE_DZIENNIE= 15; // od godz. 9:00 do 15:00 co 25 minut.
-  SKYPE_OD_GODZ = 9;  // widzenie rozpoczynają się od godz 9:00
+  SKYPE_DZIENNIE= 9; // od godz. 10:00 do 13:30:00 co 25 minut.
+  SKYPE_OD_GODZ = 10;  // widzenie rozpoczynają się od godz 9:00
   SKYPE_PRZERWA = 10; // przerwa pomiędzy rozmowami w minutach
   SKYPE_CZAS    = 15; // czas trwania rozmowy w minutach
 

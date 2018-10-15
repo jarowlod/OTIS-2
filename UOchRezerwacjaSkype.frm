@@ -1,7 +1,7 @@
 object OchRezerwacjaSkype: TOchRezerwacjaSkype
-  Left = 368
+  Left = 86
   Height = 558
-  Top = 364
+  Top = 85
   Width = 1238
   Caption = 'Rezerwacja rozmów przez Skype'
   ClientHeight = 558
@@ -152,21 +152,21 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
   end
   object Panel1: TPanel
     Left = 0
-    Height = 315
-    Top = 243
+    Height = 241
+    Top = 317
     Width = 1238
     Align = alBottom
     BevelOuter = bvLowered
-    ClientHeight = 315
+    ClientHeight = 241
     ClientWidth = 1238
     TabOrder = 1
     object Panel2: TPanel
       Left = 1
-      Height = 313
+      Height = 239
       Top = 1
       Width = 143
       Align = alLeft
-      ClientHeight = 313
+      ClientHeight = 239
       ClientWidth = 143
       TabOrder = 0
       object btnZaplanuj: TBitBtn
@@ -194,7 +194,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
     end
     object RxDBGrid1: TRxDBGrid
       Left = 144
-      Height = 313
+      Height = 239
       Top = 1
       Width = 1093
       ColumnDefValues.BlobText = '(blob)'
@@ -202,7 +202,6 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
       AutoSort = True
       Columns = <      
         item
-          Color = clWindow
           Font.Color = clMaroon
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -253,7 +252,6 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
         end      
         item
           Alignment = taCenter
-          Color = clWindow
           Font.Color = clGreen
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
@@ -321,7 +319,6 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
           Footers = <>
         end      
         item
-          Color = clWindow
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'User'
@@ -337,7 +334,6 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
           Footers = <>
         end      
         item
-          Color = clWindow
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Data zapisu'
@@ -438,7 +434,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
   end
   object YearPlanner1: TYearPlanner
     Left = 0
-    Height = 188
+    Height = 262
     Top = 50
     Width = 1238
     Align = alClient
@@ -482,7 +478,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
     Cursor = crVSplit
     Left = 0
     Height = 5
-    Top = 238
+    Top = 312
     Width = 1238
     Align = alBottom
     ResizeAnchor = akBottom

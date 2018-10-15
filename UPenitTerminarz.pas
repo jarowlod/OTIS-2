@@ -376,8 +376,8 @@ begin
              Background := clGreen;
              AFont.Color:= clWhite;
           end else                              // wyróżnij nowych (null), obcych ( <> wych. w zastępstwie or DM.wychowawca),
-          if (ZQTerminarzAutoryzacja.IsNull) or (ZQTerminarzAutoryzacja.AsString <> cbWychowawcy.Text)  // wychowawca w zastępstwie
-                                             or (ZQTerminarzAutoryzacja.AsString <> DM.Wychowawca) then // wychowawca właściwy
+          if (ZQTerminarzAutoryzacja.IsNull) or    // wychowawca w zastępstwie
+             ((ZQTerminarzAutoryzacja.AsString <> cbWychowawcy.Text) and (ZQTerminarzAutoryzacja.AsString <> DM.Wychowawca)) then // wychowawca właściwy
           begin
             Background := clLime;
             AFont.Color:= clBlack;
