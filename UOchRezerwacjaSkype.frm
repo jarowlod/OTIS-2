@@ -1,7 +1,7 @@
 object OchRezerwacjaSkype: TOchRezerwacjaSkype
-  Left = 86
+  Left = 180
   Height = 558
-  Top = 85
+  Top = 178
   Width = 1238
   Caption = 'Rezerwacja rozmów przez Skype'
   ClientHeight = 558
@@ -190,6 +190,17 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
         ImageIndex = 44
         OnClick = btnUsunClick
         TabOrder = 1
+      end
+      object btnDrukuj: TBitBtn
+        Left = 8
+        Height = 30
+        Top = 200
+        Width = 128
+        Caption = 'Drukuj wykaz ...'
+        Images = DM.ImageList1
+        ImageIndex = 4
+        OnClick = btnDrukujClick
+        TabOrder = 2
       end
     end
     object RxDBGrid1: TRxDBGrid
@@ -557,5 +568,21 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
     PacketRecords = 0
     Left = 258
     Top = 344
+  end
+  object frReport1: TfrReport
+    Dataset = frDBDataSet1
+    InitialZoom = pzDefault
+    Options = [roSaveAndRestoreBookmarks]
+    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    DataType = dtDataSet
+    Left = 456
+    Top = 344
+  end
+  object frDBDataSet1: TfrDBDataSet
+    DataSet = MemWidzenia
+    DataSource = DSMemWidzenia
+    OpenDataSource = False
+    Left = 456
+    Top = 402
   end
 end

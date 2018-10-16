@@ -16,6 +16,7 @@ type
     btnImportOsob: TBitBtn;
     btnPaste: TBitBtn;
     DSImport: TDataSource;
+    Label1: TLabel;
     Label8: TLabel;
     lblDaneOsadzonego: TLabel;
     Panel1: TPanel;

@@ -1,7 +1,7 @@
 object OchImportOsobWidzenie: TOchImportOsobWidzenie
-  Left = 332
+  Left = 328
   Height = 457
-  Top = 263
+  Top = 230
   Width = 856
   Caption = 'Import osób uprawnionych do widzenia z NoeNET.'
   ClientHeight = 457
@@ -130,6 +130,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
     object btnPaste: TBitBtn
       Left = 8
       Height = 30
+      Hint = 'Zawartość XML: (Przeglądarka osób bliskich / prawy przycisk myszy / zaznaczamy całość i kopiujemy do schowka)'
       Top = 0
       Width = 208
       Caption = 'Wklej ze schowka dane z Noe'
@@ -170,6 +171,8 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
         0000000000000000000000000000000000000000000000000000
       }
       OnClick = btnPasteClick
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 0
     end
     object RxDBGrid4: TRxDBGrid
@@ -391,6 +394,16 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       TitleFont.Quality = fqDraft
       TitleStyle = tsNative
       OnPrepareCanvas = RxDBGrid4PrepareCanvas
+    end
+    object Label1: TLabel
+      Left = 224
+      Height = 15
+      Top = 7
+      Width = 599
+      Caption = 'Zawartość XML: (Przeglądarka osób bliskich / prawy przycisk myszy / zaznaczamy całość i kopiujemy do schowka)'
+      Font.Color = clGray
+      ParentColor = False
+      ParentFont = False
     end
   end
   object DSImport: TDataSource

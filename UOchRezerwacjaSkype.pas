@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   StdCtrls, Buttons, TplGradientUnit, YearPlanner, rxdbgrid, rxmemds,
-  datamodule;
+  datamodule, LR_Class, LR_DBSet;
 
 type
   { TTerminyEvent }
@@ -42,9 +42,12 @@ type
   { TOchRezerwacjaSkype }
 
   TOchRezerwacjaSkype = class(TForm)
+    btnDrukuj: TBitBtn;
     btnUsun: TBitBtn;
     btnZaplanuj: TBitBtn;
     DSMemWidzenia: TDataSource;
+    frDBDataSet1: TfrDBDataSet;
+    frReport1: TfrReport;
     Image1: TImage;
     Label1: TLabel;
     Panel1: TPanel;
@@ -55,6 +58,7 @@ type
     MemWidzenia: TRxMemoryData;
     Splitter1: TSplitter;
     YearPlanner1: TYearPlanner;
+    procedure btnDrukujClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure btnZaplanujClick(Sender: TObject);
     procedure DSMemWidzeniaDataChange(Sender: TObject; Field: TField);
@@ -93,8 +97,12 @@ begin
 
    Terminy:= TTerminySkypeEvents.Create;
    WczytajDaneTerminarza;                  // wczytuje dane do Terminy i wyświetla w terminarzu
-     YearPlanner1.SelectCells(Date, Date);   // zaznacza bieżącą datę
+   // zaznacza bieżącą datę
+     YearPlanner1.SelectCells(Date, Date);
      YearPlanner1.CellData[MonthOf(Date), DayOf(Date)].Selected:= true;
+     YearPlanner1.StartDate:= Date;
+     YearPlanner1.EndDate:= Date;
+   // ---
    WczytajDane(Date, Date);                // wyświetla dane bieżącej daty
 end;
 
@@ -163,6 +171,21 @@ begin
   bookmarkWidzenia:= MemWidzenia.GetBookmark;
   WczytajDane(YearPlanner1.StartDate, YearPlanner1.EndDate);
   SetToBookmark(MemWidzenia, bookmarkWidzenia);
+end;
+
+procedure TOchRezerwacjaSkype.btnDrukujClick(Sender: TObject);
+begin
+  if YearPlanner1.StartDate <> YearPlanner1.EndDate then
+  begin
+    MessageDlg('Można wydrukować tylko wybrany dzień.', mtWarning, [mbOK],0);
+    exit;
+  end;
+
+  frReport1.LoadFromFile(DM.Path_Raporty + 'och_rezerwacje_Widz_Skype.lrf');
+  DM.SetMemoReport(frReport1, 'Memo_Data', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
+  DM.SetMemoReport(frReport1, 'Memo_Wykaz', 'Planowanych rozmów przez Skype');
+  DM.SetMemoReport(frReport1, 'Memo_WDniu', 'w dniu '+DM.GetDateFormatPismo(YearPlanner1.StartDate, 'dd-MM-yyyy')+' r.');
+  frReport1.ShowReport;
 end;
 
 procedure TOchRezerwacjaSkype.YearPlanner1DrawCell(Sender: TCustomControl; TheCanvas: TCanvas; Rect: TRect; CellData: TCellData; CellText: String);
