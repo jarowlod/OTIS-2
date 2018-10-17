@@ -1048,8 +1048,8 @@ begin
   ckol:=0; // zerujemy licznik kolumny
   DrawKolumn(SumOcen     , clRed    , $00DDDDFF);
   DrawKolumn(SumWPZ      , $00007D1A, $00F0FFF2);
-  DrawKolumn(SumKK       , clBlue   , $00FFE6E6);
-  DrawKolumn(SumPostpenit, $00D20069, $00FFEAF4);
+  DrawKolumn(SumPostpenit, clBlue   , $00FFE6E6);
+  DrawKolumn(SumKK       , $00D20069, $00FFEAF4);
 end;
 
 procedure TTerminyEvent.Clear;

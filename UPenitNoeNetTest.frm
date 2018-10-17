@@ -1,9 +1,9 @@
-object PenitNeoNetTest: TPenitNeoNetTest
-  Left = 389
+object PenitNoeNetTest: TPenitNoeNetTest
+  Left = 328
   Height = 641
-  Top = 231
+  Top = 230
   Width = 1024
-  Caption = 'NeoNet - sprawdzanie poprwaności danych'
+  Caption = 'NoeNet - sprawdzanie poprwaności danych'
   ClientHeight = 641
   ClientWidth = 1024
   OnCreate = FormCreate
@@ -40,7 +40,7 @@ object PenitNeoNetTest: TPenitNeoNetTest
       Height = 23
       Top = 10
       Width = 398
-      Caption = 'Kreator sprawdzania poprawności danych w NeoNet'
+      Caption = 'Kreator sprawdzania poprawności danych w NoeNet'
       Font.Height = 24
       ParentColor = False
       ParentFont = False

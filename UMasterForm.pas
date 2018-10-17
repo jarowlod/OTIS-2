@@ -246,7 +246,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec,
-     UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNeoNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype;
+     UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype;
 {$R *.frm}
 
 { TMasterForm }
@@ -713,7 +713,7 @@ end;
 
 procedure TMasterForm.ActionNoeNetTestExecute(Sender: TObject);
 begin
-  with TPenitNeoNetTest.Create(Self) do
+  with TPenitNoeNetTest.Create(Self) do
   begin
        ShowModal;
        Free;

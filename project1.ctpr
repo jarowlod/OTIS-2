@@ -600,10 +600,10 @@
         <IsPartOfProject Value="True"/>
       </Unit57>
       <Unit58>
-        <Filename Value="UPenitNeoNetTest.pas"/>
+        <Filename Value="UPenitNoeNetTest.pas"/>
         <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="PenitNeoNetTest"/>
+        <ComponentName Value="PenitNoeNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit58>

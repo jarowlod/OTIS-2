@@ -1,11 +1,11 @@
 object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
-  Left = 180
+  Left = 72
   Height = 558
-  Top = 178
-  Width = 1238
+  Top = 227
+  Width = 1468
   Caption = 'Rezerwacja Widzeń Bezdozorowych'
   ClientHeight = 558
-  ClientWidth = 1238
+  ClientWidth = 1468
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '6.6'
@@ -14,11 +14,11 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
     Left = 0
     Height = 50
     Top = 0
-    Width = 1238
+    Width = 1468
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 50
-    ClientWidth = 1238
+    ClientWidth = 1468
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -26,7 +26,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
       Left = 0
       Height = 50
       Top = 0
-      Width = 1238
+      Width = 1468
       Align = alClient
       BevelWidth = 1
       BevelStyle = bvNone
@@ -287,11 +287,11 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
     Left = 0
     Height = 243
     Top = 315
-    Width = 1238
+    Width = 1468
     Align = alBottom
     BevelOuter = bvLowered
     ClientHeight = 243
-    ClientWidth = 1238
+    ClientWidth = 1468
     TabOrder = 1
     object Panel2: TPanel
       Left = 1
@@ -340,7 +340,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
       Left = 144
       Height = 241
       Top = 1
-      Width = 1093
+      Width = 1323
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
@@ -381,7 +381,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Imie'
+          Title.Caption = 'Imię'
           Width = 100
           FieldName = 'Imie'
           EditButtons = <>
@@ -415,7 +415,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Osoba'
+          Title.Caption = 'Osoba bliska'
           Width = 200
           FieldName = 'Osoba'
           EditButtons = <>
@@ -432,7 +432,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
           Alignment = taCenter
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Pokrewienstwo'
+          Title.Caption = 'Pokrewieństwo'
           Width = 100
           FieldName = 'Pokrewienstwo'
           EditButtons = <>
@@ -450,7 +450,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Uwagi'
-          Width = 200
+          Width = 350
           FieldName = 'Uwagi'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -466,7 +466,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'User'
-          Width = 100
+          Width = 150
           FieldName = 'User'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -481,6 +481,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Data zapisu'
+          Width = 100
           FieldName = 'data_zap'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -574,13 +575,14 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
       ShowHint = True
       TabOrder = 1
       TitleStyle = tsNative
+      OnDblClick = btnZaplanujClick
     end
   end
   object YearPlanner1: TYearPlanner
     Left = 0
     Height = 260
     Top = 50
-    Width = 1238
+    Width = 1468
     Align = alClient
     DayFont.Color = 3355443
     DayFont.Height = -11
@@ -623,7 +625,7 @@ object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
     Left = 0
     Height = 5
     Top = 310
-    Width = 1238
+    Width = 1468
     Align = alBottom
     ResizeAnchor = akBottom
   end

@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 180
+  Left = 172
   Height = 743
-  Top = 178
+  Top = 57
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -493,13 +493,14 @@ object PenitTerminarz: TPenitTerminarz
             BevelInner = bvNone
             BevelOuter = bvNone
             BevelWidth = 1
-            Border.Color = clBlack
+            Border.Color = clGray
             Border.ColorOpacity = 255
             Border.LightColor = clWhite
             Border.LightOpacity = 255
             Border.LightWidth = 0
             Border.Style = bboNone
             Border.Width = 1
+            BorderBCStyle = bpsBorder
             FontEx.Color = clDefault
             FontEx.EndEllipsis = False
             FontEx.FontQuality = fqSystemClearType

@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 332
+  Left = 328
   Height = 598
-  Top = 263
+  Top = 230
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578

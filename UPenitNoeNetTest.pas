@@ -1,4 +1,4 @@
-unit UPenitNeoNetTest;
+unit UPenitNoeNetTest;
 
 {$mode objfpc}{$H+}
 
@@ -11,9 +11,9 @@ uses
 
 type
 
-  { TPenitNeoNetTest }
+  { TPenitNoeNetTest }
 
-  TPenitNeoNetTest = class(TForm)
+  TPenitNoeNetTest = class(TForm)
     btnWyslijAll: TBitBtn;
     btnUstawIDSesji: TBitBtn;
     btnAnaliza: TBitBtn;
@@ -61,15 +61,15 @@ type
   end;
 
 //var
-//  PenitNeoNetTest: TPenitNeoNetTest;
+//  PenitNoeNetTest: TPenitNoeNetTest;
 
 implementation
 uses UKomunikatorNowaWiad;
 {$R *.frm}
 
-{ TPenitNeoNetTest }
+{ TPenitNoeNetTest }
 
-procedure TPenitNeoNetTest.DSSesjeDataChange(Sender: TObject; Field: TField);
+procedure TPenitNoeNetTest.DSSesjeDataChange(Sender: TObject; Field: TField);
 begin
   ZQBledy.Close;
   ZQWychowawcy.Close;
@@ -87,7 +87,7 @@ begin
   ZQBledyGrup.Open;
 end;
 
-procedure TPenitNeoNetTest.FormCreate(Sender: TObject);
+procedure TPenitNoeNetTest.FormCreate(Sender: TObject);
 begin
   ZQSesje.Open;
   if ZQSesje.IsEmpty then FID_Sesji:= 0
@@ -97,14 +97,14 @@ begin
   lblNrSesji.Caption:= 'Nr Sesji: '+ IntToStr(FID_Sesji);
 end;
 
-procedure TPenitNeoNetTest.RxDBGrid2DblClick(Sender: TObject);
+procedure TPenitNoeNetTest.RxDBGrid2DblClick(Sender: TObject);
 begin
   btnUstawIDSesjiClick(Sender);
 end;
 
 // Przekazujemy wskaźnik na otwartą tabelę ZQWPom.
 // Wynikiem jest gotowa wiadomość zwierająca osadzonych
-function TPenitNeoNetTest.GetWiadomoscFromTable(ZQWPom: TZQuery): String;
+function TPenitNoeNetTest.GetWiadomoscFromTable(ZQWPom: TZQuery): String;
 var opis: string;
     wiadomosc: TStringList;
 begin
@@ -131,7 +131,7 @@ begin
   wiadomosc.Free;
 end;
 
-procedure TPenitNeoNetTest.btnAnalizaClick(Sender: TObject);
+procedure TPenitNoeNetTest.btnAnalizaClick(Sender: TObject);
 var i,p1,ido: integer;
     s,n: string;
     ZQPom: TZQueryPom;
@@ -206,7 +206,7 @@ begin
   HideSQLWait;
 end;
 
-procedure TPenitNeoNetTest.btnUstawIDSesjiClick(Sender: TObject);
+procedure TPenitNoeNetTest.btnUstawIDSesjiClick(Sender: TObject);
 begin
   if MessageDlg('Czy napewno dodawać wyniki analizy do obecnie wybranej sesji?', mtWarning, [mbOK, mbCancel], 0)= mrOK then
   begin
@@ -215,7 +215,7 @@ begin
   end;
 end;
 
-procedure TPenitNeoNetTest.btnWyslijAllClick(Sender: TObject);
+procedure TPenitNoeNetTest.btnWyslijAllClick(Sender: TObject);
 var wiadomosc, user_list: TStringList;
     pomWiad : string;
     ZQWychowawcyPom, ZQPom: TZQueryPom;

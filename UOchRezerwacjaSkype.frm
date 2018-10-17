@@ -1,7 +1,7 @@
 object OchRezerwacjaSkype: TOchRezerwacjaSkype
-  Left = 180
+  Left = 368
   Height = 558
-  Top = 178
+  Top = 364
   Width = 1238
   Caption = 'Rezerwacja rozmów przez Skype'
   ClientHeight = 558
@@ -248,7 +248,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Imie'
+          Title.Caption = 'Imię'
           Width = 100
           FieldName = 'Imie'
           EditButtons = <>
@@ -282,7 +282,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Osoba'
+          Title.Caption = 'Osoba bliska'
           Width = 200
           FieldName = 'Osoba'
           EditButtons = <>
@@ -299,7 +299,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
           Alignment = taCenter
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Pokrewienstwo'
+          Title.Caption = 'Pokrewieństwo'
           Width = 100
           FieldName = 'Pokrewienstwo'
           EditButtons = <>
@@ -317,7 +317,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Uwagi'
-          Width = 200
+          Width = 350
           FieldName = 'Uwagi'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -333,7 +333,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'User'
-          Width = 100
+          Width = 150
           FieldName = 'User'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -348,6 +348,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'Data zapisu'
+          Width = 100
           FieldName = 'data_zap'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -441,6 +442,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
       ShowHint = True
       TabOrder = 1
       TitleStyle = tsNative
+      OnDblClick = btnZaplanujClick
     end
   end
   object YearPlanner1: TYearPlanner
@@ -580,7 +582,6 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = MemWidzenia
-    DataSource = DSMemWidzenia
     OpenDataSource = False
     Left = 456
     Top = 402
