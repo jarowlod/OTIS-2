@@ -7,36 +7,23 @@ interface
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   StdCtrls, Buttons, TplGradientUnit, YearPlanner, rxdbgrid, rxmemds,
-  datamodule, LR_Class, LR_DBSet;
+  datamodule, LR_Class, LR_DBSet, BGRABitmap, UOchRezerwacjaWidzen;
 
 type
   { TTerminyEvent }
 
   { TTerminySkypeEvent }
 
-  TTerminySkypeEvent = class
-  private
-    fSumaWidzen : integer;
-  public
-    procedure DrawCell(TheCanvas: TCanvas; Rect: TRect);
-    procedure Clear;
-    property SumaWidzen     : integer read FSumaWidzen write fSumaWidzen default 0;
+  TTerminySkypeEvent = class(TTerminyWidzenEvent)
+
   end;
 
   { TTerminyEvents }
 
   { TTerminySkypeEvents }
 
-  TTerminySkypeEvents = class
-  private
-    fDaneTerminarza: array[1..12,1..31] of TTerminySkypeEvent;
-    function GetDaneTerminarza(msc, day: integer): TTerminySkypeEvent;
-    procedure SetDaneTerminarza(msc, day: integer; AValue: TTerminySkypeEvent);
-  public
-    constructor Create;
-    destructor Destroy; override;
-    procedure Clear;
-    property DaneTerminarza[msc, day: integer]: TTerminySkypeEvent read GetDaneTerminarza write SetDaneTerminarza; default;
+  TTerminySkypeEvents = class(TTerminyWidzenEvents)
+
   end;
 
   { TOchRezerwacjaSkype }
@@ -190,6 +177,7 @@ end;
 
 procedure TOchRezerwacjaSkype.YearPlanner1DrawCell(Sender: TCustomControl; TheCanvas: TCanvas; Rect: TRect; CellData: TCellData; CellText: String);
 var m,d: integer;
+    bmp: TBGRABitmap;
 begin
   m:= MonthOf( CellData.CellDate );
   d:= DayOf( CellData.CellDate );
@@ -292,6 +280,7 @@ var ZQPom: TZQueryPom;
     pomData: TDateTime;
 begin
   Terminy.Clear;
+  Terminy.ZaznaczSwieta(YearPlanner1.Year);
   try
     ZQPom:= TZQueryPom.Create(Self);
     ZQPom.SQL.Text:= 'SELECT * FROM widzenia_skype WHERE Date(DataGodz) BETWEEN :StartDate AND :EndDate';
@@ -313,80 +302,6 @@ begin
     FreeAndNil(ZQPom);
   end;
   YearPlanner1.Invalidate;
-end;
-
-// =======================================================================================================
-{ TTerminySkypeEvents }
-
-function TTerminySkypeEvents.GetDaneTerminarza(msc, day: integer): TTerminySkypeEvent;
-begin
-  Result:= fDaneTerminarza[msc, day];
-end;
-
-procedure TTerminySkypeEvents.SetDaneTerminarza(msc, day: integer; AValue: TTerminySkypeEvent);
-begin
-  fDaneTerminarza[msc, day]:= AValue
-end;
-
-constructor TTerminySkypeEvents.Create;
-var
-  m, d: Integer;
-begin
-  for m:=1 to 12 do
-    for d:=1 to 31 do DaneTerminarza[m, d]:= TTerminySkypeEvent.Create;
-  inherited Create;
-end;
-
-destructor TTerminySkypeEvents.Destroy;
-var
-  m, d: Integer;
-begin
-  for m:=1 to 12 do
-    for d:=1 to 31 do DaneTerminarza[m, d].Free;
-  inherited Destroy;
-end;
-
-procedure TTerminySkypeEvents.Clear;
-var
-  m, d: Integer;
-begin
-  for m:=1 to 12 do
-    for d:=1 to 31 do DaneTerminarza[m, d].Clear;
-end;
-
-{ TTerminySkypeEvent }
-
-procedure TTerminySkypeEvent.DrawCell(TheCanvas: TCanvas; Rect: TRect);
-var
-  h, x, h1: integer;
-  DesRect: TRect;
-begin
-  if SumaWidzen=0 then exit; // nie ma co wyswietlac
-
-  h:= Rect.Height - 12;    // ustalamy max wysokość kolumny
-  if h<=0 then h:=1;
-  x:= Rect.Width div 2;  // szerokosc słupka
-
-  Rect.Left:= Rect.Left+ (x div 2); // wypośrodkowanie
-
-  h1:= round(h* SumaWidzen / SKYPE_DZIENNIE);  // 6 to jest 100% wysokości
-  if h1=0 then h1:=1; // minimalna wysokość to 1
-  if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
-
-  DesRect.Bottom:= Rect.Bottom;
-  DesRect.Left  := Rect.Left;
-  DesRect.Right := Rect.Left  + x;
-  DesRect.Top   := Rect.Bottom - h1;
-
-  if SumaWidzen < SKYPE_DZIENNIE then
-    TheCanvas.GradientFill(DesRect, $00007D1A, $00F0FFF2, gdHorizontal) // są jeszcze wolne wakaty więc zielone światło
-  else
-    TheCanvas.GradientFill(DesRect, clRed    , $00DDDDFF, gdHorizontal); // jest już max, brak wolnych miejsc więc czerwone
-end;
-
-procedure TTerminySkypeEvent.Clear;
-begin
-  fSumaWidzen:= 0;
 end;
 
 end.

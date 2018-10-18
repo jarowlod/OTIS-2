@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   StdCtrls, Buttons, TplGradientUnit, YearPlanner, rxdbgrid, rxmemds,
-  datamodule, LR_Class, LR_DBSet;
+  datamodule, LR_Class, LR_DBSet, BGRABitmap;
 
 type
   { TTerminyEvent }
@@ -16,11 +16,14 @@ type
 
   TTerminyWidzenEvent = class
   private
+    CellDate: TDate;
     fSumaWidzen : integer;
+    fisSwieto    : Boolean;
   public
     procedure DrawCell(TheCanvas: TCanvas; Rect: TRect);
     procedure Clear;
     property SumaWidzen     : integer read FSumaWidzen write fSumaWidzen default 0;
+    property isSwieto    : Boolean read fisSwieto write fisSwieto default False;
   end;
 
   { TTerminyEvents }
@@ -36,6 +39,7 @@ type
     constructor Create;
     destructor Destroy; override;
     procedure Clear;
+    procedure ZaznaczSwieta(AYear: Integer);
     property DaneTerminarza[msc, day: integer]: TTerminyWidzenEvent read GetDaneTerminarza write SetDaneTerminarza; default;
   end;
 
@@ -287,6 +291,7 @@ var ZQPom: TZQueryPom;
     pomData: TDateTime;
 begin
   Terminy.Clear;
+  Terminy.ZaznaczSwieta(YearPlanner1.Year);
   try
     ZQPom:= TZQueryPom.Create(Self);
     ZQPom.SQL.Text:= 'SELECT * FROM widzenia_rezerwacje WHERE Date(DataGodz) BETWEEN :StartDate AND :EndDate';
@@ -327,9 +332,9 @@ constructor TTerminyWidzenEvents.Create;
 var
   m, d: Integer;
 begin
+  inherited Create;
   for m:=1 to 12 do
     for d:=1 to 31 do DaneTerminarza[m, d]:= TTerminyWidzenEvent.Create;
-  inherited Create;
 end;
 
 destructor TTerminyWidzenEvents.Destroy;
@@ -349,39 +354,75 @@ begin
     for d:=1 to 31 do DaneTerminarza[m, d].Clear;
 end;
 
+procedure TTerminyWidzenEvents.ZaznaczSwieta(AYear: Integer);
+var curDate: TDate;
+    m, d: integer;
+begin
+  for m:=1 to 12 do
+    for d:=1 to 31 do
+    begin
+      if TryEncodeDate(AYear, m, d, curDate) then
+      begin
+         DaneTerminarza[m,d].isSwieto:= DM.CzySwieto(curDate);
+         DaneTerminarza[m,d].CellDate:= curDate;
+      end;
+    end;
+end;
+
 { TTerminyWidzenEvent }
 
 procedure TTerminyWidzenEvent.DrawCell(TheCanvas: TCanvas; Rect: TRect);
 var
   h, x, h1: integer;
   DesRect: TRect;
+  bmp: TBGRABitmap;
 begin
-  if SumaWidzen=0 then exit; // nie ma co wyswietlac
+  if SumaWidzen>0 then  // wyświtlamy tylko jak są widzenia
+  begin
+    h:= Rect.Height - 12;    // ustalamy max wysokość kolumny
+    if h<=0 then h:=1;
+    x:= Rect.Width div 2;  // szerokosc słupka
 
-  h:= Rect.Height - 12;    // ustalamy max wysokość kolumny
-  if h<=0 then h:=1;
-  x:= Rect.Width div 2;  // szerokosc słupka
+    h1:= round(h* SumaWidzen / WIDZEN_DZIENNIE);  // 6 to jest 100% wysokości
+    if h1=0 then h1:=1; // minimalna wysokość to 1
+    if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
 
-  Rect.Left:= Rect.Left+ (x div 2); // wypośrodkowanie
+    DesRect.Bottom:= Rect.Bottom;
+    DesRect.Left  := Rect.Left+ (x div 2); // wypośrodkowanie
+    DesRect.Right := DesRect.Left  + x;
+    DesRect.Top   := Rect.Bottom - h1;
 
-  h1:= round(h* SumaWidzen / WIDZEN_DZIENNIE);  // 6 to jest 100% wysokości
-  if h1=0 then h1:=1; // minimalna wysokość to 1
-  if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
+    if SumaWidzen < WIDZEN_DZIENNIE then
+      TheCanvas.GradientFill(DesRect, $00007D1A, $00F0FFF2, gdHorizontal) // są jeszcze wolne wakaty więc zielone światło
+    else
+      TheCanvas.GradientFill(DesRect, clRed    , $00DDDDFF, gdHorizontal); // jest już max, brak wolnych miejsc więc czerwone
+  end;
 
-  DesRect.Bottom:= Rect.Bottom;
-  DesRect.Left  := Rect.Left;
-  DesRect.Right := Rect.Left  + x;
-  DesRect.Top   := Rect.Bottom - h1;
+  if isSwieto then
+  begin
+    bmp:= TBGRABitmap.Create(Rect.Width, Rect.Height);
+    bmp.CanvasAlphaCorrection:= true;
+    bmp.CanvasOpacity:= 60;
+    bmp.Canvas.GradientFill(bmp.ClipRect, $FFDFFF, $CC00CC, gdVertical);
+    bmp.Draw(TheCanvas, Rect.Left, Rect.Top, false);
+    FreeAndNil(bmp);
+  end;
 
-  if SumaWidzen < WIDZEN_DZIENNIE then
-    TheCanvas.GradientFill(DesRect, $00007D1A, $00F0FFF2, gdHorizontal) // są jeszcze wolne wakaty więc zielone światło
-  else
-    TheCanvas.GradientFill(DesRect, clRed    , $00DDDDFF, gdHorizontal); // jest już max, brak wolnych miejsc więc czerwone
+  if CellDate < Date() then
+  begin
+    bmp:= TBGRABitmap.Create(Rect.Width, Rect.Height);
+    bmp.CanvasAlphaCorrection:= true;
+    bmp.CanvasOpacity:= 60;
+    bmp.Canvas.GradientFill(bmp.ClipRect, $E9E9E9, $727272, gdVertical);
+    bmp.Draw(TheCanvas,Rect.Left, Rect.Top, false);
+    FreeAndNil(bmp);
+  end;
 end;
 
 procedure TTerminyWidzenEvent.Clear;
 begin
   fSumaWidzen:= 0;
+  fisSwieto  := False;
 end;
 
 end.
