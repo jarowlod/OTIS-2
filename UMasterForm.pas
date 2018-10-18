@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, rxdbutils, Grids,
   db, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Clipbrd, dateutils, LCLType,
-  datamodule;
+  LazUTF8, datamodule;
 
 type
 
@@ -222,7 +222,8 @@ type
   private
     { private declarations }
     fRecCount: integer;
-    ClipbrdSaveText: string;
+    hotkey_ctrl_n: ATOM; // hotkey na cały system
+    hotkey_ctrl_p: ATOM;
     procedure StatusBarRefresh(Sender: TObject; Field: TField);
     procedure wm_HOTKEY(var Msg:TMessage);message WM_HOTKEY; // funkcja skrótu globalnego
   public
@@ -230,6 +231,7 @@ type
     isExecuteSQL: boolean;
     Procedure WyborDomyslny;
     Procedure RefreshUprawnienia; // odswieża aktywność kontrolek względem uprawnień
+    Procedure SendToKeyboard(value_Send: string; const controlKey: word = 0);
     //Procedure Zaloguj;
   end;
 
@@ -259,17 +261,27 @@ begin
   isExecuteSQL := true;
   RefreshUprawnienia;
 
-  // -------------------- dodajemy globalny skrót dla NEO :)
-  ClipbrdSaveText:='';           GlobalAddAtom();
-  RegisterHotKey(MasterForm.Handle, $0001, MOD_CONTROL, VK_N); {F4 - VK_F4 lub VkKeyScan('n')}
-  if DM.Podpis<>'' then RegisterHotKey(MasterForm.Handle, $0002, MOD_CONTROL,  VK_P);
+  // -------------------- dodajemy globalny skrót dla NOE :)
+ // ClipbrdSaveText:='';
+  hotkey_ctrl_n:= GlobalAddAtom('OTIS_ctrl_n');
+  RegisterHotKey(Handle, hotkey_ctrl_n, MOD_CONTROL, VK_N);  // wstawia nazwisko
+
+  if DM.Podpis<>'' then begin
+    hotkey_ctrl_p:= GlobalAddAtom('OTIS_ctrl_p');
+    RegisterHotKey(Handle, hotkey_ctrl_p, MOD_CONTROL,  VK_P); // wstawia podpis jeśli jest
+  end;
 end;
 
 procedure TMasterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   //------------ zwalniam globalny skrót
-  UnregisterHotKey(MasterForm.Handle, $0001);
-  if DM.Podpis<>'' then UnregisterHotKey(MasterForm.Handle, $0002);
+  UnregisterHotKey(Handle, hotkey_ctrl_n);
+  GlobalDeleteAtom(hotkey_ctrl_n);
+
+  if DM.Podpis<>'' then begin
+    UnregisterHotKey(Handle, hotkey_ctrl_p);
+    GlobalDeleteAtom(hotkey_ctrl_p);
+  end;
 end;
 
 procedure TMasterForm.RefreshUprawnienia;
@@ -879,50 +891,89 @@ begin
   DM.Zaloguj;
 end;
 
+procedure TMasterForm.SendToKeyboard(value_Send: string; const controlKey: word);
+var i: Integer;
+    s: char;
+    isPL: Boolean;
+    isCTRL: Boolean;
 
-procedure TMasterForm.wm_HOTKEY(var Msg: TMessage);
-var Teraz: TDateTime;
-
-    // procedura symuluje wciśnięcie Ctrl + v
-    procedure PressCtrlV;
+    Function isCharPL(charUTF: string; var out_ch: char): Boolean;
+    var pos : Integer;
+        s_pl : string = 'ąĄćĆęĘłŁńŃóÓśŚźŹżŻ';
+        s_asc: string = 'aAcCeElLnNoOsSzZzZ';
     begin
-         keybd_event(VK_CONTROL, 0, 0,0);
-         keybd_event(VkKeyScan('v'), 0, 0,0);
-         keybd_event(VkKeyScan('v'),0,KEYEVENTF_KEYUP,0);
-         keybd_event(VK_CONTROL,0,KEYEVENTF_KEYUP,0);
-
-         Teraz:= Now;
-         repeat
-          Application.ProcessMessages; // Pozwalamy aplikacji obsłużyć komunikaty
-         until Teraz+1/SecsPerDay < Now;
-         Clipboard.AsText:= ClipbrdSaveText;
-         ClipbrdSaveText:= '';
+      result:= false;
+      out_ch:= charUTF[1];
+      pos:= UTF8Pos(charUTF, s_pl);
+      if pos>0 then begin
+         out_ch:= s_asc[pos];
+         result:= true;
+      end;
     end;
 
 begin
-  if Msg.WParam = $0001 then
-  begin
-     if ClipbrdSaveText='' then ClipbrdSaveText:= Clipboard.AsText;
-     { reakcja na skrót klawiszowy Ctrl+n}
-     { jeśli jest włączony terminarz to pobierz nazwisko z niego, potem z wyszukiwarki głównej }
-    if (PenitTerminarz <> nil)and(not PenitTerminarz.ZQTerminarz.IsEmpty) then
-      Clipboard.AsText := PenitTerminarz.ZQTerminarzNAZWISKO.AsString
-    else if (Rozmieszczenie <> nil)and(not Rozmieszczenie.ZQOsadzeni.IsEmpty) then
-      Clipboard.AsText := Rozmieszczenie.ZQOsadzeni.FieldByName('NAZWISKO').AsString
-    else
-      Clipboard.AsText := DM.ZQOsadzeni.FieldByName('NAZWISKO').AsString;
+  // zwalniamy CTRL jeśli był wciśnięty
+  isCTRL:= (GetKeyState(VK_CONTROL) and $80<>0);
+  if isCTRL then keybd_event(VK_CONTROL, MapVirtualKey(VK_CONTROL, 0), KEYEVENTF_KEYUP, 0);
+  if (controlKey in [VK_CONTROL, VK_SHIFT]) then keybd_event(controlKey, MapVirtualKey(controlKey, 0), 0, 0);  ;
 
-     PressCtrlV;
-     WaitMessage;
-  end else
-  if Msg.WParam = $0002 then
+  for i:=1 to Utf8Length(value_Send) do
   begin
-     if ClipbrdSaveText='' then ClipbrdSaveText:= Clipboard.AsText;
-     { reakcja na skrót klawiszowy Ctrl+p}
-     Clipboard.AsText := DM.Podpis;
-     PressCtrlV;
+    // jeśli polska litera to wciskamy ALT i zmieniamy literę na ascii
+    isPL:= false;
+    if isCharPL(UTF8Copy(value_Send, i, 1), s) then
+    begin
+      isPL:= true;
+      keybd_event(VK_RMENU, MapVirtualKey(VK_RMENU, 0), 0, 0);
+    end;
+    // jeśli duża litera to wciskamy SHIFT
+    if (s in ['A'..'Z']) then keybd_event(VK_SHIFT, MapVirtualKey(VK_SHIFT, 0), 0, 0);
+
+    // wciskamy literę
+    keybd_event(VkKeyScan(s), 0, 0, 0);
+    keybd_event(VkKeyScan(s), 0, KEYEVENTF_KEYUP, 0);
+
+    // zwalniamy SHIFT jeśli duża litera
+    if (s in ['A'..'Z']) then keybd_event(VK_SHIFT, MapVirtualKey(VK_SHIFT, 0), KEYEVENTF_KEYUP, 0);
+    // zwalniamy ALT jeśli PL
+    if isPL then
+    begin
+      keybd_event(VK_RMENU, MapVirtualKey(VK_RMENU, 0), KEYEVENTF_KEYUP, 0);
+    end;
   end;
-  //Application.Restore; // przywrócenie aplikacji
+
+  if (controlKey in [VK_CONTROL, VK_SHIFT]) then keybd_event(controlKey, MapVirtualKey(controlKey, 0), KEYEVENTF_KEYUP, 0);;
+  // wciskamy CTRL tak jak było na początku
+  if isCTRL then keybd_event(VK_CONTROL, MapVirtualKey(VK_CONTROL, 0), 0, 0);
+end;
+
+procedure TMasterForm.wm_HOTKEY(var Msg: TMessage);
+var value_Send: string;
+begin
+  if Msg.WParam = hotkey_ctrl_n then
+    begin
+       { reakcja na skrót klawiszowy Ctrl+n}
+       { jeśli jest włączony terminarz to pobierz nazwisko z niego, potem z wyszukiwarki głównej }
+      if (PenitTerminarz <> nil)and(not PenitTerminarz.ZQTerminarz.IsEmpty) then
+        value_Send:= PenitTerminarz.ZQTerminarzNAZWISKO.AsString
+      else
+      if (Rozmieszczenie <> nil)and(not Rozmieszczenie.ZQOsadzeni.IsEmpty) then
+        value_Send:= Rozmieszczenie.ZQOsadzeni.FieldByName('NAZWISKO').AsString
+      else
+      if not DM.ZQOsadzeni.IsEmpty then
+        value_Send:= DM.ZQOsadzeni.FieldByName('NAZWISKO').AsString
+      else value_Send:= '';
+
+       //SendToKeyboard('a', VK_CONTROL);
+       if value_Send<>'' then SendToKeyboard(value_Send);
+    end
+  else
+  if Msg.WParam = hotkey_ctrl_p then
+  begin
+     { reakcja na skrót klawiszowy Ctrl+p}
+     value_Send:= StringReplace(DM.Podpis, LineEnding, #13, [rfReplaceAll]);
+     SendToKeyboard(value_Send);
+  end;
 end;
 
    { TODO : Domyślne lub z pliku ini: Rozmiar i położenie okna podczas onShow }
