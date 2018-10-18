@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="157">
+    <Units Count="159">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -19,9 +19,10 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="700"/>
-        <CursorPos X="17" Y="716"/>
+        <TopLine Value="873"/>
+        <CursorPos X="89" Y="905"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -34,7 +35,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="177"/>
+        <TopLine Value="179"/>
         <CursorPos X="20" Y="190"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -178,7 +179,7 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="1034"/>
         <CursorPos X="26" Y="1051"/>
         <UsageCount Value="200"/>
@@ -319,9 +320,8 @@
         <ComponentName Value="KomunikatorNowaWiad"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="330"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="328"/>
         <CursorPos X="18" Y="346"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -674,7 +674,7 @@
         <ComponentName Value="ViewRichEdit"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="16"/>
         <CursorPos X="3" Y="15"/>
         <UsageCount Value="200"/>
@@ -695,10 +695,10 @@
         <ComponentName Value="PenitNoeNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="248"/>
         <CursorPos X="17" Y="267"/>
-        <UsageCount Value="165"/>
+        <UsageCount Value="166"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit58>
@@ -712,7 +712,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="45"/>
         <CursorPos X="60" Y="73"/>
-        <UsageCount Value="130"/>
+        <UsageCount Value="131"/>
       </Unit59>
       <Unit60>
         <Filename Value="UOchRezerwacjaSkype.pas"/>
@@ -724,7 +724,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="82"/>
         <CursorPos X="19" Y="105"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="78"/>
       </Unit60>
       <Unit61>
         <Filename Value="UOchAddRezerwacjaSkype.pas"/>
@@ -736,7 +736,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="300"/>
         <CursorPos X="25" Y="331"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="59"/>
       </Unit61>
       <Unit62>
         <Filename Value="UOchAddRezerwacjaWidzen.pas"/>
@@ -746,7 +746,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
       </Unit62>
       <Unit63>
         <Filename Value="UOchRezerwacjaWidzen.pas"/>
@@ -758,7 +758,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <CursorPos Y="98"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
       </Unit63>
       <Unit64>
         <Filename Value="C:\codetyphon\typhon\components\lz_DateTimeCtrls\source\dbdatetimepicker.pas"/>
@@ -1089,14 +1089,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="52" Y="22"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit110>
       <Unit111>
         <Filename Value="C:\codetyphon\typhon\components\pl_BGRAcontrols\source\bgracustomdrawn.pas"/>
         <UnitName Value="BGRACustomDrawn"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="956"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit111>
       <Unit112>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\dbc\ZDbcUtils.pas"/>
@@ -1209,7 +1209,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="354"/>
         <CursorPos X="63" Y="375"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit127>
       <Unit128>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\lists.inc"/>
@@ -1421,8 +1421,26 @@
         <CursorPos X="18" Y="1127"/>
         <UsageCount Value="8"/>
       </Unit156>
+      <Unit157>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\win\wininc\ascdef.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="70"/>
+        <CursorPos X="10" Y="87"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit157>
+      <Unit158>
+        <Filename Value="C:\codetyphon\typhon\lcl\lcltype.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="LCLType"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="414"/>
+        <CursorPos X="3" Y="463"/>
+        <UsageCount Value="10"/>
+      </Unit158>
     </Units>
-    <JumpHistory Count="7" HistoryIndex="6">
+    <JumpHistory Count="10" HistoryIndex="9">
       <Position1>
         <Filename Value="UMasterForm.pas"/>
         <Caret Line="249" Column="102" TopLine="226"/>
@@ -1451,6 +1469,18 @@
         <Filename Value="UKomunikatorNowaWiad.pas"/>
         <Caret Line="79" Column="20" TopLine="57"/>
       </Position7>
+      <Position8>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="264" Column="60" TopLine="246"/>
+      </Position8>
+      <Position9>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="263" Column="48" TopLine="246"/>
+      </Position9>
+      <Position10>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="227" Column="19" TopLine="206"/>
+      </Position10>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

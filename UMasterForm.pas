@@ -260,9 +260,9 @@ begin
   RefreshUprawnienia;
 
   // -------------------- dodajemy globalny skrót dla NEO :)
-  ClipbrdSaveText:='';
-  RegisterHotKey(MasterForm.Handle, $0001, MOD_CONTROL,  VkKeyScan('n')); {F4 - VK_F4}
-  if DM.Podpis<>'' then RegisterHotKey(MasterForm.Handle, $0002, MOD_CONTROL,  VkKeyScan('p'));
+  ClipbrdSaveText:='';           GlobalAddAtom();
+  RegisterHotKey(MasterForm.Handle, $0001, MOD_CONTROL, VK_N); {F4 - VK_F4 lub VkKeyScan('n')}
+  if DM.Podpis<>'' then RegisterHotKey(MasterForm.Handle, $0002, MOD_CONTROL,  VK_P);
 end;
 
 procedure TMasterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
