@@ -120,12 +120,10 @@ begin
   with TOchAddRezerwacjaSkype.CreateIDO(Self, ido, MemWidzenia.FieldByName('DataGodz').AsDateTime) do
   begin
     if ShowModal = mrOK then
-    begin
       WczytajDaneTerminarza;
       bookmarkWidzenia:= MemWidzenia.GetBookmark;
       WczytajDane(YearPlanner1.StartDate, YearPlanner1.EndDate);
       SetToBookmark(MemWidzenia, bookmarkWidzenia);
-    end;
     Free;
   end;
 end;
@@ -177,7 +175,6 @@ end;
 
 procedure TOchRezerwacjaSkype.YearPlanner1DrawCell(Sender: TCustomControl; TheCanvas: TCanvas; Rect: TRect; CellData: TCellData; CellText: String);
 var m,d: integer;
-    bmp: TBGRABitmap;
 begin
   m:= MonthOf( CellData.CellDate );
   d:= DayOf( CellData.CellDate );

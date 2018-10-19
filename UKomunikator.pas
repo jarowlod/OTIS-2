@@ -7,13 +7,14 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate, RichMemo, rxdbgrid,
   Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls, Buttons, StdCtrls,
-  datamodule, LR_Class, rxdbutils;
+  Menus, datamodule, LR_Class, rxdbutils;
 
 type
 
   { TKomunikator }
 
   TKomunikator = class(TForm)
+    btnDrukujZaznaczone: TBitBtn;
     btnNowaWiadomosc: TBitBtn;
     btnOdpisz: TBitBtn;
     btnDrukuj: TBitBtn;
@@ -21,9 +22,11 @@ type
     DSKomOdebrane: TDataSource;
     DSKomWyslane: TDataSource;
     DSKomOdbiorcy: TDataSource;
+    MenuItemKopiuj: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
+    PopupMenu1: TPopupMenu;
     RichMemo1: TRichMemo;
     RichMemo2: TRichMemo;
     RxDBGrid1: TRxDBGrid;
@@ -38,12 +41,14 @@ type
     ZQKomOdbiorcy: TZQuery;
     ZUKomOdebrane: TZUpdateSQL;
     procedure btnDrukujClick(Sender: TObject);
+    procedure btnDrukujZaznaczoneClick(Sender: TObject);
     procedure btnNowaWiadomoscClick(Sender: TObject);
     procedure btnOdpiszClick(Sender: TObject);
     procedure btnOdswiezClick(Sender: TObject);
     procedure DSKomOdebraneDataChange(Sender: TObject; Field: TField);
     procedure DSKomWyslaneDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemKopiujClick(Sender: TObject);
   private
 
   public
@@ -129,6 +134,20 @@ begin
 //  frReport1.ShowReport;
 end;
 
+procedure TKomunikator.btnDrukujZaznaczoneClick(Sender: TObject);
+var print_parameters: TPrintParams;
+begin
+  print_parameters.JobTitle := 'OTIS';
+  print_parameters.Margins.Top    := 10;
+  print_parameters.Margins.Bottom := 10;
+  print_parameters.Margins.Left   := 10;
+  print_parameters.Margins.Right  := 10;
+  print_parameters.SelStart  := RichMemo1.SelStart;
+  print_parameters.SelLength := RichMemo1.SelLength;
+
+  RichMemo1.Print( print_parameters );
+end;
+
 procedure TKomunikator.btnOdpiszClick(Sender: TObject);
 begin
   with TKomunikatorNowaWiad.Create(Self) do
@@ -174,6 +193,11 @@ begin
   ZQKomWyslane.ParamByName('nadawca').AsString := DM.login;
   ZQKomWyslane.Open;
   ZQKomOdbiorcy.Open;
+end;
+
+procedure TKomunikator.MenuItemKopiujClick(Sender: TObject);
+begin
+  RichMemo1.CopyToClipboard;
 end;
 
 end.

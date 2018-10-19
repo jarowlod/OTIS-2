@@ -125,7 +125,7 @@ begin
   print_parameters.SelStart  := RichMemo1.SelStart;
   print_parameters.SelLength := RichMemo1.SelLength;
 
-  RichMemo1.Print( print_parameters )
+  RichMemo1.Print( print_parameters );
 end;
 
 procedure TOknoKomunikatu.FormClose(Sender: TObject;

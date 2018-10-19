@@ -1,7 +1,7 @@
 object OchRezerwacjaWidzen: TOchRezerwacjaWidzen
-  Left = 152
+  Left = 312
   Height = 558
-  Top = 462
+  Top = 932
   Width = 1468
   Caption = 'Rezerwacja Widzeń Bezdozorowych'
   ClientHeight = 558

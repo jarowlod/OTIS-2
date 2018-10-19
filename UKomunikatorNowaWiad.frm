@@ -1,7 +1,7 @@
 object KomunikatorNowaWiad: TKomunikatorNowaWiad
-  Left = 440
+  Left = 328
   Height = 658
-  Top = 236
+  Top = 230
   Width = 1039
   Caption = 'Nowa wiadomość'
   ClientHeight = 658
@@ -11,7 +11,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
   OnShow = FormShow
   Position = poOwnerFormCenter
   ShowHint = True
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 558
@@ -202,6 +202,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
           Anchors = [akTop, akLeft, akRight]
           OnChange = edZnajdzChange
           TabOrder = 0
+          TextHint = 'znajdź ...'
         end
         object Image2: TImage
           Left = 6
@@ -527,6 +528,7 @@ object KomunikatorNowaWiad: TKomunikatorNowaWiad
           Width = 612
           Anchors = [akTop, akLeft, akRight]
           TabOrder = 0
+          TextHint = 'wpisz temat wiadomości ...'
         end
       end
       object Panel7: TPanel

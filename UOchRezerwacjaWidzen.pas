@@ -20,10 +20,10 @@ type
     fSumaWidzen : integer;
     fisSwieto    : Boolean;
   public
-    procedure DrawCell(TheCanvas: TCanvas; Rect: TRect);
-    procedure Clear;
-    property SumaWidzen     : integer read FSumaWidzen write fSumaWidzen default 0;
-    property isSwieto    : Boolean read fisSwieto write fisSwieto default False;
+    procedure DrawCell(TheCanvas: TCanvas; Rect: TRect); virtual;
+    procedure Clear; virtual;
+    property SumaWidzen : integer read FSumaWidzen write fSumaWidzen default 0;
+    property isSwieto   : Boolean read fisSwieto write fisSwieto stored False;
   end;
 
   { TTerminyEvents }
@@ -32,10 +32,10 @@ type
 
   TTerminyWidzenEvents = class
   private
-    fDaneTerminarza: array[1..12,1..31] of TTerminyWidzenEvent;
     function GetDaneTerminarza(msc, day: integer): TTerminyWidzenEvent;
     procedure SetDaneTerminarza(msc, day: integer; AValue: TTerminyWidzenEvent);
   public
+    fDaneTerminarza: array[1..12,1..31] of TTerminyWidzenEvent;
     constructor Create;
     destructor Destroy; override;
     procedure Clear;
@@ -135,12 +135,10 @@ begin
   with TOchAddRezerwacjaWidzen.CreateIDO(Self, ido, MemWidzenia.FieldByName('DataGodz').AsDateTime) do
   begin
     if ShowModal = mrOK then
-    begin
       WczytajDaneTerminarza;
       bookmarkWidzenia:= MemWidzenia.GetBookmark;
       WczytajDane(YearPlanner1.StartDate, YearPlanner1.EndDate);
       SetToBookmark(MemWidzenia, bookmarkWidzenia);
-    end;
     Free;
   end;
 end;

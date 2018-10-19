@@ -19,10 +19,9 @@ type
     fSumWPZ      : integer;
     fSumPostpenit: integer;
     fSumKK       : integer;
-   // fisSwieto    : Boolean;
   public
-    procedure DrawCell(TheCanvas: TCanvas; Rect: TRect);
-    procedure Clear;
+    procedure DrawCell(TheCanvas: TCanvas; Rect: TRect); override;
+    procedure Clear; override;
     procedure IncTermin(rodzaj: string);
     constructor Create;
     destructor Destroy; override;
@@ -31,21 +30,18 @@ type
     property SumWPZ      : integer read FSumWPZ write fSumWPZ default 0;
     property SumPostpenit: integer read FSumPostpenit write fSumPostpenit default 0;
     property SumKK       : integer read FSumKK write fSumKK default 0;
-   // property isSwieto    : Boolean read fisSwieto write fisSwieto default False;
   end;
 
   { TTerminyEvents }
 
   TTerminyEvents = class(TTerminyWidzenEvents)
   private
-    fDaneTerminarza: array[1..12,1..31] of TTerminyEvent;
     function GetDaneTerminarza(msc, day: integer): TTerminyEvent;
     procedure SetDaneTerminarza(msc, day: integer; AValue: TTerminyEvent);
   public
     constructor Create;
     destructor Destroy; override;
- //   procedure Clear;
- //   procedure ZaznaczSwieta(AYear: Integer);
+    procedure Clear;
     property DaneTerminarza[msc, day: integer]: TTerminyEvent read GetDaneTerminarza write SetDaneTerminarza; default;
   end;
 
@@ -742,31 +738,10 @@ end;
 procedure TPenitTerminarz.YearPlanner1DrawCell(Sender: TCustomControl;
   TheCanvas: TCanvas; Rect: TRect; CellData: TCellData; CellText: String);
 var m,d: integer;
-    bmp: TBGRABitmap;
 begin
   m:= MonthOf( CellData.CellDate );
   d:= DayOf( CellData.CellDate );
   Terminy[m,d].DrawCell(TheCanvas, Rect);
-
-  //if Terminy[m, d].isSwieto then
-  //begin
-  //  bmp:= TBGRABitmap.Create(Rect.Width, Rect.Height);
-  //  bmp.CanvasAlphaCorrection:= true;
-  //  bmp.CanvasOpacity:= 60;
-  //  bmp.Canvas.GradientFill(bmp.ClipRect, $FFDFFF, $CC00CC, gdVertical);
-  //  bmp.Draw(TheCanvas, Rect.Left, Rect.Top, false);
-  //  FreeAndNil(bmp);
-  //end;
-  //
-  //if CellData.CellDate < Date() then
-  //begin
-  //  bmp:= TBGRABitmap.Create(Rect.Width, Rect.Height);
-  //  bmp.CanvasAlphaCorrection:= true;
-  //  bmp.CanvasOpacity:= 60;
-  //  bmp.Canvas.GradientFill(bmp.ClipRect, $E9E9E9, $727272, gdVertical);
-  //  bmp.Draw(TheCanvas,Rect.Left, Rect.Top, false);
-  //  FreeAndNil(bmp);
-  //end;
 end;
 
 procedure TPenitTerminarz.YearPlanner1SelectionEnd(Sender: TObject);
@@ -1033,7 +1008,8 @@ end;
 
 procedure TTerminyEvent.DrawCell(TheCanvas: TCanvas; Rect: TRect);
 var h,h1,x: integer;
-    DesRect: TRect;
+    RectC : TRect;   // robocza, wycentrowana
+    DesRect: TRect;  // pomocnicza
     kol, ckol: integer;
 
   procedure DrawKolumn(AValue: integer; AStart, AStop: TColor);
@@ -1046,11 +1022,11 @@ var h,h1,x: integer;
     if h1=0 then h1:=1; // minimalna wysokość to 1
     if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
 
-    DesRect.Bottom:= Rect.Bottom;
-    DesRect.Left  := Rect.Left  + 1 + x*(ckol-1);
-    DesRect.Right := Rect.Left  + 1 + x*ckol;
-    DesRect.Top   := Rect.Bottom- h1;
-    if ckol=kol then DesRect.Right:= Rect.Right; // ostatnia kol równa do prawej krawędzi
+    DesRect.Bottom:= RectC.Bottom;
+    DesRect.Left  := RectC.Left  + 1 + x*(ckol-1);
+    DesRect.Right := RectC.Left  + 1 + x*ckol;
+    DesRect.Top   := RectC.Bottom- h1;
+    if ckol=kol then DesRect.Right:= RectC.Right; // ostatnia kol równa do prawej krawędzi
 
     TheCanvas.GradientFill(DesRect, AStart, AStop, gdHorizontal);
   end;
@@ -1063,6 +1039,7 @@ begin
   if SumPostpenit>0 then inc(kol);
   if SumWPZ>0 then inc(kol);
 
+  RectC:= Rect;
   if kol>0 then
   begin
     //kol:=4; // ustalamy że kolumn ma być 4
@@ -1071,7 +1048,7 @@ begin
     if h<=0 then h:=1;
     x:= Rect.Width div 4 {kol};  // szerokosc słupka
 
-      Rect.Left:= Rect.Left+ (x*4-x*kol)div 2; // wypośrodkowanie
+      RectC.Left:= Rect.Left+ (x*4-x*kol)div 2; // wypośrodkowanie
       kol:=4;
 
     ckol:=0; // zerujemy licznik kolumny
@@ -1089,7 +1066,8 @@ begin
   SumWPZ      := 0;
   SumPostpenit:= 0;
   SumKK       := 0;
-  isSwieto    := False;
+  inherited;
+//  isSwieto    := False;
 end;
 
 procedure TTerminyEvent.IncTermin(rodzaj: string);
@@ -1116,7 +1094,7 @@ end;
 
 function TTerminyEvents.GetDaneTerminarza(msc, day: integer): TTerminyEvent;
 begin
-  Result:= fDaneTerminarza[msc, day];
+  Result:= TTerminyEvent( fDaneTerminarza[msc, day]);
 end;
 
 procedure TTerminyEvents.SetDaneTerminarza(msc, day: integer; AValue: TTerminyEvent);
@@ -1128,20 +1106,15 @@ constructor TTerminyEvents.Create;
 var
   m, d: Integer;
 begin
-  inherited Create;
   for m:=1 to 12 do
     for d:=1 to 31 do DaneTerminarza[m, d]:= TTerminyEvent.Create;
 end;
 
 destructor TTerminyEvents.Destroy;
-var
-  m, d: Integer;
 begin
-  for m:=1 to 12 do
-    for d:=1 to 31 do DaneTerminarza[m, d].Free;
   inherited Destroy;
 end;
-{
+
 procedure TTerminyEvents.Clear;
 var
   m, d: Integer;
@@ -1150,17 +1123,5 @@ begin
     for d:=1 to 31 do DaneTerminarza[m, d].Clear;
 end;
 
-procedure TTerminyEvents.ZaznaczSwieta(AYear: Integer);
-var curDate: TDate;
-    m, d: integer;
-begin
-  for m:=1 to 12 do
-    for d:=1 to 31 do
-    begin
-      if TryEncodeDate(AYear, m, d, curDate) then
-         DaneTerminarza[m,d].isSwieto:= DM.CzySwieto(curDate);
-    end;
-end;
-}
 end.
 

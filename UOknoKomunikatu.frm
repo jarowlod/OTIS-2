@@ -1,7 +1,7 @@
 object OknoKomunikatu: TOknoKomunikatu
-  Left = 440
+  Left = 328
   Height = 513
-  Top = 236
+  Top = 230
   Width = 827
   Caption = 'Masz wiadomość ...'
   ClientHeight = 513
@@ -9,7 +9,7 @@ object OknoKomunikatu: TOknoKomunikatu
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 58
