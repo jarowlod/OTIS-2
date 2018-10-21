@@ -41,7 +41,6 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    procedure Clear;
     property DaneTerminarza[msc, day: integer]: TTerminyEvent read GetDaneTerminarza write SetDaneTerminarza; default;
   end;
 
@@ -1076,7 +1075,7 @@ begin
      'Ocena'    : inc(fSumOcen);
      'KK'       : inc(fSumKK);
      'Postpenit': inc(fSumPostpenit);
-     'WPZ'      :inc(fSumWPZ);
+     'WPZ'      : inc(fSumWPZ);
   end;
 end;
 
@@ -1113,14 +1112,6 @@ end;
 destructor TTerminyEvents.Destroy;
 begin
   inherited Destroy;
-end;
-
-procedure TTerminyEvents.Clear;
-var
-  m, d: Integer;
-begin
-  for m:=1 to 12 do
-    for d:=1 to 31 do DaneTerminarza[m, d].Clear;
 end;
 
 end.
