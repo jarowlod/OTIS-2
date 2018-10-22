@@ -80,7 +80,7 @@ var
   ViewStolik: TViewStolik;
 
 implementation
-uses UOchSalaWidzen, UOchForm, dateutils, rxdbutils, UOchAddWidzenie;
+uses UOchSalaWidzen, UOchForm, dateutils, rxdbutils, UOchAddWidzenie, UWidokZdjecia;
 {$R *.frm}
 
 { TViewStolik }
@@ -113,31 +113,11 @@ begin
 end;
 
 procedure TViewStolik.Image1DblClick(Sender: TObject);
-var Obrazek: TForm;
-    Img: TImage;
 begin
-    Obrazek:= TForm.Create(Self);
-    Obrazek.BorderStyle:= bsSizeable;
-    Obrazek.Caption:= lblNazwiskoImie.Caption;
-      Img:= TImage.Create(Obrazek);
-      img.AutoSize    := false;
-      img.Parent      := Obrazek;
-      img.Stretch     := true;
-      img.Proportional:= true;
-      img.Align       := alClient;
-      img.Visible     := true;
-      Img.Picture.Assign(Image1.Picture);
-    Obrazek.Height:= Screen.WorkAreaHeight;
-
-    if img.Picture.Width > (Screen.WorkAreaWidth div 2) then
-      Obrazek.Width:= (Screen.WorkAreaWidth div 2)
-    else
-      Obrazek.Width:= img.Picture.Width;
-
-    Obrazek.ShowModal;
-
-    FreeAndNil(img);
-    FreeAndNil(Obrazek);
+  with TWidokZdjecia.CreateForm(Self, SelectIDO) do begin
+    ShowModal;
+    Free;
+  end;
 end;
 
 procedure TViewStolik.miCofnijDoPoczekalniClick(Sender: TObject);

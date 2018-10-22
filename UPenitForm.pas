@@ -113,7 +113,7 @@ type
 //  PenitForm: TPenitForm;
 
 implementation
-uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs, UPenitWPZ;
+uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs, UPenitWPZ, UWidokZdjecia;
 {$R *.frm}
 
 { TPenitForm }
@@ -278,42 +278,11 @@ begin
 end;
 
 procedure TPenitForm.Image_osDblClick(Sender: TObject);
-var Obrazek: TForm;
-    Img: TImage;
-    lblHeader: TLabel;
 begin
-    Obrazek:= TForm.Create(Self);
-    Obrazek.BorderStyle:= bsSizeable;
-    Obrazek.Caption:= DBText1.Caption;
-      Img:= TImage.Create(Obrazek);
-      img.AutoSize    := false;
-      img.Parent      := Obrazek;
-      img.Stretch     := true;
-      img.Proportional:= true;
-      img.Align       := alClient;
-      img.Visible     := true;
-      img.AntialiasingMode:= amOn;
-      Img.Picture.Assign(Image_os.Picture);
-    Obrazek.Height:= Screen.WorkAreaHeight;
-
-    if img.Picture.Width > (Screen.WorkAreaWidth div 2) then
-      Obrazek.Width:= (Screen.WorkAreaWidth div 2)
-    else
-      Obrazek.Width:= img.Picture.Width;
-
-    {
-    lblHeader:= TLabel.Create(Obrazek);
-    lblHeader.Align:= alTop;
-    lblHeader.Parent:= Obrazek;
-    lblHeader.WordWrap:= false;
-    lblHeader.BorderSpacing.Around:= 10;
-    lblHeader.Caption:= Format('Rozmiar: %d : %d', [img.Picture.Height, img.Picture.Width])+LineEnding+
-                        Format('Data modyfikacji: %s', [FileAge(img.)]);
-    }
-    Obrazek.ShowModal;
-
-    FreeAndNil(img);
-    FreeAndNil(Obrazek);
+  with TWidokZdjecia.CreateForm(Self, SelectIDO) do begin
+    ShowModal;
+    Free;
+  end;
 end;
 
 procedure TPenitForm.ZQOsInfoAfterPost(DataSet: TDataSet);

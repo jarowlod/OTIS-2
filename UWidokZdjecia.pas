@@ -1,4 +1,4 @@
-unit Unit1;
+unit UWidokZdjecia;
 
 {$mode objfpc}{$H+}
 
@@ -7,39 +7,77 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
   Menus, ExtCtrls, StdCtrls, ActnList, Clipbrd, dateutils, LCLType, LazUTF8,
-  BCPanel, BCLabel, BCButton, BGRABitmap, BGRABitmapTypes, Math ;
+  BCPanel, BCLabel, BCButton, BGRABitmap, BGRABitmapTypes, Math, datamodule;
 
 type
 
-  { TForm1 }
+  { TWidokZdjecia }
 
-  TForm1 = class(TForm)
+  TWidokZdjecia = class(TForm)
     btnEdycja: TBCButton;
     btnDrukuj: TBCButton;
     BCLabel1: TBCLabel;
-    BCLabel2: TBCLabel;
     lblDataZdj: TBCLabel;
     BCPanel2: TBCPanel;
     BCPanel3: TBCPanel;
     Image1: TImage;
     lblWiekZdj: TBCLabel;
-    procedure FormCreate(Sender: TObject);
   private
+    SelectIDO: integer;
+    pathFoto: string;
     procedure YMDBetween(curD, oldD: TDateTime; out y, m, d: integer);
+    procedure OnChangeZdjecie(Sender: TObject);
   public
-    procedure WczytajZdj(pathFoto: string);
+    Constructor CreateForm(AOwner: TComponent; ido: integer);
   end;
-var
-  Form1: TForm1;
+
 
 implementation
 
 {$R *.frm}
 
 
-{ TForm1 }
+{ TWidokZdjecia }
 
-procedure TForm1.YMDBetween(curD, oldD: TDateTime; out y,m,d: integer);
+constructor TWidokZdjecia.CreateForm(AOwner: TComponent; ido: integer);
+begin
+  inherited Create(AOwner);
+  SelectIDO:= ido;
+  pathFoto:= DM.Path_Foto + IntToStr( SelectIDO )+'.jpg';
+
+  left:=0;
+  top:=0;
+  btnEdycja.Enabled:= false;
+  btnDrukuj.Enabled:= false;
+  lblDataZdj.Caption:= '';
+  lblWiekZdj.Caption:= '';
+
+  Image1.Picture.OnChange:= @OnChangeZdjecie;
+  TLoadFotoThread.Create( pathFoto, Image1);
+end;
+
+procedure TWidokZdjecia.OnChangeZdjecie(Sender: TObject);
+var dateFile: TDateTime;
+    y,m,d: integer;
+    yname, dname: ShortString;
+begin
+  if Image1.Picture.Width > Image1.Width then Width:= min(Screen.Width-15, ((Width-Image1.Width)+ Image1.Picture.Width));
+  if Image1.Picture.Height > Image1.Height then Height:= min(Screen.Height-80, ((Height-Image1.Height)+ Image1.Picture.Height));
+
+  btnEdycja.Enabled:= not FileIsReadOnly(pathFoto);  // prawo do edycji pliku
+
+  dateFile:= FileDateToDateTime( FileAge(pathFoto));  //data zmodyfikowania
+  lblDataZdj.Caption:= DateTimeToStr( dateFile );
+
+  YMDBetween(Now, dateFile, y,m,d);
+  if y=1 then yname:='rok' else
+    if (y>1)and(y<5) then yname:= 'lata' else yname:='lat';
+  if d=1 then dname:= 'dzień' else dname:= 'dni';
+  lblWiekZdj.Caption:= Format('%d %s %d msc %d %s temu',[y,yname,m,d,dname]); // wiek pliku
+  Image1.Invalidate;
+end;
+
+procedure TWidokZdjecia.YMDBetween(curD, oldD: TDateTime; out y,m,d: integer);
 var y1,y2,m1,m2,d1,d2: integer;
 begin
   y1:= YearOf(curD);
@@ -53,35 +91,6 @@ begin
   d:= d1-d2;
   m:= m1-m2;
   y:= y1-y2;
-end;
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-  WczytajZdj('E:\Projekty Lazarusa\Foto otis2\3088.jpg');
-  left:=0;
-  top:=0;
-end;
-
-procedure TForm1.WczytajZdj(pathFoto: string);
-var dateFile: TDateTime;
-    y,m,d: integer;
-    yname, dname: ShortString;
-begin
-  Image1.Picture.LoadFromFile(pathFoto);
-
-  if Image1.Picture.Width > Image1.Width then Width:= min(Screen.Width-15, ((Width-Image1.Width)+ Image1.Picture.Width));
-  if Image1.Picture.Height > Image1.Height then Height:= min(Screen.Height-80, ((Height-Image1.Height)+ Image1.Picture.Height));
-
-  btnEdycja.Enabled:= not FileIsReadOnly(pathFoto);  // prawo do edycji pliku
-
-  dateFile:= FileDateToDateTime( FileAge(pathFoto));  //data zmodyfikowania
-  lblDataZdj.Caption:= DateTimeToStr( dateFile );
-
-  YMDBetween(Now, dateFile, y,m,d);
-  if y=1 then yname:='rok' else
-    if (y>1)and(y<5) then yname:= 'lata' else yname:='lat';
-  if d=1 then dname:= 'dzień' else dname:= 'dni';
-  lblWiekZdj.Caption:= Format('%d %s %d msc %d %s',[y,yname,m,d,dname]); // wiek pliku
 end;
 
 end.

@@ -1,7 +1,7 @@
 object ViewStolik: TViewStolik
-  Left = 388
+  Left = 328
   Height = 140
-  Top = 232
+  Top = 230
   Width = 240
   BorderStyle = bsNone
   Caption = 'Stolik'
@@ -10,7 +10,7 @@ object ViewStolik: TViewStolik
   OnCreate = FormCreate
   PopupMenu = PopupMenu1
   PopupMode = pmAuto
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 140
@@ -89,6 +89,10 @@ object ViewStolik: TViewStolik
       MaxValue = 200
       Value = 100
       Color = clLime
+      BackgroundColor = 3092271
+      BackgroundRandomizeMinIntensity = 4000
+      BackgroundRandomizeMaxIntensity = 5000
+      BackgroundRandomize = True
     end
     object sbnWykazy: TSpeedButton
       Left = 216

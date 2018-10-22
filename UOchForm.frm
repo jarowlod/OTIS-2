@@ -1,7 +1,7 @@
 object OchForm: TOchForm
-  Left = 470
+  Left = 328
   Height = 800
-  Top = 231
+  Top = 230
   Width = 831
   Caption = 'Karta Ochronna'
   ClientHeight = 800
@@ -11,7 +11,7 @@ object OchForm: TOchForm
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   Position = poScreenCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 42
