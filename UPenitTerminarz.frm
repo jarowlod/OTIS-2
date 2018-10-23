@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 1432
+  Left = 86
   Height = 743
-  Top = 512
+  Top = 85
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -94,11 +94,11 @@ object PenitTerminarz: TPenitTerminarz
     Height = 693
     Top = 50
     Width = 1182
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
@@ -687,8 +687,8 @@ object PenitTerminarz: TPenitTerminarz
     end
     object TabSheet2: TTabSheet
       Caption = 'Terminy'
-      ClientHeight = 935
-      ClientWidth = 1912
+      ClientHeight = 660
+      ClientWidth = 1174
       ImageIndex = 24
       object Panel2: TPanel
         Left = 0

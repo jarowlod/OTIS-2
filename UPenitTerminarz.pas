@@ -358,6 +358,8 @@ end;
 
 procedure TPenitTerminarz.RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor);
+var
+  dataUrodz: TDateTime;
 begin
   if ( RxDBGrid1.SortField='ID;NAZWISKO' ) then
   begin
@@ -445,6 +447,15 @@ begin
   if (Field.FieldName = 'zat_od')and(not Field.IsNull) then
       begin
         Background := $00B0FFB0;
+      end
+  else
+  if (Field.FieldName = 'URODZ') then
+      begin
+        dataUrodz:= EncodeDate(YearOf(Field.AsDateTime), MonthOf(Date), DayOf(Date));
+        if DaysBetween(Field.AsDateTime, dataUrodz)<4 then
+        begin
+          Background := $FFB3FF;
+        end;
       end;
 end;
 

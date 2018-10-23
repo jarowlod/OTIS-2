@@ -944,7 +944,7 @@ begin
 
   if (controlKey in [VK_CONTROL, VK_SHIFT]) then keybd_event(controlKey, MapVirtualKey(controlKey, 0), KEYEVENTF_KEYUP, 0);;
   // wciskamy CTRL tak jak było na początku
-  if isCTRL then keybd_event(VK_CONTROL, MapVirtualKey(VK_CONTROL, 0), 0, 0);
+  //if isCTRL then keybd_event(VK_CONTROL, MapVirtualKey(VK_CONTROL, 0), 0, 0);
 end;
 
 procedure TMasterForm.wm_HOTKEY(var Msg: TMessage);
