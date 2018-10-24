@@ -53,6 +53,7 @@ type
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
+    lblUrodziny: TLabel;
     lblCelaOchronna: TLabel;
     lblCelaPalaca: TLabel;
     Label2: TLabel;
@@ -68,7 +69,7 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Panel4: TPanel;
-    Panel_1: TPanel;
+    Panel_Zdj: TPanel;
     btnDodajDoKoszyka: TSpeedButton;
     TabSheetUwagi: TTabSheet;
     TabSheetWykazy: TTabSheet;
@@ -101,6 +102,7 @@ type
     fViewZatrudnienie: TViewZatrudnienie;
 
     procedure WczytajTypCeli;
+    procedure ObliczUrodziny;
     procedure ZapiszZmiany;
   public
     Procedure SetIDO(ido: integer);
@@ -113,7 +115,7 @@ type
 //  PenitForm: TPenitForm;
 
 implementation
-uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs, UPenitWPZ, UWidokZdjecia;
+uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs, UPenitWPZ, UWidokZdjecia, DateUtils;
 {$R *.frm}
 
 { TPenitForm }
@@ -185,6 +187,7 @@ begin
     ZQOsNotatki.Close;
     lblCelaOchronna.Visible:= false;
     lblCelaPalaca.Visible  := false;
+    lblUrodziny.Visible    := false;
     btnRejestrZat.Enabled  := false;
     btnRejestrProsb.Enabled:= false;
     btnDrukArch.Enabled    := false;
@@ -251,6 +254,9 @@ begin
   //Uwagi i polecenia ochronne
   fViewUwagiOch.SetIDO(SelectIDO);
   //TabSheetUwagi.TabVisible:= not fViewUwagiOch.IsEmpty;  // zakładka widoczna z uwagi na możliwość edycji
+
+  // Urodziny osadzonego
+  ObliczUrodziny;
 end;
 
 procedure TPenitForm.SetIDO(ido: integer; RefreshSourceQuery: TZQuery);
@@ -382,6 +388,42 @@ begin
         end;
     end;
   FreeAndNil(ZQPom);
+end;
+
+procedure TPenitForm.ObliczUrodziny;
+var
+  y, m, d: Word;
+  yname, dname: String;
+  slownie: string;
+begin
+  PeriodBetween(Date, ZQOs.FieldByName('URODZ').AsDateTime, y,m,d);
+
+  if (d=0)and(m=0) then
+    slownie:= Format('Dziś są moje %d urodziny', [y])
+  else
+    begin
+      if y<20 then
+      case y of
+        1:     yname:='rok';
+        2,3,4: yname:='lata';
+        else   yname:='lat';
+      end else
+      case (y mod 10) of
+        0,1,5,6,7,8,9: yname:='lat';
+        2,3,4        : yname:='lata';
+     end;
+     slownie:= Format('%d %s',[y,yname]);
+
+     if m>0 then slownie+= Format(' %d msc',[m]);
+
+     if d>0 then
+       begin
+         if d=1 then dname:= 'dzień' else dname:= 'dni';
+         slownie+= Format(' %d %s',[d,dname]);
+       end;
+    end;
+  lblUrodziny.Visible:= true;
+  lblUrodziny.Caption:= slownie;
 end;
 
 

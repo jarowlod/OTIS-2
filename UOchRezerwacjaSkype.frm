@@ -1,7 +1,7 @@
 object OchRezerwacjaSkype: TOchRezerwacjaSkype
-  Left = 368
+  Left = 1496
   Height = 558
-  Top = 364
+  Top = 1480
   Width = 1238
   Caption = 'Rezerwacja rozmów przez Skype'
   ClientHeight = 558

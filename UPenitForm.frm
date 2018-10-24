@@ -582,7 +582,7 @@ object PenitForm: TPenitForm
       OnClick = btnDrukWywiadClick
       TabOrder = 13
     end
-    object Panel_1: TPanel
+    object Panel_Zdj: TPanel
       Left = 480
       Height = 274
       Top = 8
@@ -815,6 +815,25 @@ object PenitForm: TPenitForm
       OnClick = btnKreatorWPZClick
       ShowHint = True
       ParentShowHint = False
+    end
+    object lblUrodziny: TLabel
+      AnchorSideLeft.Control = Panel_Zdj
+      AnchorSideTop.Control = Panel_Zdj
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = Panel_Zdj
+      AnchorSideRight.Side = asrBottom
+      Left = 480
+      Height = 15
+      Top = 286
+      Width = 214
+      Alignment = taCenter
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderSpacing.Top = 4
+      Caption = 'lat'
+      Font.Color = 16749513
+      ParentColor = False
+      ParentFont = False
     end
   end
   object PageControl1: TPageControl

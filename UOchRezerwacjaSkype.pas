@@ -15,7 +15,8 @@ type
   { TTerminySkypeEvent }
 
   TTerminySkypeEvent = class(TTerminyWidzenEvent)
-
+  public
+    constructor Create;
   end;
 
   { TTerminyEvents }
@@ -23,7 +24,8 @@ type
   { TTerminySkypeEvents }
 
   TTerminySkypeEvents = class(TTerminyWidzenEvents)
-
+  public
+    constructor Create;
   end;
 
   { TOchRezerwacjaSkype }
@@ -70,10 +72,27 @@ uses DateUtils, UOchAddRezerwacjaSkype;
 {$R *.frm}
 
 const
-  SKYPE_DZIENNIE= 9; // od godz. 10:00 do 13:30:00 co 25 minut.
+  SKYPE_DZIENNIE_MAX= 9; // od godz. 10:00 do 13:30:00 co 25 minut. ---- teraz jest w Terminy[].Widzen_dziennie
   SKYPE_OD_GODZ = 10;  // widzenie rozpoczynają się od godz 9:00
   SKYPE_PRZERWA = 10; // przerwa pomiędzy rozmowami w minutach
   SKYPE_CZAS    = 15; // czas trwania rozmowy w minutach
+
+{ TTerminySkypeEvents }
+
+constructor TTerminySkypeEvents.Create;
+var
+  m, d: Integer;
+begin
+  for m:=1 to 12 do
+    for d:=1 to 31 do DaneTerminarza[m, d]:= TTerminySkypeEvent.Create;
+end;
+
+{ TTerminySkypeEvent }
+
+constructor TTerminySkypeEvent.Create;
+begin
+  Widzen_dziennie:= SKYPE_DZIENNIE_MAX;
+end;
 
 { TOchRezerwacjaSkype }
 
@@ -196,7 +215,8 @@ var
   ZQPom: TZQueryPom;
   i: Integer;
   godzW: TDateTime;
-  minutaW: integer;
+  minutaW, Widzen_dziennie: integer;
+  m, d: Word;
 
   Procedure AppendToMemo;
   var j: integer;
@@ -229,7 +249,11 @@ begin
       ZQPom.ParamByName('StartDate').AsDate:= StartDate;
       ZQPom.Open;
 
-      for i:=0 to SKYPE_DZIENNIE-1 do
+      m:= MonthOf( StartDate );
+      d:= DayOf( StartDate );
+      Widzen_dziennie:= Terminy[m,d].Widzen_dziennie;
+
+      for i:=0 to Widzen_dziennie-1 do
       begin
         minutaW:= i * (SKYPE_CZAS + SKYPE_PRZERWA);
         godzW:= EncodeTime(SKYPE_OD_GODZ, 0, 0, 0);

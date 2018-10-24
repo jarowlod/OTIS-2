@@ -19,11 +19,14 @@ type
     CellDate: TDate;
     fSumaWidzen : integer;
     fisSwieto    : Boolean;
+    FWidzen_dziennie: integer;
   public
+    constructor Create;
     procedure DrawCell(TheCanvas: TCanvas; Rect: TRect); virtual;
     procedure Clear; virtual;
     property SumaWidzen : integer read FSumaWidzen write fSumaWidzen default 0;
     property isSwieto   : Boolean read fisSwieto write fisSwieto stored False;
+    property Widzen_dziennie: integer read FWidzen_dziennie write FWidzen_dziennie;
   end;
 
   { TTerminyEvents }
@@ -87,7 +90,7 @@ uses DateUtils, UOchAddRezerwacjaWidzen;
 {$R *.frm}
 
 const
-  WIDZEN_DZIENNIE = 6;  // od godz. 9:00 do 15:00 co 1 godz.
+  WIDZEN_DZIENNIE_MAX = 6;  // od godz. 9:00 do 15:00 co 1 godz.
   WIDZENIE_OD_GODZ = 9; // widzenie rozpoczynają się od godz 9:00
 
 { TOchRezerwacjaWidzen }
@@ -209,15 +212,15 @@ end;
 procedure TOchRezerwacjaWidzen.WczytajDane(StartDate, EndDate: TDateTime);
 var
   ZQPom: TZQueryPom;
-  i: Integer;
-  godzW: word;
+  i, Widzen_dziennie: Integer;
+  godzW, m, d: word;
 
   Procedure AppendToMemo;
   var j: integer;
   begin
     MemWidzenia.Append;
     for j:=0 to ZQPom.FieldCount-1 do
-        MemWidzenia.Fields[j].AsVariant:= ZQPom.Fields[j].AsVariant;  // kolejność w bazie i w MemWidzenia musi być identyczna
+        MemWidzenia.Fields[j].AsVariant:= ZQPom.Fields[j].AsVariant;  // kolejność kolumn w bazie i w MemWidzenia musi być identyczna
     MemWidzenia.Post;
   end;
 
@@ -243,7 +246,11 @@ begin
       ZQPom.ParamByName('StartDate').AsDate:= StartDate;
       ZQPom.Open;
 
-      for i:=0 to WIDZEN_DZIENNIE-1 do
+      m:= MonthOf( StartDate );
+      d:= DayOf( StartDate );
+      Widzen_dziennie:= Terminy[m,d].Widzen_dziennie;
+
+      for i:=0 to Widzen_dziennie-1 do
       begin
         godzW:= WIDZENIE_OD_GODZ + i;
         if HourOf(ZQPom.FieldByName('DataGodz').AsDateTime) = godzW then
@@ -369,6 +376,11 @@ end;
 
 { TTerminyWidzenEvent }
 
+constructor TTerminyWidzenEvent.Create;
+begin
+  Widzen_dziennie:= WIDZEN_DZIENNIE_MAX;
+end;
+
 procedure TTerminyWidzenEvent.DrawCell(TheCanvas: TCanvas; Rect: TRect);
 var
   h, x, h1: integer;
@@ -381,7 +393,7 @@ begin
     if h<=0 then h:=1;
     x:= Rect.Width div 2;  // szerokosc słupka
 
-    h1:= round(h* SumaWidzen / WIDZEN_DZIENNIE);  // 6 to jest 100% wysokości
+    h1:= round(h* SumaWidzen / Widzen_dziennie);  // 6 to jest 100% wysokości dla widzen bezdozorowych
     if h1=0 then h1:=1; // minimalna wysokość to 1
     if h1>h then h1:=h; // jeśli przekroczymy wysokość to dajemy maxa.
 
@@ -390,7 +402,7 @@ begin
     DesRect.Right := DesRect.Left  + x;
     DesRect.Top   := Rect.Bottom - h1;
 
-    if SumaWidzen < WIDZEN_DZIENNIE then
+    if SumaWidzen < Widzen_dziennie then
       TheCanvas.GradientFill(DesRect, $00007D1A, $00F0FFF2, gdHorizontal) // są jeszcze wolne wakaty więc zielone światło
     else
       TheCanvas.GradientFill(DesRect, clRed    , $00DDDDFF, gdHorizontal); // jest już max, brak wolnych miejsc więc czerwone
@@ -421,6 +433,7 @@ procedure TTerminyWidzenEvent.Clear;
 begin
   fSumaWidzen:= 0;
   fisSwieto  := False;
+  //FWidzen_dziennie:= 0;
 end;
 
 end.

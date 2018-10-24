@@ -25,8 +25,8 @@ type
   private
     SelectIDO: integer;
     pathFoto: string;
-    procedure YMDBetween(curD, oldD: TDateTime; out y, m, d: integer);
     procedure OnChangeZdjecie(Sender: TObject);
+    procedure WiekZdjecia;
   public
     Constructor CreateForm(AOwner: TComponent; ido: integer);
   end;
@@ -57,40 +57,63 @@ begin
 end;
 
 procedure TWidokZdjecia.OnChangeZdjecie(Sender: TObject);
-var dateFile: TDateTime;
-    y,m,d: integer;
-    yname, dname: ShortString;
 begin
   if Image1.Picture.Width > Image1.Width then Width:= min(Screen.Width-15, ((Width-Image1.Width)+ Image1.Picture.Width));
   if Image1.Picture.Height > Image1.Height then Height:= min(Screen.Height-80, ((Height-Image1.Height)+ Image1.Picture.Height));
 
+  if not FileExists(pathFoto) then
+    begin
+      lblDataZdj.Caption:= 'Brak zdjęcia osadzonego.';
+      btnEdycja.Enabled:= not FileIsReadOnly(DM.Path_Foto + 'kotek.jpg');  // prawo do edycji pliku [plik testowy kotek.jpg] jest wymagany do sprawdzenia możliwości edycji w katalogu zdjęć
+      exit;
+    end;
+
   btnEdycja.Enabled:= not FileIsReadOnly(pathFoto);  // prawo do edycji pliku
 
-  dateFile:= FileDateToDateTime( FileAge(pathFoto));  //data zmodyfikowania
-  lblDataZdj.Caption:= DateTimeToStr( dateFile );
-
-  YMDBetween(Now, dateFile, y,m,d);
-  if y=1 then yname:='rok' else
-    if (y>1)and(y<5) then yname:= 'lata' else yname:='lat';
-  if d=1 then dname:= 'dzień' else dname:= 'dni';
-  lblWiekZdj.Caption:= Format('%d %s %d msc %d %s temu',[y,yname,m,d,dname]); // wiek pliku
+  WiekZdjecia;
   Image1.Invalidate;
 end;
 
-procedure TWidokZdjecia.YMDBetween(curD, oldD: TDateTime; out y,m,d: integer);
-var y1,y2,m1,m2,d1,d2: integer;
+procedure TWidokZdjecia.WiekZdjecia;
+var dateFile: TDateTime;
+    y, m, d : Word;
+    yname, dname: String;
+    slownie: string;
 begin
-  y1:= YearOf(curD);
-  m1:= MonthOf(curD);
-  d1:= DayOf(curD);
-  y2:= YearOf(oldD);
-  m2:= MonthOf(oldD);
-  d2:= DayOf(oldD);
-  if d1<d2 then begin m1-= 1; d1+= DaysInAMonth(y1,m1); end;
-  if m1<m2 then begin y1-= 1; m1+= 12; end;
-  d:= d1-d2;
-  m:= m1-m2;
-  y:= y1-y2;
+  dateFile:= FileDateToDateTime( FileAge(pathFoto));  //data zmodyfikowania
+  lblDataZdj.Caption:= DateTimeToStr( dateFile );
+
+  PeriodBetween(Date, dateFile, y,m,d);
+
+  slownie:= '';
+  if (d=0)and(m=0) then
+    slownie:= Format('Nowe', [y])
+  else
+    begin
+      if y>0 then
+      begin
+        if y<20 then
+        case y of
+          1:     yname:='rok';
+          2,3,4: yname:='lata';
+          else   yname:='lat';
+        end else
+        case (y mod 10) of
+          0,1,5,6,7,8,9: yname:='lat';
+          2,3,4        : yname:='lata';
+        end;
+        slownie:= Format('%d %s',[y,yname]);
+      end;
+
+      if m>0 then slownie+= Format(' %d msc',[m]);
+
+      if d>0 then
+       begin
+         if d=1 then dname:= 'dzień' else dname:= 'dni';
+         slownie+= Format(' %d %s',[d,dname]);
+       end;
+     end;
+  lblWiekZdj.Caption:= slownie;
 end;
 
 end.

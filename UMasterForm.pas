@@ -519,6 +519,7 @@ procedure TMasterForm.RxDBGrid1DataHintShow(Sender: TObject; CursorPos: TPoint;
   var Processed: boolean);
 var i: integer;
     ZQPom: TZQueryPom;
+    dataUrodz: TDateTime;
 begin
   i:=0;
   // co to za status
@@ -529,7 +530,7 @@ begin
        begin
          Processed:= true;
          HintStr:= DM.fStatusList.Strings[i];
-         i:=100;
+         Break;
        end;
     inc(i);
   end;
@@ -548,6 +549,15 @@ begin
          end;
          ZQPom.Free;
        except
+       end;
+     end;
+  // jaki wiek
+  if Column.FieldName = 'URODZ' then
+     begin
+       if TryStrToDate(HintStr, dataUrodz) then
+       begin
+         HintStr:= Format('%s - lat %d',[HintStr, YearsBetween(Date, dataUrodz)]);
+         Processed:= true;
        end;
      end;
 end;
