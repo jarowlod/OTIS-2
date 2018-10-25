@@ -700,6 +700,7 @@ object OknoKomunikatu: TOknoKomunikatu
       ShowHint = True
       TabOrder = 2
       TitleStyle = tsNative
+      OnDblClick = RxDBGrid2DblClick
     end
   end
   object Panel3: TPanel
@@ -939,6 +940,7 @@ object OknoKomunikatu: TOknoKomunikatu
       'odb.ID,'
       'odb.odbiorca,'
       'odb.dataOdebrania,'
+      'odb.ID_tresc,'
       'kom.dataNadania,'
       'kom.nadawca,'
       'kom.temat,'

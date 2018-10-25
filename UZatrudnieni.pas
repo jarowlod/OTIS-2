@@ -316,7 +316,12 @@ type
   private
     { private declarations }
     DisableNewSelect: Boolean;
-    ShowOsIDO: integer; // jeśli wchodzimy poprzez ShowZatrudnienieOsadzonego to zapisujemy jego IDO
+
+    ShowOsIDO: integer;           // jeśli wchodzimy poprzez ShowZatrudnienieOsadzonego to zapisujemy jego IDO
+    zapStatusZatrudnienia: Word;  // zapisany stan Statusu Zatrudnienia i Pobytu
+    zapStatusPobytu      : Word;
+    zapBookMark          : TBookMark;
+
     Function ZatrudnieniFieldsToString(ZQPom: TZQuery): string;
     Procedure SetMemoReportColor(Raport: TfrReport; memo_name: string; bkcolor: TColor);
     Function GetStanowiskaPokrewne(Stanowisko: string): string;
@@ -497,6 +502,13 @@ begin
 
   try
     ZQZatrudnieni.Open;
+
+    // jeśli był zapamiętany osadzony to powracamy do niego i zerujemy ShowOsIDO;
+    if ShowOsIDO>0 then begin
+      SetToBookmark(ZQZatrudnieni, zapBookMark);
+      ShowOsIDO:= 0;
+    end;
+
   except
     ShowMessage('Połączenie zostało zerwane. Zaloguj się ponownie. (Zat001)');
     DM.Zaloguj;
@@ -600,6 +612,14 @@ begin
   end else
   if Key=#27 then    // ESC
   begin
+      if ShowOsIDO>0 then begin  // powracamy do ustawień z przed wejścia do wybranego osadzonego.
+        DisableNewSelect:= true;
+        rgStatusZat.ItemIndex   := zapStatusZatrudnienia;   //select status Zatrudniony
+        rgStatusPobytu.ItemIndex:= zapStatusPobytu;      //select pobyt Aktualny
+        // ShowOsIDO:= 0; // zmienimy w NewSelect jak ustawimy zapBookMark;
+        DisableNewSelect:= false;
+      end;
+
       Edit1.Text:='';
       Edit1.SetFocus;
   end else
@@ -864,6 +884,12 @@ procedure TZatrudnieni.ShowZatrudnienieOsadzonego(ido: integer; nazwisko: string
 begin
   DisableNewSelect:= true;
 
+  // zapisuejmy stan Statusów
+  zapStatusZatrudnienia:= rgStatusZat.ItemIndex;
+  zapStatusPobytu      := rgStatusPobytu.ItemIndex;
+  zapBookMark          := ZQZatrudnieni.GetBookmark;
+  // ------------------------
+
   ShowOsIDO:= ido;
 
   ZQZatrudnieni.SQL.Text:= SQLZatrudnieni + ' WHERE zat.ido = :ido';
@@ -871,6 +897,7 @@ begin
   ZQZatrudnieni.Open;
 
   Edit1.Text:= nazwisko;
+
   rgStatusZat.ItemIndex   := Ord(szWszystkie);   //select status all
   rgStatusPobytu.ItemIndex:= Ord(spWszystkie);   //select pobyt all
   DisableNewSelect:= false;

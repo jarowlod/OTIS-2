@@ -232,7 +232,6 @@ type
     Procedure WyborDomyslny;
     Procedure RefreshUprawnienia; // odswieża aktywność kontrolek względem uprawnień
     Procedure SendToKeyboard(value_Send: string; const controlKey: word = 0);
-    //Procedure Zaloguj;
   end;
 
 var
@@ -262,7 +261,6 @@ begin
   RefreshUprawnienia;
 
   // -------------------- dodajemy globalny skrót dla NOE :)
- // ClipbrdSaveText:='';
   hotkey_ctrl_n:= GlobalAddAtom('OTIS_ctrl_n');
   RegisterHotKey(Handle, hotkey_ctrl_n, MOD_CONTROL, VK_N);  // wstawia nazwisko
 
@@ -417,22 +415,6 @@ end;
 
 //======================================================================================================================
 //--------------------------------END KOSZYK ---------------------------------------------------------------------------
-
-//procedure TMasterForm.Zaloguj;
-//begin
-//  DM.autologin:= false;
-//  try
-//    Logowanie:= TLogowanie.Create(Self);  // uruchamiamy dostęp do bazy (login i hasło)
-//    if Logowanie.ShowModal= mrOK then
-//          DM.OpenAllTable
-//       else
-//          Application.Terminate;
-//
-//    RefreshUprawnienia;
-//  finally
-//    FreeAndNil(Logowanie);
-//  end;
-//end;
 
 procedure TMasterForm.MenuItem3Click(Sender: TObject);
 begin

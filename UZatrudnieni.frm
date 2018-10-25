@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 72
+  Left = 152
   Height = 856
-  Top = 99
+  Top = 206
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856

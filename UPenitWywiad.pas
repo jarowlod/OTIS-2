@@ -64,14 +64,21 @@ end;
 procedure TPenitWywiad.BitBtn8Click(Sender: TObject);
 var ZQPom: TZQueryPom;
     str_i: string;
-
+    adresat: TStringList;
 begin
-  ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:='UPDATE uprawnienia SET ZnakPisma = :znak WHERE user = :user';
-  ZQPom.ParamByName('user').AsString:= DM.login;
-  ZQPom.ParamByName('znak').AsString:= edSygnatura.Text;
-  ZQPom.ExecSQL;
-  FreeAndNil(ZQPom);
+  try
+    ZQPom:= TZQueryPom.Create(Self);
+    ZQPom.SQL.Text:='UPDATE uprawnienia SET ZnakPisma = :znak WHERE user = :user';
+    ZQPom.ParamByName('user').AsString:= DM.login;
+    ZQPom.ParamByName('znak').AsString:= edSygnatura.Text;
+    ZQPom.ExecSQL;
+  finally
+    FreeAndNil(ZQPom);
+  end;
+
+  adresat:= TStringList.Create;
+  adresat.Text:= moAdresat.Text;
+  adresat.Delete(0); // usuwamy pierwszy wiersz który jest nagłówkiem i będzie pogrubiony
 
   str_i:= DM.GetInicjaly(DM.PelnaNazwa);
   str_i:= str_i+'/'+str_i;
@@ -83,8 +90,10 @@ begin
 
   DM.SetMemoReport(frReport1, 'Memo_ZnakPisma1', edSygnatura.Text );
   DM.SetMemoReport(frReport1, 'Memo_ZnakPisma2', edSygnatura.Text );
-  DM.SetMemoReport(frReport1, 'Memo_Adresat1', moAdresat.Text );
-  DM.SetMemoReport(frReport1, 'Memo_Adresat2', moAdresat.Text );
+  DM.SetMemoReport(frReport1, 'Memo_Adresat1Nag', moAdresat.Lines[0] );
+  DM.SetMemoReport(frReport1, 'Memo_Adresat1', adresat.Text );
+  DM.SetMemoReport(frReport1, 'Memo_Adresat2Nag', moAdresat.Lines[0] );
+  DM.SetMemoReport(frReport1, 'Memo_Adresat2', adresat.Text );
   DM.SetMemoReport(frReport1, 'Memo_Naglowek1', moNaglowek.Text );
   DM.SetMemoReport(frReport1, 'Memo_Naglowek2', moNaglowek.Text );
   DM.SetMemoReport(frReport1, 'Memo_Nazwisko1', edNazwiskoImie.Text );
@@ -93,6 +102,8 @@ begin
   DM.SetMemoReport(frReport1, 'Memo_Tresc2', moTresc.Text );
   DM.SetMemoReport(frReport1, 'Memo_Inicjaly1', str_i );
   DM.SetMemoReport(frReport1, 'Memo_Inicjaly2', str_i );
+
+  FreeAndNil(adresat);
 
   frReport1.ShowReport;
 end;

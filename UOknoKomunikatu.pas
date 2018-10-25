@@ -45,6 +45,7 @@ type
     procedure MenuItemKopiujClick(Sender: TObject);
     procedure MenuItemWklejClick(Sender: TObject);
     procedure MenuItemWytnijClick(Sender: TObject);
+    procedure RxDBGrid2DblClick(Sender: TObject);
   private
 
   public
@@ -186,6 +187,36 @@ end;
 procedure TOknoKomunikatu.MenuItemWytnijClick(Sender: TObject);
 begin
   RichMemo1.CutToClipboard;
+end;
+
+procedure TOknoKomunikatu.RxDBGrid2DblClick(Sender: TObject);
+var id_tresc: integer;
+    ZQPom: TZQueryPom;
+    odbiorcy: string;
+begin
+  if ZQKomOdebrane.IsEmpty then exit;
+  try
+    id_tresc:= ZQKomOdebrane.FieldByName('ID_tresc').AsInteger;
+    ZQPom:= TZQueryPom.Create(Self);
+    ZQPom.SQL.Text:= 'SELECT odb.ID_tresc, upr.Full_name FROM kom_odbiorcy odb'+
+                     ' LEFT OUTER JOIN uprawnienia upr ON (upr.user = odb.odbiorca)'+
+                     ' WHERE (odb.ID_tresc=:id_tresc)';
+    ZQPom.ParamByName('id_tresc').AsInteger:= id_tresc;
+    ZQPom.Open;
+    if ZQPom.IsEmpty then exit;
+
+    odbiorcy:= '';
+    while not ZQPom.EOF do
+    begin
+      if odbiorcy<>'' then odbiorcy+= '; ';
+      odbiorcy+= ZQPom.FieldByName('Full_name').AsString;
+      ZQPom.Next;
+    end;
+  finally
+    FreeAndNil(ZQPom);
+  end;
+
+  MessageDlg('Odbiorcy wiadomości:'+ LineEnding+ odbiorcy, mtInformation, [mbOK],0);
 end;
 
 end.

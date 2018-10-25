@@ -175,6 +175,7 @@ object Komunikator: TKomunikator
         ShowHint = True
         TabOrder = 0
         TitleStyle = tsNative
+        OnDblClick = RxDBGrid1DblClick
       end
       object RichMemo1: TRichMemo
         Left = 0
@@ -729,6 +730,7 @@ object Komunikator: TKomunikator
       'odb.ID,'
       'odb.odbiorca,'
       'odb.dataOdebrania,'
+      'odb.ID_tresc,'
       'kom.dataNadania,'
       'kom.nadawca,'
       'kom.temat,'

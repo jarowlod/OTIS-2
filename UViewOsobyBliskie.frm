@@ -1,7 +1,7 @@
 object ViewOsobyBliskie: TViewOsobyBliskie
-  Left = 470
+  Left = 328
   Height = 478
-  Top = 231
+  Top = 230
   Width = 771
   Align = alClient
   BorderStyle = bsNone
@@ -10,7 +10,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
   ClientWidth = 771
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object RxDBGrid4: TRxDBGrid
     Left = 48
     Height = 478
@@ -30,6 +30,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -46,6 +47,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -61,6 +63,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -76,6 +79,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -91,6 +95,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -109,10 +114,12 @@ object ViewOsobyBliskie: TViewOsobyBliskie
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
         Footers = <>
+        SortFields = 'Skreslona;Nazwisko'
       end>
     KeyStrokes = <    
       item
@@ -658,7 +665,7 @@ object ViewOsobyBliskie: TViewOsobyBliskie
       'uwagi'
       'FROM uprawnione'
       'WHERE (IDO=:ido)'
-      'ORDER BY Nazwisko'
+      'ORDER BY Skreslona, Nazwisko'
     )
     Params = <    
       item

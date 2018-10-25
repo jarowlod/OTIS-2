@@ -1,13 +1,13 @@
 object PenitWywiad: TPenitWywiad
-  Left = 443
+  Left = 328
   Height = 588
-  Top = 161
+  Top = 230
   Width = 910
   Caption = 'PenitWywiad'
   ClientHeight = 588
   ClientWidth = 910
   Position = poDesktopCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -190,8 +190,8 @@ object PenitWywiad: TPenitWywiad
   end
   object moAdresat: TMemo
     Left = 504
-    Height = 130
-    Top = 88
+    Height = 128
+    Top = 90
     Width = 392
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Height = -16
@@ -256,7 +256,7 @@ object PenitWywiad: TPenitWywiad
     Options = []
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 440
-    top = 56
+    Left = 440
+    Top = 56
   end
 end
