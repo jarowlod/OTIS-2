@@ -1,14 +1,14 @@
 object PenitAktaArch: TPenitAktaArch
-  Left = 443
+  Left = 328
   Height = 588
-  Top = 161
+  Top = 230
   Width = 910
   BorderStyle = bsDialog
   Caption = 'Druk Wniosku o Akta Archiwalne'
   ClientHeight = 588
   ClientWidth = 910
   Position = poDesktopCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -288,7 +288,7 @@ object PenitAktaArch: TPenitAktaArch
     Options = []
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 496
-    top = 8
+    Left = 496
+    Top = 8
   end
 end

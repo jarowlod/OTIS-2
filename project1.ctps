@@ -21,8 +21,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="207"/>
-        <CursorPos Y="972"/>
+        <TopLine Value="285"/>
+        <CursorPos X="76" Y="296"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -195,8 +195,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="110"/>
-        <CursorPos X="119" Y="114"/>
+        <TopLine Value="114"/>
+        <CursorPos X="68" Y="130"/>
         <UsageCount Value="200"/>
       </Unit15>
       <Unit16>
@@ -217,13 +217,10 @@
         <ComponentName Value="PenitWywiad"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="79"/>
-        <CursorPos X="60" Y="96"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="85"/>
+        <CursorPos X="3" Y="95"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit17>
       <Unit18>
         <Filename Value="UAktualizacjaOs.pas"/>
@@ -698,7 +695,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="248"/>
+        <TopLine Value="230"/>
         <CursorPos X="38" Y="259"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -723,8 +720,10 @@
         <ComponentName Value="OchRezerwacjaSkype"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <CursorPos X="39" Y="19"/>
+        <TopLine Value="51"/>
+        <CursorPos X="61" Y="72"/>
         <UsageCount Value="124"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -802,7 +801,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="945"/>
         <CursorPos X="15" Y="972"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit68>
       <Unit69>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\component\ZAbstractDataset.pas"/>
@@ -943,14 +942,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="206"/>
         <CursorPos X="10" Y="223"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit88>
       <Unit89>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\variant.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1069"/>
         <CursorPos X="5" Y="1071"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit89>
       <Unit90>
         <Filename Value="C:\codetyphon\typhon\components\lz_DateTimeCtrls\source\datetimepicker.pas"/>
@@ -979,27 +978,27 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1017"/>
         <CursorPos X="11" Y="1019"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit93>
       <Unit94>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\wstringh.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="11" Y="19"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit94>
       <Unit95>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\wstrings.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="580"/>
         <CursorPos X="3" Y="585"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit95>
       <Unit96>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\component\ZAbstractRODataset.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="565"/>
         <CursorPos X="14" Y="579"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit96>
       <Unit97>
         <Filename Value="C:\codetyphon\typhon\lcl\menus.pp"/>
@@ -1011,7 +1010,7 @@
       <Unit98>
         <Filename Value="C:\codetyphon\typhon\lcl\include\popupmenu.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit98>
       <Unit99>
         <Filename Value="C:\codetyphon\typhon\lcl\include\screen.inc"/>
@@ -1088,7 +1087,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1344"/>
         <CursorPos X="11" Y="1358"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit109>
       <Unit110>
         <Filename Value="C:\codetyphon\typhon\components\pl_RichMemo\source\richmemo.pas"/>
@@ -1103,7 +1102,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="162"/>
         <CursorPos X="3" Y="164"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit111>
       <Unit112>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\component\ZDataset.pas"/>
@@ -1116,7 +1115,7 @@
         <Filename Value="UPenitForm.frm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1046"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="FRM"/>
       </Unit113>
       <Unit114>
@@ -1159,7 +1158,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="557"/>
         <CursorPos X="3" Y="559"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit119>
       <Unit120>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win\wininc\defines.inc"/>
@@ -1276,7 +1275,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="115"/>
         <CursorPos X="4" Y="117"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit136>
       <Unit137>
         <Filename Value="C:\codetyphon\typhon\components\pl_ZeosDBO\source\component\ZComponentReg.pas"/>
@@ -1315,7 +1314,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="5538"/>
         <CursorPos X="3" Y="5548"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit141>
       <Unit142>
         <Filename Value="C:\codetyphon\typhon\lcl\include\wincontrol.inc"/>
@@ -1488,7 +1487,7 @@
         <UsageCount Value="7"/>
       </Unit161>
     </Units>
-    <JumpHistory Count="14" HistoryIndex="13">
+    <JumpHistory Count="21" HistoryIndex="20">
       <Position1>
         <Filename Value="UPenitForm.pas"/>
         <Caret Line="424" Column="56" TopLine="404"/>
@@ -1526,25 +1525,53 @@
         <Caret Line="61" TopLine="46"/>
       </Position9>
       <Position10>
-        <Filename Value="UPenitWywiad.pas"/>
-        <Caret Line="81" Column="117" TopLine="26"/>
+        <Filename Value="UOchRezerwacjaSkype.pas"/>
+        <Caret Line="19" Column="39"/>
       </Position10>
       <Position11>
-        <Filename Value="UPenitWywiad.pas"/>
-        <Caret Line="82" Column="117" TopLine="51"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="972" TopLine="207"/>
       </Position11>
       <Position12>
-        <Filename Value="UPenitWywiad.pas"/>
-        <Caret Line="60" Column="38" TopLine="47"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="549" Column="3" TopLine="547"/>
       </Position12>
       <Position13>
-        <Filename Value="UPenitWywiad.pas"/>
-        <Caret Line="59" Column="38" TopLine="46"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="232" Column="15" TopLine="217"/>
       </Position13>
       <Position14>
-        <Filename Value="UPenitWywiad.pas"/>
-        <Caret Line="107" Column="3" TopLine="82"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="473" Column="3" TopLine="470"/>
       </Position14>
+      <Position15>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="173" Column="15" TopLine="158"/>
+      </Position15>
+      <Position16>
+        <Filename Value="UOchRezerwacjaSkype.pas"/>
+        <Caret Line="127" Column="7" TopLine="120"/>
+      </Position16>
+      <Position17>
+        <Filename Value="UOchRezerwacjaSkype.pas"/>
+        <Caret Line="63" Column="28" TopLine="37"/>
+      </Position17>
+      <Position18>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="592" Column="37" TopLine="579"/>
+      </Position18>
+      <Position19>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="172" Column="30" TopLine="158"/>
+      </Position19>
+      <Position20>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="622" TopLine="600"/>
+      </Position20>
+      <Position21>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="173" Column="15" TopLine="157"/>
+      </Position21>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

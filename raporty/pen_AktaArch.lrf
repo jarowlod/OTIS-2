@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-04-05 14:47:09"/>
-    <ReportLastChange Value="2017-07-17 15:11:38"/>
+    <ReportLastChange Value="2018-10-25 12:50:23"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -243,9 +243,9 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="324"/>
-            <Top Value="168"/>
+            <Top Value="188"/>
             <Width Value="336"/>
-            <Height Value="104"/>
+            <Height Value="100"/>
           </Size>
           <Flags Value="3"/>
           <FillColor Value="clNone"/>
@@ -259,7 +259,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Pani/Pan Dyrektor&#xD;&#xA;"/>
+            <Memo Value=""/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -274,10 +274,10 @@
           <FURLInfo Value=""/>
           <Font>
             <Name Value="Georgia"/>
-            <Size Value="14"/>
+            <Size Value="12"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
-            <Style Value="fsBold"/>
+            <Style Value=""/>
           </Font>
           <Highlight>
             <FontStyle Value="2"/>
@@ -753,7 +753,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="324"/>
-            <Top Value="692"/>
+            <Top Value="712"/>
             <Width Value="336"/>
             <Height Value="104"/>
           </Size>
@@ -769,7 +769,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Pani/Pan Dyrektor&#xD;&#xA;"/>
+            <Memo Value=""/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -784,10 +784,10 @@
           <FURLInfo Value=""/>
           <Font>
             <Name Value="Georgia"/>
-            <Size Value="14"/>
+            <Size Value="12"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
-            <Style Value="fsBold"/>
+            <Style Value=""/>
           </Font>
           <Highlight>
             <FontStyle Value="2"/>
@@ -1621,7 +1621,119 @@
           <Justify Value="False"/>
           <Cursor Value="0"/>
         </Object30>
-        <ObjectCount Value="30"/>
+        <Object31>
+          <Name Value="Memo_Adresat1Nag"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="324"/>
+            <Top Value="168"/>
+            <Width Value="336"/>
+            <Height Value="20"/>
+          </Size>
+          <Flags Value="1"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="558"/>
+            <FormatStr Value=""/>
+            <Memo Value="Pani/Pan Dyrektor&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Georgia"/>
+            <Size Value="12"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value="fsBold"/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object31>
+        <Object32>
+          <Name Value="Memo_Adresat2Nag"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="324"/>
+            <Top Value="692"/>
+            <Width Value="336"/>
+            <Height Value="20"/>
+          </Size>
+          <Flags Value="1"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="558"/>
+            <FormatStr Value=""/>
+            <Memo Value="Pani/Pan Dyrektor&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Georgia"/>
+            <Size Value="12"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value="fsBold"/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object32>
+        <ObjectCount Value="32"/>
       </Page1>
       <FVal>
         <Count Value="0"/>
