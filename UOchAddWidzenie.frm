@@ -1,7 +1,7 @@
 object OchAddWidzenie: TOchAddWidzenie
-  Left = 301
+  Left = 328
   Height = 758
-  Top = 114
+  Top = 230
   Width = 1108
   Caption = 'Dodaj widzenie'
   ClientHeight = 758
@@ -1197,6 +1197,7 @@ object OchAddWidzenie: TOchAddWidzenie
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
               Footers = <>
+              SortFields = 'Skreslona;Nazwisko'
             end>
           KeyStrokes = <          
             item
@@ -1368,7 +1369,7 @@ object OchAddWidzenie: TOchAddWidzenie
       'uwagi'
       'FROM uprawnione'
       'WHERE (IDO=:ido)'
-      'ORDER BY Nazwisko'
+      'ORDER BY Skreslona, Nazwisko'
     )
     Params = <    
       item

@@ -1426,7 +1426,7 @@ object OchAddRezerwacjaWidzen: TOchAddRezerwacjaWidzen
       'uwagi'
       'FROM uprawnione'
       'WHERE (IDO=:ido)'
-      'ORDER BY Nazwisko'
+      'ORDER BY Skreslona, Nazwisko'
     )
     Params = <    
       item

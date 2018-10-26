@@ -1,7 +1,7 @@
 object OchAddRezerwacjaSkype: TOchAddRezerwacjaSkype
-  Left = 332
+  Left = 328
   Height = 596
-  Top = 263
+  Top = 230
   Width = 1121
   Caption = 'Zarezerwuj Skype.'
   ClientHeight = 596
@@ -1153,6 +1153,7 @@ object OchAddRezerwacjaSkype: TOchAddRezerwacjaSkype
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
               Footers = <>
+              SortFields = 'Skreslona;Nazwisko'
             end>
           KeyStrokes = <          
             item
@@ -1294,7 +1295,7 @@ object OchAddRezerwacjaSkype: TOchAddRezerwacjaSkype
       'uwagi'
       'FROM uprawnione'
       'WHERE (IDO=:ido)'
-      'ORDER BY Nazwisko'
+      'ORDER BY Skreslona, Nazwisko'
     )
     Params = <    
       item
