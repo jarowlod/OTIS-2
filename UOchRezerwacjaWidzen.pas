@@ -78,6 +78,7 @@ type
     Terminy: TTerminyWidzenEvents;
     bookmarkWidzenia: TBookMark;
     procedure WczytajDane(StartDate, EndDate: TDateTime);
+    procedure KartaOsadzonego;
   public
     procedure WczytajDaneTerminarza;
   end;
@@ -86,7 +87,7 @@ var
   OchRezerwacjaWidzen: TOchRezerwacjaWidzen;
 
 implementation
-uses DateUtils, UOchAddRezerwacjaWidzen;
+uses DateUtils, UOchAddRezerwacjaWidzen, UPenitForm, UOchForm;
 {$R *.frm}
 
 const
@@ -120,16 +121,19 @@ procedure TOchRezerwacjaWidzen.btnZaplanujClick(Sender: TObject);
 var ido: integer;
 begin
   if MemWidzenia.IsEmpty then exit;
+
+  if MemWidzenia.FieldByName('IDO').AsInteger>0 then
+  begin
+    KartaOsadzonego;
+    exit;
+  end;
+
   if MemWidzenia.FieldByName('DataGodz').AsDateTime<=Now() then
   begin
     MessageDlg('Nie można zaplanować widzenia dla daty i godziny wcześniejszej niż bieżąca.', mtInformation, [mbOK],0);
     exit;
   end;
-  if MemWidzenia.FieldByName('IDO').AsInteger>0 then
-  begin
-    MessageDlg('Wybrana godzina widzenia jest już zajęta.', mtInformation, [mbOK],0);
-    exit;
-  end;
+
   if DM.ZQOsadzeni.IsEmpty then
     ido:= 0
   else
@@ -288,6 +292,24 @@ begin
   end;
   MemWidzenia.First;
   MemWidzenia.EnableControls;
+end;
+
+procedure TOchRezerwacjaWidzen.KartaOsadzonego;
+begin
+  if (DM.Wychowawca<>'')and(DM.Dzial='Penit') then
+    with TPenitForm.Create(Self) do
+    begin
+         SetIDO( MemWidzenia.FieldByName('IDO').AsInteger );
+         ShowModal;
+         Free;
+    end
+  else
+    with TOchForm.Create(Self) do
+    begin
+         SetIDO( MemWidzenia.FieldByName('IDO').AsInteger );
+         ShowModal;
+         Free;
+    end;
 end;
 
 procedure TOchRezerwacjaWidzen.WczytajDaneTerminarza;

@@ -720,9 +720,8 @@
         <ComponentName Value="OchRezerwacjaSkype"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="51"/>
+        <TopLine Value="61"/>
         <CursorPos X="61" Y="72"/>
         <UsageCount Value="124"/>
         <Loaded Value="True"/>
@@ -757,9 +756,10 @@
         <ComponentName Value="OchRezerwacjaWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="408"/>
-        <CursorPos X="5" Y="436"/>
+        <TopLine Value="75"/>
+        <CursorPos X="62" Y="90"/>
         <UsageCount Value="88"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1487,7 +1487,7 @@
         <UsageCount Value="7"/>
       </Unit161>
     </Units>
-    <JumpHistory Count="21" HistoryIndex="20">
+    <JumpHistory Count="27" HistoryIndex="26">
       <Position1>
         <Filename Value="UPenitForm.pas"/>
         <Caret Line="424" Column="56" TopLine="404"/>
@@ -1572,6 +1572,30 @@
         <Filename Value="UMasterForm.pas"/>
         <Caret Line="173" Column="15" TopLine="157"/>
       </Position21>
+      <Position22>
+        <Filename Value="UOchRezerwacjaSkype.pas"/>
+        <Caret Line="72" Column="61" TopLine="51"/>
+      </Position22>
+      <Position23>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Caret Line="436" Column="5" TopLine="408"/>
+      </Position23>
+      <Position24>
+        <Filename Value="UOchRezerwacjaSkype.pas"/>
+        <Caret Line="128" Column="13" TopLine="121"/>
+      </Position24>
+      <Position25>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Caret Line="128" Column="3" TopLine="119"/>
+      </Position25>
+      <Position26>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Caret Line="81" Column="20" TopLine="55"/>
+      </Position26>
+      <Position27>
+        <Filename Value="UOchRezerwacjaSkype.pas"/>
+        <Caret Line="63" Column="21" TopLine="37"/>
+      </Position27>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

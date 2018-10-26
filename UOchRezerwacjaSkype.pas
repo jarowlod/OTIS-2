@@ -126,7 +126,6 @@ begin
   if MemWidzenia.FieldByName('IDO').AsInteger>0 then
   begin
     KartaOsadzonego;
-    //MessageDlg('Wybrana godzina Skype jest już zajęta.', mtInformation, [mbOK],0);
     exit;
   end;
 
