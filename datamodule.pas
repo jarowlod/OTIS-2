@@ -187,7 +187,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.2.3';
+  wersja = '0.0.2.4';
 
 // ZATRUDNIENIE ----------------------
 const

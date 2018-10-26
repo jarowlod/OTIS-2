@@ -1,7 +1,7 @@
 object AdresyJednostek: TAdresyJednostek
-  Left = 396
+  Left = 328
   Height = 552
-  Top = 222
+  Top = 230
   Width = 920
   BorderStyle = bsDialog
   Caption = 'Adresy'
@@ -9,7 +9,7 @@ object AdresyJednostek: TAdresyJednostek
   ClientWidth = 920
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 46
@@ -194,6 +194,7 @@ object AdresyJednostek: TAdresyJednostek
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -208,6 +209,7 @@ object AdresyJednostek: TAdresyJednostek
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -395,6 +397,7 @@ object AdresyJednostek: TAdresyJednostek
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -582,6 +585,7 @@ object AdresyJednostek: TAdresyJednostek
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1

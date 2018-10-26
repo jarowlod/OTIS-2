@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, LR_Class,
-  ZDataset, rxdbgrid, Forms, Controls, Graphics,
+  ZDataset, rxdbgrid, rxmemds, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, Buttons, StdCtrls, DbCtrls, ComCtrls, datamodule;
 
 type
@@ -61,6 +61,8 @@ type
     procedure PageControl1Change(Sender: TObject);
   private
     fAdres: string;
+    // procedurea pomocnicza na wypadek importu jednostek z EDoka
+    procedure ZamienNaZDuzejLitery; // zamienia w bazie pozycje pisane DUŻYMI znakami na zaczynające się z Dużej Litery
   public
     Function GetAdres: string;
     procedure SetActiveTabIndex(index: TAdresTabName);
@@ -70,7 +72,7 @@ var
   AdresyJednostek: TAdresyJednostek;
 
 implementation
-
+uses LazUTF8;
 {$R *.frm}
 
 { TAdresyJednostek }
@@ -157,9 +159,82 @@ begin
   Edit1Change(Self);
 end;
 
+
+// Procedura pomocnicza zamienia DUŻE LITERY na pisane z Dużej Litery
+procedure TAdresyJednostek.ZamienNaZDuzejLitery;
+var adres: TStringList;
+    s,s1: string;
+    ZQPom: TZQueryPom;
+    RxMem: TRxMemoryData;
+
+  procedure PoprawAdres;
+  var s: string;
+  begin
+    s:= adres[1];
+    adres[1]:= UTF8ProperCase(s,[' ','-']);
+  end;
+
+begin
+  ZQPom:= TZQueryPom.Create(self);
+  ZQPom.SQL.Text:= 'SELECT * FROM sl_jednostki';
+  ZQPom.Open;
+
+  RxMem:= TRxMemoryData.Create(Self);
+  RxMem.FieldDefs.Create(ZQPom);
+  RxMem.Open;
+
+  adres:= TStringList.Create;
+  while not ZQPom.EOF do
+  begin
+    RxMem.Append;
+    RxMem.FieldByName('Kod').AsString      := ZQPom.FieldByName('Kod').AsString;
+    RxMem.FieldByName('Jednostka').AsString:= ZQPom.FieldByName('Jednostka').AsString;
+    RxMem.FieldByName('Telefon').AsString  := ZQPom.FieldByName('Telefon').AsString;
+    RxMem.FieldByName('Fax').AsString      := ZQPom.FieldByName('Fax').AsString;
+
+    adres.Text                             := ZQPom.FieldByName('Adres').AsString;
+    if adres.Count>=3 then
+    begin
+      s:= UTF8Copy(adres[0],1,2);
+      if (s='ZK')or(s='AŚ')or(s='OI')or(s='OD') then
+      begin
+        s1:= UTF8Copy(adres[0], 3, UTF8Length(adres[0])-2);
+        s1:= UTF8ProperCase(s1, [' ','-']);
+        adres[0]:= s + s1;
+      end;
+      adres[1]:= UTF8ProperCase(adres[1],[' ','-']);
+      adres[2]:= UTF8ProperCase(adres[2],[' ','-']);
+      adres.Text:= UTF8StringReplace(adres.Text,'Ul.','ul.',[]);
+      adres.Text:= UTF8StringReplace(adres.Text,' W ',' w ',[rfReplaceAll]);
+      if (UTF8Pos('ul.', adres[1])=0)and(UTF8Pos('Ul.', adres[1])=0) then adres[1]:= 'ul. '+adres[1];
+    end;
+    RxMem.FieldByName('Adres').AsString    := adres.Text;
+
+    RxMem.Post;
+
+    ZQPom.Next;
+  end;
+  FreeAndNil(adres);
+
+  ZQPom.SQL.Text:= 'UPDATE sl_jednostki SET Adres = :Adres, Telefon = :Telefon, Fax = :Fax WHERE Kod = :kod';
+  RxMem.First;
+
+  while not RxMem.EOF do
+  begin
+    ZQPom.ParamByName('kod').AsString    := RxMem.FieldByName('Kod').AsString;
+    ZQPom.ParamByName('Adres').AsString  := RxMem.FieldByName('Adres').AsString;
+    ZQPom.ParamByName('Telefon').AsString:= RxMem.FieldByName('Telefon').AsString;
+    ZQPom.ParamByName('Fax').AsString    := RxMem.FieldByName('Fax').AsString;
+    ZQPom.ExecSQL;
+    RxMem.Next;
+  end;
+
+  FreeAndNil(ZQPom);
+  FreeAndNil(RxMem);
+end;
+
+
 end.
-
-
 
 // IMPORT ADRESÓW z pliku
 {

@@ -64,7 +64,8 @@ begin
   if not FileExists(pathFoto) then
     begin
       lblDataZdj.Caption:= 'Brak zdjęcia osadzonego.';
-      btnEdycja.Enabled:= not FileIsReadOnly(DM.Path_Foto + 'kotek.jpg');  // prawo do edycji pliku [plik testowy kotek.jpg] jest wymagany do sprawdzenia możliwości edycji w katalogu zdjęć
+      if FileExists(DM.Path_Foto + 'kotek.jpg') then // plik testowy do sprawdzenia możliwości edycji
+         btnEdycja.Enabled:= not FileIsReadOnly(DM.Path_Foto + 'kotek.jpg');  // prawo do edycji pliku [plik testowy kotek.jpg] jest wymagany do sprawdzenia możliwości edycji w katalogu zdjęć
       exit;
     end;
 
