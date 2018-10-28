@@ -31,6 +31,7 @@ type
     ImageList1: TImageList;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -127,6 +128,7 @@ begin
   ZQRejestr.SQL.Add( WhereSQL );
   ZQRejestr.SQL.Add( HavingSQL );
   ZQRejestr.SQL.Add( OrderSQL );
+  ZQRejestr.SQL.Add('LIMIT 1000');  // ograniczamy wynik
 
   if cbMoje.Checked then ZQRejestr.ParamByName('uzytkownik').AsString:= DM.PelnaNazwa;
   if Edit1.Text<>'' then ZQRejestr.ParamByName('nazwisko').AsString  := Edit1.Text+'%';

@@ -1,14 +1,14 @@
 object RejestrProsbAll: TRejestrProsbAll
-  Left = 180
+  Left = 368
   Height = 569
-  Top = 178
+  Top = 364
   Width = 1373
   Caption = 'Rejestr Próśb osadzonych'
   ClientHeight = 569
   ClientWidth = 1373
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   WindowState = wsMaximized
   object Panel1: TPanel
     Left = 0
@@ -183,6 +183,21 @@ object RejestrProsbAll: TRejestrProsbAll
         0000000000000000000000000000000000000000000000000000
       }
       OnClick = cbKryteriaClick
+    end
+    object Label3: TLabel
+      Left = 706
+      Height = 50
+      Top = -1
+      Width = 278
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'Wyniki są ograniczone do 1000 pozycji.'
+      Color = 14286847
+      Font.Color = 4868863
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
     end
   end
   object Panel2: TPanel
@@ -433,7 +448,7 @@ object RejestrProsbAll: TRejestrProsbAll
     object cbDoDruku: TCheckBox
       Left = 6
       Height = 19
-      Top = 40
+      Top = 32
       Width = 100
       Caption = 'Tylko do druku'
       OnClick = cbKryteriaClick
@@ -483,6 +498,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -498,6 +514,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -514,6 +531,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -529,6 +547,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -544,6 +563,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -560,6 +580,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -574,6 +595,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -589,6 +611,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -608,6 +631,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -623,6 +647,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -637,6 +662,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -651,6 +677,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -665,6 +692,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -680,6 +708,7 @@ object RejestrProsbAll: TRejestrProsbAll
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1

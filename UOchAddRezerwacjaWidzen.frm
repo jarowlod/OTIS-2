@@ -1285,6 +1285,7 @@ object OchAddRezerwacjaWidzen: TOchAddRezerwacjaWidzen
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
               Footers = <>
+              SortFields = 'Skreslona;Nazwisko'
             end>
           KeyStrokes = <          
             item

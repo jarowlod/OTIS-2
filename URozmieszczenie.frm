@@ -1,7 +1,7 @@
 object Rozmieszczenie: TRozmieszczenie
-  Left = 180
+  Left = 368
   Height = 760
-  Top = 178
+  Top = 364
   Width = 1103
   Caption = 'Rozmieszczenie'
   ClientHeight = 760
@@ -11,7 +11,7 @@ object Rozmieszczenie: TRozmieszczenie
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   WindowState = wsMaximized
   object Panel1: TPanel
     Left = 0
@@ -455,6 +455,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -469,6 +470,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -483,6 +485,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -497,6 +500,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -512,6 +516,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -528,6 +533,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -543,6 +549,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -557,6 +564,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -573,6 +581,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -589,6 +598,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -604,6 +614,7 @@ object Rozmieszczenie: TRozmieszczenie
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
@@ -715,6 +726,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -736,6 +748,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -758,6 +771,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -781,6 +795,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -799,6 +814,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -821,6 +837,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -840,6 +857,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -861,6 +879,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -881,6 +900,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -901,6 +921,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -918,6 +939,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -938,6 +960,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -955,6 +978,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -972,6 +996,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -990,6 +1015,7 @@ object Rozmieszczenie: TRozmieszczenie
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1

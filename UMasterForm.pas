@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, rxdbutils, Grids,
   db, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Clipbrd, dateutils, LCLType,
-  LazUTF8, datamodule;
+  LazUTF8, datamodule, BGRALabel;
 
 type
 
@@ -51,7 +51,8 @@ type
     ActionProsbyOsadzonych: TAction;
     ActionProsbyOsadzonego: TAction;
     ActionRozmieszczenie: TAction;
-    Label2: TLabel;
+    BGRALabel1: TBGRALabel;
+    Image3: TImage;
     MenuItem10: TMenuItem;
     MenuItem19: TMenuItem;
     MenuItem23: TMenuItem;

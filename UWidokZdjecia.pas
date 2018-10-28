@@ -33,7 +33,7 @@ type
 
 
 implementation
-
+uses UZdjEdycja;
 {$R *.frm}
 
 

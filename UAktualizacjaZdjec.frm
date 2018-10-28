@@ -1,22 +1,22 @@
 object AktualizacjaZdjec: TAktualizacjaZdjec
-  Left = 407
+  Left = 328
   Height = 553
-  Top = 238
-  Width = 458
+  Top = 230
+  Width = 640
   Caption = 'Aktualizacja Zdjęć'
   ClientHeight = 553
-  ClientWidth = 458
+  ClientWidth = 640
   Position = poScreenCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 50
     Top = 0
-    Width = 458
+    Width = 640
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 50
-    ClientWidth = 458
+    ClientWidth = 640
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -74,17 +74,19 @@ object AktualizacjaZdjec: TAktualizacjaZdjec
     Left = 0
     Height = 50
     Top = 503
-    Width = 458
+    Width = 640
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 458
+    ClientWidth = 640
     TabOrder = 1
     object btnZnajdz: TBitBtn
       Left = 8
       Height = 30
       Top = 8
-      Width = 128
-      Caption = 'Znajdź braki'
+      Width = 136
+      Caption = 'Znajdź'
+      Images = DM.ImageList1
+      ImageIndex = 33
       OnClick = btnZnajdzClick
       TabOrder = 0
     end
@@ -93,7 +95,7 @@ object AktualizacjaZdjec: TAktualizacjaZdjec
     Left = 0
     Height = 20
     Top = 483
-    Width = 458
+    Width = 640
     Align = alBottom
     Step = 1
     TabOrder = 2
@@ -103,40 +105,369 @@ object AktualizacjaZdjec: TAktualizacjaZdjec
     Left = 0
     Height = 433
     Top = 50
-    Width = 458
-    ActivePage = TabSheet1
+    Width = 640
+    ActivePage = TabSheetStare
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 3
-    object TabSheet1: TTabSheet
-      Caption = 'Brakujące zdjęcia'
+    object TabSheetBrzkZdj: TTabSheet
+      Caption = 'Brak zdjęcia'
       ClientHeight = 405
-      ClientWidth = 450
-      object Memo1: TMemo
+      ClientWidth = 561
+      object RxDBGrid2: TRxDBGrid
         Left = 0
         Height = 405
         Top = 0
-        Width = 450
+        Width = 561
+        ColumnDefValues.BlobText = '(blob)'
+        TitleButtons = True
+        AutoSort = True
+        Columns = <        
+          item
+            Alignment = taCenter
+            Font.Color = clBlue
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'IDO'
+            FieldName = 'IDO'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footer.Alignment = taCenter
+            Footer.ValueType = fvtCount
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Nazwisko'
+            Width = 150
+            FieldName = 'Nazwisko'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Imie'
+            Width = 150
+            FieldName = 'Imie'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end>
+        KeyStrokes = <        
+          item
+            Command = rxgcShowFindDlg
+            ShortCut = 16454
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowColumnsDlg
+            ShortCut = 16471
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowFilterDlg
+            ShortCut = 16468
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowSortDlg
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowQuickFilter
+            ShortCut = 16465
+            Enabled = True
+          end        
+          item
+            Command = rxgcHideQuickFilter
+            ShortCut = 16456
+            Enabled = True
+          end        
+          item
+            Command = rxgcSelectAll
+            ShortCut = 16449
+            Enabled = True
+          end        
+          item
+            Command = rxgcDeSelectAll
+            ShortCut = 16429
+            Enabled = True
+          end        
+          item
+            Command = rxgcInvertSelection
+            ShortCut = 16426
+            Enabled = True
+          end        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16427
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.Active = True
+        FooterOptions.Color = 15658734
+        FooterOptions.RowCount = 1
+        FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
+        OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickFilter]
+        FooterColor = 15658734
+        FooterRowCount = 1
         Align = alClient
-        ScrollBars = ssAutoBoth
+        AlternateColor = 14022911
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clHighlight
+        FixedHotColor = clNone
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        DataSource = DSMemBrak
+        FixedColor = clNone
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook]
+        ReadOnly = True
         TabOrder = 0
-        WordWrap = False
+        TitleStyle = tsNative
+        OnDblClick = RxDBGrid2DblClick
       end
     end
-    object TabSheet2: TTabSheet
-      Caption = 'Zdjęcia z poprzednich pobytów'
-      ClientHeight = 271
-      ClientWidth = 450
-      object Memo2: TMemo
+    object TabSheetStare: TTabSheet
+      Caption = 'Stare zdjęcia z poprzednich pobytów'
+      ClientHeight = 405
+      ClientWidth = 632
+      object RxDBGrid1: TRxDBGrid
         Left = 0
-        Height = 271
+        Height = 405
         Top = 0
-        Width = 450
+        Width = 632
+        ColumnDefValues.BlobText = '(blob)'
+        TitleButtons = True
+        AutoSort = True
+        Columns = <        
+          item
+            Alignment = taCenter
+            Font.Color = clBlue
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'IDO'
+            FieldName = 'IDO'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footer.Alignment = taCenter
+            Footer.ValueType = fvtCount
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Nazwisko'
+            Width = 150
+            FieldName = 'Nazwisko'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Imie'
+            Width = 150
+            FieldName = 'Imie'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Alignment = taCenter
+            Font.Color = clGreen
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'wiek zdjęcia w latach'
+            Width = 125
+            FieldName = 'wiekZdj'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end>
+        KeyStrokes = <        
+          item
+            Command = rxgcShowFindDlg
+            ShortCut = 16454
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowColumnsDlg
+            ShortCut = 16471
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowFilterDlg
+            ShortCut = 16468
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowSortDlg
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowQuickFilter
+            ShortCut = 16465
+            Enabled = True
+          end        
+          item
+            Command = rxgcHideQuickFilter
+            ShortCut = 16456
+            Enabled = True
+          end        
+          item
+            Command = rxgcSelectAll
+            ShortCut = 16449
+            Enabled = True
+          end        
+          item
+            Command = rxgcDeSelectAll
+            ShortCut = 16429
+            Enabled = True
+          end        
+          item
+            Command = rxgcInvertSelection
+            ShortCut = 16426
+            Enabled = True
+          end        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16427
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.Active = True
+        FooterOptions.Color = 15658734
+        FooterOptions.RowCount = 1
+        FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
+        OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickFilter]
+        FooterColor = 15658734
+        FooterRowCount = 1
         Align = alClient
-        ScrollBars = ssAutoBoth
+        AlternateColor = 14022911
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clHighlight
+        FixedHotColor = clNone
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        DataSource = DSMem
+        FixedColor = clNone
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook]
+        ReadOnly = True
         TabOrder = 0
-        WordWrap = False
+        TitleStyle = tsNative
+        OnDblClick = RxDBGrid2DblClick
       end
     end
+  end
+  object RxMem: TRxMemoryData
+    Active = True
+    FieldDefs = <    
+      item
+        Name = 'IDO'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'Nazwisko'
+        DataType = ftString
+        Size = 60
+      end    
+      item
+        Name = 'Imie'
+        DataType = ftString
+        Size = 60
+      end    
+      item
+        Name = 'wiekZdj'
+        DataType = ftInteger
+      end>
+    PacketRecords = 0
+    Left = 320
+    Top = 264
+  end
+  object DSMem: TDataSource
+    DataSet = RxMem
+    Left = 392
+    Top = 264
+  end
+  object RxMemBrak: TRxMemoryData
+    Active = True
+    FieldDefs = <    
+      item
+        Name = 'IDO'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'Nazwisko'
+        DataType = ftString
+        Size = 60
+      end    
+      item
+        Name = 'Imie'
+        DataType = ftString
+        Size = 60
+      end>
+    PacketRecords = 0
+    Left = 322
+    Top = 192
+  end
+  object DSMemBrak: TDataSource
+    DataSet = RxMemBrak
+    Left = 392
+    Top = 192
   end
 end
