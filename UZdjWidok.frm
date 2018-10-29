@@ -1,4 +1,4 @@
-object WidokZdjecia: TWidokZdjecia
+object ZdjWidok: TZdjWidok
   Left = 328
   Height = 500
   Top = 230
@@ -596,6 +596,7 @@ object WidokZdjecia: TWidokZdjecia
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000953D0C43FADF7F92982EDEE103AEA1F00000000
       }
+      OnClick = btnEdycjaClick
       ParentColor = False
       Rounding.RoundX = 12
       Rounding.RoundY = 12

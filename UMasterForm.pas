@@ -247,7 +247,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      UOchUpdPodkultury, UPenitForm, UPenitTerminarz, UAdresyJednostek, UAktualizacjaOs, UAktualizacjaRejestr,
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
-     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UAktualizacjaZdjec,
+     UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UZdjAktualizacjaZdjec,
      UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype;
 {$R *.frm}
 
@@ -820,7 +820,7 @@ end;
 
 procedure TMasterForm.ActionZdjeciaBrakiExecute(Sender: TObject);
 begin
-  with TAktualizacjaZdjec.Create(Self) do
+  with TZdjAktualizacjaZdjec.Create(Self) do
   begin
        ShowModal;
        Free;

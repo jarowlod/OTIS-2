@@ -1,4 +1,4 @@
-object AktualizacjaZdjec: TAktualizacjaZdjec
+object ZdjAktualizacjaZdjec: TZdjAktualizacjaZdjec
   Left = 328
   Height = 553
   Top = 230
@@ -106,19 +106,19 @@ object AktualizacjaZdjec: TAktualizacjaZdjec
     Height = 433
     Top = 50
     Width = 640
-    ActivePage = TabSheetStare
+    ActivePage = TabSheetBrzkZdj
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 3
     object TabSheetBrzkZdj: TTabSheet
       Caption = 'Brak zdjęcia'
       ClientHeight = 405
-      ClientWidth = 561
+      ClientWidth = 632
       object RxDBGrid2: TRxDBGrid
         Left = 0
         Height = 405
         Top = 0
-        Width = 561
+        Width = 632
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -410,7 +410,7 @@ object AktualizacjaZdjec: TAktualizacjaZdjec
         ReadOnly = True
         TabOrder = 0
         TitleStyle = tsNative
-        OnDblClick = RxDBGrid2DblClick
+        OnDblClick = RxDBGrid1DblClick
       end
     end
   end

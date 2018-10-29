@@ -80,7 +80,7 @@ var
   ViewStolik: TViewStolik;
 
 implementation
-uses UOchSalaWidzen, UOchForm, dateutils, rxdbutils, UOchAddWidzenie, UWidokZdjecia;
+uses UOchSalaWidzen, UOchForm, dateutils, rxdbutils, UOchAddWidzenie, UZdjWidok;
 {$R *.frm}
 
 { TViewStolik }
@@ -114,7 +114,7 @@ end;
 
 procedure TViewStolik.Image1DblClick(Sender: TObject);
 begin
-  with TWidokZdjecia.CreateForm(Self, SelectIDO) do begin
+  with TZdjWidok.CreateForm(Self, SelectIDO) do begin
     ShowModal;
     Free;
   end;

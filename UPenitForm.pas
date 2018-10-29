@@ -115,7 +115,7 @@ type
 //  PenitForm: TPenitForm;
 
 implementation
-uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs, UPenitWPZ, UWidokZdjecia, DateUtils;
+uses UPenitAktaArch, UPenitWywiad, URejestrProsbOs, UPenitWPZ, UZdjWidok, DateUtils;
 {$R *.frm}
 
 { TPenitForm }
@@ -285,7 +285,7 @@ end;
 
 procedure TPenitForm.Image_osDblClick(Sender: TObject);
 begin
-  with TWidokZdjecia.CreateForm(Self, SelectIDO) do begin
+  with TZdjWidok.CreateForm(Self, SelectIDO) do begin
     ShowModal;
     Free;
   end;

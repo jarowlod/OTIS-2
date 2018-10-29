@@ -1,4 +1,4 @@
-unit UWidokZdjecia;
+unit UZdjWidok;
 
 {$mode objfpc}{$H+}
 
@@ -7,13 +7,13 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
   Menus, ExtCtrls, StdCtrls, ActnList, Clipbrd, dateutils, LCLType, LazUTF8,
-  BCPanel, BCLabel, BCButton, BGRABitmap, BGRABitmapTypes, Math, datamodule;
+  BCPanel, BCLabel, BCButton, BGRABitmap, BGRABitmapTypes, Math, datamodule, windows;
 
 type
 
-  { TWidokZdjecia }
+  { TZdjWidok }
 
-  TWidokZdjecia = class(TForm)
+  TZdjWidok = class(TForm)
     btnEdycja: TBCButton;
     btnDrukuj: TBCButton;
     BCLabel1: TBCLabel;
@@ -22,6 +22,7 @@ type
     BCPanel3: TBCPanel;
     Image1: TImage;
     lblWiekZdj: TBCLabel;
+    procedure btnEdycjaClick(Sender: TObject);
   private
     SelectIDO: integer;
     pathFoto: string;
@@ -37,9 +38,9 @@ uses UZdjEdycja;
 {$R *.frm}
 
 
-{ TWidokZdjecia }
+{ TZdjWidok }
 
-constructor TWidokZdjecia.CreateForm(AOwner: TComponent; ido: integer);
+constructor TZdjWidok.CreateForm(AOwner: TComponent; ido: integer);
 begin
   inherited Create(AOwner);
   SelectIDO:= ido;
@@ -56,7 +57,16 @@ begin
   TLoadFotoThread.Create( pathFoto, Image1);
 end;
 
-procedure TWidokZdjecia.OnChangeZdjecie(Sender: TObject);
+procedure TZdjWidok.btnEdycjaClick(Sender: TObject);
+begin
+  with TZdjEdycja.CreateForm(Self, SelectIDO) do begin
+    ShowModal;
+    Free;
+  end;
+  TLoadFotoThread.Create( pathFoto, Image1); // odświerzamy widok zdjęcia
+end;
+
+procedure TZdjWidok.OnChangeZdjecie(Sender: TObject);
 begin
   if Image1.Picture.Width > Image1.Width then Width:= min(Screen.Width-15, ((Width-Image1.Width)+ Image1.Picture.Width));
   if Image1.Picture.Height > Image1.Height then Height:= min(Screen.Height-80, ((Height-Image1.Height)+ Image1.Picture.Height));
@@ -75,7 +85,7 @@ begin
   Image1.Invalidate;
 end;
 
-procedure TWidokZdjecia.WiekZdjecia;
+procedure TZdjWidok.WiekZdjecia;
 var dateFile: TDateTime;
     y, m, d : Word;
     yname, dname: String;

@@ -7,13 +7,15 @@ interface
 uses
   Classes, SysUtils, FileUtil, GR32_Image, LR_Class, LR_Desgn, BCPanel,
   BCButton, BGRALabel, Forms, Controls, Graphics, Dialogs, ExtCtrls, Menus,
-  Clipbrd, ExtDlgs, Buttons, StdCtrls, ComCtrls, ShellApi, IniFiles,
-  GR32,  GR32_Text_LCL_Win, GR32_Layers, GR32_Blend, GR32_Resamplers;
+  Clipbrd, ExtDlgs, Buttons, StdCtrls, ComCtrls, ShellApi,
+  GR32,  GR32_Text_LCL_Win, GR32_Layers, GR32_Blend, GR32_Resamplers, datamodule;
 type
 
   { TZdjEdycja }
 
   TZdjEdycja = class(TForm)
+    btnCopyIDO: TBCButton;
+    lblIDO: TBGRALabel;
     btnPasteFoto: TBCButton;
     btnWytnij: TBCButton;
     btnWczytajFoto: TBCButton;
@@ -26,51 +28,30 @@ type
     OpenPictureDialog1: TOpenPictureDialog;
     Panel1: TPanel;
     SaveDialog1: TSaveDialog;
-    procedure btnDodajDoSzablonuClick(Sender: TObject);
-    procedure btnDrukujClick(Sender: TObject);
-    procedure btnFloodFill_ZatwierdzClick(Sender: TObject);
-    procedure btnFloodFill_AnulujClick(Sender: TObject);
-    procedure btnFloodFillClick(Sender: TObject);
+    procedure btnCopyIDOClick(Sender: TObject);
     procedure btnPasteFotoClick(Sender: TObject);
     procedure btnWytnijClick(Sender: TObject);
-    procedure btnZapiszJakoClick(Sender: TObject);
     procedure btnZapiszDoOTISClick(Sender: TObject);
     procedure btnZaznaczClick(Sender: TObject);
-    procedure btnEdycjaSzablonuClick(Sender: TObject);
-    procedure edIDOChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
     procedure ImgViewDblClick(Sender: TObject);
-    procedure ImgViewMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer; Layer: TCustomLayer);
     procedure ImgViewPaintStage(Sender: TObject; Buffer: TBitmap32;
       StageNum: Cardinal);
-    procedure Img_1DblClick(Sender: TObject);
     procedure Img_1MouseEnter(Sender: TObject);
     procedure Img_1MouseLeave(Sender: TObject);
     procedure Img_1PaintStage(Sender: TObject; Buffer: TBitmap32;
       StageNum: Cardinal);
-    procedure miClearAllClick(Sender: TObject);
-    procedure miClearClick(Sender: TObject);
-    procedure miLoadSzablonClick(Sender: TObject);
-    procedure TrackBar1Change(Sender: TObject);
   private
+    SelectIDO: integer;
+    isNewFoto: Boolean;
     CropLayer: TRubberbandLayer;
     PathEditFileName: string;
-    PathFotoOTIS    : string;
-    tab: array[1..8] of record
-                          img: TImage32;
-                          FileName: string;
-                        end;
-    undo: TBitmap32;
-    isFloodFill: Boolean;
-    savePoint: TPoint;
-
     DropTarget: TObject;
+
     procedure ResizeFoto(InputPicture: TBitmap32; OutputImage: TBitmap; const DstWidth, DstHeigth: Integer);
     procedure SetHighQualityStretchFilter(B: TBitmap32);
-    procedure TabDodaj(vIndex: integer; vFile: string);
     procedure HighlightCropRect(Bmp32: TBitmap32; CropRect: TRect);
     procedure LayerResizing(Sender: TObject; const OldLocation: TFloatRect;
       var NewLocation: TFloatRect; DragState: TRBDragState; Shift: TShiftState);
@@ -78,15 +59,12 @@ type
 
     procedure ZaznaczCrop;
     procedure Wytnij;
-    procedure Drukuj;
     procedure WczytajZdjecie(FileName: string);
-    procedure FloodFill(imgPoint: TPoint);
+    procedure SetisNewFoto(val: Boolean);
   public
-
+    Constructor CreateForm(AOwner: TComponent; ido: integer);
   end;
 
-var
-  ZdjEdycja: TZdjEdycja;
 
 implementation
 uses UZdjEdycjaZapisz;
@@ -96,100 +74,58 @@ uses UZdjEdycjaZapisz;
 { TZdjEdycja }
 
 procedure TZdjEdycja.FormCreate(Sender: TObject);
-var i: integer;
-    ini: TIniFile;
 begin
   DragAcceptFiles(Handle, False);
-
-  tab[1].img:= Img_1;
-  tab[2].img:= Img_2;
-  tab[3].img:= Img_3;
-  tab[4].img:= Img_4;
-  tab[5].img:= Img_5;
-  tab[6].img:= Img_6;
-  tab[7].img:= Img_7;
-  tab[8].img:= Img_8;
-  for i:=1 to 8 do
-  begin
-    tab[i].img.PaintStages[0]^.Stage:= PST_CUSTOM;
-    tab[i].FileName:= '';
-    tab[i].img.Hint:= 'Brak';
-    DragAcceptFiles(tab[i].img.Handle, True);
-  end;
   DragAcceptFiles(ImgView.Handle, True);
 
   with ImgView.PaintStages[0]^ do
   begin
     if Stage = PST_CLEAR_BACKGND then Stage := PST_CUSTOM;
   end;
-
-  // wczytujemy ustawienia zapisanej sesji
-  ini:= TIniFile.Create(ExtractFilePath(Application.ExeName)+'config.ini');
-  try
-    for i:=1 to 8 do
-    begin
-      TabDodaj(i, ini.ReadString('Szablon', 'img'+IntToStr(i),'') );
-    end;
-    Left  := ini.ReadInteger('Form', 'Left'  , Left);
-    Top   := ini.ReadInteger('Form', 'Top'   , Top);
-    Width := ini.ReadInteger('Form', 'Width' , Width);
-    Height:= ini.ReadInteger('Form', 'Height', Height);
-
-    PathFotoOTIS:= ini.ReadString('Config','PathFotoOTIS', 'W:\Paczkownia\ZK Foto');
-  finally
-    FreeAndNil(ini);
-  end;
-end;
-
-procedure TZdjEdycja.FormDestroy(Sender: TObject);
-var ini: TIniFile;
-    i: integer;
-begin
-  CropLayer:= nil;
-
-  // zapisujemy ustawienia zapisanej sesji
-  ini:= TIniFile.Create(ExtractFilePath(Application.ExeName)+'config.ini');
-  try
-    for i:=1 to 8 do
-    begin
-      ini.WriteString('Szablon', 'img'+IntToStr(i), tab[i].FileName);
-    end;
-    ini.WriteInteger('Form', 'Left'  , Left);
-    ini.WriteInteger('Form', 'Top'   , Top);
-    ini.WriteInteger('Form', 'Width' , Width);
-    ini.WriteInteger('Form', 'Height', Height);
-
-    ini.WriteString('Config','PathFOTOOTIS', PathFotoOTIS);
-  finally
-    FreeAndNil(ini);
-  end;
 end;
 
 procedure TZdjEdycja.WczytajZdjecie(FileName: string);
 begin
+  if CropLayer<>nil then ZaznaczCrop; // usuwamy zaznaczenie
   ImgView.Bitmap.LoadFromFile(FileName);
-  lblFileEdit.Caption      := FileName;
-  PathEditFileName         := FileName;
+  SetisNewFoto(true);
 
-  edIDO.Text:= '';
-  btnDodajDoSzablonu.Enabled:= false;
-  btnZapiszJako.Enabled     := true;
   btnZaznacz.Enabled        := true;
-  btnWytnij.Enabled         := true;
+  btnWytnij.Enabled         := false;
+end;
+
+procedure TZdjEdycja.SetisNewFoto(val: Boolean);
+begin
+  isNewFoto:= val;
+  btnZapiszDoOTIS.Enabled:= isNewFoto;
+end;
+
+constructor TZdjEdycja.CreateForm(AOwner: TComponent; ido: integer);
+begin
+  inherited Create(AOwner);
+  CropLayer:= nil;
+  SelectIDO       := ido;
+  lblIDO.Caption  := 'IDO: '+IntToStr( SelectIDO );
+
+  PathEditFileName:= DM.Path_Foto + IntToStr( SelectIDO )+'.jpg';
+  if FileExists(PathEditFileName) then
+  begin
+    WczytajZdjecie(PathEditFileName); // wczytuje zdjęcie istniejące
+    lblFileEdit.Caption:= '- obecne zdjęcie -';
+  end
+  else lblFileEdit.Caption:= '- brak zdjęcia -';
+
+  SetisNewFoto(false);
 end;
 
 procedure TZdjEdycja.ImgViewDblClick(Sender: TObject);
 begin
-  if PathEditFileName<>'' then OpenPictureDialog1.InitialDir:= ExtractFilePath(PathEditFileName);
+  OpenPictureDialog1.InitialDir:= GetEnvironmentString(CSIDL_DESKTOPDIRECTORY);
   OpenPictureDialog1.FileName:= '';
   if OpenPictureDialog1.Execute then
   begin
-    Panel_FloodFill.Visible:= false;
-    isFloodFill            := false;
-    btnFloodFill.Enabled   := true;
-    FreeAndNil(undo);
-
     WczytajZdjecie(OpenPictureDialog1.FileName);
+    lblFileEdit.Caption:= '- zdjęcie wczytane z: '+ OpenPictureDialog1.FileName;
   end;
 end;
 
@@ -197,22 +133,18 @@ procedure TZdjEdycja.btnPasteFotoClick(Sender: TObject);
 begin
   if Clipboard.HasFormat(CF_BITMAP) then
   begin
+    if CropLayer<>nil then ZaznaczCrop;
     ImgView.Bitmap.Assign(Clipboard);
 
-    Panel_FloodFill.Visible:= false;
-    isFloodFill            := false;
-    btnFloodFill.Enabled   := true;
-    FreeAndNil(undo);
-
-    PathEditFileName         := 'ze_schowka.jpg';
-    lblFileEdit.Caption      := PathEditFileName;
-
-    edIDO.Text:= '';
-    btnDodajDoSzablonu.Enabled:= false;
-    btnZapiszJako.Enabled     := true;
-    btnZaznacz.Enabled        := true;
-    btnWytnij.Enabled         := true;
+    lblFileEdit.Caption      := '- zdjęcie ze_schowka -';
+    SetisNewFoto(true);
+    btnZaznacz.Enabled:= true;
   end;
+end;
+
+procedure TZdjEdycja.btnCopyIDOClick(Sender: TObject);
+begin
+  Clipboard.AsText:= IntToStr(SelectIDO);
 end;
 
 procedure TZdjEdycja.ImgViewPaintStage(Sender: TObject; Buffer: TBitmap32; StageNum: Cardinal);
@@ -281,63 +213,14 @@ begin
   end;
 
   img.DrawTo(ImgView.Bitmap);
+  btnWytnij.Enabled:= false;
+  SetisNewFoto(true);
+  lblFileEdit.Caption:= '- wycięte -';
 end;
 
 procedure TZdjEdycja.btnWytnijClick(Sender: TObject);
 begin
   Wytnij;
-end;
-
-procedure TZdjEdycja.Drukuj;
-var i: integer;
-begin
-  frReport1.LoadFromFile('szablon.lrf');
-  for i:= 1 to 8 do
-  begin
-    if tab[i].FileName<>'' then
-      (frReport1.FindObject('Picture'+IntToStr(i)) as TfrPictureView).Picture.LoadFromFile(tab[i].FileName)
-    else
-      (frReport1.FindObject('Picture'+IntToStr(i)) as TfrPictureView).Picture.Clear;
-  end;
-  frReport1.ShowReport;
-end;
-
-procedure TZdjEdycja.btnDrukujClick(Sender: TObject);
-begin
-  Drukuj;
-end;
-
-procedure TZdjEdycja.btnDodajDoSzablonuClick(Sender: TObject);
-var i: integer;
-begin
-  for i:=1 to 8 do
-  begin
-    if tab[i].FileName='' then
-    begin
-      TabDodaj(i, PathEditFileName);
-      Break;
-    end;
-  end;
-end;
-
-procedure TZdjEdycja.btnZapiszJakoClick(Sender: TObject);
-var jpg: TJPEGImage;
-begin
-  SaveDialog1.InitialDir:= ExtractFilePath(PathEditFileName);
-  SaveDialog1.FileName  := ExtractFileName(PathEditFileName);
-  if SaveDialog1.Execute then
-  begin
-    jpg:= TJPEGImage.Create;
-    jpg.SetSize(ImgView.Bitmap.Width, ImgView.Bitmap.Height);
-    jpg.Canvas.CopyRect(Rect(0,0,ImgView.Bitmap.Width,ImgView.Bitmap.Height), ImgView.Bitmap.Canvas, Rect(0,0,ImgView.Bitmap.Width,ImgView.Bitmap.Height));
-    jpg.CompressionQuality := 96;
-    jpg.SaveToFile(SaveDialog1.FileName);
-    FreeAndNil(jpg);
-
-    PathEditFileName:= SaveDialog1.FileName;
-    lblFileEdit.Caption:= PathEditFileName;
-    btnDodajDoSzablonu.Enabled:= true;
-  end;
 end;
 
 procedure TZdjEdycja.btnZapiszDoOTISClick(Sender: TObject);
@@ -346,11 +229,8 @@ var jpg: TJPEGImage;
     W,H: integer;
     scale: single;
 begin
-  if edIDO.Text='' then exit;
-  SaveDialog1.InitialDir:= PathFotoOTIS;
-  SaveDialog1.FileName:= edIDO.Text+'.jpg';
-  if SaveDialog1.Execute then
-  begin
+  if CropLayer<>nil then ZaznaczCrop;
+  try
     tmp:= TBitmap.Create;
     if ImgView.Bitmap.Height> 800 then
     begin
@@ -369,34 +249,19 @@ begin
     jpg.CompressionQuality := 96;
 
     // wyświetla okno z porównaniem zdjęć starego z nowym, umożliwia dokonanie wyboru
-    with TForm2.Create(Self) do
+    with TZdjEdycjaZapisz.Create(Self) do
     begin
-      ShowFoto(tmp, SaveDialog1.FileName);
-      if ShowModal = mrOK then jpg.SaveToFile(SaveDialog1.FileName);
+      ShowFoto(tmp, PathEditFileName);
+      if ShowModal = mrOK then
+      begin
+        jpg.SaveToFile(PathEditFileName);
+        SetisNewFoto(false);
+      end;
     end;
-
+  finally
     FreeAndNil(jpg);
     FreeAndNil(tmp);
   end;
-end;
-
-procedure TZdjEdycja.btnEdycjaSzablonuClick(Sender: TObject);
-var i: integer;
-begin
-  frReport1.LoadFromFile('szablon.lrf');
-  for i:= 1 to 8 do
-  begin
-    if tab[i].FileName<>'' then
-      (frReport1.FindObject('Picture'+IntToStr(i)) as TfrPictureView).Picture.LoadFromFile(tab[i].FileName)
-    else
-      (frReport1.FindObject('Picture'+IntToStr(i)) as TfrPictureView).Picture.Clear;
-  end;
-  frReport1.DesignReport;
-end;
-
-procedure TZdjEdycja.edIDOChange(Sender: TObject);
-begin
-  btnZapiszDoOTIS.Enabled:= (edIDO.Text<>'')and(PathEditFileName<>'');
 end;
 
 // ----------------------------------------------------------------------------------------
@@ -406,7 +271,6 @@ end;
 procedure TZdjEdycja.FormDropFiles(Sender: TObject; const FileNames: array of String);
 begin
   if not Assigned(DropTarget) then exit;
-  if DropTarget is TImage32 then TabDodaj(TImage32(DropTarget).Tag, FileNames[0]);
   if DropTarget is TImgView32 then WczytajZdjecie(FileNames[0]);
 end;
 
@@ -420,17 +284,6 @@ begin
   DropTarget:= nil;
 end;
 // ---------------------END Drop Files---------------------------------------------------
-
-procedure TZdjEdycja.Img_1DblClick(Sender: TObject);
-begin
-  if PathEditFileName<>'' then OpenPictureDialog1.InitialDir:= ExtractFilePath(PathEditFileName);
-  OpenPictureDialog1.FileName:= '';
-
-  if OpenPictureDialog1.Execute then
-  begin
-    TabDodaj(TImage32(Sender).Tag, OpenPictureDialog1.FileName);
-  end;
-end;
 
 procedure TZdjEdycja.Img_1PaintStage(Sender: TObject; Buffer: TBitmap32; StageNum: Cardinal);
 const            //0..1
@@ -478,45 +331,6 @@ begin
   end;
 end;
 
-procedure TZdjEdycja.miClearAllClick(Sender: TObject);
-var i: integer;
-begin
-  for i:=1 to 8 do
-  begin
-    TabDodaj(i, '');
-  end;
-end;
-
-procedure TZdjEdycja.miClearClick(Sender: TObject);
-var img: TImage32;
-begin
-  img:= TImage32(((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent);
-  TabDodaj(img.Tag, '');
-end;
-
-procedure TZdjEdycja.miLoadSzablonClick(Sender: TObject);
-begin
-  Img_1DblClick(TImage32(((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent));
-end;
-
-procedure TZdjEdycja.TabDodaj(vIndex: integer; vFile: string);
-begin
-  if vFile<>'' then
-    begin
-      tab[vIndex].img.Bitmap.LoadFromFile(vFile);
-      tab[vIndex].FileName:= vFile;
-      tab[vIndex].img.Hint:= vFile;
-    end
-  else
-    if tab[vIndex].FileName<>'' then
-    begin
-      tab[vIndex].img.Bitmap.SetSize(0,0);
-      tab[vIndex].img.Bitmap.Clear;
-      tab[vIndex].FileName:= '';
-      tab[vIndex].img.Hint:= 'Brak';
-    end;
-end;
-
 procedure TZdjEdycja.ZaznaczCrop;
 var
   L: TRubberbandLayer;// PositionedLayer;
@@ -527,8 +341,10 @@ begin
   begin
     FreeAndNil(CropLayer);
     ImgView.Layers.Clear;
+    btnWytnij.Enabled:= false;
     exit;
   end;
+  btnWytnij.Enabled:= true;
   // get coordinates of the center of viewport
   with ImgView.GetViewportRect do
     P := ImgView.ControlToBitmap(GR32.Point((Right + Left) div 2, (Top + Bottom) div 2));
@@ -556,6 +372,11 @@ end;
 procedure TZdjEdycja.btnZaznaczClick(Sender: TObject);
 begin
   ZaznaczCrop;
+end;
+
+procedure TZdjEdycja.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  FreeAndNil(CropLayer);
 end;
 
 procedure TZdjEdycja.HighlightCropRect(Bmp32: TBitmap32; CropRect: TRect);
@@ -678,80 +499,6 @@ begin
   finally
     FreeAndNil(Dst);
   end;
-end;
-
-// =====================================================================================================================
-//                    FLOOD FILL
-// =====================================================================================================================
-
-procedure TZdjEdycja.FloodFill(imgPoint: TPoint);
-var img: TBitmap32;
-begin
-  img:= TBitmap32.Create;
-  img.Assign(ImgView.Bitmap);
-
-  //Bmp32_AutoContrastRBG(ImgView.Bitmap);
-  //Bmp32_Saturation(Img, TrackBar2.Position);
-  //if TrackBar2.Position<>0 then Bmp32_IncDecHSL(img, 0,0, TrackBar2.Position);
-  //Bmp32_StretchIntensity(img, 10, TrackBar2.Position);
-
-  //if TrackBar2.Position<>0 then Bmp32_Contrast(img, TrackBar2.Position/100);
-  with TFloodFill.Create do
-  try
-    Tolerance := TrackBar1.Position;
-    Execute(Img, imgPoint, Color32(ColorButton1.ButtonColor));
-
-    ImgView.Bitmap.Assign(img);
-  finally
-    Free;
-    img.Free;
-  end;
-end;
-
-procedure TZdjEdycja.ImgViewMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer; Layer: TCustomLayer);
-begin
-  if isFloodFill then
-  begin
-    savePoint := ImgView.ControlToBitmap(Point(X,Y));
-    FloodFill(savePoint);
-  end;
-end;
-
-procedure TZdjEdycja.TrackBar1Change(Sender: TObject);  // TrackBar and Color Change
-begin
-  ImgView.Bitmap.Assign(undo);
-  FloodFill(savePoint);
-end;
-
-procedure TZdjEdycja.btnFloodFillClick(Sender: TObject);
-begin
-  if undo<>nil then FreeAndNil(undo);
-  undo:= TBitmap32.Create;
-  undo.Assign(ImgView.Bitmap);
-
-  isFloodFill            := true;
-  Panel_FloodFill.Visible:= true;
-  btnFloodFill.Enabled   := false;
-end;
-
-procedure TZdjEdycja.btnFloodFill_ZatwierdzClick(Sender: TObject);
-begin
-  FreeAndNil(undo);
-
-  isFloodFill            := false;
-  Panel_FloodFill.Visible:= false;
-  btnFloodFill.Enabled   := true;
-end;
-
-procedure TZdjEdycja.btnFloodFill_AnulujClick(Sender: TObject);
-begin
-  if undo<>nil then ImgView.Bitmap.Assign(undo);
-  ImgView.Refresh;
-
-  isFloodFill            := false;
-  Panel_FloodFill.Visible:= false;
-  btnFloodFill.Enabled   := true;
 end;
 
 end.

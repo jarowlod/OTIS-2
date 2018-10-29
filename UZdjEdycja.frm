@@ -1,18 +1,20 @@
 object ZdjEdycja: TZdjEdycja
-  Left = 328
+  Left = 664
   Height = 671
-  Top = 230
+  Top = 468
   Width = 810
   AllowDropFiles = True
-  Caption = 'FotoCropResize v2.1'
+  Caption = 'Edycja zdjęcia'
   ClientHeight = 671
   ClientWidth = 810
   Constraints.MinHeight = 650
   Constraints.MinWidth = 700
+  OnClose = FormClose
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
+  Position = poScreenCenter
   LCLVersion = '6.6'
+  WindowState = wsMaximized
   object ImgView: TImgView32
     Left = 0
     Height = 591
@@ -33,7 +35,6 @@ object ZdjEdycja: TZdjEdycja
     OverSize = 0
     TabOrder = 0
     OnDblClick = ImgViewDblClick
-    OnMouseDown = ImgViewMouseDown
     OnMouseEnter = Img_1MouseEnter
     OnMouseLeave = Img_1MouseLeave
     OnPaintStage = ImgViewPaintStage
@@ -858,6 +859,7 @@ object ZdjEdycja: TZdjEdycja
     object btnPasteFoto: TBCButton
       Left = 8
       Height = 33
+      Hint = 'Wklej zdjęcie ze schowka.'
       Top = 184
       Width = 96
       StateClicked.Background.Color = clBlack
@@ -1041,6 +1043,7 @@ object ZdjEdycja: TZdjEdycja
       RoundingDropDown.RoundX = 1
       RoundingDropDown.RoundY = 1
       RoundingDropDown.RoundOptions = []
+      ShowHint = True
       TextApplyGlobalOpacity = False
       MemoryUsage = bmuHigh
     end
@@ -1131,6 +1134,241 @@ object ZdjEdycja: TZdjEdycja
         ParentColor = False
         ParentFont = False
       end
+    end
+    object lblIDO: TBGRALabel
+      Left = 24
+      Height = 41
+      Top = 8
+      Width = 304
+      AutoSize = False
+      Background.Color = clBtnFace
+      Background.Gradient1.StartColor = clWhite
+      Background.Gradient1.StartColorOpacity = 255
+      Background.Gradient1.DrawMode = dmSet
+      Background.Gradient1.EndColor = clBlack
+      Background.Gradient1.EndColorOpacity = 255
+      Background.Gradient1.ColorCorrection = True
+      Background.Gradient1.GradientType = gtLinear
+      Background.Gradient1.Point2YPercent = 100
+      Background.Gradient1.Sinus = False
+      Background.Gradient2.StartColor = clWhite
+      Background.Gradient2.StartColorOpacity = 255
+      Background.Gradient2.DrawMode = dmSet
+      Background.Gradient2.EndColor = clBlack
+      Background.Gradient2.EndColorOpacity = 255
+      Background.Gradient2.ColorCorrection = True
+      Background.Gradient2.GradientType = gtLinear
+      Background.Gradient2.Point2YPercent = 100
+      Background.Gradient2.Sinus = False
+      Background.Gradient1EndPercent = 35
+      Background.LightWidth = 0
+      Background.LightOpacity = 64
+      Caption = 'IDO:'
+      ParentColor = False
+      TextShadowColorOpacity = 255
+      TextShadowOffsetX = 2
+      TextShadowOffsetY = 2
+      TextShadowRadius = 3
+      GlobalOpacity = 255
+      TextApplyGlobalOpacity = False
+      WordWrap = True
+      Font.CharSet = EASTEUROPE_CHARSET
+      Font.Color = clWhite
+      Font.Height = -19
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+    end
+    object btnCopyIDO: TBCButton
+      Left = 360
+      Height = 33
+      Hint = 'Kopiuj do schowka numer IDO osadzonego.'
+      Top = 8
+      Width = 144
+      StateClicked.Background.Color = clBlack
+      StateClicked.Background.ColorOpacity = 255
+      StateClicked.Background.Gradient1.StartColor = 8404992
+      StateClicked.Background.Gradient1.StartColorOpacity = 255
+      StateClicked.Background.Gradient1.DrawMode = dmSet
+      StateClicked.Background.Gradient1.EndColor = 4194304
+      StateClicked.Background.Gradient1.EndColorOpacity = 255
+      StateClicked.Background.Gradient1.ColorCorrection = True
+      StateClicked.Background.Gradient1.GradientType = gtRadial
+      StateClicked.Background.Gradient1.Point1XPercent = 50
+      StateClicked.Background.Gradient1.Point1YPercent = 100
+      StateClicked.Background.Gradient1.Sinus = False
+      StateClicked.Background.Gradient2.StartColor = clWhite
+      StateClicked.Background.Gradient2.StartColorOpacity = 255
+      StateClicked.Background.Gradient2.DrawMode = dmSet
+      StateClicked.Background.Gradient2.EndColor = clBlack
+      StateClicked.Background.Gradient2.EndColorOpacity = 255
+      StateClicked.Background.Gradient2.ColorCorrection = True
+      StateClicked.Background.Gradient2.GradientType = gtLinear
+      StateClicked.Background.Gradient2.Point2YPercent = 100
+      StateClicked.Background.Gradient2.Sinus = False
+      StateClicked.Background.Gradient1EndPercent = 100
+      StateClicked.Background.Style = bbsGradient
+      StateClicked.Border.Color = clBlack
+      StateClicked.Border.ColorOpacity = 255
+      StateClicked.Border.LightColor = clWhite
+      StateClicked.Border.LightOpacity = 255
+      StateClicked.Border.LightWidth = 0
+      StateClicked.Border.Style = bboNone
+      StateClicked.Border.Width = 1
+      StateClicked.FontEx.Color = 16770790
+      StateClicked.FontEx.EndEllipsis = False
+      StateClicked.FontEx.FontQuality = fqSystemClearType
+      StateClicked.FontEx.Height = 0
+      StateClicked.FontEx.SingleLine = True
+      StateClicked.FontEx.Shadow = True
+      StateClicked.FontEx.ShadowColor = clBlack
+      StateClicked.FontEx.ShadowColorOpacity = 255
+      StateClicked.FontEx.ShadowRadius = 2
+      StateClicked.FontEx.ShadowOffsetX = 1
+      StateClicked.FontEx.ShadowOffsetY = 1
+      StateClicked.FontEx.Style = [fsBold]
+      StateClicked.FontEx.TextAlignment = bcaCenter
+      StateClicked.FontEx.WordBreak = False
+      StateHover.Background.Color = clBlack
+      StateHover.Background.ColorOpacity = 255
+      StateHover.Background.Gradient1.StartColor = 16744448
+      StateHover.Background.Gradient1.StartColorOpacity = 255
+      StateHover.Background.Gradient1.DrawMode = dmSet
+      StateHover.Background.Gradient1.EndColor = 8404992
+      StateHover.Background.Gradient1.EndColorOpacity = 255
+      StateHover.Background.Gradient1.ColorCorrection = True
+      StateHover.Background.Gradient1.GradientType = gtRadial
+      StateHover.Background.Gradient1.Point1XPercent = 50
+      StateHover.Background.Gradient1.Point1YPercent = 100
+      StateHover.Background.Gradient1.Sinus = False
+      StateHover.Background.Gradient2.StartColor = clWhite
+      StateHover.Background.Gradient2.StartColorOpacity = 255
+      StateHover.Background.Gradient2.DrawMode = dmSet
+      StateHover.Background.Gradient2.EndColor = clBlack
+      StateHover.Background.Gradient2.EndColorOpacity = 255
+      StateHover.Background.Gradient2.ColorCorrection = True
+      StateHover.Background.Gradient2.GradientType = gtLinear
+      StateHover.Background.Gradient2.Point2YPercent = 100
+      StateHover.Background.Gradient2.Sinus = False
+      StateHover.Background.Gradient1EndPercent = 100
+      StateHover.Background.Style = bbsGradient
+      StateHover.Border.Color = clBlack
+      StateHover.Border.ColorOpacity = 255
+      StateHover.Border.LightColor = clWhite
+      StateHover.Border.LightOpacity = 255
+      StateHover.Border.LightWidth = 0
+      StateHover.Border.Style = bboNone
+      StateHover.Border.Width = 1
+      StateHover.FontEx.Color = clWhite
+      StateHover.FontEx.EndEllipsis = False
+      StateHover.FontEx.FontQuality = fqSystemClearType
+      StateHover.FontEx.Height = 0
+      StateHover.FontEx.SingleLine = True
+      StateHover.FontEx.Shadow = True
+      StateHover.FontEx.ShadowColor = clBlack
+      StateHover.FontEx.ShadowColorOpacity = 255
+      StateHover.FontEx.ShadowRadius = 2
+      StateHover.FontEx.ShadowOffsetX = 1
+      StateHover.FontEx.ShadowOffsetY = 1
+      StateHover.FontEx.Style = [fsBold]
+      StateHover.FontEx.TextAlignment = bcaCenter
+      StateHover.FontEx.WordBreak = False
+      StateNormal.Background.Color = clBlack
+      StateNormal.Background.ColorOpacity = 255
+      StateNormal.Background.Gradient1.StartColor = 4194304
+      StateNormal.Background.Gradient1.StartColorOpacity = 255
+      StateNormal.Background.Gradient1.DrawMode = dmSet
+      StateNormal.Background.Gradient1.EndColor = 8405056
+      StateNormal.Background.Gradient1.EndColorOpacity = 255
+      StateNormal.Background.Gradient1.ColorCorrection = True
+      StateNormal.Background.Gradient1.GradientType = gtLinear
+      StateNormal.Background.Gradient1.Point2YPercent = 100
+      StateNormal.Background.Gradient1.Sinus = False
+      StateNormal.Background.Gradient2.StartColor = 8405056
+      StateNormal.Background.Gradient2.StartColorOpacity = 255
+      StateNormal.Background.Gradient2.DrawMode = dmSet
+      StateNormal.Background.Gradient2.EndColor = 4194304
+      StateNormal.Background.Gradient2.EndColorOpacity = 255
+      StateNormal.Background.Gradient2.ColorCorrection = True
+      StateNormal.Background.Gradient2.GradientType = gtRadial
+      StateNormal.Background.Gradient2.Point1XPercent = 50
+      StateNormal.Background.Gradient2.Point1YPercent = 100
+      StateNormal.Background.Gradient2.Sinus = False
+      StateNormal.Background.Gradient1EndPercent = 60
+      StateNormal.Background.Style = bbsGradient
+      StateNormal.Border.Color = clBlack
+      StateNormal.Border.ColorOpacity = 255
+      StateNormal.Border.LightColor = clWhite
+      StateNormal.Border.LightOpacity = 255
+      StateNormal.Border.LightWidth = 0
+      StateNormal.Border.Style = bboNone
+      StateNormal.Border.Width = 1
+      StateNormal.FontEx.Color = 16770790
+      StateNormal.FontEx.EndEllipsis = False
+      StateNormal.FontEx.FontQuality = fqSystemClearType
+      StateNormal.FontEx.Height = 0
+      StateNormal.FontEx.SingleLine = True
+      StateNormal.FontEx.Shadow = True
+      StateNormal.FontEx.ShadowColor = clBlack
+      StateNormal.FontEx.ShadowColorOpacity = 255
+      StateNormal.FontEx.ShadowRadius = 2
+      StateNormal.FontEx.ShadowOffsetX = 1
+      StateNormal.FontEx.ShadowOffsetY = 1
+      StateNormal.FontEx.Style = [fsBold]
+      StateNormal.FontEx.TextAlignment = bcaCenter
+      StateNormal.FontEx.WordBreak = False
+      Caption = 'nr IDO do schowka'
+      Color = clNone
+      DropDownWidth = 16
+      DropDownArrowSize = 8
+      GlobalOpacity = 255
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        00000000000000000000000000000000000079480AFD99753DFF936E36FF936E
+        36FF936E36FF956E37FF936E37FF936E37FF9B783FFF653300FF000000000000
+        000000000000000000000000000000000000C3AF8FFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA98953FF000000000000
+        000000000000000000000000000000000000C3AF8FFFFFFFFFFFEFEBE1FFF1EC
+        E4FFF1ECE8FFF1EDE2FFEEEADDFFEDE8DFFFFFFFFFFF9A753DFF000000000000
+        000000000000000000000000000000000000C6B290FFFFFFFFFFF2EFE7FFF3F0
+        EAFFF3F0EAFFF3F0EAFFF7F1EDFFF3F1EAFFFFFFFFFF9A753DFF8E6529FDB698
+        70FFB09267FFB09267FFB09369FFA68252FFC1AC8AFFFFFFFFFFF2EFE7FFF3F0
+        EAFFF3F2EBFFF6F2ECFFFAF3F1FFF9F2EDFFFFFFFFFF9A753DFFCBB899FFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFBAA27BFFFFFFFFFFF2EEE6FFF2ED
+        E8FFF6EFECFFF9F8F1FFFBFBF6FFF5EFE9FFFFFFFFFF9C7742FFC4AF8EFFFFFF
+        FFFFEFEAE3FFF1ECE7FFF2F0E9FFEDEADDFFBFA984FFFFFFFFFFF6F3EAFFFAF7
+        F3FFF9F8F8FFF9FBFAFFF7F5F2FFEBE3D9FFF6F6F4FF9A733AFFC4AF8CFFFFFF
+        FFFFF2EDE7FFF3F0EAFFF3F2ECFFF3EDE7FFC2AD8FFFFFFFFFFFF8FAF5FFF9F9
+        FBFFFBFBFDFFF8F7F1FFEEEDE6FFE4DBD3FFE8DFD4FF926C2FFFC4AF8CFFFFFF
+        FFFFF2EDE7FFF3F0E8FFF7F3EDFFF6F1EBFFC7B292FFFFFFFFFFF8F8F8FFF9FB
+        FBFFF9FAF3FFF1EEE3FFDED2C3FFC7B095FFC9B493FF8C6324FFC2AD8AFFFFFF
+        FFFFF3EBE6FFF6F0EBFFF9F4F3FFFAF9F1FFC8B599FFFFFFFFFFF8FAFBFFF9FA
+        F6FFF2ECE2FFE4D9CAFFD0BFA7FFECE3DCFFB5966BFF815309FFC7B699EFFFFF
+        FFFFF7F7EEFFFBF9F9FFFBFBFDFFF6F6F2FFC9B99DFFFFFFFFFFFAFAF7FFF2ED
+        E5FFE3D9D0FFD1BDA2FFC5AE90FFEAE6E1FFB89E73FF00000000CAB99CEFFFFF
+        FFFFF8F8F7FFF9F9FFFFFCFDFCFFEFEBDFFFC9B798FFFFFFFFFFF9F8F6FFEAE0
+        D5FFD6CBB5FFC7AF8BFF9B783AFF9F7F4CFF0000000000000000CEBEA2EFFFFF
+        FFFFF8F8FAFFFAFAF7FFFBFAF3FFC9B499FFC5B090FFC0A584FFC0A584FFC0A5
+        84FFB79B70FFA78954FF8A6220FF000000000000000000000000D1BFA6FFFFFF
+        FFFFF9FBF9FFF2EEEAFFEBE3DAFFCAB598FFF1EAE5FFB6996CFF9C773BFF0000
+        0000000000000000000000000000000000000000000000000000D4C9B3FFFFFF
+        FFFFFCFAF5FFEDE6DCFFDCD0C1FFC0A780FFA98C59FF926929FF000000000000
+        0000000000000000000000000000000000000000000000000000C6B293FFE9E2
+        D7F4D6C6B3FFC9BA9CFFBCA37CFFA3854EFA926C2BFF00000000000000000000
+        0000000000000000000000000000000000000000000000000000
+      }
+      OnClick = btnCopyIDOClick
+      ParentColor = False
+      Rounding.RoundX = 12
+      Rounding.RoundY = 12
+      Rounding.RoundOptions = []
+      RoundingDropDown.RoundX = 1
+      RoundingDropDown.RoundY = 1
+      RoundingDropDown.RoundOptions = []
+      ShowHint = True
+      TextApplyGlobalOpacity = False
+      MemoryUsage = bmuHigh
     end
   end
   object OpenPictureDialog1: TOpenPictureDialog

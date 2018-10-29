@@ -1,4 +1,4 @@
-unit UAktualizacjaZdjec;
+unit UZdjAktualizacjaZdjec;
 
 {$mode objfpc}{$H+}
 
@@ -29,9 +29,9 @@ type
     destructor Destroy; override;
   end;
 
-  { TAktualizacjaZdjec }
+  { TZdjAktualizacjaZdjec }
 
-  TAktualizacjaZdjec = class(TForm)
+  TZdjAktualizacjaZdjec = class(TForm)
     btnZnajdz: TBitBtn;
     DSMem: TDataSource;
     DSMemBrak: TDataSource;
@@ -48,6 +48,7 @@ type
     TabSheetStare: TTabSheet;
     TabSheetBrzkZdj: TTabSheet;
     procedure btnZnajdzClick(Sender: TObject);
+    procedure RxDBGrid1DblClick(Sender: TObject);
     procedure RxDBGrid2DblClick(Sender: TObject);
    private
     watek: TCheckFotosThread;
@@ -56,10 +57,10 @@ type
   end;
 
 //var
-//  AktualizacjaZdjec: TAktualizacjaZdjec;
+//  ZdjAktualizacjaZdjec: TZdjAktualizacjaZdjec;
 
 implementation
-uses dateutils, UWidokZdjecia;
+uses dateutils, UZdjWidok, UZdjEdycja;
 {$R *.frm}
 
 { TCheckFotosThread }
@@ -152,9 +153,9 @@ begin
   inherited Destroy;
 end;
 
-{ TAktualizacjaZdjec }
+{ TZdjAktualizacjaZdjec }
 
-procedure TAktualizacjaZdjec.btnZnajdzClick(Sender: TObject);
+procedure TZdjAktualizacjaZdjec.btnZnajdzClick(Sender: TObject);
 begin
   if Assigned(watek) then
   begin
@@ -165,13 +166,25 @@ begin
   watek:= TCheckFotosThread.Create(RxMemBrak, RxMem, ProgressBar1, btnZnajdz);
 end;
 
-procedure TAktualizacjaZdjec.RxDBGrid2DblClick(Sender: TObject);
+procedure TZdjAktualizacjaZdjec.RxDBGrid1DblClick(Sender: TObject);
 begin
-  if TRxDBGrid(Sender).DataSource.DataSet.IsEmpty then exit;
-  with TWidokZdjecia.CreateForm(Self, TRxDBGrid(Sender).DataSource.DataSet.FieldByName('IDO').AsInteger) do begin
+  if RxMem.IsEmpty then exit;
+  with TZdjWidok.CreateForm(Self, RxMem.FieldByName('IDO').AsInteger) do begin
     ShowModal;
     Free;
   end;
+end;
+
+// Braki zdjęć
+procedure TZdjAktualizacjaZdjec.RxDBGrid2DblClick(Sender: TObject);
+begin
+  if RxMemBrak.IsEmpty then exit;
+  with TZdjEdycja.CreateForm(Self, RxMemBrak.FieldByName('IDO').AsInteger) do begin
+    ShowModal;
+    Free;
+  end;
+  if FileExists(DM.Path_Foto + RxMemBrak.FieldByName('IDO').AsString+'.jpg') then
+     RxMemBrak.Delete;
 end;
 
 end.

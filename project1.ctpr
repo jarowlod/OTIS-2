@@ -24,7 +24,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="24"/>
+      <BuildNr Value="25"/>
       <Language Value="0415"/>
       <StringTable CompanyName="ZK Kłodzko" LegalCopyright="Włodarczyk Jarosław" ProductVersion="0.0.0.0"/>
     </VersionInfo>
@@ -145,7 +145,7 @@
         <PackageName Value="adLCL"/>
       </Item32>
     </RequiredPackages>
-    <Units Count="66">
+    <Units Count="67">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -543,10 +543,10 @@
         <ResourceBaseClass Value="Form"/>
       </Unit49>
       <Unit50>
-        <Filename Value="UAktualizacjaZdjec.pas"/>
+        <Filename Value="UZdjAktualizacjaZdjec.pas"/>
         <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="AktualizacjaZdjec"/>
+        <ComponentName Value="ZdjAktualizacjaZdjec"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit50>
@@ -620,7 +620,7 @@
       </Unit59>
       <Unit60>
         <Filename Value="UOchRezerwacjaSkype.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchRezerwacjaSkype"/>
         <HasResources Value="True"/>
@@ -628,7 +628,7 @@
       </Unit60>
       <Unit61>
         <Filename Value="UOchAddRezerwacjaSkype.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchAddRezerwacjaSkype"/>
         <HasResources Value="True"/>
@@ -636,7 +636,7 @@
       </Unit61>
       <Unit62>
         <Filename Value="UOchAddRezerwacjaWidzen.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchAddRezerwacjaWidzen"/>
         <HasResources Value="True"/>
@@ -644,7 +644,7 @@
       </Unit62>
       <Unit63>
         <Filename Value="UOchRezerwacjaWidzen.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="OchRezerwacjaWidzen"/>
         <HasResources Value="True"/>
@@ -652,7 +652,7 @@
       </Unit63>
       <Unit64>
         <Filename Value="UZdjEdycja.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZdjEdycja"/>
         <HasResources Value="True"/>
@@ -660,12 +660,20 @@
       </Unit64>
       <Unit65>
         <Filename Value="UZdjEdycjaZapisz.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZdjEdycjaZapisz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit65>
+      <Unit66>
+        <Filename Value="UZdjWidok.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ZdjWidok"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit66>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

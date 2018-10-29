@@ -75,7 +75,7 @@ type
 //  OchForm: TOchForm;
 
 implementation
-uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie, URejestrProsbDodaj, UKomunikatorNowaWiad, UWidokZdjecia;
+uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie, URejestrProsbDodaj, UKomunikatorNowaWiad, UZdjWidok;
 {$R *.frm}
 
 { TOchForm }
@@ -122,7 +122,7 @@ end;
 
 procedure TOchForm.Image_osDblClick(Sender: TObject);
 begin
-  with TWidokZdjecia.CreateForm(Self, SelectIDO) do begin
+  with TZdjWidok.CreateForm(Self, SelectIDO) do begin
     ShowModal;
     Free;
   end;

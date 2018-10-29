@@ -31,8 +31,6 @@ type
     procedure ShowFoto(src: TBitmap; desPath: string);
   end;
 
-var
-  ZdjEdycjaZapisz: TZdjEdycjaZapisz;
 
 implementation
 
