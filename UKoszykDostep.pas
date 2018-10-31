@@ -5,8 +5,8 @@ unit UKoszykDostep;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, ZDataset, rxdbgrid, Forms, Controls,
-  Graphics, Dialogs, ExtCtrls, StdCtrls, DbCtrls, Buttons, datamodule;
+  Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate, rxdbgrid, Forms,
+  Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, DbCtrls, Buttons, datamodule;
 
 type
 
@@ -34,6 +34,7 @@ type
     Splitter1: TSplitter;
     ZQUzytkownicy: TZQuery;
     ZQKoszykDostep: TZQuery;
+    ZUKoszykDostep: TZUpdateSQL;
     procedure btnUdostepnijClick(Sender: TObject);
     procedure edWyszukajChange(Sender: TObject);
   private
@@ -47,16 +48,19 @@ type
 //  KoszykDostep: TKoszykDostep;
 
 implementation
-uses UKomunikatorNowaWiad;
+uses UKomunikatorNowaWiad, rxdbutils;
 
 {$R *.frm}
 
 { TKoszykDostep }
 
 procedure TKoszykDostep.edWyszukajChange(Sender: TObject);
+var s: string;
 begin
+  s:= Trim(edWyszukaj.Text);
+  if s<>'' then s:= '%'+s+'%' else s:= '%';
   ZQUzytkownicy.Close;
-  ZQUzytkownicy.ParamByName('nazwisko').AsString:= Trim(edWyszukaj.Text)+'%';
+  ZQUzytkownicy.ParamByName('nazwisko').AsString:= s;
   ZQUzytkownicy.Open;
 end;
 
@@ -88,7 +92,7 @@ begin
 
   ZQKoszykDostep.Insert;
   ZQKoszykDostep.FieldByName('user').AsString          := ZQUzytkownicy.FieldByName('user').AsString;
-  ZQKoszykDostep.FieldByName('ID_koszyka').AsInteger    := SelectID;
+  ZQKoszykDostep.FieldByName('ID_koszyka').AsInteger   := SelectID;
   ZQKoszykDostep.FieldByName('data_dodania').AsDateTime:= Now();
   ZQKoszykDostep.Post;
 
@@ -96,6 +100,7 @@ begin
                             ZQUzytkownicy.FieldByName('Full_name').AsString+')', nots_Info);
   //wyślij komunikat do użytkownika o udostępnieniu mu koszyka
   WyslijKomunikat;
+  RefreshQuery(ZQKoszykDostep);
 end;
 
 procedure TKoszykDostep.SetID(aID: integer);

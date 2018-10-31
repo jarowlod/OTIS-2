@@ -1,13 +1,13 @@
 object KoszykDostep: TKoszykDostep
-  Left = 396
+  Left = 328
   Height = 550
-  Top = 222
+  Top = 230
   Width = 970
   Caption = 'Koszyk - współdzielenie'
   ClientHeight = 550
   ClientWidth = 970
   Position = poScreenCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel5: TPanel
     Left = 0
     Height = 50
@@ -169,6 +169,7 @@ object KoszykDostep: TKoszykDostep
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -183,6 +184,7 @@ object KoszykDostep: TKoszykDostep
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -197,6 +199,7 @@ object KoszykDostep: TKoszykDostep
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -210,6 +213,7 @@ object KoszykDostep: TKoszykDostep
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -455,6 +459,7 @@ object KoszykDostep: TKoszykDostep
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -469,6 +474,7 @@ object KoszykDostep: TKoszykDostep
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -484,6 +490,7 @@ object KoszykDostep: TKoszykDostep
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -610,6 +617,7 @@ object KoszykDostep: TKoszykDostep
   end
   object ZQKoszykDostep: TZQuery
     Connection = DM.ZConnection1
+    UpdateObject = ZUKoszykDostep
     SQL.Strings = (
       'SELECT'
       'ku.ID,'
@@ -641,5 +649,50 @@ object KoszykDostep: TKoszykDostep
     DataSet = ZQKoszykDostep
     Left = 648
     Top = 403
+  end
+  object ZUKoszykDostep: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'DELETE FROM koszyk_usr'
+      'WHERE'
+      '  koszyk_usr.ID = :OLD_ID'
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO koszyk_usr'
+      '  (ID_koszyka, user, data_dodania)'
+      'VALUES'
+      '  (:ID_koszyka, :user, :data_dodania)'
+    )
+    ModifySQL.Strings = (
+      'UPDATE koszyk_usr SET'
+      '  ID_koszyka = :ID_koszyka,'
+      '  user = :user,'
+      '  data_dodania = :data_dodania'
+      'WHERE'
+      '  koszyk_usr.ID = :OLD_ID'
+    )
+    UseSequenceFieldForRefreshSQL = False
+    Left = 760
+    Top = 340
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ID_koszyka'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'user'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_dodania'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_ID'
+        ParamType = ptUnknown
+      end>
   end
 end

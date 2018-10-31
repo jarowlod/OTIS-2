@@ -228,9 +228,12 @@ begin
 end;
 
 procedure TKomunikatorNowaWiad.edZnajdzChange(Sender: TObject);
+var s: string;
 begin
+  s:= Trim(edZnajdz.Text);
+  if s<>'' then s:='%'+s+'%' else s:='%';
   ZQUzytkownicy.Close;
-  ZQUzytkownicy.ParamByName('nazwisko').AsString:= Trim(edZnajdz.Text)+'%';
+  ZQUzytkownicy.ParamByName('nazwisko').AsString:= s;
   ZQUzytkownicy.Open;
 end;
 
