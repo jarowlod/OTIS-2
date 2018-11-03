@@ -197,6 +197,7 @@ type
     procedure ActionZatrudnienieOsExecute(Sender: TObject);
     procedure ActionZatrudnieniExecute(Sender: TObject);
     procedure ActionZdjeciaBrakiExecute(Sender: TObject);
+    procedure ActionZwrotyPaczekExecute(Sender: TObject);
     procedure Action_AdresyJednostekExecute(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -248,7 +249,8 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      URejestrProsbOs, URejestrProsbAll, UOknoKomunikatu, UKomunikator, UKomunikatorNowaWiad, UZatStatystyka,
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UZdjAktualizacjaZdjec,
-     UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype;
+     UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype,
+     UPaczkiZwroty;
 {$R *.frm}
 
 { TMasterForm }
@@ -824,6 +826,15 @@ begin
   begin
        ShowModal;
        Free;
+  end;
+end;
+
+procedure TMasterForm.ActionZwrotyPaczekExecute(Sender: TObject);
+begin
+  with TPaczkiZwroty.Create(Self) do
+  begin
+    ShowModal;
+    Free;
   end;
 end;
 

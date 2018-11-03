@@ -1,7 +1,7 @@
 object RejestrProsbAll: TRejestrProsbAll
-  Left = 368
+  Left = 86
   Height = 569
-  Top = 364
+  Top = 85
   Width = 1373
   Caption = 'Rejestr Próśb osadzonych'
   ClientHeight = 569

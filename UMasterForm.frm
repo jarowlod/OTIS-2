@@ -1650,6 +1650,7 @@ object MasterForm: TMasterForm
       Category = 'Paczki'
       Caption = 'Zwroty paczek ...'
       ImageIndex = 11
+      OnExecute = ActionZwrotyPaczekExecute
     end
     object ActionDodajOsobeBliska: TAction
       Category = 'Widzenia'

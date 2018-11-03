@@ -1,14 +1,14 @@
 object Osadzeni: TOsadzeni
-  Left = 404
+  Left = 328
   Height = 568
-  Top = 224
+  Top = 230
   Width = 841
   Caption = 'Osadzeni'
   ClientHeight = 568
   ClientWidth = 841
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 46
@@ -19,7 +19,7 @@ object Osadzeni: TOsadzeni
     ClientHeight = 46
     ClientWidth = 841
     TabOrder = 2
-    object BitBtn1: TBitBtn
+    object btnOK: TBitBtn
       Left = 608
       Height = 30
       Top = 8
@@ -29,10 +29,10 @@ object Osadzeni: TOsadzeni
       DefaultCaption = True
       Kind = bkOK
       ModalResult = 1
-      OnClick = BitBtn1Click
+      OnClick = btnOKClick
       TabOrder = 0
     end
-    object BitBtn2: TBitBtn
+    object btnAnuluj: TBitBtn
       Left = 728
       Height = 30
       Top = 8
@@ -41,7 +41,7 @@ object Osadzeni: TOsadzeni
       DefaultCaption = True
       Kind = bkCancel
       ModalResult = 2
-      OnClick = BitBtn2Click
+      OnClick = btnAnulujClick
       TabOrder = 1
     end
   end
@@ -66,6 +66,7 @@ object Osadzeni: TOsadzeni
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -87,6 +88,7 @@ object Osadzeni: TOsadzeni
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -102,6 +104,7 @@ object Osadzeni: TOsadzeni
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -117,6 +120,7 @@ object Osadzeni: TOsadzeni
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -134,6 +138,7 @@ object Osadzeni: TOsadzeni
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -151,6 +156,7 @@ object Osadzeni: TOsadzeni
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -168,6 +174,7 @@ object Osadzeni: TOsadzeni
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -185,6 +192,7 @@ object Osadzeni: TOsadzeni
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -201,6 +209,7 @@ object Osadzeni: TOsadzeni
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -287,8 +296,8 @@ object Osadzeni: TOsadzeni
     TabOrder = 1
     TitleStyle = tsNative
     OnDblClick = RxDBGrid1DblClick
-    OnKeyDown = RxDBGrid1KeyDown
-    OnKeyPress = RxDBGrid1KeyPress
+    OnKeyDown = edWyszukajKeyDown
+    OnKeyPress = edWyszukajKeyPress
   end
   object Panel2: TPanel
     Left = 0
@@ -310,7 +319,7 @@ object Osadzeni: TOsadzeni
       Caption = 'Wyszukaj:'
       ParentColor = False
     end
-    object Edit1: TEdit
+    object edWyszukaj: TEdit
       Left = 8
       Height = 30
       Top = 24
@@ -323,8 +332,9 @@ object Osadzeni: TOsadzeni
       Font.Name = 'Arial'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
-      OnChange = Edit1Change
-      OnKeyPress = RxDBGrid1KeyPress
+      OnChange = edWyszukajChange
+      OnKeyDown = edWyszukajKeyDown
+      OnKeyPress = edWyszukajKeyPress
       ParentFont = False
       TabOrder = 0
     end
