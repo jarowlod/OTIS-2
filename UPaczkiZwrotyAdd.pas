@@ -6,8 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, DBCtrls, DBExtCtrls, TplGradientUnit, datamodule, ZDataset, DB,
-  DBDateTimePicker;
+  Buttons, DBCtrls, TplGradientUnit, ZDataset, DB, datamodule, DBDateTimePicker;
 
 type
 
@@ -26,14 +25,25 @@ type
     GroupBox1: TGroupBox;
     Image1: TImage;
     Label1: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     Panel2: TPanel;
     Panel5: TPanel;
     plGradient2: TplGradient;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
     ZQZwrotyAdd: TZQuery;
+    procedure AutoOpisClick(Sender: TObject);
     procedure btnAnulujClick(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
     procedure btnOsadzonyClick(Sender: TObject);
@@ -77,12 +87,27 @@ end;
 
 procedure TPaczkiZwrotyAdd.btnAnulujClick(Sender: TObject);
 begin
+  ZQZwrotyAdd.DisableControls;
   ZQZwrotyAdd.Cancel;
+end;
+
+procedure TPaczkiZwrotyAdd.AutoOpisClick(Sender: TObject);
+begin
+  DBOpisMemo.Lines.Append( TSpeedButton(Sender).Caption );
 end;
 
 procedure TPaczkiZwrotyAdd.btnOKClick(Sender: TObject);
 begin
-  ZQZwrotyAdd.Post;
+  if DBDataZwrotu.DateIsNull then begin
+    ModalResult:= mrNone;
+    exit;
+  end;
+
+  try
+    ZQZwrotyAdd.Post;
+  except
+    ModalResult:= mrNone;
+  end;
 end;
 
 procedure TPaczkiZwrotyAdd.FormCreate(Sender: TObject);
@@ -110,9 +135,9 @@ begin
       ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
       ZQPom.Open;
 
-      DBNazwisko.Text:= ZQPom.FieldByName('NAZWISKO').AsString;
-      DBImie.Text    := ZQPom.FieldByName('IMIE').AsString;
-      DBOjciec.Text  := ZQPom.FieldByName('OJCIEC').AsString;
+      DBNazwisko.Caption:= ZQPom.FieldByName('NAZWISKO').AsString;
+      DBImie.Caption    := ZQPom.FieldByName('IMIE').AsString;
+      DBOjciec.Caption  := ZQPom.FieldByName('OJCIEC').AsString;
     finally
       FreeAndNil(ZQPom);
     end;

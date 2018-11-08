@@ -65,9 +65,9 @@ end;
 procedure TPaczkiZwroty.DSZwrotyDataChange(Sender: TObject; Field: TField);
 begin
   // uprawnienia do usuwania mają: mający prawa do paczek i właściciel wpisu.
-  btnUsun.Enabled:= (DM.uprawnienia[2])and
-                    (ZQZwroty.FieldByName('Kto').AsString = DM.PelnaNazwa);
-  btnUsun.Enabled := DM.uprawnienia[8]; // admin
+  btnUsun.Enabled:= ((DM.uprawnienia[2]) and
+                     (ZQZwroty.FieldByName('Kto').AsString = DM.PelnaNazwa))
+                     or (DM.uprawnienia[8]);
 end;
 
 procedure TPaczkiZwroty.btnUsunClick(Sender: TObject);
@@ -81,8 +81,9 @@ end;
 procedure TPaczkiZwroty.btnDodajClick(Sender: TObject);
 begin
   with TPaczkiZwrotyAdd.Create(Self) do
-  begin
-       ShowModal;
+  begin                                                     // zadziała onChange => Wyszukaj
+       if ShowModal = mrOK then if edWyszukaj.Text<>'' then edWyszukaj.Text:= ''
+                                                       else Wyszukaj;
        Free;
   end;
 end;
@@ -108,7 +109,6 @@ begin
     VK_ESCAPE: begin
                  edWyszukaj.Text:='';
                  edWyszukaj.SetFocus;
-                 Wyszukaj;
                end;
   end;
 end;

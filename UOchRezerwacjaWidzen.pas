@@ -152,10 +152,11 @@ end;
 
 procedure TOchRezerwacjaWidzen.DSMemWidzeniaDataChange(Sender: TObject; Field: TField);
 begin
-  btnUsun.Enabled:= ( not MemWidzenia.IsEmpty and
+  btnUsun.Enabled:= ((not MemWidzenia.IsEmpty) and
                      (MemWidzenia.FieldByName('IDO').AsInteger>0) and
                      (DM.PelnaNazwa = MemWidzenia.FieldByName('User').AsString) and
-                     (MemWidzenia.FieldByName('DataGodz').AsDateTime > Now));
+                     (MemWidzenia.FieldByName('DataGodz').AsDateTime > Now))
+                     or (DM.uprawnienia[8]);
 end;
 
 procedure TOchRezerwacjaWidzen.btnUsunClick(Sender: TObject);

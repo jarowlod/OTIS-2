@@ -229,14 +229,16 @@ object OchAddRezerwacjaSkype: TOchAddRezerwacjaSkype
       AnchorSideTop.Control = edUwagi
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = edUwagi
-      Left = 554
+      Left = 552
       Height = 15
       Top = 12
-      Width = 33
+      Width = 35
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
       Caption = 'Uwagi'
+      Font.Style = [fsBold]
       ParentColor = False
+      ParentFont = False
     end
     object GroupBox1: TGroupBox
       Left = 4
