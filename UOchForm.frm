@@ -464,11 +464,11 @@ object OchForm: TOchForm
     Height = 532
     Top = 268
     Width = 831
-    ActivePage = TabSheetUwagi
+    ActivePage = TabSheetPaczki
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 0
+    TabIndex = 4
     TabOrder = 2
     object TabSheetUwagi: TTabSheet
       Caption = 'Uwagi i Polecenia'

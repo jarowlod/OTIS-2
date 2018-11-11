@@ -145,7 +145,7 @@
         <PackageName Value="adLCL"/>
       </Item32>
     </RequiredPackages>
-    <Units Count="69">
+    <Units Count="70">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -690,6 +690,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit68>
+      <Unit69>
+        <Filename Value="UViewPaczki.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ViewPaczki"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit69>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   DbCtrls, StdCtrls, ComCtrls, Buttons, datamodule, db, ZDataset, UViewUwagiOch,
-  UViewWykazy, UViewZatrudnienie, UViewWidzenia, UViewOsobyBliskie;
+  UViewWykazy, UViewZatrudnienie, UViewWidzenia, UViewOsobyBliskie, UViewPaczki;
 
 type
 
@@ -65,6 +65,7 @@ type
     fViewZatrudnienie: TViewZatrudnienie;
     fViewWidzenia    : TViewWidzenia;
     fViewOsobyBliskie: TViewOsobyBliskie;
+    fViewPaczki      : TViewPaczki;
 
     procedure WczytajTypCeli;
   public
@@ -109,6 +110,10 @@ begin
   fViewOsobyBliskie:= TViewOsobyBliskie.Create(Self);
   fViewOsobyBliskie.Parent:= TabSheetOsobyBliskie;
   fViewOsobyBliskie.Show;
+
+  fViewPaczki:= TViewPaczki.Create(Self);
+  fViewPaczki.Parent:= TabSheetPaczki;
+  fViewPaczki.Show;
 end;
 
 procedure TOchForm.FormKeyDown(Sender: TObject; var Key: Word;
@@ -146,6 +151,7 @@ begin
   FreeAndNil(fViewZatrudnienie);
   FreeAndNil(fViewWidzenia);
   FreeAndNil(fViewOsobyBliskie);
+  FreeAndNil(fViewPaczki);
 end;
 
 procedure TOchForm.SetIDO(ido: integer);
@@ -201,6 +207,9 @@ begin
   //wykazy ochronne
   fViewWykazy.SetIDO(SelectIDO);
   TabSheetWykazy.TabVisible:= not fViewWykazy.IsEmpty;
+
+  //rejestr paczek
+  fViewPaczki.SetIDO(SelectIDO);
 end;
 
 procedure TOchForm.btnRejestrZatClick(Sender: TObject);
