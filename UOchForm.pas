@@ -56,6 +56,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Image_osDblClick(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
     procedure sbtnWyslijWiadClick(Sender: TObject);
   private
     SelectIDO  : integer;
@@ -68,6 +69,7 @@ type
     fViewPaczki      : TViewPaczki;
 
     procedure WczytajTypCeli;
+    procedure SetIdoToActiveTab;
   public
     Procedure SetIDO(ido: integer);
   end;
@@ -188,7 +190,7 @@ begin
 
   //typ celi dla określenia Ochronki i palenia
   WczytajTypCeli;
-
+{
   //Uwagi i polecenia ochronne
   fViewUwagiOch.SetIDO(SelectIDO);
   //TabSheetUwagi.TabVisible:= not fViewUwagiOch.IsEmpty;  // zakładka widoczna z uwagi na możliwość edycji
@@ -210,6 +212,25 @@ begin
 
   //rejestr paczek
   fViewPaczki.SetIDO(SelectIDO);
+}
+  SetIdoToActiveTab;
+end;
+
+procedure TOchForm.SetIdoToActiveTab;
+begin
+  case PageControl1.ActivePage.Name of
+    'TabSheetUwagi'       : fViewUwagiOch.SetIDO(SelectIDO);
+    'TabSheetWykazy'      : fViewWykazy.SetIDO(SelectIDO);
+    'TabSheetWidzenia'    : fViewWidzenia.SetIDO(SelectIDO);
+    'TabSheetOsobyBliskie': fViewOsobyBliskie.SetIDO(SelectIDO);
+    'TabSheetPaczki'      : fViewPaczki.SetIDO(SelectIDO);
+    'TabSheetZatrudnienie': fViewZatrudnienie.SetIDO(SelectIDO);
+  end;
+end;
+
+procedure TOchForm.PageControl1Change(Sender: TObject);
+begin
+  SetIdoToActiveTab;
 end;
 
 procedure TOchForm.btnRejestrZatClick(Sender: TObject);

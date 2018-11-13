@@ -1,7 +1,7 @@
 object ViewPaczki: TViewPaczki
-  Left = 328
+  Left = 342
   Height = 467
-  Top = 230
+  Top = 242
   Width = 801
   Align = alClient
   BorderStyle = bsNone

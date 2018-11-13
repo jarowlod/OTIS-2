@@ -695,6 +695,7 @@
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ViewPaczki"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit69>
     </Units>

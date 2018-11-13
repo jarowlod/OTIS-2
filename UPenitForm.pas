@@ -90,6 +90,7 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnDodajDoKoszykaClick(Sender: TObject);
     procedure Image_osDblClick(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
     procedure ZQOsInfoAfterPost(DataSet: TDataSet);
     procedure ZQOsNotatkiAfterPost(DataSet: TDataSet);
   private
@@ -102,6 +103,7 @@ type
     fViewZatrudnienie: TViewZatrudnienie;
 
     procedure WczytajTypCeli;
+    procedure SetIdoToActiveTab;
     procedure ObliczUrodziny;
     procedure ZapiszZmiany;
   public
@@ -241,7 +243,7 @@ begin
 
   //typ celi dla określenia Ochronki i palenia
   WczytajTypCeli;
-
+{
   //zatrudnienie
   fViewZatrudnienie.SetIDO(SelectIDO);
   TabSheetZatrudnienie.TabVisible:= not fViewZatrudnienie.isEmpty;
@@ -254,9 +256,25 @@ begin
   //Uwagi i polecenia ochronne
   fViewUwagiOch.SetIDO(SelectIDO);
   //TabSheetUwagi.TabVisible:= not fViewUwagiOch.IsEmpty;  // zakładka widoczna z uwagi na możliwość edycji
+}
+  SetIdoToActiveTab;
 
   // Urodziny osadzonego
   ObliczUrodziny;
+end;
+
+procedure TPenitForm.SetIdoToActiveTab;
+begin
+  case PageControl1.ActivePage.Name of
+    'TabSheetUwagi'       : fViewUwagiOch.SetIDO(SelectIDO);
+    'TabSheetWykazy'      : fViewWykazy.SetIDO(SelectIDO);
+    'TabSheetZatrudnienie': fViewZatrudnienie.SetIDO(SelectIDO);
+  end;
+end;
+
+procedure TPenitForm.PageControl1Change(Sender: TObject);
+begin
+  SetIdoToActiveTab;
 end;
 
 procedure TPenitForm.SetIDO(ido: integer; RefreshSourceQuery: TZQuery);

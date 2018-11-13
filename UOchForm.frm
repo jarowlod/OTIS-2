@@ -1,7 +1,7 @@
 object OchForm: TOchForm
-  Left = 328
+  Left = 342
   Height = 800
-  Top = 230
+  Top = 242
   Width = 831
   Caption = 'Karta Ochronna'
   ClientHeight = 800
@@ -464,12 +464,13 @@ object OchForm: TOchForm
     Height = 532
     Top = 268
     Width = 831
-    ActivePage = TabSheetPaczki
+    ActivePage = TabSheetUwagi
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 4
+    TabIndex = 0
     TabOrder = 2
+    OnChange = PageControl1Change
     object TabSheetUwagi: TTabSheet
       Caption = 'Uwagi i Polecenia'
       ImageIndex = 28

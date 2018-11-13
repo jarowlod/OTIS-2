@@ -5,7 +5,7 @@ unit UViewPaczki;
 interface
 
 uses
-  Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, rxdbgrid, ZDataset, Grids, DBGrids;
+  Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, rxdbgrid, ZDataset, Grids, DBGrids, datamodule;
 
 type
 
@@ -95,7 +95,7 @@ begin
        else  TRxDBGrid(Sender).Canvas.Brush.Color:= $F4F4F4;
      end;
     if (gdSelected in AState) then TRxDBGrid(Sender).Canvas.Font.Color:= $BB5E00;
-    if (gdSelected in AState) then TRxDBGrid(Sender).Canvas.Brush.Color:= DecColor(TRxDBGrid(Sender).Canvas.Brush.Color, 10);
+    if (gdSelected in AState) then TRxDBGrid(Sender).Canvas.Brush.Color:= $FED101; // $FFFF00;//DecColor(TRxDBGrid(Sender).Canvas.Brush.Color, 100);
   end;
 end;
 
