@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 328
+  Left = 342
   Height = 598
-  Top = 230
+  Top = 242
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1307,8 +1307,14 @@ object MasterForm: TMasterForm
     end
     object MenuItem53: TMenuItem
       Caption = 'Paczki'
+      object MenuItem73: TMenuItem
+        Action = ActionPaczkiDodaj
+      end
+      object MenuItem74: TMenuItem
+        Caption = '-'
+      end
       object MenuItem55: TMenuItem
-        Action = ActionZwrotyPaczek
+        Action = ActionPaczkiZwroty
       end
     end
     object MenuItem11: TMenuItem
@@ -1646,11 +1652,11 @@ object MasterForm: TMasterForm
       ImageIndex = 31
       OnExecute = ActionNowyKoszykExecute
     end
-    object ActionZwrotyPaczek: TAction
+    object ActionPaczkiZwroty: TAction
       Category = 'Paczki'
       Caption = 'Zwroty paczek ...'
-      ImageIndex = 11
-      OnExecute = ActionZwrotyPaczekExecute
+      ImageIndex = 47
+      OnExecute = ActionPaczkiZwrotyExecute
     end
     object ActionDodajOsobeBliska: TAction
       Category = 'Widzenia'
@@ -1728,6 +1734,11 @@ object MasterForm: TMasterForm
       Caption = 'Kopiuj wszystkie wiersze'
       ImageIndex = 32
       OnExecute = ActionKopiujWszystkoExecute
+    end
+    object ActionPaczkiDodaj: TAction
+      Category = 'Paczki'
+      Caption = 'Dodaj paczkę...'
+      ImageIndex = 48
     end
   end
   object Timer2Komunikaty: TTimer

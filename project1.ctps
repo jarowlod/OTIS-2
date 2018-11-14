@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="166">
+    <Units Count="168">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -21,8 +21,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="850"/>
-        <CursorPos X="3" Y="867"/>
+        <TopLine Value="853"/>
+        <CursorPos X="3" Y="870"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -144,8 +144,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="467"/>
-        <CursorPos Y="491"/>
+        <TopLine Value="115"/>
+        <CursorPos X="52" Y="129"/>
         <UsageCount Value="200"/>
       </Unit11>
       <Unit12>
@@ -573,8 +573,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="194"/>
-        <CursorPos X="18" Y="214"/>
+        <TopLine Value="84"/>
+        <CursorPos X="15" Y="97"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -599,8 +599,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2"/>
-        <CursorPos X="23" Y="64"/>
+        <TopLine Value="8"/>
+        <CursorPos X="46" Y="134"/>
         <UsageCount Value="202"/>
       </Unit49>
       <Unit50>
@@ -726,7 +726,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="162"/>
         <CursorPos X="3" Y="166"/>
-        <UsageCount Value="176"/>
+        <UsageCount Value="178"/>
       </Unit60>
       <Unit61>
         <Filename Value="UOchAddRezerwacjaSkype.pas"/>
@@ -738,7 +738,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="288"/>
         <CursorPos X="45" Y="307"/>
-        <UsageCount Value="157"/>
+        <UsageCount Value="159"/>
       </Unit61>
       <Unit62>
         <Filename Value="UOchAddRezerwacjaWidzen.pas"/>
@@ -748,7 +748,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="142"/>
       </Unit62>
       <Unit63>
         <Filename Value="UOchRezerwacjaWidzen.pas"/>
@@ -760,7 +760,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="153"/>
         <CursorPos Y="159"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="142"/>
       </Unit63>
       <Unit64>
         <Filename Value="UZdjEdycja.pas"/>
@@ -772,7 +772,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <CursorPos X="3" Y="89"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="52"/>
       </Unit64>
       <Unit65>
         <Filename Value="UZdjEdycjaZapisz.pas"/>
@@ -784,7 +784,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos Y="34"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="52"/>
       </Unit65>
       <Unit66>
         <Filename Value="UZdjWidok.pas"/>
@@ -796,7 +796,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="64"/>
         <CursorPos Y="81"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="61"/>
       </Unit66>
       <Unit67>
         <Filename Value="UPaczkiZwroty.pas"/>
@@ -805,10 +805,11 @@
         <ComponentName Value="PaczkiZwroty"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="93"/>
         <CursorPos X="15" Y="47"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit67>
@@ -822,7 +823,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="74"/>
         <CursorPos X="20" Y="103"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="36"/>
       </Unit68>
       <Unit69>
         <Filename Value="UViewPaczki.pas"/>
@@ -831,11 +832,10 @@
         <ComponentName Value="ViewPaczki"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="72"/>
         <CursorPos X="83" Y="98"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit69>
@@ -947,9 +947,9 @@
       <Unit84>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1745"/>
-        <CursorPos X="15" Y="1765"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="239"/>
+        <CursorPos X="14" Y="255"/>
+        <UsageCount Value="10"/>
       </Unit84>
       <Unit85>
         <Filename Value="C:\codetyphon\typhon\lcl\include\application.inc"/>
@@ -1176,9 +1176,9 @@
       <Unit117>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\lists.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="557"/>
-        <CursorPos X="3" Y="559"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="272"/>
+        <CursorPos X="3" Y="274"/>
+        <UsageCount Value="10"/>
       </Unit117>
       <Unit118>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win\wininc\defines.inc"/>
@@ -1251,8 +1251,9 @@
       <Unit128>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\datasource.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="638"/>
-        <UsageCount Value="4"/>
+        <TopLine Value="668"/>
+        <CursorPos X="3" Y="704"/>
+        <UsageCount Value="10"/>
       </Unit128>
       <Unit129>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\database.inc"/>
@@ -1550,111 +1551,49 @@
         <CursorPos X="3" Y="5048"/>
         <UsageCount Value="10"/>
       </Unit165>
+      <Unit166>
+        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\db.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="DB"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1490"/>
+        <CursorPos X="15" Y="1504"/>
+        <UsageCount Value="10"/>
+      </Unit166>
+      <Unit167>
+        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\dataset.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2366"/>
+        <CursorPos X="3" Y="2369"/>
+        <UsageCount Value="10"/>
+      </Unit167>
     </Units>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="485" Column="3" TopLine="466"/>
-      </Position1>
-      <Position2>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="852" Column="3" TopLine="850"/>
-      </Position2>
-      <Position3>
-        <Filename Value="UPaczkiZwroty.pas"/>
-        <Caret Line="111" TopLine="92"/>
-      </Position3>
-      <Position4>
-        <Filename Value="UPaczkiZwroty.pas"/>
-        <Caret Line="85" Column="38" TopLine="81"/>
-      </Position4>
-      <Position5>
-        <Filename Value="UPaczkiZwroty.pas"/>
-        <Caret Line="86" Column="15" TopLine="75"/>
-      </Position5>
-      <Position6>
-        <Filename Value="UPaczkiZwroty.pas"/>
-        <Caret Line="77" Column="21" TopLine="55"/>
-      </Position6>
-      <Position7>
-        <Filename Value="UViewPaczki.pas"/>
-      </Position7>
-      <Position8>
-        <Filename Value="UViewPaczki.pas"/>
-        <Caret Line="20" Column="30"/>
-      </Position8>
-      <Position9>
-        <Filename Value="UViewPaczki.pas"/>
-        <Caret Line="39" Column="19" TopLine="14"/>
-      </Position9>
-      <Position10>
-        <Filename Value="UViewWidzenia.pas"/>
-        <Caret Line="79" Column="32" TopLine="25"/>
-      </Position10>
-      <Position11>
-        <Filename Value="UViewPaczki.pas"/>
-        <Caret Line="29" TopLine="9"/>
-      </Position11>
-      <Position12>
-        <Filename Value="UViewPaczki.pas"/>
-        <Caret Line="55" Column="56" TopLine="29"/>
-      </Position12>
-      <Position13>
-        <Filename Value="UViewPaczki.pas"/>
-        <Caret Line="95" Column="3" TopLine="68"/>
-      </Position13>
-      <Position14>
-        <Filename Value="UViewPaczki.pas"/>
-        <Caret Line="97" Column="19" TopLine="71"/>
-      </Position14>
-      <Position15>
-        <Filename Value="UViewPaczki.pas"/>
-        <Caret Line="99" Column="13" TopLine="71"/>
-      </Position15>
-      <Position16>
-        <Filename Value="UViewPaczki.pas"/>
-        <Caret Line="98" Column="124" TopLine="71"/>
-      </Position16>
-      <Position17>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="258" Column="2" TopLine="237"/>
-      </Position17>
-      <Position18>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="266" Column="43" TopLine="244"/>
-      </Position18>
-      <Position19>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="272" Column="39" TopLine="248"/>
-      </Position19>
-      <Position20>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="263" Column="23" TopLine="254"/>
-      </Position20>
-      <Position21>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="96" Column="61" TopLine="79"/>
-      </Position21>
-      <Position22>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="105" Column="23" TopLine="94"/>
-      </Position22>
-      <Position23>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="261" Column="3" TopLine="243"/>
-      </Position23>
-      <Position24>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="268" Column="21" TopLine="243"/>
-      </Position24>
-      <Position25>
-        <Filename Value="UOchForm.pas"/>
-        <Caret Line="223" Column="32" TopLine="194"/>
-      </Position25>
-      <Position26>
         <Filename Value="UOchForm.pas"/>
         <Caret Line="232" TopLine="208"/>
-      </Position26>
+      </Position1>
+      <Position2>
+        <Filename Value="UOchForm.pas"/>
+        <Caret Line="214" Column="18" TopLine="194"/>
+      </Position2>
+      <Position3>
+        <Filename Value="UOchForm.pas"/>
+        <Caret Line="215" Column="18" TopLine="195"/>
+      </Position3>
+      <Position4>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="867" Column="3" TopLine="850"/>
+      </Position4>
+      <Position5>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="868" Column="3" TopLine="851"/>
+      </Position5>
+      <Position6>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="869" Column="3" TopLine="852"/>
+      </Position6>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

@@ -1,7 +1,7 @@
 object Rozmieszczenie: TRozmieszczenie
-  Left = 368
+  Left = 86
   Height = 760
-  Top = 364
+  Top = 85
   Width = 1103
   Caption = 'Rozmieszczenie'
   ClientHeight = 760

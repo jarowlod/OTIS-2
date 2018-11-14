@@ -131,6 +131,7 @@ begin
   begin
     PanelZdj[i]:= TViewPanelZdj.Create(Self);
     PanelZdj[i].Parent:= PanelZdjec;
+    PanelZdj[i].DataSet:= ZQOsadzeni;
   end;
 
   PictureResize;

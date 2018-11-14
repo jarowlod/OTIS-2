@@ -1,14 +1,14 @@
 object ViewPanelZdj: TViewPanelZdj
-  Left = 407
+  Left = 342
   Height = 310
-  Top = 229
+  Top = 242
   Width = 214
   BorderStyle = bsNone
   Caption = 'Panel zdjęć rozmieszczenia'
   ClientHeight = 310
   ClientWidth = 214
   OnCreate = FormCreate
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel_1: TPanel
     Left = 0
     Height = 310
@@ -30,6 +30,7 @@ object ViewPanelZdj: TViewPanelZdj
       AntialiasingMode = amOn
       Align = alClient
       Center = True
+      OnClick = Image_1Click
       OnDblClick = Image_1DblClick
       ParentShowHint = False
       Proportional = True

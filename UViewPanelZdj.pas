@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, datamodule;
+  StdCtrls, datamodule, DB;
 
 type
 
@@ -18,13 +18,17 @@ type
     lbZatrudnienie: TLabel;
     Panel_1: TPanel;
     procedure FormCreate(Sender: TObject);
+    procedure Image_1Click(Sender: TObject);
     procedure Image_1DblClick(Sender: TObject);
   private
     SelectIDO: integer;
+    FDataSet: TDataSet;
     function isZatrudniony: Boolean;
+    procedure SetDataSet(AValue: TDataSet);
   public
     procedure SetIDO(ido: integer);
     procedure SetOpis(str: string);
+    property DataSet: TDataSet read FDataSet write SetDataSet;
   end;
 
 //var
@@ -39,6 +43,13 @@ uses UPenitForm, UOchForm;
 procedure TViewPanelZdj.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
+  FDataSet:= nil;
+end;
+
+procedure TViewPanelZdj.Image_1Click(Sender: TObject);
+begin
+  if Assigned(DataSet) then
+    DataSet.Locate('IDO', SelectIDO, []);
 end;
 
 procedure TViewPanelZdj.SetIDO(ido: integer);
@@ -114,6 +125,14 @@ begin
     FreeAndNil(ZQPom);
   end;
 end;
+
+procedure TViewPanelZdj.SetDataSet(AValue: TDataSet);
+begin
+  if FDataSet= AValue then Exit;
+  FDataSet:= AValue;
+end;
+
+
 
 end.
 

@@ -17,6 +17,8 @@ type
     Bevel1: TBevel;
     btnDodajProsbe: TBitBtn;
     btnDodajWidzenie: TBitBtn;
+    btnDodajPaczke: TBitBtn;
+    btnDodajZwrotPaczki: TBitBtn;
     btnRejestrProsb: TBitBtn;
     btnRejestrZat: TBitBtn;
     DBCheckBox6: TDBCheckBox;
@@ -91,6 +93,8 @@ begin
   // nadajemy uprawnienia
   btnDodajWidzenie.Enabled:= DM.uprawnienia[6];
   btnDodajProsbe.Enabled  := DM.uprawnienia[14];
+  btnDodajPaczke.Enabled  := DM.uprawnienia[2];
+  btnDodajZwrotPaczki.Enabled  := DM.uprawnienia[2];
   // ...
 
   fViewZatrudnienie:= TViewZatrudnienie.Create(Self);

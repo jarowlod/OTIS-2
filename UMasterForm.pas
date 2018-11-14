@@ -15,6 +15,7 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionPaczkiDodaj: TAction;
     ActionKopiujWszystko: TAction;
     ActionKopiujIDO: TAction;
     ActionNoeNetTest: TAction;
@@ -25,7 +26,7 @@ type
     ActionKomunikatNowy: TAction;
     ActionKartaOchronna: TAction;
     ActionDodajOsobeBliska: TAction;
-    ActionZwrotyPaczek: TAction;
+    ActionPaczkiZwroty: TAction;
     ActionNowyKoszyk: TAction;
     ActionDodajDoKoszyka: TAction;
     ActionKoszyk: TAction;
@@ -98,6 +99,8 @@ type
     MenuItem70: TMenuItem;
     MenuItem71: TMenuItem;
     MenuItem72: TMenuItem;
+    MenuItem73: TMenuItem;
+    MenuItem74: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -197,7 +200,7 @@ type
     procedure ActionZatrudnienieOsExecute(Sender: TObject);
     procedure ActionZatrudnieniExecute(Sender: TObject);
     procedure ActionZdjeciaBrakiExecute(Sender: TObject);
-    procedure ActionZwrotyPaczekExecute(Sender: TObject);
+    procedure ActionPaczkiZwrotyExecute(Sender: TObject);
     procedure Action_AdresyJednostekExecute(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -829,7 +832,7 @@ begin
   end;
 end;
 
-procedure TMasterForm.ActionZwrotyPaczekExecute(Sender: TObject);
+procedure TMasterForm.ActionPaczkiZwrotyExecute(Sender: TObject);
 begin
   with TPaczkiZwroty.Create(Self) do
   begin
