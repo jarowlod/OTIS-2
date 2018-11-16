@@ -103,9 +103,12 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
+    GroupBox4: TGroupBox;
     Image1: TImage;
     Image2: TImage;
     Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
     ImageList1: TImageList;
     Label1: TLabel;
     Label10: TLabel;
@@ -143,6 +146,7 @@ type
     Label4: TLabel;
     Label40: TLabel;
     Label41: TLabel;
+    Label42: TLabel;
     lblSkierowanieNaBadania: TLabel;
     lblPoprzedniePOC: TLabel;
     lblPoprzedniaKlasyf: TLabel;
@@ -995,7 +999,7 @@ begin
   StanowiskaPokrewne:= GetStanowiskaPokrewne(ZQZatrudnieni.FieldByName('Stanowisko').AsString);
 
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_SkierowanieBadania.lrf');
-  DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
+  DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(DateTimePicker3.Date, 'dd MMMM yyyy')+' r.' );
   case TBadania(cbSkierowanie.ItemIndex) of
        bd_wstepne  : SetMemoReportColor(frReport1,'memo_wstepne', clSilver );
        bd_okresowe : SetMemoReportColor(frReport1,'memo_okresowe', clSilver );

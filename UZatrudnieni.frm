@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 152
+  Left = 86
   Height = 856
-  Top = 206
+  Top = 85
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -2431,7 +2431,7 @@ object Zatrudnieni: TZatrudnieni
           Cursor = crHandPoint
           Left = 16
           Height = 16
-          Top = 344
+          Top = 352
           Width = 69
           Caption = 'Karta Pracy'
           Font.CharSet = EASTEUROPE_CHARSET
@@ -2448,36 +2448,11 @@ object Zatrudnieni: TZatrudnieni
           OnMouseLeave = lblActionMouseLeave
           OnMouseUp = lblActionMouseUp
         end
-        object DateTimePicker3: TDateTimePicker
-          Left = 304
-          Height = 23
-          Top = 337
-          Width = 176
-          CenturyFrom = 1941
-          MaxDate = 2958465
-          MinDate = -53780
-          AutoSize = False
-          TabOrder = 0
-          TrailingSeparator = False
-          TextForNullDate = 'NULL'
-          LeadingZeros = True
-          NullInputAllowed = False
-          Kind = dtkDate
-          TimeFormat = tf24
-          TimeDisplay = tdHMS
-          DateMode = dmComboBox
-          Date = 42775
-          Time = 0.620093900462962
-          UseDefaultSeparators = True
-          HideDateTimeParts = []
-          MonthNames = 'Long'
-          ShowMonthNames = True
-        end
         object lblSkierowanieNaBadania: TLabel
           Cursor = crHandPoint
           Left = 16
           Height = 16
-          Top = 376
+          Top = 392
           Width = 193
           Caption = 'Skierowanie na badania lekarskie'
           Font.CharSet = EASTEUROPE_CHARSET
@@ -2494,47 +2469,142 @@ object Zatrudnieni: TZatrudnieni
           OnMouseLeave = lblActionMouseLeave
           OnMouseUp = lblActionMouseUp
         end
-        object btnZmienOpisStanowiska: TBitBtn
-          AnchorSideLeft.Control = cbSkierowanie
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbSkierowanie
-          AnchorSideTop.Side = asrCenter
-          Left = 381
-          Height = 30
-          Hint = 'Zmień opis stanowisk pokrewnych w skierowaniu na badania...'
-          Top = 369
-          Width = 35
-          BorderSpacing.Left = 5
-          Images = DM.ImageList1
-          ImageIndex = 3
-          OnClick = btnZmienOpisStanowiskaClick
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 1
-        end
-        object cbSkierowanie: TComboBox
-          AnchorSideLeft.Control = lblSkierowanieNaBadania
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = lblSkierowanieNaBadania
-          AnchorSideTop.Side = asrCenter
-          AnchorSideRight.Control = lblSkierowanieNaBadania
-          AnchorSideRight.Side = asrBottom
-          Left = 264
-          Height = 23
-          Top = 373
-          Width = 112
-          Anchors = [akTop]
-          AutoDropDown = True
-          ItemHeight = 15
-          ItemIndex = 0
-          Items.Strings = (
-            'WSTĘPNE'
-            'OKRESOWE'
-            'KONTROLNE'
-          )
-          Style = csDropDownList
-          TabOrder = 2
-          Text = 'WSTĘPNE'
+        object GroupBox4: TGroupBox
+          Left = 240
+          Height = 80
+          Top = 336
+          Width = 249
+          Caption = 'Parametry wydruków'
+          ClientHeight = 60
+          ClientWidth = 245
+          TabOrder = 0
+          object DateTimePicker3: TDateTimePicker
+            Left = 64
+            Height = 23
+            Top = 0
+            Width = 176
+            CenturyFrom = 1941
+            MaxDate = 2958465
+            MinDate = -53780
+            AutoSize = False
+            TabOrder = 0
+            TrailingSeparator = False
+            TextForNullDate = 'NULL'
+            LeadingZeros = True
+            NullInputAllowed = False
+            Kind = dtkDate
+            TimeFormat = tf24
+            TimeDisplay = tdHMS
+            DateMode = dmComboBox
+            Date = 42775
+            Time = 0.620093900462962
+            UseDefaultSeparators = True
+            HideDateTimeParts = []
+            MonthNames = 'Long'
+            ShowMonthNames = True
+          end
+          object btnZmienOpisStanowiska: TBitBtn
+            AnchorSideLeft.Control = cbSkierowanie
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = cbSkierowanie
+            AnchorSideTop.Side = asrCenter
+            Left = 181
+            Height = 30
+            Hint = 'Zmień opis stanowisk pokrewnych w skierowaniu na badania...'
+            Top = 28
+            Width = 35
+            BorderSpacing.Left = 5
+            Images = DM.ImageList1
+            ImageIndex = 3
+            OnClick = btnZmienOpisStanowiskaClick
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+          end
+          object cbSkierowanie: TComboBox
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Side = asrCenter
+            AnchorSideRight.Side = asrBottom
+            Left = 64
+            Height = 23
+            Top = 32
+            Width = 112
+            Anchors = []
+            AutoDropDown = True
+            ItemHeight = 15
+            ItemIndex = 0
+            Items.Strings = (
+              'WSTĘPNE'
+              'OKRESOWE'
+              'KONTROLNE'
+            )
+            Style = csDropDownList
+            TabOrder = 2
+            Text = 'WSTĘPNE'
+          end
+          object Image4: TImage
+            Left = 40
+            Height = 16
+            Hint = 'Przypisuje wybrany miesiąc do Karty Pracy'
+            Top = 7
+            Width = 16
+            AutoSize = True
+            ParentShowHint = False
+            Picture.Data = {
+              1754506F727461626C654E6574776F726B477261706869635901000089504E47
+              0D0A1A0A0000000D49484452000000100000001008060000001FF3FF61000000
+              0467414D410000AFC837058AE90000001974455874536F667477617265004164
+              6F626520496D616765526561647971C9653C000000EB4944415438CB63FCFFFF
+              3F03258089814230C80C283D91C906C4BB493180058D7FF5EF9FBF32A418C008
+              8B05A0CD17C5D924F4FEFCF9C3F0F0FD43865F3F7F33FCFA01C2BF187E023198
+              FE8E6083E42EF45F6564816A3E29C62AAEA7C0ADC4F0E7DF1F06196E3930FDFB
+              EF5F20FECDF0FB1F10FFFD031503D1BF1956AF5C8BF002D0D9BFFF30FE61F8F5
+              F71758D11FA0A2DF60C5BF1134D40090DC9FFF40B15F7F50BD90B933EEBC309B
+              8801073327C3C3970F195EBF7F83D5D920AF8134FFF9FD87E1FEC2478C8CC829
+              317655C84DA04239A006C70D693B4E901C8D40CDBA40CD0789D58CE285119C17
+              00E3A1BBBC7A5AD3C90000000049454E44AE426082
+            }
+            ShowHint = True
+          end
+          object Label42: TLabel
+            Left = 16
+            Height = 86
+            Top = -24
+            Width = 18
+            Caption = '{'
+            Font.CharSet = EASTEUROPE_CHARSET
+            Font.Color = clGreen
+            Font.Height = -64
+            Font.Name = 'Segoe UI Light'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            ParentColor = False
+            ParentFont = False
+          end
+          object Image5: TImage
+            Left = 40
+            Height = 16
+            Hint = 'Przypisuje wybraną datę i rodzaj badania do skierowania na badania.'
+            Top = 40
+            Width = 16
+            AutoSize = True
+            ParentShowHint = False
+            Picture.Data = {
+              1754506F727461626C654E6574776F726B477261706869635901000089504E47
+              0D0A1A0A0000000D49484452000000100000001008060000001FF3FF61000000
+              0467414D410000AFC837058AE90000001974455874536F667477617265004164
+              6F626520496D616765526561647971C9653C000000EB4944415438CB63FCFFFF
+              3F03258089814230C80C283D91C906C4BB493180058D7FF5EF9FBF32A418C008
+              8B05A0CD17C5D924F4FEFCF9C3F0F0FD43865F3F7F33FCFA01C2BF187E023198
+              FE8E6083E42EF45F6564816A3E29C62AAEA7C0ADC4F0E7DF1F06196E3930FDFB
+              EF5F20FECDF0FB1F10FFFD031503D1BF1956AF5C8BF002D0D9BFFF30FE61F8F5
+              F71758D11FA0A2DF60C5BF1134D40090DC9FFF40B15F7F50BD90B933EEBC309B
+              8801073327C3C3970F195EBF7F83D5D920AF8134FFF9FD87E1FEC2478C8CC829
+              317655C84DA04239A006C70D693B4E901C8D40CDBA40CD0789D58CE285119C17
+              00E3A1BBBC7A5AD3C90000000049454E44AE426082
+            }
+            ShowHint = True
+          end
         end
       end
     end

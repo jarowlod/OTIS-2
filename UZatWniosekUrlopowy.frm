@@ -1,13 +1,13 @@
 object ZatWniosekUrolopowy: TZatWniosekUrolopowy
-  Left = 440
+  Left = 342
   Height = 609
-  Top = 236
+  Top = 242
   Width = 1079
   Caption = 'Wniosek Urolopowy'
   ClientHeight = 609
   ClientWidth = 1079
   Position = poOwnerFormCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 40
@@ -1679,6 +1679,7 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
       'zat.Nazwisko, '
       'zat.Imie, '
       'zat.Ojciec, '
+      'os.POC,'
       'zat.Urodzony, '
       'zat.miejsce_urodzenia, '
       'zat.zat_od, '
@@ -1692,6 +1693,7 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
       'sta.nazwa'
       'FROM zat_zatrudnieni as zat'
       'LEFT OUTER JOIN zat_stanowiska as sta ON (zat.id_stanowiska = sta.id)'
+      'LEFT OUTER JOIN osadzeni as os ON zat.ido = os.ido'
       'WHERE zat.id = :id'
     )
     Params = <    

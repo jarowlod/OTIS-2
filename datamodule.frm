@@ -23,6 +23,7 @@ object DM: TDM
       'controls_cp=CP_UTF8'
     )
     TransactIsolationLevel = tiRepeatableRead
+    Connected = True
     HostName = '172.30.64.11'
     Port = 3306
     Database = 'klodzko'

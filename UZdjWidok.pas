@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
   Menus, ExtCtrls, StdCtrls, ActnList, Clipbrd, dateutils, LCLType, LazUTF8,
-  BCPanel, BCLabel, BCButton, BGRABitmap, BGRABitmapTypes, Math, datamodule, windows;
+  BCPanel, BCLabel, BCButton, BGRABitmap, BGRABitmapTypes, datamodule, windows;
 
 type
 

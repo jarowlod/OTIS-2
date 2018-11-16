@@ -1,7 +1,7 @@
 object ZdjWidok: TZdjWidok
-  Left = 328
+  Left = 342
   Height = 500
-  Top = 230
+  Top = 242
   Width = 400
   Caption = 'Zdjęcie'
   ClientHeight = 500

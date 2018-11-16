@@ -21,8 +21,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="853"/>
-        <CursorPos X="3" Y="870"/>
+        <TopLine Value="296"/>
+        <CursorPos X="42" Y="291"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -34,9 +34,10 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="75"/>
-        <CursorPos X="5" Y="89"/>
+        <TopLine Value="212"/>
+        <CursorPos X="56" Y="234"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -85,8 +86,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="285"/>
-        <CursorPos Y="504"/>
+        <TopLine Value="995"/>
+        <CursorPos X="3" Y="998"/>
         <UsageCount Value="200"/>
       </Unit6>
       <Unit7>
@@ -168,8 +169,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="251"/>
-        <CursorPos X="8" Y="272"/>
+        <TopLine Value="125"/>
+        <CursorPos X="47" Y="138"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -218,7 +219,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="101"/>
+        <TopLine Value="98"/>
         <CursorPos X="3" Y="95"/>
         <UsageCount Value="202"/>
       </Unit17>
@@ -347,8 +348,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="607"/>
-        <CursorPos X="12" Y="624"/>
+        <TopLine Value="234"/>
+        <CursorPos X="3" Y="16"/>
         <UsageCount Value="201"/>
       </Unit28>
       <Unit29>
@@ -464,8 +465,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="533"/>
-        <CursorPos X="3" Y="556"/>
+        <TopLine Value="116"/>
+        <CursorPos X="63" Y="138"/>
         <UsageCount Value="200"/>
       </Unit38>
       <Unit39>
@@ -548,7 +549,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
         <TopLine Value="79"/>
-        <CursorPos X="56" Y="105"/>
+        <CursorPos X="67" Y="90"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -574,7 +575,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="6"/>
         <TopLine Value="84"/>
-        <CursorPos X="15" Y="97"/>
+        <CursorPos X="58" Y="96"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -623,6 +624,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
+        <TopLine Value="278"/>
+        <CursorPos X="52" Y="286"/>
         <UsageCount Value="200"/>
       </Unit51>
       <Unit52>
@@ -726,7 +729,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="162"/>
         <CursorPos X="3" Y="166"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="184"/>
       </Unit60>
       <Unit61>
         <Filename Value="UOchAddRezerwacjaSkype.pas"/>
@@ -738,7 +741,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="288"/>
         <CursorPos X="45" Y="307"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="165"/>
       </Unit61>
       <Unit62>
         <Filename Value="UOchAddRezerwacjaWidzen.pas"/>
@@ -748,7 +751,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="142"/>
+        <UsageCount Value="148"/>
       </Unit62>
       <Unit63>
         <Filename Value="UOchRezerwacjaWidzen.pas"/>
@@ -760,7 +763,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="153"/>
         <CursorPos Y="159"/>
-        <UsageCount Value="142"/>
+        <UsageCount Value="148"/>
       </Unit63>
       <Unit64>
         <Filename Value="UZdjEdycja.pas"/>
@@ -772,7 +775,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <CursorPos X="3" Y="89"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="58"/>
       </Unit64>
       <Unit65>
         <Filename Value="UZdjEdycjaZapisz.pas"/>
@@ -784,7 +787,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos Y="34"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="58"/>
       </Unit65>
       <Unit66>
         <Filename Value="UZdjWidok.pas"/>
@@ -794,9 +797,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="64"/>
-        <CursorPos Y="81"/>
-        <UsageCount Value="61"/>
+        <CursorPos X="60" Y="10"/>
+        <UsageCount Value="67"/>
       </Unit66>
       <Unit67>
         <Filename Value="UPaczkiZwroty.pas"/>
@@ -805,11 +807,10 @@
         <ComponentName Value="PaczkiZwroty"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="93"/>
         <CursorPos X="15" Y="47"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="46"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit67>
@@ -823,7 +824,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="74"/>
         <CursorPos X="20" Y="103"/>
-        <UsageCount Value="36"/>
+        <UsageCount Value="42"/>
       </Unit68>
       <Unit69>
         <Filename Value="UViewPaczki.pas"/>
@@ -835,7 +836,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="72"/>
         <CursorPos X="83" Y="98"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit69>
@@ -1569,7 +1570,7 @@
         <UsageCount Value="10"/>
       </Unit167>
     </Units>
-    <JumpHistory Count="6" HistoryIndex="5">
+    <JumpHistory Count="11" HistoryIndex="10">
       <Position1>
         <Filename Value="UOchForm.pas"/>
         <Caret Line="232" TopLine="208"/>
@@ -1594,6 +1595,26 @@
         <Filename Value="UMasterForm.pas"/>
         <Caret Line="869" Column="3" TopLine="852"/>
       </Position6>
+      <Position7>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="233" Column="42" TopLine="224"/>
+      </Position7>
+      <Position8>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="234" Column="42" TopLine="224"/>
+      </Position8>
+      <Position9>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="235" Column="42" TopLine="224"/>
+      </Position9>
+      <Position10>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="32" Column="20" TopLine="13"/>
+      </Position10>
+      <Position11>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="192" Column="20" TopLine="167"/>
+      </Position11>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

@@ -1,7 +1,7 @@
 object PenitWywiad: TPenitWywiad
-  Left = 328
+  Left = 342
   Height = 588
-  Top = 230
+  Top = 242
   Width = 910
   Caption = 'PenitWywiad'
   ClientHeight = 588
@@ -120,6 +120,7 @@ object PenitWywiad: TPenitWywiad
     Font.Quality = fqDraft
     Lines.Strings = (
       'Na podstawie art. 14§1 kkw uprzejmie proszę o sporządzenie wywiadu środowiskowego dotyczącego skazanego. W celu określenia prognozy kryminologiczno-społecznej skazanego, w wywiadzie proszę uwzględnić: jaką posiadał opinię w środowisku lokalnym, czy stosował się do zasad współżycia społecznego, czy nadużywał alkoholu.'
+      'W terminie do 30 dni.'
     )
     ParentFont = False
     ScrollBars = ssVertical

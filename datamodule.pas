@@ -65,6 +65,8 @@ type
     Station_Name_For_Widzenia: string;
     TimerInterval            : integer;
     Podpis                   : string;
+    isShortKeyCtrlP          : Boolean;
+    isShortKeyCtrlN          : Boolean;
     LastLogin                : TDateTime;
     IleRazy                  : integer;
 
@@ -187,7 +189,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.2.5';
+  wersja = '0.0.2.6';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -229,6 +231,9 @@ begin
   IniPropStorage1.IniFileName:= ExtractFilePath(ParamStr(0)) +'config.ini';
   ZConnection1.HostName:= IniPropStorage1.ReadString('HostName','serwer2');  // wczytujemy ustawienia z pliku lub domyślne.
   ZConnection1.Port    := IniPropStorage1.ReadInteger('Port',    3306);
+  isShortKeyCtrlP      := IniPropStorage1.ReadBoolean('ShortKey_Ctrl+P', true);
+  isShortKeyCtrlN      := IniPropStorage1.ReadBoolean('ShortKey_Ctrl+N', true);
+
 
   fStatusList:= TStringList.Create;
   fStatusList.Text:=

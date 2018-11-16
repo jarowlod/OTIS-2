@@ -267,10 +267,12 @@ begin
   RefreshUprawnienia;
 
   // -------------------- dodajemy globalny skrót dla NOE :)
-  hotkey_ctrl_n:= GlobalAddAtom('OTIS_ctrl_n');
-  RegisterHotKey(Handle, hotkey_ctrl_n, MOD_CONTROL, VK_N);  // wstawia nazwisko
+  if DM.isShortKeyCtrlN then begin
+    hotkey_ctrl_n:= GlobalAddAtom('OTIS_ctrl_n');
+    RegisterHotKey(Handle, hotkey_ctrl_n, MOD_CONTROL, VK_N);  // wstawia nazwisko
+  end;
 
-  if DM.Podpis<>'' then begin
+  if (DM.isShortKeyCtrlP)and(DM.Podpis<>'') then begin
     hotkey_ctrl_p:= GlobalAddAtom('OTIS_ctrl_p');
     RegisterHotKey(Handle, hotkey_ctrl_p, MOD_CONTROL,  VK_P); // wstawia podpis jeśli jest
   end;
@@ -279,10 +281,12 @@ end;
 procedure TMasterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   //------------ zwalniam globalny skrót
-  UnregisterHotKey(Handle, hotkey_ctrl_n);
-  GlobalDeleteAtom(hotkey_ctrl_n);
+  if DM.isShortKeyCtrlN then begin
+    UnregisterHotKey(Handle, hotkey_ctrl_n);
+    GlobalDeleteAtom(hotkey_ctrl_n);
+  end;
 
-  if DM.Podpis<>'' then begin
+  if (DM.isShortKeyCtrlP)and(DM.Podpis<>'') then begin
     UnregisterHotKey(Handle, hotkey_ctrl_p);
     GlobalDeleteAtom(hotkey_ctrl_p);
   end;
