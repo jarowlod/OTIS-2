@@ -89,129 +89,140 @@ begin
   btnWczytajSchowek.Enabled:= false;
   Memo1.ReadOnly:= true;
   Memo1.Lines.Clear;
-  // dodajemy uzytkownika do tabeli synchro
-  DodajUzytkownikaSynchro;
 
-  ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT IDO, NAZWISKO, IMIE, OJCIEC, KLASYF, POC, URODZ, PRZYJ, STATUS FROM osadzeni;';
-  ZQPom.Open;
-  ZQPom.First;
+  DM.ZConnection1.StartTransaction;
+  try
+    try
+      // dodajemy uzytkownika do tabeli synchro
+      DodajUzytkownikaSynchro;
 
-  Uaktualnione:=0;
-  Zma:=0;
-  ZQPom.DisableControls;
-  MemDataset1.DisableControls;
+      ZQPom:= TZQueryPom.Create(Self);
+      ZQPom.SQL.Text:= 'SELECT IDO, NAZWISKO, IMIE, OJCIEC, KLASYF, POC, URODZ, PRZYJ, STATUS FROM osadzeni;';
+      ZQPom.Open;
+      ZQPom.First;
 
-  while not ZQPom.Eof do    // <-- aktualizacja, znaczniki delete
-  begin
-    MemDataset1.First;
-    koniec:= false;
-    Application.ProcessMessages;  // nie zawieszamy programu
+      Uaktualnione:=0;
+      Zma:=0;
+      ZQPom.DisableControls;
+      MemDataset1.DisableControls;
 
-    while (not MemDataset1.Eof) and (not koniec) do
-    begin
-      if MemDataset1.FieldByName('IDO').AsInteger = ZQPom.FieldByName('IDO').AsInteger then
+      while not ZQPom.Eof do    // <-- aktualizacja, znaczniki delete
       begin
-        // aktualizacja danych
-          ZQPom.Edit;
-          if ZQPom.FieldByName('NAZWISKO').AsString<>MemDataset1.FieldByName('NAZWISKO').AsString then begin ZQPom.FieldByName('NAZWISKO').AsString:= MemDataset1.FieldByName('NAZWISKO').AsString; Zma:=1; end;
-          if ZQPom.FieldByName('IMIE').AsString    <>MemDataset1.FieldByName('IMIE').AsString     then begin ZQPom.FieldByName('IMIE').AsString    := MemDataset1.FieldByName('IMIE').AsString;     Zma:=1; end;
-          if ZQPom.FieldByName('OJCIEC').AsString  <>MemDataset1.FieldByName('OJCIEC').AsString   then begin ZQPom.FieldByName('OJCIEC').AsString  := MemDataset1.FieldByName('OJCIEC').AsString;   Zma:=1; end;
-          if ZQPom.FieldByName('KLASYF').AsString  <>MemDataset1.FieldByName('KLASYF').AsString   then begin ZQPom.FieldByName('KLASYF').AsString  := MemDataset1.FieldByName('KLASYF').AsString;   Zma:=1; end;
-          if ZQPom.FieldByName('POC').AsString     <>MemDataset1.FieldByName('POC').AsString      then
-                  begin
-                    Memo1.Lines.Add( MemDataset1.FieldByName('IDO').AsString +' '
-                        +ZQPom.FieldByName('Nazwisko').AsString+' '
-                        +ZQPom.FieldByName('POC').AsString+' -> ' + MemDataset1.FieldByName('POC').AsString);
-                    ZQPom.FieldByName('POC').AsString:= MemDataset1.FieldByName('POC').AsString;
-                    Zma:=1;
-                  end;
-          //if FieldByName('URODZ').AsDateTime <>dane[i].Urodzony then begin FieldByName('URODZ').AsDateTime :=dane[i].Urodzony; Zma:=1; end;
-          if ZQPom.FieldByName('PRZYJ').AsDateTime <>MemDataset1.FieldByName('PRZYJ').AsDateTime then begin ZQPom.FieldByName('PRZYJ').AsDateTime := MemDataset1.FieldByName('PRZYJ').AsDateTime; Zma:=1; end;
-          if ZQPom.FieldByName('STATUS').AsString  <>MemDataset1.FieldByName('STATUS').AsString  then begin ZQPom.FieldByName('STATUS').AsString  := MemDataset1.FieldByName('STATUS').AsString;  Zma:=1; end;
+        MemDataset1.First;
+        koniec:= false;
+        Application.ProcessMessages;  // nie zawieszamy programu
 
-          if Zma=1 then ZQPom.Post else ZQPom.Cancel;
+        while (not MemDataset1.Eof) and (not koniec) do
+        begin
+          if MemDataset1.FieldByName('IDO').AsInteger = ZQPom.FieldByName('IDO').AsInteger then
+          begin
+            // aktualizacja danych
+              ZQPom.Edit;
+              if ZQPom.FieldByName('NAZWISKO').AsString<>MemDataset1.FieldByName('NAZWISKO').AsString then begin ZQPom.FieldByName('NAZWISKO').AsString:= MemDataset1.FieldByName('NAZWISKO').AsString; Zma:=1; end;
+              if ZQPom.FieldByName('IMIE').AsString    <>MemDataset1.FieldByName('IMIE').AsString     then begin ZQPom.FieldByName('IMIE').AsString    := MemDataset1.FieldByName('IMIE').AsString;     Zma:=1; end;
+              if ZQPom.FieldByName('OJCIEC').AsString  <>MemDataset1.FieldByName('OJCIEC').AsString   then begin ZQPom.FieldByName('OJCIEC').AsString  := MemDataset1.FieldByName('OJCIEC').AsString;   Zma:=1; end;
+              if ZQPom.FieldByName('KLASYF').AsString  <>MemDataset1.FieldByName('KLASYF').AsString   then begin ZQPom.FieldByName('KLASYF').AsString  := MemDataset1.FieldByName('KLASYF').AsString;   Zma:=1; end;
+              if ZQPom.FieldByName('POC').AsString     <>MemDataset1.FieldByName('POC').AsString      then
+                      begin
+                        Memo1.Lines.Add( MemDataset1.FieldByName('IDO').AsString +' '
+                            +ZQPom.FieldByName('Nazwisko').AsString+' '
+                            +ZQPom.FieldByName('POC').AsString+' -> ' + MemDataset1.FieldByName('POC').AsString);
+                        ZQPom.FieldByName('POC').AsString:= MemDataset1.FieldByName('POC').AsString;
+                        Zma:=1;
+                      end;
+              //if FieldByName('URODZ').AsDateTime <>dane[i].Urodzony then begin FieldByName('URODZ').AsDateTime :=dane[i].Urodzony; Zma:=1; end;
+              if ZQPom.FieldByName('PRZYJ').AsDateTime <>MemDataset1.FieldByName('PRZYJ').AsDateTime then begin ZQPom.FieldByName('PRZYJ').AsDateTime := MemDataset1.FieldByName('PRZYJ').AsDateTime; Zma:=1; end;
+              if ZQPom.FieldByName('STATUS').AsString  <>MemDataset1.FieldByName('STATUS').AsString  then begin ZQPom.FieldByName('STATUS').AsString  := MemDataset1.FieldByName('STATUS').AsString;  Zma:=1; end;
 
-        // koniec aktualizacji danych
-        // wyrzuca zaktualizowane dane z tabeli
-        MemDataset1.Delete;
-        koniec:=true; // wyjście z pętli
-        Uaktualnione:= Uaktualnione+Zma;   // zwiekaszamy jesli bylo bylo uaktualnienie
-        Zma:=0;
-      end
-      else
+              if Zma=1 then ZQPom.Post else ZQPom.Cancel;
+
+            // koniec aktualizacji danych
+            // wyrzuca zaktualizowane dane z tabeli
+            MemDataset1.Delete;
+            koniec:=true; // wyjście z pętli
+            Uaktualnione:= Uaktualnione+Zma;   // zwiekaszamy jesli było uaktualnienie
+            Zma:=0;
+          end
+          else
+            MemDataset1.Next;
+        end;  //while
+
+        if not koniec then    // nie znalazł osadzonego wiec go kasujemy
+          if not (ZQPom.FieldByName('POC').AsString = 'ubył') then
+          begin
+            Memo1.Lines.Add( ZQPom.FieldByName('IDO').AsString+ ' '
+                            +ZQPom.FieldByName('Nazwisko').AsString+ ' '
+                            +ZQPom.FieldByName('POC').AsString+' -> ' +'ubył');
+            ZQPom.Edit;
+            ZQPom.FieldByName('POC').AsString:= 'ubył';  //znacznik aby potem skasować hurtem
+            ZQPom.Post;
+          end;
+
+        ZQPom.Next;
+      end;  //while  aktualizacja, znaczniki delete
+
+      Memo2.Lines.Add( IntToStr(Uaktualnione)+' - osadzonych zaktualizowanych.');
+
+      i:=0;
+      ZQPom.Close;
+      ZQPom.SQL.Text:= 'INSERT INTO osadzeni (IDO, NAZWISKO, IMIE, OJCIEC, URODZ, PRZYJ, KLASYF, POC, ID_SYNCHRO, STATUS) VALUES (:IDO, :NAZWISKO, :IMIE, :OJCIEC, :URODZ, :PRZYJ, :KLASYF, :POC, :ID_SYNCHRO, :STATUS);';
+      MemDataset1.First;
+      while not MemDataset1.eof do     // <-- dopisujemy nowych
+      begin
+          inc(i);
+          Application.ProcessMessages;  // nie zawieszamy programu
+          Memo1.Lines.Add( MemDataset1.FieldByName('IDO').AsString+' '
+                            +MemDataset1.FieldByName('NAZWISKO').AsString+' '
+                            +MemDataset1.FieldByName('POC').AsString+' nowy');
+          ZQPom.ParamByName('IDO').AsInteger     := MemDataset1.FieldByName('IDO').AsInteger;
+          ZQPom.ParamByName('NAZWISKO').AsString := MemDataset1.FieldByName('NAZWISKO').AsString;
+          ZQPom.ParamByName('IMIE').AsString     := MemDataset1.FieldByName('IMIE').AsString;
+          ZQPom.ParamByName('OJCIEC').AsString   := MemDataset1.FieldByName('OJCIEC').AsString;
+          ZQPom.ParamByName('URODZ').AsDate      := MemDataset1.FieldByName('URODZ').AsDateTime;
+          ZQPom.ParamByName('PRZYJ').AsDate      := MemDataset1.FieldByName('PRZYJ').AsDateTime;
+          ZQPom.ParamByName('KLASYF').AsString   := MemDataset1.FieldByName('KLASYF').AsString;
+          ZQPom.ParamByName('POC').AsString      := MemDataset1.FieldByName('POC').AsString;
+          ZQPom.ParamByName('STATUS').AsString   := MemDataset1.FieldByName('STATUS').AsString;
+          ZQPom.ParamByName('ID_SYNCHRO').AsInteger:= ID_Synchro;
+          ZQPom.ExecSQL;
+
         MemDataset1.Next;
-    end;  //while
+      end;                  // koniec dopisywania
+      Memo2.Lines.Add(IntToStr(i)+' - osadzonych dopisanych.');
+          // alternatywne rozwiązanie zapisania Opisu do DB
+          //
+          //ZQPom.SQL.Text:= 'SELECT ID, Opis FROM synchro WHERE ID=:id';
+          //ZQPom.ParamByName('id').AsInteger:= ID_Synchro;
+          //ZQPom.Open;
+          //ZQPom.Edit;
+          //ZQPom.FieldByName('Opis').AsString:= Memo1.Text;
+          //ZQPom.Post;
+          //ZQPom.Close;
+          // -----------------------------------------------
 
-    if not koniec then    // nie znalazł osadzonego wiec go kasujemy
-      if not (ZQPom.FieldByName('POC').AsString = 'ubył') then
-      begin
-        Memo1.Lines.Add( ZQPom.FieldByName('IDO').AsString+ ' '
-                        +ZQPom.FieldByName('Nazwisko').AsString+ ' '
-                        +ZQPom.FieldByName('POC').AsString+' -> ' +'ubył');
-        ZQPom.Edit;
-        ZQPom.FieldByName('POC').AsString:= 'ubył';  //znacznik aby potem skasować hurtem
-        ZQPom.Post;
-      end;
+          ZQPom.SQL.Text:= 'UPDATE synchro SET opis=:opis WHERE ID=:id;';
+          ZQPom.ParamByName('id').AsInteger := ID_Synchro;
+          ZQPom.ParamByName('opis').AsString:= Memo1.Text;  // zapis przez ParamByName('opis').AsMemo powoduje błąd
+          ZQPom.ExecSQL;
 
-    ZQPom.Next;
-  end;  //while  aktualizacja, znaczniki delete
+      MemDataset1.EnableControls;
+      btnWczytajSchowek.Enabled:= true;
+      Memo1.ReadOnly:= true;
+      Memo2.Lines.Add('Aktualizacja zakończona.');
 
-  Memo2.Lines.Add( IntToStr(Uaktualnione)+' - osadzonych zaktualizowanych.');
-
-  i:=0;
-  ZQPom.Close;
-  ZQPom.SQL.Text:= 'INSERT INTO osadzeni (IDO, NAZWISKO, IMIE, OJCIEC, URODZ, PRZYJ, KLASYF, POC, ID_SYNCHRO, STATUS) VALUES (:IDO, :NAZWISKO, :IMIE, :OJCIEC, :URODZ, :PRZYJ, :KLASYF, :POC, :ID_SYNCHRO, :STATUS);';
-  MemDataset1.First;
-  while not MemDataset1.eof do     // <-- dopisujemy nowych
-  begin
-      inc(i);
-      Application.ProcessMessages;  // nie zawieszamy programu
-      Memo1.Lines.Add( MemDataset1.FieldByName('IDO').AsString+' '
-                        +MemDataset1.FieldByName('NAZWISKO').AsString+' '
-                        +MemDataset1.FieldByName('POC').AsString+' nowy');
-      ZQPom.ParamByName('IDO').AsInteger     := MemDataset1.FieldByName('IDO').AsInteger;
-      ZQPom.ParamByName('NAZWISKO').AsString := MemDataset1.FieldByName('NAZWISKO').AsString;
-      ZQPom.ParamByName('IMIE').AsString     := MemDataset1.FieldByName('IMIE').AsString;
-      ZQPom.ParamByName('OJCIEC').AsString   := MemDataset1.FieldByName('OJCIEC').AsString;
-      ZQPom.ParamByName('URODZ').AsDate      := MemDataset1.FieldByName('URODZ').AsDateTime;
-      ZQPom.ParamByName('PRZYJ').AsDate      := MemDataset1.FieldByName('PRZYJ').AsDateTime;
-      ZQPom.ParamByName('KLASYF').AsString   := MemDataset1.FieldByName('KLASYF').AsString;
-      ZQPom.ParamByName('POC').AsString      := MemDataset1.FieldByName('POC').AsString;
-      ZQPom.ParamByName('STATUS').AsString   := MemDataset1.FieldByName('STATUS').AsString;
-      ZQPom.ParamByName('ID_SYNCHRO').AsInteger:= ID_Synchro;
-      ZQPom.ExecSQL;
-
-    MemDataset1.Next;
-  end;                  // koniec dopisywania
-  Memo2.Lines.Add(IntToStr(i)+' - osadzonych dopisanych.');
-      // alternatywne rozwiązanie zapisania Opisu do DB
+      // Usuwamy os_info takie które zostały ponownie przyjęte data przyjęcia jest większa od daty autoryzacji
       //
-      //ZQPom.SQL.Text:= 'SELECT ID, Opis FROM synchro WHERE ID=:id';
-      //ZQPom.ParamByName('id').AsInteger:= ID_Synchro;
-      //ZQPom.Open;
-      //ZQPom.Edit;
-      //ZQPom.FieldByName('Opis').AsString:= Memo1.Text;
-      //ZQPom.Post;
-      //ZQPom.Close;
-      // -----------------------------------------------
+      // ZQPom.SQL.Text:= 'DELETE FROM os_info WHERE IDO in (SELECT os.IDO FROM os_info as inf JOIN osadzeni as os ON os.IDO=inf.IDO WHERE os.PRZYJ > inf.data_autoryzacji)';
+      // ZQPom.ExecSQL;
 
-      ZQPom.SQL.Text:= 'UPDATE synchro SET opis=:opis WHERE ID=:id;';
-      ZQPom.ParamByName('id').AsInteger := ID_Synchro;
-      ZQPom.ParamByName('opis').AsString:= Memo1.Text;  // zapis przez ParamByName('opis').AsMemo powoduje błąd
-      ZQPom.ExecSQL;
-
-  MemDataset1.EnableControls;
-  btnWczytajSchowek.Enabled:= true;
-  Memo1.ReadOnly:= true;
-  Memo2.Lines.Add('Aktualizacja zakończona.');
-
-  // Usuwamy os_info takie które zostały ponownie przyjęte data przyjęcia jest większa od daty autoryzacji
-  //
-  // ZQPom.SQL.Text:= 'DELETE FROM os_info WHERE IDO in (SELECT os.IDO FROM os_info as inf JOIN osadzeni as os ON os.IDO=inf.IDO WHERE os.PRZYJ > inf.data_autoryzacji)';
-  // ZQPom.ExecSQL;
-
-  FreeAndNil(ZQPom);
+      DM.ZConnection1.Commit;
+    finally
+      FreeAndNil( ZQPom);
+    end;
+  Except
+    DM.ZConnection1.Rollback;
+    raise;
+  end;
 end;
 
 procedure TAktualizacjaOs.WczytajDaneMemo;
@@ -289,7 +300,12 @@ begin
 
   // dzielimy tekst po znaczniku <TR>, jest to liczba wierszy z danymi i zapisujemy do daneHTML
   poz:= SplitString('<TR>', s, daneHTML, 0);
-  if poz<=10 then exit;  // wartość 10 jest przykładowa, nie mniej niż 10 pozycji zapobiega omyłkowemu wklejenu danych
+  if poz<=100 then  // wartość 100 jest przykładowa, nie mniej niż 10 pozycji zapobiega omyłkowemu wklejenu danych
+  begin
+    Memo2.Lines.Add('Za mała liczba osadzonych do wstawienia. Żle wklejone dane.');
+    exit;
+  end;
+
 
   s:='';
   st:= TStringList.Create;

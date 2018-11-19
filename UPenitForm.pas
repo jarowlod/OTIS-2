@@ -8,7 +8,8 @@ uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate,
   Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
   StdCtrls, Buttons, ComCtrls, rxdbutils, rxdbgrid, UZatrudnieni,
-  UViewUwagiOch, UViewWykazy, UViewZatrudnienie, datamodule;
+  UViewUwagiOch, UViewWykazy, UViewZatrudnienie, UViewWidzenia, UViewOsobyBliskie, UViewPaczki,
+  datamodule, DBDateTimePicker;
 
 type
 
@@ -71,6 +72,9 @@ type
     Panel4: TPanel;
     Panel_Zdj: TPanel;
     btnDodajDoKoszyka: TSpeedButton;
+    TabSheetPaczki: TTabSheet;
+    TabSheetOsobyBliskie: TTabSheet;
+    TabSheetWidzenia: TTabSheet;
     TabSheetUwagi: TTabSheet;
     TabSheetWykazy: TTabSheet;
     TabSheetNotatnik: TTabSheet;
@@ -101,6 +105,9 @@ type
     fViewUwagiOch: TViewUwagiOch;
     fViewWykazy  : TViewWykazy;
     fViewZatrudnienie: TViewZatrudnienie;
+    fViewWidzenia    : TViewWidzenia;
+    fViewOsobyBliskie: TViewOsobyBliskie;
+    fViewPaczki      : TViewPaczki;
 
     procedure WczytajTypCeli;
     procedure SetIdoToActiveTab;
@@ -139,9 +146,21 @@ begin
   fViewWykazy.Parent:= TabSheetWykazy;
   fViewWykazy.Show;
 
-  fViewUwagiOch:= TViewUwagiOch.Create(Self); //CreateParented//(TabSheet1.Handle);
+  fViewUwagiOch:= TViewUwagiOch.Create(Self); //CreateParented//(TabSheetWidzenia.Handle);
   fViewUwagiOch.Parent:= TabSheetUwagi;
   fViewUwagiOch.Show;
+
+  fViewWidzenia:= TViewWidzenia.Create(Self);
+  fViewWidzenia.Parent:= TabSheetWidzenia;
+  fViewWidzenia.Show;
+
+  fViewOsobyBliskie:= TViewOsobyBliskie.Create(Self);
+  fViewOsobyBliskie.Parent:= TabSheetOsobyBliskie;
+  fViewOsobyBliskie.Show;
+
+  fViewPaczki:= TViewPaczki.Create(Self);
+  fViewPaczki.Parent:= TabSheetPaczki;
+  fViewPaczki.Show;
 
   DM.DataSetList.Add(ZQOs);
   DM.DataSetList.Add(ZQOsInfo);
@@ -155,6 +174,9 @@ begin
   FreeAndNil(fViewUwagiOch);
   FreeAndNil(fViewWykazy);
   FreeAndNil(fViewZatrudnienie);
+  FreeAndNil(fViewWidzenia);
+  FreeAndNil(fViewOsobyBliskie);
+  FreeAndNil(fViewPaczki);
 
   DM.DataSetList.Remove(ZQOs);
   DM.DataSetList.Remove(ZQOsInfo);
@@ -269,6 +291,9 @@ begin
     'TabSheetUwagi'       : fViewUwagiOch.SetIDO(SelectIDO);
     'TabSheetWykazy'      : fViewWykazy.SetIDO(SelectIDO);
     'TabSheetZatrudnienie': fViewZatrudnienie.SetIDO(SelectIDO);
+    'TabSheetWidzenia'    : fViewWidzenia.SetIDO(SelectIDO);
+    'TabSheetOsobyBliskie': fViewOsobyBliskie.SetIDO(SelectIDO);
+    'TabSheetPaczki'      : fViewPaczki.SetIDO(SelectIDO);
   end;
 end;
 

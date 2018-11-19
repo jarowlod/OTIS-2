@@ -6,8 +6,9 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  DbCtrls, StdCtrls, ComCtrls, Buttons, datamodule, db, ZDataset, UViewUwagiOch,
-  UViewWykazy, UViewZatrudnienie, UViewWidzenia, UViewOsobyBliskie, UViewPaczki;
+  DbCtrls, StdCtrls, ComCtrls, Buttons, db, ZDataset, UViewUwagiOch,
+  UViewWykazy, UViewZatrudnienie, UViewWidzenia, UViewOsobyBliskie, UViewPaczki,
+  datamodule;
 
 type
 
@@ -52,6 +53,7 @@ type
     ZQOs: TZQuery;
     procedure btnDodajProsbeClick(Sender: TObject);
     procedure btnDodajWidzenieClick(Sender: TObject);
+    procedure btnDodajZwrotPaczkiClick(Sender: TObject);
     procedure btnRejestrProsbClick(Sender: TObject);
     procedure btnRejestrZatClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -80,7 +82,7 @@ type
 //  OchForm: TOchForm;
 
 implementation
-uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie, URejestrProsbDodaj, UKomunikatorNowaWiad, UZdjWidok;
+uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie, URejestrProsbDodaj, UKomunikatorNowaWiad, UZdjWidok, UPaczkiZwrotyAdd;
 {$R *.frm}
 
 { TOchForm }
@@ -262,6 +264,16 @@ begin
   with TOchAddWidzenie.Create(Self) do
   begin
        DodajOsadzonegoDoPoczekalni( SelectIDO );
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TOchForm.btnDodajZwrotPaczkiClick(Sender: TObject);
+begin
+  with TPaczkiZwrotyAdd.Create(Self) do
+  begin
+       SetIDO( SelectIDO );
        ShowModal;
        Free;
   end;

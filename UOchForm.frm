@@ -543,6 +543,7 @@ object OchForm: TOchForm
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF004DB4D82B4BB2D8AF4AB0D7BC48AE
           D631FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
+        OnClick = btnDodajZwrotPaczkiClick
         TabOrder = 6
       end
     end
@@ -566,7 +567,6 @@ object OchForm: TOchForm
     object TabSheetWykazy: TTabSheet
       Caption = 'Wykazy'
       ImageIndex = 26
-      TabVisible = False
     end
     object TabSheetWidzenia: TTabSheet
       Caption = 'Widzenia'

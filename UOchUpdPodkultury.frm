@@ -1,14 +1,14 @@
 object OchUpdPodkultury: TOchUpdPodkultury
-  Left = 396
+  Left = 342
   Height = 531
-  Top = 222
+  Top = 242
   Width = 645
   Caption = 'Aktualizacja uczestników podkultury'
   ClientHeight = 531
   ClientWidth = 645
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 50

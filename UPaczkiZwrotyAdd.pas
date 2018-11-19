@@ -53,7 +53,7 @@ type
     SelectIDO: integer;
     procedure WczytajDaneOsadzonego;
   public
-
+    procedure SetIDO(IDO: integer);
   end;
 
 var
@@ -142,6 +142,12 @@ begin
       FreeAndNil(ZQPom);
     end;
   end;
+end;
+
+procedure TPaczkiZwrotyAdd.SetIDO(IDO: integer);
+begin
+  SelectIDO:= IDO;
+  WczytajDaneOsadzonego;
 end;
 
 end.

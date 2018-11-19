@@ -931,6 +931,18 @@ object PenitForm: TPenitForm
       Caption = 'Uwagi i Polecenia'
       ImageIndex = 28
     end
+    object TabSheetWidzenia: TTabSheet
+      Caption = 'Widzenia'
+      ImageIndex = 21
+    end
+    object TabSheetOsobyBliskie: TTabSheet
+      Caption = 'Osoby uprawnione'
+      ImageIndex = 8
+    end
+    object TabSheetPaczki: TTabSheet
+      Caption = 'Paczki'
+      ImageIndex = 11
+    end
   end
   object DSOsInfo: TDataSource
     DataSet = ZQOsInfo

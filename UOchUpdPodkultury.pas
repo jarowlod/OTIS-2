@@ -139,14 +139,12 @@ begin
     ZQ.SQL.Text:= 'INSERT INTO os_info (IDO, GR) SELECT IDO, 0 FROM osadzeni WHERE IDO not in (SELECT IDO FROM os_info)';
     ZQ.ExecSQL;
     //---
-  finally
-    FreeAndNil(ZQ);
-
     // Aktualizacja wykazu osadzonych grypsujących
     AktualizacjaWykazuGR;
-
-    Screen.Cursor:= crDefault;
     MessageDlg('Aktualizacja zakończona poprawnie.', mtInformation, [mbOK],0);
+  finally
+    FreeAndNil(ZQ);
+    Screen.Cursor:= crDefault;
   end;
 end;
 
