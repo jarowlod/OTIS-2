@@ -186,6 +186,7 @@ type
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
     procedure ActionNoeNetTestExecute(Sender: TObject);
     procedure ActionNowyKoszykExecute(Sender: TObject);
+    procedure ActionPaczkiDodajExecute(Sender: TObject);
     procedure ActionProsbyOsadzonegoExecute(Sender: TObject);
     procedure ActionProsbyOsadzonychExecute(Sender: TObject);
     procedure ActionRejestrWidzenExecute(Sender: TObject);
@@ -253,7 +254,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UZdjAktualizacjaZdjec,
      UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype,
-     UPaczkiZwroty;
+     UPaczkiZwroty, UPaczkiAdd;
 {$R *.frm}
 
 { TMasterForm }
@@ -386,6 +387,7 @@ end;
 
 procedure TMasterForm.ActionDodajOsobeBliskaExecute(Sender: TObject);
 begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TOchAddOsobeWidzenie.Create(Self) do
   begin
     DodajOsobe(DM.ZQOsadzeni.FieldByName('IDO').AsInteger);
@@ -398,6 +400,17 @@ procedure TMasterForm.ActionNowyKoszykExecute(Sender: TObject);
 begin
   with TKoszykNowy.Create(Self) do
   begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.ActionPaczkiDodajExecute(Sender: TObject);
+begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
+  with TPaczkiAdd.Create(Self) do
+  begin
+       SetIDO( DM.ZQOsadzeni.FieldByName('IDO').AsInteger );
        ShowModal;
        Free;
   end;

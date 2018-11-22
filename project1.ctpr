@@ -145,7 +145,7 @@
         <PackageName Value="adLCL"/>
       </Item32>
     </RequiredPackages>
-    <Units Count="70">
+    <Units Count="71">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -698,6 +698,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit69>
+      <Unit70>
+        <Filename Value="UPaczkiAdd.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="PaczkiAdd"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit70>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

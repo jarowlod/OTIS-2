@@ -201,6 +201,7 @@ const
   sz_Oczekujacy  = 'oczekujący';
   sz_Zatrudniony = 'zatrudniony';
   sz_Wycofany    = 'wycofany';
+  sz_Odmowa      = 'odmowa';  // TODO: do wdrożenia
 // END ZATRUDNIENIE ------------------
 
 // ETAPY WIDZENIA --------------------
@@ -208,6 +209,13 @@ const
   ew_NaSali       = 2;
   ew_Zrealizowane = 3;
 // END ETAPY WIDZENIA
+
+// PACZKI rodzaj paczki
+  rp_Zywnosciowa = 'żywnościowa';
+  rp_Higieniczna = 'higieniczna';
+  rp_Odziezowa   = 'odzieżowa';
+  rp_HigOdziez   = 'hig/odzieżowa';
+// END PACZKI
 
 implementation
 uses strutils, UKoszykNowy, UMasterForm, ULogowanie;

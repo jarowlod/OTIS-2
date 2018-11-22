@@ -1,33 +1,86 @@
-object PaczkiZwrotyAdd: TPaczkiZwrotyAdd
+object PaczkiAdd: TPaczkiAdd
   Left = 342
-  Height = 437
+  Height = 548
   Top = 242
-  Width = 564
-  Caption = 'Zarejestruj zwrot paczki.'
-  ClientHeight = 437
-  ClientWidth = 564
-  Constraints.MinHeight = 437
-  Constraints.MinWidth = 564
+  Width = 471
+  Caption = 'Zarejestruj nową paczkę'
+  ClientHeight = 548
+  ClientWidth = 471
   OnCreate = FormCreate
-  Position = poScreenCenter
   LCLVersion = '6.6'
+  object Panel2: TPanel
+    Left = 0
+    Height = 40
+    Top = 508
+    Width = 471
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 40
+    ClientWidth = 471
+    TabOrder = 0
+    object btnOK: TBitBtn
+      Left = 254
+      Height = 30
+      Top = 0
+      Width = 100
+      Anchors = [akTop, akRight]
+      DefaultCaption = True
+      Enabled = False
+      Kind = bkOK
+      ModalResult = 1
+      OnClick = btnOKClick
+      TabOrder = 0
+    end
+    object btnAnuluj: TBitBtn
+      Left = 365
+      Height = 30
+      Top = 0
+      Width = 100
+      Anchors = [akTop, akRight]
+      Cancel = True
+      DefaultCaption = True
+      Kind = bkCancel
+      ModalResult = 2
+      TabOrder = 1
+    end
+    object Label9: TLabel
+      Left = 8
+      Height = 15
+      Top = 16
+      Width = 5
+      Caption = '*'
+      Font.Color = clRed
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Left = 16
+      Height = 15
+      Top = 16
+      Width = 87
+      Caption = 'Pola wymagane.'
+      Font.Color = clGray
+      ParentColor = False
+      ParentFont = False
+    end
+  end
   object Panel5: TPanel
     Left = 0
     Height = 50
     Top = 0
-    Width = 564
+    Width = 471
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 50
-    ClientWidth = 564
+    ClientWidth = 471
     Color = clWhite
     ParentColor = False
-    TabOrder = 0
+    TabOrder = 1
     object plGradient2: TplGradient
       Left = 0
       Height = 50
       Top = 0
-      Width = 564
+      Width = 471
       Align = alClient
       BevelWidth = 1
       BevelStyle = bvNone
@@ -42,8 +95,8 @@ object PaczkiZwrotyAdd: TPaczkiZwrotyAdd
       Left = 64
       Height = 19
       Top = 16
-      Width = 200
-      Caption = 'Rejestracja zwrotu paczki.'
+      Width = 185
+      Caption = 'Zarejestruj nową paczkę'
       Font.CharSet = EASTEUROPE_CHARSET
       Font.Color = 16731983
       Font.Height = -16
@@ -434,426 +487,135 @@ object PaczkiZwrotyAdd: TPaczkiZwrotyAdd
       Stretch = True
     end
   end
-  object Panel2: TPanel
-    Left = 0
-    Height = 40
-    Top = 397
-    Width = 564
-    Align = alBottom
-    BevelOuter = bvNone
-    ClientHeight = 40
-    ClientWidth = 564
-    TabOrder = 1
-    object btnOK: TBitBtn
-      Left = 347
-      Height = 30
-      Top = 0
-      Width = 100
-      Anchors = [akTop, akRight]
-      DefaultCaption = True
-      Enabled = False
-      Kind = bkOK
-      ModalResult = 1
-      OnClick = btnOKClick
-      TabOrder = 0
-    end
-    object btnAnuluj: TBitBtn
-      Left = 458
-      Height = 30
-      Top = 0
-      Width = 100
-      Anchors = [akTop, akRight]
-      Cancel = True
-      DefaultCaption = True
-      Kind = bkCancel
-      ModalResult = 2
-      OnClick = btnAnulujClick
-      TabOrder = 1
-    end
-    object Label9: TLabel
-      Left = 8
-      Height = 15
-      Top = 16
-      Width = 5
-      Caption = '*'
-      Font.Color = clRed
-      ParentColor = False
-      ParentFont = False
-    end
-    object Label11: TLabel
-      Left = 16
-      Height = 15
-      Top = 16
-      Width = 87
-      Caption = 'Pola wymagane.'
-      Font.Color = clGray
-      ParentColor = False
-      ParentFont = False
-    end
-  end
-  object btnOsadzony: TBitBtn
-    Left = 384
-    Height = 40
-    Top = 64
-    Width = 176
-    Caption = 'Znajdź  i wstaw osadzonego'
-    Images = DM.ImageList1
-    ImageIndex = 5
-    OnClick = btnOsadzonyClick
-    TabOrder = 2
-  end
   object Label2: TLabel
-    Left = 16
+    Left = 8
     Height = 15
-    Top = 72
-    Width = 50
-    Caption = 'Nazwisko'
-    ParentColor = False
-  end
-  object Label3: TLabel
-    Left = 16
-    Height = 15
-    Top = 96
-    Width = 23
-    Caption = 'Imię'
-    ParentColor = False
-  end
-  object Label4: TLabel
-    Left = 16
-    Height = 15
-    Top = 120
-    Width = 48
-    Caption = 'Imię ojca'
-    ParentColor = False
-  end
-  object Label5: TLabel
-    Left = 16
-    Height = 15
-    Top = 144
-    Width = 63
-    Caption = 'Data zwrotu'
-    ParentColor = False
-  end
-  object GroupBox1: TGroupBox
-    Left = 4
-    Height = 214
     Top = 168
-    Width = 556
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    Caption = 'Przyczyna zwrotu paczki'
-    ClientHeight = 194
-    ClientWidth = 552
-    TabOrder = 3
-    object DBOpisMemo: TDBMemo
-      Left = 8
-      Height = 128
-      Top = 8
-      Width = 533
-      Anchors = [akTop, akLeft, akRight, akBottom]
-      Color = 14286847
-      DataField = 'Opis'
-      DataSource = DSZwrotyAdd
-      OnChange = DBNazwiskoChange
-      ScrollBars = ssAutoBoth
-      TabOrder = 0
-    end
-    object SpeedButton1: TSpeedButton
-      Left = 8
-      Height = 22
-      Top = 142
-      Width = 184
-      Anchors = [akLeft, akBottom]
-      Caption = 'Przekroczony ciężar paczki,'
-      Flat = True
-      Glyph.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-        FF00FFFFFF0038843EFF35803BFF327C38FF2F7835FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003B8942FF7EC383FF7BC282FF337C38FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003F8D46FF81C587FF7EC385FF539C59FF337D398FFFFFFF00FFFF
-        FF00FFFFFF00286E2D7B266A2A03FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0042924AFF80D189FF6DC977FF73C77CFF36823DE2337E398FFFFF
-        FF00FFFFFF002B7230D2296E2D9FFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0046974EFF83D38CFF65C870FF7ED087FF78BE7FFF549D5AFF347E
-        3AFF317A37FF4C9452FF4A914FFF296F2E93FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00499C52FF87D490FF4A9D52FF61B96BFF7FC587FF82C588FF7FC4
-        86FF7DC283FF7BC281FF78BF7DFF4A9250FF296F2E8AFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF004DA155FF89D694FF69BE73FF4E9C56FF5BA562FF6DB474FF78BD
-        7FFF80C487FF7EC384FF7AC080FF4D9553FF2C743184FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0050A559FF8CD897FF8BD695FF59A861FF3F8D46E9408F47E43E8C
-        45FF3B8842FF569F5CFF539C59FF327C3890FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0053AA5DFF90D99BFF8DD899FF4A9E53FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003B8942D238853F9CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0056AE60FF93DA9DFF90D99CFF4EA257FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003F8D46783C894303FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0059B263FF96DCA2FF94DB9FFF51A75AFFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF005CB666FF99DDA4FF96DDA2FF54AB5EFFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0063BF
-        6EB861BD6CF779C983FF9BDEA7FF99DDA5FF71C37CFF55AC5EF752A85BBBFFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0065C2
-        700663C06ED97ACC86FF9DE0AAFF9CDFA8FF74C580FF58B062DB55AC5F06FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0063C06FCF7BCC86FF79CA85FF5DB768D1FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF0063C16FC462BE6DC9FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-      }
-      OnClick = AutoOpisClick
-    end
-    object SpeedButton2: TSpeedButton
-      Left = 8
-      Height = 22
-      Top = 166
-      Width = 184
-      Anchors = [akLeft, akBottom]
-      Caption = 'Niedozwolone przedmioty,'
-      Flat = True
-      Glyph.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-        FF00FFFFFF0038843EFF35803BFF327C38FF2F7835FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003B8942FF7EC383FF7BC282FF337C38FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003F8D46FF81C587FF7EC385FF539C59FF337D398FFFFFFF00FFFF
-        FF00FFFFFF00286E2D7B266A2A03FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0042924AFF80D189FF6DC977FF73C77CFF36823DE2337E398FFFFF
-        FF00FFFFFF002B7230D2296E2D9FFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0046974EFF83D38CFF65C870FF7ED087FF78BE7FFF549D5AFF347E
-        3AFF317A37FF4C9452FF4A914FFF296F2E93FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00499C52FF87D490FF4A9D52FF61B96BFF7FC587FF82C588FF7FC4
-        86FF7DC283FF7BC281FF78BF7DFF4A9250FF296F2E8AFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF004DA155FF89D694FF69BE73FF4E9C56FF5BA562FF6DB474FF78BD
-        7FFF80C487FF7EC384FF7AC080FF4D9553FF2C743184FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0050A559FF8CD897FF8BD695FF59A861FF3F8D46E9408F47E43E8C
-        45FF3B8842FF569F5CFF539C59FF327C3890FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0053AA5DFF90D99BFF8DD899FF4A9E53FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003B8942D238853F9CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0056AE60FF93DA9DFF90D99CFF4EA257FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003F8D46783C894303FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0059B263FF96DCA2FF94DB9FFF51A75AFFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF005CB666FF99DDA4FF96DDA2FF54AB5EFFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0063BF
-        6EB861BD6CF779C983FF9BDEA7FF99DDA5FF71C37CFF55AC5EF752A85BBBFFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0065C2
-        700663C06ED97ACC86FF9DE0AAFF9CDFA8FF74C580FF58B062DB55AC5F06FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0063C06FCF7BCC86FF79CA85FF5DB768D1FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF0063C16FC462BE6DC9FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-      }
-      OnClick = AutoOpisClick
-    end
-    object SpeedButton3: TSpeedButton
-      Left = 200
-      Height = 22
-      Top = 142
-      Width = 184
-      Anchors = [akLeft, akBottom]
-      Caption = 'Wykorzystany limit,'
-      Flat = True
-      Glyph.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-        FF00FFFFFF0038843EFF35803BFF327C38FF2F7835FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003B8942FF7EC383FF7BC282FF337C38FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003F8D46FF81C587FF7EC385FF539C59FF337D398FFFFFFF00FFFF
-        FF00FFFFFF00286E2D7B266A2A03FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0042924AFF80D189FF6DC977FF73C77CFF36823DE2337E398FFFFF
-        FF00FFFFFF002B7230D2296E2D9FFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0046974EFF83D38CFF65C870FF7ED087FF78BE7FFF549D5AFF347E
-        3AFF317A37FF4C9452FF4A914FFF296F2E93FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00499C52FF87D490FF4A9D52FF61B96BFF7FC587FF82C588FF7FC4
-        86FF7DC283FF7BC281FF78BF7DFF4A9250FF296F2E8AFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF004DA155FF89D694FF69BE73FF4E9C56FF5BA562FF6DB474FF78BD
-        7FFF80C487FF7EC384FF7AC080FF4D9553FF2C743184FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0050A559FF8CD897FF8BD695FF59A861FF3F8D46E9408F47E43E8C
-        45FF3B8842FF569F5CFF539C59FF327C3890FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0053AA5DFF90D99BFF8DD899FF4A9E53FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003B8942D238853F9CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0056AE60FF93DA9DFF90D99CFF4EA257FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003F8D46783C894303FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0059B263FF96DCA2FF94DB9FFF51A75AFFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF005CB666FF99DDA4FF96DDA2FF54AB5EFFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0063BF
-        6EB861BD6CF779C983FF9BDEA7FF99DDA5FF71C37CFF55AC5EF752A85BBBFFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0065C2
-        700663C06ED97ACC86FF9DE0AAFF9CDFA8FF74C580FF58B062DB55AC5F06FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0063C06FCF7BCC86FF79CA85FF5DB768D1FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF0063C16FC462BE6DC9FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-      }
-      OnClick = AutoOpisClick
-    end
-    object SpeedButton4: TSpeedButton
-      Left = 200
-      Height = 22
-      Top = 166
-      Width = 184
-      Anchors = [akLeft, akBottom]
-      Caption = 'Brak prośby,'
-      Flat = True
-      Glyph.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-        FF00FFFFFF0038843EFF35803BFF327C38FF2F7835FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003B8942FF7EC383FF7BC282FF337C38FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003F8D46FF81C587FF7EC385FF539C59FF337D398FFFFFFF00FFFF
-        FF00FFFFFF00286E2D7B266A2A03FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0042924AFF80D189FF6DC977FF73C77CFF36823DE2337E398FFFFF
-        FF00FFFFFF002B7230D2296E2D9FFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0046974EFF83D38CFF65C870FF7ED087FF78BE7FFF549D5AFF347E
-        3AFF317A37FF4C9452FF4A914FFF296F2E93FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00499C52FF87D490FF4A9D52FF61B96BFF7FC587FF82C588FF7FC4
-        86FF7DC283FF7BC281FF78BF7DFF4A9250FF296F2E8AFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF004DA155FF89D694FF69BE73FF4E9C56FF5BA562FF6DB474FF78BD
-        7FFF80C487FF7EC384FF7AC080FF4D9553FF2C743184FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0050A559FF8CD897FF8BD695FF59A861FF3F8D46E9408F47E43E8C
-        45FF3B8842FF569F5CFF539C59FF327C3890FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0053AA5DFF90D99BFF8DD899FF4A9E53FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003B8942D238853F9CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0056AE60FF93DA9DFF90D99CFF4EA257FFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF003F8D46783C894303FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0059B263FF96DCA2FF94DB9FFF51A75AFFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF005CB666FF99DDA4FF96DDA2FF54AB5EFFFFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0063BF
-        6EB861BD6CF779C983FF9BDEA7FF99DDA5FF71C37CFF55AC5EF752A85BBBFFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0065C2
-        700663C06ED97ACC86FF9DE0AAFF9CDFA8FF74C580FF58B062DB55AC5F06FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF0063C06FCF7BCC86FF79CA85FF5DB768D1FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF0063C16FC462BE6DC9FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-      }
-      OnClick = AutoOpisClick
-    end
-    object Label10: TLabel
-      Left = 543
-      Height = 15
-      Top = 8
-      Width = 5
-      Caption = '*'
-      Font.Color = clRed
-      ParentColor = False
-      ParentFont = False
-    end
+    Width = 112
+    Caption = 'Data przyjęcia paczki:'
+    ParentColor = False
   end
-  object DBNazwisko: TDBEdit
-    Left = 83
+  object dtpDataPrzyjecia: TDateTimePicker
+    Left = 8
     Height = 23
-    Top = 64
-    Width = 288
-    DataField = 'Nazwisko'
-    DataSource = DSZwrotyAdd
-    CharCase = ecNormal
-    Color = 14286847
-    MaxLength = 45
-    TabOrder = 4
-    OnChange = DBNazwiskoChange
-  end
-  object DBImie: TDBEdit
-    Left = 83
-    Height = 23
-    Top = 88
-    Width = 288
-    DataField = 'Imie'
-    DataSource = DSZwrotyAdd
-    CharCase = ecNormal
-    Color = 14286847
-    MaxLength = 45
-    TabOrder = 5
-    OnChange = DBNazwiskoChange
-  end
-  object DBOjciec: TDBEdit
-    Left = 83
-    Height = 23
-    Top = 112
-    Width = 288
-    DataField = 'Ojciec'
-    DataSource = DSZwrotyAdd
-    CharCase = ecNormal
-    MaxLength = 45
-    TabOrder = 6
-  end
-  object DBDataZwrotu: TDBDateTimePicker
-    Left = 96
-    Height = 23
-    Top = 136
-    Width = 83
-    DataField = 'Data_Z'
-    DataSource = DSZwrotyAdd
-    ReadOnly = False
+    Top = 184
+    Width = 120
     CenturyFrom = 1941
+    DateDisplayOrder = ddoDMY
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 7
-    Color = 14286847
+    TabOrder = 2
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
     Kind = dtkDate
+    TimeSeparator = ':'
     TimeFormat = tf24
     TimeDisplay = tdHMS
     DateMode = dmComboBox
-    UseDefaultSeparators = True
+    Date = 43426
+    Time = 0.796183310187189
+    UseDefaultSeparators = False
     HideDateTimeParts = []
     MonthNames = 'Long'
+    ShowMonthNames = True
   end
-  object Label6: TLabel
-    Left = 372
+  object cbWKantynie: TCheckBox
+    Left = 8
+    Height = 19
+    Top = 224
+    Width = 137
+    Caption = 'zakupiona w kantynie.'
+    Checked = True
+    State = cbChecked
+    TabOrder = 3
+  end
+  object cbDodatkowa: TCheckBox
+    Left = 344
+    Height = 19
+    Top = 304
+    Width = 83
+    Caption = 'Dodatkowa.'
+    TabOrder = 4
+  end
+  object edUwagi: TEdit
+    Left = 8
+    Height = 23
+    Top = 344
+    Width = 456
+    TabOrder = 5
+  end
+  object Label3: TLabel
+    Left = 8
     Height = 15
-    Top = 64
-    Width = 5
-    Caption = '*'
-    Font.Color = clRed
+    Top = 328
+    Width = 36
+    Caption = 'Uwagi:'
     ParentColor = False
-    ParentFont = False
   end
-  object Label7: TLabel
-    Left = 372
+  object Label4: TLabel
+    Left = 8
     Height = 15
-    Top = 88
-    Width = 5
-    Caption = '*'
-    Font.Color = clRed
+    Top = 400
+    Width = 88
+    Caption = 'Nadawca Paczki:'
     ParentColor = False
-    ParentFont = False
   end
-  object Label8: TLabel
-    Left = 181
+  object cbNadawca: TComboBox
+    Left = 8
+    Height = 23
+    Top = 415
+    Width = 456
+    ItemHeight = 15
+    TabOrder = 6
+  end
+  object Label5: TLabel
+    Left = 8
     Height = 15
-    Top = 136
-    Width = 5
-    Caption = '*'
-    Font.Color = clRed
+    Top = 440
+    Width = 33
+    Caption = 'Adres:'
     ParentColor = False
-    ParentFont = False
   end
-  object DSZwrotyAdd: TDataSource
-    DataSet = ZQZwrotyAdd
-    Left = 408
-  end
-  object ZQZwrotyAdd: TZQuery
-    Connection = DM.ZConnection1
-    SQL.Strings = (
-      'SELECT * FROM zwroty_paczek'
-      'LIMIT 1;'
+  object rgRodzajPaczki: TRadioGroup
+    Left = 336
+    Height = 129
+    Top = 168
+    Width = 128
+    AutoFill = True
+    Caption = 'Rodzaj paczki'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 109
+    ClientWidth = 124
+    Items.Strings = (
+      'żywnościowa'
+      'higieniczna'
+      'odzieżowa'
+      'hig/odzieżowa'
+      'inna...'
     )
-    Params = <>
-    Left = 320
+    TabOrder = 7
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Height = 105
+    Top = 50
+    Width = 471
+    Align = alTop
+    Caption = 'Dane osadzonego'
+    TabOrder = 8
+  end
+  object edAdres: TEdit
+    Left = 8
+    Height = 23
+    Top = 456
+    Width = 456
+    TabOrder = 9
   end
 end

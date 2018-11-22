@@ -1739,6 +1739,7 @@ object MasterForm: TMasterForm
       Category = 'Paczki'
       Caption = 'Dodaj paczkę...'
       ImageIndex = 48
+      OnExecute = ActionPaczkiDodajExecute
     end
   end
   object Timer2Komunikaty: TTimer

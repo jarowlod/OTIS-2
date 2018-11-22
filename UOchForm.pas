@@ -51,6 +51,7 @@ type
     TabSheetWykazy: TTabSheet;
     TabSheetZatrudnienie: TTabSheet;
     ZQOs: TZQuery;
+    procedure btnDodajPaczkeClick(Sender: TObject);
     procedure btnDodajProsbeClick(Sender: TObject);
     procedure btnDodajWidzenieClick(Sender: TObject);
     procedure btnDodajZwrotPaczkiClick(Sender: TObject);
@@ -82,7 +83,8 @@ type
 //  OchForm: TOchForm;
 
 implementation
-uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie, URejestrProsbDodaj, UKomunikatorNowaWiad, UZdjWidok, UPaczkiZwrotyAdd;
+uses UZatrudnieni, URejestrProsbOs, UOchAddWidzenie, URejestrProsbDodaj, UKomunikatorNowaWiad, UZdjWidok, UPaczkiZwrotyAdd,
+     UPaczkiAdd, rxdbutils;
 {$R *.frm}
 
 { TOchForm }
@@ -285,6 +287,16 @@ begin
   begin
        SetAdd( SelectIDO );
        if ShowModal=mrOK then btnRejestrProsbClick(Sender);
+       Free;
+  end;
+end;
+
+procedure TOchForm.btnDodajPaczkeClick(Sender: TObject);
+begin
+  with TPaczkiAdd.Create(Self) do
+  begin
+       SetIDO( SelectIDO );
+       if ShowModal=mrOK then RefreshQuery(fViewPaczki.ZQPaczki);
        Free;
   end;
 end;

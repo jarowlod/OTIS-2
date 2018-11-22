@@ -89,9 +89,9 @@ begin
   if Column.FieldName = 'RODZAJ' then
   begin
      case Column.Field.AsString of
-       'żywnościowa' : TRxDBGrid(Sender).Canvas.Brush.Color:= $EAFFEA;
-       'higieniczna' : TRxDBGrid(Sender).Canvas.Brush.Color:= $EAEAFF;
-       'odzieżowa'   : TRxDBGrid(Sender).Canvas.Brush.Color:= $FFEAEA;
+       rp_Zywnosciowa : TRxDBGrid(Sender).Canvas.Brush.Color:= $EAFFEA;
+       rp_Higieniczna : TRxDBGrid(Sender).Canvas.Brush.Color:= $EAEAFF;
+       rp_Odziezowa   : TRxDBGrid(Sender).Canvas.Brush.Color:= $FFEAEA;
        else  TRxDBGrid(Sender).Canvas.Brush.Color:= $F4F4F4;
      end;
     if (gdSelected in AState) then TRxDBGrid(Sender).Canvas.Font.Color:= $BB5E00;

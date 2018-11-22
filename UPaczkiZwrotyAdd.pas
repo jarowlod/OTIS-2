@@ -112,6 +112,7 @@ end;
 
 procedure TPaczkiZwrotyAdd.FormCreate(Sender: TObject);
 begin
+  SelectIDO:= 0;
   ZQZwrotyAdd.Open;
   ZQZwrotyAdd.Append;
   ZQZwrotyAdd.FieldByName('Data_Z').AsDateTime:= Now();

@@ -841,11 +841,11 @@ object PenitForm: TPenitForm
     Height = 347
     Top = 448
     Width = 715
-    ActivePage = TabSheetNotatnik
+    ActivePage = TabSheetWykazy
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     OnChange = PageControl1Change
     object TabSheetNotatnik: TTabSheet
@@ -926,6 +926,7 @@ object PenitForm: TPenitForm
     object TabSheetWykazy: TTabSheet
       Caption = 'Wykazy'
       ImageIndex = 26
+      ParentFont = False
     end
     object TabSheetUwagi: TTabSheet
       Caption = 'Uwagi i Polecenia'

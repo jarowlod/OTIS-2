@@ -499,6 +499,7 @@ object OchForm: TOchForm
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF004DB4D82B4BB2D8AF4AB0D7BC48AE
           D631FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
+        OnClick = btnDodajPaczkeClick
         TabOrder = 5
       end
       object btnDodajZwrotPaczki: TBitBtn
