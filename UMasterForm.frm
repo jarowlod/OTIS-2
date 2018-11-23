@@ -1307,14 +1307,17 @@ object MasterForm: TMasterForm
     end
     object MenuItem53: TMenuItem
       Caption = 'Paczki'
-      object MenuItem73: TMenuItem
-        Action = ActionPaczkiDodaj
+      object MenuItem55: TMenuItem
+        Action = ActionPaczkiZwroty
       end
       object MenuItem74: TMenuItem
         Caption = '-'
       end
-      object MenuItem55: TMenuItem
-        Action = ActionPaczkiZwroty
+      object MenuItem73: TMenuItem
+        Action = ActionPaczkiDodaj
+      end
+      object MenuItem75: TMenuItem
+        Action = ActionPaczkiRejestr
       end
     end
     object MenuItem11: TMenuItem
@@ -1740,6 +1743,11 @@ object MasterForm: TMasterForm
       Caption = 'Dodaj paczkę...'
       ImageIndex = 48
       OnExecute = ActionPaczkiDodajExecute
+    end
+    object ActionPaczkiRejestr: TAction
+      Category = 'Paczki'
+      Caption = 'Rejestr Paczek ...'
+      ImageIndex = 26
     end
   end
   object Timer2Komunikaty: TTimer

@@ -1,40 +1,41 @@
 object PaczkiAdd: TPaczkiAdd
-  Left = 342
-  Height = 548
-  Top = 242
-  Width = 471
+  Left = 86
+  Height = 778
+  Top = 85
+  Width = 816
   Caption = 'Zarejestruj nową paczkę'
-  ClientHeight = 548
-  ClientWidth = 471
+  ClientHeight = 778
+  ClientWidth = 816
+  OnClose = FormClose
   OnCreate = FormCreate
+  Position = poScreenCenter
   LCLVersion = '6.6'
   object Panel2: TPanel
     Left = 0
     Height = 40
-    Top = 508
-    Width = 471
+    Top = 738
+    Width = 816
     Align = alBottom
     BevelOuter = bvNone
     ClientHeight = 40
-    ClientWidth = 471
+    ClientWidth = 816
     TabOrder = 0
     object btnOK: TBitBtn
-      Left = 254
+      Left = 599
       Height = 30
-      Top = 0
+      Top = 1
       Width = 100
       Anchors = [akTop, akRight]
       DefaultCaption = True
-      Enabled = False
       Kind = bkOK
       ModalResult = 1
       OnClick = btnOKClick
       TabOrder = 0
     end
     object btnAnuluj: TBitBtn
-      Left = 365
+      Left = 710
       Height = 30
-      Top = 0
+      Top = 1
       Width = 100
       Anchors = [akTop, akRight]
       Cancel = True
@@ -68,11 +69,11 @@ object PaczkiAdd: TPaczkiAdd
     Left = 0
     Height = 50
     Top = 0
-    Width = 471
+    Width = 816
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 50
-    ClientWidth = 471
+    ClientWidth = 816
     Color = clWhite
     ParentColor = False
     TabOrder = 1
@@ -80,7 +81,7 @@ object PaczkiAdd: TPaczkiAdd
       Left = 0
       Height = 50
       Top = 0
-      Width = 471
+      Width = 816
       Align = alClient
       BevelWidth = 1
       BevelStyle = bvNone
@@ -490,7 +491,7 @@ object PaczkiAdd: TPaczkiAdd
   object Label2: TLabel
     Left = 8
     Height = 15
-    Top = 168
+    Top = 120
     Width = 112
     Caption = 'Data przyjęcia paczki:'
     ParentColor = False
@@ -498,7 +499,7 @@ object PaczkiAdd: TPaczkiAdd
   object dtpDataPrzyjecia: TDateTimePicker
     Left = 8
     Height = 23
-    Top = 184
+    Top = 136
     Width = 120
     CenturyFrom = 1941
     DateDisplayOrder = ddoDMY
@@ -523,7 +524,7 @@ object PaczkiAdd: TPaczkiAdd
   object cbWKantynie: TCheckBox
     Left = 8
     Height = 19
-    Top = 224
+    Top = 176
     Width = 137
     Caption = 'zakupiona w kantynie.'
     Checked = True
@@ -531,56 +532,63 @@ object PaczkiAdd: TPaczkiAdd
     TabOrder = 3
   end
   object cbDodatkowa: TCheckBox
-    Left = 344
+    Left = 184
     Height = 19
-    Top = 304
+    Top = 256
     Width = 83
     Caption = 'Dodatkowa.'
     TabOrder = 4
   end
   object edUwagi: TEdit
-    Left = 8
+    Left = 352
     Height = 23
-    Top = 344
+    Top = 136
     Width = 456
+    MaxLength = 100
     TabOrder = 5
   end
   object Label3: TLabel
-    Left = 8
+    Left = 352
     Height = 15
-    Top = 328
+    Top = 120
     Width = 36
     Caption = 'Uwagi:'
     ParentColor = False
   end
   object Label4: TLabel
-    Left = 8
+    Left = 352
     Height = 15
-    Top = 400
+    Top = 192
     Width = 88
     Caption = 'Nadawca Paczki:'
     ParentColor = False
   end
   object cbNadawca: TComboBox
-    Left = 8
+    Left = 352
     Height = 23
-    Top = 415
+    Top = 207
     Width = 456
+    AutoComplete = True
+    AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+    CharCase = ecUppercase
     ItemHeight = 15
+    MaxLength = 45
+    OnChange = cbNadawcaChange
+    OnEditingDone = cbNadawcaChange
     TabOrder = 6
   end
   object Label5: TLabel
-    Left = 8
+    Left = 352
     Height = 15
-    Top = 440
+    Top = 232
     Width = 33
     Caption = 'Adres:'
     ParentColor = False
   end
   object rgRodzajPaczki: TRadioGroup
-    Left = 336
+    Left = 176
     Height = 129
-    Top = 168
+    Top = 120
     Width = 128
     AutoFill = True
     Caption = 'Rodzaj paczki'
@@ -593,6 +601,7 @@ object PaczkiAdd: TPaczkiAdd
     ChildSizing.ControlsPerLine = 1
     ClientHeight = 109
     ClientWidth = 124
+    ItemIndex = 0
     Items.Strings = (
       'żywnościowa'
       'higieniczna'
@@ -600,22 +609,146 @@ object PaczkiAdd: TPaczkiAdd
       'hig/odzieżowa'
       'inna...'
     )
+    OnSelectionChanged = rgRodzajPaczkiSelectionChanged
     TabOrder = 7
   end
   object GroupBox1: TGroupBox
     Left = 0
-    Height = 105
+    Height = 62
     Top = 50
-    Width = 471
+    Width = 816
     Align = alTop
     Caption = 'Dane osadzonego'
+    ClientHeight = 42
+    ClientWidth = 812
     TabOrder = 8
+    object lblNazwisko: TLabel
+      Left = 16
+      Height = 19
+      Top = 8
+      Width = 110
+      Caption = 'Nazwisko Imię'
+      Font.CharSet = EASTEUROPE_CHARSET
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblKlasyf: TLabel
+      AnchorSideLeft.Control = lblNazwisko
+      AnchorSideLeft.Side = asrBottom
+      Left = 176
+      Height = 18
+      Top = 8
+      Width = 42
+      BorderSpacing.Left = 50
+      Caption = 'Klasyf'
+      Font.CharSet = EASTEUROPE_CHARSET
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblPoc: TLabel
+      AnchorSideLeft.Control = lblKlasyf
+      AnchorSideLeft.Side = asrBottom
+      Left = 268
+      Height = 18
+      Top = 8
+      Width = 35
+      BorderSpacing.Left = 50
+      Caption = 'POC'
+      Font.CharSet = EASTEUROPE_CHARSET
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentColor = False
+      ParentFont = False
+    end
   end
   object edAdres: TEdit
-    Left = 8
+    Left = 352
     Height = 23
-    Top = 456
+    Top = 248
     Width = 456
+    MaxLength = 100
     TabOrder = 9
+  end
+  object btnRejestrProsb: TBitBtn
+    Left = 656
+    Height = 30
+    Top = 280
+    Width = 152
+    Anchors = [akRight, akBottom]
+    Caption = 'Rejestr próśb'
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000064000000640000000000000000000000000000000000
+      00009F804BFF977641FF977641FF977641FF977641FF977641FF977641FF9776
+      41FF977641FF977641FF977641FF987343FF987343FF00000000000000000000
+      0000A07F50FFFFFFFFFFF9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8C6524FF00000000000000000000
+      0000AC8755FFE7FCFFFF0087FAFFBBE4ECFFCB8C69FFBB8767FFBA8867FFB886
+      65FFB78566FFB37B5AFFD2AD9CFFF5F7F0FF8C6524FF00000000000000000000
+      0000AF9162FFFFFFFFFFFEF6F1FFFDF6F1FFFAF9F5FFFAFBF9FFFAFBF9FFFBFC
+      F7FFF7FBF2FFF8F9F5FFFFFFFEFFF1EBE4FF8C6524FF00000000000000000000
+      0000BB9869FFD9F4FFFF0087FAFFBAE2E9FFCF906CFFBF8969FFC08C6CFFC08B
+      6CFFC28C6EFFBD825FFFD7B39FFFF5F3EDFF8C6524FF00000000000000000000
+      0000B09465FFFFFFFFFFFEF6F1FFFEF6F2FFFBF9F4FFF8FBF8FFFBFDFAFFFBFB
+      FAFFFFFEFFFFFEFCFBFFFFFFFFFFF1ECE3FF8C6524FF00000000000000000000
+      0000B99867FFD8F5FFFF0087FAFFBAE2E8FFCE8E6BFFBE8869FFC38B6EFFC591
+      6CFFC59172FFBF8362FFD5B09AFFF6F6F0FF8C6524FF00000000000000000000
+      0000B0946BFFFFFFFFFFFEF6EFFFFBF6F0FFF9F9F4FFFCFAFCFFFEFFFEFFFFFF
+      FFFFFFFFFFFFF8F6F3FFF9F7F3FFF2EDE6FF8C6524FF00000000000000000000
+      0000B9A17DFFE3F7FFFF0087FAFFBFEAEDFFD1916FFFBF8B6CFFC28C6EFFC08C
+      6EFFBB8764FFAE7554FFC6A38DFFECE4D9FF8C6524FF00000000000000000000
+      0000BCA686FFFFFFFFFFFFFFFEFFFFFFFCFFFFFFFFFFFEFFFFFFFFFFFFFFFAFE
+      F8FFF6F8F4FFEDEBE5FFEAE3DCFFD8CDB7FF8C6524FF00000000000000000000
+      0000CCB390FFE1F3FBFF0087FAFFBEE8F3FFD09171FFC08C6AFFBF8A67FFBB86
+      64FFA66C44FF985427FFAB7A56FFC3B08EFF8C6524FF00000000000000000000
+      0000C8B595FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCFFF8FFF9FAF8FFE4DD
+      D2FFD3C6A9FFF6F7F3FFE8E4D5FFB79D73FF8C6524FF00000000000000000000
+      0000CFB69AFFDFF3F9FF0087FAFFC0EAF1FFCA8C67FFB2795AFFB67B5CFF985E
+      37FFCCB99CFFFFFFFFFFCFBAA0FFA07D46FF8F68290A00000000000000000000
+      0000C7B79AFFFFFFFFFFFFFFFFFFFFFDF7FFFCFDFBFFEFF1EDFFEEE9DDFFD4C5
+      A9FFBCAC89FFD7C9B5FF997335FF000000000000000000000000000000000000
+      0000CBBDA1FFFFFFFFFFFFFFFFFFF9F7F7FFF0E7DEFFDFD7C7FFD8C5B0FFC1AA
+      85FFAA9161FFA17E47FF00000000000000000000000000000000000000000000
+      0000C3B191FECCBBA0F8C9B79BF3C6B295F3C5B293F3C1AB86F3BFA67DF3AA91
+      61FF936C32FF0000000000000000000000000000000000000000
+    }
+    OnClick = btnRejestrProsbClick
+    TabOrder = 10
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 418
+    Top = 320
+    Width = 816
+    ActivePage = TabSheetPaczki
+    Align = alBottom
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Images = DM.ImageList1
+    TabHeight = 25
+    TabIndex = 0
+    TabOrder = 11
+    object TabSheetPaczki: TTabSheet
+      Caption = 'Paczki'
+      ImageIndex = 11
+    end
+    object TabSheetUwagi: TTabSheet
+      Caption = 'Uwagi i Polecenia'
+      ImageIndex = 28
+    end
+    object TabSheetWykazy: TTabSheet
+      Caption = 'Wykazy'
+      ImageIndex = 26
+    end
   end
 end

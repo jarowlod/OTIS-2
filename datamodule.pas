@@ -215,6 +215,7 @@ const
   rp_Higieniczna = 'higieniczna';
   rp_Odziezowa   = 'odzieżowa';
   rp_HigOdziez   = 'hig/odzieżowa';
+  rp_Inna        = 'inna';
 // END PACZKI
 
 implementation

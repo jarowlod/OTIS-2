@@ -703,6 +703,7 @@
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PaczkiAdd"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit70>
     </Units>

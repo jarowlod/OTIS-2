@@ -15,6 +15,7 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionPaczkiRejestr: TAction;
     ActionPaczkiDodaj: TAction;
     ActionKopiujWszystko: TAction;
     ActionKopiujIDO: TAction;
@@ -101,6 +102,7 @@ type
     MenuItem72: TMenuItem;
     MenuItem73: TMenuItem;
     MenuItem74: TMenuItem;
+    MenuItem75: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;

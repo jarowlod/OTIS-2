@@ -14,6 +14,7 @@ type
 
   TViewZatrudnienie = class(TForm)
     DSOsZat: TDataSource;
+    ImageList1: TImageList;
     RxDBGrid2: TRxDBGrid;
     ZQOsZat: TZQuery;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
