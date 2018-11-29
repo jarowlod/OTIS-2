@@ -9,7 +9,7 @@ uses
   Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
   StdCtrls, Buttons, ComCtrls, rxdbutils, rxdbgrid, UZatrudnieni,
   UViewUwagiOch, UViewWykazy, UViewZatrudnienie, UViewWidzenia, UViewOsobyBliskie, UViewPaczki,
-  datamodule, DBDateTimePicker;
+  datamodule;
 
 type
 

@@ -1,7 +1,7 @@
 object Rozmieszczenie: TRozmieszczenie
-  Left = 86
+  Left = 180
   Height = 760
-  Top = 85
+  Top = 178
   Width = 1103
   Caption = 'Rozmieszczenie'
   ClientHeight = 760
@@ -730,6 +730,7 @@ object Rozmieszczenie: TRozmieszczenie
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstBoth
             Footer.Alignment = taCenter
             Footer.FieldName = 'POC'
             Footer.ValueType = fvtCount
@@ -799,6 +800,7 @@ object Rozmieszczenie: TRozmieszczenie
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstDialog
             Footer.Alignment = taCenter
             Footer.FieldName = 'Wolne'
             Footer.ValueType = fvtSum
@@ -818,6 +820,7 @@ object Rozmieszczenie: TRozmieszczenie
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstManualEdit
             Footers = <>
           end        
           item
@@ -841,6 +844,7 @@ object Rozmieszczenie: TRozmieszczenie
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstDialog
             Footers = <>
           end        
           item
@@ -861,6 +865,7 @@ object Rozmieszczenie: TRozmieszczenie
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstDialog
             Footer.Alignment = taCenter
             Footer.FieldName = 'GR'
             Footer.ValueType = fvtSum
