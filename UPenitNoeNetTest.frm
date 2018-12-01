@@ -1,7 +1,7 @@
 object PenitNoeNetTest: TPenitNoeNetTest
-  Left = 328
+  Left = 333
   Height = 641
-  Top = 230
+  Top = 237
   Width = 1024
   Caption = 'NoeNet - sprawdzanie poprwaności danych'
   ClientHeight = 641

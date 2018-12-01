@@ -173,8 +173,8 @@ begin
            ZQPom.ParamByName('Opis').AsString     := cmbOpis.Text;
            ZQPom.ExecSQL;
          end;
-        Memo1.Lines.Delete(i);
        end;
+       Memo1.Lines.Delete(i);
      end;
     Memo1.Lines.Clear;
   except

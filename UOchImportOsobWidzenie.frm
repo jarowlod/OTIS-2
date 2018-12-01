@@ -1,7 +1,7 @@
 object OchImportOsobWidzenie: TOchImportOsobWidzenie
-  Left = 328
+  Left = 342
   Height = 457
-  Top = 230
+  Top = 242
   Width = 856
   Caption = 'Import osób uprawnionych do widzenia z NoeNET.'
   ClientHeight = 457
@@ -431,7 +431,7 @@ object OchImportOsobWidzenie: TOchImportOsobWidzenie
       item
         Name = 'Pokrew'
         DataType = ftString
-        Size = 45
+        Size = 100
       end    
       item
         Name = 'Uwagi'

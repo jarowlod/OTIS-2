@@ -1,14 +1,14 @@
 object PenitWPZ: TPenitWPZ
-  Left = 388
+  Left = 342
   Height = 819
-  Top = 232
+  Top = 242
   Width = 755
   Caption = 'PenitWPZ'
   ClientHeight = 819
   ClientWidth = 755
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 771
