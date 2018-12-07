@@ -1,7 +1,7 @@
 object PaczkiAdd: TPaczkiAdd
-  Left = 86
+  Left = 333
   Height = 778
-  Top = 85
+  Top = 237
   Width = 816
   Caption = 'Zarejestruj nową paczkę'
   ClientHeight = 778
@@ -92,7 +92,7 @@ object PaczkiAdd: TPaczkiAdd
       StepWidth = 1
       Style = gsHorizontal
     end
-    object Label1: TLabel
+    object lblNaglowek: TLabel
       Left = 64
       Height = 19
       Top = 16
@@ -500,12 +500,13 @@ object PaczkiAdd: TPaczkiAdd
     Left = 8
     Height = 23
     Top = 136
-    Width = 120
+    Width = 130
     CenturyFrom = 1941
     DateDisplayOrder = ddoDMY
     MaxDate = 2958465
     MinDate = -53780
     TabOrder = 2
+    DateSeparator = '-'
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True

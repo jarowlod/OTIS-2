@@ -189,6 +189,7 @@ type
     procedure ActionNoeNetTestExecute(Sender: TObject);
     procedure ActionNowyKoszykExecute(Sender: TObject);
     procedure ActionPaczkiDodajExecute(Sender: TObject);
+    procedure ActionPaczkiRejestrExecute(Sender: TObject);
     procedure ActionProsbyOsadzonegoExecute(Sender: TObject);
     procedure ActionProsbyOsadzonychExecute(Sender: TObject);
     procedure ActionRejestrWidzenExecute(Sender: TObject);
@@ -256,7 +257,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UZdjAktualizacjaZdjec,
      UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype,
-     UPaczkiZwroty, UPaczkiAdd;
+     UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr;
 {$R *.frm}
 
 { TMasterForm }
@@ -413,6 +414,15 @@ begin
   with TPaczkiAdd.Create(Self) do
   begin
        SetIDO( DM.ZQOsadzeni.FieldByName('IDO').AsInteger );
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.ActionPaczkiRejestrExecute(Sender: TObject);
+begin
+  with TPaczkiRejestr.Create(Self) do
+  begin
        ShowModal;
        Free;
   end;

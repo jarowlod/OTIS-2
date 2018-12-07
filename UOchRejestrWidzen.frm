@@ -1,14 +1,14 @@
 object OchRejestrWidzen: TOchRejestrWidzen
-  Left = 407
+  Left = 333
   Height = 766
-  Top = 238
+  Top = 237
   Width = 1216
   Caption = 'Rejestr widzeń osadzonych'
   ClientHeight = 766
   ClientWidth = 1216
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 104
@@ -82,7 +82,6 @@ object OchRejestrWidzen: TOchRejestrWidzen
         TimeDisplay = tdHMS
         DateMode = dmComboBox
         Date = 42762
-        Time = 0
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
@@ -365,6 +364,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -380,6 +380,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -395,6 +396,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -409,6 +411,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
             EditButtons = <>
             Filter.DropDownRows = 0
             Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
@@ -530,6 +533,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -545,6 +549,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -560,6 +565,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -575,6 +581,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -591,6 +598,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -607,6 +615,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -622,6 +631,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -637,6 +647,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -652,6 +663,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -666,6 +678,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -680,6 +693,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -694,6 +708,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -708,6 +723,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -724,6 +740,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -740,6 +757,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -754,6 +772,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -769,6 +788,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -1099,13 +1119,22 @@ object OchRejestrWidzen: TOchRejestrWidzen
       'u.Uwagi '
       'FROM widzenia_upr w'
       'LEFT JOIN uprawnione u ON (w.ID_uprawnione = u.ID)'
+      'WHERE ID_widzenia=:id_widzenia'
     )
-    Params = <>
-    MasterFields = 'ID'
-    MasterSource = DSWidzenia
-    LinkedFields = 'ID_widzenia'
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_widzenia'
+        ParamType = ptUnknown
+      end>
     Left = 269
     Top = 448
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_widzenia'
+        ParamType = ptUnknown
+      end>
   end
   object DSWidzenia: TDataSource
     DataSet = ZQWidzenia

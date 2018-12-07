@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 342
+  Left = 333
   Height = 598
-  Top = 242
+  Top = 237
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1748,6 +1748,7 @@ object MasterForm: TMasterForm
       Category = 'Paczki'
       Caption = 'Rejestr Paczek ...'
       ImageIndex = 26
+      OnExecute = ActionPaczkiRejestrExecute
     end
   end
   object Timer2Komunikaty: TTimer

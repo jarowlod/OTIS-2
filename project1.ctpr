@@ -145,7 +145,7 @@
         <PackageName Value="adLCL"/>
       </Item32>
     </RequiredPackages>
-    <Units Count="71">
+    <Units Count="72">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -439,10 +439,10 @@
         <ResourceBaseClass Value="Form"/>
       </Unit36>
       <Unit37>
-        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Filename Value="UPaczkiRejestr.pas"/>
         <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="OchRejestrWidzen"/>
+        <ComponentName Value="PaczkiRejestr"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit37>
@@ -706,6 +706,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit70>
+      <Unit71>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="OchRejestrWidzen"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit71>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

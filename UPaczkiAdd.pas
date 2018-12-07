@@ -25,7 +25,7 @@ type
     edAdres: TEdit;
     GroupBox1: TGroupBox;
     Image1: TImage;
-    Label1: TLabel;
+    lblNaglowek: TLabel;
     Label11: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -51,14 +51,18 @@ type
     procedure rgRodzajPaczkiSelectionChanged(Sender: TObject);
   private
     SelectIDO: integer;
+    SelectID : integer;
+    isModyfikacja: Boolean;
     fViewWykazy  : TViewWykazy;
     fViewUwagiOch: TViewUwagiOch;
     fViewPaczki  : TViewPaczki;
     procedure WczytajDaneOsadzonego;
     procedure ZapiszPaczke;
+    procedure WczytajPaczke;
     procedure WczytajNadawcow;
   public
     procedure SetIDO(IDO: integer);
+    procedure Modyfikuj(vID, vIDO: integer);
   end;
 
   { TAdresyNadawcow }
@@ -132,6 +136,17 @@ begin
 
   //Paczki
   fViewPaczki.SetIDO(SelectIDO);
+end;
+
+procedure TPaczkiAdd.Modyfikuj(vID, vIDO: integer);
+begin
+  isModyfikacja:= true;
+  SetIDO(vIDO);
+  SelectID:= vID;
+  Caption:= 'Modyfikuj paczkę.';
+  lblNaglowek.Caption:= Caption;
+
+  WczytajPaczke;
 end;
 
 procedure TPaczkiAdd.rgRodzajPaczkiSelectionChanged(Sender: TObject);
@@ -212,15 +227,26 @@ begin
 
   ZQ:= TZQueryPom.Create(Self);
   try
-    ZQ.SQL.Text:='INSERT INTO paczki '
-     +'(IDO, WYDANO, WYDAL, RODZAJ, WAGA, UWAGI, DODATKOWA, KANTYNA, NADAWCA, ADRES) '
-     +'VALUES (:ido, :wydano, :wydal, :rodzaj, :waga, :uwagi, :dodatkowa, :kantyna, :nadawca, :adres)';
+    if isModyfikacja then
+    begin
+      ZQ.SQL.Text:= 'UPDATE paczki SET '
+        +'WYDANO=:wydano, RODZAJ=:rodzaj, UWAGI=:uwagi, NADAWCA=:nadawca, ADRES=:adres, KANTYNA=:kantyna, DODATKOWA=:dodatkowa '
+        +'WHERE ID=:id';
+      ZQ.ParamByName('id').AsInteger:= SelectID;
+    end
+    else
+    begin
+      ZQ.SQL.Text:='INSERT INTO paczki '
+        +'(IDO, WYDANO, WYDAL, RODZAJ, WAGA, UWAGI, DODATKOWA, KANTYNA, NADAWCA, ADRES) '
+        +'VALUES (:ido, :wydano, :wydal, :rodzaj, :waga, :uwagi, :dodatkowa, :kantyna, :nadawca, :adres)';
+      ZQ.ParamByName('ido').AsInteger    := SelectIDO;
+      ZQ.ParamByName('wydal').AsString   := DM.PelnaNazwa;      // Kto wydał
+      ZQ.ParamByName('waga').AsInteger   := 6;  // waga  - zgodne ze starym systemem, obecnie nie potrzebne
+    end;
 
-    ZQ.ParamByName('ido').AsInteger    := SelectIDO;
+    // wspólne dla INSERT I UPDATE
     ZQ.ParamByName('wydano').AsDateTime:= dtpDataPrzyjecia.DateTime; // Data wydania paczki
-    ZQ.ParamByName('wydal').AsString   := DM.PelnaNazwa;      // Kto wydał
     ZQ.ParamByName('rodzaj').AsString  := WybranyRodzajPaczki;         // Rodzaj paczki
-    ZQ.ParamByName('waga').AsInteger   := 6;  // waga  - zgodne ze starym systemem, obecnie nie potrzebne
     ZQ.ParamByName('uwagi').AsString   := edUwagi.Text;       // uwagi
     ZQ.ParamByName('nadawca').AsString := cbNadawca.Text; // nadawca
     ZQ.ParamByName('adres').AsString   := edAdres.Text;       // adres
@@ -237,11 +263,39 @@ begin
   end;
 end;
 
+procedure TPaczkiAdd.WczytajPaczke;
+var ZQ: TZQueryPom;
+begin
+  ZQ:=TZQueryPom.Create(Owner);
+  try
+    ZQ.SQL.Text:= 'SELECT * FROM paczki WHERE ID=:id';
+    ZQ.ParamByName('id').AsInteger:= SelectID;
+    ZQ.Open;
+
+    dtpDataPrzyjecia.DateTime:= ZQ.FieldByName('WYDANO').AsDateTime;
+    cbWKantynie.Checked:=      (ZQ.FieldByName('KANTYNA').AsString = 'tak');
+    cbDodatkowa.Checked:=      (ZQ.FieldByName('DODATKOWA').AsString = 'tak');
+    edUwagi.Text:=              ZQ.FieldByName('UWAGI').AsString;
+    cbNadawca.Text:=            ZQ.FieldByName('NADAWCA').AsString;
+    edAdres.Text:=              ZQ.FieldByName('ADRES').AsString;
+
+    case ZQ.FieldByName('RODZAJ').AsString of
+      rp_Zywnosciowa: rgRodzajPaczki.ItemIndex:= Ord(rpZywnosciowa);
+      rp_Higieniczna: rgRodzajPaczki.ItemIndex:= Ord(rpHigieniczna);
+      rp_Odziezowa:   rgRodzajPaczki.ItemIndex:= Ord(rpOdziezowa);
+      rp_HigOdziez:   rgRodzajPaczki.ItemIndex:= Ord(rpHigOdziez);
+      rp_Inna:        rgRodzajPaczki.ItemIndex:= Ord(rpInna);
+    end;
+
+  finally
+    FreeAndNil(ZQ);
+  end;
+end;
+
 procedure TPaczkiAdd.WczytajNadawcow;
 var ZQ: TZQueryPom;
     NazwiskoImie: string;
 begin
-  // TODO: wczytujemy z osób bliskich + OSADZONY
   ZQ:=TZQueryPom.Create(Owner);
   try
     ZQ.SQL.Text:= 'SELECT Nazwisko, Imie, Adres FROM uprawnione '

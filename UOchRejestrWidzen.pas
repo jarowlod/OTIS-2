@@ -103,6 +103,8 @@ end;
 procedure TOchRejestrWidzen.NewSelect;
 begin
   if DisableNewSelect then exit;
+  ShowSQLWait;
+
   ZQOsoby.Close;
   ZQWidzenia.Close;
 
@@ -167,8 +169,9 @@ begin
       DSWidzenia.DataSet:= ZQWidzenia;
       ZQWidzenia.Open;
       DSOsoby.DataSet   := ZQOsoby;
-      ZQOsoby.Open;
+      //ZQOsoby.Open;
     end;
+  HideSQLWait;
 end;
 
 procedure TOchRejestrWidzen.DSWidzeniaDataChange(Sender: TObject; Field: TField
@@ -179,6 +182,12 @@ begin
       ZQOsobyArch.Close;
       ZQOsobyArch.ParamByName('id_widzenia').AsInteger:= ZQWidzeniaArch.FieldByName('ID').AsInteger;
       ZQOsobyArch.Open;
+    end
+  else
+    begin
+      ZQOsoby.Close;
+      ZQOsoby.ParamByName('id_widzenia').AsInteger:= ZQWidzenia.FieldByName('ID').AsInteger;
+      ZQOsoby.Open;
     end;
 end;
 
