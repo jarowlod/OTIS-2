@@ -62,7 +62,7 @@ type
     procedure WczytajNadawcow;
   public
     procedure SetIDO(IDO: integer);
-    procedure Modyfikuj(vID, vIDO: integer);
+    procedure Modyfikuj(vID: integer);
   end;
 
   { TAdresyNadawcow }
@@ -138,10 +138,9 @@ begin
   fViewPaczki.SetIDO(SelectIDO);
 end;
 
-procedure TPaczkiAdd.Modyfikuj(vID, vIDO: integer);
+procedure TPaczkiAdd.Modyfikuj(vID: integer);
 begin
   isModyfikacja:= true;
-  SetIDO(vIDO);
   SelectID:= vID;
   Caption:= 'Modyfikuj paczkę.';
   lblNaglowek.Caption:= Caption;
@@ -184,8 +183,6 @@ end;
 
 procedure TPaczkiAdd.btnOKClick(Sender: TObject);
 begin
-  dtpDataPrzyjecia.Time:= Time();
-
   try
     ZapiszPaczke;
   except
@@ -242,6 +239,7 @@ begin
       ZQ.ParamByName('ido').AsInteger    := SelectIDO;
       ZQ.ParamByName('wydal').AsString   := DM.PelnaNazwa;      // Kto wydał
       ZQ.ParamByName('waga').AsInteger   := 6;  // waga  - zgodne ze starym systemem, obecnie nie potrzebne
+      dtpDataPrzyjecia.Time:= Time();
     end;
 
     // wspólne dla INSERT I UPDATE
@@ -272,6 +270,8 @@ begin
     ZQ.ParamByName('id').AsInteger:= SelectID;
     ZQ.Open;
 
+    SetIDO(ZQ.FieldByName('IDO').AsInteger);
+
     dtpDataPrzyjecia.DateTime:= ZQ.FieldByName('WYDANO').AsDateTime;
     cbWKantynie.Checked:=      (ZQ.FieldByName('KANTYNA').AsString = 'tak');
     cbDodatkowa.Checked:=      (ZQ.FieldByName('DODATKOWA').AsString = 'tak');
@@ -286,7 +286,6 @@ begin
       rp_HigOdziez:   rgRodzajPaczki.ItemIndex:= Ord(rpHigOdziez);
       rp_Inna:        rgRodzajPaczki.ItemIndex:= Ord(rpInna);
     end;
-
   finally
     FreeAndNil(ZQ);
   end;

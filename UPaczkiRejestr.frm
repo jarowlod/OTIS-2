@@ -386,6 +386,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footer.Alignment = taCenter
           Footer.ValueType = fvtCount
           Footers = <>
@@ -403,6 +404,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footers = <>
         end      
         item
@@ -418,6 +420,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footers = <>
         end      
         item
@@ -433,6 +436,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footers = <>
         end      
         item
@@ -450,6 +454,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstDialog
           Footers = <>
         end      
         item
@@ -467,6 +472,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footers = <>
         end      
         item
@@ -483,6 +489,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstDialog
           Footers = <>
         end      
         item
@@ -498,6 +505,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footers = <>
         end      
         item
@@ -547,6 +555,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footers = <>
         end      
         item
@@ -562,6 +571,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footers = <>
         end      
         item
@@ -578,6 +588,7 @@ object PaczkiRejestr: TPaczkiRejestr
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
           Footers = <>
         end>
       KeyStrokes = <      

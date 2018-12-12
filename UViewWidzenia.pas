@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, rxdbgrid, ZDataset, Forms, Controls,
-  Graphics, Dialogs, ExtCtrls, StdCtrls, Grids, DBGrids, dateutils, datamodule;
+  Graphics, Dialogs, ExtCtrls, StdCtrls, Grids, DBGrids, Menus, dateutils,
+  datamodule;
 
 type
 
@@ -16,7 +17,12 @@ type
     DSOsoby: TDataSource;
     DSWidzenia: TDataSource;
     Label1: TLabel;
+    MenuItem4: TMenuItem;
+    MenuItemDodaj: TMenuItem;
+    MenuItemModyfikuj: TMenuItem;
+    MenuItemUsun: TMenuItem;
     Panel3: TPanel;
+    PopupMenu1: TPopupMenu;
     RxDBGrid2: TRxDBGrid;
     RxDBGrid3: TRxDBGrid;
     Splitter1: TSplitter;
@@ -24,6 +30,7 @@ type
     ZQWidzenia: TZQuery;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemDodajClick(Sender: TObject);
     procedure RxDBGrid2PrepareCanvas(sender: TObject; DataCol: Integer;
       Column: TColumn; AState: TGridDrawState);
   private
@@ -38,7 +45,7 @@ type
 //  ViewWidzenia: TViewWidzenia;
 
 implementation
-
+uses UOchAddWidzenie;
 {$R *.frm}
 
 { TViewWidzenia }
@@ -52,6 +59,20 @@ end;
 procedure TViewWidzenia.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
+
+  MenuItemDodaj.Enabled    := DM.uprawnienia[6];
+  MenuItemUsun.Enabled     := DM.uprawnienia[6];
+  MenuItemModyfikuj.Enabled:= DM.uprawnienia[6];
+end;
+
+procedure TViewWidzenia.MenuItemDodajClick(Sender: TObject);
+begin
+  with TOchAddWidzenie.Create(Self) do
+  begin
+       DodajOsadzonegoDoPoczekalni( SelectIDO );
+       ShowModal;
+       Free;
+  end;
 end;
 
 procedure TViewWidzenia.ZapiszZmiany;

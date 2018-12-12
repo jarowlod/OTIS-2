@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, rxdbgrid, DateTimePicker, Forms,
-  Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, DbCtrls, datamodule,
-  LR_Class, LR_DBSet, dateutils, rxdbutils, Grids, DBGrids;
+  Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, DbCtrls,
+  LR_Class, LR_DBSet, dateutils, rxdbutils, Grids, DBGrids, datamodule;
 
 type
 
@@ -51,6 +51,8 @@ type
     SQLPaczki: string;
     SQLPaczkiWydruk: string;
     Procedure NewSelect;
+    class Function UsunPaczke(ID_paczki: integer): Boolean;
+    class Function ModyfikujPaczke(ID_paczki: integer): Boolean;
   end;
 
 //var
@@ -162,8 +164,83 @@ begin
   NewSelect;
 end;
 
-procedure TPaczkiRejestr.btnUsunClick(Sender: TObject);
+class function TPaczkiRejestr.UsunPaczke(ID_paczki: integer): Boolean;
 var ZQPom: TZQueryPom;
+begin
+  Result:= false;
+  ZQPom:= TZQueryPom.Create(nil);
+  try
+    ZQPom.SQL.Text:= 'SELECT ID, WYDAL, WYDANO FROM paczki WHERE ID = :id';
+    ZQPom.ParamByName('id').AsInteger:= ID_paczki;
+    ZQPom.Open;
+
+    // walidacja
+    if IsDataSetEmpty(ZQPom) then exit;
+    if ZQPom.FieldByName('WYDAL').AsString <> DM.PelnaNazwa then
+      begin
+        MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć może tylko użytkownik który wprowadził paczkę.', mtWarning, [mbOK],0);
+        exit;
+      end;
+    if (DateOf(ZQPom.FieldByName('WYDANO').AsDateTime) < IncDay(Date(), -7)) then
+      begin
+        MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć można tylko do 7 dni od daty wprowadzenia paczki.', mtWarning, [mbOK],0);
+        exit;
+      end;
+
+    if MessageDlg('Czy napewno usunąć wprowadzoną paczkę?', mtWarning, [mbOK, mbCancel],0) = mrCancel then exit;
+    //--------------------------------------------------------------------------------------------------------------------
+
+    ZQPom.SQL.Text:= 'DELETE FROM paczki WHERE ID = :id';
+    ZQPom.ParamByName('id').AsInteger:= ID_paczki;
+    ZQPom.ExecSQL;
+
+    Result:= true;
+    DM.KomunikatPopUp(nil, 'Rejestr Paczek','Usunięto wybraną paczkę.', nots_Info);
+  finally
+    FreeAndNil(ZQPom);
+  end;
+end;
+
+class function TPaczkiRejestr.ModyfikujPaczke(ID_paczki: integer): Boolean;
+var ZQPom: TZQueryPom;
+begin
+  Result:= false;
+  ZQPom:= TZQueryPom.Create(nil);
+  try
+    ZQPom.SQL.Text:= 'SELECT ID, WYDAL, WYDANO FROM paczki WHERE ID = :id';
+    ZQPom.ParamByName('id').AsInteger:= ID_paczki;
+    ZQPom.Open;
+
+    if IsDataSetEmpty(ZQPom) then exit;
+    if not DM.uprawnienia[8] then // admin
+    begin
+      if ZQPom.FieldByName('WYDAL').AsString <> DM.PelnaNazwa then
+        begin
+          MessageDlg('Brak uprawnień.'+LineEnding+'Modyfikować może tylko użytkownik który wprowadził paczkę.', mtWarning, [mbOK],0);
+          exit;
+        end;
+      if (DateOf(ZQPom.FieldByName('WYDANO').AsDateTime) < IncDay(Date(), -7)) then
+        begin
+          MessageDlg('Brak uprawnień.'+LineEnding+'Modyfikować można tylko do 7 dni od daty wprowadzenia paczki.', mtWarning, [mbOK],0);
+          exit;
+        end;
+    end;
+    // koniec walidacji
+
+    with TPaczkiAdd.Create(nil) do
+    begin
+         Modyfikuj( ID_paczki );
+         Result:= (ShowModal = mrOK);
+         Free;
+    end;
+
+    if Result then DM.KomunikatPopUp(nil, 'Rejestr Paczek','Zmodyfikowano wybraną paczkę.', nots_Info);
+  finally
+    FreeAndNil(ZQPom);
+  end;
+end;
+
+procedure TPaczkiRejestr.btnUsunClick(Sender: TObject);
 begin
   if DSPaczki.DataSet <> ZQPaczki then
       begin
@@ -171,32 +248,8 @@ begin
         exit;
       end;
 
-  if ZQPaczki.IsEmpty then exit;
-
-  if ZQPaczki.FieldByName('WYDAL').AsString <> DM.PelnaNazwa then
-    begin
-      MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć może tylko użytkownik który wprowadził paczkę.', mtWarning, [mbOK],0);
-      exit;
-    end;
-  if (DateOf(ZQPaczki.FieldByName('WYDANO').AsDateTime) < IncDay(Date(), -7)) then
-    begin
-      MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć można tylko do 7 dni od daty wprowadzenia paczki.', mtWarning, [mbOK],0);
-      exit;
-    end;
-
-  if MessageDlg('Czy napewno usunąć wprowadzoną paczkę?', mtWarning, [mbOK, mbCancel],0) = mrCancel then exit;
-  //--------------------------------------------------------------------------------------------------------------------
-
-  // usuń paczkę
-  ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'DELETE FROM paczki WHERE ID = :id';
-  ZQPom.ParamByName('id').AsInteger:= ZQPaczki.FieldByName('ID').AsInteger;
-  ZQPom.ExecSQL;
-
-  FreeAndNil(ZQPom);
-
-  RefreshQuery(ZQPaczki);
-  DM.KomunikatPopUp(Self, 'Rejestr Paczek','Usunięto wybraną paczkę.', nots_Info);
+  if UsunPaczke(ZQPaczki.FieldByName('ID').AsInteger) then
+     RefreshQuery(ZQPaczki);
 end;
 
 procedure TPaczkiRejestr.btnModyfikujClick(Sender: TObject);
@@ -207,33 +260,9 @@ begin
         MessageDlg('Brak uprawnień.'+LineEnding+'Modyfikować można tylko bieżące paczki.', mtWarning, [mbOK],0);
         exit;
       end;
-  if IsDataSetEmpty(ZQPaczki) then exit;
 
-  if not DM.uprawnienia[8] then
-  begin
-    if ZQPaczki.FieldByName('WYDAL').AsString <> DM.PelnaNazwa then
-      begin
-        MessageDlg('Brak uprawnień.'+LineEnding+'Modyfikować może tylko użytkownik który wprowadził paczkę.', mtWarning, [mbOK],0);
-        exit;
-      end;
-    if (DateOf(ZQPaczki.FieldByName('WYDANO').AsDateTime) < IncDay(Date(), -7)) then
-      begin
-        MessageDlg('Brak uprawnień.'+LineEnding+'Modyfikować można tylko do 7 dni od daty wprowadzenia paczki.', mtWarning, [mbOK],0);
-        exit;
-      end;
-  end;
-  // koniec walidacji
-
-
-  with TPaczkiAdd.Create(Self) do
-  begin
-       Modyfikuj( ZQPaczki.FieldByName('id').AsInteger, ZQPaczki.FieldByName('ido').AsInteger );
-       if ShowModal = mrOK then
-         begin
-           RefreshQuery(ZQPaczki);
-         end;
-       Free;
-  end;
+  if ModyfikujPaczke(ZQPaczki.FieldByName('id').AsInteger) then
+     RefreshQuery(ZQPaczki);
 end;
 
 procedure TPaczkiRejestr.btnDrukujClick(Sender: TObject);

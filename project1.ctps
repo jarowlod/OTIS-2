@@ -33,8 +33,8 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <TopLine Value="163"/>
-        <CursorPos X="20" Y="192"/>
+        <TopLine Value="654"/>
+        <CursorPos Y="673"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -165,7 +165,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="391"/>
+        <TopLine Value="460"/>
         <CursorPos X="3" Y="393"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -448,13 +448,9 @@
         <ComponentName Value="PaczkiRejestr"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="246"/>
-        <CursorPos X="13" Y="246"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="71" Y="10"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit37>
       <Unit38>
         <Filename Value="UOchAddWidzenie.pas"/>
@@ -546,10 +542,13 @@
         <ComponentName Value="ViewWidzenia"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="73"/>
-        <CursorPos X="67" Y="90"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="46"/>
+        <CursorPos X="23" Y="73"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit45>
       <Unit46>
         <Filename Value="UKoszykDostep.pas"/>
@@ -570,10 +569,12 @@
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="88"/>
-        <CursorPos X="58" Y="101"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="264"/>
+        <CursorPos X="3" Y="266"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit47>
       <Unit48>
         <Filename Value="UViewOsobyBliskie.pas"/>
@@ -747,7 +748,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="188"/>
       </Unit62>
       <Unit63>
         <Filename Value="UOchRezerwacjaWidzen.pas"/>
@@ -756,12 +757,9 @@
         <ComponentName Value="OchRezerwacjaWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="184"/>
+        <EditorIndex Value="-1"/>
         <CursorPos Y="192"/>
-        <UsageCount Value="185"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="188"/>
       </Unit63>
       <Unit64>
         <Filename Value="UZdjEdycja.pas"/>
@@ -773,7 +771,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <CursorPos X="3" Y="89"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="98"/>
       </Unit64>
       <Unit65>
         <Filename Value="UZdjEdycjaZapisz.pas"/>
@@ -785,7 +783,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos Y="34"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="98"/>
       </Unit65>
       <Unit66>
         <Filename Value="UZdjWidok.pas"/>
@@ -796,7 +794,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="60" Y="10"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="107"/>
       </Unit66>
       <Unit67>
         <Filename Value="UPaczkiZwroty.pas"/>
@@ -808,7 +806,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos X="15" Y="47"/>
-        <UsageCount Value="83"/>
+        <UsageCount Value="86"/>
       </Unit67>
       <Unit68>
         <Filename Value="UPaczkiZwrotyAdd.pas"/>
@@ -820,7 +818,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="88"/>
         <CursorPos Y="101"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="82"/>
       </Unit68>
       <Unit69>
         <Filename Value="UViewPaczki.pas"/>
@@ -829,10 +827,10 @@
         <ComponentName Value="ViewPaczki"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="71"/>
-        <CursorPos Y="82"/>
-        <UsageCount Value="71"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="33"/>
+        <CursorPos X="38" Y="56"/>
+        <UsageCount Value="74"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit69>
@@ -843,12 +841,10 @@
         <ComponentName Value="PaczkiAdd"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="128"/>
-        <CursorPos X="39" Y="146"/>
-        <UsageCount Value="47"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="11"/>
+        <CursorPos X="40" Y="242"/>
+        <UsageCount Value="50"/>
       </Unit70>
       <Unit71>
         <Filename Value="UOchRejestrWidzen.pas"/>
@@ -857,8 +853,12 @@
         <ComponentName Value="OchRejestrWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="31"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="281"/>
+        <CursorPos X="3" Y="273"/>
+        <UsageCount Value="34"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit71>
       <Unit72>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -1421,8 +1421,8 @@
         <Filename Value="C:\codetyphon\typhon\components\pl_RX\source\rxdbutils.pas"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="232"/>
-        <CursorPos X="3" Y="221"/>
+        <TopLine Value="762"/>
+        <CursorPos Y="777"/>
         <UsageCount Value="10"/>
       </Unit148>
       <Unit149>
@@ -1438,17 +1438,17 @@
         <FRMtype Value="0"/>
         <UnitName Value="DB"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1490"/>
-        <CursorPos X="15" Y="1504"/>
-        <UsageCount Value="7"/>
+        <TopLine Value="1682"/>
+        <CursorPos X="14" Y="1698"/>
+        <UsageCount Value="10"/>
       </Unit150>
       <Unit151>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-db\src\base\dataset.inc"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2366"/>
-        <CursorPos X="3" Y="2369"/>
-        <UsageCount Value="7"/>
+        <TopLine Value="1910"/>
+        <CursorPos X="3" Y="1913"/>
+        <UsageCount Value="10"/>
       </Unit151>
       <Unit152>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysutilh.inc"/>
@@ -1467,127 +1467,39 @@
         <UsageCount Value="9"/>
       </Unit153>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="8" HistoryIndex="7">
       <Position1>
-        <Filename Value="UPaczkiAdd.pas"/>
-        <Caret Line="62" Column="22" TopLine="49"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="112" Column="21" TopLine="98"/>
       </Position1>
       <Position2>
-        <Filename Value="UPaczkiAdd.pas"/>
-        <Caret Line="61" Column="17" TopLine="43"/>
+        <Filename Value="UOchForm.pas"/>
+        <Caret Line="101" Column="58" TopLine="88"/>
       </Position2>
       <Position3>
-        <Filename Value="UPaczkiAdd.pas"/>
-        <Caret Line="61" Column="22" TopLine="57"/>
+        <Filename Value="UViewWidzenia.pas"/>
+        <Caret Line="90" Column="67" TopLine="73"/>
       </Position3>
       <Position4>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="209" Column="21" TopLine="187"/>
+        <Filename Value="UOchForm.pas"/>
+        <Caret Line="101" Column="15" TopLine="83"/>
       </Position4>
       <Position5>
-        <Filename Value="UPaczkiAdd.pas"/>
-        <Caret Line="232" TopLine="218"/>
+        <Filename Value="UViewWidzenia.pas"/>
+        <Caret Line="50" Column="22" TopLine="42"/>
       </Position5>
       <Position6>
-        <Filename Value="UPaczkiAdd.pas"/>
-        <Caret Line="282" Column="53" TopLine="265"/>
+        <Filename Value="UOchForm.pas"/>
+        <Caret Line="266" TopLine="264"/>
       </Position6>
       <Position7>
-        <Filename Value="UPaczkiAdd.pas"/>
-        <Caret Line="284" Column="66" TopLine="268"/>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Caret TopLine="131"/>
       </Position7>
       <Position8>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="217" Column="21" TopLine="198"/>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Caret Line="313" Column="30" TopLine="309"/>
       </Position8>
-      <Position9>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="126" Column="44" TopLine="106"/>
-      </Position9>
-      <Position10>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="127" Column="44" TopLine="107"/>
-      </Position10>
-      <Position11>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="128" Column="44" TopLine="108"/>
-      </Position11>
-      <Position12>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="129" Column="44" TopLine="109"/>
-      </Position12>
-      <Position13>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="130" Column="44" TopLine="110"/>
-      </Position13>
-      <Position14>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="129" Column="44" TopLine="109"/>
-      </Position14>
-      <Position15>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="130" Column="44" TopLine="110"/>
-      </Position15>
-      <Position16>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="131" Column="44" TopLine="111"/>
-      </Position16>
-      <Position17>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="132" Column="44" TopLine="112"/>
-      </Position17>
-      <Position18>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="133" Column="44" TopLine="113"/>
-      </Position18>
-      <Position19>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="134" Column="44" TopLine="114"/>
-      </Position19>
-      <Position20>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="136" Column="44" TopLine="116"/>
-      </Position20>
-      <Position21>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="12" Column="13"/>
-      </Position21>
-      <Position22>
-        <Filename Value="UOchRezerwacjaWidzen.pas"/>
-        <Caret Line="159" TopLine="153"/>
-      </Position22>
-      <Position23>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="251" TopLine="241"/>
-      </Position23>
-      <Position24>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="252" TopLine="241"/>
-      </Position24>
-      <Position25>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="253" TopLine="241"/>
-      </Position25>
-      <Position26>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="254" TopLine="241"/>
-      </Position26>
-      <Position27>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="255" TopLine="241"/>
-      </Position27>
-      <Position28>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="256" TopLine="241"/>
-      </Position28>
-      <Position29>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="257" TopLine="241"/>
-      </Position29>
-      <Position30>
-        <Filename Value="UPaczkiRejestr.pas"/>
-        <Caret Line="258" TopLine="241"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

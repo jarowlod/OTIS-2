@@ -657,7 +657,7 @@ procedure TDM.KomunikatPopUp(Sender: TObject; ATitle, AText: string; Style: TNot
 var img: TPicture;
 begin
   img:= TPicture.Create;
-
+  try
   case Style of
     nots_Clear  : ;
     nots_Info   : begin
@@ -676,7 +676,9 @@ begin
   KomunikatyPopUp.AddNotifer(ATitle, AText);
 
   //TForm(Sender).SetFocus;
-  FreeAndNil(img);
+  finally
+    FreeAndNil(img);
+  end;
 end;
 
 procedure TDM.Zaloguj;

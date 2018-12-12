@@ -1,7 +1,7 @@
 object ViewPaczki: TViewPaczki
-  Left = 342
+  Left = 333
   Height = 467
-  Top = 242
+  Top = 237
   Width = 801
   Align = alClient
   BorderStyle = bsNone
@@ -240,6 +240,7 @@ object ViewPaczki: TViewPaczki
     FixedCols = 0
     Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
     ParentShowHint = False
+    PopupMenu = PopupMenu1
     ReadOnly = True
     ShowHint = True
     TabOrder = 0
@@ -285,5 +286,28 @@ object ViewPaczki: TViewPaczki
         Name = 'ido'
         ParamType = ptUnknown
       end>
+  end
+  object PopupMenu1: TPopupMenu
+    Images = DM.ImageList1
+    Left = 261
+    Top = 176
+    object MenuItemDodaj: TMenuItem
+      Caption = 'Dodaj paczkę...'
+      ImageIndex = 48
+      OnClick = MenuItemDodajClick
+    end
+    object MenuItem4: TMenuItem
+      Caption = '-'
+    end
+    object MenuItemUsun: TMenuItem
+      Caption = 'Usuń paczkę...'
+      ImageIndex = 44
+      OnClick = MenuItemUsunClick
+    end
+    object MenuItemModyfikuj: TMenuItem
+      Caption = 'Modyfikuj paczkę...'
+      ImageIndex = 39
+      OnClick = MenuItemModyfikujClick
+    end
   end
 end

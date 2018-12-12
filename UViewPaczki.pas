@@ -5,7 +5,8 @@ unit UViewPaczki;
 interface
 
 uses
-  Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, rxdbgrid, ZDataset, Grids, DBGrids, datamodule;
+  Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, rxdbgrid, ZDataset,
+  Grids, DBGrids, Menus, datamodule;
 
 type
 
@@ -13,10 +14,18 @@ type
 
   TViewPaczki = class(TForm)
     DSPaczki: TDataSource;
+    MenuItemDodaj: TMenuItem;
+    MenuItemUsun: TMenuItem;
+    MenuItemModyfikuj: TMenuItem;
+    MenuItem4: TMenuItem;
+    PopupMenu1: TPopupMenu;
     RxDBGrid2: TRxDBGrid;
     ZQPaczki: TZQuery;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemDodajClick(Sender: TObject);
+    procedure MenuItemUsunClick(Sender: TObject);
+    procedure MenuItemModyfikujClick(Sender: TObject);
     procedure RxDBGrid2PrepareCanvas(sender: TObject; DataCol: Integer; Column: TColumn; AState: TGridDrawState);
   private
     SelectIDO: integer;
@@ -28,7 +37,7 @@ type
 
 
 implementation
-uses DateUtils;
+uses DateUtils, rxdbutils, UPaczkiAdd, UPaczkiRejestr;
 {$R *.frm}
 
 { TViewPaczki }
@@ -36,6 +45,32 @@ uses DateUtils;
 procedure TViewPaczki.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
+
+  MenuItemDodaj.Enabled    := DM.uprawnienia[2];
+  MenuItemUsun.Enabled     := DM.uprawnienia[2];
+  MenuItemModyfikuj.Enabled:= DM.uprawnienia[2];
+end;
+
+procedure TViewPaczki.MenuItemDodajClick(Sender: TObject);
+begin
+  with TPaczkiAdd.Create(Self) do
+  begin
+       SetIDO( SelectIDO );
+       if ShowModal=mrOK then RefreshQuery(ZQPaczki);
+       Free;
+  end;
+end;
+
+procedure TViewPaczki.MenuItemUsunClick(Sender: TObject);
+begin
+  if IsDataSetEmpty(ZQPaczki) then exit;
+  if TPaczkiRejestr.UsunPaczke(ZQPaczki.FieldByName('ID').AsInteger) then RefreshQuery(ZQPaczki);
+end;
+
+procedure TViewPaczki.MenuItemModyfikujClick(Sender: TObject);
+begin
+  if IsDataSetEmpty(ZQPaczki) then exit;
+  if TPaczkiRejestr.ModyfikujPaczke(ZQPaczki.FieldByName('ID').AsInteger) then RefreshQuery(ZQPaczki);
 end;
 
 procedure TViewPaczki.FormClose(Sender: TObject; var CloseAction: TCloseAction);
