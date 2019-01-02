@@ -5,11 +5,9 @@ unit UPenitForm;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate,
-  Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
-  StdCtrls, Buttons, ComCtrls, rxdbutils, rxdbgrid, UZatrudnieni,
-  UViewUwagiOch, UViewWykazy, UViewZatrudnienie, UViewWidzenia, UViewOsobyBliskie, UViewPaczki,
-  datamodule;
+  Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate, Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
+  StdCtrls, Buttons, ComCtrls, rxdbutils, UZatrudnieni, UViewUwagiOch, UViewWykazy, UViewZatrudnienie, UViewWidzenia,
+  UViewOsobyBliskie, UViewPaczki, datamodule;
 
 type
 

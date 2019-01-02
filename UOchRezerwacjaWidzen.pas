@@ -102,6 +102,7 @@ begin
    btnUsun.Enabled    := DM.uprawnienia[18];
 
    Terminy:= TTerminyWidzenEvents.Create;
+   YearPlanner1.Year:= YearOf( Date() );
    WczytajDaneTerminarza;                  // wczytuje dane do Terminy i wyświetla w terminarzu
    // zaznacza bieżącą datę
      YearPlanner1.SelectCells(Date, Date);

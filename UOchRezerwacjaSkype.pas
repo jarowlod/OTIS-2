@@ -103,6 +103,7 @@ begin
    btnUsun.Enabled    := DM.uprawnienia[18];
 
    Terminy:= TTerminySkypeEvents.Create;
+   YearPlanner1.Year:= YearOf( Date() );
    WczytajDaneTerminarza;                  // wczytuje dane do Terminy i wyświetla w terminarzu
    // zaznacza bieżącą datę
      YearPlanner1.SelectCells(Date, Date);

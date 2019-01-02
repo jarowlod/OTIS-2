@@ -17,12 +17,7 @@ type
     DSOsoby: TDataSource;
     DSWidzenia: TDataSource;
     Label1: TLabel;
-    MenuItem4: TMenuItem;
-    MenuItemDodaj: TMenuItem;
-    MenuItemModyfikuj: TMenuItem;
-    MenuItemUsun: TMenuItem;
     Panel3: TPanel;
-    PopupMenu1: TPopupMenu;
     RxDBGrid2: TRxDBGrid;
     RxDBGrid3: TRxDBGrid;
     Splitter1: TSplitter;
@@ -59,10 +54,6 @@ end;
 procedure TViewWidzenia.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
-
-  MenuItemDodaj.Enabled    := DM.uprawnienia[6];
-  MenuItemUsun.Enabled     := DM.uprawnienia[6];
-  MenuItemModyfikuj.Enabled:= DM.uprawnienia[6];
 end;
 
 procedure TViewWidzenia.MenuItemDodajClick(Sender: TObject);

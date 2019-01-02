@@ -266,7 +266,6 @@ object ViewWidzenia: TViewWidzenia
     FixedCols = 0
     Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
     ParentShowHint = False
-    PopupMenu = PopupMenu1
     ReadOnly = True
     ShowHint = True
     TabOrder = 0
@@ -547,26 +546,5 @@ object ViewWidzenia: TViewWidzenia
         Name = 'ido'
         ParamType = ptUnknown
       end>
-  end
-  object PopupMenu1: TPopupMenu
-    Images = DM.ImageList1
-    Left = 280
-    Top = 136
-    object MenuItemDodaj: TMenuItem
-      Caption = 'Dodaj widzenie...'
-      ImageIndex = 0
-      OnClick = MenuItemDodajClick
-    end
-    object MenuItem4: TMenuItem
-      Caption = '-'
-    end
-    object MenuItemUsun: TMenuItem
-      Caption = 'Usuń paczkę...'
-      ImageIndex = 44
-    end
-    object MenuItemModyfikuj: TMenuItem
-      Caption = 'Modyfikuj widzenie...'
-      ImageIndex = 39
-    end
   end
 end

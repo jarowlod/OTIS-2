@@ -52,6 +52,7 @@ type
     DSZatUrlop: TDataSource;
     ed_dni1: TEdit;
     ed_dni2: TEdit;
+    ed_wymiar_dni_urlopu: TEdit;
     ed_przepracowane_godz2: TLSCurrencyEdit;
     ed_przepracowane_godz3: TLSCurrencyEdit;
     ed_przepracowane_godz4: TLSCurrencyEdit;
@@ -102,6 +103,7 @@ type
     Label31: TLabel;
     Label32: TLabel;
     Label33: TLabel;
+    Label34: TLabel;
     lbl_msc4: TLabel;
     lbl_msc5: TLabel;
     lbl_msc6: TLabel;
@@ -227,6 +229,8 @@ begin
 
   DM.SetMemoReport(frReport1, 'Memo_oddnia', DateToStrOrNull( dtp_oddnia.Date) );
   DM.SetMemoReport(frReport1, 'Memo_dodnia', DateToStrOrNull( dtp_dodnia.Date,'NADAL') );
+
+  DM.SetMemoReport(frReport1, 'Memo_wymiar_dni_urlopu', ed_wymiar_dni_urlopu.Text);
 
   DM.SetMemoReport(frReport1, 'Memo_od1', DateToStrOrNull( dtp_od1.Date) );
   DM.SetMemoReport(frReport1, 'Memo_od2', DateToStrOrNull( dtp_od2.Date) );
@@ -356,6 +360,7 @@ var dni_urlopu  : integer;
 
     etat        : integer;
     godziny     : integer;
+    wymiar_dni_urlopu: integer;
 begin
   dtp_urlopdo1.Date:= NullDate;
   dtp_urlopod2.Date:= NullDate;
@@ -375,7 +380,14 @@ begin
 
   ed_miesiac1.Text:= FormatDateTime('MMMM YYYY', data_urlopu,[]);
 
-  while dni_urlopu < 14 do
+      if ed_wymiar_dni_urlopu.Text='' then ed_wymiar_dni_urlopu.Text:= '14';
+  wymiar_dni_urlopu:= StrToIntDef(ed_wymiar_dni_urlopu.Text, 14);
+      if wymiar_dni_urlopu>25 then begin
+          ed_wymiar_dni_urlopu.Text:= '25';
+          wymiar_dni_urlopu:=25;
+      end;
+
+  while dni_urlopu < wymiar_dni_urlopu do
   begin
     // sprawdzam czy mamy przeskok miesiąca
     // out: is_pierwszy:= false;

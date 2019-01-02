@@ -1,7 +1,7 @@
 object ZatWniosekUrolopowy: TZatWniosekUrolopowy
-  Left = 342
+  Left = 333
   Height = 609
-  Top = 242
+  Top = 237
   Width = 1079
   Caption = 'Wniosek Urolopowy'
   ClientHeight = 609
@@ -289,8 +289,8 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
       Left = 16
       Height = 15
       Top = 368
-      Width = 320
-      Caption = 'Wnoszę o udzielenie skazanemu 14 - dniowego wypoczynku:'
+      Width = 306
+      Caption = 'Wnoszę o udzielenie skazanemu wypoczynku w wymiarze:'
       ParentColor = False
     end
     object Label7: TLabel
@@ -330,6 +330,7 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
       Height = 23
       Top = 392
       Width = 40
+      NumbersOnly = True
       TabOrder = 4
     end
     object ed_dni2: TEdit
@@ -337,6 +338,7 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
       Height = 23
       Top = 416
       Width = 40
+      NumbersOnly = True
       TabOrder = 5
     end
     object Label11: TLabel
@@ -371,6 +373,7 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
       MaxDate = 2958465
       MinDate = -53780
       TabOrder = 7
+      Color = 13041663
       TrailingSeparator = False
       TextForNullDate = 'NULL'
       LeadingZeros = True
@@ -1661,6 +1664,27 @@ object ZatWniosekUrolopowy: TZatWniosekUrolopowy
           end
         end
       end
+    end
+    object ed_wymiar_dni_urlopu: TEdit
+      Left = 328
+      Height = 23
+      Top = 368
+      Width = 40
+      Color = 13041663
+      MaxLength = 2
+      NumbersOnly = True
+      OnEditingDone = dtp_urlopod1EditingDone
+      TabOrder = 36
+      Text = '14'
+      TextHint = '14'
+    end
+    object Label34: TLabel
+      Left = 372
+      Height = 15
+      Top = 368
+      Width = 20
+      Caption = 'dni.'
+      ParentColor = False
     end
   end
   object frReport1: TfrReport
