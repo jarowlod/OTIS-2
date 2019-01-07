@@ -92,6 +92,7 @@ procedure TPaczkiAdd.FormCreate(Sender: TObject);
 begin
   SelectIDO:= 0;
   PageControl1.TabIndex  := 0;
+  dtpDataPrzyjecia.Date:= Date();
 
   fViewWykazy:= TViewWykazy.Create(Self);
   fViewWykazy.Parent:= TabSheetWykazy;

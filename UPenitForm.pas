@@ -14,6 +14,7 @@ type
   { TPenitForm }
 
   TPenitForm = class(TForm)
+    btnDodajKolejnyTerminOceny: TSpeedButton;
     btnKreatorWPZ: TSpeedButton;
     btnRejestrProsb: TBitBtn;
     btnRejestrZat: TBitBtn;
@@ -82,11 +83,13 @@ type
     ZQOs: TZQuery;
     ZUOsInfo: TZUpdateSQL;
     ZUOsNotatki: TZUpdateSQL;
+    procedure btnDodajKolejnyTerminOcenyClick(Sender: TObject);
     procedure btnKreatorWPZClick(Sender: TObject);
     procedure btnRejestrProsbClick(Sender: TObject);
     procedure btnRejestrZatClick(Sender: TObject);
     procedure btnDrukArchClick(Sender: TObject);
     procedure btnDrukWywiadClick(Sender: TObject);
+    procedure DBDateTimePicker2Change(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -375,6 +378,12 @@ begin
   RefreshQuery(ZQOsInfo);
 end;
 
+procedure TPenitForm.btnDodajKolejnyTerminOcenyClick(Sender: TObject);
+begin
+  DBDateTimePicker2.Field.DataSet.Edit;
+  DBDateTimePicker2.Field.AsDateTime:= IncMonth(Date, 6);
+end;
+
 procedure TPenitForm.btnDrukArchClick(Sender: TObject);
 begin
   if SelectIDO = 0 then exit;
@@ -395,6 +404,11 @@ begin
        ShowModal;
        Free;
   end;
+end;
+
+procedure TPenitForm.DBDateTimePicker2Change(Sender: TObject);
+begin
+  if TDBDateTimePicker(Sender).Field.AsDateTime > IncMonth(Date, 6) then ShowMessage('Wprowadzona data jest dziwna i mi nie pasuje.');
 end;
 
 procedure TPenitForm.WczytajTypCeli;
