@@ -58,6 +58,10 @@ type
     haslo     : string;
     PelnaNazwa: string;
 
+    isSerwerAlarmowy: Boolean;
+    isClientAlarmowy: Boolean;
+    UserLokalizacja: string; // lokalizacja fizyczna komputera dla celów powiadamiania ALARMU, z mySQL
+
     Wychowawca  : string;
     ZastepcyWych: string;
     Dzial       : string;
@@ -189,7 +193,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.2.10';
+  wersja = '0.0.2.11';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -243,6 +247,9 @@ begin
   isShortKeyCtrlP      := IniPropStorage1.ReadBoolean('ShortKey_Ctrl+P', true);
   isShortKeyCtrlN      := IniPropStorage1.ReadBoolean('ShortKey_Ctrl+N', true);
 
+  isSerwerAlarmowy:= false;
+  isClientAlarmowy:= false;
+  UserLokalizacja := '---'; // TODO z pliku ini
 
   fStatusList:= TStringList.Create;
   fStatusList.Text:=

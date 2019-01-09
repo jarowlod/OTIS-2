@@ -1,14 +1,13 @@
-unit Unit1;
+unit UAlerter;
 
 {$mode objfpc}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, Clipbrd, dateutils, LCLType,
-  LazUTF8, IdTCPServer, IdComponent, IdCustomTCPServer, IdContext, IdThread,
-  IdGlobal, IdTCPClient, IdStack;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, dateutils, LCLType,
+  StdCtrls, LazUTF8, IdTCPServer, IdComponent, IdCustomTCPServer, IdContext,
+  IdThread, IdGlobal, IdTCPClient, IdStack, MMSystem;
 
 type
   TShowAlertStatusEvent = procedure(Status: String) of Object;
@@ -43,6 +42,8 @@ type
     property ListaOdbiorcow: TStringList read FListaOdbiorcow write FListaOdbiorcow;
     property OnShowAlerterStatus: TShowAlertStatusEvent read FOnShowAlerterStatus write FOnShowAlerterStatus;
     property OnShowAlertWindow: TShowAlertStatusEvent read FOnShowAlertWindow write FOnShowAlertWindow;
+    property UserName: string read FUserName write FUserName;
+    property UserLokalizacja: string read FUserLokalizacja write FUserLokalizacja;
   end;
 
   { TAlertThread }
@@ -84,37 +85,31 @@ type
     property OnShowAlertStatus: TShowAlertStatusEvent read FOnShowAlertStatus write FOnShowAlertStatus;
   end;
 
+  { TAlerterForm }
 
-  { TForm1 }
-
-  TForm1 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    CheckBox1: TCheckBox;
-    Memo1: TMemo;
-    Memo2: TMemo;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure FormCreate(Sender: TObject);
+  TAlerterForm = class(TForm)
+    Label1: TLabel;
+    lblLokalizacjaWezwania: TLabel;
+    procedure FormShow(Sender: TObject);
   private
-     hotkey_alert: ATOM; // hotkey na cały system
-     ALARM: TAlerter;
 
-     procedure wm_HOTKEY(var Msg:TMessage);message WM_HOTKEY; // funkcja skrótu globalnego
-
-     procedure ShowAlert(Status: string);
-     procedure ShowStatus(Status: string);
   public
 
   end;
 
 var
-  Form1: TForm1;
+  AlerterForm: TAlerterForm;
 
 implementation
-uses Unit2;
+
 {$R *.frm}
+
+{ TAlerterForm }
+
+procedure TAlerterForm.FormShow(Sender: TObject);
+begin
+  PlaySound(PChar('raporty\Red Alert.wav'), 0, SND_ASYNC or SND_NODEFAULT);
+end;
 
 { TShowAlertThread }
 
@@ -164,8 +159,8 @@ begin
       Client.IOHandler.WriteLn(Format('%s;%s;%s',['ALERT', Lokalizacja, Nazwa]),  IndyTextEncoding_UTF8, IndyTextEncoding_UTF8);
 
       LLine := Client.IOHandler.ReadLn( IndyTextEncoding_UTF8, IndyTextEncoding_UTF8);
-      if ( LLine <> '' ) then begin
-         fStatusText:= Format('Potwierdzenie wyświetlenia alertu: %s.',[LLine]);
+      if ( LLine <> '' ) then begin // odpowiedz serwera lokalizacja
+         fStatusText:= Format('%s;%s',[Lokalizacja, LLine]);
          Synchronize(@Showstatus);
       end;
 
@@ -174,7 +169,7 @@ begin
       FreeAndNil(Client);
     end;
   except
-    fStatusText:= 'Brak połączenia.';
+    fStatusText:= Format('%s;%s',[Nazwa, 'Brak połączenia.']);
     Synchronize(@Showstatus);
   end;
 end;
@@ -194,8 +189,12 @@ end;
 
 procedure TAlerter.IdTCPServer1Execute(AContext: TIdContext);
 var LLine: string;
+    KodAutoryzacji: string;
 begin
   LLine := AContext.Connection.IOHandler.ReadLn(IndyTextEncoding_UTF8, IndyTextEncoding_UTF8);
+
+  KodAutoryzacji:= Copy(LLine, 1, 5);
+  if KodAutoryzacji<>'ALERT' then exit;
 
   //TThread.Queue(nil, @ShowAlert);
   //TThread.Synchronize(nil, @ShowAlert);
@@ -250,82 +249,6 @@ begin
   IdTCPServer1.Active:= true;
 end;
 
-
-{ TForm1 }
-
-procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
-  //------------ zwalniam globalny skrót
-  if GlobalFindAtom('OTIS_alert') <> 0 then
-  begin
-    UnregisterHotKey(Handle, hotkey_alert);
-    GlobalDeleteAtom(hotkey_alert);
-  end;
-
-  FreeAndNil(ALARM);
-end;
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-  // -------------------- dodajemy globalny skrót dla NOE :)
-  if GlobalFindAtom('OTIS_alert') = 0 then
-  begin
-    hotkey_alert:= GlobalAddAtom('OTIS_alert');
-    RegisterHotKey(Handle, hotkey_alert, 0, VK_PAUSE);  // wstawia nazwisko
-  end;
-
-  ALARM:= TAlerter.Create;
-  ALARM.ListaOdbiorcow:= TStringList.Create;
-  ALARM.ListaOdbiorcow.Append('192.168.1.100;Stanowisko Dowodzenia 1');
-  ALARM.ListaOdbiorcow.Append('192.168.1.100;Stanowisko Dowodzenia 2');
-  ALARM.ListaOdbiorcow.Append('192.168.1.100;Stanowisko Dowodzenia 3');
-
-  ALARM.FUserName:= 'Jarosław Włodarczyk';
-  ALARM.FUserLokalizacja:= 'Gabinet wych poz.V';
-  ALARM.OnShowAlerterStatus:= @ShowStatus;
-  ALARM.OnShowAlertWindow:= @ShowAlert;
-end;
-
-procedure TForm1.Button1Click(Sender: TObject);
-begin
-  ALARM.SendAlarm;
-end;
-
-procedure TForm1.Button2Click(Sender: TObject);
-begin
-  CheckBox1.Checked:= true;
-  Button2.Enabled  := false;
-  try
-    ALARM.StartSerwer;
-  except
-    CheckBox1.Checked:= false;
-    Button2.Enabled  := true;
-  end;
-end;
-
-procedure TForm1.wm_HOTKEY(var Msg: TMessage);
-begin
-  if Msg.WParam = hotkey_alert then
-    begin
-       ALARM.SendAlarm;
-    end;
-end;
-
-procedure TForm1.ShowAlert(Status: string);
-begin
-  Memo1.Append(Status);
-  // otwieramy niemodalne okno wiadomości
-  with TForm2.Create(Self) do
-  begin
-    Caption:= Status;
-    Show;
-  end;
-end;
-
-procedure TForm1.ShowStatus(Status: string);
-begin
-  Memo2.Append(Status);
-end;
 
 end.
 

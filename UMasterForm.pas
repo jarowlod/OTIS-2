@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, rxdbutils, Grids,
   db, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Clipbrd, dateutils, LCLType,
-  LazUTF8, datamodule, BGRALabel;
+  LazUTF8, UAlerter, IdComponent, IdStack, IdIPWatch, datamodule, BGRALabel;
 
 type
 
@@ -54,6 +54,7 @@ type
     ActionProsbyOsadzonego: TAction;
     ActionRozmieszczenie: TAction;
     BGRALabel1: TBGRALabel;
+    IdIPWatch1: TIdIPWatch;
     Image3: TImage;
     MenuItem10: TMenuItem;
     MenuItem19: TMenuItem;
@@ -233,8 +234,14 @@ type
     fRecCount: integer;
     hotkey_ctrl_n: ATOM; // hotkey na cały system
     hotkey_ctrl_p: ATOM;
+    hotkey_alert : ATOM; // pause/break
+    ALARM: TAlerter;
     procedure StatusBarRefresh(Sender: TObject; Field: TField);
     procedure wm_HOTKEY(var Msg:TMessage);message WM_HOTKEY; // funkcja skrótu globalnego
+    procedure CreateAlarm;
+    procedure WczytajUstawieniaAlarmu;
+    procedure ShowAlert(Status: string);
+    procedure ShowStatus(Status: string);
   public
     { public declarations }
     isExecuteSQL: boolean;
@@ -271,29 +278,44 @@ begin
   RefreshUprawnienia;
 
   // -------------------- dodajemy globalny skrót dla NOE :)
-  if DM.isShortKeyCtrlN then begin
+  if (DM.isShortKeyCtrlN)and(GlobalFindAtom('OTIS_ctrl_n') = 0) then begin
     hotkey_ctrl_n:= GlobalAddAtom('OTIS_ctrl_n');
     RegisterHotKey(Handle, hotkey_ctrl_n, MOD_CONTROL, VK_N);  // wstawia nazwisko
   end;
 
-  if (DM.isShortKeyCtrlP)and(DM.Podpis<>'') then begin
+  if (DM.isShortKeyCtrlP)and(DM.Podpis<>'')and(GlobalFindAtom('OTIS_ctrl_p') = 0) then begin
     hotkey_ctrl_p:= GlobalAddAtom('OTIS_ctrl_p');
     RegisterHotKey(Handle, hotkey_ctrl_p, MOD_CONTROL,  VK_P); // wstawia podpis jeśli jest
+  end;
+
+  CreateAlarm;
+  if (DM.isClientAlarmowy)and(GlobalFindAtom('OTIS_alert') = 0) then  // tylko jedna instacja programu
+  begin
+    hotkey_alert:= GlobalAddAtom('OTIS_alert');
+    RegisterHotKey(Handle, hotkey_alert, 0, VK_PAUSE);  // wywołuje alarm
   end;
 end;
 
 procedure TMasterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   //------------ zwalniam globalny skrót
-  if DM.isShortKeyCtrlN then begin
+  if GlobalFindAtom('OTIS_ctrl_n') <> 0 then begin
     UnregisterHotKey(Handle, hotkey_ctrl_n);
     GlobalDeleteAtom(hotkey_ctrl_n);
   end;
 
-  if (DM.isShortKeyCtrlP)and(DM.Podpis<>'') then begin
+  if GlobalFindAtom('OTIS_ctrl_p') <> 0 then begin
     UnregisterHotKey(Handle, hotkey_ctrl_p);
     GlobalDeleteAtom(hotkey_ctrl_p);
   end;
+
+  if GlobalFindAtom('OTIS_alert') <> 0 then
+  begin
+    UnregisterHotKey(Handle, hotkey_alert);
+    GlobalDeleteAtom(hotkey_alert);
+  end;
+
+  FreeAndNil(ALARM);
 end;
 
 procedure TMasterForm.RefreshUprawnienia;
@@ -1005,11 +1027,91 @@ begin
     end
   else
   if Msg.WParam = hotkey_ctrl_p then
+    begin
+       { reakcja na skrót klawiszowy Ctrl+p}
+       value_Send:= StringReplace(DM.Podpis, LineEnding, #13, [rfReplaceAll]);
+       SendToKeyboard(value_Send);
+    end
+  else
+  if Msg.WParam = hotkey_alert then
+    begin
+       ALARM.SendAlarm;
+    end;
+end;
+
+procedure TMasterForm.CreateAlarm;
+begin
+  ALARM:= TAlerter.Create;
+  ALARM.ListaOdbiorcow:= TStringList.Create;
+
+  WczytajUstawieniaAlarmu;
+
+  ALARM.OnShowAlerterStatus:= @ShowStatus;
+  ALARM.OnShowAlertWindow  := @ShowAlert;
+end;
+
+procedure TMasterForm.WczytajUstawieniaAlarmu;
+var ZQPom: TZQueryPom;
+    LocalIP: string;
+begin
+  LocalIP:= GStack.LocalAddress;
+  ZQPom:= TZQueryPom.Create(Self);
+  ZQPom.SQL.Text:= 'SELECT * FROM alerter WHERE IP=:ip';
+  ZQPom.ParamByName('ip').AsString:= LocalIP;
+  ZQPom.Open;
+
+  if not ZQPom.isEmpty then
   begin
-     { reakcja na skrót klawiszowy Ctrl+p}
-     value_Send:= StringReplace(DM.Podpis, LineEnding, #13, [rfReplaceAll]);
-     SendToKeyboard(value_Send);
+     DM.UserLokalizacja:= ZQPom.FieldByName('Lokalizacja').AsString;
+
+     if not ZQPom.FieldByName('ListaAlarmowa').IsNull then
+     begin
+       DM.isClientAlarmowy:= true;
+       ALARM.ListaOdbiorcow.Text:= ZQPom.FieldByName('ListaAlarmowa').AsString;
+     end;
+
+     if ZQPom.FieldByName('Rodzaj').AsString = 'Serwer' then
+     begin
+       DM.isSerwerAlarmowy:= True;
+       try
+         ALARM.StartSerwer;
+       except
+         DM.isSerwerAlarmowy:= false;
+       end;
+     end;
   end;
+
+  ALARM.UserName       := DM.PelnaNazwa;
+  ALARM.UserLokalizacja:= DM.UserLokalizacja;
+
+  FreeAndNil(ZQPom);
+end;
+
+procedure TMasterForm.ShowAlert(Status: string);
+var LokalizacjaWezwania: string;
+begin
+  LokalizacjaWezwania:= Status.Split([';'])[1];
+  with TAlerterForm.Create(Self) do
+  begin
+    Caption:= LokalizacjaWezwania;
+    lblLokalizacjaWezwania.Caption:= LokalizacjaWezwania;
+    Show;
+  end;
+end;
+
+procedure TMasterForm.ShowStatus(Status: string);
+var WyslanoDo: string;
+    SerwerLokalizacja: string;
+begin
+  WyslanoDo:= Status.Split([';'])[0];
+  SerwerLokalizacja:= Status.Split([';'])[1];
+
+  if SerwerLokalizacja='Brak połączenia.' then
+  begin
+    DM.KomunikatPopUp(Self, 'ALERT', 'Brak odpowiedzi od: '+WyslanoDo, nots_Warning);
+    exit;
+  end;
+  DM.KomunikatPopUp(Self, 'ALERT', 'Wezwano o pomoc do: '+SerwerLokalizacja, nots_Warning);
 end;
 
    { TODO : Domyślne lub z pliku ini: Rozmiar i położenie okna podczas onShow }

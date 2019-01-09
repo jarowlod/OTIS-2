@@ -24,7 +24,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="29"/>
+      <BuildNr Value="30"/>
       <Language Value="0415"/>
       <StringTable CompanyName="ZK Kłodzko" LegalCopyright="Włodarczyk Jarosław" ProductVersion="0.0.0.0"/>
     </VersionInfo>
@@ -47,105 +47,108 @@
         </Mode0>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="32">
+    <RequiredPackages Count="33">
       <Item1>
-        <PackageName Value="pl_graphics32"/>
+        <PackageName Value="pl_indy"/>
       </Item1>
       <Item2>
-        <PackageName Value="pl_jujiboutils"/>
+        <PackageName Value="pl_graphics32"/>
       </Item2>
       <Item3>
-        <PackageName Value="pl_eccontrols"/>
+        <PackageName Value="pl_jujiboutils"/>
       </Item3>
       <Item4>
-        <PackageName Value="pl_shapes"/>
+        <PackageName Value="pl_eccontrols"/>
       </Item4>
       <Item5>
-        <PackageName Value="pl_richview"/>
+        <PackageName Value="pl_shapes"/>
       </Item5>
       <Item6>
-        <PackageName Value="lz_fpweb"/>
+        <PackageName Value="pl_richview"/>
       </Item6>
       <Item7>
-        <PackageName Value="pl_pascalscada"/>
+        <PackageName Value="lz_fpweb"/>
       </Item7>
       <Item8>
-        <PackageName Value="pl_fortesreport"/>
+        <PackageName Value="pl_pascalscada"/>
       </Item8>
       <Item9>
-        <PackageName Value="lz_reportofficeimport"/>
+        <PackageName Value="pl_fortesreport"/>
       </Item9>
       <Item10>
-        <PackageName Value="lz_reportpdfexport"/>
+        <PackageName Value="lz_reportofficeimport"/>
       </Item10>
       <Item11>
-        <PackageName Value="lz_reportimgexport"/>
+        <PackageName Value="lz_reportpdfexport"/>
       </Item11>
       <Item12>
-        <PackageName Value="lz_reportSpreadSheetExport"/>
+        <PackageName Value="lz_reportimgexport"/>
       </Item12>
       <Item13>
-        <PackageName Value="pl_aggpasvs"/>
+        <PackageName Value="lz_reportSpreadSheetExport"/>
       </Item13>
       <Item14>
-        <PackageName Value="pl_cindy"/>
+        <PackageName Value="pl_aggpasvs"/>
       </Item14>
       <Item15>
-        <PackageName Value="lz_rtticontrols"/>
+        <PackageName Value="pl_cindy"/>
       </Item15>
       <Item16>
-        <PackageName Value="pl_KControls"/>
+        <PackageName Value="lz_rtticontrols"/>
       </Item16>
       <Item17>
-        <PackageName Value="YearPlan"/>
+        <PackageName Value="pl_KControls"/>
       </Item17>
       <Item18>
-        <PackageName Value="pl_richmemo"/>
+        <PackageName Value="YearPlan"/>
       </Item18>
       <Item19>
-        <PackageName Value="pl_spktoolbar"/>
+        <PackageName Value="pl_richmemo"/>
       </Item19>
       <Item20>
-        <PackageName Value="pl_excontrols"/>
+        <PackageName Value="pl_spktoolbar"/>
       </Item20>
       <Item21>
-        <PackageName Value="lz_memds"/>
+        <PackageName Value="pl_excontrols"/>
       </Item21>
       <Item22>
-        <PackageName Value="lz_reportzeosdb"/>
+        <PackageName Value="lz_memds"/>
       </Item22>
       <Item23>
-        <PackageName Value="lz_report"/>
+        <PackageName Value="lz_reportzeosdb"/>
       </Item23>
       <Item24>
-        <PackageName Value="pl_solutions"/>
+        <PackageName Value="lz_report"/>
       </Item24>
       <Item25>
-        <PackageName Value="pl_fzcontrols"/>
+        <PackageName Value="pl_solutions"/>
       </Item25>
       <Item26>
-        <PackageName Value="pl_luicontrols"/>
+        <PackageName Value="pl_fzcontrols"/>
       </Item26>
       <Item27>
-        <PackageName Value="lz_datetimectrls"/>
+        <PackageName Value="pl_luicontrols"/>
       </Item27>
       <Item28>
-        <PackageName Value="pl_rx"/>
+        <PackageName Value="lz_datetimectrls"/>
       </Item28>
       <Item29>
-        <PackageName Value="pl_bgracontrols"/>
+        <PackageName Value="pl_rx"/>
       </Item29>
       <Item30>
-        <PackageName Value="adFCL"/>
+        <PackageName Value="pl_bgracontrols"/>
       </Item30>
       <Item31>
-        <PackageName Value="pl_zeosdbo"/>
+        <PackageName Value="adFCL"/>
       </Item31>
       <Item32>
-        <PackageName Value="adLCL"/>
+        <PackageName Value="pl_zeosdbo"/>
       </Item32>
+      <Item33>
+        <PackageName Value="adLCL"/>
+      </Item33>
     </RequiredPackages>
-    <Units Count="72">
+    <Units Count="73">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -714,6 +717,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit71>
+      <Unit72>
+        <Filename Value="UAlerter.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AlerterForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit72>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
