@@ -7,6 +7,7 @@ object AlerterForm: TAlerterForm
   ClientHeight = 486
   ClientWidth = 759
   Color = clRed
+  OnClose = FormClose
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '6.6'
@@ -17,6 +18,7 @@ object AlerterForm: TAlerterForm
     Width = 759
     Align = alClient
     Alignment = taCenter
+    AutoSize = False
     Caption = 'lblLokalizacjaWezwania'
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Color = clBlack
@@ -27,6 +29,7 @@ object AlerterForm: TAlerterForm
     Layout = tlCenter
     ParentColor = False
     ParentFont = False
+    WordWrap = True
   end
   object Label1: TLabel
     Left = 0
@@ -37,11 +40,12 @@ object AlerterForm: TAlerterForm
     Alignment = taCenter
     Caption = 'WEZWANIE POMOCY'
     Font.CharSet = EASTEUROPE_CHARSET
-    Font.Color = clMaroon
+    Font.Color = 7733247
     Font.Height = -24
     Font.Name = 'Georgia'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
+    Font.Style = [fsItalic]
     ParentColor = False
     ParentFont = False
   end

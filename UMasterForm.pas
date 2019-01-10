@@ -1081,37 +1081,39 @@ begin
      end;
   end;
 
-  ALARM.UserName       := DM.PelnaNazwa;
-  ALARM.UserLokalizacja:= DM.UserLokalizacja;
+  ALARM.LocalUserName  := DM.PelnaNazwa;
+  ALARM.LocalUserLokalizacja:= DM.UserLokalizacja;
 
   FreeAndNil(ZQPom);
 end;
 
 procedure TMasterForm.ShowAlert(Status: string);
 var LokalizacjaWezwania: string;
+    UserNameWezwania: string;
 begin
   LokalizacjaWezwania:= Status.Split([';'])[1];
+  UserNameWezwania   := Status.Split([';'])[2];
   with TAlerterForm.Create(Self) do
   begin
     Caption:= LokalizacjaWezwania;
-    lblLokalizacjaWezwania.Caption:= LokalizacjaWezwania;
+    lblLokalizacjaWezwania.Caption:= LokalizacjaWezwania+' : '+UserNameWezwania;
     Show;
   end;
 end;
 
 procedure TMasterForm.ShowStatus(Status: string);
-var WyslanoDo: string;
-    SerwerLokalizacja: string;
+var RemoteUserName: string;
+    RemoteUserLokalizacja: string;
 begin
-  WyslanoDo:= Status.Split([';'])[0];
-  SerwerLokalizacja:= Status.Split([';'])[1];
+  RemoteUserName:= Status.Split([';'])[0];
+  RemoteUserLokalizacja:= Status.Split([';'])[1];
 
-  if SerwerLokalizacja='Brak połączenia.' then
+  if RemoteUserLokalizacja='Brak połączenia.' then
   begin
-    DM.KomunikatPopUp(Self, 'ALERT', 'Brak odpowiedzi od: '+WyslanoDo, nots_Warning);
+    DM.KomunikatPopUp(Self, 'ALERT', 'Brak odpowiedzi od: '+RemoteUserName, nots_Warning);
     exit;
   end;
-  DM.KomunikatPopUp(Self, 'ALERT', 'Wezwano o pomoc do: '+SerwerLokalizacja, nots_Warning);
+  DM.KomunikatPopUp(Self, 'ALERT', 'Wezwano o pomoc do: '+RemoteUserLokalizacja, nots_Warning);
 end;
 
    { TODO : Domyślne lub z pliku ini: Rozmiar i położenie okna podczas onShow }

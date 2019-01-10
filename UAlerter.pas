@@ -32,8 +32,8 @@ type
     FOnShowAlerterStatus: TShowAlertStatusEvent;
     FOnShowAlertWindow: TShowAlertStatusEvent;
     FListaOdbiorcow: TStringList; // TODO: zmienić na record[ip, nazwa]
-    FUserName: string;      // pełna nazwa użytkownika
-    FUserLokalizacja: string;   // z bazy danych
+    FLocalUserName: string;      // pełna nazwa użytkownika
+    FLocalUserLokalizacja: string;   // z bazy danych
     procedure IdTCPServer1Execute(AContext: TIdContext);
   public
     Destructor Destroy; override;
@@ -42,8 +42,8 @@ type
     property ListaOdbiorcow: TStringList read FListaOdbiorcow write FListaOdbiorcow;
     property OnShowAlerterStatus: TShowAlertStatusEvent read FOnShowAlerterStatus write FOnShowAlerterStatus;
     property OnShowAlertWindow: TShowAlertStatusEvent read FOnShowAlertWindow write FOnShowAlertWindow;
-    property UserName: string read FUserName write FUserName;
-    property UserLokalizacja: string read FUserLokalizacja write FUserLokalizacja;
+    property LocalUserName: string read FLocalUserName write FLocalUserName;
+    property LocalUserLokalizacja: string read FLocalUserLokalizacja write FLocalUserLokalizacja;
   end;
 
   { TAlertThread }
@@ -53,10 +53,10 @@ type
   private
     fStatusText : string;
     FOnShowAlertStatus: TShowAlertStatusEvent;
-    FIp: string;
-    FNazwa: string;
-    FUser: string;
-    FLokalizacja: string;
+    FRemoteIP: string;
+    FRemoteUserName: string;
+    FLocalUserName: string;
+    FLocalUserLokalizacja: string;
     procedure ShowStatus;
   protected
     procedure Execute; override;
@@ -64,10 +64,10 @@ type
     Constructor Create(CreateSuspended : boolean);
     Destructor Destroy; override;
     property OnShowAlertStatus: TShowAlertStatusEvent read FOnShowAlertStatus write FOnShowAlertStatus;
-    property IP: string read FIp write FIp;
-    property Nazwa: string read FNazwa write FNazwa;
-    property User: string read FUser write FUser;
-    property Lokalizacja: string read FLokalizacja write FLokalizacja;
+    property RemoteIP: string read FRemoteIP write FRemoteIP;
+    property RemoteUserName: string read FRemoteUserName write FRemoteUserName;
+    property LocalUserName: string read FLocalUserName write FLocalUserName;
+    property LocalUserLokalizacja: string read FLocalUserLokalizacja write FLocalUserLokalizacja;
   end;
 
   { TShowAlertThread }
@@ -90,9 +90,10 @@ type
   TAlerterForm = class(TForm)
     Label1: TLabel;
     lblLokalizacjaWezwania: TLabel;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
-
+    valRand: integer;
   public
 
   end;
@@ -108,7 +109,17 @@ implementation
 
 procedure TAlerterForm.FormShow(Sender: TObject);
 begin
-  PlaySound(PChar('raporty\Red Alert.wav'), 0, SND_ASYNC or SND_NODEFAULT);
+  //PlaySound(PChar('raporty\Red Alert.wav'), 0, SND_ASYNC or SND_NODEFAULT);
+  Randomize;
+  valRand:= Random(100);
+  mciSendString(PChar('close sound'+valRand.ToString),nil,0,0);
+  mciSendString(PChar('open "' + 'raporty\Red Alert.wav' + '" type waveaudio alias sound'+valRand.ToString), nil, 0,0);
+  mciSendString(PChar('play sound'+valRand.ToString), nil, 0, 0);
+end;
+
+procedure TAlerterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  mciSendString(PChar('close sound1'+valRand.ToString),nil,0,0);
 end;
 
 { TShowAlertThread }
@@ -151,16 +162,16 @@ procedure TAlertThread.Execute;
 var LLine: string;
 begin
   Client:= TIdTCPClient.Create;
-  Client.Host:= IP;
+  Client.Host:= RemoteIP;
   Client.Port:= 7777;
   try
     Client.Connect;
     try
-      Client.IOHandler.WriteLn(Format('%s;%s;%s',['ALERT', Lokalizacja, Nazwa]),  IndyTextEncoding_UTF8, IndyTextEncoding_UTF8);
+      Client.IOHandler.WriteLn(Format('%s;%s;%s',['ALERT', LocalUserLokalizacja, LocalUserName]),  IndyTextEncoding_UTF8, IndyTextEncoding_UTF8);
 
       LLine := Client.IOHandler.ReadLn( IndyTextEncoding_UTF8, IndyTextEncoding_UTF8);
       if ( LLine <> '' ) then begin // odpowiedz serwera lokalizacja
-         fStatusText:= Format('%s;%s',[Lokalizacja, LLine]);
+         fStatusText:= Format('%s;%s',[LocalUserLokalizacja, LLine]); // lline = RemoteUserLokalizacja
          Synchronize(@Showstatus);
       end;
 
@@ -169,7 +180,7 @@ begin
       FreeAndNil(Client);
     end;
   except
-    fStatusText:= Format('%s;%s',[Nazwa, 'Brak połączenia.']);
+    fStatusText:= Format('%s;%s',[LocalUserLokalizacja, 'Brak połączenia.']);
     Synchronize(@Showstatus);
   end;
 end;
@@ -207,7 +218,7 @@ begin
     Start;
   end;
 
-  AContext.Connection.IOHandler.WriteLn( FUserLokalizacja,  IndyTextEncoding_UTF8, IndyTextEncoding_UTF8 );
+  AContext.Connection.IOHandler.WriteLn( FLocalUserLokalizacja,  IndyTextEncoding_UTF8, IndyTextEncoding_UTF8 );
 end;
 
 destructor TAlerter.Destroy;
@@ -224,10 +235,11 @@ begin
   begin
     With TAlertThread.Create(true) do
     begin
-      IP   := FListaOdbiorcow[i].Split([';'])[0];
-      Nazwa:= FListaOdbiorcow[i].Split([';'])[1];
-      User := FUserName;
-      Lokalizacja:= FUserLokalizacja;
+      RemoteIP      := FListaOdbiorcow[i].Split([';'])[0];
+      RemoteUserName:= FListaOdbiorcow[i].Split([';'])[1];
+
+      LocalUserName := Self.LocalUserName;
+      LocalUserLokalizacja:= Self.LocalUserLokalizacja;
 
       OnShowAlertStatus:= FOnShowAlerterStatus;
       Start;
