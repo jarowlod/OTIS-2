@@ -1757,11 +1757,4 @@ object MasterForm: TMasterForm
     Left = 696
     Top = 208
   end
-  object IdIPWatch1: TIdIPWatch
-    Active = False
-    HistoryEnabled = False
-    HistoryFilename = 'iphist.dat'
-    Left = 468
-    Top = 32
-  end
 end

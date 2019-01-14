@@ -39,6 +39,7 @@ type
     Destructor Destroy; override;
     procedure SendAlarm;
     procedure StartSerwer;
+    class Function GetLocalIP: string;
     property ListaOdbiorcow: TStringList read FListaOdbiorcow write FListaOdbiorcow;
     property OnShowAlerterStatus: TShowAlertStatusEvent read FOnShowAlerterStatus write FOnShowAlerterStatus;
     property OnShowAlertWindow: TShowAlertStatusEvent read FOnShowAlertWindow write FOnShowAlertWindow;
@@ -259,6 +260,12 @@ begin
     Port:= 7777;
   end;
   IdTCPServer1.Active:= true;
+end;
+
+class function TAlerter.GetLocalIP: string;
+begin
+  TIdStack.IncUsage;
+  Result:= GStack.LocalAddress;
 end;
 
 

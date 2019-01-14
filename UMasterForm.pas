@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, rxdbutils, Grids,
   db, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Clipbrd, dateutils, LCLType,
-  LazUTF8, UAlerter, IdComponent, IdStack, IdIPWatch, datamodule, BGRALabel;
+  LazUTF8, UAlerter, IdComponent, IdStack, datamodule, BGRALabel;
 
 type
 
@@ -54,7 +54,6 @@ type
     ActionProsbyOsadzonego: TAction;
     ActionRozmieszczenie: TAction;
     BGRALabel1: TBGRALabel;
-    IdIPWatch1: TIdIPWatch;
     Image3: TImage;
     MenuItem10: TMenuItem;
     MenuItem19: TMenuItem;
@@ -1052,12 +1051,10 @@ end;
 
 procedure TMasterForm.WczytajUstawieniaAlarmu;
 var ZQPom: TZQueryPom;
-    LocalIP: string;
 begin
-  LocalIP:= GStack.LocalAddress;
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'SELECT * FROM alerter WHERE IP=:ip';
-  ZQPom.ParamByName('ip').AsString:= LocalIP;
+  ZQPom.ParamByName('ip').AsString:= ALARM.GetLocalIP;
   ZQPom.Open;
 
   if not ZQPom.isEmpty then
