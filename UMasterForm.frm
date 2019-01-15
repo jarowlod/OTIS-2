@@ -25,6 +25,13 @@ object MasterForm: TMasterForm
       end    
       item
         Width = 100
+      end    
+      item
+        Alignment = taCenter
+        Width = 50
+      end    
+      item
+        Width = 50
       end>
     SimplePanel = False
   end
@@ -1197,6 +1204,9 @@ object MasterForm: TMasterForm
         }
         OnClick = MenuItem37Click
       end
+      object MenuItem76: TMenuItem
+        Action = ActionAlerterOpcje
+      end
       object MenuItem6: TMenuItem
         Caption = '-'
       end
@@ -1749,6 +1759,12 @@ object MasterForm: TMasterForm
       Caption = 'Rejestr Paczek ...'
       ImageIndex = 26
       OnExecute = ActionPaczkiRejestrExecute
+    end
+    object ActionAlerterOpcje: TAction
+      Category = 'Opcje'
+      Caption = 'Alerter - ustawienia ...'
+      ImageIndex = 34
+      OnExecute = ActionAlerterOpcjeExecute
     end
   end
   object Timer2Komunikaty: TTimer

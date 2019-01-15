@@ -11,18 +11,6 @@ uses
 
 type
   TShowAlertStatusEvent = procedure(Status: String) of Object;
-{
-  ODBIORCY
-    IP: adres ip
-    Nazwa: nazwa stanowiska, lokalizacja, np: wych Kowalski, oddziałowy oddz.6, Stanowisko Dowodzenia
-
-  NADAWCY
-    ID
-    Rodzaj [odbiorca, nadawca]
-    IP: adres ip
-    Nazwa: nazwa stanowiska, lokalizacja, np: wych Kowalski, oddziałowy oddz.6, Stanowisko Dowodzenia
-    ID_odbiorcy
-}
 
   { TAlerter }
 
@@ -34,7 +22,10 @@ type
     FListaOdbiorcow: TStringList; // TODO: zmienić na record[ip, nazwa]
     FLocalUserName: string;      // pełna nazwa użytkownika
     FLocalUserLokalizacja: string;   // z bazy danych
+    function GetClientActive: Boolean;
+    function GetSerwerActive: Boolean;
     procedure IdTCPServer1Execute(AContext: TIdContext);
+    procedure SetSerwerActive(AValue: Boolean);
   public
     Destructor Destroy; override;
     procedure SendAlarm;
@@ -45,6 +36,8 @@ type
     property OnShowAlertWindow: TShowAlertStatusEvent read FOnShowAlertWindow write FOnShowAlertWindow;
     property LocalUserName: string read FLocalUserName write FLocalUserName;
     property LocalUserLokalizacja: string read FLocalUserLokalizacja write FLocalUserLokalizacja;
+    property isSerwerActive: Boolean read GetSerwerActive write SetSerwerActive;
+    property isClientActive: Boolean read GetClientActive;
   end;
 
   { TAlertThread }
@@ -91,6 +84,7 @@ type
   TAlerterForm = class(TForm)
     Label1: TLabel;
     lblLokalizacjaWezwania: TLabel;
+    lblUserWezwania: TLabel;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
@@ -112,7 +106,7 @@ procedure TAlerterForm.FormShow(Sender: TObject);
 begin
   //PlaySound(PChar('raporty\Red Alert.wav'), 0, SND_ASYNC or SND_NODEFAULT);
   Randomize;
-  valRand:= Random(100);
+  valRand:= Random(1000);
   mciSendString(PChar('close sound'+valRand.ToString),nil,0,0);
   mciSendString(PChar('open "' + 'raporty\Red Alert.wav' + '" type waveaudio alias sound'+valRand.ToString), nil, 0,0);
   mciSendString(PChar('play sound'+valRand.ToString), nil, 0, 0);
@@ -220,6 +214,22 @@ begin
   end;
 
   AContext.Connection.IOHandler.WriteLn( FLocalUserLokalizacja,  IndyTextEncoding_UTF8, IndyTextEncoding_UTF8 );
+end;
+
+function TAlerter.GetSerwerActive: Boolean;
+begin
+  Result:= IdTCPServer1.Active;
+end;
+
+function TAlerter.GetClientActive: Boolean;
+begin
+  Result:= (Assigned(ListaOdbiorcow))and(ListaOdbiorcow.Count>0);
+end;
+
+procedure TAlerter.SetSerwerActive(AValue: Boolean);
+begin
+  if IdTCPServer1.Active <> AValue then
+     IdTCPServer1.Active:= AValue;
 end;
 
 destructor TAlerter.Destroy;

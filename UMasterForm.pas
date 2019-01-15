@@ -15,6 +15,7 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionAlerterOpcje: TAction;
     ActionPaczkiRejestr: TAction;
     ActionPaczkiDodaj: TAction;
     ActionKopiujWszystko: TAction;
@@ -103,6 +104,7 @@ type
     MenuItem73: TMenuItem;
     MenuItem74: TMenuItem;
     MenuItem75: TMenuItem;
+    MenuItem76: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -171,6 +173,7 @@ type
     procedure ActionAddWidzenieExecute(Sender: TObject);
     procedure ActionAddWykazExecute(Sender: TObject);
     procedure ActionAktualizacjaPodkulturyExecute(Sender: TObject);
+    procedure ActionAlerterOpcjeExecute(Sender: TObject);
     procedure ActionBezdozoroweExecute(Sender: TObject);
     procedure ActionDodajDoKoszykaExecute(Sender: TObject);
     procedure ActionDodajOsobeBliskaExecute(Sender: TObject);
@@ -235,6 +238,7 @@ type
     hotkey_ctrl_p: ATOM;
     hotkey_alert : ATOM; // pause/break
     ALARM: TAlerter;
+    AlarmPos: TPoint; // pozycja okna alarmu
     procedure StatusBarRefresh(Sender: TObject; Field: TField);
     procedure wm_HOTKEY(var Msg:TMessage);message WM_HOTKEY; // funkcja skrótu globalnego
     procedure CreateAlarm;
@@ -263,7 +267,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UZdjAktualizacjaZdjec,
      UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype,
-     UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr;
+     UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr, UAlerterConfig;
 {$R *.frm}
 
 { TMasterForm }
@@ -275,6 +279,7 @@ begin
   Timer1WyszukajTimer(Sender); // inicjujemy widok osadzonych.
   isExecuteSQL := true;
   RefreshUprawnienia;
+  AlarmPos.Create(20,20);
 
   // -------------------- dodajemy globalny skrót dla NOE :)
   if (DM.isShortKeyCtrlN)and(GlobalFindAtom('OTIS_ctrl_n') = 0) then begin
@@ -288,11 +293,12 @@ begin
   end;
 
   CreateAlarm;
-  if (DM.isClientAlarmowy)and(GlobalFindAtom('OTIS_alert') = 0) then  // tylko jedna instacja programu
+  if (ALARM.isClientActive)and(GlobalFindAtom('OTIS_alert') = 0) then  // tylko jedna instacja programu
   begin
     hotkey_alert:= GlobalAddAtom('OTIS_alert');
     RegisterHotKey(Handle, hotkey_alert, 0, VK_PAUSE);  // wywołuje alarm
   end;
+  if ALARM.isSerwerActive then StatusBar1.Panels[3].Text:= 'ON' else StatusBar1.Panels[3].Text:= 'OFF'
 end;
 
 procedure TMasterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -326,6 +332,7 @@ begin
   ActionZdjeciaBraki.Enabled   := DM.uprawnienia[1];          // aktualizacja zdjęć
   ActionAktualizacjaPodkultury.Enabled:= DM.uprawnienia[1];   // aktualizacja podkultury;
   MenuItem5.Enabled            := DM.uprawnienia[8];          // admin, uprawnienia
+  ActionAlerterOpcje.Enabled   := DM.uprawnienia[8];          // admin, uprawnienia
   ZatrudnienieAdd.Enabled      := DM.uprawnienia[15];         // dodaj zatrudnienie
   ActionTerminarz.Enabled      := (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
   ActionKartaOsadzonego.Enabled:= (DM.Wychowawca<>'')and(DM.Dzial='Penit'); // tylko wychowawca
@@ -703,6 +710,15 @@ begin
   end;
 end;
 
+procedure TMasterForm.ActionAlerterOpcjeExecute(Sender: TObject);
+begin
+  with TAlerterConfig.Create(Self) do
+  begin
+    ShowModal;
+    Free;
+  end;
+end;
+
 procedure TMasterForm.ActionBezdozoroweExecute(Sender: TObject);
 begin
   with TOchRezerwacjaWidzen.Create(Self) do
@@ -1063,17 +1079,15 @@ begin
 
      if not ZQPom.FieldByName('ListaAlarmowa').IsNull then
      begin
-       DM.isClientAlarmowy:= true;
        ALARM.ListaOdbiorcow.Text:= ZQPom.FieldByName('ListaAlarmowa').AsString;
      end;
 
      if ZQPom.FieldByName('Rodzaj').AsString = 'Serwer' then
      begin
-       DM.isSerwerAlarmowy:= True;
        try
          ALARM.StartSerwer;
        except
-         DM.isSerwerAlarmowy:= false;
+         // robimy to po cichu
        end;
      end;
   end;
@@ -1092,8 +1106,18 @@ begin
   UserNameWezwania   := Status.Split([';'])[2];
   with TAlerterForm.Create(Self) do
   begin
+    // pozycja okna alertu i jej przesunięcie dla kolejnych okienek
+    // AlarmPos - zmienna globalna
+    Left:= AlarmPos.X;
+    Top := AlarmPos.Y;
+    AlarmPos.Offset(30,30);
+    if AlarmPos.X> Screen.Width - Width then AlarmPos.X:= 0;
+    if AlarmPos.Y> Screen.Height - Height then AlarmPos.Y:= 0;
+    // ------------------------------------------------------------
+
     Caption:= LokalizacjaWezwania;
-    lblLokalizacjaWezwania.Caption:= LokalizacjaWezwania+' : '+UserNameWezwania;
+    lblLokalizacjaWezwania.Caption:= LokalizacjaWezwania;
+    lblUserWezwania.Caption       := UserNameWezwania;
     Show;
   end;
 end;
