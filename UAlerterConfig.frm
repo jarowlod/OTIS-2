@@ -1,22 +1,22 @@
 object AlerterConfig: TAlerterConfig
   Left = 333
-  Height = 493
+  Height = 606
   Top = 237
-  Width = 818
+  Width = 1240
   Caption = 'AlerterConfig'
-  ClientHeight = 493
-  ClientWidth = 818
+  ClientHeight = 606
+  ClientWidth = 1240
   OnCreate = FormCreate
   LCLVersion = '6.6'
   object Panel5: TPanel
     Left = 0
     Height = 50
     Top = 0
-    Width = 818
+    Width = 1240
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 50
-    ClientWidth = 818
+    ClientWidth = 1240
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -24,7 +24,7 @@ object AlerterConfig: TAlerterConfig
       Left = 0
       Height = 50
       Top = 0
-      Width = 818
+      Width = 1240
       Align = alClient
       BevelWidth = 1
       BevelStyle = bvNone
@@ -87,24 +87,475 @@ object AlerterConfig: TAlerterConfig
       Stretch = True
     end
   end
-  object PageControl1: TPageControl
+  object Panel1: TPanel
     Left = 0
-    Height = 443
+    Height = 556
     Top = 50
-    Width = 818
-    ActivePage = TabSheet2
-    Align = alClient
-    TabIndex = 1
+    Width = 384
+    Align = alLeft
+    ClientHeight = 556
+    ClientWidth = 384
     TabOrder = 1
-    OnChange = PageControl1Change
-    object TabSheet1: TTabSheet
+    object RxDBGrid4: TRxDBGrid
+      Left = 1
+      Height = 342
+      Top = 19
+      Width = 382
+      ColumnDefValues.BlobText = '(blob)'
+      TitleButtons = True
+      AutoSort = True
+      Columns = <      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'IP'
+          Width = 85
+          FieldName = 'IP'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
+          Footer.ValueType = fvtCount
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Lokalizacja'
+          Width = 200
+          FieldName = 'Lokalizacja'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstManualEdit
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Rodzaj'
+          Width = 50
+          FieldName = 'Rodzaj'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Filter.Style = rxfstDialog
+          Footers = <>
+        end>
+      KeyStrokes = <      
+        item
+          Command = rxgcShowFindDlg
+          ShortCut = 16454
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowColumnsDlg
+          ShortCut = 16471
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowFilterDlg
+          ShortCut = 16468
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowSortDlg
+          ShortCut = 16467
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowQuickFilter
+          ShortCut = 16465
+          Enabled = True
+        end      
+        item
+          Command = rxgcHideQuickFilter
+          ShortCut = 16456
+          Enabled = True
+        end      
+        item
+          Command = rxgcSelectAll
+          ShortCut = 16449
+          Enabled = True
+        end      
+        item
+          Command = rxgcDeSelectAll
+          ShortCut = 16429
+          Enabled = True
+        end      
+        item
+          Command = rxgcInvertSelection
+          ShortCut = 16426
+          Enabled = True
+        end      
+        item
+          Command = rxgcOptimizeColumnsWidth
+          ShortCut = 16427
+          Enabled = True
+        end      
+        item
+          Command = rxgcCopyCellValue
+          ShortCut = 16451
+          Enabled = True
+        end>
+      FooterOptions.Active = True
+      FooterOptions.Color = clSilver
+      FooterOptions.RowCount = 1
+      FooterOptions.Style = tsNative
+      FooterOptions.DrawFullLine = False
+      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+      SearchOptions.FromStart = False
+      OptionsRx = [rdgFooterRows, rdgFilter, rdgCaseInsensitiveSort, rdgWordWrap]
+      FooterColor = clSilver
+      FooterRowCount = 1
+      Align = alClient
+      AlternateColor = 16055807
+      AutoAdvance = aaNone
+      AutoEdit = False
+      Color = clWindow
+      DrawFullLine = False
+      FocusColor = clHighlight
+      FixedHotColor = clNone
+      SelectedColor = clHighlight
+      GridLineStyle = psSolid
+      DataSource = DSAlerterLok
+      DefaultRowHeight = 19
+      FixedColor = clNone
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
+      ReadOnly = True
+      TabOrder = 0
+      TitleFont.CharSet = EASTEUROPE_CHARSET
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
+      TitleStyle = tsNative
+    end
+    object Panel2: TPanel
+      Left = 1
+      Height = 194
+      Top = 361
+      Width = 382
+      Align = alBottom
+      BevelOuter = bvNone
+      ClientHeight = 194
+      ClientWidth = 382
+      TabOrder = 1
+      object DBEdit1: TDBEdit
+        Left = 8
+        Height = 23
+        Top = 28
+        Width = 224
+        DataField = 'IP'
+        DataSource = DSAlerterLok
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object DBEdit2: TDBEdit
+        Left = 8
+        Height = 23
+        Top = 76
+        Width = 366
+        DataField = 'Lokalizacja'
+        DataSource = DSAlerterLok
+        Anchors = [akTop, akLeft, akRight]
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object DBComboBox1: TDBComboBox
+        Left = 8
+        Height = 23
+        Top = 124
+        Width = 132
+        AutoDropDown = True
+        DataField = 'Rodzaj'
+        DataSource = DSAlerterLok
+        ItemHeight = 15
+        Items.Strings = (
+          'Serwer'
+          'Client'
+        )
+        MaxLength = 0
+        Style = csDropDownList
+        TabOrder = 2
+      end
+      object Label2: TLabel
+        Left = 8
+        Height = 15
+        Top = 8
+        Width = 10
+        Caption = 'IP'
+        ParentColor = False
+      end
+      object Label3: TLabel
+        Left = 8
+        Height = 15
+        Top = 58
+        Width = 57
+        Caption = 'Lokalizacja'
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 8
+        Height = 15
+        Top = 108
+        Width = 35
+        Caption = 'Rodzaj'
+        ParentColor = False
+      end
+      object btnGetLocalIP: TSpeedButton
+        Left = 232
+        Height = 23
+        Hint = 'Get IP adres.'
+        Top = 28
+        Width = 24
+        Flat = True
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00196B3788196B37F2196B37FF196B37F2196B
+          3788FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00196B3784288C53FF64BA8DFF95D2B2FF64BA8DFF288C
+          53FF196B378CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF001B6C39F762BA8BFF60BA87FFFFFFFFFF60B987FF67BC
+          8FFF196B37F7FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00317B4CFF9CD4B6FFFFFFFFFFFFFFFFFFFFFFFFFF95D2
+          B2FF196B37FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF0044875DF790D3B1FF92D6B1FFFFFFFFFF65BC8CFF67BC
+          8FFF196B37F7FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00518F688061AB81FF95D4B4FFBAE6D0FF6ABB8FFF2D8F
+          57FF196B378CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF0059946F7C58946EF24F8E66FF408459F22E78
+          497CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+        }
+        OnClick = btnGetLocalIPClick
+        ShowHint = True
+        ParentShowHint = False
+      end
+      object DBNavigator1: TDBNavigator
+        Left = 8
+        Height = 30
+        Top = 160
+        Width = 256
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 30
+        ClientWidth = 256
+        DataSource = DSAlerterLok
+        Options = []
+        TabOrder = 3
+        VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+      end
+    end
+    object Panel3: TPanel
+      Left = 1
+      Height = 18
+      Top = 1
+      Width = 382
+      Align = alTop
+      BevelOuter = bvNone
       Caption = 'Lokalizacje'
-      ClientHeight = 415
-      ClientWidth = 810
-      object RxDBGrid4: TRxDBGrid
-        Left = 0
-        Height = 415
-        Top = 0
+      Color = clSkyBlue
+      ParentColor = False
+      TabOrder = 2
+    end
+  end
+  object Panel4: TPanel
+    Left = 384
+    Height = 556
+    Top = 50
+    Width = 856
+    Align = alClient
+    ClientHeight = 556
+    ClientWidth = 856
+    TabOrder = 2
+    object RxDBGrid5: TRxDBGrid
+      Left = 1
+      Height = 536
+      Top = 19
+      Width = 375
+      ColumnDefValues.BlobText = '(blob)'
+      TitleButtons = True
+      AutoSort = True
+      Columns = <      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'IP_serwer'
+          Width = 85
+          FieldName = 'IP_serwer'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Lok_serwer'
+          Width = 250
+          FieldName = 'Lok_serwer'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end>
+      KeyStrokes = <      
+        item
+          Command = rxgcShowFindDlg
+          ShortCut = 16454
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowColumnsDlg
+          ShortCut = 16471
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowFilterDlg
+          ShortCut = 16468
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowSortDlg
+          ShortCut = 16467
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowQuickFilter
+          ShortCut = 16465
+          Enabled = True
+        end      
+        item
+          Command = rxgcHideQuickFilter
+          ShortCut = 16456
+          Enabled = True
+        end      
+        item
+          Command = rxgcSelectAll
+          ShortCut = 16449
+          Enabled = True
+        end      
+        item
+          Command = rxgcDeSelectAll
+          ShortCut = 16429
+          Enabled = True
+        end      
+        item
+          Command = rxgcInvertSelection
+          ShortCut = 16426
+          Enabled = True
+        end      
+        item
+          Command = rxgcOptimizeColumnsWidth
+          ShortCut = 16427
+          Enabled = True
+        end      
+        item
+          Command = rxgcCopyCellValue
+          ShortCut = 16451
+          Enabled = True
+        end>
+      FooterOptions.Color = clSilver
+      FooterOptions.RowCount = 1
+      FooterOptions.Style = tsNative
+      FooterOptions.DrawFullLine = False
+      SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+      SearchOptions.FromStart = False
+      OptionsRx = [rdgFilter, rdgCaseInsensitiveSort, rdgWordWrap]
+      FooterColor = clSilver
+      FooterRowCount = 1
+      Align = alLeft
+      AlternateColor = 16055807
+      AutoAdvance = aaNone
+      AutoEdit = False
+      Color = clWindow
+      DrawFullLine = False
+      FocusColor = clHighlight
+      FixedHotColor = clNone
+      SelectedColor = clHighlight
+      GridLineStyle = psSolid
+      DataSource = DSAlerterBind
+      DefaultRowHeight = 19
+      FixedColor = clNone
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
+      ReadOnly = True
+      TabOrder = 0
+      TitleFont.CharSet = EASTEUROPE_CHARSET
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
+      TitleStyle = tsNative
+      OnDblClick = btnUsunBindClick
+    end
+    object Panel6: TPanel
+      Left = 1
+      Height = 18
+      Top = 1
+      Width = 854
+      Align = alTop
+      BevelOuter = bvNone
+      Caption = 'Połączenia z n/w stanowiskami'
+      Color = clSkyBlue
+      ParentColor = False
+      TabOrder = 1
+    end
+    object Panel7: TPanel
+      Left = 478
+      Height = 536
+      Top = 19
+      Width = 377
+      Align = alRight
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      ClientHeight = 536
+      ClientWidth = 377
+      TabOrder = 2
+      object RxDBGrid6: TRxDBGrid
+        Left = 1
+        Height = 534
+        Top = 1
         Width = 375
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
@@ -131,7 +582,7 @@ object AlerterConfig: TAlerterConfig
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
             Title.Caption = 'Lokalizacja'
-            Width = 200
+            Width = 250
             FieldName = 'Lokalizacja'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -141,22 +592,6 @@ object AlerterConfig: TAlerterConfig
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
             Filter.Style = rxfstManualEdit
-            Footers = <>
-          end        
-          item
-            Title.Alignment = taCenter
-            Title.Orientation = toHorizontal
-            Title.Caption = 'Rodzaj'
-            Width = 50
-            FieldName = 'Rodzaj'
-            EditButtons = <>
-            Filter.DropDownRows = 0
-            Filter.EmptyValue = '(Empty)'
-            Filter.NotEmptyValue = '(Not empty)'
-            Filter.AllValue = '(All values)'
-            Filter.EmptyFont.Style = [fsItalic]
-            Filter.ItemIndex = -1
-            Filter.Style = rxfstDialog
             Footers = <>
           end>
         KeyStrokes = <        
@@ -225,7 +660,7 @@ object AlerterConfig: TAlerterConfig
         OptionsRx = [rdgFooterRows, rdgFilter, rdgCaseInsensitiveSort, rdgWordWrap]
         FooterColor = clSilver
         FooterRowCount = 1
-        Align = alLeft
+        Align = alClient
         AlternateColor = 16055807
         AutoAdvance = aaNone
         AutoEdit = False
@@ -235,7 +670,7 @@ object AlerterConfig: TAlerterConfig
         FixedHotColor = clNone
         SelectedColor = clHighlight
         GridLineStyle = psSolid
-        DataSource = DSAlerterLok
+        DataSource = DSAlerterLokalizacje
         DefaultRowHeight = 19
         FixedColor = clNone
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
@@ -245,267 +680,30 @@ object AlerterConfig: TAlerterConfig
         TitleFont.Pitch = fpVariable
         TitleFont.Quality = fqDraft
         TitleStyle = tsNative
-      end
-      object DBNavigator1: TDBNavigator
-        Left = 384
-        Height = 30
-        Top = 376
-        Width = 256
-        BevelOuter = bvNone
-        ChildSizing.EnlargeHorizontal = crsScaleChilds
-        ChildSizing.EnlargeVertical = crsScaleChilds
-        ChildSizing.ShrinkHorizontal = crsScaleChilds
-        ChildSizing.ShrinkVertical = crsScaleChilds
-        ChildSizing.Layout = cclLeftToRightThenTopToBottom
-        ChildSizing.ControlsPerLine = 100
-        ClientHeight = 30
-        ClientWidth = 256
-        DataSource = DSAlerterLok
-        Options = []
-        TabOrder = 1
-        VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
-      end
-      object DBEdit1: TDBEdit
-        Left = 384
-        Height = 23
-        Top = 32
-        Width = 224
-        DataField = 'IP'
-        DataSource = DSAlerterLok
-        CharCase = ecNormal
-        MaxLength = 0
-        TabOrder = 2
-      end
-      object DBEdit2: TDBEdit
-        Left = 384
-        Height = 23
-        Top = 80
-        Width = 416
-        DataField = 'Lokalizacja'
-        DataSource = DSAlerterLok
-        Anchors = [akTop, akLeft, akRight]
-        CharCase = ecNormal
-        MaxLength = 0
-        TabOrder = 3
-      end
-      object DBComboBox1: TDBComboBox
-        Left = 384
-        Height = 23
-        Top = 128
-        Width = 132
-        AutoDropDown = True
-        DataField = 'Rodzaj'
-        DataSource = DSAlerterLok
-        ItemHeight = 15
-        Items.Strings = (
-          'Serwer'
-          'Client'
-        )
-        MaxLength = 0
-        Style = csDropDownList
-        TabOrder = 4
-      end
-      object Label2: TLabel
-        Left = 384
-        Height = 15
-        Top = 12
-        Width = 10
-        Caption = 'IP'
-        ParentColor = False
-      end
-      object Label3: TLabel
-        Left = 384
-        Height = 15
-        Top = 62
-        Width = 57
-        Caption = 'Lokalizacja'
-        ParentColor = False
-      end
-      object Label4: TLabel
-        Left = 384
-        Height = 15
-        Top = 112
-        Width = 35
-        Caption = 'Rodzaj'
-        ParentColor = False
-      end
-      object btnDodajKolejnyTerminOceny: TSpeedButton
-        Left = 608
-        Height = 23
-        Hint = 'Get IP adres.'
-        Top = 32
-        Width = 24
-        Flat = True
-        Glyph.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00196B3788196B37F2196B37FF196B37F2196B
-          3788FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00196B3784288C53FF64BA8DFF95D2B2FF64BA8DFF288C
-          53FF196B378CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF001B6C39F762BA8BFF60BA87FFFFFFFFFF60B987FF67BC
-          8FFF196B37F7FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00317B4CFF9CD4B6FFFFFFFFFFFFFFFFFFFFFFFFFF95D2
-          B2FF196B37FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF0044875DF790D3B1FF92D6B1FFFFFFFFFF65BC8CFF67BC
-          8FFF196B37F7FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00518F688061AB81FF95D4B4FFBAE6D0FF6ABB8FFF2D8F
-          57FF196B378CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF0059946F7C58946EF24F8E66FF408459F22E78
-          497CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-        }
-        OnClick = btnDodajKolejnyTerminOcenyClick
-        ShowHint = True
-        ParentShowHint = False
+        OnDblClick = btnDodajBindClick
       end
     end
-    object TabSheet2: TTabSheet
-      Caption = 'Połączenia'
-      ClientHeight = 415
-      ClientWidth = 810
-      object RxDBGrid5: TRxDBGrid
-        Left = 0
-        Height = 415
-        Top = 0
-        Width = 375
-        ColumnDefValues.BlobText = '(blob)'
-        TitleButtons = True
-        AutoSort = True
-        Columns = <        
-          item
-            Title.Alignment = taCenter
-            Title.Orientation = toHorizontal
-            Title.Caption = 'IP_serwer'
-            Width = 85
-            FieldName = 'IP_serwer'
-            EditButtons = <>
-            Filter.DropDownRows = 0
-            Filter.EmptyValue = '(Empty)'
-            Filter.NotEmptyValue = '(Not empty)'
-            Filter.AllValue = '(All values)'
-            Filter.EmptyFont.Style = [fsItalic]
-            Filter.ItemIndex = -1
-            Footers = <>
-          end        
-          item
-            Title.Alignment = taCenter
-            Title.Orientation = toHorizontal
-            Title.Caption = 'Lok_serwer'
-            Width = 250
-            FieldName = 'Lok_serwer'
-            EditButtons = <>
-            Filter.DropDownRows = 0
-            Filter.EmptyValue = '(Empty)'
-            Filter.NotEmptyValue = '(Not empty)'
-            Filter.AllValue = '(All values)'
-            Filter.EmptyFont.Style = [fsItalic]
-            Filter.ItemIndex = -1
-            Footers = <>
-          end>
-        KeyStrokes = <        
-          item
-            Command = rxgcShowFindDlg
-            ShortCut = 16454
-            Enabled = True
-          end        
-          item
-            Command = rxgcShowColumnsDlg
-            ShortCut = 16471
-            Enabled = True
-          end        
-          item
-            Command = rxgcShowFilterDlg
-            ShortCut = 16468
-            Enabled = True
-          end        
-          item
-            Command = rxgcShowSortDlg
-            ShortCut = 16467
-            Enabled = True
-          end        
-          item
-            Command = rxgcShowQuickFilter
-            ShortCut = 16465
-            Enabled = True
-          end        
-          item
-            Command = rxgcHideQuickFilter
-            ShortCut = 16456
-            Enabled = True
-          end        
-          item
-            Command = rxgcSelectAll
-            ShortCut = 16449
-            Enabled = True
-          end        
-          item
-            Command = rxgcDeSelectAll
-            ShortCut = 16429
-            Enabled = True
-          end        
-          item
-            Command = rxgcInvertSelection
-            ShortCut = 16426
-            Enabled = True
-          end        
-          item
-            Command = rxgcOptimizeColumnsWidth
-            ShortCut = 16427
-            Enabled = True
-          end        
-          item
-            Command = rxgcCopyCellValue
-            ShortCut = 16451
-            Enabled = True
-          end>
-        FooterOptions.Color = clSilver
-        FooterOptions.RowCount = 1
-        FooterOptions.Style = tsNative
-        FooterOptions.DrawFullLine = False
-        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
-        SearchOptions.FromStart = False
-        OptionsRx = [rdgFilter, rdgCaseInsensitiveSort, rdgWordWrap]
-        FooterColor = clSilver
-        FooterRowCount = 1
-        Align = alLeft
-        AlternateColor = 16055807
-        AutoAdvance = aaNone
-        AutoEdit = False
-        Color = clWindow
-        DrawFullLine = False
-        FocusColor = clHighlight
-        FixedHotColor = clNone
-        SelectedColor = clHighlight
-        GridLineStyle = psSolid
-        DataSource = DSAlerterBind
-        DefaultRowHeight = 19
-        FixedColor = clNone
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgHeaderPushedLook, dgDisableDelete, dgDisableInsert, dgTruncCellHints, dgCellEllipsis]
-        ReadOnly = True
-        TabOrder = 0
-        TitleFont.CharSet = EASTEUROPE_CHARSET
-        TitleFont.Pitch = fpVariable
-        TitleFont.Quality = fqDraft
-        TitleStyle = tsNative
-      end
+    object btnDodajBind: TBitBtn
+      Left = 392
+      Height = 30
+      Top = 184
+      Width = 75
+      Caption = 'Dodaj'
+      Images = DM.ImageList1
+      ImageIndex = 0
+      OnClick = btnDodajBindClick
+      TabOrder = 3
+    end
+    object btnUsunBind: TBitBtn
+      Left = 392
+      Height = 30
+      Top = 216
+      Width = 75
+      Caption = 'Usuń'
+      Images = DM.ImageList1
+      ImageIndex = 44
+      OnClick = btnUsunBindClick
+      TabOrder = 4
     end
   end
   object ZQAlerterLok: TZQuery
@@ -521,17 +719,20 @@ object AlerterConfig: TAlerterConfig
       'ORDER BY Lokalizacja'
     )
     Params = <>
-    Left = 204
-    Top = 300
+    Left = 64
+    Top = 152
   end
   object DSAlerterLok: TDataSource
     DataSet = ZQAlerterLok
-    Left = 204
-    Top = 356
+    OnDataChange = DSAlerterLokDataChange
+    OnUpdateData = DSAlerterLokUpdateData
+    Left = 64
+    Top = 216
   end
   object ZQAlerterBind: TZQuery
     Connection = DM.ZConnection1
     Filtered = True
+    UpdateObject = ZUAlerterBind
     SQL.Strings = (
       'SELECT '
       'a.ID_client,'
@@ -544,6 +745,7 @@ object AlerterConfig: TAlerterConfig
       'JOIN alerter b1 ON (b1.ID = a.ID_client)'
       'JOIN alerter b2 ON (b2.ID = a.ID_serwer)'
       'WHERE a.ID_client = :ID_client'
+      'ORDER BY Lok_serwer'
     )
     Params = <    
       item
@@ -551,8 +753,9 @@ object AlerterConfig: TAlerterConfig
         Name = 'ID_client'
         ParamType = ptUnknown
       end>
-    Left = 360
-    Top = 300
+    WhereMode = wmWhereAll
+    Left = 528
+    Top = 152
     ParamData = <    
       item
         DataType = ftUnknown
@@ -562,7 +765,92 @@ object AlerterConfig: TAlerterConfig
   end
   object DSAlerterBind: TDataSource
     DataSet = ZQAlerterBind
-    Left = 360
-    Top = 356
+    Left = 528
+    Top = 216
+  end
+  object ZQAlerterLokalizacje: TZQuery
+    Connection = DM.ZConnection1
+    Filtered = True
+    ReadOnly = True
+    SQL.Strings = (
+      'SELECT '
+      'ID,'
+      'IP,'
+      'Lokalizacja, '
+      'Rodzaj'
+      'FROM alerter'
+      'WHERE '
+      '  (Rodzaj = ''Serwer'') AND '
+      '  ID not in (SELECT ID_serwer FROM alerter_bind WHERE ID_client=:ID_client)'
+      'ORDER BY Lokalizacja'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ID_client'
+        ParamType = ptUnknown
+      end>
+    Left = 1032
+    Top = 152
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ID_client'
+        ParamType = ptUnknown
+      end>
+  end
+  object DSAlerterLokalizacje: TDataSource
+    DataSet = ZQAlerterLokalizacje
+    Left = 1032
+    Top = 216
+  end
+  object ZUAlerterBind: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'DELETE FROM alerter_bind'
+      'WHERE'
+      '  alerter_bind.ID_client = :OLD_ID_client AND'
+      '  alerter_bind.ID_serwer = :OLD_ID_serwer'
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO alerter_bind'
+      '  (ID_client, ID_serwer)'
+      'VALUES'
+      '  (:ID_client, :ID_serwer)'
+    )
+    ModifySQL.Strings = (
+      'UPDATE alerter_bind SET'
+      '  ID_client = :ID_client,'
+      '  ID_serwer = :ID_serwer'
+      'WHERE'
+      '  alerter_bind.ID_client = :OLD_ID_client AND'
+      '  alerter_bind.ID_serwer = :OLD_ID_serwer'
+    )
+    RefreshSQL.Strings = (
+      'SELECT * FROM alerter_bind'
+    )
+    UseSequenceFieldForRefreshSQL = False
+    Left = 528
+    Top = 296
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ID_client'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ID_serwer'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_ID_client'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_ID_serwer'
+        ParamType = ptUnknown
+      end>
   end
 end

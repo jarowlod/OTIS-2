@@ -6,37 +6,50 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, ComCtrls, DBCtrls, TplGradientUnit, rxdbgrid, ZDataset, datamodule;
+  Buttons, ComCtrls, DBCtrls, TplGradientUnit, rxdbgrid, ZDataset, ZSqlUpdate,
+  rxdbutils, datamodule;
 
 type
 
   { TAlerterConfig }
 
   TAlerterConfig = class(TForm)
-    btnDodajKolejnyTerminOceny: TSpeedButton;
+    btnDodajBind: TBitBtn;
+    btnUsunBind: TBitBtn;
+    btnGetLocalIP: TSpeedButton;
     DBComboBox1: TDBComboBox;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     DBNavigator1: TDBNavigator;
     DSAlerterLok: TDataSource;
     DSAlerterBind: TDataSource;
+    DSAlerterLokalizacje: TDataSource;
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    PageControl1: TPageControl;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
     Panel5: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
     plGradient2: TplGradient;
     RxDBGrid4: TRxDBGrid;
     RxDBGrid5: TRxDBGrid;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
+    RxDBGrid6: TRxDBGrid;
     ZQAlerterLok: TZQuery;
     ZQAlerterBind: TZQuery;
-    procedure btnDodajKolejnyTerminOcenyClick(Sender: TObject);
+    ZQAlerterLokalizacje: TZQuery;
+    ZUAlerterBind: TZUpdateSQL;
+    procedure btnDodajBindClick(Sender: TObject);
+    procedure btnGetLocalIPClick(Sender: TObject);
+    procedure btnUsunBindClick(Sender: TObject);
+    procedure DSAlerterLokDataChange(Sender: TObject; Field: TField);
+    procedure DSAlerterLokUpdateData(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure PageControl1Change(Sender: TObject);
   private
 
   public
@@ -49,27 +62,56 @@ uses UAlerter;
 
 { TAlerterConfig }
 
-procedure TAlerterConfig.btnDodajKolejnyTerminOcenyClick(Sender: TObject);
-begin
-  ZQAlerterLok.Edit;
-  ZQAlerterLok.FieldByName('IP').AsString:= TAlerter.GetLocalIP;
-end;
-
 procedure TAlerterConfig.FormCreate(Sender: TObject);
 begin
   ZQAlerterLok.Open;
 end;
 
-procedure TAlerterConfig.PageControl1Change(Sender: TObject);
+procedure TAlerterConfig.btnGetLocalIPClick(Sender: TObject);
+begin
+  ZQAlerterLok.Edit;
+  ZQAlerterLok.FieldByName('IP').AsString:= TAlerter.GetLocalIP;
+end;
+
+procedure TAlerterConfig.btnDodajBindClick(Sender: TObject);
+var id: integer;
+begin
+  if ZQAlerterLokalizacje.IsEmpty then exit;
+
+  id:= ZQAlerterLokalizacje.FieldByName('ID').AsInteger;
+  ZQAlerterBind.Append;
+  ZQAlerterBind.FieldByName('ID_Client').AsInteger:= ZQAlerterLok.FieldByName('ID').AsInteger;
+  ZQAlerterBind.FieldByName('ID_Serwer').AsInteger:= id;
+  ZQAlerterBind.Post;
+
+  RefreshQuery(ZQAlerterLokalizacje);
+  RefreshQuery(ZQAlerterBind);
+  ZQAlerterBind.Locate('ID_serwer', id, []);
+end;
+
+procedure TAlerterConfig.btnUsunBindClick(Sender: TObject);
+begin
+  ZQAlerterBind.Delete;
+  RefreshQuery(ZQAlerterLokalizacje);
+end;
+
+procedure TAlerterConfig.DSAlerterLokDataChange(Sender: TObject; Field: TField);
 begin
   ZQAlerterBind.Close;
+  ZQAlerterLokalizacje.Close;
+
   if ZQAlerterLok.IsEmpty then exit;
-  case PageControl1.ActivePage.Name of
-    'TabSheet2' : begin
-                    ZQAlerterBind.ParamByName('ID_client').AsInteger:= ZQAlerterLok.FieldByName('ID').AsInteger;
-                    ZQAlerterBind.Open;
-                  end;
-  end;
+
+  ZQAlerterBind.ParamByName('ID_client').AsInteger:= ZQAlerterLok.FieldByName('ID').AsInteger;
+  ZQAlerterBind.Open;
+
+  ZQAlerterLokalizacje.ParamByName('ID_client').AsInteger:= ZQAlerterLok.FieldByName('ID').AsInteger;
+  ZQAlerterLokalizacje.Open;
+end;
+
+procedure TAlerterConfig.DSAlerterLokUpdateData(Sender: TObject);
+begin
+  RefreshQuery(ZQAlerterLokalizacje);
 end;
 
 end.
