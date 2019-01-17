@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, dateutils, LCLType,
-  StdCtrls, LazUTF8, IdTCPServer, IdComponent, IdCustomTCPServer, IdContext,
-  IdThread, IdGlobal, IdTCPClient, IdStack, MMSystem;
+  StdCtrls, ComCtrls, ExtCtrls, LazUTF8, IdTCPServer, IdComponent, IdCustomTCPServer,
+  IdContext, IdThread, IdGlobal, IdTCPClient, IdStack, MMSystem;
 
 type
   TShowAlertStatusEvent = procedure(Status: String) of Object;
@@ -83,8 +83,11 @@ type
 
   TAlerterForm = class(TForm)
     Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
     lblLokalizacjaWezwania: TLabel;
     lblUserWezwania: TLabel;
+    ProgressBar1: TProgressBar;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
   private

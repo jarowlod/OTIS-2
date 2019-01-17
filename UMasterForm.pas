@@ -1058,6 +1058,7 @@ procedure TMasterForm.CreateAlarm;
 begin
   ALARM:= TAlerter.Create;
   ALARM.ListaOdbiorcow:= TStringList.Create;
+  ALARM.LocalUserName  := DM.PelnaNazwa;
 
   WczytajUstawieniaAlarmu;
 
@@ -1067,20 +1068,18 @@ end;
 
 procedure TMasterForm.WczytajUstawieniaAlarmu;
 var ZQPom: TZQueryPom;
+    id_client: integer;
 begin
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'SELECT * FROM alerter WHERE IP=:ip';
   ZQPom.ParamByName('ip').AsString:= ALARM.GetLocalIP;
   ZQPom.Open;
+  id_client:= 0;
 
   if not ZQPom.isEmpty then
   begin
-     DM.UserLokalizacja:= ZQPom.FieldByName('Lokalizacja').AsString;
-
-     if not ZQPom.FieldByName('ListaAlarmowa').IsNull then
-     begin
-       ALARM.ListaOdbiorcow.Text:= ZQPom.FieldByName('ListaAlarmowa').AsString;
-     end;
+     ALARM.LocalUserLokalizacja:= ZQPom.FieldByName('Lokalizacja').AsString;
+     id_client:= ZQPom.FieldByName('ID').AsInteger;
 
      if ZQPom.FieldByName('Rodzaj').AsString = 'Serwer' then
      begin
@@ -1092,8 +1091,19 @@ begin
      end;
   end;
 
-  ALARM.LocalUserName  := DM.PelnaNazwa;
-  ALARM.LocalUserLokalizacja:= DM.UserLokalizacja;
+  if id_client>0 then
+  begin
+    ZQPom.SQL.Text:= 'SELECT b2.IP as IP_serwer, b2.Lokalizacja as Lok_serwer FROM alerter_bind a'+
+                     ' JOIN alerter b2 ON (b2.ID = a.ID_serwer)'+
+                     ' WHERE a.ID_client = :ID_client';
+    ZQPom.ParamByName('ID_client').AsInteger:= id_client;
+    ZQPom.Open;
+    while not ZQPom.EOF do
+    begin
+      ALARM.ListaOdbiorcow.Add(ZQPom.FieldByName('IP_serwer').AsString+';'+ZQPom.FieldByName('Lok_serwer').AsString);
+      ZQPom.Next;
+    end;
+  end;
 
   FreeAndNil(ZQPom);
 end;
