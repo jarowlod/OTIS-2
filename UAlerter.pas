@@ -27,6 +27,7 @@ type
     procedure IdTCPServer1Execute(AContext: TIdContext);
     procedure SetSerwerActive(AValue: Boolean);
   public
+    constructor Create;
     Destructor Destroy; override;
     procedure SendAlarm;
     procedure StartSerwer;
@@ -224,15 +225,16 @@ begin
   Result:= IdTCPServer1.Active;
 end;
 
-function TAlerter.GetClientActive: Boolean;
-begin
-  Result:= (Assigned(ListaOdbiorcow))and(ListaOdbiorcow.Count>0);
-end;
-
 procedure TAlerter.SetSerwerActive(AValue: Boolean);
 begin
   if IdTCPServer1.Active <> AValue then
      IdTCPServer1.Active:= AValue;
+end;
+
+constructor TAlerter.Create;
+begin
+  inherited Create;
+  IdTCPServer1:= TIdTCPServer.Create;
 end;
 
 destructor TAlerter.Destroy;
@@ -241,10 +243,28 @@ begin
   inherited Destroy;
 end;
 
+procedure TAlerter.StartSerwer;
+begin
+  IdTCPServer1.OnExecute:= @IdTCPServer1Execute;
+
+  IdTCPServer1.Bindings.Clear;
+  with IdTCPServer1.Bindings.Add do
+  begin
+    IP  := GStack.LocalAddress;
+    Port:= 7777;
+  end;
+  IdTCPServer1.Active:= true;
+end;
+
+function TAlerter.GetClientActive: Boolean;
+begin
+  Result:= (Assigned(ListaOdbiorcow))and(ListaOdbiorcow.Count>0);
+end;
+
 procedure TAlerter.SendAlarm;
 var i: integer;
 begin
-  if not (Assigned(FListaOdbiorcow)and(FListaOdbiorcow.Count>0)) then exit;
+  if not GetClientActive then exit;
   for i:=0 to FListaOdbiorcow.Count-1 do
   begin
     With TAlertThread.Create(true) do
@@ -259,20 +279,6 @@ begin
       Start;
     end;
   end;
-end;
-
-procedure TAlerter.StartSerwer;
-begin
-  IdTCPServer1:= TIdTCPServer.Create;
-  IdTCPServer1.OnExecute:= @IdTCPServer1Execute;
-
-  IdTCPServer1.Bindings.Clear;
-  with IdTCPServer1.Bindings.Add do
-  begin
-    IP  := GStack.LocalAddress;
-    Port:= 7777;
-  end;
-  IdTCPServer1.Active:= true;
 end;
 
 class function TAlerter.GetLocalIP: string;

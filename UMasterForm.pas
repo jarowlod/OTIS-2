@@ -55,6 +55,7 @@ type
     ActionProsbyOsadzonego: TAction;
     ActionRozmieszczenie: TAction;
     BGRALabel1: TBGRALabel;
+    IdleTimerAntiFreeze: TIdleTimer;
     Image3: TImage;
     MenuItem10: TMenuItem;
     MenuItem19: TMenuItem;
@@ -211,6 +212,7 @@ type
     procedure Action_AdresyJednostekExecute(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure IdleTimerAntiFreezeTimer(Sender: TObject);
     procedure Image1DblClick(Sender: TObject);
     procedure MenuItem26Click(Sender: TObject);
     procedure MenuItem37Click(Sender: TObject);
@@ -220,6 +222,7 @@ type
       Cell: TGridCoord; Column: TRxColumn; var HintStr: string;
       var Processed: boolean);
     procedure RxDBGrid1DblClick(Sender: TObject);
+    procedure StatusBar1DrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel; const Rect: TRect);
     procedure Timer2KomunikatyTimer(Sender: TObject);
     procedure ZatrudnienieAddExecute(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
@@ -298,7 +301,6 @@ begin
     hotkey_alert:= GlobalAddAtom('OTIS_alert');
     RegisterHotKey(Handle, hotkey_alert, 0, VK_PAUSE);  // wywołuje alarm
   end;
-  if ALARM.isSerwerActive then StatusBar1.Panels[3].Text:= 'ON' else StatusBar1.Panels[3].Text:= 'OFF'
 end;
 
 procedure TMasterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -612,6 +614,26 @@ begin
   WyborDomyslny;
 end;
 
+procedure TMasterForm.StatusBar1DrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel; const Rect: TRect);
+var rLeft: integer;
+begin
+  if Panel.Index=3 then
+  begin
+    rLeft:= Rect.Left + 3;
+    if Assigned(ALARM) then
+    begin
+      if ALARM.isSerwerActive then
+      begin
+        DM.ImageList1.Draw(StatusBar.Canvas, rLeft, Rect.Top, 49);
+        inc(rLeft, 20);
+      end;
+
+      if ALARM.isClientActive then
+        DM.ImageList1.Draw(StatusBar.Canvas, rLeft, Rect.Top, 50);
+    end;
+  end;
+end;
+
 procedure TMasterForm.Timer2KomunikatyTimer(Sender: TObject);
 begin
   Timer2Komunikaty.Enabled:=false;
@@ -716,6 +738,7 @@ begin
   begin
     ShowModal;
     Free;
+    WczytajUstawieniaAlarmu;
   end;
 end;
 
@@ -1054,11 +1077,18 @@ begin
     end;
 end;
 
+procedure TMasterForm.IdleTimerAntiFreezeTimer(Sender: TObject);
+begin
+  // co 20 minut (1 200 000) bezczynności wciskamy SHIFT
+  keybd_event(VK_SHIFT, MapVirtualKey(VK_SHIFT, 0), 0, 0);
+  keybd_event(VK_SHIFT, MapVirtualKey(VK_SHIFT, 0), KEYEVENTF_KEYUP, 0);
+end;
+
 procedure TMasterForm.CreateAlarm;
 begin
   ALARM:= TAlerter.Create;
   ALARM.ListaOdbiorcow:= TStringList.Create;
-  ALARM.LocalUserName  := DM.PelnaNazwa;
+  ALARM.LocalUserName := DM.PelnaNazwa;
 
   WczytajUstawieniaAlarmu;
 
@@ -1088,7 +1118,7 @@ begin
        except
          // robimy to po cichu
        end;
-     end;
+     end else ALARM.isSerwerActive:= false;
   end;
 
   if id_client>0 then
@@ -1098,6 +1128,7 @@ begin
                      ' WHERE a.ID_client = :ID_client';
     ZQPom.ParamByName('ID_client').AsInteger:= id_client;
     ZQPom.Open;
+    ALARM.ListaOdbiorcow.Clear;
     while not ZQPom.EOF do
     begin
       ALARM.ListaOdbiorcow.Add(ZQPom.FieldByName('IP_serwer').AsString+';'+ZQPom.FieldByName('Lok_serwer').AsString);
@@ -1105,6 +1136,7 @@ begin
     end;
   end;
 
+  StatusBar1.Refresh;
   FreeAndNil(ZQPom);
 end;
 

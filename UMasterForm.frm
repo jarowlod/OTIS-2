@@ -28,12 +28,14 @@ object MasterForm: TMasterForm
       end    
       item
         Alignment = taCenter
+        Style = psOwnerDraw
         Width = 50
       end    
       item
         Width = 50
       end>
     SimplePanel = False
+    OnDrawPanel = StatusBar1DrawPanel
   end
   object Panel1: TPanel
     Left = 0
@@ -1772,5 +1774,13 @@ object MasterForm: TMasterForm
     OnTimer = Timer2KomunikatyTimer
     Left = 696
     Top = 208
+  end
+  object IdleTimerAntiFreeze: TIdleTimer
+    AutoEnabled = True
+    Enabled = False
+    Interval = 1200000
+    OnTimer = IdleTimerAntiFreezeTimer
+    Left = 694
+    Top = 280
   end
 end
