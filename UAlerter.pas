@@ -49,7 +49,7 @@ type
     fStatusText : string;
     FOnShowAlertStatus: TShowAlertStatusEvent;
     FRemoteIP: string;
-    FRemoteUserName: string;
+    FRemoteUserLokalizacja: string;
     FLocalUserName: string;
     FLocalUserLokalizacja: string;
     procedure ShowStatus;
@@ -60,7 +60,7 @@ type
     Destructor Destroy; override;
     property OnShowAlertStatus: TShowAlertStatusEvent read FOnShowAlertStatus write FOnShowAlertStatus;
     property RemoteIP: string read FRemoteIP write FRemoteIP;
-    property RemoteUserName: string read FRemoteUserName write FRemoteUserName;
+    property RemoteUserLokalizacja: string read FRemoteUserLokalizacja write FRemoteUserLokalizacja;
     property LocalUserName: string read FLocalUserName write FLocalUserName;
     property LocalUserLokalizacja: string read FLocalUserLokalizacja write FLocalUserLokalizacja;
   end;
@@ -179,7 +179,7 @@ begin
       FreeAndNil(Client);
     end;
   except
-    fStatusText:= Format('%s;%s',[LocalUserLokalizacja, 'Brak połączenia.']);
+    fStatusText:= Format('%s;%s',[RemoteUserLokalizacja, 'Brak połączenia.']);
     Synchronize(@Showstatus);
   end;
 end;
@@ -269,8 +269,8 @@ begin
   begin
     With TAlertThread.Create(true) do
     begin
-      RemoteIP      := FListaOdbiorcow[i].Split([';'])[0];
-      RemoteUserName:= FListaOdbiorcow[i].Split([';'])[1];
+      RemoteIP             := FListaOdbiorcow[i].Split([';'])[0];
+      RemoteUserLokalizacja:= FListaOdbiorcow[i].Split([';'])[1];
 
       LocalUserName := Self.LocalUserName;
       LocalUserLokalizacja:= Self.LocalUserLokalizacja;

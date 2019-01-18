@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1054"/>
-        <CursorPos X="27" Y="1067"/>
+        <TopLine Value="1151"/>
+        <CursorPos X="68" Y="1176"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,7 +33,6 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="175"/>
         <CursorPos X="21" Y="192"/>
         <UsageCount Value="200"/>
@@ -863,9 +862,10 @@
         <ComponentName Value="AlerterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="258"/>
-        <CursorPos X="25" Y="266"/>
+        <TopLine Value="256"/>
+        <CursorPos X="28" Y="272"/>
         <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1554,124 +1554,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="246" Column="3" TopLine="242"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="248" Column="24" TopLine="242"/>
       </Position1>
       <Position2>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="28" Column="17" TopLine="9"/>
+        <Caret Line="34" Column="19" TopLine="29"/>
       </Position2>
       <Position3>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="248" Column="24" TopLine="242"/>
+        <Caret Line="299" Column="19" TopLine="292"/>
       </Position3>
       <Position4>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="34" Column="19" TopLine="29"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="247" Column="15" TopLine="230"/>
       </Position4>
       <Position5>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="299" Column="19" TopLine="292"/>
+        <Caret Line="1108" Column="32" TopLine="1097"/>
       </Position5>
       <Position6>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="247" Column="15" TopLine="230"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="37" Column="15" TopLine="21"/>
       </Position6>
       <Position7>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1108" Column="32" TopLine="1097"/>
+        <Caret Line="177" Column="30" TopLine="171"/>
       </Position7>
       <Position8>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="37" Column="15" TopLine="21"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="742" Column="29" TopLine="735"/>
       </Position8>
       <Position9>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="177" Column="30" TopLine="171"/>
+        <Caret Line="248" Column="15" TopLine="232"/>
       </Position9>
       <Position10>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="742" Column="29" TopLine="735"/>
+        <Caret Line="1098" Column="18" TopLine="1085"/>
       </Position10>
       <Position11>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="248" Column="15" TopLine="232"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="42" Column="14" TopLine="26"/>
       </Position11>
       <Position12>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1098" Column="18" TopLine="1085"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="31" Column="15" TopLine="27"/>
       </Position12>
       <Position13>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="42" Column="14" TopLine="26"/>
+        <Caret Line="287" Column="23" TopLine="271"/>
       </Position13>
       <Position14>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="31" Column="15" TopLine="27"/>
+        <Caret Line="294" Column="23" TopLine="278"/>
       </Position14>
       <Position15>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="287" Column="23" TopLine="271"/>
+        <Caret Line="129" Column="3" TopLine="115"/>
       </Position15>
       <Position16>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="294" Column="23" TopLine="278"/>
+        <Caret Line="135" Column="3" TopLine="116"/>
       </Position16>
       <Position17>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="129" Column="3" TopLine="115"/>
+        <Caret Line="130" Column="3" TopLine="116"/>
       </Position17>
       <Position18>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="135" Column="3" TopLine="116"/>
+        <Caret Line="131" Column="3" TopLine="117"/>
       </Position18>
       <Position19>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="130" Column="3" TopLine="116"/>
+        <Caret Line="44" TopLine="26"/>
       </Position19>
       <Position20>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="131" Column="3" TopLine="117"/>
+        <Caret Line="125" Column="3" TopLine="125"/>
       </Position20>
       <Position21>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="44" TopLine="26"/>
+        <Caret Line="124" Column="3" TopLine="124"/>
       </Position21>
       <Position22>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="125" Column="3" TopLine="125"/>
+        <Caret Line="28" TopLine="17"/>
       </Position22>
       <Position23>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="124" Column="3" TopLine="124"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1184" Column="21" TopLine="1157"/>
       </Position23>
       <Position24>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="28" TopLine="17"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1182" Column="33" TopLine="1155"/>
       </Position24>
       <Position25>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1094" Column="25" TopLine="1146"/>
+        <Caret Line="1181" TopLine="1004"/>
       </Position25>
       <Position26>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1184" Column="21" TopLine="1157"/>
+        <Caret Line="1067" Column="27" TopLine="1054"/>
       </Position26>
       <Position27>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1182" Column="33" TopLine="1155"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="32" Column="15" TopLine="15"/>
       </Position27>
       <Position28>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1181" TopLine="1004"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="52" Column="27" TopLine="40"/>
       </Position28>
       <Position29>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1067" Column="27" TopLine="1054"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="63" Column="100" TopLine="46"/>
       </Position29>
       <Position30>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="32" Column="15" TopLine="15"/>
+        <Caret Line="182" Column="35" TopLine="166"/>
       </Position30>
     </JumpHistory>
     <RunParams>
