@@ -103,4 +103,34 @@ object AlerterForm: TAlerterForm
     Style = pbstMarquee
     TabOrder = 0
   end
+  object lblUserTel: TLabel
+    Left = 104
+    Height = 32
+    Top = 56
+    Width = 86
+    Caption = 'Telefon:'
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = 12177407
+    Font.Height = 34
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Layout = tlCenter
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    AnchorSideBottom.Control = lblUserTel
+    AnchorSideBottom.Side = asrCenter
+    Left = 24
+    Height = 15
+    Top = 64
+    Width = 69
+    Anchors = [akLeft, akBottom]
+    Caption = 'Nr telefonu:'
+    Font.Color = clSilver
+    Font.Style = [fsBold, fsItalic]
+    ParentColor = False
+    ParentFont = False
+  end
 end

@@ -246,8 +246,8 @@ type
     procedure wm_HOTKEY(var Msg:TMessage);message WM_HOTKEY; // funkcja skrótu globalnego
     procedure CreateAlarm;
     procedure WczytajUstawieniaAlarmu;
-    procedure ShowAlert(Status: string);
-    procedure ShowStatus(Status: string);
+    procedure ShowAlert(Status: TMyRecord);
+    procedure ShowStatus(Status: TMyRecord);
   public
     { public declarations }
     isExecuteSQL: boolean;
@@ -1087,7 +1087,7 @@ end;
 procedure TMasterForm.CreateAlarm;
 begin
   ALARM:= TAlerter.Create;
-  ALARM.ListaOdbiorcow:= TStringList.Create;
+//  ALARM.ListaOdbiorcow:= TStringList.Create;
   ALARM.LocalUserName := DM.PelnaNazwa;
 
   WczytajUstawieniaAlarmu;
@@ -1099,6 +1099,7 @@ end;
 procedure TMasterForm.WczytajUstawieniaAlarmu;
 var ZQPom: TZQueryPom;
     id_client: integer;
+    i: integer;
 begin
   ZQPom:= TZQueryPom.Create(Self);
   ZQPom.SQL.Text:= 'SELECT * FROM alerter WHERE IP=:ip';
@@ -1109,7 +1110,8 @@ begin
   if not ZQPom.isEmpty then
   begin
      ALARM.LocalUserLokalizacja:= ZQPom.FieldByName('Lokalizacja').AsString;
-     id_client:= ZQPom.FieldByName('ID').AsInteger;
+     ALARM.LocalUserTel        := ZQPom.FieldByName('Telefon').AsString;
+     id_client                 := ZQPom.FieldByName('ID').AsInteger;
 
      if ZQPom.FieldByName('Rodzaj').AsString = 'Serwer' then
      begin
@@ -1128,10 +1130,17 @@ begin
                      ' WHERE a.ID_client = :ID_client';
     ZQPom.ParamByName('ID_client').AsInteger:= id_client;
     ZQPom.Open;
-    ALARM.ListaOdbiorcow.Clear;
+//    ALARM.ListaOdbiorcow.Clear;
+    SetLength(ALARM.ListaOdbiorcow, ZQPom.RecordCount);
+    i:=0;
     while not ZQPom.EOF do
     begin
-      ALARM.ListaOdbiorcow.Add(ZQPom.FieldByName('IP_serwer').AsString+';'+ZQPom.FieldByName('Lok_serwer').AsString);
+//      ALARM.ListaOdbiorcow.Add(ZQPom.FieldByName('IP_serwer').AsString+';'+ZQPom.FieldByName('Lok_serwer').AsString);
+
+      ALARM.ListaOdbiorcow[i].RemoteIP             := ZQPom.FieldByName('IP_serwer').AsString;
+      ALARM.ListaOdbiorcow[i].RemoteUserLokalizacja:= ZQPom.FieldByName('Lok_serwer').AsString;
+
+      inc(i);
       ZQPom.Next;
     end;
   end;
@@ -1140,12 +1149,10 @@ begin
   FreeAndNil(ZQPom);
 end;
 
-procedure TMasterForm.ShowAlert(Status: string);
-var LokalizacjaWezwania: string;
-    UserNameWezwania: string;
+procedure TMasterForm.ShowAlert(Status: TMyRecord);
+//var LokalizacjaWezwania: string;
+//    UserNameWezwania: string;
 begin
-  LokalizacjaWezwania:= Status.Split([';'])[1];
-  UserNameWezwania   := Status.Split([';'])[2];
   with TAlerterForm.Create(Self) do
   begin
     // pozycja okna alertu i jej przesunięcie dla kolejnych okienek
@@ -1157,26 +1164,58 @@ begin
     if AlarmPos.Y> Screen.Height - Height then AlarmPos.Y:= 0;
     // ------------------------------------------------------------
 
-    Caption:= LokalizacjaWezwania;
-    lblLokalizacjaWezwania.Caption:= LokalizacjaWezwania;
-    lblUserWezwania.Caption       := UserNameWezwania;
+    Caption                       := Status.LocalUserLokalizacja;
+    lblLokalizacjaWezwania.Caption:= Status.LocalUserLokalizacja;
+    lblUserWezwania.Caption       := Status.LocalUserName;
+    // lblCzasWezwania.Cation     := TimeToStr( Status.SendTime);
+    lblUserTel.Caption            :=  Status.LocalUserTel;
     Show;
   end;
+
+  //LokalizacjaWezwania:= Status.Split([';'])[1];
+  //UserNameWezwania   := Status.Split([';'])[2];
+  //with TAlerterForm.Create(Self) do
+  //begin
+  //  // pozycja okna alertu i jej przesunięcie dla kolejnych okienek
+  //  // AlarmPos - zmienna globalna
+  //  Left:= AlarmPos.X;
+  //  Top := AlarmPos.Y;
+  //  AlarmPos.Offset(30,30);
+  //  if AlarmPos.X> Screen.Width - Width then AlarmPos.X:= 0;
+  //  if AlarmPos.Y> Screen.Height - Height then AlarmPos.Y:= 0;
+  //  // ------------------------------------------------------------
+  //
+  //  Caption:= LokalizacjaWezwania;
+  //  lblLokalizacjaWezwania.Caption:= LokalizacjaWezwania;
+  //  lblUserWezwania.Caption       := UserNameWezwania;
+  //  Show;
+  //end;
 end;
 
-procedure TMasterForm.ShowStatus(Status: string);
-var RemoteUserName: string;
-    RemoteUserLokalizacja: string;
+procedure TMasterForm.ShowStatus(Status: TMyRecord);
+//var RemoteUserName: string;
+//    RemoteUserLokalizacja: string;
 begin
-  RemoteUserName:= Status.Split([';'])[0];
-  RemoteUserLokalizacja:= Status.Split([';'])[1];
-
-  if RemoteUserLokalizacja='Brak połączenia.' then
+  if Status.Kod = 404 then  // Błąd
   begin
-    DM.KomunikatPopUp(Self, 'ALERT', 'Brak odpowiedzi od: '+RemoteUserName, nots_Warning);
+    DM.KomunikatPopUp(Self, 'ALERT', 'Brak odpowiedzi od: '+ Status.RemoteUserLokalizacja, nots_Warning);
     exit;
   end;
-  DM.KomunikatPopUp(Self, 'ALERT', 'Wezwano o pomoc do: '+RemoteUserLokalizacja, nots_Warning);
+
+  if Status.Kod = 200 then // OK
+  begin
+    DM.KomunikatPopUp(Self, 'ALERT', 'Wezwano o pomoc do: '+ Status.RemoteUserLokalizacja, nots_Warning);
+    exit;
+  end;
+  //RemoteUserName:= Status.Split([';'])[0];
+  //RemoteUserLokalizacja:= Status.Split([';'])[1];
+
+  //if RemoteUserLokalizacja='Brak połączenia.' then
+  //begin
+  //  DM.KomunikatPopUp(Self, 'ALERT', 'Brak odpowiedzi od: '+RemoteUserName, nots_Warning);
+  //  exit;
+  //end;
+  //DM.KomunikatPopUp(Self, 'ALERT', 'Wezwano o pomoc do: '+RemoteUserLokalizacja, nots_Warning);
 end;
 
    { TODO : Domyślne lub z pliku ini: Rozmiar i położenie okna podczas onShow }
