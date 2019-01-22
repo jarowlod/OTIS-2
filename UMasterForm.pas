@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, rxdbutils, Grids,
   db, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Clipbrd, dateutils, LCLType,
-  LazUTF8, UAlerter, IdComponent, IdStack, datamodule, BGRALabel;
+  LazUTF8, UAlerter, IdComponent, IdStack, datamodule, ueled, BGRALabel;
 
 type
 
@@ -56,7 +56,7 @@ type
     ActionRozmieszczenie: TAction;
     BGRALabel1: TBGRALabel;
     IdleTimerAntiFreeze: TIdleTimer;
-    Image3: TImage;
+    imgLogoSW: TImage;
     MenuItem10: TMenuItem;
     MenuItem19: TMenuItem;
     MenuItem23: TMenuItem;
@@ -114,6 +114,7 @@ type
     MenuItem58: TMenuItem;
     MenuItem9: TMenuItem;
     Panel2: TPanel;
+    Panel3: TPanel;
     SpkPane1: TSpkPane;
     SpkPane2: TSpkPane;
     SpkSmallButton1: TSpkSmallButton;
@@ -137,6 +138,7 @@ type
     ToolButton7: TToolButton;
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
+    LedAlarm: TuELED;
     ZatrudnienieAdd: TAction;
     ActionList1: TActionList;
     Edit1: TEdit;
@@ -214,6 +216,9 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure IdleTimerAntiFreezeTimer(Sender: TObject);
     procedure Image1DblClick(Sender: TObject);
+    procedure imgLogoSWMouseEnter(Sender: TObject);
+    procedure LedAlarmDblClick(Sender: TObject);
+    procedure LedAlarmMouseLeave(Sender: TObject);
     procedure MenuItem26Click(Sender: TObject);
     procedure MenuItem37Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
@@ -365,6 +370,26 @@ begin
     SaperForm.Show;
     if SaperForm.WindowState = wsMinimized then SaperForm.WindowState:= wsNormal;
   end;
+end;
+
+procedure TMasterForm.imgLogoSWMouseEnter(Sender: TObject);
+begin
+  if ALARM.isClientActive then
+  begin
+    imgLogoSW.Visible:= false;
+    LedAlarm.Visible:= true;
+  end;
+end;
+
+procedure TMasterForm.LedAlarmDblClick(Sender: TObject);
+begin
+  if ALARM.isClientActive then ALARM.SendAlarm;
+end;
+
+procedure TMasterForm.LedAlarmMouseLeave(Sender: TObject);
+begin
+  LedAlarm.Visible:= false;
+  imgLogoSW.Visible:= true;
 end;
 
 // Rejstr Aktualizacji
@@ -1164,11 +1189,7 @@ begin
     if AlarmPos.Y> Screen.Height - Height then AlarmPos.Y:= 0;
     // ------------------------------------------------------------
 
-    Caption                       := Status.LocalUserLokalizacja;
-    lblLokalizacjaWezwania.Caption:= Status.LocalUserLokalizacja;
-    lblUserWezwania.Caption       := Status.LocalUserName;
-    // lblCzasWezwania.Cation     := TimeToStr( Status.SendTime);
-    lblUserTel.Caption            :=  Status.LocalUserTel;
+    myRecord:= Status;
     Show;
   end;
 

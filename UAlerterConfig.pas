@@ -20,6 +20,7 @@ type
     DBComboBox1: TDBComboBox;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
     DBNavigator1: TDBNavigator;
     DSAlerterLok: TDataSource;
     DSAlerterBind: TDataSource;
@@ -29,6 +30,7 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
+    Label5: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;

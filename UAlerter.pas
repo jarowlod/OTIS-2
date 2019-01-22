@@ -6,8 +6,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, dateutils, LCLType,
-  StdCtrls, ComCtrls, ExtCtrls, LazUTF8, IdTCPServer, IdComponent, IdCustomTCPServer,
-  IdContext, IdThread, IdGlobal, IdTCPClient, IdStack, MMSystem;
+  StdCtrls, ComCtrls, ExtCtrls, LazUTF8, IdTCPServer, IdComponent,
+  IdCustomTCPServer, IdContext, IdThread, IdGlobal, IdTCPClient, IdStack,
+  MMSystem;
 
 type
   TOdbiorca = record
@@ -99,12 +100,18 @@ type
   { TAlerterForm }
 
   TAlerterForm = class(TForm)
+    Bevel1: TBevel;
+    Bevel2: TBevel;
+    Bevel3: TBevel;
+    Bevel4: TBevel;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
+    Label5: TLabel;
     lblLokalizacjaWezwania: TLabel;
     lblUserTel: TLabel;
+    lblSendTime: TLabel;
     lblUserWezwania: TLabel;
     ProgressBar1: TProgressBar;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -112,7 +119,7 @@ type
   private
     valRand: integer;
   public
-
+    myRecord: TMyRecord;
   end;
 
 function ByteArrayToMyRecord(ABuffer: TBytes): TMyRecord;
@@ -135,6 +142,11 @@ implementation
 
 procedure TAlerterForm.FormShow(Sender: TObject);
 begin
+  Caption                       := myRecord.LocalUserLokalizacja;
+  lblLokalizacjaWezwania.Caption:= myRecord.LocalUserLokalizacja;
+  lblUserWezwania.Caption       := myRecord.LocalUserName;
+  lblSendTime.Caption           := TimeToStr( myRecord.SendTime);
+  lblUserTel.Caption            := myRecord.LocalUserTel;
   //PlaySound(PChar('raporty\Red Alert.wav'), 0, SND_ASYNC or SND_NODEFAULT);
   Randomize;
   valRand:= Random(1000);

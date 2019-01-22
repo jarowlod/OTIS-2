@@ -1,7 +1,7 @@
 object AlerterForm: TAlerterForm
-  Left = 333
+  Left = 321
   Height = 486
-  Top = 237
+  Top = 225
   Width = 759
   Caption = 'AlerterForm'
   ClientHeight = 486
@@ -10,6 +10,20 @@ object AlerterForm: TAlerterForm
   OnClose = FormClose
   OnShow = FormShow
   LCLVersion = '6.6'
+  object Bevel2: TBevel
+    Left = 560
+    Height = 44
+    Top = 48
+    Width = 184
+    Shape = bsBottomLine
+  end
+  object Bevel1: TBevel
+    Left = 16
+    Height = 44
+    Top = 48
+    Width = 274
+    Shape = bsBottomLine
+  end
   object lblLokalizacjaWezwania: TLabel
     Left = 0
     Height = 128
@@ -107,8 +121,8 @@ object AlerterForm: TAlerterForm
     Left = 104
     Height = 32
     Top = 56
-    Width = 86
-    Caption = 'Telefon:'
+    Width = 30
+    Caption = '---'
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Color = 12177407
     Font.Height = 34
@@ -121,16 +135,62 @@ object AlerterForm: TAlerterForm
   end
   object Label4: TLabel
     AnchorSideBottom.Control = lblUserTel
-    AnchorSideBottom.Side = asrCenter
+    AnchorSideBottom.Side = asrBottom
     Left = 24
     Height = 15
-    Top = 64
+    Top = 66
     Width = 69
     Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 7
     Caption = 'Nr telefonu:'
     Font.Color = clSilver
     Font.Style = [fsBold, fsItalic]
     ParentColor = False
     ParentFont = False
+  end
+  object lblSendTime: TLabel
+    Left = 624
+    Height = 32
+    Top = 56
+    Width = 30
+    Caption = '---'
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = 12177407
+    Font.Height = 34
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Layout = tlCenter
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    AnchorSideBottom.Control = lblSendTime
+    AnchorSideBottom.Side = asrBottom
+    Left = 568
+    Height = 15
+    Top = 66
+    Width = 51
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 7
+    Caption = 'Godzina:'
+    Font.Color = clSilver
+    Font.Style = [fsBold, fsItalic]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel3: TBevel
+    Left = 16
+    Height = 2
+    Top = 120
+    Width = 728
+    Anchors = [akTop, akLeft, akRight]
+  end
+  object Bevel4: TBevel
+    Left = 16
+    Height = 2
+    Top = 272
+    Width = 728
+    Anchors = [akTop, akLeft, akRight]
   end
 end

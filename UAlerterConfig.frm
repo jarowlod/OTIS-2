@@ -1,7 +1,7 @@
 object AlerterConfig: TAlerterConfig
-  Left = 333
+  Left = 321
   Height = 606
-  Top = 237
+  Top = 225
   Width = 1240
   Caption = 'AlerterConfig'
   ClientHeight = 606
@@ -259,7 +259,7 @@ object AlerterConfig: TAlerterConfig
         DataField = 'IP'
         DataSource = DSAlerterLok
         CharCase = ecNormal
-        MaxLength = 0
+        MaxLength = 15
         TabOrder = 0
       end
       object DBEdit2: TDBEdit
@@ -271,14 +271,14 @@ object AlerterConfig: TAlerterConfig
         DataSource = DSAlerterLok
         Anchors = [akTop, akLeft, akRight]
         CharCase = ecNormal
-        MaxLength = 0
+        MaxLength = 50
         TabOrder = 1
       end
       object DBComboBox1: TDBComboBox
         Left = 8
         Height = 23
         Top = 124
-        Width = 132
+        Width = 104
         AutoDropDown = True
         DataField = 'Rodzaj'
         DataSource = DSAlerterLok
@@ -380,6 +380,25 @@ object AlerterConfig: TAlerterConfig
         Options = []
         TabOrder = 3
         VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+      end
+      object DBEdit3: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 124
+        Width = 224
+        DataField = 'Telefon'
+        DataSource = DSAlerterLok
+        CharCase = ecNormal
+        MaxLength = 10
+        TabOrder = 4
+      end
+      object Label5: TLabel
+        Left = 150
+        Height = 15
+        Top = 104
+        Width = 40
+        Caption = 'Telefon'
+        ParentColor = False
       end
     end
     object Panel3: TPanel
@@ -714,7 +733,8 @@ object AlerterConfig: TAlerterConfig
       'ID,'
       'IP,'
       'Lokalizacja, '
-      'Rodzaj'
+      'Rodzaj,'
+      'Telefon'
       'FROM alerter'
       'ORDER BY Lokalizacja'
     )
