@@ -181,6 +181,7 @@ type
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
+    MenuItemDoKoszykaAll: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
@@ -310,6 +311,7 @@ type
     procedure lblWniosekOZatrudnienieClick(Sender: TObject);
     procedure lblWniosekUrlopowyClick(Sender: TObject);
     procedure lblZatZaswiadczenieClick(Sender: TObject);
+    procedure MenuItemDoKoszykaAllClick(Sender: TObject);
     procedure rgStatusZatSelectionChanged(Sender: TObject);
     procedure rgStatusPobytuSelectionChanged(Sender: TObject);
     procedure RxDBGrid1DblClick(Sender: TObject);
@@ -973,6 +975,23 @@ begin
     ShowModal;
     Free;
   end;
+end;
+
+procedure TZatrudnieni.MenuItemDoKoszykaAllClick(Sender: TObject);
+var bookmark: TBookMark;
+begin
+  if ZQZatrudnieni.IsEmpty then exit;
+  ZQZatrudnieni.DisableControls;
+  bookmark:= ZQZatrudnieni.GetBookmark;
+  ZQZatrudnieni.First;
+  while not ZQZatrudnieni.EOF do
+  begin
+    DM.DodajDoKoszyka( ZQZatrudnieni.FieldByName('ido').AsInteger );
+    ZQZatrudnieni.Next;
+  end;
+  SetToBookmark(ZQZatrudnieni, bookmark);
+  ZQZatrudnieni.EnableControls;
+  DM.KomunikatPopUp(Sender, 'Koszyk', 'Dodano wszystkich widocznych osadzonych do koszyka.', nots_Info);
 end;
 
 procedure TZatrudnieni.lblAktaRejestrClick(Sender: TObject);

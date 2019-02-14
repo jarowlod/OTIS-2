@@ -20,7 +20,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1145"/>
+        <TopLine Value="304"/>
         <CursorPos X="40" Y="304"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -83,10 +83,12 @@
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="411"/>
-        <CursorPos X="3" Y="341"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="968"/>
+        <CursorPos X="68" Y="988"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="UZatAddZatrudnienie.pas"/>
@@ -165,7 +167,7 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="283"/>
         <CursorPos Y="291"/>
         <UsageCount Value="201"/>
@@ -567,7 +569,7 @@
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="3" Y="266"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -863,7 +865,7 @@
         <ComponentName Value="AlerterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="128"/>
         <CursorPos X="14" Y="363"/>
         <UsageCount Value="76"/>
@@ -877,7 +879,7 @@
         <ComponentName Value="AlerterConfig"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="72"/>
         <CursorPos X="38" Y="97"/>
         <UsageCount Value="59"/>
@@ -1562,123 +1564,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="54" Column="20" TopLine="31"/>
+        <Caret Line="371" Column="28" TopLine="337"/>
       </Position1>
       <Position2>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="369" Column="28" TopLine="363"/>
+        <Filename Value="UAlerterConfig.pas"/>
+        <Caret Line="95" Column="38" TopLine="70"/>
       </Position2>
       <Position3>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="370" Column="28" TopLine="364"/>
+        <Filename Value="UAlerterConfig.pas"/>
+        <Caret Line="97" Column="38" TopLine="72"/>
       </Position3>
       <Position4>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="371" Column="28" TopLine="118"/>
+        <Caret Line="361" Column="51"/>
       </Position4>
       <Position5>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="372" Column="28" TopLine="338"/>
+        <Caret Line="363" Column="51" TopLine="329"/>
       </Position5>
       <Position6>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="371" Column="28" TopLine="337"/>
+        <Caret Line="117" Column="25" TopLine="97"/>
       </Position6>
       <Position7>
-        <Filename Value="UAlerterConfig.pas"/>
-        <Caret Line="95" Column="38" TopLine="70"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="150" Column="3" TopLine="148"/>
       </Position7>
       <Position8>
-        <Filename Value="UAlerterConfig.pas"/>
-        <Caret Line="97" Column="38" TopLine="72"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="141" Column="3" TopLine="139"/>
       </Position8>
       <Position9>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="361" Column="51"/>
+        <Caret Line="155" Column="48" TopLine="139"/>
       </Position9>
       <Position10>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="363" Column="51" TopLine="329"/>
+        <Caret Line="144" Column="60" TopLine="129"/>
       </Position10>
       <Position11>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="117" Column="25" TopLine="97"/>
+        <Caret Line="146" Column="60" TopLine="131"/>
       </Position11>
       <Position12>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="150" Column="3" TopLine="148"/>
+        <Caret Line="145" Column="60" TopLine="130"/>
       </Position12>
       <Position13>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="141" Column="3" TopLine="139"/>
+        <Caret Line="146" Column="60" TopLine="131"/>
       </Position13>
       <Position14>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="155" Column="48" TopLine="139"/>
+        <Caret Line="147" Column="60" TopLine="132"/>
       </Position14>
       <Position15>
         <Filename Value="UAlerter.pas"/>
-        <Caret Line="144" Column="60" TopLine="129"/>
+        <Caret Line="148" Column="60" TopLine="133"/>
       </Position15>
       <Position16>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="146" Column="60" TopLine="131"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1167" Column="24" TopLine="1149"/>
       </Position16>
       <Position17>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="145" Column="60" TopLine="130"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1174" Column="24" TopLine="1156"/>
       </Position17>
       <Position18>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="146" Column="60" TopLine="131"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="375" Column="26" TopLine="361"/>
       </Position18>
       <Position19>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="147" Column="60" TopLine="132"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="380" Column="27" TopLine="361"/>
       </Position19>
       <Position20>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="148" Column="60" TopLine="133"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="381" Column="27" TopLine="362"/>
       </Position20>
       <Position21>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1167" Column="24" TopLine="1149"/>
+        <Caret Line="388" Column="24" TopLine="362"/>
       </Position21>
       <Position22>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1174" Column="24" TopLine="1156"/>
+        <Caret Line="395" Column="27" TopLine="364"/>
       </Position22>
       <Position23>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="375" Column="26" TopLine="361"/>
+        <Caret Line="380" Column="3" TopLine="364"/>
       </Position23>
       <Position24>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="380" Column="27" TopLine="361"/>
+        <Caret Line="663" Column="18" TopLine="648"/>
       </Position24>
       <Position25>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="381" Column="27" TopLine="362"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="46" Column="21" TopLine="42"/>
       </Position25>
       <Position26>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="388" Column="24" TopLine="362"/>
+        <Caret Line="305" Column="40" TopLine="305"/>
       </Position26>
       <Position27>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="395" Column="27" TopLine="364"/>
+        <Caret Line="304" Column="40" TopLine="304"/>
       </Position27>
       <Position28>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="380" Column="3" TopLine="364"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="341" Column="3" TopLine="411"/>
       </Position28>
       <Position29>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="663" Column="18" TopLine="648"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="777" TopLine="775"/>
       </Position29>
       <Position30>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="46" Column="21" TopLine="42"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="779" TopLine="777"/>
       </Position30>
     </JumpHistory>
     <RunParams>

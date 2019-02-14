@@ -541,6 +541,8 @@ object MasterForm: TMasterForm
       BevelOuter = bvNone
       ClientHeight = 66
       ClientWidth = 194
+      Color = 16308899
+      ParentColor = False
       TabOrder = 1
       object BGRALabel1: TBGRALabel
         Left = 0
