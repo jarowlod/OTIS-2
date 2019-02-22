@@ -20,7 +20,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="304"/>
+        <TopLine Value="236"/>
         <CursorPos X="40" Y="304"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -33,6 +33,7 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="175"/>
         <CursorPos X="21" Y="192"/>
         <UsageCount Value="200"/>
@@ -164,7 +165,6 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="283"/>
         <CursorPos Y="291"/>
@@ -180,8 +180,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="737"/>
-        <CursorPos X="45" Y="737"/>
+        <TopLine Value="404"/>
+        <CursorPos X="53" Y="419"/>
         <UsageCount Value="200"/>
       </Unit14>
       <Unit15>

@@ -405,7 +405,7 @@ begin
   else
   if (Field.FieldName = 'KoniecKary') then
         begin
-          if (Field.AsDateTime < IncDay(Date(),7)) then
+          if (Field.AsDateTime < IncDay(Date(),14)) then
           begin
             Background := clRed;
           end;
