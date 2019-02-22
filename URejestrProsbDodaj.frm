@@ -1,14 +1,14 @@
 object RejestrProsbDodaj: TRejestrProsbDodaj
-  Left = 404
+  Left = 334
   Height = 466
-  Top = 224
+  Top = 226
   Width = 661
   BorderStyle = bsDialog
   Caption = 'Zarejestruj prośbę'
   ClientHeight = 466
   ClientWidth = 661
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 46
@@ -124,7 +124,7 @@ object RejestrProsbDodaj: TRejestrProsbDodaj
       Left = 104
       Height = 23
       Top = 4
-      Width = 152
+      Width = 146
       ShowCheckBox = True
       CenturyFrom = 1941
       MaxDate = 2958465
@@ -207,7 +207,7 @@ object RejestrProsbDodaj: TRejestrProsbDodaj
     Left = 130
     Height = 23
     Top = 192
-    Width = 152
+    Width = 146
     ShowCheckBox = True
     CenturyFrom = 1941
     MaxDate = 2958465

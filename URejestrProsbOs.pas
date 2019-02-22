@@ -109,6 +109,14 @@ end;
 procedure TRejestrProsbOs.btnModyfikujClick(Sender: TObject);
 begin
   if ZQRejestr.IsEmpty then exit;
+  // jesli jest zrealizowana
+  if (ZQRejestr.FieldByName('Status').AsInteger = 4)and
+     (ZQRejestr.FieldByName('User_Realizacji').AsString <> DM.PelnaNazwa) then
+     begin
+       MessageDlg('Prośba jest już zrealizowana. Zmodyfikować może tylko osoba która zrealizowała prośbę.', mtWarning, [mbOK],0);
+       exit;
+     end;
+
   if DM.PelnaNazwa <> ZQRejestr.FieldByName('User').AsString then
      if not(MessageDlg('Chcesz dokonać modyfikacji pisma, które zostało zarejestrowane przez innego użytkownika.'+LineEnding+'Czy napewno chcesz modyfikować ? ', mtConfirmation, [mbOK, mbCancel], 0) = mrOK) then exit;
 

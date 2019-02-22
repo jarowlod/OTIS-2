@@ -121,6 +121,7 @@ end;
 procedure TOchRezerwacjaWidzen.btnZaplanujClick(Sender: TObject);
 var ido: integer;
 begin
+  if not DM.uprawnienia[18] then exit;
   if MemWidzenia.IsEmpty then exit;
 
   if MemWidzenia.FieldByName('IDO').AsInteger>0 then

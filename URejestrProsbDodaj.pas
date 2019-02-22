@@ -243,6 +243,10 @@ begin
     ZQPom.SQL.Text:= 'UPDATE rej_prosb SET Opis=:opis, Status=:status, Data_Decyzji=:dataD, User=:user, Uwagi=:uwagi, Wydruk=:wydruk'
                     +' WHERE ID=:ID';
 
+    if cbStatus.ItemIndex<>4 then
+        ZQPom.SQL.Text:= 'UPDATE rej_prosb SET Opis=:opis, Status=:status, Data_Decyzji=:dataD, User=:user, Uwagi=:uwagi, Wydruk=:wydruk, Data_Realizacji=NULL, User_Realizacji=NULL'
+                        +' WHERE ID=:ID';
+
     ZQPom.ParamByName('ID').AsInteger := id;
     ZQPom.ParamByName('opis').AsString:= edOpis.Text;
     ZQPom.ParamByName('status').AsInteger:= cbStatus.ItemIndex;
