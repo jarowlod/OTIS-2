@@ -15,6 +15,7 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionPlanWyjazdow: TAction;
     ActionAlerterOpcje: TAction;
     ActionPaczkiRejestr: TAction;
     ActionPaczkiDodaj: TAction;
@@ -106,6 +107,8 @@ type
     MenuItem74: TMenuItem;
     MenuItem75: TMenuItem;
     MenuItem76: TMenuItem;
+    MenuItem77: TMenuItem;
+    MenuItem78: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -196,6 +199,7 @@ type
     procedure ActionNowyKoszykExecute(Sender: TObject);
     procedure ActionPaczkiDodajExecute(Sender: TObject);
     procedure ActionPaczkiRejestrExecute(Sender: TObject);
+    procedure ActionPlanWyjazdowExecute(Sender: TObject);
     procedure ActionProsbyOsadzonegoExecute(Sender: TObject);
     procedure ActionProsbyOsadzonychExecute(Sender: TObject);
     procedure ActionRejestrWidzenExecute(Sender: TObject);
@@ -275,7 +279,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UZdjAktualizacjaZdjec,
      UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype,
-     UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr, UAlerterConfig;
+     UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr, UAlerterConfig, UKwatPlanWyjazdow;
 {$R *.frm}
 
 { TMasterForm }
@@ -355,6 +359,9 @@ begin
   ActionKnowHow.Enabled        := DM.uprawnienia[8];
 
   ActionNoeNetTest.Enabled     := DM.uprawnienia[17];
+
+  // TODO: w realizacji
+  ActionPlanWyjazdow.Enabled   := DM.uprawnienia[8]; // tymczasowo tylko Admin, docelowo kwaterunek
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
@@ -477,6 +484,15 @@ end;
 procedure TMasterForm.ActionPaczkiRejestrExecute(Sender: TObject);
 begin
   with TPaczkiRejestr.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.ActionPlanWyjazdowExecute(Sender: TObject);
+begin
+  with TKwatPlanWyjazdow.Create(Self) do
   begin
        ShowModal;
        Free;

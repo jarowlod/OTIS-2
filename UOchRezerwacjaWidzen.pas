@@ -10,8 +10,6 @@ uses
   datamodule, LR_Class, LR_DBSet, BGRABitmap;
 
 type
-  { TTerminyEvent }
-
   { TTerminyWidzenEvent }
 
   TTerminyWidzenEvent = class
@@ -28,8 +26,6 @@ type
     property isSwieto   : Boolean read fisSwieto write fisSwieto stored False;
     property Widzen_dziennie: integer read FWidzen_dziennie write FWidzen_dziennie;
   end;
-
-  { TTerminyEvents }
 
   { TTerminyWidzenEvents }
 

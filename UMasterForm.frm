@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 321
+  Left = 334
   Height = 598
-  Top = 225
+  Top = 226
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1477,6 +1477,12 @@ object MasterForm: TMasterForm
         Action = ActionProsbyOsadzonych
       end
     end
+    object MenuItem77: TMenuItem
+      Caption = 'Kwaterunek'
+      object MenuItem78: TMenuItem
+        Action = ActionPlanWyjazdow
+      end
+    end
   end
   object Timer1Wyszukaj: TTimer
     Enabled = False
@@ -1798,6 +1804,12 @@ object MasterForm: TMasterForm
       Caption = 'Alerter - ustawienia ...'
       ImageIndex = 34
       OnExecute = ActionAlerterOpcjeExecute
+    end
+    object ActionPlanWyjazdow: TAction
+      Category = 'Kwaterunek'
+      Caption = 'Plan wyjazdów...'
+      ImageIndex = 51
+      OnExecute = ActionPlanWyjazdowExecute
     end
   end
   object Timer2Komunikaty: TTimer
