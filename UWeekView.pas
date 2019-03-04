@@ -412,12 +412,14 @@ begin
   ItemEvent.OnDblClick:= OnSelectionEvent;
   EventsPeerDay[ItemEvent.DayOfWeek].Add(ItemEvent);
   CalcColumEvent;
+  Invalidate;
 end;
 
 procedure TWeekView.ClearEvent;
 var i: integer;
 begin
   for i:=1 to 7 do EventsPeerDay[i].Clear;
+  Invalidate;
 end;
 
 procedure TWeekView.CalcColumEvent;

@@ -6,7 +6,10 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
   Caption = 'Harmonogram planowanych wyjazdów.'
   ClientHeight = 564
   ClientWidth = 1038
+  Constraints.MinHeight = 500
+  Constraints.MinWidth = 1000
   OnCreate = FormCreate
+  OnShow = FormShow
   LCLVersion = '6.6'
   object Panel5: TPanel
     Left = 0
@@ -100,14 +103,14 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
   end
   object WeekPanel: TPanel
     Left = 0
-    Height = 336
+    Height = 309
     Top = 50
     Width = 1038
     Align = alClient
     BevelOuter = bvNone
-    ClientHeight = 336
+    ClientHeight = 309
     ClientWidth = 1038
-    TabOrder = 1
+    TabOrder = 2
     object Panel3: TPanel
       Left = 0
       Height = 32
@@ -262,12 +265,346 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
       end
     end
   end
-  object Panel2: TPanel
+  object Splitter2: TSplitter
+    Cursor = crVSplit
     Left = 0
-    Height = 178
-    Top = 386
+    Height = 5
+    Top = 359
     Width = 1038
     Align = alBottom
-    TabOrder = 2
+    ResizeAnchor = akBottom
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 200
+    Top = 364
+    Width = 1038
+    ActivePage = TabSheet1
+    Align = alBottom
+    TabIndex = 0
+    TabOrder = 3
+    object TabSheet1: TTabSheet
+      Caption = 'Plan Wyjazdów'
+      ClientHeight = 172
+      ClientWidth = 1030
+      object Panel2: TPanel
+        Left = 0
+        Height = 178
+        Top = -6
+        Width = 1030
+        Align = alBottom
+        BevelOuter = bvNone
+        ClientHeight = 178
+        ClientWidth = 1030
+        TabOrder = 0
+        object Panel1: TPanel
+          Left = 0
+          Height = 178
+          Top = 0
+          Width = 143
+          Align = alLeft
+          BevelOuter = bvNone
+          ClientHeight = 178
+          ClientWidth = 143
+          TabOrder = 0
+          object btnZaplanuj: TBitBtn
+            Left = 8
+            Height = 30
+            Top = 8
+            Width = 128
+            Caption = 'Zaplanuj'
+            Images = DM.ImageList1
+            ImageIndex = 0
+            TabOrder = 0
+          end
+          object btnUsun: TBitBtn
+            Left = 8
+            Height = 30
+            Top = 48
+            Width = 128
+            Caption = 'Usuń'
+            Images = DM.ImageList1
+            ImageIndex = 44
+            TabOrder = 1
+          end
+        end
+        object RxDBGrid1: TRxDBGrid
+          Left = 143
+          Height = 178
+          Top = 0
+          Width = 887
+          ColumnDefValues.BlobText = '(blob)'
+          TitleButtons = True
+          AutoSort = True
+          Columns = <          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Samochód'
+              Width = 150
+              FieldName = 'Nazwa'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Kierowca'
+              Width = 150
+              FieldName = 'Kierowca'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'data_wyjazdu'
+              Width = 120
+              FieldName = 'data_wyjazdu'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'data_powrotu'
+              Width = 120
+              FieldName = 'data_powrotu'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Cel'
+              Width = 200
+              FieldName = 'Cel'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Uwagi'
+              Width = 200
+              FieldName = 'Uwagi'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end>
+          KeyStrokes = <          
+            item
+              Command = rxgcShowFindDlg
+              ShortCut = 16454
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowColumnsDlg
+              ShortCut = 16471
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowFilterDlg
+              ShortCut = 16468
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowSortDlg
+              ShortCut = 16467
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowQuickFilter
+              ShortCut = 16465
+              Enabled = True
+            end          
+            item
+              Command = rxgcHideQuickFilter
+              ShortCut = 16456
+              Enabled = True
+            end          
+            item
+              Command = rxgcSelectAll
+              ShortCut = 16449
+              Enabled = True
+            end          
+            item
+              Command = rxgcDeSelectAll
+              ShortCut = 16429
+              Enabled = True
+            end          
+            item
+              Command = rxgcInvertSelection
+              ShortCut = 16426
+              Enabled = True
+            end          
+            item
+              Command = rxgcOptimizeColumnsWidth
+              ShortCut = 16427
+              Enabled = True
+            end          
+            item
+              Command = rxgcCopyCellValue
+              ShortCut = 16451
+              Enabled = True
+            end>
+          FooterOptions.RowCount = 1
+          FooterOptions.Style = tsNative
+          FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
+          OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+          FooterRowCount = 1
+          Align = alClient
+          AlternateColor = 15268863
+          AutoAdvance = aaNone
+          AutoEdit = False
+          Color = clWindow
+          DrawFullLine = False
+          FocusColor = clHighlight
+          FixedHotColor = clNone
+          SelectedColor = clHighlight
+          GridLineStyle = psSolid
+          DataSource = DSPlanWyjazdow
+          DefaultRowHeight = 22
+          FixedColor = clNone
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis, dgDblClickAutoSize]
+          ParentShowHint = False
+          ReadOnly = True
+          ShowHint = True
+          TabOrder = 1
+          TitleStyle = tsNative
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Uwagi'
+      ClientHeight = 172
+      ClientWidth = 1030
+      object DBMemoUwagi: TDBMemo
+        Left = 98
+        Height = 172
+        Top = 0
+        Width = 932
+        Align = alClient
+        DataField = 'Notatki'
+        MaxLength = 500
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+      end
+      object Panel4: TPanel
+        Left = 0
+        Height = 172
+        Top = 0
+        Width = 98
+        Align = alLeft
+        ClientHeight = 172
+        ClientWidth = 98
+        TabOrder = 1
+        object DBNavigator1: TDBNavigator
+          Left = 1
+          Height = 25
+          Top = 146
+          Width = 96
+          Align = alBottom
+          BevelOuter = bvNone
+          ChildSizing.EnlargeHorizontal = crsScaleChilds
+          ChildSizing.EnlargeVertical = crsScaleChilds
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 100
+          ClientHeight = 25
+          ClientWidth = 96
+          Options = []
+          TabOrder = 0
+          VisibleButtons = [nbPost, nbCancel]
+        end
+      end
+    end
+  end
+  object ZQPlanWyjazdow: TZQuery
+    Connection = DM.ZConnection1
+    ReadOnly = True
+    SQL.Strings = (
+      'SELECT '
+      'pl.ID,'
+      'pl.ID_samochodu,'
+      'sa.Nazwa,'
+      'sa.Event_color,'
+      'pl.Kierowca,'
+      'pl.data_wyjazdu,'
+      'pl.data_powrotu,'
+      'pl.Cel,'
+      'pl.Uwagi'
+      'FROM kwat_plan_wyjazdow pl'
+      'LEFT OUTER JOIN kwat_samochody sa ON sa.ID = pl.ID_samochodu'
+      'WHERE DATE(pl.data_wyjazdu) BETWEEN :data_start AND :data_end'
+      'ORDER BY pl.data_wyjazdu'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'data_start'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_end'
+        ParamType = ptUnknown
+      end>
+    Left = 508
+    Top = 92
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'data_start'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_end'
+        ParamType = ptUnknown
+      end>
+  end
+  object DSPlanWyjazdow: TDataSource
+    DataSet = ZQPlanWyjazdow
+    Left = 640
+    Top = 92
   end
 end
