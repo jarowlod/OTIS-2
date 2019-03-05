@@ -52,9 +52,11 @@ type
 
   TWeekView = class(TCustomControl)
   private
+    FBeginWeekDate: TDate;
     fOnSelectionEnd: TNotifyEvent;
     fOnSelectionEvent: TNotifyEvent;
     fOnWeekDblClick: TWeekEventClick;
+    fOnWeekChanged: TNotifyEvent;
     LeftSpan: integer;
     TopSpan: integer;
     DayWidth: integer;
@@ -64,7 +66,7 @@ type
     SelectDay: integer;
     SelectHour: integer;
     procedure CalculateWeek;
-    procedure Invalidate; override;
+    procedure SetBeginWeekDate(AValue: TDate);
     procedure WMEraseBkgnd(var Message: TWMEraseBkgnd); message wm_EraseBkgnd;
     procedure WMLButtonDblClk(var Message: TWMLButtonDblClk); message wm_LButtonDblClk;
     procedure WMLButtonDown(var Message: TWMLButtonDown); message wm_LButtonDown;
@@ -76,12 +78,13 @@ type
   public
     SelectDate: TDate;
     SelectDateTime: TDateTime;
-    BeginWeekDate: TDate;
+    //BeginWeekDate: TDate;
     EventsPeerDay: array[1..7] of TListEvent;  // tablica dni tygodnia dla eventów na każdy z nich
     lblWeekDate: TLabel;
 
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+    procedure Invalidate; override;
     procedure NextWeek;
     procedure PrevWeek;
     procedure XYToCell(X,Y: Integer;var CellX,CellY: Integer);
@@ -91,9 +94,11 @@ type
     procedure CalcColumEvent;
     function GetDateCaption: string;
   published
+    property BeginWeekDate: TDate read FBeginWeekDate write SetBeginWeekDate;
     property OnDblClick: TWeekEventClick read fOnWeekDblClick write fOnWeekDblClick;
     property OnSelectionEnd: TNotifyEvent read fOnSelectionEnd write fOnSelectionEnd;
     property OnSelectionEvent: TNotifyEvent read fOnSelectionEvent write fOnSelectionEvent;
+    property OnWeekChanged: TNotifyEvent read fOnWeekChanged write fOnWeekChanged;
   end;
 
 implementation
@@ -101,14 +106,16 @@ implementation
 { TEventWeek }
 
 procedure TEventWeek.Calculate;
-var pom: integer;
+var pomH, pomW: integer;
 begin
-  Width:= (TWeekView(Parent).DayWidth-1) div MaxCol;
-  Left:= (TWeekView(Parent).LeftSpan+ (DayOfWeek-1)*TWeekView(Parent).DayWidth) + Width * OLLevel +1;
+  pomW:= (TWeekView(Parent).DayWidth-1) div MaxCol;
+  if pomW-5<0 then Width:= pomW
+              else Width:= pomW - 5;
+  Left:= (TWeekView(Parent).LeftSpan+ (DayOfWeek-1)*TWeekView(Parent).DayWidth) + pomW * OLLevel +1;
   Top:= TWeekView(Parent).TopSpan + (StartHour-6)*TWeekView(Parent).HeightHour + 1;
-  pom:= (EndHour-StartHour);
-  if pom<=0 then pom:= 1;
-  Height:= pom*TWeekView(Parent).HeightHour -1;
+  pomH:= (EndHour-StartHour);
+  if pomH<=0 then pomH:= 1;
+  Height:= pomH*TWeekView(Parent).HeightHour -1;
 end;
 
 procedure TEventWeek.WMEraseBkgnd(var Message: TWMEraseBkgnd);
@@ -131,6 +138,7 @@ end;
 procedure TEventWeek.Paint;
 var rec: TRect;
     lr: TRect;
+    fTime: string;
 begin
   SetBkMode(Canvas.Handle, TRANSPARENT);
 
@@ -138,15 +146,25 @@ begin
   rec:= Rect(0, 0, Width, Height);
 
   Canvas.Brush.Color:= fBgColor;
-  Canvas.FillRect(rec);
-  if fisMouseEnter then Canvas.GradientFill(rec, fBgColor, clWhite, gdVertical);
+  if fisMouseEnter then Canvas.GradientFill(rec, fBgColor, clWhite, gdVertical)
+                   else Canvas.FillRect(rec);
 
   Canvas.Brush.Style:=bsClear;
-  rec.left:= 4;
-  DrawText(Canvas.Handle, PChar( fTitle), -1, rec, DT_TOP OR DT_CENTER OR DT_END_ELLIPSIS);
-  rec.Top:= rec.Top+14;
-  DrawText(Canvas.Handle, PChar( OLLevel.ToString+'/'+MaxCol.ToString), -1, rec, DT_TOP OR DT_CENTER OR DT_END_ELLIPSIS);
+  rec.left:= 5;
 
+  // draw godziny
+  fTime:= FormatDateTime('HH:MM', fStartDate) + ' - ' + FormatDateTime('HH:MM', fEndDate);
+  Canvas.Font.Size:= 7;
+  Canvas.Font.Color:= $808080;
+  DrawText(Canvas.Handle, PChar( fTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
+
+  // draw Title
+  Canvas.Font.Size:= 8;
+  Canvas.Font.Color:= clBlack;
+  rec.Top:= rec.Top + Canvas.TextHeight('Ą');
+  DrawText(Canvas.Handle, PChar( fTitle), -1, rec, DT_TOP OR DT_CENTER OR DT_END_ELLIPSIS);
+
+  // left bawel
   lr:= Rect(0,0,4,Height);
   Canvas.Brush.Color:= $B01C06;
   Canvas.FillRect(lr);
@@ -209,6 +227,13 @@ procedure TWeekView.Invalidate;
 begin
   inherited Invalidate;
   if Assigned(lblWeekDate) then lblWeekDate.Caption:= GetDateCaption;
+end;
+
+procedure TWeekView.SetBeginWeekDate(AValue: TDate);
+begin
+  if FBeginWeekDate= AValue then Exit;
+  FBeginWeekDate:= AValue;
+  if Assigned(fOnWeekChanged) then fOnWeekChanged(Self);
 end;
 
 procedure TWeekView.WMEraseBkgnd(var Message: TWMEraseBkgnd);
@@ -355,6 +380,7 @@ var i: integer;
 begin
   Inherited Create(AOwner);
   SelectDate:= Date();
+  SelectDateTime:= Now();
   BeginWeekDate:= StartOfTheWeek(SelectDate);
   Color:= clWhite;
   isSelected:= false;

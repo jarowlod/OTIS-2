@@ -1,7 +1,7 @@
 object PaczkiAdd: TPaczkiAdd
-  Left = 333
+  Left = 334
   Height = 778
-  Top = 237
+  Top = 226
   Width = 816
   Caption = 'Zarejestruj nową paczkę'
   ClientHeight = 778

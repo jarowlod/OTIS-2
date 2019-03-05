@@ -151,7 +151,7 @@
         <PackageName Value="adLCL"/>
       </Item34>
     </RequiredPackages>
-    <Units Count="75">
+    <Units Count="76">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -744,6 +744,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit74>
+      <Unit75>
+        <Filename Value="UKwatPlanWyjazdowAdd.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="KwatPlanWyjazdowAdd"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit75>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

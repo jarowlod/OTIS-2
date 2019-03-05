@@ -8,6 +8,7 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
   ClientWidth = 1038
   Constraints.MinHeight = 500
   Constraints.MinWidth = 1000
+  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '6.6'
@@ -219,50 +220,6 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
         ParentColor = False
         ParentFont = False
       end
-      object SpeedButton3: TSpeedButton
-        Left = 304
-        Height = 22
-        Top = 4
-        Width = 128
-        Caption = 'Zaplanuj Wyjazd'
-        Flat = True
-        Glyph.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00196B3788196B37F2196B37FF196B37F2196B3788FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00196B
-          3784288C53FF64BA8DFF95D2B2FF64BA8DFF288C53FF196B378CFFFFFF00FFFF
-          FF002929293C292929C6292929BD2929295AFFFFFF00FFFFFF00FFFFFF001B6C
-          39F762BA8BFF60BA87FFFFFFFFFF60B987FF67BC8FFF196B37F7FFFFFF00FFFF
-          FF00292929DE646464FF6C6C6CFF292929D3FFFFFF00FFFFFF00FFFFFF00317B
-          4CFF9CD4B6FFFFFFFFFFFFFFFFFFFFFFFFFF95D2B2FF196B37FF594431FF4237
-          2DFF2C2A29FF3E3E3EFF404040FF302C29FF523B2AFF3E3229FF3D3128FF4484
-          5BFF90D3B1FF92D6B1FFFFFFFFFF65BC8CFF67BC8FFF196B37F8BF8045FFEDD2
-          BBFFB5A08FFF4E4843FF564F49FFA18C7BFFE8C4A8FFE7C2A4FFE5BFA0FF9BA6
-          82FF61AB81FF95D4B4FFBAE6D0FF6ABB8FFF2D8F57FF2468359AC28448F9EDD3
-          BCFFE5BC9AFFE1B38CFFDFAF85FFDDAA7FFFDBA679FFDAA172FFD89D6CFFD698
-          66FF989467FF5E946DFF4F8E66FF48875CFF656536FF934B1C12C4874AAED9AE
-          87FFEED6C1FFE6BF9EFFE1B48EFFDFB088FFDEAC82FFDCA77BFFDAA274FFD99E
-          6EFFDCA87DFFE5BFA0FFE5BC9CFFC28C64FF954D1EC9FFFFFF00C6894C18C487
-          4ACCD7AB81FF8B7D70FFA6886DFFE2B690FFA38165FF81644DFF806249FFDBA4
-          77FF877262FF6E4E35FF73401CFF9A5423D897502027FFFFFF00FFFFFF00C689
-          4C0CC68B50FFAF9F90FF86725FFFE6BF9EFFA78970FFA6866BFF826750FFDFAF
-          86FF877564FF60381AFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00C6894CDCDAB188FFEBD1B8FFECD1BAFFEACFB7FFEACDB3FFEACDB4FFE7C9
-          AEFFD8AE8CFFA96530FDFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00C6894C15C6894CB8C4874AE5C28448EBBF8045EBBC7C42EBB8783FF3B474
-          3BEEB06F38C3AD6A3448FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-        }
-      end
     end
   end
   object Splitter2: TSplitter
@@ -289,22 +246,22 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
       ClientWidth = 1030
       object Panel2: TPanel
         Left = 0
-        Height = 178
-        Top = -6
+        Height = 172
+        Top = 0
         Width = 1030
-        Align = alBottom
+        Align = alClient
         BevelOuter = bvNone
-        ClientHeight = 178
+        ClientHeight = 172
         ClientWidth = 1030
         TabOrder = 0
         object Panel1: TPanel
           Left = 0
-          Height = 178
+          Height = 172
           Top = 0
           Width = 143
           Align = alLeft
           BevelOuter = bvNone
-          ClientHeight = 178
+          ClientHeight = 172
           ClientWidth = 143
           TabOrder = 0
           object btnZaplanuj: TBitBtn
@@ -315,6 +272,7 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
             Caption = 'Zaplanuj'
             Images = DM.ImageList1
             ImageIndex = 0
+            OnClick = btnZaplanujClick
             TabOrder = 0
           end
           object btnUsun: TBitBtn
@@ -325,12 +283,13 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
             Caption = 'Usuń'
             Images = DM.ImageList1
             ImageIndex = 44
+            OnClick = btnUsunClick
             TabOrder = 1
           end
         end
         object RxDBGrid1: TRxDBGrid
           Left = 143
-          Height = 178
+          Height = 172
           Top = 0
           Width = 887
           ColumnDefValues.BlobText = '(blob)'
@@ -522,7 +481,8 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
         Top = 0
         Width = 932
         Align = alClient
-        DataField = 'Notatki'
+        DataField = 'Uwagi'
+        DataSource = DSUwagi
         MaxLength = 500
         ScrollBars = ssAutoBoth
         TabOrder = 0
@@ -551,6 +511,7 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
           ChildSizing.ControlsPerLine = 100
           ClientHeight = 25
           ClientWidth = 96
+          DataSource = DSUwagi
           Options = []
           TabOrder = 0
           VisibleButtons = [nbPost, nbCancel]
@@ -560,7 +521,6 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
   end
   object ZQPlanWyjazdow: TZQuery
     Connection = DM.ZConnection1
-    ReadOnly = True
     SQL.Strings = (
       'SELECT '
       'pl.ID,'
@@ -571,10 +531,15 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
       'pl.data_wyjazdu,'
       'pl.data_powrotu,'
       'pl.Cel,'
-      'pl.Uwagi'
+      'pl.Uwagi,'
+      'pl.stan,'
+      'pl.data_modyfikacji,'
+      'pl.user'
       'FROM kwat_plan_wyjazdow pl'
       'LEFT OUTER JOIN kwat_samochody sa ON sa.ID = pl.ID_samochodu'
-      'WHERE DATE(pl.data_wyjazdu) BETWEEN :data_start AND :data_end'
+      'WHERE'
+      '  (pl.stan = ''A'') AND'
+      '  (DATE(pl.data_wyjazdu) BETWEEN :data_start AND :data_end)'
       'ORDER BY pl.data_wyjazdu'
     )
     Params = <    
@@ -604,7 +569,36 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
   end
   object DSPlanWyjazdow: TDataSource
     DataSet = ZQPlanWyjazdow
+    OnDataChange = DSPlanWyjazdowDataChange
     Left = 640
     Top = 92
+  end
+  object ZQUwagi: TZQuery
+    Connection = DM.ZConnection1
+    BeforePost = ZQUwagiBeforePost
+    SQL.Strings = (
+      'SELECT ID, data, Uwagi'
+      'FROM kwat_plan_wyjazdow_uwagi'
+      'WHERE data = :data_start'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'data_start'
+        ParamType = ptUnknown
+      end>
+    Left = 508
+    Top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'data_start'
+        ParamType = ptUnknown
+      end>
+  end
+  object DSUwagi: TDataSource
+    DataSet = ZQUwagi
+    Left = 640
+    Top = 168
   end
 end
