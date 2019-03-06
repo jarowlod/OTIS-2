@@ -16,6 +16,7 @@ type
   TKwatPlanWyjazdow = class(TForm)
     btnUsun: TBitBtn;
     btnZaplanuj: TBitBtn;
+    dtpSelectedDate: TDateTimePicker;
     DBMemoUwagi: TDBMemo;
     DBNavigator1: TDBNavigator;
     DSPlanWyjazdow: TDataSource;
@@ -41,6 +42,7 @@ type
     ZQUwagi: TZQuery;
     procedure btnUsunClick(Sender: TObject);
     procedure btnZaplanujClick(Sender: TObject);
+    procedure dtpSelectedDateChange(Sender: TObject);
     procedure DSPlanWyjazdowDataChange(Sender: TObject; Field: TField);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -50,6 +52,7 @@ type
     procedure WeekEventClick(StartDate: TDateTime);
     procedure WeekChanged(Sender: TObject);
     procedure SelectionEventClick(Sender: TObject);
+    procedure SelectionEndClick(Sender: TObject);
     procedure ZQUwagiBeforePost(DataSet: TDataSet);
   private
     WeekView: TWeekView;
@@ -77,6 +80,7 @@ begin
   WeekView.OnDblClick      := @WeekEventClick;
   WeekView.OnSelectionEvent:= @SelectionEventClick;
   WeekView.OnWeekChanged   := @WeekChanged;
+  WeekView.OnSelectionEnd  := @SelectionEndClick;
   WeekView.Invalidate;
 end;
 
@@ -112,6 +116,11 @@ begin
   ZaplanujWyjazd(WeekView.SelectDateTime);
 end;
 
+procedure TKwatPlanWyjazdow.dtpSelectedDateChange(Sender: TObject);
+begin
+  WeekView.SelectDate:= dtpSelectedDate.Date;
+end;
+
 procedure TKwatPlanWyjazdow.DSPlanWyjazdowDataChange(Sender: TObject; Field: TField);
 begin
   btnUsun.Enabled:= (not ZQPlanWyjazdow.IsEmpty)and
@@ -140,6 +149,7 @@ end;
 
 procedure TKwatPlanWyjazdow.WeekChanged(Sender: TObject);
 begin
+  dtpSelectedDate.Date:= WeekView.SelectDate;
   WczytajDane; // ZQPlanWyjazdow;
 
   // zapisz uwagi jeśli są nowe
@@ -154,6 +164,11 @@ begin
   // Dostęp do Wciśniętego Eventa
   //Panel2.Caption:= TEventWeek(Sender).ID.ToString;
   // Edycja
+end;
+
+procedure TKwatPlanWyjazdow.SelectionEndClick(Sender: TObject);
+begin
+  dtpSelectedDate.Date:= WeekView.SelectDate;
 end;
 
 procedure TKwatPlanWyjazdow.ZQUwagiBeforePost(DataSet: TDataSet);

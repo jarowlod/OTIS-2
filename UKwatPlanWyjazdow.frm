@@ -220,6 +220,30 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
         ParentColor = False
         ParentFont = False
       end
+      object dtpSelectedDate: TDateTimePicker
+        Left = 248
+        Height = 23
+        Top = 3
+        Width = 83
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 0
+        TrailingSeparator = False
+        TextForNullDate = 'NULL'
+        LeadingZeros = True
+        NullInputAllowed = False
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        Date = 43530
+        Time = 0.440096342594188
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnChange = dtpSelectedDateChange
+      end
     end
   end
   object Splitter2: TSplitter

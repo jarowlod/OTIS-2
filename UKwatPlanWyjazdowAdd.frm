@@ -174,7 +174,6 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Width = 208
     MaxLength = 50
     TabOrder = 2
-    Text = 'edSamochod'
   end
   object edKierowca: TEdit
     Left = 112
@@ -183,7 +182,6 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Width = 208
     MaxLength = 60
     TabOrder = 3
-    Text = 'edKierowca'
   end
   object edCel: TEdit
     Left = 112
@@ -192,7 +190,6 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Width = 496
     MaxLength = 200
     TabOrder = 4
-    Text = 'edCel'
   end
   object edUwagi: TEdit
     Left = 112
@@ -201,7 +198,6 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Width = 496
     MaxLength = 200
     TabOrder = 5
-    Text = 'edUwagi'
   end
   object SpeedButton1: TSpeedButton
     Left = 320

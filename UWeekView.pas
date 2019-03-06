@@ -57,6 +57,7 @@ type
     fOnSelectionEvent: TNotifyEvent;
     fOnWeekDblClick: TWeekEventClick;
     fOnWeekChanged: TNotifyEvent;
+    FSelectDateTime: TDateTime;
     LeftSpan: integer;
     TopSpan: integer;
     DayWidth: integer;
@@ -66,7 +67,10 @@ type
     SelectDay: integer;
     SelectHour: integer;
     procedure CalculateWeek;
+    function GetSelectDate: TDate;
     procedure SetBeginWeekDate(AValue: TDate);
+    procedure SetSelectDate(AValue: TDate);
+    procedure SetSelectDateTime(AValue: TDateTime);
     procedure WMEraseBkgnd(var Message: TWMEraseBkgnd); message wm_EraseBkgnd;
     procedure WMLButtonDblClk(var Message: TWMLButtonDblClk); message wm_LButtonDblClk;
     procedure WMLButtonDown(var Message: TWMLButtonDown); message wm_LButtonDown;
@@ -76,9 +80,6 @@ type
   protected
     procedure Paint; override;
   public
-    SelectDate: TDate;
-    SelectDateTime: TDateTime;
-    //BeginWeekDate: TDate;
     EventsPeerDay: array[1..7] of TListEvent;  // tablica dni tygodnia dla eventów na każdy z nich
     lblWeekDate: TLabel;
 
@@ -95,6 +96,8 @@ type
     function GetDateCaption: string;
   published
     property BeginWeekDate: TDate read FBeginWeekDate write SetBeginWeekDate;
+    property SelectDate: TDate read GetSelectDate write SetSelectDate;
+    property SelectDateTime: TDateTime read FSelectDateTime write SetSelectDateTime;
     property OnDblClick: TWeekEventClick read fOnWeekDblClick write fOnWeekDblClick;
     property OnSelectionEnd: TNotifyEvent read fOnSelectionEnd write fOnSelectionEnd;
     property OnSelectionEvent: TNotifyEvent read fOnSelectionEvent write fOnSelectionEvent;
@@ -210,6 +213,25 @@ end;
 
 { TWeekView }
 
+constructor TWeekView.Create(AOwner: TComponent);
+var i: integer;
+begin
+  Inherited Create(AOwner);
+  FSelectDateTime:= Now();
+  FBeginWeekDate:= StartOfTheWeek(SelectDate);
+  Color:= clWhite;
+  isSelected:= false;
+  for i:=1 to 7 do
+    EventsPeerDay[i]:= TListEvent.Create();
+end;
+
+destructor TWeekView.Destroy;
+var i: integer;
+begin
+  for i:=1 to 7 do EventsPeerDay[i].Free;
+  inherited Destroy;
+end;
+
 procedure TWeekView.CalculateWeek;
 begin
   LeftSpan  := 30;
@@ -233,7 +255,28 @@ procedure TWeekView.SetBeginWeekDate(AValue: TDate);
 begin
   if FBeginWeekDate= AValue then Exit;
   FBeginWeekDate:= AValue;
+  SelectDate:= IncDay(BeginWeekDate, SelectDay-1);
   if Assigned(fOnWeekChanged) then fOnWeekChanged(Self);
+end;
+
+function TWeekView.GetSelectDate: TDate;
+begin
+  Result:= Int(FSelectDateTime);
+end;
+
+procedure TWeekView.SetSelectDate(AValue: TDate);
+begin
+  if SelectDate= AValue then Exit;
+  SelectDateTime:= RecodeHour(AValue, SelectHour+5); // pierwszy element to godz 6.00
+end;
+
+procedure TWeekView.SetSelectDateTime(AValue: TDateTime);
+begin
+  if FSelectDateTime= AValue then Exit;
+  FSelectDateTime:= AValue;
+  SelectDay:= DayOfTheWeek(FSelectDateTime);
+  BeginWeekDate:= StartOfTheWeek(SelectDate);
+  Invalidate;
 end;
 
 procedure TWeekView.WMEraseBkgnd(var Message: TWMEraseBkgnd);
@@ -250,7 +293,7 @@ end;
 procedure TWeekView.WMLButtonDown(var Message: TWMLButtonDown);
 begin
   Inherited;
-  XYToCell(Message.XPos,Message.YPos,SelectDay,SelectHour);
+  XYToCell(Message.XPos, Message.YPos, SelectDay, SelectHour);
   if ((SelectDay = 0) or (SelectHour = 0)) then
   begin
     isSelected:= false;
@@ -258,13 +301,15 @@ begin
     Exit;
   end;
   isSelected:= true;
-  SelectDateTime:= IncDay(BeginWeekDate, SelectDay-1);
-  SelectDateTime:= RecodeHour(SelectDateTime, SelectHour+5); // pierwszy element to godz 6.00
+  SelectDateTime:= RecodeHour(IncDay(BeginWeekDate, SelectDay-1), SelectHour+5); // pierwszy element to godz 6.00
+  Invalidate;
+  SetFocus;
 end;
 
 procedure TWeekView.WMLButtonUp(var Message: TWMLButtonUp);
 begin
-  XYToCell(Message.XPos,Message.YPos,SelectDay,SelectHour);
+  Inherited;
+  XYToCell(Message.XPos, Message.YPos, SelectDay, SelectHour);
   if ((SelectDay = 0) or (SelectHour = 0)) then
   begin
     isSelected:= false;
@@ -272,12 +317,10 @@ begin
     Exit;
   end;
   isSelected:= true;
-  SelectDateTime:= IncDay(BeginWeekDate, SelectDay-1);
-  SelectDateTime:= RecodeHour(SelectDateTime, SelectHour+5); // pierwszy element to godz 6.00
+  SelectDateTime:= RecodeHour(IncDay(BeginWeekDate, SelectDay-1), SelectHour+5); // pierwszy element to godz 6.00
 
   if Assigned(fOnSelectionEnd) then fOnSelectionEnd(Self);
-  invalidate;
-  Inherited;
+  Invalidate;
 end;
 
 procedure TWeekView.Paint;
@@ -305,6 +348,8 @@ var i,d: integer;
 
     CurDate:= IncDay(BeginWeekDate, d);
     DayName:= FormatDateTime('DDD, DD mmm',CurDate);
+    if CurDate = Date then Canvas.Font.Bold:= true
+                      else Canvas.Font.Bold:= false;
     DrawText(Canvas.Handle, PChar( DayName), -1, rect, DT_TOP OR DT_CENTER OR DT_SINGLELINE);
 
     // Linie pionowe
@@ -362,6 +407,18 @@ var i,d: integer;
     Canvas.FillRect(rec);
   end;
 
+  procedure DrawCurrentTimeLine;
+  var rec: TRect;
+      tl: integer;
+  begin
+    tl:= MinuteOfTheDay(Time) - 6*60; // która minute po godzinie 6
+    tl:= Round((HeightHour / 60) * tl);
+    rec:= Rect(0,TopSpan + tl, Width, 0);
+    rec.Bottom:= rec.Top;
+    Canvas.Pen.Color:= clRed;
+    Canvas.Line(rec);
+  end;
+
 begin
   // Nagłówek
   CalculateWeek;
@@ -370,29 +427,10 @@ begin
     DrawDayPanel(d);
   end;
   DrawLeftPanel;
+  DrawCurrentTimeLine;
   if isSelected then DrawSelected;
   for i:=1 to 7 do
     for Ev in EventsPeerDay[i] do Ev.Invalidate;
-end;
-
-constructor TWeekView.Create(AOwner: TComponent);
-var i: integer;
-begin
-  Inherited Create(AOwner);
-  SelectDate:= Date();
-  SelectDateTime:= Now();
-  BeginWeekDate:= StartOfTheWeek(SelectDate);
-  Color:= clWhite;
-  isSelected:= false;
-  for i:=1 to 7 do
-    EventsPeerDay[i]:= TListEvent.Create();
-end;
-
-destructor TWeekView.Destroy;
-var i: integer;
-begin
-  for i:=1 to 7 do EventsPeerDay[i].Free;
-  inherited Destroy;
 end;
 
 procedure TWeekView.NextWeek;

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, EditBtn, Calendar, datamodule, DateTimePicker, TplGradientUnit;
+  StdCtrls, EditBtn, TplGradientUnit, DateUtils, datamodule;
 
 type
 
@@ -117,6 +117,10 @@ begin
   isModyfikacja:= false;
   fData_Wyjazdu:= AData_Wyjazdu;
   Caption:= Caption + ' - Zaplanuj';
+
+  teGodzWyjazdu.Time:= AData_Wyjazdu;
+  teGodzPowrotu.Time:= IncHour(AData_Wyjazdu, 1);
+  dtpData_wyjazdu.Date:= AData_Wyjazdu;
 end;
 
 procedure TKwatPlanWyjazdowAdd.ModyfikujWyjazd(AID: integer);

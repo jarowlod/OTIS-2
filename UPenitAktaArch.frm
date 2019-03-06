@@ -1,7 +1,7 @@
 object PenitAktaArch: TPenitAktaArch
-  Left = 328
+  Left = 334
   Height = 588
-  Top = 230
+  Top = 226
   Width = 910
   BorderStyle = bsDialog
   Caption = 'Druk Wniosku o Akta Archiwalne'
@@ -120,7 +120,7 @@ object PenitAktaArch: TPenitAktaArch
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Lines.Strings = (
-      'Zwracam się z uprzejmą prośbą o nadesłanie celem dalszego wykorzystania akt archiwalnych część "B" osadzonego:'
+      'Zwracam się z uprzejmą prośbą o nadesłanie celem dalszego wykorzystania akt archiwalnych "teczka osobopoznawcza" osadzonego:'
     )
     ParentFont = False
     ScrollBars = ssVertical
