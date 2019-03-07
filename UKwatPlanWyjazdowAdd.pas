@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, EditBtn, TplGradientUnit, DateUtils, datamodule;
+  StdCtrls, EditBtn, TplGradientUnit, DateUtils, datamodule, DateTimePicker;
 
 type
 
@@ -15,10 +15,10 @@ type
   TKwatPlanWyjazdowAdd = class(TForm)
     btnAnuluj: TBitBtn;
     btnOK: TBitBtn;
+    cbKierowca: TComboBox;
+    cbSamochod: TComboBox;
     dtpData_wyjazdu: TDateTimePicker;
     dtpData_Powrotu: TDateTimePicker;
-    edSamochod: TEdit;
-    edKierowca: TEdit;
     edCel: TEdit;
     edUwagi: TEdit;
     Image1: TImage;
@@ -36,17 +36,29 @@ type
     teGodzWyjazdu: TTimeEdit;
     teGodzPowrotu: TTimeEdit;
     procedure btnOKClick(Sender: TObject);
+    procedure cbSamochodChange(Sender: TObject);
     procedure dtpData_wyjazduChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     fData_Wyjazdu: TDateTime;
     fID: integer;
     isModyfikacja: Boolean;
     id_samochodu: integer;
     procedure ZapiszWyjazd;
+    procedure WczytajKierowcow;
+    procedure WczytajSamochody;
   public
     procedure ZaplanujWyjazd( AData_Wyjazdu: TDateTime);
     procedure ModyfikujWyjazd( AID: integer);
+  end;
+
+  { TFlotaSamochodow }
+
+  TFlotaSamochodow = class
+    Nazwa: string;
+    ID: integer;
+    constructor Create(vID: integer; vNazwa: string);
   end;
 
 var
@@ -56,10 +68,53 @@ implementation
 
 {$R *.frm}
 
+{ TFlotaSamochodow }
+
+constructor TFlotaSamochodow.Create(vID: integer; vNazwa: string);
+begin
+  inherited Create;
+  Nazwa:= vNazwa;
+  ID:= vID;
+end;
+
 { TKwatPlanWyjazdowAdd }
+
+procedure TKwatPlanWyjazdowAdd.FormCreate(Sender: TObject);
+begin
+  id_samochodu:= 0;
+  WczytajKierowcow;
+  WczytajSamochody;
+end;
+
+procedure TKwatPlanWyjazdowAdd.FormDestroy(Sender: TObject);
+var i: integer;
+begin
+  for i:=0 to cbSamochod.Items.Count-1 do
+    begin
+      if Assigned(cbSamochod.Items.Objects[i]) then
+        cbSamochod.Items.Objects[i].Destroy;
+    end;
+end;
 
 procedure TKwatPlanWyjazdowAdd.btnOKClick(Sender: TObject);
 begin
+  dtpData_wyjazdu.Time:= teGodzWyjazdu.Time;
+  dtpData_Powrotu.Time:= teGodzPowrotu.Time;
+
+  if dtpData_wyjazdu.DateTime<= Now() then
+  begin
+    ShowMessage('Nie można zaplanować wyjazdu dla daty i godziny wcześniejszej niż bieżąca.');
+    ModalResult:= mrNone;
+    exit;
+  end;
+
+  if dtpData_Powrotu.DateTime <= dtpData_wyjazdu.DateTime then
+  begin
+    ShowMessage('Planowana data/godzina powrotu musi być większa od daty/godziny wyjazdu.');
+    ModalResult:= mrNone;
+    exit;
+  end;
+
   try
     ZapiszWyjazd;
   except
@@ -68,14 +123,18 @@ begin
   end;
 end;
 
+procedure TKwatPlanWyjazdowAdd.cbSamochodChange(Sender: TObject);
+begin
+  if cbSamochod.ItemIndex<>-1 then
+    begin
+      if Assigned(cbSamochod.Items.Objects[cbSamochod.ItemIndex]) then
+        id_samochodu:= TFlotaSamochodow(cbSamochod.Items.Objects[cbSamochod.ItemIndex]).ID;
+    end;
+end;
+
 procedure TKwatPlanWyjazdowAdd.dtpData_wyjazduChange(Sender: TObject);
 begin
   dtpData_Powrotu.Date:= dtpData_wyjazdu.Date;
-end;
-
-procedure TKwatPlanWyjazdowAdd.FormCreate(Sender: TObject);
-begin
-  id_samochodu:= 0;
 end;
 
 procedure TKwatPlanWyjazdowAdd.ZapiszWyjazd;
@@ -99,7 +158,7 @@ begin
 
     // wspólne dla INSERT I UPDATE
     ZQ.ParamByName('id_samochodu').AsInteger := id_samochodu;
-    ZQ.ParamByName('kierowca').AsString      := edKierowca.Text;
+    ZQ.ParamByName('kierowca').AsString      := cbKierowca.Text;
     ZQ.ParamByName('data_wyjazdu').AsDateTime:= dtpData_Wyjazdu.DateTime;
     ZQ.ParamByName('data_powrotu').AsDateTime:= dtpData_Powrotu.DateTime;
     ZQ.ParamByName('cel').AsString           := edCel.Text;
@@ -107,6 +166,60 @@ begin
     ZQ.ParamByName('user').AsString          := DM.PelnaNazwa;
 
     ZQ.ExecSQL;
+  finally
+    FreeAndNil(ZQ);
+  end;
+end;
+
+procedure TKwatPlanWyjazdowAdd.WczytajKierowcow;
+var ZQ: TZQueryPom;
+begin
+  cbKierowca.Items.Clear;
+  ZQ:= TZQueryPom.Create(Self);
+  try
+    ZQ.SQL.Text:= 'SELECT Full_name, Dzial FROM uprawnienia WHERE Dzial="Kwat" ORDER BY Full_name';
+    ZQ.Open;
+    while not ZQ.EOF do
+    begin
+      cbKierowca.Items.Add(ZQ.FieldByName('Full_name').AsString);
+      ZQ.Next;
+    end;
+  finally
+    FreeAndNil(ZQ);
+  end;
+end;
+
+procedure TKwatPlanWyjazdowAdd.WczytajSamochody;
+var ZQ: TZQueryPom;
+    Nazwa: string;
+    i: integer;
+begin
+  for i:=0 to cbSamochod.Items.Count-1 do
+    begin
+      if Assigned(cbSamochod.Items.Objects[i]) then
+        cbSamochod.Items.Objects[i].Destroy;
+    end;
+  cbSamochod.Items.Clear;
+
+  ZQ:= TZQueryPom.Create(Owner);
+  try
+    ZQ.SQL.Text:= 'SELECT ID, Nazwa, stan, Event_color FROM kwat_samochody '
+                 +'WHERE stan="A" '
+                 +'ORDER BY Nazwa';
+    ZQ.Open;
+
+    while not ZQ.Eof do
+    begin
+      Nazwa:= ZQ.FieldByName('Nazwa').AsString;
+      cbSamochod.Items.AddObject(Nazwa, TFlotaSamochodow.Create(ZQ.FieldByName('ID').AsInteger, Nazwa) );
+      ZQ.Next;
+    end;
+  if cbSamochod.Items.Count>=0 then
+  begin
+    cbSamochod.ItemIndex:= 0;
+    cbSamochodChange(Self);
+  end;
+
   finally
     FreeAndNil(ZQ);
   end;
@@ -121,6 +234,7 @@ begin
   teGodzWyjazdu.Time:= AData_Wyjazdu;
   teGodzPowrotu.Time:= IncHour(AData_Wyjazdu, 1);
   dtpData_wyjazdu.Date:= AData_Wyjazdu;
+  dtpData_Powrotu.Date:= AData_Wyjazdu;
 end;
 
 procedure TKwatPlanWyjazdowAdd.ModyfikujWyjazd(AID: integer);

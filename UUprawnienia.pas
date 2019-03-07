@@ -30,6 +30,7 @@ type
     DBCheckBox16: TDBCheckBox;
     DBCheckBox17: TDBCheckBox;
     DBCheckBox18: TDBCheckBox;
+    DBCheckBox19: TDBCheckBox;
     DBCheckBox2: TDBCheckBox;
     DBCheckBox3: TDBCheckBox;
     DBCheckBox4: TDBCheckBox;

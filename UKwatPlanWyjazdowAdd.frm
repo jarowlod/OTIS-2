@@ -7,6 +7,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
   ClientHeight = 303
   ClientWidth = 617
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   LCLVersion = '6.6'
   object Panel2: TPanel
     Left = 0
@@ -167,29 +168,13 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Caption = 'Uwagi:'
     ParentColor = False
   end
-  object edSamochod: TEdit
-    Left = 112
-    Height = 23
-    Top = 65
-    Width = 208
-    MaxLength = 50
-    TabOrder = 2
-  end
-  object edKierowca: TEdit
-    Left = 112
-    Height = 23
-    Top = 96
-    Width = 208
-    MaxLength = 60
-    TabOrder = 3
-  end
   object edCel: TEdit
     Left = 112
     Height = 23
     Top = 192
     Width = 496
     MaxLength = 200
-    TabOrder = 4
+    TabOrder = 2
   end
   object edUwagi: TEdit
     Left = 112
@@ -197,10 +182,12 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Top = 224
     Width = 496
     MaxLength = 200
-    TabOrder = 5
+    TabOrder = 3
   end
   object SpeedButton1: TSpeedButton
-    Left = 320
+    AnchorSideLeft.Control = cbSamochod
+    AnchorSideLeft.Side = asrBottom
+    Left = 319
     Height = 22
     Top = 66
     Width = 32
@@ -216,7 +203,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     ButtonWidth = 23
     NumGlyphs = 1
     MaxLength = 0
-    TabOrder = 6
+    TabOrder = 4
     Text = 'teGodzWyjazdu'
   end
   object dtpData_wyjazdu: TDateTimePicker
@@ -227,7 +214,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 7
+    TabOrder = 5
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
@@ -251,7 +238,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     ButtonWidth = 23
     NumGlyphs = 1
     MaxLength = 0
-    TabOrder = 8
+    TabOrder = 6
     Text = 'teGodzPowrotu'
   end
   object dtpData_Powrotu: TDateTimePicker
@@ -262,7 +249,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 9
+    TabOrder = 7
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
@@ -275,5 +262,29 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     UseDefaultSeparators = True
     HideDateTimeParts = []
     MonthNames = 'Long'
+  end
+  object cbKierowca: TComboBox
+    Left = 112
+    Height = 23
+    Top = 96
+    Width = 240
+    AutoComplete = True
+    AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+    ItemHeight = 15
+    MaxLength = 60
+    TabOrder = 8
+  end
+  object cbSamochod: TComboBox
+    Left = 112
+    Height = 23
+    Top = 65
+    Width = 207
+    AutoComplete = True
+    AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+    AutoDropDown = True
+    ItemHeight = 15
+    OnChange = cbSamochodChange
+    Style = csDropDownList
+    TabOrder = 9
   end
 end

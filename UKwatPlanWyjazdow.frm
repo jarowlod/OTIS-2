@@ -111,6 +111,7 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
     BevelOuter = bvNone
     ClientHeight = 309
     ClientWidth = 1038
+    Constraints.MinHeight = 200
     TabOrder = 2
     object Panel3: TPanel
       Left = 0
@@ -302,13 +303,24 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
           object btnUsun: TBitBtn
             Left = 8
             Height = 30
-            Top = 48
+            Top = 80
             Width = 128
             Caption = 'Usuń'
             Images = DM.ImageList1
             ImageIndex = 44
             OnClick = btnUsunClick
             TabOrder = 1
+          end
+          object btnModyfikuj: TBitBtn
+            Left = 8
+            Height = 30
+            Top = 40
+            Width = 128
+            Caption = 'Modyfikuj'
+            Images = DM.ImageList1
+            ImageIndex = 39
+            OnClick = btnModyfikujClick
+            TabOrder = 2
           end
         end
         object RxDBGrid1: TRxDBGrid

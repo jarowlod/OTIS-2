@@ -53,6 +53,8 @@ type
   TWeekView = class(TCustomControl)
   private
     FBeginWeekDate: TDate;
+    fOnEventClick: TNotifyEvent;
+    fOnEventDbClick: TNotifyEvent;
     fOnSelectionEnd: TNotifyEvent;
     fOnSelectionEvent: TNotifyEvent;
     fOnWeekDblClick: TWeekEventClick;
@@ -100,7 +102,8 @@ type
     property SelectDateTime: TDateTime read FSelectDateTime write SetSelectDateTime;
     property OnDblClick: TWeekEventClick read fOnWeekDblClick write fOnWeekDblClick;
     property OnSelectionEnd: TNotifyEvent read fOnSelectionEnd write fOnSelectionEnd;
-    property OnSelectionEvent: TNotifyEvent read fOnSelectionEvent write fOnSelectionEvent;
+    property OnEventDbClick: TNotifyEvent read fOnEventDbClick write fOnEventDbClick;
+    property OnEventClick: TNotifyEvent read fOnEventClick write fOnEventClick;
     property OnWeekChanged: TNotifyEvent read fOnWeekChanged write fOnWeekChanged;
   end;
 
@@ -413,10 +416,12 @@ var i,d: integer;
   begin
     tl:= MinuteOfTheDay(Time) - 6*60; // która minute po godzinie 6
     tl:= Round((HeightHour / 60) * tl);
-    rec:= Rect(0,TopSpan + tl, Width, 0);
+    rec:= Rect(LeftSpan - 3, TopSpan + tl, Width, 0);
     rec.Bottom:= rec.Top;
     Canvas.Pen.Color:= clRed;
     Canvas.Line(rec);
+    Canvas.Brush.Color:= clRed;
+    Canvas.EllipseC(LeftSpan-7, TopSpan + tl, 5,5);
   end;
 
 begin
@@ -473,7 +478,8 @@ begin
   ItemEvent.Height:= Height - TopSpan;
   ItemEvent.Left  := LeftSpan;
   ItemEvent.Width := Width - LeftSpan;
-  ItemEvent.OnDblClick:= OnSelectionEvent;
+  ItemEvent.OnDblClick:= OnEventDbClick;
+  ItemEvent.OnClick   := OnEventClick;
   EventsPeerDay[ItemEvent.DayOfWeek].Add(ItemEvent);
   CalcColumEvent;
   Invalidate;

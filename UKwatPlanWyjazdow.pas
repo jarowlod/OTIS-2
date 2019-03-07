@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   Buttons, ComCtrls, DBCtrls, TplGradientUnit, UWeekView, DB, ZDataset,
-  rxdbgrid, DateUtils, datamodule;
+  rxdbgrid, DateUtils, datamodule, DateTimePicker;
 
 type
 
@@ -16,6 +16,7 @@ type
   TKwatPlanWyjazdow = class(TForm)
     btnUsun: TBitBtn;
     btnZaplanuj: TBitBtn;
+    btnModyfikuj: TBitBtn;
     dtpSelectedDate: TDateTimePicker;
     DBMemoUwagi: TDBMemo;
     DBNavigator1: TDBNavigator;
@@ -40,6 +41,7 @@ type
     SpeedButton2: TSpeedButton;
     ZQPlanWyjazdow: TZQuery;
     ZQUwagi: TZQuery;
+    procedure btnModyfikujClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure btnZaplanujClick(Sender: TObject);
     procedure dtpSelectedDateChange(Sender: TObject);
@@ -51,7 +53,8 @@ type
     procedure SpeedButton2Click(Sender: TObject);
     procedure WeekEventClick(StartDate: TDateTime);
     procedure WeekChanged(Sender: TObject);
-    procedure SelectionEventClick(Sender: TObject);
+    procedure EventDbClick(Sender: TObject);
+    procedure EventClick(Sender: TObject);
     procedure SelectionEndClick(Sender: TObject);
     procedure ZQUwagiBeforePost(DataSet: TDataSet);
   private
@@ -59,6 +62,7 @@ type
   public
     Procedure WczytajDane;
     procedure ZaplanujWyjazd(SelectDateTime: TDateTime);
+    procedure ModyfikujWyjazd(AID: integer);
   end;
 
 var
@@ -78,10 +82,14 @@ begin
   WeekView.lblWeekDate:= lblWeekDate;
 
   WeekView.OnDblClick      := @WeekEventClick;
-  WeekView.OnSelectionEvent:= @SelectionEventClick;
+  WeekView.OnEventDbClick  := @EventDbClick;
+  WeekView.OnEventClick    := @EventClick;
   WeekView.OnWeekChanged   := @WeekChanged;
   WeekView.OnSelectionEnd  := @SelectionEndClick;
   WeekView.Invalidate;
+
+  btnZaplanuj.Enabled:= DM.uprawnienia[19];
+  btnUsun.Enabled    := DM.uprawnienia[19];
 end;
 
 procedure TKwatPlanWyjazdow.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -93,22 +101,30 @@ procedure TKwatPlanWyjazdow.btnUsunClick(Sender: TObject);
 var ZQPom: TZQueryPom;
 begin
   if ZQPlanWyjazdow.IsEmpty then exit;
-  if ZQPlanWyjazdow.FieldByName('data_start').AsDateTime< Now then
+  if ZQPlanWyjazdow.FieldByName('data_wyjazdu').AsDateTime< Now then
     begin
       MessageDlg('Nie można usunąć zdarzenia gdyż jego data jest wcześniejsza niż bieżąca.', mtWarning, [mbOK],0);
       exit;
     end;
 
+  if not(MessageDlg('Czy napewno usunąć planowane zdarzenie?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then exit;
+
   try
     ZQPom:= TZQueryPom.Create(Self);
-    ZQPom.SQL.Text:= 'UPDATE kwat_plan_wyjazdow SET user=:user, data_modyfikacji=NOW(), stan="U"';
+    ZQPom.SQL.Text:= 'UPDATE kwat_plan_wyjazdow SET user=:user, data_modyfikacji=NOW(), stan="U" WHERE ID=:id';
     ZQPom.ParamByName('user').AsString:= DM.PelnaNazwa;
+    ZQPom.ParamByName('id').AsInteger:= ZQPlanWyjazdow.FieldByName('ID').AsInteger;
     ZQPom.ExecSQL;
   finally
     FreeAndNil(ZQPom);
   end;
 
   WczytajDane;
+end;
+
+procedure TKwatPlanWyjazdow.btnModyfikujClick(Sender: TObject);
+begin
+  ModyfikujWyjazd( ZQPlanWyjazdow.FieldByName('ID').AsInteger );
 end;
 
 procedure TKwatPlanWyjazdow.btnZaplanujClick(Sender: TObject);
@@ -123,8 +139,10 @@ end;
 
 procedure TKwatPlanWyjazdow.DSPlanWyjazdowDataChange(Sender: TObject; Field: TField);
 begin
-  btnUsun.Enabled:= (not ZQPlanWyjazdow.IsEmpty)and
+  btnUsun.Enabled:= (DM.uprawnienia[19])and
+                    (not ZQPlanWyjazdow.IsEmpty)and
                     (ZQPlanWyjazdow.FieldByName('data_wyjazdu').AsDateTime>Now());
+  btnModyfikuj.Enabled:= btnUsun.Enabled;
 end;
 
 procedure TKwatPlanWyjazdow.FormShow(Sender: TObject);
@@ -159,11 +177,17 @@ begin
   ZQUwagi.Open;
 end;
 
-procedure TKwatPlanWyjazdow.SelectionEventClick(Sender: TObject);
+procedure TKwatPlanWyjazdow.EventDbClick(Sender: TObject);
 begin
   // Dostęp do Wciśniętego Eventa
-  //Panel2.Caption:= TEventWeek(Sender).ID.ToString;
-  // Edycja
+  if btnModyfikuj.Enabled then
+    ModyfikujWyjazd(TEventWeek(Sender).ID);
+end;
+
+procedure TKwatPlanWyjazdow.EventClick(Sender: TObject);
+begin
+  // select pos in DB by Event ID
+  ZQPlanWyjazdow.Locate('ID', TEventWeek(Sender).ID, []);
 end;
 
 procedure TKwatPlanWyjazdow.SelectionEndClick(Sender: TObject);
@@ -207,6 +231,16 @@ begin
   with TKwatPlanWyjazdowAdd.Create(Self) do
   begin
     ZaplanujWyjazd( SelectDateTime );
+    if ShowModal=mrOK then WczytajDane;
+    Free;
+  end;
+end;
+
+procedure TKwatPlanWyjazdow.ModyfikujWyjazd(AID: integer);
+begin
+  with TKwatPlanWyjazdowAdd.Create(Self) do
+  begin
+    ModyfikujWyjazd( AID );
     if ShowModal=mrOK then WczytajDane;
     Free;
   end;

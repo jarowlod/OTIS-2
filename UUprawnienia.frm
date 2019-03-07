@@ -1,7 +1,7 @@
 object Uprawnienia: TUprawnienia
-  Left = 332
+  Left = 334
   Height = 636
-  Top = 263
+  Top = 226
   Width = 1065
   Caption = 'Uprawnienia'
   ClientHeight = 636
@@ -604,6 +604,24 @@ object Uprawnienia: TUprawnienia
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
           Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          ButtonStyle = cbsCheckboxColumn
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.ShowHint = True
+          Title.Caption = 'Mod19'
+          Width = 30
+          FieldName = 'Mod19'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
         end>
       KeyStrokes = <      
         item
@@ -840,9 +858,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText1: TDBText
       Left = 128
-      Height = 15
+      Height = 1
       Top = 8
-      Width = 50
+      Width = 1
       DataField = 'user'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -851,9 +869,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText3: TDBText
       Left = 128
-      Height = 15
+      Height = 1
       Top = 64
-      Width = 50
+      Width = 1
       DataField = 'Last'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -862,9 +880,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText4: TDBText
       Left = 128
-      Height = 15
+      Height = 1
       Top = 85
-      Width = 50
+      Width = 1
       DataField = 'IleRazy'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -1114,6 +1132,19 @@ object Uprawnienia: TUprawnienia
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
+      object DBCheckBox19: TDBCheckBox
+        Left = 16
+        Height = 19
+        Top = 408
+        Width = 178
+        AutoSize = True
+        Caption = 'Kwat: Plan wyjazdów (edycja )'
+        DataField = 'Mod19'
+        DataSource = DSUsers
+        TabOrder = 18
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
     end
     object BitBtn1: TBitBtn
       Left = 556
@@ -1176,7 +1207,7 @@ object Uprawnienia: TUprawnienia
       DataField = 'Wychowawca'
       DataSource = DSUsers
       CharCase = ecNormal
-      MaxLength = 0
+      MaxLength = 180
       TabOrder = 2
     end
     object Label7: TLabel
@@ -1250,7 +1281,7 @@ object Uprawnienia: TUprawnienia
       DataSource = DSUsers
       CharCase = ecNormal
       Font.Style = [fsBold]
-      MaxLength = 0
+      MaxLength = 240
       ParentFont = False
       TabOrder = 1
     end
@@ -1590,9 +1621,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText2: TDBText
       Left = 104
-      Height = 15
+      Height = 1
       Top = 84
-      Width = 50
+      Width = 1
       DataField = 'user'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -1601,9 +1632,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText5: TDBText
       Left = 104
-      Height = 15
+      Height = 1
       Top = 112
-      Width = 50
+      Width = 1
       DataField = 'Full_name'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -1615,6 +1646,7 @@ object Uprawnienia: TUprawnienia
     Connection = DM.ZConnection1
     SortedFields = 'user'
     BeforePost = ZQUsersBeforePost
+    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM uprawnienia'

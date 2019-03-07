@@ -88,7 +88,8 @@ type
                                                // 16: Środki Trwałe (depozyt).
                                                // 17: Moduł do testowania poprawności NoeNet
                                                // 18: Rezerwacja Widzeń BD i Skypa
-    uprawnienia: array[1..18] of Boolean;
+                                               // 19: Kwat: Plan wyjazdów, edycja
+    uprawnienia: array[1..19] of Boolean;
 
     Function VersionStringToNumber(AVersionString: string): integer;
     Function fGetVersionAndConfig: string;
@@ -406,6 +407,7 @@ begin
       uprawnienia[15]:= ZQ.FieldByName('Mod15').AsInteger = 1;
       uprawnienia[17]:= ZQ.FieldByName('Mod17').AsInteger = 1;
       uprawnienia[18]:= ZQ.FieldByName('Mod18').AsInteger = 1;
+      uprawnienia[19]:= ZQ.FieldByName('Mod19').AsInteger = 1;
 
 
       PelnaNazwa  := ZQ.FieldByName('full_name').AsString;
