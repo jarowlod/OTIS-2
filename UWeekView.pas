@@ -22,7 +22,7 @@ type
     fTitle: String;
     fisMouseEnter: boolean;
     procedure Calculate;
-    procedure WMEraseBkgnd(var Message: TWMEraseBkgnd); message wm_EraseBkgnd;
+    //procedure WMEraseBkgnd(var Message: TWMEraseBkgnd); message wm_EraseBkgnd;
     procedure MouseEnter(Sender: TObject);  overload;
     procedure MouseLeave(Sender: TObject);  overload;
   protected
@@ -35,6 +35,7 @@ type
     StartHour: Word;
     EndHour  : Word;
     constructor Create(AOwner: TComponent; ID: integer; StartDate, EndDate: TDateTime; Title: String; BgColor: TColor); overload;
+    destructor Destroy; override;
   published
     property ID: integer read fID write fID;
   end;
@@ -56,7 +57,6 @@ type
     fOnEventClick: TNotifyEvent;
     fOnEventDbClick: TNotifyEvent;
     fOnSelectionEnd: TNotifyEvent;
-    fOnSelectionEvent: TNotifyEvent;
     fOnWeekDblClick: TWeekEventClick;
     fOnWeekChanged: TNotifyEvent;
     FSelectDateTime: TDateTime;
@@ -124,10 +124,10 @@ begin
   Height:= pomH*TWeekView(Parent).HeightHour -1;
 end;
 
-procedure TEventWeek.WMEraseBkgnd(var Message: TWMEraseBkgnd);
-begin
-  Message.Result:= 1;
-end;
+//procedure TEventWeek.WMEraseBkgnd(var Message: TWMEraseBkgnd);
+//begin
+//  Message.Result:= 1;
+//end;
 
 procedure TEventWeek.MouseEnter(Sender: TObject);
 begin
@@ -146,7 +146,7 @@ var rec: TRect;
     lr: TRect;
     fTime: string;
 begin
-  SetBkMode(Canvas.Handle, TRANSPARENT);
+ // SetBkMode(Canvas.Handle, TRANSPARENT);
 
   Calculate;
   rec:= Rect(0, 0, Width, Height);
@@ -174,11 +174,15 @@ begin
   lr:= Rect(0,0,4,Height);
   Canvas.Brush.Color:= $B01C06;
   Canvas.FillRect(lr);
+
+  inherited Paint;
 end;
 
 constructor TEventWeek.Create(AOwner: TComponent; ID: integer; StartDate, EndDate: TDateTime; Title: String; BgColor: TColor);
 begin
   Inherited Create(AOwner);
+  ControlStyle := ControlStyle - [csSetCaption, csOpaque];
+  SetInitialBounds(0, 0, 50, 50);
 
   if StartDate>EndDate then
   begin
@@ -210,6 +214,11 @@ begin
 
   OnMouseEnter:= @MouseEnter;
   OnMouseLeave:= @MouseLeave;
+end;
+
+destructor TEventWeek.Destroy;
+begin
+  inherited Destroy;
 end;
 
 //===============================================================================================================================
@@ -480,6 +489,7 @@ begin
   ItemEvent.Width := Width - LeftSpan;
   ItemEvent.OnDblClick:= OnEventDbClick;
   ItemEvent.OnClick   := OnEventClick;
+
   EventsPeerDay[ItemEvent.DayOfWeek].Add(ItemEvent);
   CalcColumEvent;
   Invalidate;

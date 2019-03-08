@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, EditBtn, TplGradientUnit, DateUtils, datamodule, DateTimePicker;
+  StdCtrls, EditBtn, TplGradientUnit, DateUtils, datamodule, BCLabel,
+  DateTimePicker  ;
 
 type
 
@@ -32,6 +33,7 @@ type
     Panel2: TPanel;
     Panel5: TPanel;
     plGradient2: TplGradient;
+    RadioButton1: TRadioButton;
     SpeedButton1: TSpeedButton;
     teGodzWyjazdu: TTimeEdit;
     teGodzPowrotu: TTimeEdit;

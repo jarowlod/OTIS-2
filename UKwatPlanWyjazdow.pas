@@ -48,6 +48,7 @@ type
     procedure DSPlanWyjazdowDataChange(Sender: TObject; Field: TField);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
@@ -90,6 +91,11 @@ begin
 
   btnZaplanuj.Enabled:= DM.uprawnienia[19];
   btnUsun.Enabled    := DM.uprawnienia[19];
+end;
+
+procedure TKwatPlanWyjazdow.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(WeekView);
 end;
 
 procedure TKwatPlanWyjazdow.FormClose(Sender: TObject; var CloseAction: TCloseAction);

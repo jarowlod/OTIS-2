@@ -119,6 +119,14 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
       }
       Stretch = True
     end
+    object RadioButton1: TRadioButton
+      Left = 423
+      Height = 19
+      Top = 10
+      Width = 92
+      Caption = 'RadioButton1'
+      TabOrder = 0
+    end
   end
   object Label2: TLabel
     Left = 15
