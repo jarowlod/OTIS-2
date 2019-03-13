@@ -13,6 +13,7 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
   OnDestroy = FormDestroy
   OnShow = FormShow
   LCLVersion = '6.6'
+  WindowState = wsMaximized
   object Panel5: TPanel
     Left = 0
     Height = 50
@@ -199,6 +200,41 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
           AutoSort = True
           Columns = <          
             item
+              Font.Color = clMaroon
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'data_wyjazdu'
+              Width = 100
+              FieldName = 'data_wyjazdu'
+              DisplayFormat = 'DD-MM-YYYY hh:nn'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Font.Color = clMaroon
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'data_powrotu'
+              Width = 100
+              FieldName = 'data_powrotu'
+              DisplayFormat = 'DD-MM-YYYY hh:nn'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Alignment = taCenter
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Samochód'
@@ -214,41 +250,12 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
               Footers = <>
             end          
             item
+              Alignment = taCenter
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Kierowca'
               Width = 150
               FieldName = 'Kierowca'
-              EditButtons = <>
-              Filter.DropDownRows = 0
-              Filter.EmptyValue = '(Empty)'
-              Filter.NotEmptyValue = '(Not empty)'
-              Filter.AllValue = '(All values)'
-              Filter.EmptyFont.Style = [fsItalic]
-              Filter.ItemIndex = -1
-              Footers = <>
-            end          
-            item
-              Title.Alignment = taCenter
-              Title.Orientation = toHorizontal
-              Title.Caption = 'data_wyjazdu'
-              Width = 120
-              FieldName = 'data_wyjazdu'
-              EditButtons = <>
-              Filter.DropDownRows = 0
-              Filter.EmptyValue = '(Empty)'
-              Filter.NotEmptyValue = '(Not empty)'
-              Filter.AllValue = '(All values)'
-              Filter.EmptyFont.Style = [fsItalic]
-              Filter.ItemIndex = -1
-              Footers = <>
-            end          
-            item
-              Title.Alignment = taCenter
-              Title.Orientation = toHorizontal
-              Title.Caption = 'data_powrotu'
-              Width = 120
-              FieldName = 'data_powrotu'
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
@@ -279,6 +286,38 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
               Title.Caption = 'Uwagi'
               Width = 200
               FieldName = 'Uwagi'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Font.Color = clMaroon
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Data modyfikacji'
+              Width = 100
+              FieldName = 'data_modyfikacji'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Font.Color = clBlue
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'user'
+              Width = 100
+              FieldName = 'user'
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
@@ -556,6 +595,7 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
   end
   object ZQPlanWyjazdow: TZQuery
     Connection = DM.ZConnection1
+    Active = True
     SQL.Strings = (
       'SELECT '
       'pl.ID,'

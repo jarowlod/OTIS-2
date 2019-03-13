@@ -6,8 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, EditBtn, TplGradientUnit, DateUtils, datamodule, BCLabel,
-  DateTimePicker  ;
+  StdCtrls, EditBtn, TplGradientUnit, DateUtils, datamodule;
 
 type
 
@@ -33,7 +32,6 @@ type
     Panel2: TPanel;
     Panel5: TPanel;
     plGradient2: TplGradient;
-    RadioButton1: TRadioButton;
     SpeedButton1: TSpeedButton;
     teGodzWyjazdu: TTimeEdit;
     teGodzPowrotu: TTimeEdit;
@@ -240,10 +238,45 @@ begin
 end;
 
 procedure TKwatPlanWyjazdowAdd.ModyfikujWyjazd(AID: integer);
+var ZQ: TZQueryPom;
+    i: integer;
 begin
   isModyfikacja:= true;
   fID:= AID;
   Caption:= Caption + ' - Modyfikuj';
+
+  ZQ:= TZQueryPom.Create(Self);
+  try
+    ZQ.SQL.Text:= 'SELECT ID, ID_samochodu, Kierowca, data_wyjazdu, data_powrotu, Cel, Uwagi FROM kwat_plan_wyjazdow WHERE ID=:id ';
+    ZQ.ParamByName('id').AsInteger:= fID;
+    ZQ.Open;
+    if ZQ.IsEmpty then
+    begin
+      ModalResult:= mrCancel;
+      exit;
+    end;
+
+    id_samochodu            := ZQ.FieldByName('ID_samochodu').AsInteger;
+    cbKierowca.Text         := ZQ.FieldByName('Kierowca').AsString;
+    dtpData_Wyjazdu.DateTime:= ZQ.FieldByName('data_wyjazdu').AsDateTime;
+    teGodzWyjazdu.Time      := dtpData_wyjazdu.DateTime;
+    dtpData_Powrotu.DateTime:= ZQ.FieldByName('data_powrotu').AsDateTime;
+    teGodzPowrotu.Time      := dtpData_Powrotu.DateTime;
+    edCel.Text              := ZQ.FieldByName('Cel').AsString;
+    edUwagi.Text            := ZQ.FieldByName('Uwagi').AsString;
+
+    for i:=0 to cbSamochod.Items.Count-1 do
+    begin
+      if TFlotaSamochodow(cbSamochod.Items.Objects[i]).ID = id_samochodu then
+      begin
+        cbSamochod.ItemIndex:= i;
+        Break;
+      end;
+    end;
+
+  finally
+    FreeAndNil(ZQ);
+  end;
 end;
 
 end.

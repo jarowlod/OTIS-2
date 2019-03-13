@@ -8,6 +8,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
   ClientWidth = 617
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  Position = poScreenCenter
   LCLVersion = '6.6'
   object Panel2: TPanel
     Left = 0
@@ -119,14 +120,6 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
       }
       Stretch = True
     end
-    object RadioButton1: TRadioButton
-      Left = 423
-      Height = 19
-      Top = 10
-      Width = 92
-      Caption = 'RadioButton1'
-      TabOrder = 0
-    end
   end
   object Label2: TLabel
     Left = 15
@@ -181,6 +174,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Height = 23
     Top = 192
     Width = 496
+    Anchors = [akTop, akLeft, akRight]
     MaxLength = 200
     TabOrder = 2
   end
@@ -189,6 +183,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Height = 23
     Top = 224
     Width = 496
+    Anchors = [akTop, akLeft, akRight]
     MaxLength = 200
     TabOrder = 3
   end
@@ -258,6 +253,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     MaxDate = 2958465
     MinDate = -53780
     TabOrder = 7
+    Enabled = False
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True

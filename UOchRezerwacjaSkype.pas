@@ -10,16 +10,12 @@ uses
   datamodule, LR_Class, LR_DBSet, BGRABitmap, UOchRezerwacjaWidzen;
 
 type
-  { TTerminyEvent }
-
   { TTerminySkypeEvent }
 
   TTerminySkypeEvent = class(TTerminyWidzenEvent)
   public
     constructor Create;
   end;
-
-  { TTerminyEvents }
 
   { TTerminySkypeEvents }
 

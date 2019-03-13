@@ -23,8 +23,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="1"/>
-      <BuildNr Value="36"/>
+      <RevisionNr Value="2"/>
+      <BuildNr Value="18"/>
       <Language Value="0415"/>
       <StringTable CompanyName="ZK Kłodzko" LegalCopyright="Włodarczyk Jarosław" ProductVersion="0.0.0.0"/>
     </VersionInfo>
@@ -776,7 +776,7 @@
     </Linking>
     <Other>
       <CompilerMessages>
-        <IgnoredMessages idx6058="True"/>
+        <IgnoredMessages idx6058="True" idx3124="True" idx3123="True"/>
       </CompilerMessages>
     </Other>
   </CompilerOptions>

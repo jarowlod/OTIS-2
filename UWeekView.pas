@@ -6,8 +6,7 @@ interface
 
 uses
   Windows, Classes, SysUtils, ExtCtrls, Graphics, Controls, DateUtils, LCLIntf, LazUTF8, fgl, FPImage,
-  StdCtrls
-  ;
+  StdCtrls, datamodule;
 
 type
 
@@ -22,7 +21,8 @@ type
     fTitle: String;
     fisMouseEnter: boolean;
     procedure Calculate;
-    //procedure WMEraseBkgnd(var Message: TWMEraseBkgnd); message wm_EraseBkgnd;
+    Function GetHintStr: string;
+    procedure WMEraseBkgnd(var Message: TWMEraseBkgnd); message wm_EraseBkgnd;
     procedure MouseEnter(Sender: TObject);  overload;
     procedure MouseLeave(Sender: TObject);  overload;
   protected
@@ -111,73 +111,6 @@ implementation
 
 { TEventWeek }
 
-procedure TEventWeek.Calculate;
-var pomH, pomW: integer;
-begin
-  pomW:= (TWeekView(Parent).DayWidth-1) div MaxCol;
-  if pomW-5<0 then Width:= pomW
-              else Width:= pomW - 5;
-  Left:= (TWeekView(Parent).LeftSpan+ (DayOfWeek-1)*TWeekView(Parent).DayWidth) + pomW * OLLevel +1;
-  Top:= TWeekView(Parent).TopSpan + (StartHour-6)*TWeekView(Parent).HeightHour + 1;
-  pomH:= (EndHour-StartHour);
-  if pomH<=0 then pomH:= 1;
-  Height:= pomH*TWeekView(Parent).HeightHour -1;
-end;
-
-//procedure TEventWeek.WMEraseBkgnd(var Message: TWMEraseBkgnd);
-//begin
-//  Message.Result:= 1;
-//end;
-
-procedure TEventWeek.MouseEnter(Sender: TObject);
-begin
-  fisMouseEnter:= true;
-  Invalidate;
-end;
-
-procedure TEventWeek.MouseLeave(Sender: TObject);
-begin
-  fisMouseEnter:= false;
-  Invalidate;
-end;
-
-procedure TEventWeek.Paint;
-var rec: TRect;
-    lr: TRect;
-    fTime: string;
-begin
- // SetBkMode(Canvas.Handle, TRANSPARENT);
-
-  Calculate;
-  rec:= Rect(0, 0, Width, Height);
-
-  Canvas.Brush.Color:= fBgColor;
-  if fisMouseEnter then Canvas.GradientFill(rec, fBgColor, clWhite, gdVertical)
-                   else Canvas.FillRect(rec);
-
-  Canvas.Brush.Style:=bsClear;
-  rec.left:= 5;
-
-  // draw godziny
-  fTime:= FormatDateTime('HH:MM', fStartDate) + ' - ' + FormatDateTime('HH:MM', fEndDate);
-  Canvas.Font.Size:= 7;
-  Canvas.Font.Color:= $808080;
-  DrawText(Canvas.Handle, PChar( fTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
-
-  // draw Title
-  Canvas.Font.Size:= 8;
-  Canvas.Font.Color:= clBlack;
-  rec.Top:= rec.Top + Canvas.TextHeight('Ą');
-  DrawText(Canvas.Handle, PChar( fTitle), -1, rec, DT_TOP OR DT_CENTER OR DT_END_ELLIPSIS);
-
-  // left bawel
-  lr:= Rect(0,0,4,Height);
-  Canvas.Brush.Color:= $B01C06;
-  Canvas.FillRect(lr);
-
-  inherited Paint;
-end;
-
 constructor TEventWeek.Create(AOwner: TComponent; ID: integer; StartDate, EndDate: TDateTime; Title: String; BgColor: TColor);
 begin
   Inherited Create(AOwner);
@@ -214,11 +147,87 @@ begin
 
   OnMouseEnter:= @MouseEnter;
   OnMouseLeave:= @MouseLeave;
+
+  ShowHint:= true;
+  Hint:= GetHintStr;
 end;
 
 destructor TEventWeek.Destroy;
 begin
   inherited Destroy;
+end;
+
+procedure TEventWeek.Calculate;
+var pomH, pomW: integer;
+begin
+  pomW:= (TWeekView(Parent).DayWidth-1) div MaxCol;
+  if pomW-5<0 then Width:= pomW
+              else Width:= pomW - 5;
+  Left:= (TWeekView(Parent).LeftSpan+ (DayOfWeek-1)*TWeekView(Parent).DayWidth) + pomW * OLLevel +1;
+  Top:= TWeekView(Parent).TopSpan + (StartHour-6)*TWeekView(Parent).HeightHour + 1;
+  pomH:= (EndHour-StartHour);
+  if pomH<=0 then pomH:= 1;
+  Height:= pomH*TWeekView(Parent).HeightHour -1;
+end;
+
+function TEventWeek.GetHintStr: string;
+begin
+  Result:= FormatDateTime('HH:MM', fStartDate) + ' - ' + FormatDateTime('HH:MM', fEndDate)+ LineEnding
+           + fTitle;
+end;
+
+procedure TEventWeek.WMEraseBkgnd(var Message: TWMEraseBkgnd);
+begin
+  Message.Result:= 1;
+end;
+
+procedure TEventWeek.MouseEnter(Sender: TObject);
+begin
+  fisMouseEnter:= true;
+  Invalidate;
+end;
+
+procedure TEventWeek.MouseLeave(Sender: TObject);
+begin
+  fisMouseEnter:= false;
+  Invalidate;
+end;
+
+procedure TEventWeek.Paint;
+var rec: TRect;
+    lr: TRect;
+    fTime: string;
+begin
+  SetBkMode(Canvas.Handle, TRANSPARENT);
+
+  Calculate;
+  rec:= Rect(0, 0, Width, Height);
+
+  Canvas.Brush.Color:= fBgColor;
+  if fisMouseEnter then Canvas.GradientFill(rec, fBgColor, clWhite, gdVertical)
+                   else Canvas.FillRect(rec);
+
+  Canvas.Brush.Style:=bsClear;
+  rec.left:= 5;
+
+  // draw godziny
+  fTime:= FormatDateTime('HH:MM', fStartDate) + ' - ' + FormatDateTime('HH:MM', fEndDate);
+  Canvas.Font.Size:= 7;
+  Canvas.Font.Color:= $808080;
+  DrawText(Canvas.Handle, PChar( fTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
+
+  // draw Title
+  Canvas.Font.Size:= 8;
+  Canvas.Font.Color:= clBlack;
+  rec.Top:= rec.Top + Canvas.TextHeight('Ą');
+  DrawText(Canvas.Handle, PChar( fTitle), -1, rec, DT_TOP OR DT_CENTER OR DT_END_ELLIPSIS);
+
+  // left bawel
+  lr:= Rect(0,0,4,Height);
+  Canvas.Brush.Color:= $B01C06;
+  Canvas.FillRect(lr);
+
+  inherited Paint;
 end;
 
 //===============================================================================================================================
@@ -231,6 +240,7 @@ begin
   Inherited Create(AOwner);
   FSelectDateTime:= Now();
   FBeginWeekDate:= StartOfTheWeek(SelectDate);
+  SelectDay:= DayOfTheWeek(SelectDate);
   Color:= clWhite;
   isSelected:= false;
   for i:=1 to 7 do
@@ -288,6 +298,20 @@ begin
   FSelectDateTime:= AValue;
   SelectDay:= DayOfTheWeek(FSelectDateTime);
   BeginWeekDate:= StartOfTheWeek(SelectDate);
+  Invalidate;
+end;
+
+procedure TWeekView.NextWeek;
+begin
+  ClearEvent;
+  BeginWeekDate:= IncWeek(BeginWeekDate);
+  Invalidate;
+end;
+
+procedure TWeekView.PrevWeek;
+begin
+  ClearEvent;
+  BeginWeekDate:= IncWeek(BeginWeekDate, -1);
   Invalidate;
 end;
 
@@ -351,6 +375,9 @@ var i,d: integer;
     else
       rect.Right:= Width;
 
+    if DM.CzySwieto(BeginWeekDate+d-1) then    // święta
+       Canvas.Brush.Color:= $FFCEE7
+    else
     if (d >= 5) then   // sobota, niedziela     // weekend innym kolorem tła
       Canvas.Brush.Color:= $00DFDFDF
     else
@@ -423,7 +450,7 @@ var i,d: integer;
   var rec: TRect;
       tl: integer;
   begin
-    tl:= MinuteOfTheDay(Time) - 6*60; // która minute po godzinie 6
+    tl:= MinuteOfTheDay(Time) - 6*60; // która minuta po godzinie 6
     tl:= Round((HeightHour / 60) * tl);
     rec:= Rect(LeftSpan - 3, TopSpan + tl, Width, 0);
     rec.Bottom:= rec.Top;
@@ -444,21 +471,7 @@ begin
   DrawCurrentTimeLine;
   if isSelected then DrawSelected;
   for i:=1 to 7 do
-    for Ev in EventsPeerDay[i] do Ev.Invalidate;
-end;
-
-procedure TWeekView.NextWeek;
-begin
-  ClearEvent;
-  BeginWeekDate:= IncWeek(BeginWeekDate);
-  Invalidate;
-end;
-
-procedure TWeekView.PrevWeek;
-begin
-  ClearEvent;
-  BeginWeekDate:= IncWeek(BeginWeekDate, -1);
-  Invalidate;
+    for Ev in EventsPeerDay[i] do Ev.Paint; // Invalidate;
 end;
 
 procedure TWeekView.XYToCell(X, Y: Integer; var CellX, CellY: Integer);
@@ -479,8 +492,12 @@ end;
 
 procedure TWeekView.AddEvent(ID: integer; StartDate, EndDate: TDateTime; Title: String; BgColor: TColor);
 var ItemEvent: TEventWeek;
+    EndWeekDate: TDate;
 begin
-  if not DateInRange(StartDate, BeginWeekDate, IncDay(BeginWeekDate, 6)) then exit;
+  EndWeekDate:= IncDay(BeginWeekDate, 6);
+  //if ((StartDate<BeginWeekDate)AND(EndDate<BeginWeekDate))OR
+  //   ((StartDate>EndWeekDate)AND(EndDate>EndWeekDate)) then exit;
+  if not DateInRange(StartDate, BeginWeekDate, EndWeekDate) then exit;
   ItemEvent:= TEventWeek.Create(Self, ID, StartDate, EndDate, Title, BgColor);
   ItemEvent.Parent:= Self;
   ItemEvent.Top   := TopSpan;
