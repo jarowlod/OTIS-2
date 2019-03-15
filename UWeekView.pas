@@ -9,6 +9,15 @@ uses
   StdCtrls, datamodule;
 
 type
+  TEventRecord = record
+    ID        : integer;
+    StartDate : TDateTime;
+    EndDate   : TDateTime;
+    Title     : string;
+    Uwagi     : string;
+    Cel       : string;
+    BgColor   : TColor;
+  end;
 
   { TEventWeek }
 
@@ -19,6 +28,8 @@ type
     fEndDate: TDateTime;
     fBgColor: TColor;
     fTitle: String;
+    fUwagi: string;
+    fCel  : string;
     fisMouseEnter: boolean;
     procedure Calculate;
     Function GetHintStr: string;
@@ -34,7 +45,7 @@ type
     DayOfWeek: integer;
     StartHour: Word;
     EndHour  : Word;
-    constructor Create(AOwner: TComponent; ID: integer; StartDate, EndDate: TDateTime; Title: String; BgColor: TColor); overload;
+    constructor Create(AOwner: TComponent; EventRecord: TEventRecord); overload;
     destructor Destroy; override;
   published
     property ID: integer read fID write fID;
@@ -92,7 +103,7 @@ type
     procedure PrevWeek;
     procedure XYToCell(X,Y: Integer;var CellX,CellY: Integer);
 
-    procedure AddEvent(ID: integer; StartDate, EndDate: TDateTime; Title: String; BgColor: TColor);
+    procedure AddEvent(EventRecord: TEventRecord; isCalcColumn: Boolean = true);
     procedure ClearEvent;
     procedure CalcColumEvent;
     function GetDateCaption: string;
@@ -111,25 +122,30 @@ implementation
 
 { TEventWeek }
 
-constructor TEventWeek.Create(AOwner: TComponent; ID: integer; StartDate, EndDate: TDateTime; Title: String; BgColor: TColor);
+constructor TEventWeek.Create(AOwner: TComponent; EventRecord: TEventRecord);
 begin
   Inherited Create(AOwner);
   ControlStyle := ControlStyle - [csSetCaption, csOpaque];
   SetInitialBounds(0, 0, 50, 50);
 
-  if StartDate>EndDate then
+  with EventRecord do
   begin
-    fStartDate:= EndDate;
-    fEndDate:= StartDate;
-  end else
-  begin
-    fStartDate:= StartDate;
-    fEndDate:= EndDate;
-  end;
+    if StartDate>EndDate then
+    begin
+      fStartDate:= EndDate;
+      fEndDate:= StartDate;
+    end else
+    begin
+      fStartDate:= StartDate;
+      fEndDate:= EndDate;
+    end;
 
-  fID:= ID;
-  fTitle:= Title;
-  fBgColor:= BgColor;
+    fID:= ID;
+    fTitle:= Title;
+    fUwagi:= Uwagi;
+    fCel  := Cel;
+    fBgColor:= BgColor;
+  end;
 
   DayOfWeek:= DayOfTheWeek(fStartDate);
 
@@ -173,7 +189,9 @@ end;
 function TEventWeek.GetHintStr: string;
 begin
   Result:= FormatDateTime('HH:MM', fStartDate) + ' - ' + FormatDateTime('HH:MM', fEndDate)+ LineEnding
-           + fTitle;
+           + fTitle + LineEnding
+           + fCel + LineEnding
+           + fUwagi;
 end;
 
 procedure TEventWeek.WMEraseBkgnd(var Message: TWMEraseBkgnd);
@@ -490,15 +508,17 @@ begin
   end;
 end;
 
-procedure TWeekView.AddEvent(ID: integer; StartDate, EndDate: TDateTime; Title: String; BgColor: TColor);
+procedure TWeekView.AddEvent(EventRecord: TEventRecord; isCalcColumn: Boolean);
 var ItemEvent: TEventWeek;
     EndWeekDate: TDate;
 begin
   EndWeekDate:= IncDay(BeginWeekDate, 6);
   //if ((StartDate<BeginWeekDate)AND(EndDate<BeginWeekDate))OR
   //   ((StartDate>EndWeekDate)AND(EndDate>EndWeekDate)) then exit;
-  if not DateInRange(StartDate, BeginWeekDate, EndWeekDate) then exit;
-  ItemEvent:= TEventWeek.Create(Self, ID, StartDate, EndDate, Title, BgColor);
+  if not DateInRange(EventRecord.StartDate, BeginWeekDate, EndWeekDate) then exit;
+
+  ItemEvent:= TEventWeek.Create(Self, EventRecord);
+
   ItemEvent.Parent:= Self;
   ItemEvent.Top   := TopSpan;
   ItemEvent.Height:= Height - TopSpan;
@@ -508,8 +528,12 @@ begin
   ItemEvent.OnClick   := OnEventClick;
 
   EventsPeerDay[ItemEvent.DayOfWeek].Add(ItemEvent);
-  CalcColumEvent;
-  Invalidate;
+
+  if isCalcColumn then
+  begin
+    CalcColumEvent;
+    Invalidate;
+  end;
 end;
 
 procedure TWeekView.ClearEvent;

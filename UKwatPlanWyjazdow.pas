@@ -147,7 +147,7 @@ procedure TKwatPlanWyjazdow.DSPlanWyjazdowDataChange(Sender: TObject; Field: TFi
 begin
   btnUsun.Enabled:= (DM.uprawnienia[19])and
                     (not ZQPlanWyjazdow.IsEmpty)and
-                    (ZQPlanWyjazdow.FieldByName('data_wyjazdu').AsDateTime>Now());
+                    (ZQPlanWyjazdow.FieldByName('data_wyjazdu').AsDateTime>IncDay(Now(), -2));
   btnModyfikuj.Enabled:= btnUsun.Enabled;
 end;
 
@@ -208,8 +208,7 @@ begin
 end;
 
 procedure TKwatPlanWyjazdow.WczytajDane;
-var title: string;
-    BgColor: TColor;
+var EventRecord: TEventRecord;
 begin
   WeekView.ClearEvent;
 
@@ -220,16 +219,18 @@ begin
 
   while not ZQPlanWyjazdow.EOF do
   begin
-    title:= ZQPlanWyjazdow.FieldByName('Nazwa').AsString+ ' - ' +ZQPlanWyjazdow.FieldByName('Kierowca').AsString;
-    BgColor:= StringToColor(ZQPlanWyjazdow.FieldByName('Event_color').AsString);
+    EventRecord.ID       := ZQPlanWyjazdow.FieldByName('ID').AsInteger;
+    EventRecord.StartDate:= ZQPlanWyjazdow.FieldByName('data_wyjazdu').AsDateTime;
+    EventRecord.EndDate  := ZQPlanWyjazdow.FieldByName('data_powrotu').AsDateTime;
+    EventRecord.Title    := ZQPlanWyjazdow.FieldByName('Nazwa').AsString+ ' - ' +ZQPlanWyjazdow.FieldByName('Kierowca').AsString;
+    EventRecord.Cel      := ZQPlanWyjazdow.FieldByName('Cel').AsString;
+    EventRecord.Uwagi    := ZQPlanWyjazdow.FieldByName('Uwagi').AsString;
+    EventRecord.BgColor  := StringToColorDef(ZQPlanWyjazdow.FieldByName('Event_color').AsString, clSkyBlue);
 
-    WeekView.AddEvent(ZQPlanWyjazdow.FieldByName('ID').AsInteger,
-                      ZQPlanWyjazdow.FieldByName('data_wyjazdu').AsDateTime,
-                      ZQPlanWyjazdow.FieldByName('data_powrotu').AsDateTime,
-                      title,
-                      BgColor);
+    WeekView.AddEvent(EventRecord, false);
     ZQPlanWyjazdow.Next;
   end;
+  WeekView.CalcColumEvent;
 end;
 
 procedure TKwatPlanWyjazdow.ZaplanujWyjazd(SelectDateTime: TDateTime);

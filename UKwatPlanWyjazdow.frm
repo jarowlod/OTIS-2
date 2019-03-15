@@ -1,7 +1,7 @@
 object KwatPlanWyjazdow: TKwatPlanWyjazdow
-  Left = 334
+  Left = 676
   Height = 564
-  Top = 226
+  Top = 460
   Width = 1038
   Caption = 'Harmonogram planowanych wyjazdów.'
   ClientHeight = 564
@@ -595,7 +595,6 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
   end
   object ZQPlanWyjazdow: TZQuery
     Connection = DM.ZConnection1
-    Active = True
     SQL.Strings = (
       'SELECT '
       'pl.ID,'

@@ -82,10 +82,9 @@
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="733"/>
-        <CursorPos X="28" Y="737"/>
+        <CursorPos X="51" Y="736"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -834,7 +833,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="23" Y="67"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="201"/>
       </Unit69>
       <Unit70>
         <Filename Value="UPaczkiAdd.pas"/>
@@ -846,7 +845,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="285"/>
         <CursorPos Y="207"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="179"/>
       </Unit70>
       <Unit71>
         <Filename Value="UOchRejestrWidzen.pas"/>
@@ -858,7 +857,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="280"/>
         <CursorPos X="3" Y="273"/>
-        <UsageCount Value="158"/>
+        <UsageCount Value="163"/>
       </Unit71>
       <Unit72>
         <Filename Value="UAlerter.pas"/>
@@ -870,7 +869,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="128"/>
         <CursorPos X="14" Y="363"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="143"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit72>
@@ -884,7 +883,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="38" Y="97"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="126"/>
       </Unit73>
       <Unit74>
         <Filename Value="UKwatPlanWyjazdow.pas"/>
@@ -894,9 +893,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="80"/>
-        <CursorPos X="46" Y="92"/>
-        <UsageCount Value="79"/>
+        <TopLine Value="202"/>
+        <CursorPos X="36" Y="204"/>
+        <UsageCount Value="84"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit74>
@@ -908,8 +907,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="60" Y="9"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="85"/>
+        <CursorPos X="73" Y="99"/>
+        <UsageCount Value="67"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit75>
@@ -1520,10 +1520,11 @@
       <Unit156>
         <Filename Value="UWeekView.pas"/>
         <FRMtype Value="0"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="357"/>
-        <CursorPos X="36" Y="379"/>
-        <UsageCount Value="36"/>
+        <TopLine Value="486"/>
+        <CursorPos X="23" Y="18"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
       </Unit156>
       <Unit157>
@@ -1742,107 +1743,127 @@
         <UsageCount Value="9"/>
       </Unit182>
     </Units>
-    <JumpHistory Count="25" HistoryIndex="24">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="100" Column="44" TopLine="83"/>
+        <Caret Line="386" Column="17" TopLine="370"/>
       </Position1>
       <Position2>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="75" Column="15" TopLine="59"/>
+        <Caret Line="421" Column="37" TopLine="398"/>
       </Position2>
       <Position3>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="92" Column="17" TopLine="76"/>
+        <Caret Line="25" Column="19" TopLine="16"/>
       </Position3>
       <Position4>
-        <Filename Value="UWeekView.pas"/>
-        <Caret Line="460" Column="32" TopLine="456"/>
+        <Filename Value="datamodule.pas"/>
+        <Caret Line="103" Column="20" TopLine="90"/>
       </Position4>
       <Position5>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="100" Column="14" TopLine="83"/>
+        <Caret Line="74" Column="22" TopLine="62"/>
       </Position5>
       <Position6>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="73" Column="15" TopLine="57"/>
+        <Caret Line="84" Column="17" TopLine="65"/>
       </Position6>
       <Position7>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="268" Column="3" TopLine="264"/>
+        <Caret Line="83" Column="17" TopLine="76"/>
       </Position7>
       <Position8>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="73" Column="22" TopLine="51"/>
+        <Caret Line="378" Column="21" TopLine="372"/>
       </Position8>
       <Position9>
-        <Filename Value="UWeekView.pas"/>
-        <Caret Line="234" Column="6" TopLine="221"/>
+        <Filename Value="UAlerter.pas"/>
+        <Caret Line="363" Column="14" TopLine="128"/>
       </Position9>
       <Position10>
-        <Filename Value="UWeekView.pas"/>
-        <Caret Line="233" Column="18" TopLine="201"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="988" Column="68" TopLine="968"/>
       </Position10>
       <Position11>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="234" Column="28" TopLine="204"/>
+        <Caret Line="95" Column="128" TopLine="76"/>
       </Position11>
       <Position12>
-        <Filename Value="UKwatPlanWyjazdow.pas"/>
-        <Caret Line="66" Column="21" TopLine="54"/>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="493" Column="21" TopLine="476"/>
       </Position12>
       <Position13>
-        <Filename Value="UKwatPlanWyjazdow.pas"/>
-        <Caret Line="247" Column="3" TopLine="221"/>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="95" Column="97" TopLine="92"/>
       </Position13>
       <Position14>
-        <Filename Value="UKwatPlanWyjazdowAdd.pas"/>
-        <Caret Line="54" Column="15" TopLine="37"/>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="97" Column="22" TopLine="86"/>
       </Position14>
       <Position15>
-        <Filename Value="UKwatPlanWyjazdowAdd.pas"/>
-        <Caret Line="265" Column="48" TopLine="244"/>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="615" Column="3" TopLine="584"/>
       </Position15>
       <Position16>
-        <Filename Value="UWeekView.pas"/>
-        <Caret Line="386" Column="17" TopLine="370"/>
+        <Filename Value="UKwatPlanWyjazdow.pas"/>
+        <Caret Line="231" Column="27" TopLine="207"/>
       </Position16>
       <Position17>
-        <Filename Value="UWeekView.pas"/>
-        <Caret Line="421" Column="37" TopLine="398"/>
+        <Filename Value="UKwatPlanWyjazdow.pas"/>
+        <Caret Line="177" Column="7" TopLine="157"/>
       </Position17>
       <Position18>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="25" Column="19" TopLine="16"/>
+        <Caret Line="91" Column="15" TopLine="73"/>
       </Position18>
       <Position19>
-        <Filename Value="datamodule.pas"/>
-        <Caret Line="103" Column="20" TopLine="90"/>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="308" Column="3" TopLine="303"/>
       </Position19>
       <Position20>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="74" Column="22" TopLine="62"/>
+        <Caret Line="100" Column="14" TopLine="83"/>
       </Position20>
       <Position21>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="84" Column="17" TopLine="65"/>
+        <Caret Line="73" Column="15" TopLine="57"/>
       </Position21>
       <Position22>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="83" Column="17" TopLine="76"/>
+        <Caret Line="95" Column="20" TopLine="89"/>
       </Position22>
       <Position23>
         <Filename Value="UWeekView.pas"/>
-        <Caret Line="378" Column="21" TopLine="372"/>
+        <Caret Line="45" Column="19" TopLine="11"/>
       </Position23>
       <Position24>
-        <Filename Value="UAlerter.pas"/>
-        <Caret Line="363" Column="14" TopLine="128"/>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="142" TopLine="118"/>
       </Position24>
       <Position25>
-        <Filename Value="UZatrudnieni.pas"/>
-        <Caret Line="988" Column="68" TopLine="968"/>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="504" Column="25" TopLine="494"/>
       </Position25>
+      <Position26>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="103" Column="20" TopLine="86"/>
+      </Position26>
+      <Position27>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="511" Column="43" TopLine="503"/>
+      </Position27>
+      <Position28>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="513" Column="39" TopLine="495"/>
+      </Position28>
+      <Position29>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="48" Column="20" TopLine="20"/>
+      </Position29>
+      <Position30>
+        <Filename Value="UWeekView.pas"/>
+        <Caret Line="35" Column="18" TopLine="34"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
