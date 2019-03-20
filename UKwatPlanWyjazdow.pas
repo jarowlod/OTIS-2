@@ -149,6 +149,8 @@ begin
                     (not ZQPlanWyjazdow.IsEmpty)and
                     (ZQPlanWyjazdow.FieldByName('data_wyjazdu').AsDateTime>IncDay(Now(), -2));
   btnModyfikuj.Enabled:= btnUsun.Enabled;
+
+  if not ZQPlanWyjazdow.IsEmpty then WeekView.SelectEvent(ZQPlanWyjazdow.FieldByName('ID').AsInteger);
 end;
 
 procedure TKwatPlanWyjazdow.FormShow(Sender: TObject);

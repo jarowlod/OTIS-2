@@ -6,9 +6,10 @@ interface
 
 uses
   Windows, Classes, SysUtils, ExtCtrls, Graphics, Controls, DateUtils, LCLIntf, LazUTF8, fgl, FPImage,
-  StdCtrls, datamodule;
+  StdCtrls;
 
 type
+
   TEventRecord = record
     ID        : integer;
     StartDate : TDateTime;
@@ -24,6 +25,7 @@ type
   TEventWeek = class(TCustomControl)
   private
     fID: integer;
+    FisSelected: Boolean;
     fStartDate: TDateTime;
     fEndDate: TDateTime;
     fBgColor: TColor;
@@ -33,9 +35,10 @@ type
     fisMouseEnter: boolean;
     procedure Calculate;
     Function GetHintStr: string;
+    procedure SetFisSelected(AValue: Boolean);
     procedure WMEraseBkgnd(var Message: TWMEraseBkgnd); message wm_EraseBkgnd;
-    procedure MouseEnter(Sender: TObject);  overload;
-    procedure MouseLeave(Sender: TObject);  overload;
+    procedure MouseEnter(Sender: TObject); overload;
+    procedure MouseLeave(Sender: TObject); overload;
   protected
     procedure Paint; override;
   public
@@ -49,6 +52,7 @@ type
     destructor Destroy; override;
   published
     property ID: integer read fID write fID;
+    property isSelected: Boolean read FisSelected write SetFisSelected;
   end;
 
   TListEvent = specialize TFPGObjectList<TEventWeek>;
@@ -56,10 +60,11 @@ type
 
   // Tablica godzin wiersze od 6 do 22, tablica kolumn max ilość eventów danego dnia
   // w wersji z połówkami od 6 do 44
-  TMatrix = array[6..22] of array of record
-                                       ev: integer;  // nr Eventu
-                                       poz: integer; // pozycja w pionie
-                                     end;
+  // Poz = (g-6)*4 + (m div 15);  od 6 do 22 co 15 min
+  TMatrix = array of array of record
+    ev: integer;  // nr Eventu
+    poz: integer; // pozycja w pionie
+  end;
   { TWeekView }
 
   TWeekView = class(TCustomControl)
@@ -73,6 +78,8 @@ type
     FSelectDateTime: TDateTime;
     LeftSpan: integer;
     TopSpan: integer;
+    ColSpan: integer;
+    RowSpan: integer;
     DayWidth: integer;
     HeightHour: integer;
     HalfHight: integer;
@@ -106,7 +113,10 @@ type
     procedure AddEvent(EventRecord: TEventRecord; isCalcColumn: Boolean = true);
     procedure ClearEvent;
     procedure CalcColumEvent;
+    procedure ColumnPoz(d: integer; var cLeft, cWidth: integer); // d {0..6}
+    procedure RowPoz(h: integer; var cTop, cHeight: integer);    // h {0..15}
     function GetDateCaption: string;
+    procedure SelectEvent(EventID: integer);
   published
     property BeginWeekDate: TDate read FBeginWeekDate write SetBeginWeekDate;
     property SelectDate: TDate read GetSelectDate write SetSelectDate;
@@ -118,7 +128,20 @@ type
     property OnWeekChanged: TNotifyEvent read fOnWeekChanged write fOnWeekChanged;
   end;
 
+  function TimeToMatrix(VTime: TTime): integer;
+
+const
+  MaxMatrix = 64; // godz 6-22, co 15 min od 0
+  Godz_Od = 5;
+
 implementation
+
+function TimeToMatrix(VTime: TTime): integer;
+begin
+  Result:= (HourOf(VTime)-Godz_Od)*4 + (MinuteOfTheHour(VTime) div 15);
+  if Result<0 then Result:=0;
+  if Result>MaxMatrix then Result:= MaxMatrix;
+end;
 
 { TEventWeek }
 
@@ -127,6 +150,7 @@ begin
   Inherited Create(AOwner);
   ControlStyle := ControlStyle - [csSetCaption, csOpaque];
   SetInitialBounds(0, 0, 50, 50);
+  DoubleBuffered:= true;
 
   with EventRecord do
   begin
@@ -149,12 +173,8 @@ begin
 
   DayOfWeek:= DayOfTheWeek(fStartDate);
 
-  StartHour:= HourOf(fStartDate);  // 6 do 21
-  EndHour  := HourOf(fEndDate);
-  if StartHour<6 then StartHour:= 6;
-  if StartHour>21 then StartHour:= 21;
-  if EndHour<7 then EndHour:= 7;
-  if EndHour>22 then EndHour:= 22;
+  StartHour:= TimeToMatrix(fStartDate);
+  EndHour:= TimeToMatrix(fEndDate);
 
   if StartHour=EndHour then EndHour:= StartHour+1;
 
@@ -166,6 +186,8 @@ begin
 
   ShowHint:= true;
   Hint:= GetHintStr;
+
+  FisSelected:= false;
 end;
 
 destructor TEventWeek.Destroy;
@@ -174,16 +196,23 @@ begin
 end;
 
 procedure TEventWeek.Calculate;
-var pomH, pomW: integer;
+var pom, hDiv4: integer;
+    cLeft, cWidth: integer;
+    cTop, cHeight: integer;
 begin
-  pomW:= (TWeekView(Parent).DayWidth-1) div MaxCol;
-  if pomW-5<0 then Width:= pomW
-              else Width:= pomW - 5;
-  Left:= (TWeekView(Parent).LeftSpan+ (DayOfWeek-1)*TWeekView(Parent).DayWidth) + pomW * OLLevel +1;
-  Top:= TWeekView(Parent).TopSpan + (StartHour-6)*TWeekView(Parent).HeightHour + 1;
-  pomH:= (EndHour-StartHour);
-  if pomH<=0 then pomH:= 1;
-  Height:= pomH*TWeekView(Parent).HeightHour -1;
+  TWeekView(Parent).ColumnPoz(DayOfWeek-1, cLeft, cWidth);
+  Width:= (cWidth div MaxCol)-4;
+  Left:= cLeft + Width * OLLevel;
+
+  hDiv4:= StartHour div 4;
+  TWeekView(Parent).RowPoz(hDiv4, cTop, cHeight);  // pozycja pełnej godziny
+  pom:= (StartHour - hDiv4 * 4) * (cHeight div 4);  // pozycja pozostałej ćwiartki
+  Top:= cTop + pom + 1;
+
+  hDiv4:= EndHour div 4;
+  TWeekView(Parent).RowPoz(hDiv4, cTop, cHeight);
+  pom:= (EndHour - hDiv4 * 4)* (cHeight div 4);
+  Height:= (cTop+ pom) - Top;
 end;
 
 function TEventWeek.GetHintStr: string;
@@ -192,6 +221,13 @@ begin
            + fTitle + LineEnding
            + fCel + LineEnding
            + fUwagi;
+end;
+
+procedure TEventWeek.SetFisSelected(AValue: Boolean);
+begin
+  if FisSelected= AValue then Exit;
+  FisSelected:= AValue;
+  Invalidate;
 end;
 
 procedure TEventWeek.WMEraseBkgnd(var Message: TWMEraseBkgnd);
@@ -214,7 +250,7 @@ end;
 procedure TEventWeek.Paint;
 var rec: TRect;
     lr: TRect;
-    fTime: string;
+    sTime: string;
 begin
   SetBkMode(Canvas.Handle, TRANSPARENT);
 
@@ -222,17 +258,25 @@ begin
   rec:= Rect(0, 0, Width, Height);
 
   Canvas.Brush.Color:= fBgColor;
-  if fisMouseEnter then Canvas.GradientFill(rec, fBgColor, clWhite, gdVertical)
-                   else Canvas.FillRect(rec);
+  if fisMouseEnter then Canvas.FillRect(rec)
+                   else Canvas.GradientFill(rec, fBgColor, $E8FFFF, gdVertical);
 
   Canvas.Brush.Style:=bsClear;
-  rec.left:= 5;
-
+  rec.left:= 4;
   // draw godziny
-  fTime:= FormatDateTime('HH:MM', fStartDate) + ' - ' + FormatDateTime('HH:MM', fEndDate);
-  Canvas.Font.Size:= 7;
-  Canvas.Font.Color:= $808080;
-  DrawText(Canvas.Handle, PChar( fTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
+  sTime:= FormatDateTime('HH:MM', fStartDate) + ' - ' + FormatDateTime('HH:MM', fEndDate);
+  Canvas.Font.Bold:=true;
+  Canvas.Font.Size:= 8;
+
+  // cień pod godziną
+  rec.Left:= rec.Left + 1;
+  rec.Top:=  rec.Top + 1;
+  Canvas.Font.Color:= clSilver;
+  DrawText(Canvas.Handle, PChar( sTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
+  rec.Left:= rec.Left - 1;
+  rec.Top:=  rec.Top - 1;
+  Canvas.Font.Color:= clBlack;
+  DrawText(Canvas.Handle, PChar( sTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
 
   // draw Title
   Canvas.Font.Size:= 8;
@@ -244,6 +288,22 @@ begin
   lr:= Rect(0,0,4,Height);
   Canvas.Brush.Color:= $B01C06;
   Canvas.FillRect(lr);
+  if (fisMouseEnter)or(isSelected) then
+  begin
+    if isSelected then
+    begin
+      Canvas.Pen.Width:= 2;
+    end;
+    rec:= Rect(0,Height-1,Width, Height-1);
+    Canvas.Pen.Color:= clGray;
+    Canvas.Line(rec);
+    rec:= Rect(Width-1,0,Width-1, Height);
+    Canvas.Line(rec);
+    //Canvas.Brush.Style:= bsClear;
+    //Canvas.Pen.Color:= clRed;
+    //Canvas.Pen.Width:= 1;
+    //Canvas.Rectangle(rec);
+  end;
 
   inherited Paint;
 end;
@@ -261,6 +321,7 @@ begin
   SelectDay:= DayOfTheWeek(SelectDate);
   Color:= clWhite;
   isSelected:= false;
+  DoubleBuffered:= true;
   for i:=1 to 7 do
     EventsPeerDay[i]:= TListEvent.Create();
 end;
@@ -276,13 +337,14 @@ procedure TWeekView.CalculateWeek;
 begin
   LeftSpan  := 30;
   TopSpan   := 20;
-  HeightHour:= 20;
   HalfHight := 0;
   DayWidth  := (Width-LeftSpan) div 7;
-  //LeftSpan:= Width - (7*DayWidth); // wyrównanie szerokości paneli dni, różnica dodana do LeftSpan
+  ColSpan   := 7-(Width-LeftSpan-(DayWidth*7));
 
   HeightHour:= (Height-TopSpan) div 16;
   if HeightHour>= 30 then HalfHight:= HeightHour div 2;
+
+  RowSpan   := 16-(Height-TopSpan-(HeightHour*16));
 end;
 
 procedure TWeekView.Invalidate;
@@ -307,7 +369,7 @@ end;
 procedure TWeekView.SetSelectDate(AValue: TDate);
 begin
   if SelectDate= AValue then Exit;
-  SelectDateTime:= RecodeHour(AValue, SelectHour+5); // pierwszy element to godz 6.00
+  SelectDateTime:= RecodeHour(AValue, SelectHour+ Godz_Od-1); // pierwszy element to godz 5.00
 end;
 
 procedure TWeekView.SetSelectDateTime(AValue: TDateTime);
@@ -316,20 +378,6 @@ begin
   FSelectDateTime:= AValue;
   SelectDay:= DayOfTheWeek(FSelectDateTime);
   BeginWeekDate:= StartOfTheWeek(SelectDate);
-  Invalidate;
-end;
-
-procedure TWeekView.NextWeek;
-begin
-  ClearEvent;
-  BeginWeekDate:= IncWeek(BeginWeekDate);
-  Invalidate;
-end;
-
-procedure TWeekView.PrevWeek;
-begin
-  ClearEvent;
-  BeginWeekDate:= IncWeek(BeginWeekDate, -1);
   Invalidate;
 end;
 
@@ -378,113 +426,101 @@ begin
 end;
 
 procedure TWeekView.Paint;
-var i,d: integer;
+var i: integer;
     CurDate: TDate;
     Ev: TEventWeek;
+    rec: TRect;
+    cTop, cHeight: integer;
+    cLeft, cWidth: integer;
 
-  procedure DrawDayPanel(d: integer);
-  var rect: TRect;
-      DayName: string;
+  procedure DrawDayPanel;
+  var DayName: string;
+      d: integer;
   begin
-    rect:= TRect.Create(LeftSpan, 0, LeftSpan, Height);
-    rect.Left:= (DayWidth*d)+LeftSpan;
-    if d<6 then
-      rect.Right:= rect.Left+ DayWidth
-    else
-      rect.Right:= Width;
+    for d:=0 to 6 do // dni tygodnia
+    begin
+      ColumnPoz(d, cLeft, cWidth);
+      rec:= Rect(cLeft, 0, cLeft+cWidth, Height);
 
-    if DM.CzySwieto(BeginWeekDate+d-1) then    // święta
-       Canvas.Brush.Color:= $FFCEE7
-    else
-    if (d >= 5) then   // sobota, niedziela     // weekend innym kolorem tła
-      Canvas.Brush.Color:= $00DFDFDF
-    else
-      Canvas.Brush.Color:= clWhite;
+      //if DM.CzySwieto(BeginWeekDate+d-1) then    // święta
+      //   Canvas.Brush.Color:= $FFCEE7
+      //else
+      if (d >= 5) then   // sobota, niedziela     // weekend innym kolorem tła
+        Canvas.Brush.Color:= $E8E8E8
+      else
+        Canvas.Brush.Color:= clWhite;
 
-    Canvas.FillRect(rect);
+      Canvas.FillRect(rec);
 
-    CurDate:= IncDay(BeginWeekDate, d);
-    DayName:= FormatDateTime('DDD, DD mmm',CurDate);
-    if CurDate = Date then Canvas.Font.Bold:= true
-                      else Canvas.Font.Bold:= false;
-    DrawText(Canvas.Handle, PChar( DayName), -1, rect, DT_TOP OR DT_CENTER OR DT_SINGLELINE);
+      CurDate:= IncDay(BeginWeekDate, d);
+      DayName:= FormatDateTime('DDD, DD mmm', CurDate);
+      if CurDate = Date then Canvas.Font.Bold:= true
+                        else Canvas.Font.Bold:= false;
+      DrawText(Canvas.Handle, PChar( DayName), -1, rec, DT_TOP OR DT_CENTER OR DT_SINGLELINE);
 
-    // Linie pionowe
-    rect.Top:= 0; //TopSpan;
-    rect.Right:= rect.Left;
-    Canvas.Pen.Color:= $00C8C8C8;
-    Canvas.Line(rect);
+      // Linie pionowe
+      rec.Top:= 0; //TopSpan;
+      rec.Right:= rec.Left;
+      Canvas.Pen.Color:= $00C8C8C8;
+      Canvas.Line(rec);
+    end;
   end;
 
   procedure DrawLeftPanel;
   var h: integer;
-      rec: TRect;
       HourName: string;
   begin
-    //Canvas.Brush.Color:= clBtnFace;
     Canvas.Brush.Style:= bsClear;
-    for h:=0 to 15 do  // godziny od 6 do 21
+    for h:=0 to 15 do  // godziny od 5 do 20
     begin
-      rec.Left:= 0;
-      rec.Top:= TopSpan+(h*HeightHour);
-      rec.Right:= LeftSpan-2;
-      rec.Bottom:= rec.Top + HeightHour;
-      HourName:= Format('%d:00',[(h+6)]);
+      RowPoz(h, cTop, cHeight);
+      rec:= Rect(0, cTop, LeftSpan-2, cTop + cHeight);
+
+      HourName:= Format('%d:00',[(h+Godz_Od)]);
       DrawText(Canvas.Handle, PChar( HourName), -1, rec, DT_TOP OR DT_RIGHT OR DT_SINGLELINE);
 
-      rec.Right:= Width;
+      rec.Right := Width;
       rec.Bottom:= rec.Top;
       Canvas.Pen.Color:= $00C8C8C8;
       Canvas.Line(rec);
       if HalfHight>0 then
       begin
-        rec.Top:= rec.Top+ HalfHight;
+        rec.Top   := rec.Top+ HalfHight;
         rec.Bottom:= rec.Top;
-        rec.Left:= LeftSpan -5;
-        Canvas.Pen.Color:= $E8E8E8;
+        rec.Left  := LeftSpan -5;
+        Canvas.Pen.Color:= $00DFDFDF;
         Canvas.Line(rec);
       end;
     end;
-    // domykamy ostatnią linię
-    rec:= Rect(0,TopSpan+(16*HeightHour), Width, 0);
-    rec.Bottom:= rec.Top;
-    Canvas.Pen.Color:= $00C8C8C8;
-    Canvas.Line(rec);
   end;
 
   procedure DrawSelected;
-  var rec: TRect;
   begin
-    rec.Left  := (LeftSpan+ (SelectDay-1)*DayWidth);
-    rec.Top   := TopSpan + (SelectHour-1)*HeightHour;
-    rec.Width := DayWidth;
-    rec.Height:= HeightHour;
+    ColumnPoz(SelectDay-1, cLeft, cWidth);
+    RowPoz(SelectHour-1, cTop, cHeight);
+    rec:= Rect(cLeft, cTop, cLeft+ cWidth, cTop+ cHeight);
 
     Canvas.Brush.Color:= $E8944F;
     Canvas.FillRect(rec);
   end;
 
   procedure DrawCurrentTimeLine;
-  var rec: TRect;
-      tl: integer;
+  var tl: integer;
   begin
-    tl:= MinuteOfTheDay(Time) - 6*60; // która minuta po godzinie 6
-    tl:= Round((HeightHour / 60) * tl);
-    rec:= Rect(LeftSpan - 3, TopSpan + tl, Width, 0);
+    RowPoz(HourOfTheDay(Time)-Godz_Od , cTop, cHeight);
+    tl:= MinuteOfTheHour(Time);
+    tl:= Round((cHeight / 60) * tl);
+    rec:= Rect(LeftSpan - 3, cTop + tl, Width, 0);
     rec.Bottom:= rec.Top;
     Canvas.Pen.Color:= clRed;
     Canvas.Line(rec);
     Canvas.Brush.Color:= clRed;
-    Canvas.EllipseC(LeftSpan-7, TopSpan + tl, 5,5);
+    Canvas.EllipseC(LeftSpan-7, cTop + tl, 5,5);
   end;
 
 begin
-  // Nagłówek
   CalculateWeek;
-  for d:=0 to 6 do // dni tygodnia
-  begin
-    DrawDayPanel(d);
-  end;
+  DrawDayPanel;
   DrawLeftPanel;
   DrawCurrentTimeLine;
   if isSelected then DrawSelected;
@@ -492,18 +528,39 @@ begin
     for Ev in EventsPeerDay[i] do Ev.Paint; // Invalidate;
 end;
 
+procedure TWeekView.NextWeek;
+begin
+  ClearEvent;
+  BeginWeekDate:= IncWeek(BeginWeekDate);
+  Invalidate;
+end;
+
+procedure TWeekView.PrevWeek;
+begin
+  ClearEvent;
+  BeginWeekDate:= IncWeek(BeginWeekDate, -1);
+  Invalidate;
+end;
+
 procedure TWeekView.XYToCell(X, Y: Integer; var CellX, CellY: Integer);
+var
+  cTop, cHeight: integer;
+  cLeft, cWidth: integer;
 begin
   { Work out the column }
   if X < LeftSpan then CellX := 0 else
   begin
     CellX := ((X - LeftSpan) div DayWidth) + 1;
+    ColumnPoz(CellX-1, cLeft, cWidth);
+    if X < cLeft then Dec(CellX);
     if CellX > 7 then CellX := 0;
   end;
   { Work out the row }
   if Y < TopSpan then CellY := 0 else
   begin
     CellY := ((Y - TopSpan) div HeightHour) + 1;
+    RowPoz(CellY-1, cTop, cHeight);
+    if Y < cTop then Dec(CellY);
     if CellY > 16 then CellY := 0;
   end;
 end;
@@ -513,8 +570,6 @@ var ItemEvent: TEventWeek;
     EndWeekDate: TDate;
 begin
   EndWeekDate:= IncDay(BeginWeekDate, 6);
-  //if ((StartDate<BeginWeekDate)AND(EndDate<BeginWeekDate))OR
-  //   ((StartDate>EndWeekDate)AND(EndDate>EndWeekDate)) then exit;
   if not DateInRange(EventRecord.StartDate, BeginWeekDate, EndWeekDate) then exit;
 
   ItemEvent:= TEventWeek.Create(Self, EventRecord);
@@ -546,16 +601,53 @@ end;
 procedure TWeekView.CalcColumEvent;
 var i: integer;
 
-  procedure CreateEventMatrix(Events: TListEvent);
+  procedure CreateEventMatrix_ver1(Events: TListEvent); // MaxCol przyjmuje wartość największego maxCol dla wszystkich Events
+  var e, e1 ,p : integer;
+      CzyWolnaPozycja: Boolean;
+      maxPoz: integer;
+  begin
+    if Events.Count<=1 then exit;
+    maxPoz:= 0;
+    for e:=1 to Events.Count-1 do // dla każdego Eventu
+      for p:=0 to e+1 do         // sprawdź czy jest wolna pozycja i tam dopisz
+      begin
+        CzyWolnaPozycja:= true;
+        for e1:=0 to e-1 do
+        // algorytm wymaga posortowanej listy Eventów wg. StartDate
+        if Events[e1].OLLevel=p then
+        if ((Events[e].fStartDate >= Events[e1].fStartDate)AND(Events[e].fEndDate <= Events[e1].fEndDate))OR // e zawie się w e1
+           ((Events[e].fStartDate >= Events[e1].fStartDate)AND(Events[e].fStartDate < Events[e1].fEndDate)) then // e zaczyna się w e1
+        begin
+          CzyWolnaPozycja:= false;
+          Break;
+        end;
+
+        if CzyWolnaPozycja then
+        begin
+          // dopisujemy Event
+          Events[e].OLLevel:= p;  // <--------------- Ustalamy w której kolumnie zmieścimy Event
+          if p>maxPoz then maxPoz:= p;
+          Break; // kończymy poszukiwania
+        end;
+      end;
+    for e:=0 to Events.Count-1 do // dla każdego Eventu
+      Events[e].MaxCol:= maxPoz+1;
+  end;
+
+  procedure CreateEventMatrix(Events: TListEvent);  // Rozkład Events jest równomierny dla danego dnia,
   var g, p, e: integer;
       matrix: TMatrix;
       CzyWolnaPozycja: Boolean;
       maxPoz: integer;
   begin
+    if Events.Count<=1 then exit;
     // Create Matrix
-    for g:= 6 to 22 do
+    matrix:= [];
+    SetLength(matrix, MaxMatrix+1);
+    for g:= 0 to MaxMatrix do
       SetLength(matrix[g], Events.Count);
-    for g:= 6 to 22 do
+
+    for g:= 0 to MaxMatrix do
       for p:= 0 to Events.Count-1 do
       begin
         matrix[g,p].ev := -1;
@@ -568,7 +660,7 @@ var i: integer;
       for p:=0 to e+1 do         // sprawdź czy jest wolna pozycja i tam dopisz
       begin
         CzyWolnaPozycja:= true;
-        for g:=Events[e].StartHour to Events[e].EndHour-1 do // jeśli pozycja jest zajęta to wyjdź i sprawdz kolejną kolumnę
+        for g:= TimeToMatrix(Events[e].fStartDate) to TimeToMatrix(Events[e].fEndDate)-1 do // jeśli pozycja jest zajęta to wyjdź i sprawdz kolejną kolumnę
           if matrix[g,p].ev>=0 then
           begin
             CzyWolnaPozycja:= false;
@@ -578,7 +670,7 @@ var i: integer;
         if CzyWolnaPozycja then
         begin
           // dopisujemy Event
-          for g:=Events[e].StartHour to Events[e].EndHour-1 do
+          for g:= TimeToMatrix(Events[e].fStartDate) to TimeToMatrix(Events[e].fEndDate)-1 do
           begin
             matrix[g,p].ev   := e;  // numer Eventu
             matrix[g,p].poz  := p;  // pozycja w pionie
@@ -590,7 +682,7 @@ var i: integer;
     // --------------------------------------
 
     // Normalizujemy w poziomie
-    for g:=6 to 22 do
+    for g:=0 to MaxMatrix do
     begin
       maxPoz:= -1;
       for p:= Events.Count-1 downto 0 do
@@ -602,11 +694,13 @@ var i: integer;
           if matrix[g,p].ev>=0 then
           begin
             matrix[g,p].poz:= maxPoz;
-            if Events[matrix[g,p].ev].MaxCol< (maxPoz+1) then Events[matrix[g,p].ev].MaxCol:= maxPoz+1;  // <---- Ustalamy mksymalną liczbę kolumn dla Eventa, +1 bo poz są od 0
-            for e:=g{Events[matrix[g,p].ev].StartHour} to Events[matrix[g,p].ev].EndHour-1 do // rzutujemy na Event w pionie
-              if matrix[e,p].poz<maxPoz then matrix[e,p].poz:= maxPoz;
+            if Events[matrix[g,p].ev].MaxCol< (maxPoz+1) then
+            begin
+              Events[matrix[g,p].ev].MaxCol:= maxPoz+1;  // <---- Ustalamy mksymalną liczbę kolumn dla Eventa, +1 bo poz są od 0
+              for e:=g{Events[matrix[g,p].ev].StartHour} to TimeToMatrix(Events[matrix[g,p].ev].fEndDate)-1 do // rzutujemy na Event w pionie
+                if matrix[e,p].poz<maxPoz then matrix[e,p].poz:= maxPoz;
+            end;
           end;
-          //else Dec(maxPoz);
     end;
     //------------------------------
 
@@ -625,20 +719,54 @@ var i: integer;
     //end;
     //---------------------------------------------------------------------------
 
-    for g:= 6 to 22 do
+    for g:= 0 to MaxMatrix do
       SetLength(matrix[g], 0);
   end;
 
 begin
   for i:=1 to 7 do
   begin
-    CreateEventMatrix(EventsPeerDay[i]);
+    CreateEventMatrix_ver1(EventsPeerDay[i]);
   end;
 end;
 
 function TWeekView.GetDateCaption: string;
 begin
   Result:= DateToStr( BeginWeekDate)+ ' - ' + DateToStr( EndOfTheWeek(BeginWeekDate));
+end;
+
+procedure TWeekView.SelectEvent(EventID: integer);
+var d, e: integer;
+begin
+  for d:=1 to 7 do
+    for e:=0 to EventsPeerDay[d].Count-1 do
+      if EventsPeerDay[d].Items[e].ID = EventID then
+         EventsPeerDay[d].Items[e].isSelected:= true
+      else
+         EventsPeerDay[d].Items[e].isSelected:= false;
+
+end;
+
+procedure TWeekView.ColumnPoz(d: integer; var cLeft, cWidth: integer);
+var span: integer;
+begin
+  span:= d-ColSpan;
+  if span<0 then span:= 0;
+  cLeft:= LeftSpan + (DayWidth * d) + span;
+
+  if span>=0 then span:= 1 else span:= 0;
+  cWidth:= DayWidth + span;
+end;
+
+procedure TWeekView.RowPoz(h: integer; var cTop, cHeight: integer);
+var span: integer;
+begin
+  span:= h-RowSpan;
+  if span<0 then span:= 0;
+  cTop:= TopSpan + (HeightHour * h) + span;
+
+  if span>=0 then span:= 1 else span:= 0;
+  cHeight:= HeightHour + span;
 end;
 
 end.

@@ -1,7 +1,7 @@
 object KwatPlanWyjazdow: TKwatPlanWyjazdow
-  Left = 676
+  Left = 180
   Height = 564
-  Top = 460
+  Top = 178
   Width = 1038
   Caption = 'Harmonogram planowanych wyjazdów.'
   ClientHeight = 564
@@ -214,6 +214,7 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
               Filter.AllValue = '(All values)'
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
+              Footer.ValueType = fvtCount
               Footers = <>
             end          
             item
@@ -383,12 +384,13 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
               ShortCut = 16451
               Enabled = True
             end>
+          FooterOptions.Active = True
           FooterOptions.RowCount = 1
           FooterOptions.Style = tsNative
           FooterOptions.DrawFullLine = False
           SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
           SearchOptions.FromStart = False
-          OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+          OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
           FooterRowCount = 1
           Align = alClient
           AlternateColor = 15268863
