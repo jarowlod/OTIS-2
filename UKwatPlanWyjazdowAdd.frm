@@ -169,15 +169,6 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Caption = 'Uwagi:'
     ParentColor = False
   end
-  object edCel: TEdit
-    Left = 112
-    Height = 23
-    Top = 192
-    Width = 496
-    Anchors = [akTop, akLeft, akRight]
-    MaxLength = 200
-    TabOrder = 2
-  end
   object edUwagi: TEdit
     Left = 112
     Height = 23
@@ -185,7 +176,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Width = 496
     Anchors = [akTop, akLeft, akRight]
     MaxLength = 200
-    TabOrder = 3
+    TabOrder = 2
   end
   object SpeedButton1: TSpeedButton
     AnchorSideLeft.Control = cbSamochod
@@ -206,7 +197,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     ButtonWidth = 23
     NumGlyphs = 1
     MaxLength = 0
-    TabOrder = 4
+    TabOrder = 3
     Text = 'teGodzWyjazdu'
   end
   object dtpData_wyjazdu: TDateTimePicker
@@ -217,7 +208,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 5
+    TabOrder = 4
     TrailingSeparator = False
     TextForNullDate = 'NULL'
     LeadingZeros = True
@@ -241,7 +232,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     ButtonWidth = 23
     NumGlyphs = 1
     MaxLength = 0
-    TabOrder = 6
+    TabOrder = 5
     Text = 'teGodzPowrotu'
   end
   object dtpData_Powrotu: TDateTimePicker
@@ -252,7 +243,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
-    TabOrder = 7
+    TabOrder = 6
     Enabled = False
     TrailingSeparator = False
     TextForNullDate = 'NULL'
@@ -274,9 +265,10 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Width = 240
     AutoComplete = True
     AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+    AutoDropDown = True
     ItemHeight = 15
     MaxLength = 60
-    TabOrder = 8
+    TabOrder = 7
   end
   object cbSamochod: TComboBox
     Left = 112
@@ -289,6 +281,20 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     ItemHeight = 15
     OnChange = cbSamochodChange
     Style = csDropDownList
+    TabOrder = 8
+  end
+  object cbCel: TComboBox
+    Left = 112
+    Height = 23
+    Top = 192
+    Width = 497
+    Anchors = [akTop, akLeft, akRight]
+    AutoComplete = True
+    AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+    AutoDropDown = True
+    DropDownCount = 15
+    ItemHeight = 15
+    MaxLength = 60
     TabOrder = 9
   end
 end

@@ -272,17 +272,20 @@ var id_w: integer;
 begin
   if ZQWidzenia.IsEmpty then exit;
 
-  if ZQWidzenia.FieldByName('Nadzor').AsString <> DM.PelnaNazwa then
-    begin
-      MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć może tylko użytkownik który nadzorował widzenie.', mtWarning, [mbOK],0);
-      exit;
-    end;
-  if (ZQWidzenia.FieldByName('Etap').AsInteger = ew_Zrealizowane) and
-     (ZQWidzenia.FieldByName('Data_Widzenie').AsDateTime < IncDay(Date(), -7)) then
-    begin
-      MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć można tylko do 7 dni od daty widzenia.', mtWarning, [mbOK],0);
-      exit;
-    end;
+  if not DM.uprawnienia[8] then
+  begin
+    if ZQWidzenia.FieldByName('Nadzor').AsString <> DM.PelnaNazwa then
+      begin
+        MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć może tylko użytkownik który nadzorował widzenie.', mtWarning, [mbOK],0);
+        exit;
+      end;
+    if (ZQWidzenia.FieldByName('Etap').AsInteger = ew_Zrealizowane) and
+       (ZQWidzenia.FieldByName('Data_Widzenie').AsDateTime < IncDay(Date(), -7)) then
+      begin
+        MessageDlg('Brak uprawnień.'+LineEnding+'Usunąć można tylko do 7 dni od daty widzenia.', mtWarning, [mbOK],0);
+        exit;
+      end;
+  end;
 
   if MessageDlg('Czy napewno usunąć widzenie?', mtWarning, [mbOK, mbCancel],0) = mrCancel then exit;
   //--------------------------------------------------------------------------------------------------------------------

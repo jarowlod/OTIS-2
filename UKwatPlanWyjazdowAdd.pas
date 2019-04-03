@@ -16,10 +16,10 @@ type
     btnAnuluj: TBitBtn;
     btnOK: TBitBtn;
     cbKierowca: TComboBox;
+    cbCel: TComboBox;
     cbSamochod: TComboBox;
     dtpData_wyjazdu: TDateTimePicker;
     dtpData_Powrotu: TDateTimePicker;
-    edCel: TEdit;
     edUwagi: TEdit;
     Image1: TImage;
     Label1: TLabel;
@@ -48,6 +48,7 @@ type
     procedure ZapiszWyjazd;
     procedure WczytajKierowcow;
     procedure WczytajSamochody;
+    procedure WczytajCel;
   public
     procedure ZaplanujWyjazd( AData_Wyjazdu: TDateTime);
     procedure ModyfikujWyjazd( AID: integer);
@@ -84,6 +85,7 @@ begin
   id_samochodu:= 0;
   WczytajKierowcow;
   WczytajSamochody;
+  WczytajCel;
 end;
 
 procedure TKwatPlanWyjazdowAdd.FormDestroy(Sender: TObject);
@@ -161,7 +163,7 @@ begin
     ZQ.ParamByName('kierowca').AsString      := cbKierowca.Text;
     ZQ.ParamByName('data_wyjazdu').AsDateTime:= dtpData_Wyjazdu.DateTime;
     ZQ.ParamByName('data_powrotu').AsDateTime:= dtpData_Powrotu.DateTime;
-    ZQ.ParamByName('cel').AsString           := edCel.Text;
+    ZQ.ParamByName('cel').AsString           := cbCel.Text;
     ZQ.ParamByName('uwagi').AsString         := edUwagi.Text;
     ZQ.ParamByName('user').AsString          := DM.PelnaNazwa;
 
@@ -177,11 +179,31 @@ begin
   cbKierowca.Items.Clear;
   ZQ:= TZQueryPom.Create(Self);
   try
-    ZQ.SQL.Text:= 'SELECT Full_name, Dzial FROM uprawnienia WHERE Dzial="Kwat" ORDER BY Full_name';
+//    ZQ.SQL.Text:= 'SELECT Full_name, Dzial FROM uprawnienia WHERE Dzial="Kwat" ORDER BY Full_name';
+    ZQ.SQL.Text:= 'SELECT DISTINCT Kierowca FROM kwat_plan_wyjazdow ORDER BY Kierowca';
     ZQ.Open;
     while not ZQ.EOF do
     begin
-      cbKierowca.Items.Add(ZQ.FieldByName('Full_name').AsString);
+      cbKierowca.Items.Add(ZQ.FieldByName('Kierowca').AsString);
+      ZQ.Next;
+    end;
+  finally
+    FreeAndNil(ZQ);
+  end;
+end;
+
+procedure TKwatPlanWyjazdowAdd.WczytajCel;
+var ZQ: TZQueryPom;
+begin
+  cbCel.Items.Clear;
+  ZQ:= TZQueryPom.Create(Self);
+  try
+//    ZQ.SQL.Text:= 'SELECT Full_name, Dzial FROM uprawnienia WHERE Dzial="Kwat" ORDER BY Full_name';
+    ZQ.SQL.Text:= 'SELECT Cel, count(Cel) ile FROM kwat_plan_wyjazdow GROUP By Cel HAVING ile>1';
+    ZQ.Open;
+    while not ZQ.EOF do
+    begin
+      cbCel.Items.Add(ZQ.FieldByName('Cel').AsString);
       ZQ.Next;
     end;
   finally
@@ -262,7 +284,7 @@ begin
     teGodzWyjazdu.Time      := dtpData_wyjazdu.DateTime;
     dtpData_Powrotu.DateTime:= ZQ.FieldByName('data_powrotu').AsDateTime;
     teGodzPowrotu.Time      := dtpData_Powrotu.DateTime;
-    edCel.Text              := ZQ.FieldByName('Cel').AsString;
+    cbCel.Text              := ZQ.FieldByName('Cel').AsString;
     edUwagi.Text            := ZQ.FieldByName('Uwagi').AsString;
 
     for i:=0 to cbSamochod.Items.Count-1 do

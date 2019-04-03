@@ -1,7 +1,7 @@
 object OchRejestrWidzen: TOchRejestrWidzen
-  Left = 333
+  Left = 334
   Height = 766
-  Top = 237
+  Top = 226
   Width = 1216
   Caption = 'Rejestr widzeń osadzonych'
   ClientHeight = 766
@@ -82,6 +82,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
         TimeDisplay = tdHMS
         DateMode = dmComboBox
         Date = 42762
+        Time = 0.407043831015471
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'

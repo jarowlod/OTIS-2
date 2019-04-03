@@ -201,8 +201,8 @@ var pom, hDiv4: integer;
     cTop, cHeight: integer;
 begin
   TWeekView(Parent).ColumnPoz(DayOfWeek-1, cLeft, cWidth);
-  Width:= (cWidth div MaxCol)-4;
-  Left:= cLeft + Width * OLLevel;
+  Width:= ((cWidth-10) div MaxCol);
+  Left:= 1 + cLeft + Width * OLLevel;
 
   hDiv4:= StartHour div 4;
   TWeekView(Parent).RowPoz(hDiv4, cTop, cHeight);  // pozycja pełnej godziny
@@ -262,7 +262,7 @@ begin
                    else Canvas.GradientFill(rec, fBgColor, $E8FFFF, gdVertical);
 
   Canvas.Brush.Style:=bsClear;
-  rec.left:= 4;
+  rec.left:= 5;
   // draw godziny
   sTime:= FormatDateTime('HH:MM', fStartDate) + ' - ' + FormatDateTime('HH:MM', fEndDate);
   Canvas.Font.Bold:=true;
@@ -276,6 +276,7 @@ begin
   rec.Left:= rec.Left - 1;
   rec.Top:=  rec.Top - 1;
   Canvas.Font.Color:= clBlack;
+  Canvas.Font.Bold:= false;
   DrawText(Canvas.Handle, PChar( sTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
 
   // draw Title
@@ -286,6 +287,7 @@ begin
 
   // left bawel
   lr:= Rect(0,0,4,Height);
+  Canvas.Pen.Width:= 1;
   Canvas.Brush.Color:= $B01C06;
   Canvas.FillRect(lr);
   if (fisMouseEnter)or(isSelected) then
@@ -436,27 +438,42 @@ var i: integer;
   procedure DrawDayPanel;
   var DayName: string;
       d: integer;
+      nRec: TRect;
   begin
     for d:=0 to 6 do // dni tygodnia
     begin
       ColumnPoz(d, cLeft, cWidth);
       rec:= Rect(cLeft, 0, cLeft+cWidth, Height);
 
+      // tło
       //if DM.CzySwieto(BeginWeekDate+d-1) then    // święta
       //   Canvas.Brush.Color:= $FFCEE7
       //else
       if (d >= 5) then   // sobota, niedziela     // weekend innym kolorem tła
         Canvas.Brush.Color:= $E8E8E8
+      else if (d in [1,3]) then
+        Canvas.Brush.Color:= $FFFAF4
       else
         Canvas.Brush.Color:= clWhite;
 
       Canvas.FillRect(rec);
 
+      // nagłówek
+      nRec:= Rect(rec.Left, 0, rec.Right, TopSpan);
       CurDate:= IncDay(BeginWeekDate, d);
       DayName:= FormatDateTime('DDD, DD mmm', CurDate);
-      if CurDate = Date then Canvas.Font.Bold:= true
-                        else Canvas.Font.Bold:= false;
-      DrawText(Canvas.Handle, PChar( DayName), -1, rec, DT_TOP OR DT_CENTER OR DT_SINGLELINE);
+      if CurDate = Date then
+        begin
+          Canvas.Brush.Color:= clRed;
+          Canvas.FillRect(nRec.Left, 0, nRec.Right, 3);
+          Canvas.Brush.Color:= $FFDCB9;
+          Canvas.FillRect(nRec.Left, 3, nRec.Right, TopSpan);
+          Canvas.Font.Bold:= true
+        end
+      else Canvas.Font.Bold:= false;
+
+      nRec.Top:= 3;
+      DrawText(Canvas.Handle, PChar( DayName), -1, nRec, DT_TOP OR DT_CENTER OR DT_SINGLELINE);
 
       // Linie pionowe
       rec.Top:= 0; //TopSpan;
@@ -498,7 +515,7 @@ var i: integer;
   begin
     ColumnPoz(SelectDay-1, cLeft, cWidth);
     RowPoz(SelectHour-1, cTop, cHeight);
-    rec:= Rect(cLeft, cTop, cLeft+ cWidth, cTop+ cHeight);
+    rec:= Rect(cLeft+1, cTop+1, cLeft+ cWidth-1, cTop+ cHeight-1);
 
     Canvas.Brush.Color:= $E8944F;
     Canvas.FillRect(rec);
@@ -754,8 +771,8 @@ begin
   if span<0 then span:= 0;
   cLeft:= LeftSpan + (DayWidth * d) + span;
 
-  if span>=0 then span:= 1 else span:= 0;
-  cWidth:= DayWidth + span;
+  if (d-ColSpan)>=0 then span:= 1 else span:= 0;
+  cWidth:= DayWidth + span+1;
 end;
 
 procedure TWeekView.RowPoz(h: integer; var cTop, cHeight: integer);
@@ -765,8 +782,8 @@ begin
   if span<0 then span:= 0;
   cTop:= TopSpan + (HeightHour * h) + span;
 
-  if span>=0 then span:= 1 else span:= 0;
-  cHeight:= HeightHour + span;
+  if (h-RowSpan)>=0 then span:= 1 else span:= 0;
+  cHeight:= HeightHour + span+1;
 end;
 
 end.

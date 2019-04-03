@@ -730,6 +730,16 @@ object MasterForm: TMasterForm
         OnDblClick = LedAlarmDblClick
       end
     end
+    object Label2: TLabel
+      Left = 88
+      Height = 15
+      Top = 8
+      Width = 122
+      Caption = 'Nazwisko, IDO lub Cela'
+      Font.Color = clGray
+      ParentColor = False
+      ParentFont = False
+    end
   end
   object RxDBGrid1: TRxDBGrid
     Left = 0
@@ -1482,6 +1492,9 @@ object MasterForm: TMasterForm
       object MenuItem78: TMenuItem
         Action = ActionPlanWyjazdow
       end
+      object MenuItem79: TMenuItem
+        Action = ActionSprzetRTV
+      end
     end
   end
   object Timer1Wyszukaj: TTimer
@@ -1810,6 +1823,12 @@ object MasterForm: TMasterForm
       Caption = 'Plan wyjazdów...'
       ImageIndex = 51
       OnExecute = ActionPlanWyjazdowExecute
+    end
+    object ActionSprzetRTV: TAction
+      Category = 'Kwaterunek'
+      Caption = 'Sprzęt RTV ...'
+      ImageIndex = 52
+      OnExecute = ActionSprzetRTVExecute
     end
   end
   object Timer2Komunikaty: TTimer

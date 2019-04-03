@@ -15,6 +15,7 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionSprzetRTV: TAction;
     ActionPlanWyjazdow: TAction;
     ActionAlerterOpcje: TAction;
     ActionPaczkiRejestr: TAction;
@@ -58,6 +59,7 @@ type
     BGRALabel1: TBGRALabel;
     IdleTimerAntiFreeze: TIdleTimer;
     imgLogoSW: TImage;
+    Label2: TLabel;
     MenuItem10: TMenuItem;
     MenuItem19: TMenuItem;
     MenuItem23: TMenuItem;
@@ -109,6 +111,7 @@ type
     MenuItem76: TMenuItem;
     MenuItem77: TMenuItem;
     MenuItem78: TMenuItem;
+    MenuItem79: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -207,6 +210,7 @@ type
     procedure ActionRozmieszczenieExecute(Sender: TObject);
     procedure ActionSalaWidzenExecute(Sender: TObject);
     procedure ActionSkypeExecute(Sender: TObject);
+    procedure ActionSprzetRTVExecute(Sender: TObject);
     procedure ActionStanowiskaExecute(Sender: TObject);
     procedure ActionStatystykaExecute(Sender: TObject);
     procedure ActionTerminarzExecute(Sender: TObject);
@@ -270,7 +274,7 @@ var
 
 const
   SQLAllOsadzeni      = 'SELECT * FROM osadzeni';
-  SQLSelectedOsadzeni = 'SELECT * FROM osadzeni WHERE (NAZWISKO LIKE :nazwisko) OR (POC LIKE :poc)';
+  SQLSelectedOsadzeni = 'SELECT * FROM osadzeni WHERE (NAZWISKO LIKE :nazwisko)';
 
 implementation
 uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_ZmianaHasla, URozmieszczenie,
@@ -279,7 +283,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UZdjAktualizacjaZdjec,
      UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype,
-     UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr, UAlerterConfig, UKwatPlanWyjazdow;
+     UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr, UAlerterConfig, UKwatPlanWyjazdow, UKwatSprzetRTV;
 {$R *.frm}
 
 { TMasterForm }
@@ -352,7 +356,6 @@ begin
   ActionAddWykaz.Enabled       := DM.uprawnienia[4];   // dodawanie do wykazów ochronnych
   ActionAddWidzenie.Enabled    := DM.uprawnienia[6];   // widzenia
   ActionDodajOsobeBliska.Enabled:= DM.uprawnienia[11]; // osoby bliskie
-  // docelowo wszyscy będą mieli podgląd a edycja tylko dla wyznaczonego stanowiska
   ActionSalaWidzen.Enabled     := DM.uprawnienia[6];   // widzenia
 
   ActionKreatorWPZ.Enabled     := true;
@@ -558,9 +561,25 @@ begin
            Close;
            if Edit1.Text<>'' then
               begin
-                  SQL.Text:= SQLSelectedOsadzeni;
-                  ParamByName('nazwisko').AsString:= Edit1.Text +'%';
-                  ParamByName('POC').AsString:= Edit1.Text +'%';
+                  if Pos('-', Edit1.Text)>0 then
+                    begin
+                      SQL.Text:= SQLAllOsadzeni + ' WHERE (POC LIKE :poc)';
+                      ParamByName('poc').AsString:= Edit1.Text +'%';
+                    end else
+                  if Pos('/', Edit1.Text)>0 then
+                    begin
+                      SQL.Text:= SQLAllOsadzeni + ' WHERE (POC LIKE :poc)';
+                      ParamByName('poc').AsString:= '%'+ Edit1.Text +'%';
+                    end else
+                  if StrToIntDef(Edit1.Text, 0)>0 then
+                    begin
+                      SQL.Text:= SQLAllOsadzeni + ' WHERE (IDO LIKE :ido)';
+                      ParamByName('ido').AsString:= Edit1.Text +'%';
+                    end else
+                    begin
+                      SQL.Text:= SQLSelectedOsadzeni;
+                      ParamByName('nazwisko').AsString:= Edit1.Text +'%';
+                    end;
               end
            else
               SQL.Text:= SQLAllOsadzeni;
@@ -709,6 +728,16 @@ end;
 procedure TMasterForm.ActionSkypeExecute(Sender: TObject);
 begin
   with TOchRezerwacjaSkype.Create(Self) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.ActionSprzetRTVExecute(Sender: TObject);
+begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
+  with TKwatSprzetRTV.Create(Self, DM.ZQOsadzeni.FieldByName('ido').AsInteger) do
   begin
        ShowModal;
        Free;
