@@ -15,6 +15,7 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionSprzetRTVWydruk: TAction;
     ActionSprzetRTV: TAction;
     ActionPlanWyjazdow: TAction;
     ActionAlerterOpcje: TAction;
@@ -112,6 +113,7 @@ type
     MenuItem77: TMenuItem;
     MenuItem78: TMenuItem;
     MenuItem79: TMenuItem;
+    MenuItem80: TMenuItem;
     MenuItem81: TMenuItem;
     MenuItemTestAlarm: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
@@ -213,6 +215,7 @@ type
     procedure ActionSalaWidzenExecute(Sender: TObject);
     procedure ActionSkypeExecute(Sender: TObject);
     procedure ActionSprzetRTVExecute(Sender: TObject);
+    procedure ActionSprzetRTVWydrukExecute(Sender: TObject);
     procedure ActionStanowiskaExecute(Sender: TObject);
     procedure ActionStatystykaExecute(Sender: TObject);
     procedure ActionTerminarzExecute(Sender: TObject);
@@ -286,7 +289,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      UPenitWydarzenia, USaper, UZatNiezatrudnieni, UDrukWykazOsadz, UOchRejestrWykazow, UOchAddWykaz,
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UZdjAktualizacjaZdjec,
      UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype,
-     UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr, UAlerterConfig, UKwatPlanWyjazdow, UKwatSprzetRTV;
+     UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr, UAlerterConfig, UKwatPlanWyjazdow, UKwatSprzetRTV, UKwatSprzetRTVWydruk;
 {$R *.frm}
 
 { TMasterForm }
@@ -741,6 +744,15 @@ procedure TMasterForm.ActionSprzetRTVExecute(Sender: TObject);
 begin
   if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
   with TKwatSprzetRTV.Create(Self, DM.ZQOsadzeni.FieldByName('ido').AsInteger) do
+  begin
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.ActionSprzetRTVWydrukExecute(Sender: TObject);
+begin
+  with TKwatSprzetRTVWydruk.Create(Self) do
   begin
        ShowModal;
        Free;

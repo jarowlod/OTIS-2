@@ -154,7 +154,7 @@
         <PackageName Value="adLCL"/>
       </Item35>
     </RequiredPackages>
-    <Units Count="77">
+    <Units Count="78">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -763,6 +763,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit76>
+      <Unit77>
+        <Filename Value="UKwatSprzetRTVWydruk.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="KwatSprzetRTVWydruk"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit77>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

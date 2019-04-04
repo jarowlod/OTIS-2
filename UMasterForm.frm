@@ -1368,6 +1368,9 @@ object MasterForm: TMasterForm
       object MenuItem79: TMenuItem
         Action = ActionSprzetRTV
       end
+      object MenuItem80: TMenuItem
+        Action = ActionSprzetRTVWydruk
+      end
     end
   end
   object Timer1Wyszukaj: TTimer
@@ -1702,6 +1705,12 @@ object MasterForm: TMasterForm
       Caption = 'Sprzęt RTV ...'
       ImageIndex = 52
       OnExecute = ActionSprzetRTVExecute
+    end
+    object ActionSprzetRTVWydruk: TAction
+      Category = 'Kwaterunek'
+      Caption = 'Wydruk Sprzętu RTV ...'
+      ImageIndex = 4
+      OnExecute = ActionSprzetRTVWydrukExecute
     end
   end
   object Timer2Komunikaty: TTimer
