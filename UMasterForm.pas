@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, rxdbutils, Grids,
-  db, spkt_Tab, spkt_Pane, spkt_Buttons, Types, Clipbrd, dateutils, LCLType,
-  LazUTF8, UAlerter, IdComponent, IdStack, datamodule, ueled, BGRALabel;
+  ComCtrls, Menus, windows, ExtCtrls, StdCtrls, ActnList, rxdbutils, Grids, db,
+  spkt_Tab, spkt_Pane, spkt_Buttons, Types, Clipbrd, dateutils, LCLType,
+  LazUTF8, UAlerter, IdComponent, IdStack, BGRALabel, BCImageButton, datamodule;
 
 type
 
@@ -56,9 +56,9 @@ type
     ActionProsbyOsadzonych: TAction;
     ActionProsbyOsadzonego: TAction;
     ActionRozmieszczenie: TAction;
+    BtnLogoAlarm: TBCImageButton;
     BGRALabel1: TBGRALabel;
     IdleTimerAntiFreeze: TIdleTimer;
-    imgLogoSW: TImage;
     Label2: TLabel;
     MenuItem10: TMenuItem;
     MenuItem19: TMenuItem;
@@ -112,6 +112,8 @@ type
     MenuItem77: TMenuItem;
     MenuItem78: TMenuItem;
     MenuItem79: TMenuItem;
+    MenuItem81: TMenuItem;
+    MenuItemTestAlarm: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
     MenuItemDoKoszyka: TMenuItem;
@@ -121,6 +123,7 @@ type
     MenuItem9: TMenuItem;
     Panel2: TPanel;
     Panel3: TPanel;
+    PopupMenuAlarm: TPopupMenu;
     SpkPane1: TSpkPane;
     SpkPane2: TSpkPane;
     SpkSmallButton1: TSpkSmallButton;
@@ -144,7 +147,6 @@ type
     ToolButton7: TToolButton;
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
-    LedAlarm: TuELED;
     ZatrudnienieAdd: TAction;
     ActionList1: TActionList;
     Edit1: TEdit;
@@ -220,16 +222,15 @@ type
     procedure ActionZdjeciaBrakiExecute(Sender: TObject);
     procedure ActionPaczkiZwrotyExecute(Sender: TObject);
     procedure Action_AdresyJednostekExecute(Sender: TObject);
+    procedure BtnLogoAlarmClick(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure IdleTimerAntiFreezeTimer(Sender: TObject);
     procedure Image1DblClick(Sender: TObject);
-    procedure imgLogoSWMouseEnter(Sender: TObject);
-    procedure LedAlarmDblClick(Sender: TObject);
-    procedure LedAlarmMouseLeave(Sender: TObject);
     procedure MenuItem26Click(Sender: TObject);
     procedure MenuItem37Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
+    procedure MenuItemTestAlarmClick(Sender: TObject);
     procedure PopupMenu1Popup(Sender: TObject);
     procedure RxDBGrid1DataHintShow(Sender: TObject; CursorPos: TPoint;
       Cell: TGridCoord; Column: TRxColumn; var HintStr: string;
@@ -261,6 +262,8 @@ type
     procedure WczytajUstawieniaAlarmu;
     procedure ShowAlert(Status: TMyRecord);
     procedure ShowStatus(Status: TMyRecord);
+    procedure PopupMenuAlarmAddItems;
+    procedure PopupMenuAlarmClick(Sender: TObject);
   public
     { public declarations }
     isExecuteSQL: boolean;
@@ -314,6 +317,10 @@ begin
     hotkey_alert:= GlobalAddAtom('OTIS_alert');
     RegisterHotKey(Handle, hotkey_alert, 0, VK_PAUSE);  // wywołuje alarm
   end;
+
+  BtnLogoAlarm.LoadFromBitmapFile;
+  BtnLogoAlarm.Enabled:= ALARM.isClientActive;
+  if BtnLogoAlarm.Enabled then PopupMenuAlarmAddItems;
 end;
 
 procedure TMasterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -382,26 +389,6 @@ begin
   end;
 end;
 
-procedure TMasterForm.imgLogoSWMouseEnter(Sender: TObject);
-begin
-  if ALARM.isClientActive then
-  begin
-    imgLogoSW.Visible:= false;
-    LedAlarm.Visible:= true;
-  end;
-end;
-
-procedure TMasterForm.LedAlarmDblClick(Sender: TObject);
-begin
-  if ALARM.isClientActive then ALARM.SendAlarm;
-end;
-
-procedure TMasterForm.LedAlarmMouseLeave(Sender: TObject);
-begin
-  LedAlarm.Visible:= false;
-  imgLogoSW.Visible:= true;
-end;
-
 // Rejstr Aktualizacji
 procedure TMasterForm.MenuItem26Click(Sender: TObject);
 begin
@@ -428,6 +415,22 @@ begin
        ShowModal;
        Free;
   end;
+end;
+
+procedure TMasterForm.MenuItemTestAlarmClick(Sender: TObject);
+var myRecord: TMyRecord;
+begin
+  myRecord.Head                 := MYHEADKEY;
+  myRecord.Kod                  := 0; // send
+  myRecord.RemoteIP             := '0.0.0.0';
+  myRecord.RemoteUserLokalizacja:= 'Self Test';
+
+  myRecord.LocalUserName        := DM.PelnaNazwa;
+  myRecord.LocalUserLokalizacja := 'Self Test';
+  myRecord.LocalUserTel         := '...';
+  myRecord.SendTime:= Now();
+
+  ShowAlert(myRecord);
 end;
 
 //======================================================================================================================
@@ -1009,6 +1012,11 @@ begin
   end;
 end;
 
+procedure TMasterForm.BtnLogoAlarmClick(Sender: TObject);
+begin
+  if ALARM.isClientActive then ALARM.SendAlarms;
+end;
+
 procedure TMasterForm.Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_DOWN then
@@ -1143,7 +1151,7 @@ begin
   else
   if Msg.WParam = hotkey_alert then
     begin
-       ALARM.SendAlarm;
+       ALARM.SendAlarms;
     end;
 end;
 
@@ -1270,7 +1278,7 @@ begin
 
   if Status.Kod = 200 then // OK
   begin
-    DM.KomunikatPopUp(Self, 'ALERT', 'Wezwano o pomoc do: '+ Status.RemoteUserLokalizacja, nots_Warning);
+    DM.KomunikatPopUp(Self, 'ALERT', 'Wezwanie o pomoc do: '+ Status.RemoteUserLokalizacja, nots_Warning);
     exit;
   end;
   //RemoteUserName:= Status.Split([';'])[0];
@@ -1282,6 +1290,25 @@ begin
   //  exit;
   //end;
   //DM.KomunikatPopUp(Self, 'ALERT', 'Wezwano o pomoc do: '+RemoteUserLokalizacja, nots_Warning);
+end;
+
+procedure TMasterForm.PopupMenuAlarmAddItems;
+var menuItemPom: TMenuItem;
+    i: integer;
+begin
+  for i:=0 to Length(ALARM.ListaOdbiorcow)-1 do
+  begin
+    menuItemPom:= TMenuItem.Create(PopupMenuAlarm);
+    menuItemPom.Caption:= ALARM.ListaOdbiorcow[i].RemoteUserLokalizacja;
+    menuItemPom.Tag:= i;
+    menuItemPom.OnClick:= @PopupMenuAlarmClick;
+    PopupMenuAlarm.Items.Add(menuItemPom);
+  end;
+end;
+
+procedure TMasterForm.PopupMenuAlarmClick(Sender: TObject);
+begin
+  if ALARM.isClientActive then ALARM.SendAlarm(TMenuItem(Sender).Tag);
 end;
 
    { TODO : Domyślne lub z pliku ini: Rozmiar i położenie okna podczas onShow }

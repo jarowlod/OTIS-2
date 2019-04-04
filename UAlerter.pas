@@ -51,7 +51,8 @@ type
     ListaOdbiorcow: TListaOdbiorcow;
     constructor Create;
     Destructor Destroy; override;
-    procedure SendAlarm;
+    procedure SendAlarms;
+    procedure SendAlarm(item: integer);
     procedure StartSerwer;
     class Function GetLocalIP: string;
 //    property ListaOdbiorcow: TStringList read FListaOdbiorcow write FListaOdbiorcow;
@@ -360,48 +361,39 @@ end;
 
 function TAlerter.GetClientActive: Boolean;
 begin
-//  Result:= (Assigned(ListaOdbiorcow))and(ListaOdbiorcow.Count>0);
   Result:= (Length(ListaOdbiorcow)>0);
 end;
 
-procedure TAlerter.SendAlarm;
+procedure TAlerter.SendAlarm(item: integer);
+begin
+  if item>(Length(ListaOdbiorcow)-1) then exit;
+
+  With TAlertThread.Create(true) do
+  begin
+    myRecord.Head                 := MYHEADKEY;
+    myRecord.Kod                  := 0; // send
+    myRecord.RemoteIP             := ListaOdbiorcow[item].RemoteIP;
+    myRecord.RemoteUserLokalizacja:= ListaOdbiorcow[item].RemoteUserLokalizacja;
+
+    myRecord.LocalUserName        := Self.LocalUserName;
+    myRecord.LocalUserLokalizacja := Self.LocalUserLokalizacja;
+    myRecord.LocalUserTel         := Self.LocalUserTel;
+
+    myRecord.SendTime:= Now();
+    OnShowAlertStatus:= FOnShowAlerterStatus;
+    Start;
+  end;
+end;
+
+procedure TAlerter.SendAlarms;
 var i: integer;
 begin
   if not GetClientActive then exit;
 
   for i:=0 to Length(ListaOdbiorcow)-1 do
   begin
-    With TAlertThread.Create(true) do
-    begin
-      myRecord.Head                 := MYHEADKEY;
-      myRecord.Kod                  := 0; // send
-      myRecord.RemoteIP             := ListaOdbiorcow[i].RemoteIP;
-      myRecord.RemoteUserLokalizacja:= ListaOdbiorcow[i].RemoteUserLokalizacja;
-
-      myRecord.LocalUserName        := Self.LocalUserName;
-      myRecord.LocalUserLokalizacja := Self.LocalUserLokalizacja;
-      myRecord.LocalUserTel         := Self.LocalUserTel;
-
-      myRecord.SendTime:= Now();
-      OnShowAlertStatus:= FOnShowAlerterStatus;
-      Start;
-    end;
+    SendAlarm(i);
   end;
-
-  //for i:=0 to FListaOdbiorcow.Count-1 do
-  //begin
-  //  With TAlertThread.Create(true) do
-  //  begin
-  //    RemoteIP             := FListaOdbiorcow[i].Split([';'])[0];
-  //    RemoteUserLokalizacja:= FListaOdbiorcow[i].Split([';'])[1];
-  //
-  //    LocalUserName := Self.LocalUserName;
-  //    LocalUserLokalizacja:= Self.LocalUserLokalizacja;
-  //
-  //    OnShowAlertStatus:= FOnShowAlerterStatus;
-  //    Start;
-  //  end;
-  //end;
 end;
 
 class function TAlerter.GetLocalIP: string;

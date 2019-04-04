@@ -1,7 +1,7 @@
 object AlerterForm: TAlerterForm
-  Left = 321
+  Left = 334
   Height = 486
-  Top = 225
+  Top = 226
   Width = 759
   Caption = 'AlerterForm'
   ClientHeight = 486

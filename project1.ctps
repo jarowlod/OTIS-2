@@ -19,9 +19,9 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="268"/>
-        <CursorPos X="79" Y="574"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="413"/>
+        <CursorPos X="49" Y="424"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -164,12 +164,10 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="106"/>
         <CursorPos X="37" Y="118"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit13>
       <Unit14>
         <Filename Value="UPenitTerminarz.pas"/>
@@ -567,12 +565,10 @@
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="294"/>
         <CursorPos Y="298"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit47>
       <Unit48>
         <Filename Value="UViewOsobyBliskie.pas"/>
@@ -840,12 +836,10 @@
         <ComponentName Value="PaczkiAdd"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="41"/>
         <CursorPos Y="64"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit70>
       <Unit71>
         <Filename Value="UOchRejestrWidzen.pas"/>
@@ -857,7 +851,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="269"/>
         <CursorPos X="32" Y="275"/>
-        <UsageCount Value="190"/>
+        <UsageCount Value="195"/>
       </Unit71>
       <Unit72>
         <Filename Value="UAlerter.pas"/>
@@ -867,9 +861,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="128"/>
-        <CursorPos X="14" Y="363"/>
-        <UsageCount Value="170"/>
+        <TopLine Value="448"/>
+        <CursorPos X="56" Y="378"/>
+        <UsageCount Value="175"/>
       </Unit72>
       <Unit73>
         <Filename Value="UAlerterConfig.pas"/>
@@ -881,7 +875,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="38" Y="97"/>
-        <UsageCount Value="153"/>
+        <UsageCount Value="158"/>
       </Unit73>
       <Unit74>
         <Filename Value="UKwatPlanWyjazdow.pas"/>
@@ -890,12 +884,10 @@
         <ComponentName Value="KwatPlanWyjazdow"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="146"/>
         <CursorPos X="31" Y="153"/>
-        <UsageCount Value="111"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="116"/>
       </Unit74>
       <Unit75>
         <Filename Value="UKwatPlanWyjazdowAdd.pas"/>
@@ -904,10 +896,9 @@
         <ComponentName Value="KwatPlanWyjazdowAdd"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="1"/>
         <CursorPos X="50" Y="9"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="99"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit75>
@@ -918,10 +909,11 @@
         <ComponentName Value="KwatSprzetRTV"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="97"/>
         <CursorPos X="23" Y="120"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit76>
@@ -1532,11 +1524,10 @@
       <Unit157>
         <Filename Value="UWeekView.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="193"/>
         <CursorPos X="22" Y="204"/>
         <UsageCount Value="51"/>
-        <Loaded Value="True"/>
       </Unit157>
       <Unit158>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\fgl.pp"/>
@@ -1762,127 +1753,87 @@
         <UsageCount Value="9"/>
       </Unit184>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="59" Column="31" TopLine="31"/>
-      </Position1>
-      <Position2>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="60" Column="31" TopLine="32"/>
-      </Position2>
-      <Position3>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="61" Column="31" TopLine="33"/>
-      </Position3>
-      <Position4>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="62" Column="31" TopLine="34"/>
-      </Position4>
-      <Position5>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="63" Column="31" TopLine="35"/>
-      </Position5>
-      <Position6>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="64" Column="31" TopLine="36"/>
-      </Position6>
-      <Position7>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="65" Column="31" TopLine="37"/>
-      </Position7>
-      <Position8>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="66" Column="31" TopLine="38"/>
-      </Position8>
-      <Position9>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="67" Column="31" TopLine="39"/>
-      </Position9>
-      <Position10>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="66" Column="31" TopLine="38"/>
-      </Position10>
-      <Position11>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="67" Column="31" TopLine="39"/>
-      </Position11>
-      <Position12>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="68" Column="31" TopLine="40"/>
-      </Position12>
-      <Position13>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="69" Column="31" TopLine="41"/>
-      </Position13>
-      <Position14>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="70" Column="31" TopLine="42"/>
-      </Position14>
-      <Position15>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="71" Column="31" TopLine="43"/>
-      </Position15>
-      <Position16>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="72" Column="31" TopLine="44"/>
-      </Position16>
-      <Position17>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="73" Column="31" TopLine="45"/>
-      </Position17>
-      <Position18>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="74" Column="31" TopLine="46"/>
-      </Position18>
-      <Position19>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="75" Column="31" TopLine="47"/>
-      </Position19>
-      <Position20>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="76" Column="31" TopLine="48"/>
-      </Position20>
-      <Position21>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="83" Column="31" TopLine="55"/>
-      </Position21>
-      <Position22>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="89" Column="31" TopLine="61"/>
-      </Position22>
-      <Position23>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="90" Column="31" TopLine="62"/>
-      </Position23>
-      <Position24>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="89" Column="31" TopLine="61"/>
-      </Position24>
-      <Position25>
-        <Filename Value="UKwatSprzetRTV.pas"/>
-        <Caret Line="98" Column="12" TopLine="63"/>
-      </Position25>
-      <Position26>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="725" TopLine="702"/>
-      </Position26>
-      <Position27>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1012" Column="3" TopLine="1009"/>
-      </Position27>
-      <Position28>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="248" Column="15" TopLine="231"/>
-      </Position28>
-      <Position29>
         <Filename Value="UMasterForm.pas"/>
         <Caret Line="573" Column="79" TopLine="557"/>
-      </Position29>
-      <Position30>
+      </Position1>
+      <Position2>
         <Filename Value="UKwatPlanWyjazdowAdd.pas"/>
         <Caret Line="9" Column="67"/>
-      </Position30>
+      </Position2>
+      <Position3>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="574" Column="79" TopLine="268"/>
+      </Position3>
+      <Position4>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="576" Column="79" TopLine="541"/>
+      </Position4>
+      <Position5>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="321" Column="37" TopLine="304"/>
+      </Position5>
+      <Position6>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1019" TopLine="1012"/>
+      </Position6>
+      <Position7>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="322" Column="49" TopLine="294"/>
+      </Position7>
+      <Position8>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="321" Column="49" TopLine="293"/>
+      </Position8>
+      <Position9>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="320" Column="49" TopLine="292"/>
+      </Position9>
+      <Position10>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="11" Column="80"/>
+      </Position10>
+      <Position11>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="262" Column="22" TopLine="251"/>
+      </Position11>
+      <Position12>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1283" TopLine="1253"/>
+      </Position12>
+      <Position13>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="263" Column="25" TopLine="242"/>
+      </Position13>
+      <Position14>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="320" Column="55" TopLine="306"/>
+      </Position14>
+      <Position15>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1211" Column="29" TopLine="1203"/>
+      </Position15>
+      <Position16>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1212" Column="29" TopLine="1204"/>
+      </Position16>
+      <Position17>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1213" Column="29" TopLine="1205"/>
+      </Position17>
+      <Position18>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1214" Column="29" TopLine="1206"/>
+      </Position18>
+      <Position19>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1213" Column="29" TopLine="1205"/>
+      </Position19>
+      <Position20>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1219" Column="29" TopLine="1211"/>
+      </Position20>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
