@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   Buttons, ComCtrls, DBCtrls, TplGradientUnit, UWeekView, DB, ZDataset,
-  rxdbgrid, DateUtils, datamodule, DateTimePicker;
+  rxdbgrid, DateUtils, datamodule;
 
 type
 
@@ -212,27 +212,32 @@ end;
 procedure TKwatPlanWyjazdow.WczytajDane;
 var EventRecord: TEventRecord;
 begin
-  WeekView.ClearEvent;
+  ShowSQLWait;
+  try
+    WeekView.ClearEvent;
 
-  ZQPlanWyjazdow.Close;
-  ZQPlanWyjazdow.ParamByName('data_start').AsDate:= WeekView.BeginWeekDate;
-  ZQPlanWyjazdow.ParamByName('data_end').AsDate:= EndOfTheWeek(WeekView.BeginWeekDate);
-  ZQPlanWyjazdow.Open;
+    ZQPlanWyjazdow.Close;
+    ZQPlanWyjazdow.ParamByName('data_start').AsDate:= WeekView.BeginWeekDate;
+    ZQPlanWyjazdow.ParamByName('data_end').AsDate:= EndOfTheWeek(WeekView.BeginWeekDate);
+    ZQPlanWyjazdow.Open;
 
-  while not ZQPlanWyjazdow.EOF do
-  begin
-    EventRecord.ID       := ZQPlanWyjazdow.FieldByName('ID').AsInteger;
-    EventRecord.StartDate:= ZQPlanWyjazdow.FieldByName('data_wyjazdu').AsDateTime;
-    EventRecord.EndDate  := ZQPlanWyjazdow.FieldByName('data_powrotu').AsDateTime;
-    EventRecord.Title    := ZQPlanWyjazdow.FieldByName('Nazwa').AsString+ ' - ' +ZQPlanWyjazdow.FieldByName('Kierowca').AsString;
-    EventRecord.Cel      := ZQPlanWyjazdow.FieldByName('Cel').AsString;
-    EventRecord.Uwagi    := ZQPlanWyjazdow.FieldByName('Uwagi').AsString;
-    EventRecord.BgColor  := StringToColorDef(ZQPlanWyjazdow.FieldByName('Event_color').AsString, clSkyBlue);
+    while not ZQPlanWyjazdow.EOF do
+    begin
+      EventRecord.ID       := ZQPlanWyjazdow.FieldByName('ID').AsInteger;
+      EventRecord.StartDate:= ZQPlanWyjazdow.FieldByName('data_wyjazdu').AsDateTime;
+      EventRecord.EndDate  := ZQPlanWyjazdow.FieldByName('data_powrotu').AsDateTime;
+      EventRecord.Title    := ZQPlanWyjazdow.FieldByName('Nazwa').AsString+ ' - ' +ZQPlanWyjazdow.FieldByName('Kierowca').AsString;
+      EventRecord.Cel      := ZQPlanWyjazdow.FieldByName('Cel').AsString;
+      EventRecord.Uwagi    := ZQPlanWyjazdow.FieldByName('Uwagi').AsString;
+      EventRecord.BgColor  := StringToColorDef(ZQPlanWyjazdow.FieldByName('Event_color').AsString, clSkyBlue);
 
-    WeekView.AddEvent(EventRecord, false);
-    ZQPlanWyjazdow.Next;
+      WeekView.AddEvent(EventRecord, false);
+      ZQPlanWyjazdow.Next;
+    end;
+    WeekView.CalcColumEvent;
+  finally
+    HideSQLWait;
   end;
-  WeekView.CalcColumEvent;
 end;
 
 procedure TKwatPlanWyjazdow.ZaplanujWyjazd(SelectDateTime: TDateTime);
