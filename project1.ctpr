@@ -768,6 +768,7 @@
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="KwatSprzetRTVWydruk"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit77>
     </Units>

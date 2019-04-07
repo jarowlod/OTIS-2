@@ -163,20 +163,24 @@ object KwatSprzetRTVWydruk: TKwatSprzetRTVWydruk
     Connection = DM.ZConnection1
     ReadOnly = True
     SQL.Strings = (
-      'SELECT `osadzeni`.`NAZWISKO`, `osadzeni`.`IMIE`,'
-      '           `osadzeni`.`OJCIEC`, `osadzeni`.`POC`,'
-      '           `view_sprzet_magazyn`.`typ`,'
-      '           `view_sprzet_magazyn`.`producent`,'
-      '           `view_sprzet_magazyn`.`model`,'
-      '           `view_sprzet_magazyn`.`Serial`,'
-      '           `view_sprzet_magazyn`.`Cela`,'
-      '           RIGHT(`poc`,2) AS RIGHT_poc_2'
-      '    FROM `osadzeni` `osadzeni`'
-      '          LEFT OUTER JOIN `view_sprzet_magazyn` `view_sprzet_magazyn` ON'
-      '         (`view_sprzet_magazyn`.`IDO` = `osadzeni`.`IDO`)'
-      '    WHERE ( `osadzeni`.`POC` LIKE :oddz )'
-      '           AND ( `view_sprzet_magazyn`.`Cela` = -1 )'
-      '    ORDER BY 10, `osadzeni`.`NAZWISKO`;'
+      'SELECT'
+      'os.NAZWISKO,'
+      'os.IMIE,'
+      'os.OJCIEC,'
+      'os.POC,'
+      'sp.typ,'
+      'sp.producent,'
+      'sp.model,'
+      'sp.Serial,'
+      'sp.Cela,'
+      'RIGHT(os.poc, 2) AS RIGHT_poc_2'
+      ''
+      'FROM osadzeni os'
+      'LEFT OUTER JOIN view_sprzet_magazyn sp ON (sp.IDO = os.IDO)'
+      'WHERE ( os.POC LIKE :oddz )'
+      '     AND ( sp.Cela = -1 )'
+      'ORDER BY RIGHT_poc_2, os.NAZWISKO;'
+      ''
     )
     Params = <    
       item

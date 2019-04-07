@@ -16,7 +16,8 @@ type
   TRozmieszczenie = class(TForm)
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
+    btnDrukujWykazCel: TBitBtn;
+    btnDrukujOsadzonych: TBitBtn;
     cbTrybEdycji: TCheckBox;
     cbR: TCheckBox;
     cbR_N: TCheckBox;
@@ -44,6 +45,7 @@ type
     DSOsadzeni: TDataSource;
     DSRozmieszczenie: TDataSource;
     frDBDataSet1: TfrDBDataSet;
+    frDBDataSet2: TfrDBDataSet;
     frReport1: TfrReport;
     GroupBox1: TGroupBox;
     ImageList1: TImageList;
@@ -65,7 +67,8 @@ type
     ZQOsadzeni: TZQuery;
     ZURozmieszczenie: TZUpdateSQL;
     procedure BitBtn2Click(Sender: TObject);
-    procedure BitBtn3Click(Sender: TObject);
+    procedure btnDrukujOsadzonychClick(Sender: TObject);
+    procedure btnDrukujWykazCelClick(Sender: TObject);
     procedure cbDodatkowyPanelChange(Sender: TObject);
     procedure cbTrybEdycjiChange(Sender: TObject);
     procedure cbPanelZdjecChange(Sender: TObject);
@@ -358,7 +361,24 @@ begin
   NewSelect;
 end;
 
-procedure TRozmieszczenie.BitBtn3Click(Sender: TObject);
+procedure TRozmieszczenie.btnDrukujOsadzonychClick(Sender: TObject);
+var zdjPom: Boolean;
+begin
+  ZQOsadzeni.DisableControls;
+  PageControl1.Visible:= false;
+  zdjPom:= cbPanelZdjec.Checked;
+  cbPanelZdjec.Checked:= false;
+  try
+    frReport1.LoadFromFile(DM.Path_Raporty + 'pen_rozmieszczenie_osadz.lrf');
+    frReport1.ShowReport;
+  finally
+    ZQOsadzeni.EnableControls;
+    PageControl1.Visible:= true;
+    cbPanelZdjec.Checked:= zdjPom;
+  end;
+end;
+
+procedure TRozmieszczenie.btnDrukujWykazCelClick(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'pen_rozmieszczenie.lrf');
   frReport1.ShowReport;

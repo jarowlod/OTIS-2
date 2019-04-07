@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="1899-12-30 00:00:00"/>
-    <ReportLastChange Value="2019-04-04 19:18:35"/>
+    <ReportLastChange Value="2019-04-05 12:55:30"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -16,7 +16,7 @@
     <Script Value=""/>
     <Pages>
       <PrintToDefault Value="False"/>
-      <DoublePass Value="False"/>
+      <DoublePass Value="True"/>
       <SelectedPrinter Value="Default printer"/>
       <PageCount Value="1"/>
       <Page1>
@@ -217,7 +217,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri"/>
             <Size Value="12"/>
             <Color Value="clWhite"/>
             <Charset Value="0"/>
@@ -273,7 +273,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri"/>
             <Size Value="10"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -329,7 +329,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri Light"/>
             <Size Value="8"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -385,8 +385,8 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
-            <Size Value="8"/>
+            <Name Value="Calibri"/>
+            <Size Value="9"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
             <Style Value="fsBold"/>
@@ -441,7 +441,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri"/>
             <Size Value="10"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -497,7 +497,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri Light"/>
             <Size Value="8"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -553,7 +553,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri"/>
             <Size Value="10"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -609,7 +609,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri Light"/>
             <Size Value="8"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -665,7 +665,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri"/>
             <Size Value="10"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -721,7 +721,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri Light"/>
             <Size Value="8"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -777,7 +777,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri"/>
             <Size Value="10"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -833,7 +833,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri Light"/>
             <Size Value="8"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -889,7 +889,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri"/>
             <Size Value="8"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -931,7 +931,7 @@
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
-            <Memo Value="strona: [PAGE#]&#xD;&#xA;"/>
+            <Memo Value="strona: [PAGE#]/[TOTALPAGES]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -945,7 +945,7 @@
           <Tag Value=""/>
           <FURLInfo Value=""/>
           <Font>
-            <Name Value="Arial CE"/>
+            <Name Value="Calibri"/>
             <Size Value="8"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
@@ -966,9 +966,16 @@
         <ObjectCount Value="19"/>
       </Page1>
       <FVal>
-        <Count Value="0"/>
+        <Count Value="1"/>
+        <Objects1>
+          <Typ Value="0"/>
+          <OtherKind Value="0"/>
+          <Dataset Value=""/>
+          <Field Value=""/>
+          <Item Value="oddzial"/>
+        </Objects1>
       </FVal>
-      <ParentVars Value=""/>
+      <ParentVars Value="a&#xD;&#xA; oddzial&#xD;&#xA;"/>
     </Pages>
     <DetailReports>
       <Count Value="0"/>
