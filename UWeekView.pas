@@ -250,63 +250,72 @@ procedure TEventWeek.Paint;
 var rec: TRect;
     lr: TRect;
     sTime: string;
+    fControl: TBitmap;
+    TheCanvas: TCanvas;
 begin
-  SetBkMode(Canvas.Handle, TRANSPARENT);
+  fControl:= TBitmap.Create;
+  fControl.SetSize(Width, Height);
+  TheCanvas:= fControl.Canvas;
+
+  SetBkMode(TheCanvas.Handle, TRANSPARENT);
 
   //Calculate;
   rec:= Rect(0, 0, Width, Height);
 
-  Canvas.Brush.Color:= fBgColor;
-  if fisMouseEnter then Canvas.FillRect(rec)
-                   else Canvas.GradientFill(rec, fBgColor, $E8FFFF, gdVertical);
+  TheCanvas.Brush.Color:= fBgColor;
+  if fisMouseEnter then TheCanvas.FillRect(rec)
+                   else TheCanvas.GradientFill(rec, fBgColor, $E8FFFF, gdVertical);
 
-  Canvas.Brush.Style:=bsClear;
+  TheCanvas.Brush.Style:=bsClear;
   rec.left:= 5;
   // draw godziny
+  if isSelected then Inc(rec.Top, 4);
+
   sTime:= FormatDateTime('HH:MM', fStartDate) + ' - ' + FormatDateTime('HH:MM', fEndDate);
-  Canvas.Font.Bold:=true;
-  Canvas.Font.Size:= 8;
+  TheCanvas.Font.Bold:=true;
+  TheCanvas.Font.Size:= 8;
 
   // cień pod godziną
   rec.Left:= rec.Left + 1;
   rec.Top:=  rec.Top + 1;
-  Canvas.Font.Color:= clSilver;
-  DrawText(Canvas.Handle, PChar( sTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
+  TheCanvas.Font.Color:= clSilver;
+  DrawText(TheCanvas.Handle, PChar( sTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
   rec.Left:= rec.Left - 1;
   rec.Top:=  rec.Top - 1;
-  Canvas.Font.Color:= clBlack;
-  Canvas.Font.Bold:= false;
-  DrawText(Canvas.Handle, PChar( sTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
+  TheCanvas.Font.Color:= clBlack;
+  TheCanvas.Font.Bold:= false;
+  DrawText(TheCanvas.Handle, PChar( sTime), -1, rec, DT_TOP OR DT_LEFT OR DT_END_ELLIPSIS);
 
   // draw Title
-  Canvas.Font.Size:= 8;
-  Canvas.Font.Color:= clBlack;
-  rec.Top:= rec.Top + Canvas.TextHeight('Ą');
-  DrawText(Canvas.Handle, PChar( fTitle), -1, rec, DT_TOP OR DT_CENTER OR DT_END_ELLIPSIS);
+  TheCanvas.Font.Size:= 8;
+  TheCanvas.Font.Color:= clBlack;
+  rec.Top:= rec.Top + TheCanvas.TextHeight('Ą');
+  DrawText(TheCanvas.Handle, PChar( fTitle), -1, rec, DT_TOP OR DT_CENTER OR DT_END_ELLIPSIS);
 
   // left bawel
   lr:= Rect(0,0,4,Height);
-  Canvas.Pen.Width:= 1;
-  Canvas.Brush.Color:= $B01C06;
-  Canvas.FillRect(lr);
+  TheCanvas.Pen.Width:= 1;
+  TheCanvas.Brush.Color:= $B01C06;
+  TheCanvas.FillRect(lr);
+
   if (fisMouseEnter)or(isSelected) then
   begin
+    rec:= Rect(0,Height-1,Width, Height-1);
+    TheCanvas.Pen.Color:= clGray;
+    TheCanvas.Line(rec);
+    rec:= Rect(Width-1,0,Width-1, Height);
+    TheCanvas.Line(rec);
+
     if isSelected then
     begin
-      Canvas.Pen.Width:= 2;
+      rec:= Rect(0,0,Width, Height);
+      TheCanvas.Frame3D(rec, clRed, $C4C4FF, 4);
     end;
-    rec:= Rect(0,Height-1,Width, Height-1);
-    Canvas.Pen.Color:= clGray;
-    Canvas.Line(rec);
-    rec:= Rect(Width-1,0,Width-1, Height);
-    Canvas.Line(rec);
-    //Canvas.Brush.Style:= bsClear;
-    //Canvas.Pen.Color:= clRed;
-    //Canvas.Pen.Width:= 1;
-    //Canvas.Rectangle(rec);
   end;
 
-  inherited Paint;
+  BitBlt(Canvas.Handle, 0, 0, Width, Height, TheCanvas.Handle, 0, 0, SRCCOPY);
+  fControl.Free;
+  //inherited Paint;
 end;
 
 //===============================================================================================================================
@@ -485,6 +494,8 @@ var i: integer;
     rec: TRect;
     cTop, cHeight: integer;
     cLeft, cWidth: integer;
+    fControl: TBitmap;
+    TheCanvas: TCanvas;
 
   procedure DrawDayPanel;
   var DayName: string;
@@ -498,16 +509,16 @@ var i: integer;
 
       // tło
       //if DM.CzySwieto(BeginWeekDate+d-1) then    // święta
-      //   Canvas.Brush.Color:= $FFCEE7
+      //   TheCanvas.Brush.Color:= $FFCEE7
       //else
       if (d >= 5) then   // sobota, niedziela     // weekend innym kolorem tła
-        Canvas.Brush.Color:= $E8E8E8
+        TheCanvas.Brush.Color:= $E8E8E8
       else if (d in [1,3]) then
-        Canvas.Brush.Color:= $FFFAF4
+        TheCanvas.Brush.Color:= $FFFAF4
       else
-        Canvas.Brush.Color:= clWhite;
+        TheCanvas.Brush.Color:= clWhite;
 
-      Canvas.FillRect(rec);
+      TheCanvas.FillRect(rec);
 
       // nagłówek
       nRec:= Rect(rec.Left, 0, rec.Right, TopSpan);
@@ -515,22 +526,22 @@ var i: integer;
       DayName:= FormatDateTime('DDD, DD mmm', CurDate);
       if CurDate = Date then
         begin
-          Canvas.Brush.Color:= clRed;
-          Canvas.FillRect(nRec.Left, 0, nRec.Right, 3);
-          Canvas.Brush.Color:= $FFDCB9;
-          Canvas.FillRect(nRec.Left, 3, nRec.Right, TopSpan);
-          Canvas.Font.Bold:= true
+          TheCanvas.Brush.Color:= clRed;
+          TheCanvas.FillRect(nRec.Left, 0, nRec.Right, 3);
+          TheCanvas.Brush.Color:= $FFDCB9;
+          TheCanvas.FillRect(nRec.Left, 3, nRec.Right, TopSpan);
+          TheCanvas.Font.Bold:= true
         end
-      else Canvas.Font.Bold:= false;
+      else TheCanvas.Font.Bold:= false;
 
       nRec.Top:= 3;
-      DrawText(Canvas.Handle, PChar( DayName), -1, nRec, DT_TOP OR DT_CENTER OR DT_SINGLELINE);
+      DrawText(TheCanvas.Handle, PChar( DayName), -1, nRec, DT_TOP OR DT_CENTER OR DT_SINGLELINE);
 
       // Linie pionowe
       rec.Top:= 0; //TopSpan;
       rec.Right:= rec.Left;
-      Canvas.Pen.Color:= $00C8C8C8;
-      Canvas.Line(rec);
+      TheCanvas.Pen.Color:= $00C8C8C8;
+      TheCanvas.Line(rec);
     end;
   end;
 
@@ -538,26 +549,33 @@ var i: integer;
   var h: integer;
       HourName: string;
   begin
-    Canvas.Brush.Style:= bsClear;
+    rec:= Rect(0, 0, LeftSpan, Height);
+    TheCanvas.Brush.Color:= $F0F0F0;
+    TheCanvas.FillRect(rec);
+
+    TheCanvas.Brush.Style:= bsClear;
     for h:=0 to 15 do  // godziny od 5 do 20
     begin
       RowPoz(h, cTop, cHeight);
       rec:= Rect(0, cTop, LeftSpan-2, cTop + cHeight);
 
+      if (isSelected)and(SelectHour-1=h) then
+        TheCanvas.Font.Bold:= true else TheCanvas.Font.Bold:= false;
+
       HourName:= Format('%d:00',[(h+Godz_Od)]);
-      DrawText(Canvas.Handle, PChar( HourName), -1, rec, DT_TOP OR DT_RIGHT OR DT_SINGLELINE);
+      DrawText(TheCanvas.Handle, PChar( HourName), -1, rec, DT_TOP OR DT_RIGHT OR DT_SINGLELINE);
 
       rec.Right := Width;
       rec.Bottom:= rec.Top;
-      Canvas.Pen.Color:= $00C8C8C8;
-      Canvas.Line(rec);
+      TheCanvas.Pen.Color:= $00C8C8C8;
+      TheCanvas.Line(rec);
       if HalfHight>0 then
       begin
         rec.Top   := rec.Top+ (cHeight div 4)*2;
         rec.Bottom:= rec.Top;
         rec.Left  := LeftSpan -5;
-        Canvas.Pen.Color:= $00DFDFDF;
-        Canvas.Line(rec);
+        TheCanvas.Pen.Color:= $00DFDFDF;
+        TheCanvas.Line(rec);
       end;
     end;
   end;
@@ -568,8 +586,8 @@ var i: integer;
     RowPoz(SelectHour-1, cTop, cHeight);
     rec:= Rect(cLeft+1, cTop+1, cLeft+ cWidth-1, cTop+ cHeight-1);
 
-    Canvas.Brush.Color:= $E8944F;
-    Canvas.FillRect(rec);
+    TheCanvas.Brush.Color:= $E8944F;
+    TheCanvas.FillRect(rec);
   end;
 
   procedure DrawCurrentTimeLine;
@@ -580,18 +598,26 @@ var i: integer;
     tl:= Round((cHeight / 60) * tl);
     rec:= Rect(LeftSpan - 3, cTop + tl, Width, 0);
     rec.Bottom:= rec.Top;
-    Canvas.Pen.Color:= clRed;
-    Canvas.Line(rec);
-    Canvas.Brush.Color:= clRed;
-    Canvas.EllipseC(LeftSpan-7, cTop + tl, 5,5);
+    TheCanvas.Pen.Color:= clRed;
+    TheCanvas.Line(rec);
+    TheCanvas.Brush.Color:= clRed;
+    TheCanvas.EllipseC(LeftSpan-7, cTop + tl, 5,5);
   end;
 
 begin
   //CalculateWeek;
+  fControl:= TBitmap.Create;
+  fControl.SetSize(Width, Height);
+  TheCanvas:= fControl.Canvas;
+
   DrawDayPanel;
   DrawLeftPanel;
   DrawCurrentTimeLine;
   if isSelected then DrawSelected;
+
+  BitBlt(Canvas.Handle, 0, 0, Width, Height, TheCanvas.Handle, 0, 0, SRCCOPY);
+  fControl.Free;
+
   for i:=1 to 7 do
     for Ev in EventsPeerDay[i] do Ev.Paint; // Invalidate;
 end;
