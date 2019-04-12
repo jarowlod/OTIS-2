@@ -6,7 +6,7 @@ interface
 
 uses
   Windows, Classes, SysUtils, ExtCtrls, Graphics, Controls, DateUtils, LCLIntf, LazUTF8, fgl, FPImage,
-  StdCtrls;
+  StdCtrls, datamodule;
 
 type
 
@@ -57,8 +57,8 @@ type
     OLLevel: integer;
     MaxCol: integer;
     DayOfWeek: integer;
-    StartHour: Word;        // która godzina zaczynając od Godz_Od (5)
-    StartHourQuarter: Word; // która ćwiartka godziny
+    StartHour: Word;        // 0..15 która godzina zaczynając od Godz_Od (5)
+    StartHourQuarter: Word; // 0..3 która ćwiartka godziny
     EndHour  : Word;
     EndHourQuarter: Word;
     constructor Create(AOwner: TComponent; EventRecord: TEventRecord); overload;
@@ -90,15 +90,16 @@ type
     HeightHour: integer;
     HalfHight: integer;
     isSelected: Boolean;
-    SelectDay: integer;
-    SelectHour: integer;
+    SelectDay: integer;    // 1..7  nr kolumny
+    SelectHour: integer;   // 1..16 nr wiersza
     ColumnsTab: array[0..6] of TColumnsTab;
     RowsTab  : array[0..15] of TRowsTab;
     procedure CalculateWeek(Sender: TObject);
+    procedure ZaznaczSwietaInColumns;
     function GetSelectDate: TDate;
     procedure SetBeginWeekDate(AValue: TDate);
     procedure SetSelectDate(AValue: TDate);
-    procedure SetSelectDateTime(AValue: TDateTime);
+    procedure SetSelectDateTime(AValue: TDateTime); // podstawowa procedura zmiany daty
     procedure WMEraseBkgnd(var Message: TWMEraseBkgnd); message wm_EraseBkgnd;
     procedure WMLButtonDblClk(var Message: TWMLButtonDblClk); message wm_LButtonDblClk;
     procedure WMLButtonDown(var Message: TWMLButtonDown); message wm_LButtonDown;
@@ -331,6 +332,7 @@ begin
   TopSpan        := 20;
   FSelectDateTime:= Now();
   FBeginWeekDate := StartOfTheWeek(SelectDate);
+  ZaznaczSwietaInColumns;
   SelectDay      := DayOfTheWeek(SelectDate);
   Color          := clWhite;
   isSelected     := false;
@@ -387,6 +389,13 @@ begin
     for Ev in EventsPeerDay[c] do Ev.Calculate;
 end;
 
+procedure TWeekView.ZaznaczSwietaInColumns;
+var d: integer;
+begin
+  for d:=0 to 6 do
+    ColumnsTab[d].isSwieto:= DM.CzySwieto(BeginWeekDate+d);
+end;
+
 procedure TWeekView.ColumnPoz(c: integer; var cLeft, cWidth: integer);
 begin
   if (c<0)or(c>6) then begin
@@ -420,6 +429,7 @@ begin
   if FBeginWeekDate= AValue then Exit;
   FBeginWeekDate:= AValue;
   SelectDate:= IncDay(BeginWeekDate, SelectDay-1);
+  ZaznaczSwietaInColumns;
   if Assigned(fOnWeekChanged) then fOnWeekChanged(Self);
 end;
 
@@ -508,9 +518,9 @@ var i: integer;
       rec:= Rect(cLeft, 0, cLeft+cWidth, Height);
 
       // tło
-      //if DM.CzySwieto(BeginWeekDate+d-1) then    // święta
-      //   TheCanvas.Brush.Color:= $FFCEE7
-      //else
+      if ColumnsTab[d].isSwieto then    // święta
+        TheCanvas.Brush.Color:= $FFCEE7
+      else
       if (d >= 5) then   // sobota, niedziela     // weekend innym kolorem tła
         TheCanvas.Brush.Color:= $E8E8E8
       else if (d in [1,3]) then
@@ -751,11 +761,7 @@ var d, e: integer;
 begin
   for d:=1 to 7 do
     for e:=0 to EventsPeerDay[d].Count-1 do
-      if EventsPeerDay[d].Items[e].ID = EventID then
-         EventsPeerDay[d].Items[e].isSelected:= true
-      else
-         EventsPeerDay[d].Items[e].isSelected:= false;
-
+        EventsPeerDay[d].Items[e].isSelected:= (EventsPeerDay[d].Items[e].ID = EventID);
 end;
 
 end.

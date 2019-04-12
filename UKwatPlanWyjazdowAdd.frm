@@ -187,6 +187,7 @@ object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
     Width = 32
     Images = DM.ImageList1
     ImageIndex = 51
+    OnClick = SpeedButton1Click
   end
   object teGodzWyjazdu: TTimeEdit
     Left = 240

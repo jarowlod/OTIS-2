@@ -1,7 +1,7 @@
 object KwatPlanWyjazdow: TKwatPlanWyjazdow
-  Left = 368
+  Left = 86
   Height = 564
-  Top = 364
+  Top = 85
   Width = 1038
   Caption = 'Harmonogram planowanych wyjazdów.'
   ClientHeight = 564

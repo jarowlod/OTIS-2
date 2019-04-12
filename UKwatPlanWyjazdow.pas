@@ -66,8 +66,6 @@ type
     procedure ModyfikujWyjazd(AID: integer);
   end;
 
-var
-  KwatPlanWyjazdow: TKwatPlanWyjazdow;
 
 implementation
 uses UKwatPlanWyjazdowAdd;

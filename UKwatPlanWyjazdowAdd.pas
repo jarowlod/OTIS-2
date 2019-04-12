@@ -40,6 +40,7 @@ type
     procedure dtpData_wyjazduChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     fData_Wyjazdu: TDateTime;
     fID: integer;
@@ -62,11 +63,9 @@ type
     constructor Create(vID: integer; vNazwa: string);
   end;
 
-var
-  KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd;
 
 implementation
-
+uses UKwatPlanWyjazdowSamochody;
 {$R *.frm}
 
 { TFlotaSamochodow }
@@ -96,6 +95,16 @@ begin
       if Assigned(cbSamochod.Items.Objects[i]) then
         cbSamochod.Items.Objects[i].Destroy;
     end;
+end;
+
+procedure TKwatPlanWyjazdowAdd.SpeedButton1Click(Sender: TObject);
+begin
+  with TKwatPlanWyjazdowSamochody.Create(Self) do
+  begin
+    ShowModal;
+    Free;
+  end;
+  WczytajSamochody;
 end;
 
 procedure TKwatPlanWyjazdowAdd.btnOKClick(Sender: TObject);

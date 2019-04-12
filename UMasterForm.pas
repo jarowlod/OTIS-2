@@ -1086,7 +1086,7 @@ var i: Integer;
     Function isCharPL(charUTF: string; var out_ch: char): Boolean;
     var pos : Integer;
         s_pl : string = 'ąĄćĆęĘłŁńŃóÓśŚźŹżŻ';
-        s_asc: string = 'aAcCeElLnNoOsSzZzZ';
+        s_asc: string = 'aAcCeElLnNoOsSxXzZ';
     begin
       result:= false;
       out_ch:= charUTF[1];
