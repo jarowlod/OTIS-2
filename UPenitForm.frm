@@ -378,7 +378,7 @@ object PenitForm: TPenitForm
       DataField = 'ulamek_wpz'
       DataSource = DSOsInfo
       CharCase = ecNormal
-      MaxLength = 50
+      MaxLength = 0
       TabOrder = 8
     end
     object DBCheckBox3: TDBCheckBox
@@ -649,7 +649,7 @@ object PenitForm: TPenitForm
       DataField = 'Zatrudnienie'
       DataSource = DSOsInfo
       CharCase = ecNormal
-      MaxLength = 100
+      MaxLength = 0
       TabOrder = 15
     end
     object lblCelaOchronna: TLabel
@@ -889,7 +889,7 @@ object PenitForm: TPenitForm
     Height = 347
     Top = 448
     Width = 715
-    ActivePage = TabSheetWykazy
+    ActivePage = TabSheetAlimenty
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
@@ -957,7 +957,7 @@ object PenitForm: TPenitForm
       end
       object DBMemo1: TDBMemo
         Left = 0
-        Height = 283
+        Height = 258
         Top = 31
         Width = 707
         Align = alClient
@@ -970,6 +970,108 @@ object PenitForm: TPenitForm
     object TabSheetZatrudnienie: TTabSheet
       Caption = 'Zatrudnienie'
       ImageIndex = 5
+    end
+    object TabSheetAlimenty: TTabSheet
+      Caption = 'Alimenty'
+      ClientHeight = 314
+      ClientWidth = 707
+      ImageIndex = 22
+      object Panel3: TPanel
+        Left = 0
+        Height = 314
+        Top = 0
+        Width = 707
+        Align = alClient
+        BevelOuter = bvNone
+        ClientHeight = 314
+        ClientWidth = 707
+        Color = clForm
+        ParentColor = False
+        TabOrder = 0
+        object Label12: TLabel
+          Left = 16
+          Height = 15
+          Top = 16
+          Width = 73
+          Caption = 'Stan na dzień:'
+          ParentColor = False
+        end
+        object Label13: TLabel
+          Left = 29
+          Height = 15
+          Top = 48
+          Width = 60
+          Caption = 'Zadłużenie:'
+          ParentColor = False
+        end
+        object Label14: TLabel
+          Left = 63
+          Height = 15
+          Top = 80
+          Width = 26
+          Caption = 'Rata:'
+          ParentColor = False
+        end
+        object Label15: TLabel
+          Left = 48
+          Height = 15
+          Top = 112
+          Width = 42
+          Caption = 'Wpłacił:'
+          ParentColor = False
+        end
+        object DBEdit3: TDBEdit
+          Left = 104
+          Height = 23
+          Top = 40
+          Width = 128
+          DataField = 'ali_Zadluzenie'
+          DataSource = DSOsInfo
+          ReadOnly = True
+          CharCase = ecNormal
+          MaxLength = 0
+          TabOrder = 0
+        end
+        object DBEdit4: TDBEdit
+          Left = 104
+          Height = 23
+          Top = 72
+          Width = 128
+          DataField = 'ali_Rata'
+          DataSource = DSOsInfo
+          ReadOnly = True
+          CharCase = ecNormal
+          MaxLength = 0
+          TabOrder = 1
+        end
+        object DBEdit5: TDBEdit
+          Left = 104
+          Height = 23
+          Hint = 'Ostatnia wpłata na stan z dnia.'
+          Top = 104
+          Width = 128
+          DataField = 'ali_Wplacil'
+          DataSource = DSOsInfo
+          ReadOnly = True
+          CharCase = ecNormal
+          MaxLength = 0
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 2
+        end
+        object DBText10: TDBText
+          Left = 104
+          Height = 15
+          Top = 16
+          Width = 129
+          AutoSize = False
+          DataField = 'ali_stan_na_dzien'
+          DataSource = DSOsInfo
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+      end
     end
     object TabSheetWykazy: TTabSheet
       Caption = 'Wykazy'
@@ -1025,7 +1127,11 @@ object PenitForm: TPenitForm
       'ulamek_wpz,'
       'wpz_stanowisko,'
       'postpenit_notatka,'
-      'GR'
+      'GR,'
+      'ali_stan_na_dzien,'
+      'ali_Zadluzenie,'
+      'ali_Rata,'
+      'ali_Wplacil'
       'FROM os_info'
       'WHERE IDO = :IDO'
     )

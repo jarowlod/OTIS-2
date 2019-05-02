@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate, Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
   StdCtrls, Buttons, ComCtrls, rxdbutils, UZatrudnieni, UViewUwagiOch, UViewWykazy, UViewZatrudnienie, UViewWidzenia,
-  UViewOsobyBliskie, UViewPaczki, datamodule;
+  UViewOsobyBliskie, UViewPaczki, datamodule, DBDateTimePicker;
 
 type
 
@@ -20,6 +20,10 @@ type
     btnRejestrZat: TBitBtn;
     btnDrukArch: TBitBtn;
     btnDrukWywiad: TBitBtn;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBText10: TDBText;
     DBText4: TDBText;
     DBText9: TDBText;
     DSOs: TDataSource;
@@ -53,6 +57,10 @@ type
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
     lblUrodziny: TLabel;
     lblCelaOchronna: TLabel;
     lblCelaPalaca: TLabel;
@@ -68,9 +76,11 @@ type
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
+    Panel3: TPanel;
     Panel4: TPanel;
     Panel_Zdj: TPanel;
     btnDodajDoKoszyka: TSpeedButton;
+    TabSheetAlimenty: TTabSheet;
     TabSheetPaczki: TTabSheet;
     TabSheetOsobyBliskie: TTabSheet;
     TabSheetWidzenia: TTabSheet;

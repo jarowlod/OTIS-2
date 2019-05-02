@@ -7,18 +7,20 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   ComCtrls, Buttons, DBCtrls, TplGradientUnit, rxdbgrid, datamodule, DB,
-  ZDataset, rxdbutils;
+  ZDataset, rxdbutils, rxmemds;
 
 type
 
   { TPenitNoeNetTest }
 
   TPenitNoeNetTest = class(TForm)
+    btnAnalizaAlimenty: TBitBtn;
     btnWyslijAll: TBitBtn;
     btnUstawIDSesji: TBitBtn;
     btnAnaliza: TBitBtn;
     cbIDO_2Kolumna: TCheckBox;
     cmbOpis: TComboBox;
+    DSAlimenty: TDataSource;
     DSWychowawcy: TDataSource;
     DSBledyGrup: TDataSource;
     DBNavigator1: TDBNavigator;
@@ -28,6 +30,7 @@ type
     lblNrSesji: TLabel;
     Label8: TLabel;
     Memo1: TMemo;
+    memAlimenty: TMemo;
     PageControl1: TPageControl;
     PageControl2: TPageControl;
     Panel1: TPanel;
@@ -39,14 +42,23 @@ type
     RxDBGrid2: TRxDBGrid;
     RxDBGrid3: TRxDBGrid;
     RxDBGrid4: TRxDBGrid;
+    RxDBGrid5: TRxDBGrid;
+    RxMemAlimenty: TRxMemoryData;
+    RxMemAlimentymemIDO: TLongintField;
+    RxMemAlimentymemNazwiskoImie: TStringField;
+    RxMemAlimentymemRata: TStringField;
+    RxMemAlimentymemWplacil: TStringField;
+    RxMemAlimentymemZadluzenie: TStringField;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
     ZQSesje: TZQuery;
     ZQBledy: TZQuery;
     ZQWychowawcy: TZQuery;
     ZQBledyGrup: TZQuery;
+    procedure btnAnalizaAlimentyClick(Sender: TObject);
     procedure btnAnalizaClick(Sender: TObject);
     procedure btnUstawIDSesjiClick(Sender: TObject);
     procedure btnWyslijAllClick(Sender: TObject);
@@ -272,6 +284,105 @@ begin
   //ShowMessage('OK. Wysłane do wszystkich.');
   wiadomosc.Free;
   user_list.Free;
+end;
+
+procedure TPenitNoeNetTest.btnAnalizaAlimentyClick(Sender: TObject);
+var ali: string;
+    p1: integer;
+    str: string;
+    ZQ: TZQueryPom;
+begin
+  if memAlimenty.Text='' then exit;
+
+  ali:= memAlimenty.Lines.Text;
+  while Pos('/', ali)>0 do
+  begin
+    RxMemAlimenty.Append;
+    // początek danych do wycięcia
+    p1:= Pos('/', ali);
+    Delete(ali, 1, p1);
+
+    p1:= Pos('|', ali);
+    Delete(ali, 1, p1);
+    // nazwisko
+    p1:= Pos('|', ali);
+    str:= Copy(ali, 1, p1-1);
+    str:= TrimRight(str);
+    RxMemAlimenty.FieldByName('memNazwiskoImie').AsString:= str;
+    delete(ali, 1, p1);
+    // zadłużenie
+    p1:= Pos('|', ali);
+    str:= Copy(ali, 1, p1-1);
+    str:= TrimLeft(str);
+    RxMemAlimenty.FieldByName('memZadluzenie').AsString:= str;
+    delete(ali, 1, p1);
+    // rata
+    p1:= Pos('|', ali);
+    str:= Copy(ali, 1, p1-1);
+    str:= TrimLeft(str);
+    RxMemAlimenty.FieldByName('memRata').AsString:= str;
+    delete(ali, 1, p1);
+    // Wpłacił
+    p1:= Pos('|', ali);
+    str:= Copy(ali, 1, p1-1);
+    str:= TrimLeft(str);
+    RxMemAlimenty.FieldByName('memWplacil').AsString:= str;
+    delete(ali, 1, p1);
+    // Imie ojciec
+    p1:= Pos('|', ali);
+    Delete(ali, 1, p1);
+    p1:= Pos('|', ali);
+    Delete(ali, 1, p1);
+    p1:= Pos('|', ali);
+    Delete(ali, 1, p1);
+
+    p1:= Pos('|', ali);
+    str:= Copy(ali, 1, p1-1);
+    str:= TrimRight(str);
+    RxMemAlimenty.FieldByName('memNazwiskoImie').AsString:= RxMemAlimenty.FieldByName('memNazwiskoImie').AsString+  ' ' + str;
+    delete(ali, 1, p1);
+
+    RxMemAlimenty.Post;
+  end;
+
+  // Dodajemy IDO  do RxMemAlimenty
+  ZQ:= TZQueryPom.Create(Self);
+  try
+    ZQ.SQL.Text:= 'SELECT IDO, CONCAT_WS(" ",NAZWISKO,IMIE,"s.",OJCIEC) NazwiskoImie FROM osadzeni';
+    ZQ.Open;
+    RxMemAlimenty.First;
+    while not RxMemAlimenty.EOF do
+    begin
+      if ZQ.Locate('NazwiskoImie', RxMemAlimenty.FieldByName('memNazwiskoImie').AsString, []) then
+         begin
+           RxMemAlimenty.Edit;
+           RxMemAlimenty.FieldByName('memIDO').AsInteger:= ZQ.FieldByName('IDO').AsInteger;
+           RxMemAlimenty.Post;
+         end;
+      RxMemAlimenty.Next;
+    end;
+
+    // uaktualniamy dane dla os_info w zakresie alimentacji
+    ZQ.SQL.Text:= 'SELECT IDO, ali_stan_na_dzien, ali_Zadluzenie, ali_Rata, ali_Wplacil FROM os_info';
+    ZQ.Open;
+    RxMemAlimenty.First;
+    while not RxMemAlimenty.EOF do
+    begin
+      if ZQ.Locate('IDO', RxMemAlimenty.FieldByName('memIDO').AsInteger, []) then
+         begin
+           ZQ.Edit;
+           ZQ.FieldByName('ali_stan_na_dzien').AsDateTime:= Date();
+           ZQ.FieldByName('ali_Zadluzenie').AsString:= RxMemAlimenty.FieldByName('memZadluzenie').AsString;
+           ZQ.FieldByName('ali_Rata').AsString      := RxMemAlimenty.FieldByName('memRata').AsString;
+           ZQ.FieldByName('ali_Wplacil').AsString   := RxMemAlimenty.FieldByName('memWplacil').AsString;
+           ZQ.Post;
+         end;
+      RxMemAlimenty.Next;
+    end;
+
+  finally
+    FreeAndNil(ZQ);
+  end;
 end;
 
 end.

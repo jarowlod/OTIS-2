@@ -31,6 +31,7 @@ type
     cbZmianyPobytow: TCheckBox;
     cbMiejsce: TCheckBox;
     cbDuplikaty: TCheckBox;
+    cbNowi: TCheckBox;
     ComboBox1: TComboBox;
     cbSkierowanie: TComboBox;
     DateTimePicker1: TDateTimePicker;
@@ -276,6 +277,7 @@ type
     procedure btnZapiszZmianyClick(Sender: TObject);
     procedure btnDodajDoKoszykaClick(Sender: TObject);
     procedure btnZmienOpisStanowiskaClick(Sender: TObject);
+    procedure cbNowiChange(Sender: TObject);
     procedure cbZatNaDzienChange(Sender: TObject);
     procedure cbZatNaMscChange(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -479,6 +481,18 @@ begin
   // duplikaty zatrudnionych
   if cbDuplikaty.Checked then
      ZQZatrudnieni.SQL.Add(' exists (SELECT id, ido, status_zatrudnienia FROM zat_zatrudnieni zat1 WHERE (zat.ido = zat1.ido) and (zat.id <> zat1.id) and (zat1.status_zatrudnienia = zat.status_zatrudnienia)) AND');
+
+  // nowo zatrudnieni, oczekujący którzy są zatrudnieni, zatrudnieni których data zatrudnienia jest o 1 dzień większa od daty wycofania
+  if cbNowi.Checked then
+     if TStatusZatrudnienia(rgStatusZat.ItemIndex) = szOczekujacy then
+     begin
+       ZQZatrudnieni.SQL.Add(' not exists (SELECT id, ido, status_zatrudnienia FROM zat_zatrudnieni zat1 WHERE (zat.ido = zat1.ido) and (zat.id <> zat1.id) and (zat1.status_zatrudnienia = :status_zatrudnienia_z1)) AND');
+       ZQZatrudnieni.ParamByName('status_zatrudnienia_z1').AsString:= sz_Zatrudniony;
+     end else
+     if TStatusZatrudnienia(rgStatusZat.ItemIndex) in [szZatrudniony, szWszystkie] then
+     begin
+       ZQZatrudnieni.SQL.Add(' not exists (SELECT id, ido, zat_do FROM zat_zatrudnieni zat1 WHERE (zat.ido = zat1.ido) and (zat.id <> zat1.id) and (DATE_ADD(zat1.zat_do, INTERVAL 1 DAY) = zat.zat_od)) AND');
+     end;
 
   // PO STANOWISKU
   sstanowisko:= Trim(edNazwaGrupy.Text);
@@ -790,6 +804,11 @@ begin
         ShowModal;
         Free;
       end;
+end;
+
+procedure TZatrudnieni.cbNowiChange(Sender: TObject);
+begin
+  NewSelect;
 end;
 
 procedure TZatrudnieni.cbZatNaDzienChange(Sender: TObject);

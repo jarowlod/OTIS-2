@@ -120,6 +120,7 @@ type
     YearPlanner1: TYearPlanner;
     ZQTerminarz: TZQuery;
     ZQKalendarz: TZQuery;
+    ZQTerminarzali_Zadluzenie: TStringField;
     ZQTerminarzArch: TSmallintField;
     ZQTerminarzAutoryzacja: TStringField;
     ZQTerminarzdata_autoryzacji: TDateTimeField;

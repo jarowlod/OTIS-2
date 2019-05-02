@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 180
+  Left = 86
   Height = 856
-  Top = 178
+  Top = 85
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -430,6 +430,20 @@ object Zatrudnieni: TZatrudnieni
       Caption = 'Duplikaty'
       OnChange = cbDuplikatyChange
       TabOrder = 9
+    end
+    object cbNowi: TCheckBox
+      Left = 1152
+      Height = 19
+      Hint = 'Nowo zatrudnieni: '#13#10'- oczekujący którzy są zatrudnieni, '#13#10'- zatrudnieni których data zatrudnienia jest o 1 dzień większa od daty wycofania.'
+      Top = 93
+      Width = 48
+      Anchors = [akTop, akRight]
+      Caption = 'Nowi'
+      OnChange = cbNowiChange
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 10
+      Visible = False
     end
   end
   object Panel3: TPanel

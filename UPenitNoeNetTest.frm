@@ -1,7 +1,7 @@
 object PenitNoeNetTest: TPenitNoeNetTest
-  Left = 333
+  Left = 334
   Height = 641
-  Top = 237
+  Top = 226
   Width = 1024
   Caption = 'NoeNet - sprawdzanie poprwaności danych'
   ClientHeight = 641
@@ -51,9 +51,9 @@ object PenitNoeNetTest: TPenitNoeNetTest
     Height = 593
     Top = 48
     Width = 1024
-    ActivePage = TabSheet2
+    ActivePage = TabSheet3
     Align = alClient
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Sesje'
@@ -777,6 +777,156 @@ object PenitNoeNetTest: TPenitNoeNetTest
         Visible = False
       end
     end
+    object TabSheet3: TTabSheet
+      Caption = 'Alimenty'
+      ClientHeight = 565
+      ClientWidth = 1016
+      object btnAnalizaAlimenty: TBitBtn
+        Left = 8
+        Height = 30
+        Top = 8
+        Width = 123
+        Caption = 'Analiza'
+        Images = DM.ImageList1
+        ImageIndex = 40
+        OnClick = btnAnalizaAlimentyClick
+        TabOrder = 0
+      end
+      object memAlimenty: TMemo
+        Left = 8
+        Height = 138
+        Top = 40
+        Width = 1000
+        Anchors = [akTop, akLeft, akRight]
+        ScrollBars = ssAutoBoth
+        TabOrder = 1
+        WordWrap = False
+      end
+      object RxDBGrid5: TRxDBGrid
+        Left = 8
+        Height = 364
+        Top = 192
+        Width = 840
+        ColumnDefValues.BlobText = '(blob)'
+        TitleButtons = True
+        AutoSort = True
+        Columns = <        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'memNazwiskoImie'
+            Width = 200
+            FieldName = 'memNazwiskoImie'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footer.ValueType = fvtCount
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'memIDO'
+            Width = 100
+            FieldName = 'memIDO'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'memZadluzenie'
+            Width = 100
+            FieldName = 'memZadluzenie'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'memRata'
+            Width = 100
+            FieldName = 'memRata'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'memWplacil'
+            Width = 100
+            FieldName = 'memWplacil'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end>
+        KeyStrokes = <        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.Active = True
+        FooterOptions.Color = clSilver
+        FooterOptions.RowCount = 1
+        FooterOptions.Style = tsNative
+        FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
+        OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
+        FooterColor = clSilver
+        FooterRowCount = 1
+        AlternateColor = 14022911
+        AutoAdvance = aaNone
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clHighlight
+        FixedHotColor = clNone
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        DataSource = DSAlimenty
+        DefaultRowHeight = 19
+        FixedColor = clNone
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert, dgCellHints, dgTruncCellHints, dgCellEllipsis]
+        ParentShowHint = False
+        ReadOnly = True
+        ShowHint = True
+        TabOrder = 2
+        TitleStyle = tsNative
+      end
+    end
   end
   object ZQSesje: TZQuery
     Connection = DM.ZConnection1
@@ -875,5 +1025,95 @@ object PenitNoeNetTest: TPenitNoeNetTest
         Name = 'ID_Sesji'
         ParamType = ptUnknown
       end>
+  end
+  object DSAlimenty: TDataSource
+    DataSet = RxMemAlimenty
+    Left = 888
+    Top = 268
+  end
+  object RxMemAlimenty: TRxMemoryData
+    Active = True
+    FieldDefs = <    
+      item
+        Name = 'memNazwiskoImie'
+        DataType = ftString
+        Precision = -1
+        Size = 100
+      end    
+      item
+        Name = 'memIDO'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'memZadluzenie'
+        DataType = ftString
+        Precision = -1
+        Size = 100
+      end    
+      item
+        Name = 'memRata'
+        DataType = ftString
+        Precision = -1
+        Size = 100
+      end    
+      item
+        Name = 'memWplacil'
+        DataType = ftString
+        Precision = -1
+        Size = 100
+      end>
+    PacketRecords = 0
+    Left = 784
+    Top = 268
+    object RxMemAlimentymemNazwiskoImie: TStringField
+      FieldKind = fkData
+      FieldName = 'memNazwiskoImie'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object RxMemAlimentymemIDO: TLongintField
+      FieldKind = fkData
+      FieldName = 'memIDO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RxMemAlimentymemZadluzenie: TStringField
+      FieldKind = fkData
+      FieldName = 'memZadluzenie'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object RxMemAlimentymemRata: TStringField
+      FieldKind = fkData
+      FieldName = 'memRata'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object RxMemAlimentymemWplacil: TStringField
+      FieldKind = fkData
+      FieldName = 'memWplacil'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
   end
 end

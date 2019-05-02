@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 180
+  Left = 368
   Height = 743
-  Top = 178
+  Top = 364
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -1056,6 +1056,21 @@ object PenitTerminarz: TPenitTerminarz
               Footers = <>
             end          
             item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Alimenty Zadłużenie'
+              Width = 70
+              FieldName = 'ali_Zadluzenie'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
               Alignment = taCenter
               Font.Color = clMaroon
               Title.Alignment = taCenter
@@ -1294,7 +1309,8 @@ object PenitTerminarz: TPenitTerminarz
       'postpenit_notatka,'
       'GR,'
       'typ_cel.ID,'
-      'zat.zat_od'
+      'zat.zat_od,'
+      'ali_Zadluzenie'
       'FROM osadzeni os'
       'LEFT OUTER JOIN os_info ON (os.IDO = os_info.IDO)'
       'INNER JOIN typ_cel ON (os.POC = typ_cel.POC)'
@@ -1564,6 +1580,17 @@ object PenitTerminarz: TPenitTerminarz
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object ZQTerminarzali_Zadluzenie: TStringField
+      Alignment = taRightJustify
+      FieldKind = fkData
+      FieldName = 'ali_Zadluzenie'
+      Index = 28
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 48
     end
   end
   object DSTerminarz: TDataSource

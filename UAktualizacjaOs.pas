@@ -243,7 +243,7 @@ begin
 
     s:= Memo1.Lines.Strings[i];
     st.Clear;
-    kol:= ExtractStrings([' '], [], PChar(s), st, true);  // liczba kolumn, prawidłowo powinno być ????
+    kol:= ExtractStrings([' '], [], PChar(s), st, true);  // liczba kolumn, prawidłowo powinno być 12
 
     if kol = 12 then
     begin
