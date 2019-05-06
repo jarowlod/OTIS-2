@@ -20,9 +20,12 @@ type
     btnRejestrZat: TBitBtn;
     btnDrukArch: TBitBtn;
     btnDrukWywiad: TBitBtn;
+    DBCheckBox7: TDBCheckBox;
+    DBCheckBox8: TDBCheckBox;
     DBEdit3: TDBEdit;
     DBEdit4: TDBEdit;
     DBEdit5: TDBEdit;
+    DBMemo2: TDBMemo;
     DBText10: TDBText;
     DBText4: TDBText;
     DBText9: TDBText;
@@ -53,6 +56,8 @@ type
     DBText6: TDBText;
     DBText7: TDBText;
     DBText8: TDBText;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
     Image_os: TImage;
     Label1: TLabel;
     Label10: TLabel;
@@ -61,6 +66,7 @@ type
     Label13: TLabel;
     Label14: TLabel;
     Label15: TLabel;
+    Label16: TLabel;
     lblUrodziny: TLabel;
     lblCelaOchronna: TLabel;
     lblCelaPalaca: TLabel;
@@ -80,7 +86,7 @@ type
     Panel4: TPanel;
     Panel_Zdj: TPanel;
     btnDodajDoKoszyka: TSpeedButton;
-    TabSheetAlimenty: TTabSheet;
+    TabSheetZobowiazania: TTabSheet;
     TabSheetPaczki: TTabSheet;
     TabSheetOsobyBliskie: TTabSheet;
     TabSheetWidzenia: TTabSheet;

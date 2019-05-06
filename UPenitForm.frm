@@ -889,7 +889,7 @@ object PenitForm: TPenitForm
     Height = 347
     Top = 448
     Width = 715
-    ActivePage = TabSheetAlimenty
+    ActivePage = TabSheetZobowiazania
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
@@ -971,8 +971,8 @@ object PenitForm: TPenitForm
       Caption = 'Zatrudnienie'
       ImageIndex = 5
     end
-    object TabSheetAlimenty: TTabSheet
-      Caption = 'Alimenty'
+    object TabSheetZobowiazania: TTabSheet
+      Caption = 'Zobowiązania'
       ClientHeight = 314
       ClientWidth = 707
       ImageIndex = 22
@@ -988,88 +988,150 @@ object PenitForm: TPenitForm
         Color = clForm
         ParentColor = False
         TabOrder = 0
-        object Label12: TLabel
-          Left = 16
-          Height = 15
-          Top = 16
-          Width = 73
-          Caption = 'Stan na dzień:'
-          ParentColor = False
-        end
-        object Label13: TLabel
-          Left = 29
-          Height = 15
-          Top = 48
-          Width = 60
-          Caption = 'Zadłużenie:'
-          ParentColor = False
-        end
-        object Label14: TLabel
-          Left = 63
-          Height = 15
-          Top = 80
-          Width = 26
-          Caption = 'Rata:'
-          ParentColor = False
-        end
-        object Label15: TLabel
-          Left = 48
-          Height = 15
-          Top = 112
-          Width = 42
-          Caption = 'Wpłacił:'
-          ParentColor = False
-        end
-        object DBEdit3: TDBEdit
-          Left = 104
-          Height = 23
-          Top = 40
-          Width = 128
-          DataField = 'ali_Zadluzenie'
-          DataSource = DSOsInfo
-          ReadOnly = True
-          CharCase = ecNormal
-          MaxLength = 0
+        object GroupBox1: TGroupBox
+          Left = 8
+          Height = 176
+          Top = 8
+          Width = 250
+          Caption = 'Alimenty'
+          ClientHeight = 156
+          ClientWidth = 246
           TabOrder = 0
+          object Label12: TLabel
+            Left = 16
+            Height = 15
+            Top = 40
+            Width = 73
+            Caption = 'Stan na dzień:'
+            ParentColor = False
+          end
+          object Label13: TLabel
+            Left = 29
+            Height = 15
+            Top = 72
+            Width = 60
+            Caption = 'Zadłużenie:'
+            ParentColor = False
+          end
+          object Label14: TLabel
+            Left = 63
+            Height = 15
+            Top = 104
+            Width = 26
+            Caption = 'Rata:'
+            ParentColor = False
+          end
+          object Label15: TLabel
+            Left = 48
+            Height = 15
+            Top = 136
+            Width = 42
+            Caption = 'Wpłacił:'
+            ParentColor = False
+          end
+          object DBEdit3: TDBEdit
+            Left = 104
+            Height = 23
+            Top = 64
+            Width = 128
+            DataField = 'ali_Zadluzenie'
+            DataSource = DSOsInfo
+            ReadOnly = True
+            CharCase = ecNormal
+            MaxLength = 0
+            TabOrder = 0
+          end
+          object DBEdit4: TDBEdit
+            Left = 104
+            Height = 23
+            Top = 96
+            Width = 128
+            DataField = 'ali_Rata'
+            DataSource = DSOsInfo
+            ReadOnly = True
+            CharCase = ecNormal
+            MaxLength = 0
+            TabOrder = 1
+          end
+          object DBEdit5: TDBEdit
+            Left = 104
+            Height = 23
+            Hint = 'Ostatnia wpłata na stan z dnia.'
+            Top = 128
+            Width = 128
+            DataField = 'ali_Wplacil'
+            DataSource = DSOsInfo
+            ReadOnly = True
+            CharCase = ecNormal
+            MaxLength = 0
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 2
+          end
+          object DBText10: TDBText
+            Left = 104
+            Height = 15
+            Top = 40
+            Width = 129
+            AutoSize = False
+            DataField = 'ali_stan_na_dzien'
+            DataSource = DSOsInfo
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object DBCheckBox8: TDBCheckBox
+            Left = 104
+            Height = 23
+            Top = 8
+            Width = 90
+            Caption = 'Alimenty'
+            DataField = 'alimenty'
+            DataSource = DSOsInfo
+            TabOrder = 3
+            ValueChecked = '1'
+            ValueUnchecked = '0'
+          end
         end
-        object DBEdit4: TDBEdit
-          Left = 104
-          Height = 23
-          Top = 72
-          Width = 128
-          DataField = 'ali_Rata'
-          DataSource = DSOsInfo
-          ReadOnly = True
-          CharCase = ecNormal
-          MaxLength = 0
+        object GroupBox2: TGroupBox
+          Left = 272
+          Height = 176
+          Top = 8
+          Width = 345
+          Caption = 'Zobowiązania'
+          ClientHeight = 156
+          ClientWidth = 341
           TabOrder = 1
-        end
-        object DBEdit5: TDBEdit
-          Left = 104
-          Height = 23
-          Hint = 'Ostatnia wpłata na stan z dnia.'
-          Top = 104
-          Width = 128
-          DataField = 'ali_Wplacil'
-          DataSource = DSOsInfo
-          ReadOnly = True
-          CharCase = ecNormal
-          MaxLength = 0
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 2
-        end
-        object DBText10: TDBText
-          Left = 104
-          Height = 15
-          Top = 16
-          Width = 129
-          AutoSize = False
-          DataField = 'ali_stan_na_dzien'
-          DataSource = DSOsInfo
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
+          object DBCheckBox7: TDBCheckBox
+            Left = 16
+            Height = 23
+            Top = 8
+            Width = 90
+            Caption = 'Zobowiązania'
+            DataField = 'zobowiazania'
+            DataSource = DSOsInfo
+            TabOrder = 0
+            ValueChecked = '1'
+            ValueUnchecked = '0'
+          end
+          object DBMemo2: TDBMemo
+            Left = 16
+            Height = 90
+            Top = 56
+            Width = 312
+            DataField = 'zob_info'
+            DataSource = DSOsInfo
+            MaxLength = 100
+            TabOrder = 1
+          end
+          object Label16: TLabel
+            Left = 16
+            Height = 15
+            Top = 37
+            Width = 45
+            Caption = 'Notatka:'
+            ParentColor = False
+          end
         end
       end
     end
@@ -1128,10 +1190,13 @@ object PenitForm: TPenitForm
       'wpz_stanowisko,'
       'postpenit_notatka,'
       'GR,'
+      'alimenty,'
       'ali_stan_na_dzien,'
       'ali_Zadluzenie,'
       'ali_Rata,'
-      'ali_Wplacil'
+      'ali_Wplacil,'
+      'zobowiazania,'
+      'zob_info'
       'FROM os_info'
       'WHERE IDO = :IDO'
     )
@@ -1189,11 +1254,12 @@ object PenitForm: TPenitForm
       'INSERT INTO os_info'
       '  (IDO, Autoryzacja, data_autoryzacji, KoniecKary, Arch, Wywiad, Starszy, '
       '   Zatrudnienie, toceny, tprzepustki, tpostpenitu, tterapii, twpz, ulamek_wpz, '
-      '   wpz_stanowisko, postpenit_notatka, GR)'
+      '   wpz_stanowisko, postpenit_notatka, GR, alimenty, zobowiazania, zob_info)'
       'VALUES'
       '  (:IDOEd, :AutoryzacjaEd, Now(), :KoniecKary, :Arch, :Wywiad, '
       '   :Starszy, :Zatrudnienie, :toceny, :tprzepustki, :tpostpenitu, :tterapii, '
-      '   :twpz, :ulamek_wpz, :wpz_stanowisko, :postpenit_notatka, :GR)'
+      '   :twpz, :ulamek_wpz, :wpz_stanowisko, :postpenit_notatka, :GR, :alimenty, '
+      '   :zobowiazania, :zob_info)'
     )
     ModifySQL.Strings = (
       'UPDATE os_info SET'
@@ -1212,7 +1278,10 @@ object PenitForm: TPenitForm
       '  ulamek_wpz = :ulamek_wpz,'
       '  wpz_stanowisko = :wpz_stanowisko,'
       '  postpenit_notatka = :postpenit_notatka,'
-      '  GR = :GR'
+      '  GR = :GR,'
+      '  alimenty = :alimenty,'
+      '  zobowiazania = :zobowiazania,'
+      '  zob_info = :zob_info'
       'WHERE'
       '  os_info.IDO = :OLD_IDO'
     )
@@ -1293,6 +1362,21 @@ object PenitForm: TPenitForm
       item
         DataType = ftUnknown
         Name = 'GR'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'alimenty'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'zobowiazania'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'zob_info'
         ParamType = ptUnknown
       end    
       item

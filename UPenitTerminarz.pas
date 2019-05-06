@@ -120,6 +120,7 @@ type
     YearPlanner1: TYearPlanner;
     ZQTerminarz: TZQuery;
     ZQKalendarz: TZQuery;
+    ZQTerminarzalimenty: TSmallintField;
     ZQTerminarzali_Zadluzenie: TStringField;
     ZQTerminarzArch: TSmallintField;
     ZQTerminarzAutoryzacja: TStringField;
@@ -149,6 +150,7 @@ type
     ZQTerminarzWywiad: TSmallintField;
     ZQTerminarzZatrudnienie: TStringField;
     ZQTerminarzzat_od: TDateField;
+    ZQTerminarzzobowiazania: TSmallintField;
     ZQZatReport: TZQuery;
     procedure cbWychowawcyChange(Sender: TObject);
     procedure cbListTerminyClickCheck(Sender: TObject);

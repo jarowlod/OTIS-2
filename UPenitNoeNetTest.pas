@@ -363,7 +363,7 @@ begin
     end;
 
     // uaktualniamy dane dla os_info w zakresie alimentacji
-    ZQ.SQL.Text:= 'SELECT IDO, ali_stan_na_dzien, ali_Zadluzenie, ali_Rata, ali_Wplacil FROM os_info';
+    ZQ.SQL.Text:= 'SELECT IDO, alimenty, ali_stan_na_dzien, ali_Zadluzenie, ali_Rata, ali_Wplacil FROM os_info';
     ZQ.Open;
     RxMemAlimenty.First;
     while not RxMemAlimenty.EOF do
@@ -372,6 +372,16 @@ begin
          begin
            ZQ.Edit;
            ZQ.FieldByName('ali_stan_na_dzien').AsDateTime:= Date();
+           ZQ.FieldByName('alimenty').AsBoolean     := true;
+           ZQ.FieldByName('ali_Zadluzenie').AsString:= RxMemAlimenty.FieldByName('memZadluzenie').AsString;
+           ZQ.FieldByName('ali_Rata').AsString      := RxMemAlimenty.FieldByName('memRata').AsString;
+           ZQ.FieldByName('ali_Wplacil').AsString   := RxMemAlimenty.FieldByName('memWplacil').AsString;
+           ZQ.Post;
+         end else
+         begin
+           ZQ.Append;
+           ZQ.FieldByName('ali_stan_na_dzien').AsDateTime:= Date();
+           ZQ.FieldByName('alimenty').AsBoolean     := true;
            ZQ.FieldByName('ali_Zadluzenie').AsString:= RxMemAlimenty.FieldByName('memZadluzenie').AsString;
            ZQ.FieldByName('ali_Rata').AsString      := RxMemAlimenty.FieldByName('memRata').AsString;
            ZQ.FieldByName('ali_Wplacil').AsString   := RxMemAlimenty.FieldByName('memWplacil').AsString;

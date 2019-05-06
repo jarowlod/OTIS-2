@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 368
+  Left = 86
   Height = 743
-  Top = 364
+  Top = 85
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -1056,11 +1056,45 @@ object PenitTerminarz: TPenitTerminarz
               Footers = <>
             end          
             item
+              ButtonStyle = cbsCheckboxColumn
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Hint = 'Alimenty'
+              Title.Caption = 'ali- menty'
+              Width = 33
+              FieldName = 'alimenty'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'Alimenty Zadłużenie'
               Width = 70
               FieldName = 'ali_Zadluzenie'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              ButtonStyle = cbsCheckboxColumn
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Hint = 'Zobowiazania'
+              Title.Caption = 'zobo- wiązania'
+              Width = 33
+              FieldName = 'zobowiazania'
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
@@ -1310,7 +1344,9 @@ object PenitTerminarz: TPenitTerminarz
       'GR,'
       'typ_cel.ID,'
       'zat.zat_od,'
-      'ali_Zadluzenie'
+      'alimenty,'
+      'ali_Zadluzenie,'
+      'os_info.zobowiazania'
       'FROM osadzeni os'
       'LEFT OUTER JOIN os_info ON (os.IDO = os_info.IDO)'
       'INNER JOIN typ_cel ON (os.POC = typ_cel.POC)'
@@ -1581,16 +1617,34 @@ object PenitTerminarz: TPenitTerminarz
       ReadOnly = False
       Required = False
     end
+    object ZQTerminarzalimenty: TSmallintField
+      FieldKind = fkData
+      FieldName = 'alimenty'
+      Index = 28
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
     object ZQTerminarzali_Zadluzenie: TStringField
       Alignment = taRightJustify
       FieldKind = fkData
       FieldName = 'ali_Zadluzenie'
-      Index = 28
+      Index = 29
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
       Required = False
       Size = 48
+    end
+    object ZQTerminarzzobowiazania: TSmallintField
+      FieldKind = fkData
+      FieldName = 'zobowiazania'
+      Index = 30
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
   object DSTerminarz: TDataSource
