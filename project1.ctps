@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="224"/>
-        <CursorPos X="63" Y="234"/>
+        <TopLine Value="355"/>
+        <CursorPos Y="376"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,8 +33,8 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <TopLine Value="174"/>
-        <CursorPos X="25" Y="193"/>
+        <TopLine Value="384"/>
+        <CursorPos X="102" Y="404"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -119,8 +119,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="241"/>
-        <CursorPos X="44" Y="256"/>
+        <TopLine Value="322"/>
+        <CursorPos X="3" Y="333"/>
         <UsageCount Value="200"/>
       </Unit9>
       <Unit10>
@@ -165,9 +165,8 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="35" Y="27"/>
+        <CursorPos X="45" Y="10"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -180,7 +179,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="422"/>
+        <TopLine Value="26"/>
         <CursorPos X="53" Y="422"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -699,6 +698,7 @@
         <ComponentName Value="PenitNoeNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="357"/>
         <CursorPos X="29" Y="382"/>
@@ -893,9 +893,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="52"/>
-        <CursorPos X="21" Y="64"/>
-        <UsageCount Value="168"/>
+        <TopLine Value="227"/>
+        <CursorPos X="44" Y="91"/>
+        <UsageCount Value="171"/>
       </Unit74>
       <Unit75>
         <Filename Value="UKwatPlanWyjazdowAdd.pas"/>
@@ -907,7 +907,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="136"/>
         <CursorPos X="3" Y="141"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="154"/>
       </Unit75>
       <Unit76>
         <Filename Value="UKwatSprzetRTV.pas"/>
@@ -919,7 +919,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="31" Y="65"/>
-        <UsageCount Value="83"/>
+        <UsageCount Value="86"/>
       </Unit76>
       <Unit77>
         <Filename Value="UKwatSprzetRTVWydruk.pas"/>
@@ -931,7 +931,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="75"/>
       </Unit77>
       <Unit78>
         <Filename Value="UKwatPlanWyjazdowSamochody.pas"/>
@@ -943,7 +943,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="57" Y="78"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="47"/>
       </Unit78>
       <Unit79>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -1789,127 +1789,123 @@
         <UsageCount Value="10"/>
       </Unit187>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="304" Column="34" TopLine="282"/>
+        <Caret Line="303" Column="34" TopLine="281"/>
       </Position1>
       <Position2>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="303" Column="34" TopLine="281"/>
+        <Caret Line="302" Column="34" TopLine="280"/>
       </Position2>
       <Position3>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="302" Column="34" TopLine="280"/>
+        <Caret Line="301" Column="34" TopLine="279"/>
       </Position3>
       <Position4>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="301" Column="34" TopLine="279"/>
+        <Caret Line="302" Column="34" TopLine="280"/>
       </Position4>
       <Position5>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="302" Column="34" TopLine="280"/>
+        <Caret Line="303" Column="34" TopLine="281"/>
       </Position5>
       <Position6>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="303" Column="34" TopLine="281"/>
+        <Caret Line="304" Column="34" TopLine="282"/>
       </Position6>
       <Position7>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="304" Column="34" TopLine="282"/>
+        <Caret Line="305" Column="34" TopLine="283"/>
       </Position7>
       <Position8>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="305" Column="34" TopLine="283"/>
+        <Caret Line="348" Column="18" TopLine="329"/>
       </Position8>
       <Position9>
-        <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="348" Column="18" TopLine="329"/>
+        <Filename Value="UPenitForm.pas"/>
+        <Caret Line="118" Column="37" TopLine="106"/>
       </Position9>
       <Position10>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="118" Column="37" TopLine="106"/>
+        <Caret Line="119" Column="37" TopLine="107"/>
       </Position10>
       <Position11>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="119" Column="37" TopLine="107"/>
+        <Caret Line="120" Column="37" TopLine="108"/>
       </Position11>
       <Position12>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="120" Column="37" TopLine="108"/>
+        <Caret Line="119" Column="37" TopLine="107"/>
       </Position12>
       <Position13>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="119" Column="37" TopLine="107"/>
+        <Caret Line="120" Column="37" TopLine="108"/>
       </Position13>
       <Position14>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="120" Column="37" TopLine="108"/>
+        <Caret Line="121" Column="37" TopLine="109"/>
       </Position14>
       <Position15>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="121" Column="37" TopLine="109"/>
+        <Caret Line="122" Column="37" TopLine="110"/>
       </Position15>
       <Position16>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="122" Column="37" TopLine="110"/>
+        <Caret Line="123" Column="37" TopLine="111"/>
       </Position16>
       <Position17>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="123" Column="37" TopLine="111"/>
+        <Caret Line="124" Column="37" TopLine="112"/>
       </Position17>
       <Position18>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="124" Column="37" TopLine="112"/>
+        <Caret Line="125" Column="37" TopLine="113"/>
       </Position18>
       <Position19>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="125" Column="37" TopLine="113"/>
+        <Caret Line="126" Column="37" TopLine="114"/>
       </Position19>
       <Position20>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="126" Column="37" TopLine="114"/>
+        <Caret Line="127" Column="37" TopLine="115"/>
       </Position20>
       <Position21>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="127" Column="37" TopLine="115"/>
-      </Position21>
-      <Position22>
         <Filename Value="UPenitTerminarz.pas"/>
         <Caret Line="419" Column="53" TopLine="404"/>
+      </Position21>
+      <Position22>
+        <Filename Value="UPenitForm.pas"/>
+        <Caret Line="128" Column="37"/>
       </Position22>
       <Position23>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="128" Column="37"/>
+        <Caret Line="129" Column="37" TopLine="95"/>
       </Position23>
       <Position24>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="129" Column="37" TopLine="95"/>
+        <Caret Line="130" Column="37" TopLine="96"/>
       </Position24>
       <Position25>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="130" Column="37" TopLine="96"/>
+        <Caret Line="131" Column="37" TopLine="97"/>
       </Position25>
       <Position26>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="131" Column="37" TopLine="97"/>
+        <Caret Line="132" Column="37" TopLine="98"/>
       </Position26>
       <Position27>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="132" Column="37" TopLine="98"/>
+        <Caret Line="133" Column="37" TopLine="99"/>
       </Position27>
       <Position28>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="133" Column="37" TopLine="99"/>
-      </Position28>
-      <Position29>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="420" Column="53" TopLine="1047"/>
-      </Position29>
-      <Position30>
         <Filename Value="UPenitTerminarz.pas"/>
         <Caret Line="421" Column="53" TopLine="421"/>
-      </Position30>
+      </Position28>
+      <Position29>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="245" Column="73" TopLine="224"/>
+      </Position29>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

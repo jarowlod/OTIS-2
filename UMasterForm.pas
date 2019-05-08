@@ -373,8 +373,7 @@ begin
 
   ActionNoeNetTest.Enabled     := DM.uprawnienia[17];
 
-  // TODO: w realizacji
-  ActionPlanWyjazdow.Enabled   := DM.uprawnienia[19]; // tymczasowo tylko Kwat z opcją Edycji, docelowo wszyscy jako podgląd
+  ActionPlanWyjazdow.Enabled   := DM.uprawnienia[20];
 
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;

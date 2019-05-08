@@ -89,7 +89,8 @@ type
                                                // 17: Moduł do testowania poprawności NoeNet
                                                // 18: Rezerwacja Widzeń BD i Skypa
                                                // 19: Kwat: Plan wyjazdów, edycja
-    uprawnienia: array[1..19] of Boolean;
+                                               // 20: Kwat: Plan wyjazdów, podgląd
+    uprawnienia: array[1..20] of Boolean;
 
     Function VersionStringToNumber(AVersionString: string): integer;
     Function fGetVersionAndConfig: string;
@@ -390,25 +391,7 @@ begin
 
   if not ZQ.IsEmpty then
   begin
-      uprawnienia[1]:= ZQ.FieldByName('Mod1').AsInteger = 1;
-      uprawnienia[2]:= ZQ.FieldByName('Mod2').AsInteger = 1;
-      uprawnienia[3]:= ZQ.FieldByName('Mod3').AsInteger = 1;
-      uprawnienia[4]:= ZQ.FieldByName('Mod4').AsInteger = 1;
-      uprawnienia[5]:= ZQ.FieldByName('Mod5').AsInteger = 1;
-      uprawnienia[6]:= ZQ.FieldByName('Mod6').AsInteger = 1;
-      uprawnienia[7]:= ZQ.FieldByName('Mod7').AsInteger = 1;
-      uprawnienia[8]:= ZQ.FieldByName('Mod8').AsInteger = 1;
-      uprawnienia[9]:= ZQ.FieldByName('Mod9').AsInteger = 1;
-      uprawnienia[10]:= ZQ.FieldByName('Mod10').AsInteger = 1;
-      uprawnienia[11]:= ZQ.FieldByName('Mod11').AsInteger = 1;
-      uprawnienia[12]:= ZQ.FieldByName('Mod12').AsInteger = 1;
-      uprawnienia[13]:= ZQ.FieldByName('Mod13').AsInteger = 1;
-      uprawnienia[14]:= ZQ.FieldByName('Mod14').AsInteger = 1;
-      uprawnienia[15]:= ZQ.FieldByName('Mod15').AsInteger = 1;
-      uprawnienia[17]:= ZQ.FieldByName('Mod17').AsInteger = 1;
-      uprawnienia[18]:= ZQ.FieldByName('Mod18').AsInteger = 1;
-      uprawnienia[19]:= ZQ.FieldByName('Mod19').AsInteger = 1;
-
+      for i:= low(uprawnienia) to High(uprawnienia) do uprawnienia[i]:= ZQ.FieldByName('Mod'+i.ToString).AsInteger = 1;
 
       PelnaNazwa  := ZQ.FieldByName('full_name').AsString;
       // Dla kompatybilności z użtkownikiem dodanym przez Paczkownię

@@ -1,10 +1,10 @@
 object Uprawnienia: TUprawnienia
   Left = 334
-  Height = 636
+  Height = 703
   Top = 226
   Width = 1065
   Caption = 'Uprawnienia'
-  ClientHeight = 636
+  ClientHeight = 703
   ClientWidth = 1065
   OnCreate = FormCreate
   Position = poDesktopCenter
@@ -77,11 +77,11 @@ object Uprawnienia: TUprawnienia
   end
   object Panel2: TPanel
     Left = 0
-    Height = 586
+    Height = 653
     Top = 50
     Width = 358
     Align = alClient
-    ClientHeight = 586
+    ClientHeight = 653
     ClientWidth = 358
     TabOrder = 1
     object Panel3: TPanel
@@ -169,7 +169,7 @@ object Uprawnienia: TUprawnienia
     end
     object RxDBGrid1: TRxDBGrid
       Left = 1
-      Height = 488
+      Height = 555
       Top = 51
       Width = 356
       ColumnDefValues.BlobText = '(blob)'
@@ -622,6 +622,23 @@ object Uprawnienia: TUprawnienia
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
           Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          ButtonStyle = cbsCheckboxColumn
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.ShowHint = True
+          Title.Caption = 'Mod20'
+          FieldName = 'Mod20'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
         end>
       KeyStrokes = <      
         item
@@ -708,7 +725,7 @@ object Uprawnienia: TUprawnienia
     object Panel5: TPanel
       Left = 1
       Height = 46
-      Top = 539
+      Top = 606
       Width = 356
       Align = alBottom
       BevelOuter = bvNone
@@ -809,7 +826,7 @@ object Uprawnienia: TUprawnienia
   end
   object Splitter1: TSplitter
     Left = 358
-    Height = 586
+    Height = 653
     Top = 50
     Width = 5
     Align = alRight
@@ -817,11 +834,11 @@ object Uprawnienia: TUprawnienia
   end
   object Panel4: TPanel
     Left = 363
-    Height = 586
+    Height = 653
     Top = 50
     Width = 702
     Align = alRight
-    ClientHeight = 586
+    ClientHeight = 653
     ClientWidth = 702
     TabOrder = 3
     object Label2: TLabel
@@ -858,9 +875,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText1: TDBText
       Left = 128
-      Height = 1
+      Height = 15
       Top = 8
-      Width = 1
+      Width = 50
       DataField = 'user'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -869,9 +886,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText3: TDBText
       Left = 128
-      Height = 1
+      Height = 15
       Top = 64
-      Width = 1
+      Width = 50
       DataField = 'Last'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -880,9 +897,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText4: TDBText
       Left = 128
-      Height = 1
+      Height = 15
       Top = 85
-      Width = 1
+      Width = 50
       DataField = 'IleRazy'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -891,11 +908,11 @@ object Uprawnienia: TUprawnienia
     end
     object GroupBox1: TGroupBox
       Left = 8
-      Height = 448
+      Height = 520
       Top = 128
       Width = 280
       Caption = 'Uprawnienia'
-      ClientHeight = 428
+      ClientHeight = 500
       ClientWidth = 276
       TabOrder = 0
       object DBCheckBox1: TDBCheckBox
@@ -1142,6 +1159,19 @@ object Uprawnienia: TUprawnienia
         DataField = 'Mod19'
         DataSource = DSUsers
         TabOrder = 18
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox20: TDBCheckBox
+        Left = 16
+        Height = 19
+        Top = 432
+        Width = 185
+        AutoSize = True
+        Caption = 'Kwat: Plan wyjazdów (podgląd)'
+        DataField = 'Mod20'
+        DataSource = DSUsers
+        TabOrder = 19
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -1621,9 +1651,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText2: TDBText
       Left = 104
-      Height = 1
+      Height = 15
       Top = 84
-      Width = 1
+      Width = 50
       DataField = 'user'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -1632,9 +1662,9 @@ object Uprawnienia: TUprawnienia
     end
     object DBText5: TDBText
       Left = 104
-      Height = 1
+      Height = 15
       Top = 112
-      Width = 1
+      Width = 50
       DataField = 'Full_name'
       DataSource = DSUsers
       Font.Style = [fsBold]
@@ -1646,7 +1676,6 @@ object Uprawnienia: TUprawnienia
     Connection = DM.ZConnection1
     SortedFields = 'user'
     BeforePost = ZQUsersBeforePost
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM uprawnienia'

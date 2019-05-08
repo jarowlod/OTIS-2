@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, ZDataset, ZSqlUpdate, Forms, Controls, Graphics, Dialogs, ExtCtrls, DbCtrls,
   StdCtrls, Buttons, ComCtrls, rxdbutils, UZatrudnieni, UViewUwagiOch, UViewWykazy, UViewZatrudnienie, UViewWidzenia,
-  UViewOsobyBliskie, UViewPaczki, datamodule, DBDateTimePicker;
+  UViewOsobyBliskie, UViewPaczki, datamodule;
 
 type
 
