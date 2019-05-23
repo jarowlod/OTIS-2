@@ -15,6 +15,7 @@ type
 
   TPenitNoeNetTest = class(TForm)
     btnAnalizaAlimenty: TBitBtn;
+    btnAnalizaZobowiazania: TBitBtn;
     btnWyslijAll: TBitBtn;
     btnUstawIDSesji: TBitBtn;
     btnAnaliza: TBitBtn;
@@ -29,6 +30,7 @@ type
     Label1: TLabel;
     lblNrSesji: TLabel;
     Label8: TLabel;
+    memZobowiazania: TMemo;
     Memo1: TMemo;
     memAlimenty: TMemo;
     PageControl1: TPageControl;
@@ -54,6 +56,7 @@ type
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
+    TabSheet6: TTabSheet;
     ZQSesje: TZQuery;
     ZQBledy: TZQuery;
     ZQWychowawcy: TZQuery;

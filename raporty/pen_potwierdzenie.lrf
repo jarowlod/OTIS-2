@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-04-05 14:47:09"/>
-    <ReportLastChange Value="2019-04-30 07:54:33"/>
+    <ReportLastChange Value="2019-05-23 09:13:51"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -1039,7 +1039,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="57-300 Kłodzko, u. Bohaterów Getta 16&#xD;&#xA;tel.74 865 18 00, fax 74 867 30 17, e'mail: zk_klodzko@sw.gov.pl&#xD;&#xA;"/>
+            <Memo Value="57-300 Kłodzko, ul. Bohaterów Getta 16&#xD;&#xA;tel.74 865 18 00, fax 74 867 30 17, e'mail: zk_klodzko@sw.gov.pl&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1131,7 +1131,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Zakład Karny&#xD;&#xA;"/>
+            <Memo Value="Zakład Karny w Kłodzku&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1187,7 +1187,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="57-300 Kłodzko, u. Bohaterów Getta 16&#xD;&#xA;tel.74 865 18 00, fax 74 867 30 17, e'mail: zk_klodzko@sw.gov.pl&#xD;&#xA;"/>
+            <Memo Value="57-300 Kłodzko, ul. Bohaterów Getta 16&#xD;&#xA;tel.74 865 18 00, fax 74 867 30 17, e'mail: zk_klodzko@sw.gov.pl&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1279,7 +1279,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Zakład Karny&#xD;&#xA;"/>
+            <Memo Value="Zakład Karny w Kłodzku&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>

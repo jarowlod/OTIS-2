@@ -1,14 +1,14 @@
 object DrukWykazOsadz: TDrukWykazOsadz
-  Left = 407
+  Left = 334
   Height = 577
-  Top = 229
+  Top = 226
   Width = 997
   Caption = 'Drukuj Wykaz osadzonych'
   ClientHeight = 577
   ClientWidth = 997
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '6.3'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 577
@@ -78,6 +78,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -93,6 +94,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -108,6 +110,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -125,6 +128,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -506,6 +510,55 @@ object DrukWykazOsadz: TDrukWykazOsadz
       ShowHint = True
       TabOrder = 5
     end
+    object btnDrukujDatUrodzenia: TBitBtn
+      Left = 0
+      Height = 48
+      Hint = 'Drukuj z datą urodzenia.'
+      Top = 440
+      Width = 59
+      Caption = 'dat. ur.'
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        00000000000000000000D7C39BFFECE3D6FFECE3D6FFECE3D6FFECE3D6FFECE3
+        D6FFECE3D6FFD7C39BFF00000000000000000000000000000000958F8FBF9C96
+        96CB9C9696E469636AF1C4AB7FFFEDE1D5FFEDE1D5FFEDE1D5FFEDE1D5FFEDE1
+        D5FFEDE1D5FFC4AB7FFF69636AE99C9696EC9C9696DF999292D3958F8FFFC3C0
+        BFFFC3C0BFFF837D84FFC6A874FFE0CBAEFFE0CBAEFFE0CBAEFFE0CBAEFFE0CB
+        AEFFE0CBAEFFC6A874FF837D84FFC3C0BFFFC3C0BFFF999292FFA49FA1FFD1CF
+        CEFFD1CFCEFFD3D2D1FFD2D2D3FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0D2FFD0D0
+        D2FFD0D0D2FFD2D2D3FFD3D2D1FFBACAD7FF6E9BE3FFA49FA1FFAAA7A7FFD9D7
+        D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7D7FFD9D7
+        D7FFD9D7D7FFD9D7D7FFD9D7D7FF8AC3E9FF004BFBFFABA8A8FFB7B3B3FFE6E8
+        E9FFD6C5AFFFBC6B10FFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A0FFFBB6A
+        0FFFBB6A0FFFBB6A0FFFBC6B10FFD6C5AFFFE6E8E9FFB8B5B5FFBCB9BAFFEEF2
+        F5FFBA7B3EFFE1A942FFE1A842FFE1A842FFE1A842FFE1A842FFE1A842FFE1A8
+        42FFE1A842FFE1A842FFE1A942FFBA7B3EFFEEF2F5FFBFBBBCFFCDC8C9FFF8FC
+        FFFFCD9753FFEEC670FFEEC771FFEEC771FFEEC771FFEEC771FFEEC771FFEEC7
+        71FFEEC771FFEEC771FFEEC670FFCD9753FFF8FCFFFFCECBCCFFD2D0D0FFFCFF
+        FFFFD7A55CFFEDC977FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF68FFE9BF
+        68FFE9BF68FFE9BF68FFEDC977FFD7A55CFFFCFFFFFFD4D1D0FFDEDCDBFFFFFF
+        FFFFE8C070FFE0AC54FFB99D6BFFD7BD91FFD7BD91FFD7BD91FFD7BD91FFD7BD
+        91FFD7BD91FFB99D6BFFE0AC54FFE8C070FFFFFFFFFFE3DFDFFFCAC3C5E0B0AF
+        B4D9D8A859D8C9924BE4C4AB7FFFDFCAADFFDFCAADFFDFCAADFFDFCAADFFDFCA
+        ADFFDFCAADFFC4AB7FFFC9924BF0D8A859DFB0AFB4D5CAC2C4E0000000000000
+        00000000000000000000D0BD98FFECDFD1FFECDFD1FFECDFD1FFECDFD1FFECDF
+        D1FFECDFD1FFD0BD98FF00000000000000000000000000000000000000000000
+        00000000000000000000D5C4A4FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4D8FFEFE4
+        D8FFEFE4D8FFD5C4A4FF00000000000000000000000000000000000000000000
+        00000000000000000000DED0B8FFF5EDE4FFF5EDE4FFF5EDE4FFF5EDE4FFF5ED
+        E4FFF5EDE4FFDED0B8FF00000000000000000000000000000000000000000000
+        00000000000000000000E2D6C1FFF8F3EAFFF8F3EAFFF8F3EAFFF8F3EAFFF8F3
+        EAFFF8F3EAFFE2D6C1FF00000000000000000000000000000000000000000000
+        00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
+        DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
+      }
+      Layout = blGlyphTop
+      OnClick = btnDrukujDatUrodzeniaClick
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 6
+    end
   end
   object Panel3: TPanel
     Left = 520
@@ -567,6 +620,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -585,6 +639,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -600,6 +655,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -617,6 +673,7 @@ object DrukWykazOsadz: TDrukWykazOsadz
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
           Filter.AllValue = '(All values)'
           Filter.EmptyFont.Style = [fsItalic]
           Filter.ItemIndex = -1
@@ -792,6 +849,10 @@ object DrukWykazOsadz: TDrukWykazOsadz
         Name = 'POC'
         DataType = ftString
         Size = 10
+      end    
+      item
+        Name = 'Urodzony'
+        DataType = ftDate
       end>
     PacketRecords = 0
     Left = 792

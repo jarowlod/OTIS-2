@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Buttons, DbCtrls, db, BufDataset, rxdbgrid, rxmemds,
-  datamodule, fphtml, LR_DBSet, LR_Class;
+  fphtml, LR_DBSet, LR_Class, DBGrids, datamodule;
 
 type
 
@@ -39,6 +39,7 @@ type
     Panel3: TPanel;
     RxDBGrid1: TRxDBGrid;
     procedure BitBtn1Click(Sender: TObject);
+    procedure RxDBGrid1SelectEditor(Sender: TObject; Column: TColumn; var Editor: TWinControl);
   private
      fIDO: integer; // IDO osadzonego
      fID : integer; // ID zat_zatrudnieni
@@ -46,11 +47,8 @@ type
      procedure SetIDO(sIDO, sID: integer);
   end;
 
-var
-  ZatZaswiadczenie: TZatZaswiadczenie;
 
 implementation
-
 {$R *.frm}
 
 { TZatZaswiadczenie }
@@ -71,9 +69,14 @@ begin
   frReport1.ShowReport;
 end;
 
+procedure TZatZaswiadczenie.RxDBGrid1SelectEditor(Sender: TObject; Column: TColumn; var Editor: TWinControl);
+begin
+end;
+
 procedure TZatZaswiadczenie.SetIDO(sIDO, sID: integer);
 var ZQPom: TZQueryPom;
     poz: integer;
+    sEtat: string;
 begin
 
   bufOkresy.CreateDataset;
@@ -111,9 +114,11 @@ begin
        bufOkresy.FieldByName('Od').AsDateTime  := ZQPom.FieldByName('zat_od').AsDateTime;
     if not ZQPom.FieldByName('zat_do').IsNull then
        bufOkresy.FieldByName('Do').AsDateTime  := ZQPom.FieldByName('zat_do').AsDateTime;
-    bufOkresy.FieldByName('forma').AsString := ZQPom.FieldByName('forma').AsString;
-    bufOkresy.FieldByName('rodzaj').AsString:= ZQPom.FieldByName('rodzaj_zatrudnienia').AsString;
-    bufOkresy.FieldByName('wymiar').AsString:= ZQPom.FieldByName('etat').AsString;
+    bufOkresy.FieldByName('forma').AsString := 'SKIEROWANIE';
+    bufOkresy.FieldByName('rodzaj').AsString:= ZQPom.FieldByName('forma').AsString; //ZQPom.FieldByName('rodzaj_zatrudnienia').AsString;
+    sEtat:= ZQPom.FieldByName('etat').AsString;
+    if Pos('/', sEtat)>0 then sEtat += ' ETATU';
+    bufOkresy.FieldByName('wymiar').AsString:= sEtat;
     bufOkresy.FieldByName('Jednostka').AsString:= 'ZK Kłodzko';
 
     bufOkresy.Post;
@@ -123,6 +128,7 @@ begin
 
   FreeAndNil(ZQPom);
 end;
+
 
 end.
 

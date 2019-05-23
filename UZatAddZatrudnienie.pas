@@ -348,13 +348,15 @@ begin
 
   // odczytujemy podkulture
   ZQPom:= TZQueryPom.Create(self);
-  ZQPom.SQL.Text:= 'SELECT GR, KoniecKary FROM os_info WHERE ido= :ido';
+  ZQPom.SQL.Text:= 'SELECT GR, KoniecKary, alimenty, zobowiazania FROM os_info WHERE ido= :ido';
   ZQPom.ParamByName('ido').AsInteger:= ZQZat.FieldByName('ido').AsInteger;
   ZQPom.Open;
   if not IsDataSetEmpty( ZQPom ) then
   begin
     ZQZat.FieldByName('podkultura').Value := ZQPom.FieldByName('GR').Value;
     ZQZat.FieldByName('koniec_kary').Value := ZQPom.FieldByName('KoniecKary').Value;
+    ZQZat.FieldByName('alimenty').Value := ZQPom.FieldByName('alimenty').Value;
+    ZQZat.FieldByName('zobowiazania').Value := ZQPom.FieldByName('zobowiazania').Value;
   end;
 
   FreeAndNil(ZQPom);

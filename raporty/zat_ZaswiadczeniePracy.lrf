@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="1899-12-30 00:00:00"/>
-    <ReportLastChange Value="2017-10-13 14:53:05"/>
+    <ReportLastChange Value="2019-05-23 09:20:20"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -131,9 +131,9 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="0"/>
-            <Top Value="740"/>
+            <Top Value="680"/>
             <Width Value="752"/>
-            <Height Value="216"/>
+            <Height Value="252"/>
           </Size>
           <Flags Value="48"/>
           <Data>
@@ -187,7 +187,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="252"/>
-            <Top Value="776"/>
+            <Top Value="716"/>
             <Width Value="408"/>
             <Height Value="12"/>
           </Size>
@@ -1923,7 +1923,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="108"/>
-            <Top Value="756"/>
+            <Top Value="696"/>
             <Width Value="144"/>
             <Height Value="20"/>
           </Size>
@@ -1979,7 +1979,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="252"/>
-            <Top Value="756"/>
+            <Top Value="696"/>
             <Width Value="408"/>
             <Height Value="20"/>
           </Size>
@@ -2035,7 +2035,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="108"/>
-            <Top Value="788"/>
+            <Top Value="728"/>
             <Width Value="552"/>
             <Height Value="20"/>
           </Size>
@@ -2091,7 +2091,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="108"/>
-            <Top Value="820"/>
+            <Top Value="760"/>
             <Width Value="96"/>
             <Height Value="20"/>
           </Size>
@@ -2147,7 +2147,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="204"/>
-            <Top Value="820"/>
+            <Top Value="760"/>
             <Width Value="456"/>
             <Height Value="20"/>
           </Size>
@@ -2203,7 +2203,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="108"/>
-            <Top Value="852"/>
+            <Top Value="792"/>
             <Width Value="552"/>
             <Height Value="36"/>
           </Size>
@@ -2259,8 +2259,8 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="108"/>
-            <Top Value="940"/>
-            <Width Value="552"/>
+            <Top Value="880"/>
+            <Width Value="472"/>
             <Height Value="16"/>
           </Size>
           <Flags Value="3"/>
@@ -2387,7 +2387,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="57-300 Kłodzko, u. Bohaterów Getta 16&#xD;&#xA;tel.74 865 18 00, fax 74 867 30 17, e'mail: zk_klodzko@sw.gov.pl&#xD;&#xA;"/>
+            <Memo Value="57-300 Kłodzko, ul. Bohaterów Getta 16&#xD;&#xA;tel.74 865 18 00, fax 74 867 30 17, e'mail: zk_klodzko@sw.gov.pl&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -2479,7 +2479,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Zakład Karny&#xD;&#xA;"/>
+            <Memo Value="Zakład Karny w Kłodzku&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -2847,7 +2847,119 @@
           <Justify Value="False"/>
           <Cursor Value="0"/>
         </Object53>
-        <ObjectCount Value="53"/>
+        <Object54>
+          <Name Value="Memo2"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="500"/>
+            <Top Value="916"/>
+            <Width Value="160"/>
+            <Height Value="12"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="558"/>
+            <FormatStr Value=""/>
+            <Memo Value="(pieczątka i podpis dyrektora ZK/AŚ)&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Calibri"/>
+            <Size Value="7"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taCenter"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object54>
+        <Object55>
+          <Name Value="Memo1"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="500"/>
+            <Top Value="900"/>
+            <Width Value="160"/>
+            <Height Value="16"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsDot"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value="frbBottom"/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="558"/>
+            <FormatStr Value=""/>
+            <Memo Value=""/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Calibri"/>
+            <Size Value="11"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object55>
+        <ObjectCount Value="55"/>
       </Page1>
       <FVal>
         <Count Value="0"/>
@@ -2855,7 +2967,12 @@
       <ParentVars Value=""/>
     </Pages>
     <DetailReports>
-      <Count Value="0"/>
+      <Count Value="1"/>
+      <Detail0>
+        <ReportName Value="Memo34_DetailReport"/>
+        <ReportDescription Value=""/>
+        <ReportBody Value=""/>
+      </Detail0>
     </DetailReports>
   </LazReport>
 </CONFIG>

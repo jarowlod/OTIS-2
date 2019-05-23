@@ -1,13 +1,13 @@
 object ZatZaswiadczenie: TZatZaswiadczenie
-  Left = 201
+  Left = 334
   Height = 645
-  Top = 0
+  Top = 226
   Width = 710
   Caption = 'Zaświadczenie o wykonywaniu pracy'
   ClientHeight = 645
   ClientWidth = 710
   Position = poOwnerFormCenter
-  LCLVersion = '5.9'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 40
@@ -113,10 +113,9 @@ object ZatZaswiadczenie: TZatZaswiadczenie
         Title.Caption = 'Od'
         FieldName = 'Od'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -129,10 +128,28 @@ object ZatZaswiadczenie: TZatZaswiadczenie
         Title.Caption = 'Do'
         FieldName = 'Do'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        PickList.Strings = (
+          ''
+          'SKIEROWANIE'
+        )
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'forma'
+        Width = 120
+        FieldName = 'forma'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -146,35 +163,13 @@ object ZatZaswiadczenie: TZatZaswiadczenie
         )
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
-        Title.Caption = 'forma'
-        Width = 120
-        FieldName = 'forma'
-        EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
-        Filter.DropDownRows = 0
-        Filter.EmptyValue = '(Empty)'
-        Filter.AllValue = '(All values)'
-        Filter.EmptyFont.Style = [fsItalic]
-        Filter.ItemIndex = -1
-        Footers = <>
-      end    
-      item
-        PickList.Strings = (
-          ''
-          'PEŁNY'
-          'BEZ KONWOJENTA'
-        )
-        Title.Alignment = taCenter
-        Title.Orientation = toHorizontal
         Title.Caption = 'rodzaj'
         Width = 120
         FieldName = 'rodzaj'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -182,14 +177,14 @@ object ZatZaswiadczenie: TZatZaswiadczenie
       end    
       item
         PickList.Strings = (
-          '1/8'
-          '2/8'
-          '3/8'
-          '4/8'
-          '5/8'
-          '6/8'
-          '7/8'
-          '8/8'
+          '1/8 ETATU'
+          '2/8 ETATU'
+          '3/8 ETATU'
+          '4/8 ETATU'
+          '5/8 ETATU'
+          '6/8 ETATU'
+          '7/8 ETATU'
+          '8/8 ETATU'
           'DO 90 GODZ.'
         )
         Title.Alignment = taCenter
@@ -198,10 +193,9 @@ object ZatZaswiadczenie: TZatZaswiadczenie
         Width = 100
         FieldName = 'wymiar'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -214,10 +208,9 @@ object ZatZaswiadczenie: TZatZaswiadczenie
         Width = 120
         FieldName = 'Jednostka'
         EditButtons = <>
-        Filter.IsNull = False
-        Filter.IsAll = True
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
         Filter.AllValue = '(All values)'
         Filter.EmptyFont.Style = [fsItalic]
         Filter.ItemIndex = -1
@@ -282,6 +275,8 @@ object ZatZaswiadczenie: TZatZaswiadczenie
     FooterOptions.RowCount = 1
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
+    SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+    SearchOptions.FromStart = False
     OptionsRx = [rdgAllowDialogFind, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort, rdgWordWrap]
     FooterRowCount = 1
     Align = alClient
@@ -297,7 +292,6 @@ object ZatZaswiadczenie: TZatZaswiadczenie
     DefaultRowHeight = 24
     FixedColor = clNone
     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgHeaderHotTracking, dgHeaderPushedLook, dgAnyButtonCanSelect, dgCellHints, dgCellEllipsis]
-    ParentColor = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
@@ -432,13 +426,13 @@ object ZatZaswiadczenie: TZatZaswiadczenie
   end
   object DSOkresy: TDataSource
     DataSet = bufOkresy
-    left = 432
-    top = 280
+    Left = 432
+    Top = 280
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = bufOkresy
-    left = 628
-    top = 206
+    Left = 628
+    Top = 206
   end
   object frReport1: TfrReport
     Dataset = frDBDataSet1
@@ -446,8 +440,8 @@ object ZatZaswiadczenie: TZatZaswiadczenie
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    left = 558
-    top = 206
+    Left = 558
+    Top = 206
   end
   object bufOkresy: TBufDataset
     PacketRecords = -1
@@ -481,7 +475,7 @@ object ZatZaswiadczenie: TZatZaswiadczenie
         DataType = ftString
         Size = 100
       end>
-    left = 496
-    top = 280
+    Left = 496
+    Top = 280
   end
 end

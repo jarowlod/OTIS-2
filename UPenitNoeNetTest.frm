@@ -51,9 +51,9 @@ object PenitNoeNetTest: TPenitNoeNetTest
     Height = 593
     Top = 48
     Width = 1024
-    ActivePage = TabSheet3
+    ActivePage = TabSheet6
     Align = alClient
-    TabIndex = 2
+    TabIndex = 3
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Sesje'
@@ -786,7 +786,7 @@ object PenitNoeNetTest: TPenitNoeNetTest
         Height = 30
         Top = 8
         Width = 123
-        Caption = 'Analiza'
+        Caption = 'Dodaj alimenty'
         Images = DM.ImageList1
         ImageIndex = 40
         OnClick = btnAnalizaAlimentyClick
@@ -925,6 +925,32 @@ object PenitNoeNetTest: TPenitNoeNetTest
         ShowHint = True
         TabOrder = 2
         TitleStyle = tsNative
+      end
+    end
+    object TabSheet6: TTabSheet
+      Caption = 'Zobowiązania'
+      ClientHeight = 565
+      ClientWidth = 1016
+      object memZobowiazania: TMemo
+        Left = 8
+        Height = 282
+        Top = 40
+        Width = 1000
+        Anchors = [akTop, akLeft, akRight]
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+        WordWrap = False
+      end
+      object btnAnalizaZobowiazania: TBitBtn
+        Left = 8
+        Height = 30
+        Top = 8
+        Width = 163
+        Caption = 'Dodaj zobowiązania'
+        Images = DM.ImageList1
+        ImageIndex = 40
+        OnClick = btnAnalizaAlimentyClick
+        TabOrder = 1
       end
     end
   end

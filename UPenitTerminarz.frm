@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 86
+  Left = 368
   Height = 743
-  Top = 85
+  Top = 364
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -1344,8 +1344,8 @@ object PenitTerminarz: TPenitTerminarz
       'GR,'
       'typ_cel.ID,'
       'zat.zat_od,'
-      'alimenty,'
-      'ali_Zadluzenie,'
+      'os_info.alimenty,'
+      'os_info.ali_Zadluzenie,'
       'os_info.zobowiazania'
       'FROM osadzeni os'
       'LEFT OUTER JOIN os_info ON (os.IDO = os_info.IDO)'

@@ -1,22 +1,22 @@
 object ZatAddZatrudnienie: TZatAddZatrudnienie
-  Left = 389
-  Height = 762
-  Top = 231
+  Left = 334
+  Height = 794
+  Top = 226
   Width = 931
   Caption = 'Zatrudnienie - Nowy'
-  ClientHeight = 762
+  ClientHeight = 794
   ClientWidth = 931
   OnClose = FormClose
   Position = poOwnerFormCenter
   LCLVersion = '6.6'
   object GroupBox2: TGroupBox
     Left = 0
-    Height = 412
-    Top = 304
+    Height = 428
+    Top = 320
     Width = 931
     Align = alClient
     Caption = 'Dane zatrudnienia:'
-    ClientHeight = 392
+    ClientHeight = 408
     ClientWidth = 927
     TabOrder = 1
     object plGradient1: TplGradient
@@ -306,30 +306,6 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       HideDateTimeParts = []
       MonthNames = 'Long'
     end
-    object DBCheckBox2: TDBCheckBox
-      Left = 680
-      Height = 23
-      Top = 144
-      Width = 90
-      Caption = 'Zobowiązania'
-      DataField = 'zobowiazania'
-      DataSource = DSZat
-      TabOrder = 9
-      ValueChecked = '1'
-      ValueUnchecked = '0'
-    end
-    object DBCheckBox3: TDBCheckBox
-      Left = 680
-      Height = 23
-      Top = 168
-      Width = 90
-      Caption = 'Alimenty'
-      DataField = 'alimety'
-      DataSource = DSZat
-      TabOrder = 10
-      ValueChecked = '1'
-      ValueUnchecked = '0'
-    end
     object DBcbPrzyczynaWycofania: TDBComboBox
       Left = 377
       Height = 23
@@ -373,15 +349,15 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
     end
     object GroupBox4: TGroupBox
       Left = 0
-      Height = 184
-      Top = 208
+      Height = 192
+      Top = 216
       Width = 927
       Align = alBottom
       Anchors = [akTop, akLeft, akRight]
       Caption = 'Dane osadzonego:'
-      ClientHeight = 164
+      ClientHeight = 172
       ClientWidth = 923
-      TabOrder = 11
+      TabOrder = 9
       object Label12: TLabel
         Left = 72
         Height = 15
@@ -654,7 +630,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       MaxLength = 20
       Sorted = True
       Style = csDropDownList
-      TabOrder = 12
+      TabOrder = 10
     end
     object Label13: TLabel
       Left = 13
@@ -687,7 +663,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       MaxLength = 10
       Sorted = True
       Style = csDropDownList
-      TabOrder = 13
+      TabOrder = 11
     end
     object btnWprowadzPoprzednieDaneZat: TBitBtn
       Left = 792
@@ -732,7 +708,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
         9BF373D39AF374D39BF376D59DF378D7A1F379D39DFB70C68271
       }
       OnClick = btnWprowadzPoprzednieDaneZatClick
-      TabOrder = 14
+      TabOrder = 12
     end
     object DBDateTimePicker8: TDBDateTimePicker
       Left = 377
@@ -745,7 +721,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       CenturyFrom = 1941
       MaxDate = 2958465
       MinDate = -53780
-      TabOrder = 15
+      TabOrder = 13
       TrailingSeparator = False
       TextForNullDate = 'NULL'
       LeadingZeros = True
@@ -784,7 +760,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       CenturyFrom = 1941
       MaxDate = 2958465
       MinDate = -53780
-      TabOrder = 16
+      TabOrder = 14
       TrailingSeparator = False
       TextForNullDate = 'NULL'
       LeadingZeros = True
@@ -799,21 +775,21 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
   end
   object Panel5: TPanel
     Left = 0
-    Height = 304
+    Height = 320
     Top = 0
     Width = 931
     Align = alTop
-    ClientHeight = 304
+    ClientHeight = 320
     ClientWidth = 931
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 1
-      Height = 302
+      Height = 318
       Top = 1
       Width = 320
       Align = alLeft
       Caption = 'Osadzony'
-      ClientHeight = 282
+      ClientHeight = 298
       ClientWidth = 316
       TabOrder = 0
       object Label2: TLabel
@@ -987,7 +963,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
         TabOrder = 0
       end
       object DBCheckBox4: TDBCheckBox
-        Left = 176
+        Left = 8
         Height = 23
         Top = 208
         Width = 131
@@ -1001,7 +977,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       object Label11: TLabel
         Left = 152
         Height = 15
-        Top = 248
+        Top = 272
         Width = 34
         Caption = 'Pobyt:'
         ParentColor = False
@@ -1009,7 +985,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       object DBComboBox3: TDBComboBox
         Left = 195
         Height = 23
-        Top = 240
+        Top = 264
         Width = 112
         DataField = 'pobyt'
         DataSource = DSZat
@@ -1025,7 +1001,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       object Label42: TLabel
         Left = 8
         Height = 15
-        Top = 224
+        Top = 248
         Width = 85
         Caption = 'Nr Ewidencyjny:'
         ParentColor = False
@@ -1033,7 +1009,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
       object DBEdit11: TDBEdit
         Left = 8
         Height = 23
-        Top = 240
+        Top = 264
         Width = 102
         DataField = 'nr_ewidencyjny'
         DataSource = DSZat
@@ -1041,15 +1017,39 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
         MaxLength = 0
         TabOrder = 2
       end
+      object DBCheckBox2: TDBCheckBox
+        Left = 176
+        Height = 23
+        Top = 200
+        Width = 90
+        Caption = 'Zobowiązania'
+        DataField = 'zobowiazania'
+        DataSource = DSZat
+        TabOrder = 4
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox3: TDBCheckBox
+        Left = 176
+        Height = 23
+        Top = 224
+        Width = 90
+        Caption = 'Alimenty'
+        DataField = 'alimenty'
+        DataSource = DSZat
+        TabOrder = 5
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
     end
     object GroupBox3: TGroupBox
       Left = 321
-      Height = 302
+      Height = 318
       Top = 1
       Width = 609
       Align = alClient
       Caption = 'Stanowisko / Grupa'
-      ClientHeight = 282
+      ClientHeight = 298
       ClientWidth = 605
       TabOrder = 1
       object BitBtn4: TBitBtn
@@ -1230,7 +1230,7 @@ object ZatAddZatrudnienie: TZatAddZatrudnienie
   object Panel1: TPanel
     Left = 0
     Height = 46
-    Top = 716
+    Top = 748
     Width = 931
     Align = alBottom
     BevelOuter = bvNone

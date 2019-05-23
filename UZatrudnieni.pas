@@ -216,7 +216,7 @@ type
     tabWydruki: TTabSheet;
     ZQZatrudnieni: TZQuery;
     ZQZatrudnieniadres: TStringField;
-    ZQZatrudnienialimety: TSmallintField;
+    ZQZatrudnienialimenty: TSmallintField;
     ZQZatrudnieniart: TStringField;
     ZQZatrudnienidata_badania: TDateField;
     ZQZatrudnienidata_dodania: TDateTimeField;

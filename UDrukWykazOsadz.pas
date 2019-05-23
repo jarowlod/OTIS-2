@@ -15,6 +15,7 @@ type
 
   TDrukWykazOsadz = class(TForm)
     btnDodaj: TBitBtn;
+    btnDrukujDatUrodzenia: TBitBtn;
     btnKopiujDoSchowka: TBitBtn;
     btnZapiszDoKoszyka: TBitBtn;
     btnUsun: TBitBtn;
@@ -39,6 +40,7 @@ type
     procedure btnClearClick(Sender: TObject);
     procedure btnDodajClick(Sender: TObject);
     procedure btnDrukujClick(Sender: TObject);
+    procedure btnDrukujDatUrodzeniaClick(Sender: TObject);
     procedure btnZapiszDoKoszykaClick(Sender: TObject);
     procedure btnKopiujDoSchowkaClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
@@ -104,6 +106,39 @@ end;
 procedure TDrukWykazOsadz.btnDrukujClick(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_grupowy_1.lrf');
+  DM.SetMemoReport(frReport1, 'Memo_Data', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
+  frReport1.ShowReport;
+end;
+
+procedure TDrukWykazOsadz.btnDrukujDatUrodzeniaClick(Sender: TObject);
+var ZQ: TZQueryPom;
+begin
+  ZQ:= TZQueryPom.Create(Self);
+  try
+    ZQ.SQL.Text:= 'SELECT IDO, URODZ FROM osadzeni;';
+    ZQ.Open;
+
+    MemWykaz.DisableControls;
+    MemWykaz.First;
+
+    while not MemWykaz.EOF do
+    begin
+      if ZQ.Locate('IDO', MemWykaz.FieldByName('IDO').AsInteger, []) then
+      begin
+        MemWykaz.Edit;
+        MemWykaz.FieldByName('Urodzony').AsDateTime:= ZQ.FieldByName('URODZ').AsDateTime;
+        MemWykaz.Post;
+      end;
+      MemWykaz.Next;
+    end;
+
+    MemWykaz.First;
+    MemWykaz.EnableControls;
+  finally
+    FreeAndNil(ZQ);
+  end;
+
+  frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_grupowy_dataUr.lrf');
   DM.SetMemoReport(frReport1, 'Memo_Data', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
   frReport1.ShowReport;
 end;

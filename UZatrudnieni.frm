@@ -658,6 +658,7 @@ object Zatrudnieni: TZatrudnieni
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstBoth
             Footers = <>
             ImageList = ImageList1
             KeyList.Strings = (
@@ -678,6 +679,7 @@ object Zatrudnieni: TZatrudnieni
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Filter.Style = rxfstBoth
             Footers = <>
             ImageList = ImageList1
             KeyList.Strings = (
@@ -770,6 +772,40 @@ object Zatrudnieni: TZatrudnieni
             Filter.AllValue = '(All values)'
             Filter.EmptyFont.Style = [fsItalic]
             Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            ButtonStyle = cbsCheckboxColumn
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'ali- '#13#10'menty'
+            Width = 50
+            FieldName = 'alimenty'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Filter.Style = rxfstDialog
+            Footers = <>
+          end        
+          item
+            ButtonStyle = cbsCheckboxColumn
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'zobo- '#13#10'wiązania'
+            Width = 50
+            FieldName = 'zobowiazania'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Filter.Style = rxfstDialog
             Footers = <>
           end>
         KeyStrokes = <        
@@ -868,15 +904,15 @@ object Zatrudnieni: TZatrudnieni
       Height = 684
       Top = 0
       Width = 506
-      ActivePage = tabWydruki
+      ActivePage = tabSzczegolyOs
       Align = alRight
       Images = DM.ImageList1
       TabHeight = 25
-      TabIndex = 2
+      TabIndex = 0
       TabOrder = 1
       object tabSzczegolyOs: TTabSheet
         Caption = 'Szczegóły osadzonego'
-        ClientHeight = 813
+        ClientHeight = 651
         ClientWidth = 498
         ImageIndex = 5
         object Panel5: TPanel
@@ -2045,7 +2081,7 @@ object Zatrudnieni: TZatrudnieni
               Top = 192
               Width = 90
               Caption = 'Alimenty'
-              DataField = 'alimety'
+              DataField = 'alimenty'
               DataSource = DSZatrudnieni
               ReadOnly = True
               TabOrder = 2
@@ -2870,7 +2906,7 @@ object Zatrudnieni: TZatrudnieni
       'zat.etat, '
       'zat.rodzaj_zatrudnienia,'
       'zat.zobowiazania, '
-      'zat.alimety, '
+      'zat.alimenty, '
       'zat.nr_dowodu, '
       'zat.pesel, '
       'zat.podkultura, '
@@ -3059,9 +3095,9 @@ object Zatrudnieni: TZatrudnieni
       ReadOnly = False
       Required = True
     end
-    object ZQZatrudnienialimety: TSmallintField
+    object ZQZatrudnienialimenty: TSmallintField
       FieldKind = fkData
-      FieldName = 'alimety'
+      FieldName = 'alimenty'
       Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

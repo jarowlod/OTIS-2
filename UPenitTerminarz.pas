@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, YearPlanner, rxdbgrid, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, StdCtrls, ComCtrls, UPenitForm, LR_DBSet, LR_Class, db,
   ZDataset, DBGrids, Menus, dateutils, Clipbrd, Buttons, CheckLst, rxdbutils,
-  datamodule, BCPanel, BGRABitmap, BGRABitmapTypes, UOchRezerwacjaWidzen;
+  BCPanel, BGRABitmap, BGRABitmapTypes, UOchRezerwacjaWidzen, datamodule;
 
 type
   { TTerminyEvent }

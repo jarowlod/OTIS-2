@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="1899-12-30 00:00:00"/>
-    <ReportLastChange Value="2019-02-11 14:26:30"/>
+    <ReportLastChange Value="2019-05-23 11:16:16"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -3059,7 +3059,7 @@
           <Data>
             <Format Value="67371054"/>
             <FormatStr Value="NIE;TAK"/>
-            <Memo Value="[ZQZatrudnieni.&quot;alimety&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQZatrudnieni.&quot;alimenty&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -3171,7 +3171,7 @@
           <Data>
             <Format Value="67371054"/>
             <FormatStr Value="NIE;TAK"/>
-            <Memo Value="[ZQZatrudnieni.&quot;alimety&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQZatrudnieni.&quot;zobowiazania&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -5171,7 +5171,12 @@
       <ParentVars Value=""/>
     </Pages>
     <DetailReports>
-      <Count Value="0"/>
+      <Count Value="1"/>
+      <Detail0>
+        <ReportName Value="Memo34_DetailReport"/>
+        <ReportDescription Value=""/>
+        <ReportBody Value=""/>
+      </Detail0>
     </DetailReports>
   </LazReport>
 </CONFIG>
