@@ -165,7 +165,7 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <CursorPos X="45" Y="10"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -178,7 +178,7 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="73" Y="11"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -368,10 +368,13 @@
         <ComponentName Value="ZatStatystyka"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="8"/>
-        <CursorPos X="3" Y="26"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="359"/>
+        <CursorPos X="54" Y="388"/>
         <UsageCount Value="202"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit30>
       <Unit31>
         <Filename Value="UPenitWydarzenia.pas"/>
@@ -697,7 +700,6 @@
         <ComponentName Value="PenitNoeNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="303"/>
         <CursorPos X="43" Y="303"/>
@@ -894,7 +896,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="227"/>
         <CursorPos X="44" Y="91"/>
-        <UsageCount Value="183"/>
+        <UsageCount Value="186"/>
       </Unit74>
       <Unit75>
         <Filename Value="UKwatPlanWyjazdowAdd.pas"/>
@@ -906,7 +908,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="136"/>
         <CursorPos X="3" Y="141"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="169"/>
       </Unit75>
       <Unit76>
         <Filename Value="UKwatSprzetRTV.pas"/>
@@ -918,7 +920,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="31" Y="65"/>
-        <UsageCount Value="98"/>
+        <UsageCount Value="101"/>
       </Unit76>
       <Unit77>
         <Filename Value="UKwatSprzetRTVWydruk.pas"/>
@@ -930,7 +932,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="90"/>
       </Unit77>
       <Unit78>
         <Filename Value="UKwatPlanWyjazdowSamochody.pas"/>
@@ -942,7 +944,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="57" Y="78"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="62"/>
       </Unit78>
       <Unit79>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -1856,7 +1858,7 @@
         <UsageCount Value="10"/>
       </Unit195>
     </Units>
-    <JumpHistory Count="3" HistoryIndex="2">
+    <JumpHistory Count="8" HistoryIndex="7">
       <Position1>
         <Filename Value="datamodule.pas"/>
         <Caret Line="140" Column="3" TopLine="122"/>
@@ -1869,6 +1871,26 @@
         <Filename Value="UMasterForm.pas"/>
         <Caret Line="782" Column="11" TopLine="779"/>
       </Position3>
+      <Position4>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="94" Column="8" TopLine="84"/>
+      </Position4>
+      <Position5>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="68" Column="25" TopLine="45"/>
+      </Position5>
+      <Position6>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="69" Column="20" TopLine="52"/>
+      </Position6>
+      <Position7>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="70" Column="31" TopLine="56"/>
+      </Position7>
+      <Position8>
+        <Filename Value="UZatStatystyka.pas"/>
+        <Caret Line="71" Column="30" TopLine="45"/>
+      </Position8>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

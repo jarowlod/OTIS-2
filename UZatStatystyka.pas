@@ -65,6 +65,12 @@ type
     function GetR2pawBPracaBezKonwoju: TStatZatGen; // osadzonych z R-2 w paw. B - pracujących bez konwojenta
     function GetOgolZatrudnionych: TStatZatGen;     // OGÓŁ ZATRUDNIONYCH
 
+    function GetAlimentyAll: TStatZatGen;
+    function GetAlimentyZatOdplatnie: TStatZatGen;
+    function GetAlimentyZatNieOdplatnie: TStatZatGen;
+    function GetAlimentyWycofani: TStatZatGen;
+
+    function GetSpan: TStatZatGen;
     procedure TestPoprawnosci;
   public
     constructor Create(TheOwner: TComponent); override;
@@ -91,6 +97,7 @@ end;
 procedure TStatZatGen.OpenSql;
 var ZQPom: TZQueryPom;
 begin
+  if FSql='' then exit;
   try
     ZQPom:= TZQueryPom.Create(nil);
     ZQPom.SQL.Text:= FSql;
@@ -332,6 +339,64 @@ begin
   Result:= TStatZatGen.Create('OGÓŁ ZATRUDNIONYCH', '---', sql);
 end;
 
+function TZatStatystyka.GetAlimentyAll: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM osadzeni o'+
+        ' LEFT JOIN os_info i ON (i.IDO=o.IDO)'+
+        ' WHERE (i.alimenty=1)';
+
+  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie', '---', sql);
+end;
+
+function TZatStatystyka.GetAlimentyZatOdplatnie: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni zat'+
+        ' LEFT JOIN zat_stanowiska as sta ON (zat.id_stanowiska = sta.id)'+
+        ' WHERE (zat.alimenty=1) and'+
+        '       (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="ODPŁATNIE")';
+
+  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie, zatrudnieni odpłatnie', '---', sql);
+end;
+
+function TZatStatystyka.GetAlimentyZatNieOdplatnie: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM zat_zatrudnieni zat'+
+        ' LEFT JOIN zat_stanowiska as sta ON (zat.id_stanowiska = sta.id)'+
+        ' WHERE (zat.alimenty=1) and'+
+        '       (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="NIEODPŁATNIE")';
+
+  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie, zatrudnieni nieodpłatnie', '---', sql);
+end;
+
+function TZatStatystyka.GetAlimentyWycofani: TStatZatGen;
+var sql: string;
+begin
+  sql:= 'SELECT count(*) as ile'+
+        ' FROM osadzeni o'+
+        ' WHERE (o.IDO in (SELECT IDO FROM zat_zatrudnieni'+
+        '                  WHERE (alimenty = 1) and'+
+        '                       (status_zatrudnienia = "wycofany") and'+
+        '                       (pobyt = "Aktualny"))'+
+        '       ) and'+
+        '       (o.IDO not in (SELECT IDO FROM zat_zatrudnieni WHERE status_zatrudnienia = "zatrudniony"))';
+
+  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie, wycofani z zatrudnienia', '---', sql);
+end;
+
+function TZatStatystyka.GetSpan: TStatZatGen;
+begin
+  Result:= TStatZatGen.Create('---------------------------------', '---', '');
+  Result.Wynik:= '---';
+end;
+
 // TEST POPRAWNOŚCI
 // sprawdzam poprawność zatrudnionych nieopłatnie
 procedure TZatStatystyka.TestPoprawnosci;
@@ -406,6 +471,13 @@ begin
   WynikiList.Add(GetR2pawBPraca);                      // index 11
   WynikiList.Add(GetR2pawBPracaBezKonwoju);            // index 12
   WynikiList.Add(GetOgolZatrudnionych);                // index 13
+
+  WynikiList.Add(GetSpan);
+
+  WynikiList.Add(GetAlimentyAll);
+  WynikiList.Add(GetAlimentyZatOdplatnie);
+  WynikiList.Add(GetAlimentyZatNieOdplatnie);
+  WynikiList.Add(GetAlimentyWycofani);
 
   //dodajemy wyniki do memStat;
   for i:=0 to WynikiList.Count-1 do

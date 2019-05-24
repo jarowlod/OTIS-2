@@ -1,7 +1,7 @@
 object ZatStatystyka: TZatStatystyka
-  Left = 328
+  Left = 334
   Height = 588
-  Top = 230
+  Top = 226
   Width = 748
   Caption = 'Statystyka zatrudnienia'
   ClientHeight = 588
