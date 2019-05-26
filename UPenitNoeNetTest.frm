@@ -51,9 +51,9 @@ object PenitNoeNetTest: TPenitNoeNetTest
     Height = 593
     Top = 48
     Width = 1024
-    ActivePage = TabSheet6
+    ActivePage = TabSheet3
     Align = alClient
-    TabIndex = 3
+    TabIndex = 2
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Sesje'
@@ -926,6 +926,18 @@ object PenitNoeNetTest: TPenitNoeNetTest
         TabOrder = 2
         TitleStyle = tsNative
       end
+      object Label2: TLabel
+        Left = 160
+        Height = 15
+        Top = 8
+        Width = 556
+        Caption = 'Wklejamy zawartość wydruku XPS, z programu Depozytowego dotyczącego zobowiązań alimentacyjnych.'
+        Color = clDefault
+        Font.Color = clGray
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
     end
     object TabSheet6: TTabSheet
       Caption = 'Zobowiązania'
@@ -949,8 +961,20 @@ object PenitNoeNetTest: TPenitNoeNetTest
         Caption = 'Dodaj zobowiązania'
         Images = DM.ImageList1
         ImageIndex = 40
-        OnClick = btnAnalizaAlimentyClick
+        OnClick = btnAnalizaZobowiazaniaClick
         TabOrder = 1
+      end
+      object Label3: TLabel
+        Left = 192
+        Height = 15
+        Top = 8
+        Width = 440
+        Caption = 'Wyszukiwarka Penitencjarna -> Zobowiązania -> Zaznaczamy, Wyszukaj w/g braku.'
+        Color = clDefault
+        Font.Color = clGray
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
       end
     end
   end

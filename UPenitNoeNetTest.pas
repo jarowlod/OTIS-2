@@ -28,6 +28,8 @@ type
     DSBledy: TDataSource;
     DSSesje: TDataSource;
     Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
     lblNrSesji: TLabel;
     Label8: TLabel;
     memZobowiazania: TMemo;
@@ -63,6 +65,7 @@ type
     ZQBledyGrup: TZQuery;
     procedure btnAnalizaAlimentyClick(Sender: TObject);
     procedure btnAnalizaClick(Sender: TObject);
+    procedure btnAnalizaZobowiazaniaClick(Sender: TObject);
     procedure btnUstawIDSesjiClick(Sender: TObject);
     procedure btnWyslijAllClick(Sender: TObject);
     procedure DSSesjeDataChange(Sender: TObject; Field: TField);
@@ -110,6 +113,7 @@ begin
     FID_Sesji:= ZQSesje.FieldByName('ID_Sesji').AsInteger+1; // ustalamy nowy numer sesji o jeden większy niż ostatnia sesja (pierwsza jest ostatnią, sort DESC)
 
   lblNrSesji.Caption:= 'Nr Sesji: '+ IntToStr(FID_Sesji);
+  TabSheet2.Show;
 end;
 
 procedure TPenitNoeNetTest.RxDBGrid2DblClick(Sender: TObject);
@@ -155,70 +159,74 @@ begin
   if cmbOpis.Text='' then exit;
 
   ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'INSERT INTO wykaz_bledow (data_wpisu, user, ID_Sesji, IDO, Opis) VALUES (CURDATE(), :user, :ID_Sesji, :IDO, :Opis)';
-
-  i:= 1;
-  ProgressBar1.Max     := Memo1.Lines.Count;
-  ProgressBar1.Position:= 0;
-  ProgressBar1.Visible := true;
-
-  ZQPom.Connection.StartTransaction;
-  ShowSQLWait;
   try
-    while i<Memo1.Lines.Count do
-     begin
-       ProgressBar1.Position:= ProgressBar1.Max - Memo1.Lines.Count;
-       Application.ProcessMessages;  // nie zawieszamy programu
-       if Memo1.Lines.Strings[i]<>'' then
+    ZQPom.SQL.Text:= 'INSERT INTO wykaz_bledow (data_wpisu, user, ID_Sesji, IDO, Opis) VALUES (CURDATE(), :user, :ID_Sesji, :IDO, :Opis)';
+
+    i:= 1;
+    ProgressBar1.Max     := Memo1.Lines.Count;
+    ProgressBar1.Position:= 0;
+    ProgressBar1.Visible := true;
+
+    ZQPom.Connection.StartTransaction;
+    ShowSQLWait;
+    try
+      while i<Memo1.Lines.Count do
        begin
-         s:= Memo1.Lines.Strings[i];
-         p1:= Pos(' ',s);
-         n:= copy(s,1,p1-1);
-         if cbIDO_2Kolumna.Checked then //IDO w drugiej kolumnie
+         ProgressBar1.Position:= ProgressBar1.Max - Memo1.Lines.Count;
+         Application.ProcessMessages;  // nie zawieszamy programu
+         if Memo1.Lines.Strings[i]<>'' then
          begin
-           delete(s,1,p1);
+           s:= Memo1.Lines.Strings[i];
            p1:= Pos(' ',s);
            n:= copy(s,1,p1-1);
+           if cbIDO_2Kolumna.Checked then //IDO w drugiej kolumnie
+           begin
+             delete(s,1,p1);
+             p1:= Pos(' ',s);
+             n:= copy(s,1,p1-1);
+           end;
+           if TryStrToInt(n, ido) then //zapisz jeśli poprawne IDO
+           begin
+             ZQPom.ParamByName('user').AsString     := DM.PelnaNazwa;
+             ZQPom.ParamByName('ID_Sesji').AsInteger:= FID_Sesji;
+             ZQPom.ParamByName('IDO').AsInteger     := ido;
+             ZQPom.ParamByName('Opis').AsString     := cmbOpis.Text;
+             ZQPom.ExecSQL;
+           end;
          end;
-         if TryStrToInt(n, ido) then //zapisz jeśli poprawne IDO
-         begin
-           ZQPom.ParamByName('user').AsString     := DM.PelnaNazwa;
-           ZQPom.ParamByName('ID_Sesji').AsInteger:= FID_Sesji;
-           ZQPom.ParamByName('IDO').AsInteger     := ido;
-           ZQPom.ParamByName('Opis').AsString     := cmbOpis.Text;
-           ZQPom.ExecSQL;
-         end;
+         Memo1.Lines.Delete(i);
        end;
-       Memo1.Lines.Delete(i);
-     end;
-    Memo1.Lines.Clear;
-  except
-    ShowMessage('Niewłaściwy format danych wejścionych (wiersz '+IntToStr(ProgressBar1.Position+1)+'). Wklej dane z NoeNet.');
+      Memo1.Lines.Clear;
+    except
+      ShowMessage('Niewłaściwy format danych wejścionych (wiersz '+IntToStr(ProgressBar1.Position+1)+'). Wklej dane z NoeNet.');
+      ProgressBar1.Visible:= false;
+      ZQPom.Connection.Rollback;
+      HideSQLWait;
+      exit;
+    end;
+    ZQPom.Connection.Commit;
+
+    // UPDATE wykaz_bledow w celu uzupełnienia o kolejne dane
+    ZQPom.SQL.Text:= 'UPDATE wykaz_bledow w' +
+                     ' inner join osadzeni os ON os.IDO=w.IDO' +
+                     ' inner join typ_cel c ON c.POC=os.POC and c.Wychowawca<>""'+
+                     ' inner join uprawnienia u ON u.Wychowawca=c.Wychowawca'+
+                     ' SET'+
+                     ' w.POC = os.POC, w.NAZWISKO=os.NAZWISKO, w.IMIE=os.IMIE, w.OJCIEC=os.OJCIEC, w.KLASYF=os.KLASYF, w.Wychowawca=c.Wychowawca, w.wych_login=u.user'+
+                     ' WHERE ID_Sesji=:ID_Sesji';
+    ZQPom.ParamByName('ID_Sesji').AsInteger:= FID_Sesji;
+    ZQPom.ExecSQL;
+
+    ProgressBar1.Position:= ProgressBar1.Max;
+    Application.ProcessMessages;
+    ShowMessage('OK');
+
+  finally
+    FreeAndNil(ZQPom);
+    RefreshQuery(ZQSesje);
     ProgressBar1.Visible:= false;
-    ZQPom.Connection.Rollback;
     HideSQLWait;
-    exit;
   end;
-  ZQPom.Connection.Commit;
-
-  // UPDATE wykaz_bledow w celu uzupełnienia o kolejne dane
-  ZQPom.SQL.Text:= 'UPDATE wykaz_bledow w' +
-                   ' inner join osadzeni os ON os.IDO=w.IDO' +
-                   ' inner join typ_cel c ON c.POC=os.POC and c.Wychowawca<>""'+
-                   ' inner join uprawnienia u ON u.Wychowawca=c.Wychowawca'+
-                   ' SET'+
-                   ' w.POC = os.POC, w.NAZWISKO=os.NAZWISKO, w.IMIE=os.IMIE, w.OJCIEC=os.OJCIEC, w.KLASYF=os.KLASYF, w.Wychowawca=c.Wychowawca, w.wych_login=u.user'+
-                   ' WHERE ID_Sesji=:ID_Sesji';
-  ZQPom.ParamByName('ID_Sesji').AsInteger:= FID_Sesji;
-  ZQPom.ExecSQL;
-
-  ProgressBar1.Position:= ProgressBar1.Max;
-  Application.ProcessMessages;
-  ShowMessage('OK');
-  ProgressBar1.Visible:= false;
-
-  RefreshQuery(ZQSesje);
-  HideSQLWait;
 end;
 
 procedure TPenitNoeNetTest.btnUstawIDSesjiClick(Sender: TObject);
@@ -296,7 +304,9 @@ var ali: string;
     ZQ: TZQueryPom;
 begin
   if memAlimenty.Text='' then exit;
+  RxMemAlimenty.EmptyTable;
 
+  ShowSQLWait;
   ali:= memAlimenty.Lines.Text;
   while Pos('/', ali)>0 do
   begin
@@ -349,6 +359,7 @@ begin
   end;
 
   // Dodajemy IDO  do RxMemAlimenty
+  RxMemAlimenty.DisableControls;
   ZQ:= TZQueryPom.Create(Self);
   try
     ZQ.SQL.Text:= 'SELECT IDO, CONCAT_WS(" ",NAZWISKO,IMIE,"s.",OJCIEC) NazwiskoImie FROM osadzeni';
@@ -366,7 +377,7 @@ begin
     end;
 
     // uaktualniamy dane dla os_info w zakresie alimentacji
-    ZQ.SQL.Text:= 'SELECT IDO, alimenty, ali_stan_na_dzien, ali_Zadluzenie, ali_Rata, ali_Wplacil FROM os_info';
+    ZQ.SQL.Text:= 'SELECT IDO, alimenty, ali_stan_na_dzien, ali_Zadluzenie, ali_Rata, ali_Wplacil FROM os_info WHERE IDO in (SELECT IDO FROM osadzeni)';
     ZQ.Open;
     RxMemAlimenty.First;
     while not RxMemAlimenty.EOF do
@@ -383,6 +394,7 @@ begin
          end else
          begin
            ZQ.Append;
+           ZQ.FieldByName('IDO').AsInteger          := RxMemAlimenty.FieldByName('memIDO').AsInteger;
            ZQ.FieldByName('ali_stan_na_dzien').AsDateTime:= Date();
            ZQ.FieldByName('alimenty').AsBoolean     := true;
            ZQ.FieldByName('ali_Zadluzenie').AsString:= RxMemAlimenty.FieldByName('memZadluzenie').AsString;
@@ -393,8 +405,83 @@ begin
       RxMemAlimenty.Next;
     end;
 
+    // pozostali osadzeni dla os_info, którzy alimenty = NULL zminiamy na FALSE
+    ZQ.SQL.Text:= 'UPDATE os_info SET alimenty = 0 WHERE (alimenty is null) and (ido in (SELECT IDO FROM osadzeni))';
+    ZQ.ExecSQL;
+
+    ShowMessage('OK');
   finally
     FreeAndNil(ZQ);
+    RxMemAlimenty.EmptyTable;
+    RxMemAlimenty.EnableControls;
+    HideSQLWait;
+    memAlimenty.Clear;
+  end;
+end;
+
+procedure TPenitNoeNetTest.btnAnalizaZobowiazaniaClick(Sender: TObject);
+var i: integer;
+    p1: integer;
+    sido: string;
+    ido: integer;
+    ZQ: TZQueryPom;
+begin
+  if memZobowiazania.Text = '' then Exit;
+  RxMemAlimenty.EmptyTable;
+
+  ShowSQLWait;
+  ZQ:= TZQueryPom.Create(Self);
+  RxMemAlimenty.DisableControls;
+  try
+    // zaczynamy od wiersza 1 bo 0 jest nagłówek
+    for i:=1 to memZobowiazania.Lines.Count-1 do
+    begin
+      Application.ProcessMessages;
+
+      p1 := Pos(' ',memZobowiazania.Lines.Strings[i]);
+      sido:= Copy(memZobowiazania.Lines.Strings[i] , 1, p1-1);
+      ido:= StrToIntDef(sido, 0);
+      if ido=0 then begin
+        ShowMessage('Wklejono błędne dane w wierszu: '+ i.ToString);
+        exit;
+      end;
+
+      RxMemAlimenty.Append;
+      RxMemAlimenty.FieldByName('memIDO').AsInteger:= ido;
+      RxMemAlimenty.Post;
+    end;
+
+    ZQ.SQL.Text:= 'SELECT IDO, zobowiazania FROM os_info WHERE IDO in (SELECT IDO FROM osadzeni)';
+    ZQ.Open;
+    RxMemAlimenty.First;
+    while not RxMemAlimenty.EOF do
+    begin
+    if ZQ.Locate('IDO', RxMemAlimenty.FieldByName('memIDO').AsInteger, []) then
+       begin
+         ZQ.Edit;
+         ZQ.FieldByName('zobowiazania').AsBoolean:= false;
+         ZQ.Post;
+       end else
+       begin
+         ZQ.Append;
+         ZQ.FieldByName('IDO').AsInteger         := RxMemAlimenty.FieldByName('memIDO').AsInteger;
+         ZQ.FieldByName('zobowiazania').AsBoolean:= false;
+         ZQ.Post;
+       end;
+      RxMemAlimenty.Next;
+    end;
+
+    // pozostali osadzeni dla os_info, którzy zobowiązania = NULL zminiamy na TRUE
+    ZQ.SQL.Text:= 'UPDATE os_info SET zobowiazania = 1 WHERE (zobowiazania is null) and (ido in (SELECT IDO FROM osadzeni))';
+    ZQ.ExecSQL;
+
+    ShowMessage('OK');
+  finally
+    FreeAndNil(ZQ);
+    RxMemAlimenty.EmptyTable;
+    RxMemAlimenty.EnableControls;
+    HideSQLWait;
+    memZobowiazania.Clear;
   end;
 end;
 
