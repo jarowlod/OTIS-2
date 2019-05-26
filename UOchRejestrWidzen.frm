@@ -1176,7 +1176,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
       '  widzenia w'
       'LEFT JOIN osadzeni o'
       'ON o.IDO = w.IDO'
-      'WHERE (w.Data_Widzenie BETWEEN :data_od AND :data_do)'
+      'WHERE (Date(w.Data_Widzenie) BETWEEN :data_od AND :data_do)'
       'UNION'
       'SELECT'
       'w.ID, '
@@ -1202,7 +1202,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
       '  arch_widzenia w'
       'LEFT JOIN (SELECT * FROM arch_osadzeni GROUP BY IDO) o'
       'ON o.IDO = w.IDO'
-      'WHERE (w.Data_Widzenie BETWEEN :data_od AND :data_do)'
+      'WHERE (Date(w.Data_Widzenie) BETWEEN :data_od AND :data_do)'
       'ORDER BY Data_Widzenie DESC'
     )
     Params = <    

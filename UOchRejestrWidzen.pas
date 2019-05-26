@@ -135,9 +135,9 @@ begin
   if GroupBox1.Enabled then
     if cbPrzedzialCzasu.Checked then
         begin
-          ZQWidzenia.SQL.Add('and ( w.Data_Widzenie BETWEEN :data_od AND :data_do)');
-          ZQWidzenia.ParamByName('data_od').AsDateTime:= DateTimePicker1.DateTime;
-          ZQWidzenia.ParamByName('data_do').AsDateTime:= DateTimePicker2.DateTime;
+          ZQWidzenia.SQL.Add('and ( Date(w.Data_Widzenie) BETWEEN :data_od AND :data_do)');
+          ZQWidzenia.ParamByName('data_od').AsDate:= DateTimePicker1.Date;
+          ZQWidzenia.ParamByName('data_do').AsDate:= DateTimePicker2.Date;
         end
     else
         begin
@@ -157,8 +157,8 @@ begin
   // Podmiana ZQWidzenia -> ZQWidzeniaArch dla uprzednich pobytów
   if GroupBox1.Enabled and cbUprzedniePobyty.Enabled and cbUprzedniePobyty.Checked then
     begin
-      ZQWidzeniaArch.ParamByName('data_od').AsDateTime:= DateTimePicker1.DateTime;
-      ZQWidzeniaArch.ParamByName('data_do').AsDateTime:= DateTimePicker2.DateTime;
+      ZQWidzeniaArch.ParamByName('data_od').AsDate:= DateTimePicker1.Date;
+      ZQWidzeniaArch.ParamByName('data_do').AsDate:= DateTimePicker2.Date;
       ZQWidzeniaArch.Open;
       DSWidzenia.DataSet:= ZQWidzeniaArch;
 
