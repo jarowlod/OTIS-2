@@ -16,6 +16,8 @@ type
   TPenitNoeNetTest = class(TForm)
     btnAnalizaAlimenty: TBitBtn;
     btnAnalizaZobowiazania: TBitBtn;
+    btnWyslijDoZatrudnienia: TBitBtn;
+    btnZatRoznice: TBitBtn;
     btnWyslijAll: TBitBtn;
     btnUstawIDSesji: TBitBtn;
     btnAnaliza: TBitBtn;
@@ -30,8 +32,12 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
     lblNrSesji: TLabel;
     Label8: TLabel;
+    memZat: TMemo;
+    memZatRoznice: TMemo;
     memZobowiazania: TMemo;
     Memo1: TMemo;
     memAlimenty: TMemo;
@@ -59,6 +65,7 @@ type
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
     TabSheet6: TTabSheet;
+    TabSheet7: TTabSheet;
     ZQSesje: TZQuery;
     ZQBledy: TZQuery;
     ZQWychowawcy: TZQuery;
@@ -68,6 +75,8 @@ type
     procedure btnAnalizaZobowiazaniaClick(Sender: TObject);
     procedure btnUstawIDSesjiClick(Sender: TObject);
     procedure btnWyslijAllClick(Sender: TObject);
+    procedure btnWyslijDoZatrudnieniaClick(Sender: TObject);
+    procedure btnZatRozniceClick(Sender: TObject);
     procedure DSSesjeDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure RxDBGrid2DblClick(Sender: TObject);
@@ -409,6 +418,12 @@ begin
     ZQ.SQL.Text:= 'UPDATE os_info SET alimenty = 0 WHERE (alimenty is null) and (ido in (SELECT IDO FROM osadzeni))';
     ZQ.ExecSQL;
 
+    // uaktualniamy informację o alimentach przy aktualnie zatrudnionych
+    ZQ.SQL.Text:= 'UPDATE zat_zatrudnieni z INNER JOIN os_info i ON (z.IDO=i.IDO)'+
+                  ' SET z.alimenty = i.alimenty'+
+                  ' WHERE (z.status_zatrudnienia="zatrudniony") AND ((z.alimenty<>i.alimenty)OR(z.alimenty is null))';
+    ZQ.ExecSQL;
+
     ShowMessage('OK');
   finally
     FreeAndNil(ZQ);
@@ -475,6 +490,12 @@ begin
     ZQ.SQL.Text:= 'UPDATE os_info SET zobowiazania = 1 WHERE (zobowiazania is null) and (ido in (SELECT IDO FROM osadzeni))';
     ZQ.ExecSQL;
 
+    // uaktualniamy informację o zobwiązaniach przy aktualnie zatrudnionych
+    ZQ.SQL.Text:= 'UPDATE zat_zatrudnieni z INNER JOIN os_info i ON (z.IDO=i.IDO)'+
+                  ' SET z.zobowiazania = i.zobowiazania'+
+                  ' WHERE (z.status_zatrudnienia="zatrudniony") AND ((z.zobowiazania<>i.zobowiazania)OR(z.zobowiazania is null))';
+    ZQ.ExecSQL;
+
     ShowMessage('OK');
   finally
     FreeAndNil(ZQ);
@@ -482,6 +503,114 @@ begin
     RxMemAlimenty.EnableControls;
     HideSQLWait;
     memZobowiazania.Clear;
+  end;
+end;
+
+procedure TPenitNoeNetTest.btnZatRozniceClick(Sender: TObject);
+var RxMemNoe: TRxMemoryData;
+    s: string;
+    sTab: TStringArray;
+    ido: integer;
+    ZQZat: TZQueryPom;
+    sNoe, sOTIS: string;
+begin
+  if memZat.Lines.Count<=1 then Exit;
+
+  memZatRoznice.Clear;
+  RxMemNoe:= TRxMemoryData.Create(Self);
+  ZQZat:= TZQueryPom.Create(Self);
+  try
+    RxMemNoe.FieldDefs.Add('IDO', ftInteger);
+    RxMemNoe.FieldDefs.Add('NAZWISKO_IMIE', ftString, 90);
+    RxMemNoe.FieldDefs.Add('Gdzie', ftString, 10);
+    RxMemNoe.Open;
+
+    // Wczytujemy osadzonych zatrudnionych w NoeNET
+    memZat.Lines.Delete(0); // usuwamy nagłówek
+    while memZat.Lines.Count>0 do
+    begin
+      s:= memZat.Lines[0];
+      sTab:= s.Split(' ', 3); // tylko dwie pierwsze wartości oddzielone separatorem
+      if TryStrToInt(sTab[0], ido) then
+         begin
+           RxMemNoe.AppendRecord([ido, sTab[1]+ ' ' +sTab[2], 'Noe']);
+         end;
+      memZat.Lines.Delete(0);
+    end;
+
+    // Wczytujemy os. zatrudnionych w OTIS
+    ZQZat.SQL.Text:= 'SELECT IDO, NAZWISKO, IMIE FROM zat_zatrudnieni WHERE status_zatrudnienia="zatrudniony"';
+    ZQZat.Open;
+    while not ZQZat.EOF do
+    begin
+      if RxMemNoe.Locate('IDO', ZQZat.FieldByName('IDO').AsInteger, []) then
+         begin
+           RxMemNoe.Delete;
+         end else
+         begin
+           RxMemNoe.AppendRecord([ZQZat.FieldByName('IDO').AsInteger, ZQZat.FieldByName('NAZWISKO').AsString+' '+ZQZat.FieldByName('IMIE').AsString, 'OTIS']);
+         end;
+      ZQZat.Next;
+    end;
+
+    // Wyswietlamy wynik w memZatRoznice
+    sNoe:= '';
+    sOTIS:= '';
+    RxMemNoe.First;
+    while not RxMemNoe.EOF do
+    begin
+      if RxMemNoe.FieldByName('Gdzie').AsString = 'Noe' then sNoe:= sNoe + LineEnding + RxMemNoe.FieldByName('IDO').AsString+ ' ' + RxMemNoe.FieldByName('NAZWISKO_IMIE').AsString
+                                                        else sOTIS:= sOTIS + LineEnding + RxMemNoe.FieldByName('IDO').AsString+ ' ' + RxMemNoe.FieldByName('NAZWISKO_IMIE').AsString;
+      RxMemNoe.Next;
+    end;
+
+    if sNoe<>'' then
+       begin
+         memZatRoznice.Append('Osadzeni zatrudnieni w NoeNET, a nie w OTIS.');
+         memZatRoznice.Append(sNoe);
+       end;
+    if (sNoe<>'') and (sOTIS<>'') then memZatRoznice.Append('--------------------------------------------' + LineEnding);
+    if sOTIS<>'' then
+       begin
+         memZatRoznice.Append('Osadzeni zatrudnieni w OTIS, a nie w NoeNET.');
+         memZatRoznice.Append(sOTIS);
+       end;
+
+  finally
+    FreeAndNil(RxMemNoe);
+    FreeAndNil(ZQZat);
+  end;
+end;
+
+procedure TPenitNoeNetTest.btnWyslijDoZatrudnieniaClick(Sender: TObject);
+var user_list: TStringList;
+    ZQPom: TZQueryPom;
+begin
+  if memZatRoznice.Lines.Text = '' then Exit;
+
+  user_list:= TStringList.Create;
+
+  ZQPom:= TZQueryPom.Create(Self);
+  try
+    ZQPom.SQL.Text:= 'SELECT user, Full_name, Dzial FROM uprawnienia WHERE Dzial = :dzial';
+    ZQPom.ParamByName('dzial').AsString:= 'Zatrudnienie';
+    ZQPom.Open;
+    while not ZQPom.EOF do
+    begin
+      user_list.Add( ZQPom.FieldByName('user').AsString );
+      ZQPom.Next;
+    end;
+
+    with TKomunikatorNowaWiad.Create(Self) do
+    begin
+         AutoKomunikat(user_list, 'Różnice w zatrudnieniu pomiędzy NoeNet a OTIS', memZatRoznice.Lines.Text, false);
+         ShowModal;
+         Free;
+    end;
+
+  finally
+    FreeAndNil(ZQPom);
+    FreeAndNil(user_list);
   end;
 end;
 

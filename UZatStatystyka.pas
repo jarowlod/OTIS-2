@@ -142,6 +142,13 @@ begin
      AFont.Style:= [fsBold];
      Background:= $C1C1FF;
   end;
+
+  if (memStat.FieldByName('Nr').AsString= '---') then
+  begin
+     AFont.Style:= [fsBold];
+     Background:= $00EAEA;
+  end;
+
 end;
 
 function TZatStatystyka.GetPlatneOgolem: TStatZatGen;
@@ -295,7 +302,7 @@ begin
         ' WHERE (klasyf LIKE "R-2/%") and'+
         '       (POC LIKE "B-%")';
 
-  Result:= TStatZatGen.Create('osadzonych z R-2 w paw. B', '---', sql);
+  Result:= TStatZatGen.Create('osadzonych z R-2 w paw. B', '-', sql);
 end;
 
 function TZatStatystyka.GetR2pawBPraca: TStatZatGen;
@@ -309,7 +316,7 @@ begin
         '       (os.klasyf LIKE "R-2/%") and'+
         '       (os.POC LIKE "B-%")';
 
-  Result:= TStatZatGen.Create('osadzonych z R-2 w paw. B - pracujących', '---', sql);
+  Result:= TStatZatGen.Create('osadzonych z R-2 w paw. B - pracujących', '-', sql);
 end;
 
 function TZatStatystyka.GetR2pawBPracaBezKonwoju: TStatZatGen;
@@ -326,7 +333,7 @@ begin
         '       (os.klasyf LIKE "R-2/%") and'+
         '       (os.POC LIKE "B-%")';
 
-  Result:= TStatZatGen.Create('osadzonych z R-2 w paw. B - pracujących bez konwojenta', '---', sql);
+  Result:= TStatZatGen.Create('osadzonych z R-2 w paw. B - pracujących bez konwojenta', '-', sql);
 end;
 
 function TZatStatystyka.GetOgolZatrudnionych: TStatZatGen;
@@ -336,7 +343,7 @@ begin
         ' FROM zat_zatrudnieni as zat'+
         ' WHERE (zat.status_zatrudnienia = "zatrudniony")';
 
-  Result:= TStatZatGen.Create('OGÓŁ ZATRUDNIONYCH', '---', sql);
+  Result:= TStatZatGen.Create('OGÓŁ ZATRUDNIONYCH', '-', sql);
 end;
 
 function TZatStatystyka.GetAlimentyAll: TStatZatGen;
@@ -347,7 +354,7 @@ begin
         ' LEFT JOIN os_info i ON (i.IDO=o.IDO)'+
         ' WHERE (i.alimenty=1)';
 
-  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie', '---', sql);
+  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie', '-', sql);
 end;
 
 function TZatStatystyka.GetAlimentyZatOdplatnie: TStatZatGen;
@@ -360,7 +367,7 @@ begin
         '       (zat.status_zatrudnienia = "zatrudniony") and'+
         '       (sta.forma="ODPŁATNIE")';
 
-  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie, zatrudnieni odpłatnie', '---', sql);
+  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie, zatrudnieni odpłatnie', '-', sql);
 end;
 
 function TZatStatystyka.GetAlimentyZatNieOdplatnie: TStatZatGen;
@@ -373,7 +380,7 @@ begin
         '       (zat.status_zatrudnienia = "zatrudniony") and'+
         '       (sta.forma="NIEODPŁATNIE")';
 
-  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie, zatrudnieni nieodpłatnie', '---', sql);
+  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie, zatrudnieni nieodpłatnie', '-', sql);
 end;
 
 function TZatStatystyka.GetAlimentyWycofani: TStatZatGen;
@@ -388,7 +395,7 @@ begin
         '       ) and'+
         '       (o.IDO not in (SELECT IDO FROM zat_zatrudnieni WHERE status_zatrudnienia = "zatrudniony"))';
 
-  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie, wycofani z zatrudnienia', '---', sql);
+  Result:= TStatZatGen.Create('Osadzeni zobowiązani alimentacyjnie, wycofani z zatrudnienia', '-', sql);
 end;
 
 function TZatStatystyka.GetSpan: TStatZatGen;
@@ -466,6 +473,8 @@ begin
   WynikiList.Add(GetNPPorzadkowePar1);                 // index 7
   WynikiList.Add(GetNPPorzadkowePar2);                 // index 8
   WynikiList.Add(GetNPGospodarstwoBudzetowePar3);      // index 9
+
+  WynikiList.Add(GetSpan);
 
   WynikiList.Add(GetR2pawB);                           // index 10
   WynikiList.Add(GetR2pawBPraca);                      // index 11

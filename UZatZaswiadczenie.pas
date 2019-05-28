@@ -15,6 +15,8 @@ type
 
   TZatZaswiadczenie = class(TForm)
     BitBtn1: TBitBtn;
+    btnZapisz: TBitBtn;
+    btnWczytaj: TBitBtn;
     bufOkresy: TBufDataset;
     DBNavigator1: TDBNavigator;
     DSOkresy: TDataSource;
@@ -39,10 +41,14 @@ type
     Panel3: TPanel;
     RxDBGrid1: TRxDBGrid;
     procedure BitBtn1Click(Sender: TObject);
+    procedure btnWczytajClick(Sender: TObject);
+    procedure btnZapiszClick(Sender: TObject);
     procedure RxDBGrid1SelectEditor(Sender: TObject; Column: TColumn; var Editor: TWinControl);
   private
      fIDO: integer; // IDO osadzonego
      fID : integer; // ID zat_zatrudnieni
+    procedure ZapiszDopisaneOkresyPracy;
+    procedure WczytajDopisaneOkresyPracy;
   public
      procedure SetIDO(sIDO, sID: integer);
   end;
@@ -69,8 +75,91 @@ begin
   frReport1.ShowReport;
 end;
 
+procedure TZatZaswiadczenie.btnWczytajClick(Sender: TObject);
+begin
+  WczytajDopisaneOkresyPracy;
+end;
+
+procedure TZatZaswiadczenie.btnZapiszClick(Sender: TObject);
+begin
+  ZapiszDopisaneOkresyPracy;
+end;
+
 procedure TZatZaswiadczenie.RxDBGrid1SelectEditor(Sender: TObject; Column: TColumn; var Editor: TWinControl);
 begin
+end;
+
+procedure TZatZaswiadczenie.ZapiszDopisaneOkresyPracy;
+var ZQPom: TZQueryPom;
+begin
+  ZQPom:= TZQueryPom.Create(Self);
+  try
+    ZQPom.SQL.Text:= 'DELETE FROM zat_okresy_pracy WHERE IDO=:ido';
+    ZQPom.ParamByName('ido').AsInteger:= fIDO;
+    ZQPom.ExecSQL;
+
+    ZQPom.SQL.Text:= 'SELECT * FROM zat_okresy_pracy WHERE IDO=:ido';
+    ZQPom.ParamByName('ido').AsInteger:= fIDO;
+    ZQPom.Open;
+
+    bufOkresy.First;
+    while not bufOkresy.EOF do
+    begin
+      if bufOkresy.FieldByName('zOTISa').IsNull then
+         begin
+           ZQPom.Append;
+           ZQPom.FieldByName('IDO').AsInteger     := fIDO;
+           ZQPom.FieldByName('Od').AsDateTime     := bufOkresy.FieldByName('Od').AsDateTime;
+           ZQPom.FieldByName('Do').AsDateTime     := bufOkresy.FieldByName('Do').AsDateTime;
+           ZQPom.FieldByName('forma').AsString    := bufOkresy.FieldByName('forma').AsString;
+           ZQPom.FieldByName('rodzaj').AsString   := bufOkresy.FieldByName('rodzaj').AsString;
+           ZQPom.FieldByName('wymiar').AsString   := bufOkresy.FieldByName('wymiar').AsString;
+           ZQPom.FieldByName('Jednostka').AsString:= bufOkresy.FieldByName('Jednostka').AsString;
+           ZQPom.Post;
+         end;
+      bufOkresy.Next;
+    end;
+
+    ShowMessage('Zapisano dopisane okresy zatrudnienia.');
+
+  finally
+    FreeAndNil(ZQPom);
+  end;
+end;
+
+procedure TZatZaswiadczenie.WczytajDopisaneOkresyPracy;
+var ZQPom: TZQueryPom;
+begin
+  ZQPom:= TZQueryPom.Create(Self);
+  try
+    ZQPom.SQL.Text:= 'SELECT * FROM zat_okresy_pracy WHERE IDO=:ido';
+    ZQPom.ParamByName('ido').AsInteger:= fIDO;
+    ZQPom.Open;
+
+    if ZQPom.IsEmpty then begin
+      ShowMessage('Brak wcześniejszych zapisów.');;
+      Exit;
+    end;
+
+    while not ZQPom.EOF do
+    begin
+      bufOkresy.Append;
+      bufOkresy.FieldByName('Od').AsDateTime     := ZQPom.FieldByName('Od').AsDateTime;
+      bufOkresy.FieldByName('Do').AsDateTime     := ZQPom.FieldByName('Do').AsDateTime;
+      bufOkresy.FieldByName('forma').AsString    := ZQPom.FieldByName('forma').AsString;
+      bufOkresy.FieldByName('rodzaj').AsString   := ZQPom.FieldByName('rodzaj').AsString;
+      bufOkresy.FieldByName('wymiar').AsString   := ZQPom.FieldByName('wymiar').AsString;
+      bufOkresy.FieldByName('Jednostka').AsString:= ZQPom.FieldByName('Jednostka').AsString;
+      bufOkresy.Post;
+
+      ZQPom.Next;
+    end;
+
+    ShowMessage('Wczytano poprzednio dopisane okresy zatrudnienia.');
+
+  finally
+    FreeAndNil(ZQPom);
+  end;
 end;
 
 procedure TZatZaswiadczenie.SetIDO(sIDO, sID: integer);
@@ -118,8 +207,9 @@ begin
     bufOkresy.FieldByName('rodzaj').AsString:= ZQPom.FieldByName('forma').AsString; //ZQPom.FieldByName('rodzaj_zatrudnienia').AsString;
     sEtat:= ZQPom.FieldByName('etat').AsString;
     if Pos('/', sEtat)>0 then sEtat += ' ETATU';
-    bufOkresy.FieldByName('wymiar').AsString:= sEtat;
+    bufOkresy.FieldByName('wymiar').AsString   := sEtat;
     bufOkresy.FieldByName('Jednostka').AsString:= 'ZK Kłodzko';
+    bufOkresy.FieldByName('zOTISa').AsBoolean  := true;
 
     bufOkresy.Post;
 
