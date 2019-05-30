@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 368
+  Left = 86
   Height = 743
-  Top = 364
+  Top = 85
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -1056,6 +1056,39 @@ object PenitTerminarz: TPenitTerminarz
               Footers = <>
             end          
             item
+              Alignment = taCenter
+              Font.Color = clMaroon
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'URODZ'
+              Width = 70
+              FieldName = 'URODZ'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'STATUS'
+              Width = 50
+              FieldName = 'STATUS'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
               ButtonStyle = cbsCheckboxColumn
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
@@ -1109,42 +1142,9 @@ object PenitTerminarz: TPenitTerminarz
               Font.Color = clMaroon
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
-              Title.Caption = 'URODZ'
-              Width = 70
-              FieldName = 'URODZ'
-              EditButtons = <>
-              Filter.DropDownRows = 0
-              Filter.EmptyValue = '(Empty)'
-              Filter.NotEmptyValue = '(Not empty)'
-              Filter.AllValue = '(All values)'
-              Filter.EmptyFont.Style = [fsItalic]
-              Filter.ItemIndex = -1
-              Footers = <>
-            end          
-            item
-              Alignment = taCenter
-              Font.Color = clMaroon
-              Title.Alignment = taCenter
-              Title.Orientation = toHorizontal
               Title.Caption = 'PRZYJ'
               Width = 70
               FieldName = 'PRZYJ'
-              EditButtons = <>
-              Filter.DropDownRows = 0
-              Filter.EmptyValue = '(Empty)'
-              Filter.NotEmptyValue = '(Not empty)'
-              Filter.AllValue = '(All values)'
-              Filter.EmptyFont.Style = [fsItalic]
-              Filter.ItemIndex = -1
-              Footers = <>
-            end          
-            item
-              Alignment = taCenter
-              Title.Alignment = taCenter
-              Title.Orientation = toHorizontal
-              Title.Caption = 'STATUS'
-              Width = 50
-              FieldName = 'STATUS'
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'

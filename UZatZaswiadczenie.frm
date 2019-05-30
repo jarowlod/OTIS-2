@@ -1,10 +1,10 @@
 object ZatZaswiadczenie: TZatZaswiadczenie
   Left = 334
-  Height = 645
+  Height = 699
   Top = 226
   Width = 710
   Caption = 'Zaświadczenie o wykonywaniu pracy'
-  ClientHeight = 645
+  ClientHeight = 699
   ClientWidth = 710
   Position = poOwnerFormCenter
   LCLVersion = '6.6'
@@ -27,12 +27,12 @@ object ZatZaswiadczenie: TZatZaswiadczenie
   end
   object Panel2: TPanel
     Left = 0
-    Height = 72
+    Height = 80
     Top = 40
     Width = 710
     Align = alTop
     BevelOuter = bvLowered
-    ClientHeight = 72
+    ClientHeight = 80
     ClientWidth = 710
     TabOrder = 1
     object Label1: TLabel
@@ -97,11 +97,21 @@ object ZatZaswiadczenie: TZatZaswiadczenie
       Anchors = [akTop, akLeft, akRight]
       TabOrder = 3
     end
+    object Label8: TLabel
+      Left = 16
+      Height = 15
+      Top = 64
+      Width = 374
+      Caption = '"rrrr-mm-dd" - wymagany format daty aby sortowanie było poprawne.'
+      Font.Color = clGray
+      ParentColor = False
+      ParentFont = False
+    end
   end
   object RxDBGrid1: TRxDBGrid
     Left = 0
-    Height = 349
-    Top = 112
+    Height = 395
+    Top = 120
     Width = 710
     ColumnDefValues.BlobText = '(blob)'
     TitleButtons = True
@@ -300,14 +310,14 @@ object ZatZaswiadczenie: TZatZaswiadczenie
   object Panel3: TPanel
     Left = 0
     Height = 159
-    Top = 486
+    Top = 540
     Width = 710
     Align = alBottom
     BevelOuter = bvNone
     ClientHeight = 159
     ClientWidth = 710
     TabOrder = 3
-    object BitBtn1: TBitBtn
+    object btnDrukuj: TBitBtn
       Left = 8
       Height = 30
       Top = 123
@@ -350,7 +360,7 @@ object ZatZaswiadczenie: TZatZaswiadczenie
         00000000000000000000E3D8C6E3EFE8DBFFEFE8DBFFEFE8DBFFEFE8DBFFEFE8
         DBFFEFE8DBFFE3D8C6D300000000000000000000000000000000
       }
-      OnClick = BitBtn1Click
+      OnClick = btnDrukujClick
       TabOrder = 0
     end
     object Label5: TLabel
@@ -498,7 +508,7 @@ object ZatZaswiadczenie: TZatZaswiadczenie
   object DBNavigator1: TDBNavigator
     Left = 0
     Height = 25
-    Top = 461
+    Top = 515
     Width = 710
     Align = alBottom
     BevelOuter = bvNone
@@ -539,11 +549,13 @@ object ZatZaswiadczenie: TZatZaswiadczenie
     FieldDefs = <    
       item
         Name = 'Od'
-        DataType = ftDate
+        DataType = ftString
+        Size = 10
       end    
       item
         Name = 'Do'
-        DataType = ftDate
+        DataType = ftString
+        Size = 10
       end    
       item
         Name = 'forma'

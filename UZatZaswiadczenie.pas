@@ -14,7 +14,7 @@ type
   { TZatZaswiadczenie }
 
   TZatZaswiadczenie = class(TForm)
-    BitBtn1: TBitBtn;
+    btnDrukuj: TBitBtn;
     btnZapisz: TBitBtn;
     btnWczytaj: TBitBtn;
     bufOkresy: TBufDataset;
@@ -36,14 +36,14 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
     RxDBGrid1: TRxDBGrid;
-    procedure BitBtn1Click(Sender: TObject);
+    procedure btnDrukujClick(Sender: TObject);
     procedure btnWczytajClick(Sender: TObject);
     procedure btnZapiszClick(Sender: TObject);
-    procedure RxDBGrid1SelectEditor(Sender: TObject; Column: TColumn; var Editor: TWinControl);
   private
      fIDO: integer; // IDO osadzonego
      fID : integer; // ID zat_zatrudnieni
@@ -59,7 +59,7 @@ implementation
 
 { TZatZaswiadczenie }
 
-procedure TZatZaswiadczenie.BitBtn1Click(Sender: TObject);
+procedure TZatZaswiadczenie.btnDrukujClick(Sender: TObject);
 begin
   frReport1.LoadFromFile(DM.Path_Raporty + 'zat_ZaswiadczeniePracy.lrf');
   DM.SetMemoReport(frReport1, 'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
@@ -85,13 +85,11 @@ begin
   ZapiszDopisaneOkresyPracy;
 end;
 
-procedure TZatZaswiadczenie.RxDBGrid1SelectEditor(Sender: TObject; Column: TColumn; var Editor: TWinControl);
-begin
-end;
-
 procedure TZatZaswiadczenie.ZapiszDopisaneOkresyPracy;
 var ZQPom: TZQueryPom;
 begin
+  if not (MessageDlg('Czy zapisać wprowadzone zmiany?'+LineEnding+'Poprzednio zapisane zmiany zostaną skasowane.', mtConfirmation, [mbOK, mbCancel],0) = mrOk) then Exit;
+
   ZQPom:= TZQueryPom.Create(Self);
   try
     ZQPom.SQL.Text:= 'DELETE FROM zat_okresy_pracy WHERE IDO=:ido';
@@ -109,8 +107,8 @@ begin
          begin
            ZQPom.Append;
            ZQPom.FieldByName('IDO').AsInteger     := fIDO;
-           ZQPom.FieldByName('Od').AsDateTime     := bufOkresy.FieldByName('Od').AsDateTime;
-           ZQPom.FieldByName('Do').AsDateTime     := bufOkresy.FieldByName('Do').AsDateTime;
+           ZQPom.FieldByName('Od').AsString       := bufOkresy.FieldByName('Od').AsString;
+           ZQPom.FieldByName('Do').AsString       := bufOkresy.FieldByName('Do').AsString;
            ZQPom.FieldByName('forma').AsString    := bufOkresy.FieldByName('forma').AsString;
            ZQPom.FieldByName('rodzaj').AsString   := bufOkresy.FieldByName('rodzaj').AsString;
            ZQPom.FieldByName('wymiar').AsString   := bufOkresy.FieldByName('wymiar').AsString;
@@ -144,8 +142,8 @@ begin
     while not ZQPom.EOF do
     begin
       bufOkresy.Append;
-      bufOkresy.FieldByName('Od').AsDateTime     := ZQPom.FieldByName('Od').AsDateTime;
-      bufOkresy.FieldByName('Do').AsDateTime     := ZQPom.FieldByName('Do').AsDateTime;
+      bufOkresy.FieldByName('Od').AsString       := ZQPom.FieldByName('Od').AsString;
+      bufOkresy.FieldByName('Do').AsString       := ZQPom.FieldByName('Do').AsString;
       bufOkresy.FieldByName('forma').AsString    := ZQPom.FieldByName('forma').AsString;
       bufOkresy.FieldByName('rodzaj').AsString   := ZQPom.FieldByName('rodzaj').AsString;
       bufOkresy.FieldByName('wymiar').AsString   := ZQPom.FieldByName('wymiar').AsString;
@@ -200,9 +198,9 @@ begin
     inc(poz);
     bufOkresy.Append;
     if not ZQPom.FieldByName('zat_od').IsNull then
-       bufOkresy.FieldByName('Od').AsDateTime  := ZQPom.FieldByName('zat_od').AsDateTime;
+       bufOkresy.FieldByName('Od').AsString  := FormatDateTime('YYYY-MM-DD', ZQPom.FieldByName('zat_od').AsDateTime);
     if not ZQPom.FieldByName('zat_do').IsNull then
-       bufOkresy.FieldByName('Do').AsDateTime  := ZQPom.FieldByName('zat_do').AsDateTime;
+       bufOkresy.FieldByName('Do').AsString  := FormatDateTime('YYYY-MM-DD', ZQPom.FieldByName('zat_do').AsDateTime);
     bufOkresy.FieldByName('forma').AsString := 'SKIEROWANIE';
     bufOkresy.FieldByName('rodzaj').AsString:= ZQPom.FieldByName('forma').AsString; //ZQPom.FieldByName('rodzaj_zatrudnienia').AsString;
     sEtat:= ZQPom.FieldByName('etat').AsString;
@@ -215,6 +213,12 @@ begin
 
     ZQPom.Next;
   end;
+
+  // sprawdzamy czy mamy zapisane wcześniejsze okresy pracy.
+  ZQPom.SQL.Text:= 'SELECT IDO FROM zat_okresy_pracy WHERE IDO=:ido';
+  ZQPom.ParamByName('ido').AsInteger:= fIDO;
+  ZQPom.Open;
+  btnWczytaj.Enabled:= not ZQPom.IsEmpty;
 
   FreeAndNil(ZQPom);
 end;

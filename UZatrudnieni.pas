@@ -1176,7 +1176,7 @@ begin
   s:= s+ #09 +ZQPom.FieldByName('urlop_od').AsString;
   if ZQPom.FieldByName('zobowiazania').AsBoolean then s:= s+ #09 +'TAK' else s:= s+ #09 +'NIE';
   s:= s+ #09; // pusta kolumna
-  if ZQPom.FieldByName('alimety').AsBoolean then s:= s+ #09 +'TAK' else s:= s+ #09 +'NIE';
+  if ZQPom.FieldByName('alimenty').AsBoolean then s:= s+ #09 +'TAK' else s:= s+ #09 +'NIE';
   s:= s+ #09 +ZQPom.FieldByName('rodzaj_zatrudnienia').AsString;
   s:= s+ #09 +ZQPom.FieldByName('forma').AsString;
   s:= s+ #09 +ZQPom.FieldByName('zat_od').AsString;

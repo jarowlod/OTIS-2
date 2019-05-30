@@ -82,10 +82,12 @@
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="434"/>
-        <CursorPos X="3" Y="977"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="467"/>
+        <CursorPos X="12" Y="486"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="UZatAddZatrudnienie.pas"/>
@@ -299,10 +301,9 @@
         <ComponentName Value="ZatZaswiadczenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="131"/>
-        <CursorPos X="19" Y="166"/>
+        <TopLine Value="83"/>
+        <CursorPos Y="92"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -701,9 +702,10 @@
         <ComponentName Value="PenitNoeNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="581"/>
-        <CursorPos X="61" Y="591"/>
+        <TopLine Value="459"/>
+        <CursorPos X="39" Y="481"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -909,7 +911,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="136"/>
         <CursorPos X="3" Y="141"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="187"/>
       </Unit75>
       <Unit76>
         <Filename Value="UKwatSprzetRTV.pas"/>
@@ -921,7 +923,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="31" Y="65"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="119"/>
       </Unit76>
       <Unit77>
         <Filename Value="UKwatSprzetRTVWydruk.pas"/>
@@ -933,7 +935,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="108"/>
       </Unit77>
       <Unit78>
         <Filename Value="UKwatPlanWyjazdowSamochody.pas"/>
@@ -945,7 +947,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="57" Y="78"/>
-        <UsageCount Value="78"/>
+        <UsageCount Value="80"/>
       </Unit78>
       <Unit79>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -1333,7 +1335,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="154"/>
         <CursorPos X="17" Y="160"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit131>
       <Unit132>
         <Filename Value="C:\codetyphon\typhon\components\pl_RX\source\rxdbutils.pas"/>
@@ -1374,7 +1376,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="315"/>
         <CursorPos X="13" Y="331"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit136>
       <Unit137>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\stringl.inc"/>
@@ -1382,7 +1384,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="774"/>
         <CursorPos X="77" Y="946"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit137>
       <Unit138>
         <Filename Value="C:\codetyphon\typhon\components\lz_DateTimeCtrls\source\datetimepicker.pas"/>
@@ -1502,7 +1504,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="121"/>
         <CursorPos X="18" Y="139"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit152>
       <Unit153>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\typshrd.inc"/>
@@ -1510,7 +1512,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="280"/>
         <CursorPos X="3" Y="282"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit153>
       <Unit154>
         <Filename Value="C:\codetyphon\typhon\components\pl_Indy\source\IdTCPServer.pas"/>
@@ -1714,7 +1716,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="633"/>
         <CursorPos X="10" Y="651"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit178>
       <Unit179>
         <Filename Value="C:\codetyphon\typhon\components\YearPlan\yearplanner.pas"/>
@@ -1867,7 +1869,7 @@
         <UsageCount Value="10"/>
       </Unit196>
     </Units>
-    <JumpHistory Count="22" HistoryIndex="21">
+    <JumpHistory Count="23" HistoryIndex="22">
       <Position1>
         <Filename Value="datamodule.pas"/>
         <Caret Line="140" Column="3" TopLine="122"/>
@@ -1930,32 +1932,36 @@
       </Position15>
       <Position16>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="295" TopLine="549"/>
+        <Caret Line="297" TopLine="297"/>
       </Position16>
       <Position17>
         <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="297" TopLine="297"/>
+        <Caret Line="591" Column="24" TopLine="560"/>
       </Position17>
       <Position18>
-        <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="591" Column="24" TopLine="560"/>
+        <Filename Value="UZatZaswiadczenie.pas"/>
+        <Caret Line="123" Column="59" TopLine="97"/>
       </Position18>
       <Position19>
         <Filename Value="UZatZaswiadczenie.pas"/>
-        <Caret Line="123" Column="59" TopLine="97"/>
+        <Caret Line="124" Column="59" TopLine="98"/>
       </Position19>
       <Position20>
         <Filename Value="UZatZaswiadczenie.pas"/>
-        <Caret Line="124" Column="59" TopLine="98"/>
+        <Caret Line="131" Column="59" TopLine="105"/>
       </Position20>
       <Position21>
         <Filename Value="UZatZaswiadczenie.pas"/>
-        <Caret Line="131" Column="59" TopLine="105"/>
+        <Caret Line="51" Column="35" TopLine="31"/>
       </Position21>
       <Position22>
         <Filename Value="UZatZaswiadczenie.pas"/>
-        <Caret Line="51" Column="35" TopLine="31"/>
+        <Caret Line="91" TopLine="82"/>
       </Position22>
+      <Position23>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="811" Column="3" TopLine="795"/>
+      </Position23>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

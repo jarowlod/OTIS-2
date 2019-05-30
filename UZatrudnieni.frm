@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 86
+  Left = 368
   Height = 856
-  Top = 85
+  Top = 364
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -443,7 +443,6 @@ object Zatrudnieni: TZatrudnieni
       ParentShowHint = False
       ShowHint = True
       TabOrder = 10
-      Visible = False
     end
   end
   object Panel3: TPanel
@@ -1322,7 +1321,7 @@ object Zatrudnieni: TZatrudnieni
           TabOrder = 1
           object tabInfoZat: TTabSheet
             Caption = 'Informacje o zatrudnieniu'
-            ClientHeight = 362
+            ClientHeight = 524
             ClientWidth = 490
             ImageIndex = 6
             object plGradient1: TplGradient
@@ -1674,7 +1673,7 @@ object Zatrudnieni: TZatrudnieni
           end
           object tabInfoStanowisko: TTabSheet
             Caption = 'Informacje o Stanowisku'
-            ClientHeight = 362
+            ClientHeight = 524
             ClientWidth = 490
             ImageIndex = 7
             object Label15: TLabel
@@ -2177,7 +2176,7 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabWydruki: TTabSheet
         Caption = 'Wydruki'
-        ClientHeight = 651
+        ClientHeight = 813
         ClientWidth = 498
         ImageIndex = 4
         object lblDruk_OsadzeniAll: TLabel
