@@ -57,8 +57,8 @@ type
     OLLevel: integer;
     MaxCol: integer;
     DayOfWeek: integer;
-    StartHour: Word;        // 0..15 która godzina zaczynając od Godz_Od (5)
-    StartHourQuarter: Word; // 0..3 która ćwiartka godziny
+    StartHour: integer;        // 0..15 która godzina zaczynając od Godz_Od (5)
+    StartHourQuarter: integer; // 0..3 która ćwiartka godziny
     EndHour  : Word;
     EndHourQuarter: Word;
     constructor Create(AOwner: TComponent; EventRecord: TEventRecord); overload;
@@ -410,7 +410,8 @@ end;
 procedure TWeekView.RowPoz(r: integer; var cTop, cHeight: integer);
 begin
   if (r<0)or(r>15) then begin
-    cTop:= 0;
+    if r<0 then  cTop:= RowsTab[0].Top;
+    if r>15 then cTop:= RowsTab[15].Top;
     cHeight:= 0;
     exit;
   end;
@@ -721,7 +722,7 @@ var i: integer;
         for e1:=0 to e-1 do
         // algorytm wymaga posortowanej listy Eventów wg. StartDate
         if Events[e1].OLLevel=p then
-        if ((Events[e].fStartDate >= Events[e1].fStartDate)AND(Events[e].fEndDate <= Events[e1].fEndDate))OR // e zawie się w e1
+        if ((Events[e].fStartDate >= Events[e1].fStartDate)AND(Events[e].fEndDate <= Events[e1].fEndDate))OR // e zawiera się w e1
            ((Events[e].fStartDate >= Events[e1].fStartDate)AND(Events[e].fStartDate < Events[e1].fEndDate)) then // e zaczyna się w e1
         begin
           CzyWolnaPozycja:= false;

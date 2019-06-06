@@ -157,7 +157,7 @@
         <PackageName Value="adLCL"/>
       </Item36>
     </RequiredPackages>
-    <Units Count="79">
+    <Units Count="80">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -782,6 +782,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit78>
+      <Unit79>
+        <Filename Value="UWeekView.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit79>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
