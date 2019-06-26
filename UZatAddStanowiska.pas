@@ -58,14 +58,30 @@ implementation
 { TZatAddStanowiska }
 
 procedure TZatAddStanowiska.btnOKClick(Sender: TObject);
+var ZQPom: TZQueryPom;
 begin
+  try
   if CzyNowe then
     begin
-      ZQST.FieldByName('data_dodania').AsDateTime:= Now();
-      ZQST.FieldByName('stan').AsString:= 'A';
-      ZQST.FieldByName('user_dodania').Value:= DM.PelnaNazwa;
-      ZQST.Post;
-      ZQST.Close;
+      DM.ZConnection1.StartTransaction;
+      try
+        ZQST.FieldByName('data_dodania').AsDateTime:= Now();
+        ZQST.FieldByName('stan').AsString:= 'A';
+        ZQST.FieldByName('user_dodania').Value:= DM.PelnaNazwa;
+        ZQST.Post;
+        ZQST.Close;
+
+        // Przypisać do Id numer Id dodanego rekordu
+        ZQPom:= TZQueryPom.Create(Self);
+        ZQPom.SQL.Text:= 'SELECT LAST_INSERT_ID() as id;';
+        ZQPom.Open;
+        id:= ZQPom.FieldByName('ID').AsInteger;
+        FreeAndNil(ZQPom);
+
+        DM.ZConnection1.Commit;
+      except
+        DM.ZConnection1.Rollback;
+      end;
     end
   else
     begin
@@ -84,6 +100,10 @@ begin
       ZQST.Post;
       ZQST.Close;
     end;
+
+  finally
+    ShowMessage('Dane zapisane poprawnie.');
+  end;
 end;
 
 procedure TZatAddStanowiska.btnAnulujClick(Sender: TObject);

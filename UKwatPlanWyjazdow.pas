@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   Buttons, ComCtrls, DBCtrls, TplGradientUnit, UWeekView, DB, ZDataset,
-  rxdbgrid, DateUtils, datamodule;
+  rxdbgrid, DateUtils, datamodule, LR_Class, LR_DBSet, DateTimePicker;
 
 type
 
@@ -17,11 +17,14 @@ type
     btnUsun: TBitBtn;
     btnZaplanuj: TBitBtn;
     btnModyfikuj: TBitBtn;
+    btnDrukuj: TBitBtn;
     dtpSelectedDate: TDateTimePicker;
     DBMemoUwagi: TDBMemo;
     DBNavigator1: TDBNavigator;
     DSPlanWyjazdow: TDataSource;
     DSUwagi: TDataSource;
+    frDBDataSet1: TfrDBDataSet;
+    frReport1: TfrReport;
     Image1: TImage;
     Label1: TLabel;
     lblWeekDate: TLabel;
@@ -41,6 +44,7 @@ type
     SpeedButton2: TSpeedButton;
     ZQPlanWyjazdow: TZQuery;
     ZQUwagi: TZQuery;
+    procedure btnDrukujClick(Sender: TObject);
     procedure btnModyfikujClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure btnZaplanujClick(Sender: TObject);
@@ -129,6 +133,12 @@ end;
 procedure TKwatPlanWyjazdow.btnModyfikujClick(Sender: TObject);
 begin
   ModyfikujWyjazd( ZQPlanWyjazdow.FieldByName('ID').AsInteger );
+end;
+
+procedure TKwatPlanWyjazdow.btnDrukujClick(Sender: TObject);
+begin
+  frReport1.LoadFromFile(DM.Path_Raporty + 'kwat_wykazWyjazdow.lrf');
+  frReport1.ShowReport;
 end;
 
 procedure TKwatPlanWyjazdow.btnZaplanujClick(Sender: TObject);

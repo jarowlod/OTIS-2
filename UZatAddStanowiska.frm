@@ -1,13 +1,13 @@
 object ZatAddStanowiska: TZatAddStanowiska
-  Left = 440
+  Left = 334
   Height = 573
-  Top = 236
+  Top = 226
   Width = 602
   Caption = 'Stanowisko / Grupa'
   ClientHeight = 573
   ClientWidth = 602
   Position = poOwnerFormCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 46

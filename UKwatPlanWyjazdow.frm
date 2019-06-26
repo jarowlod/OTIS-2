@@ -1,7 +1,7 @@
 object KwatPlanWyjazdow: TKwatPlanWyjazdow
-  Left = 86
+  Left = 180
   Height = 564
-  Top = 85
+  Top = 178
   Width = 1038
   Caption = 'Harmonogram planowanych wyjazdów.'
   ClientHeight = 564
@@ -188,6 +188,17 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
             ImageIndex = 39
             OnClick = btnModyfikujClick
             TabOrder = 2
+          end
+          object btnDrukuj: TBitBtn
+            Left = 8
+            Height = 30
+            Top = 136
+            Width = 128
+            Caption = 'Drukuj'
+            Images = DM.ImageList1
+            ImageIndex = 4
+            OnClick = btnDrukujClick
+            TabOrder = 3
           end
         end
         object RxDBGrid1: TRxDBGrid
@@ -676,5 +687,19 @@ object KwatPlanWyjazdow: TKwatPlanWyjazdow
     DataSet = ZQUwagi
     Left = 640
     Top = 168
+  end
+  object frReport1: TfrReport
+    Dataset = frDBDataSet1
+    InitialZoom = pzDefault
+    Options = [roSaveAndRestoreBookmarks]
+    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    DataType = dtDataSet
+    Left = 508
+    Top = 240
+  end
+  object frDBDataSet1: TfrDBDataSet
+    DataSet = ZQPlanWyjazdow
+    Left = 508
+    Top = 291
   end
 end

@@ -1,7 +1,7 @@
 object ZatStanowiska: TZatStanowiska
-  Left = 440
+  Left = 334
   Height = 677
-  Top = 236
+  Top = 226
   Width = 1215
   Caption = 'Stanowiska / Grupy'
   ClientHeight = 677
@@ -9,7 +9,7 @@ object ZatStanowiska: TZatStanowiska
   Constraints.MinWidth = 850
   OnCreate = FormCreate
   Position = poOwnerFormCenter
-  LCLVersion = '6.5'
+  LCLVersion = '6.6'
   object Panel1: TPanel
     Left = 0
     Height = 52
@@ -20,7 +20,7 @@ object ZatStanowiska: TZatStanowiska
     ClientHeight = 52
     ClientWidth = 1215
     TabOrder = 2
-    object BitBtn1: TBitBtn
+    object btnDodajStanowisko: TBitBtn
       Left = 8
       Height = 30
       Top = 8
@@ -62,10 +62,10 @@ object ZatStanowiska: TZatStanowiska
         00000000000000000000000000009F5A00FF9F5A00FF9F5A00FF9F5A00FF9F5A
         00FF9F5A00FFDBC2993300000000000000000000000000000000
       }
-      OnClick = BitBtn1Click
+      OnClick = btnDodajStanowiskoClick
       TabOrder = 0
     end
-    object BitBtn2: TBitBtn
+    object btnModyfikuj: TBitBtn
       Left = 112
       Height = 30
       Top = 8
@@ -107,7 +107,7 @@ object ZatStanowiska: TZatStanowiska
         0000000000000000000000000000000000000000000000000000BC7C1845CC90
         28FFCC9028FFCC9028FFBC7C1845000000000000000000000000
       }
-      OnClick = BitBtn2Click
+      OnClick = btnModyfikujClick
       TabOrder = 1
     end
     object BitBtn4: TBitBtn
@@ -2260,7 +2260,7 @@ object ZatStanowiska: TZatStanowiska
         00000000000000000000000000009F5A00FF9F5A00FF9F5A00FF9F5A00FF9F5A
         00FF9F5A00FFDBC2993300000000000000000000000000000000
       }
-      OnClick = BitBtn1Click
+      OnClick = btnDodajStanowiskoClick
     end
     object MenuItemModyfikujSt: TMenuItem
       Caption = 'Modyfikuj ...'
@@ -2300,7 +2300,7 @@ object ZatStanowiska: TZatStanowiska
         0000000000000000000000000000000000000000000000000000BC7C1845CC90
         28FFCC9028FFCC9028FFBC7C1845000000000000000000000000
       }
-      OnClick = BitBtn2Click
+      OnClick = btnModyfikujClick
     end
     object MenuItem7: TMenuItem
       Caption = '-'

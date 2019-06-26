@@ -15,7 +15,7 @@ type
   { TZatStanowiska }
 
   TZatStanowiska = class(TForm)
-    BitBtn1: TBitBtn;
+    btnDodajStanowisko: TBitBtn;
     BitBtn10: TBitBtn;
     BitBtn11: TBitBtn;
     BitBtn12: TBitBtn;
@@ -27,7 +27,7 @@ type
     BitBtn18: TBitBtn;
     BitBtn19: TBitBtn;
     btnWykazGrup: TBitBtn;
-    BitBtn2: TBitBtn;
+    btnModyfikuj: TBitBtn;
     BitBtn4: TBitBtn;
     BitBtn5: TBitBtn;
     BitBtn6: TBitBtn;
@@ -138,8 +138,8 @@ type
     procedure druk_karta_pracyOdplatnieClick(Sender: TObject);
     procedure druk_przepustka_zbiorcza_AllClick(Sender: TObject);
     procedure druk_karta_pracyEtatClick(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure btnDodajStanowiskoClick(Sender: TObject);
+    procedure btnModyfikujClick(Sender: TObject);
     procedure BitBtn6Click(Sender: TObject);
     procedure btnUsunStanowiskoClick(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
@@ -175,8 +175,8 @@ uses UZatAddStanowiska, LR_DSet, UZatrudnienieGrafik, UZatAddZatrudnienie, UZatr
 
 procedure TZatStanowiska.FormCreate(Sender: TObject);
 begin
-  BitBtn1.Enabled            := DM.uprawnienia[15];  // zatrudnienie
-  BitBtn2.Enabled            := DM.uprawnienia[15];  // zatrudnienie
+  btnDodajStanowisko.Enabled            := DM.uprawnienia[15];  // zatrudnienie
+  btnModyfikuj.Enabled            := DM.uprawnienia[15];  // zatrudnienie
   btnUsunStanowisko.Enabled  := DM.uprawnienia[15];  // zatrudnienie
   MenuItemDodajSt.Enabled    := DM.uprawnienia[15];
   MenuItemModyfikujSt.Enabled:= DM.uprawnienia[15];
@@ -486,18 +486,22 @@ begin
   ZQZatrudnieni.EnableControls;
 end;
 
-procedure TZatStanowiska.BitBtn1Click(Sender: TObject);
+procedure TZatStanowiska.btnDodajStanowiskoClick(Sender: TObject);
 begin
   //okno dodania grupy
   with TZatAddStanowiska.Create(Self) do
   begin
     NoweStanowisko;
-    if ShowModal = mrOK then RefreshQuery(ZQStanowiska);
+    if ShowModal = mrOK then
+      begin
+        RefreshQuery(ZQStanowiska);
+        ZQStanowiska.Locate('ID', id, []);  // Znajdź dodaną pozycję i ustaw na niej kursor. Id pozysji z TZatAddStanowiska
+      end;
     Free;
   end;
 end;
 
-procedure TZatStanowiska.BitBtn2Click(Sender: TObject);
+procedure TZatStanowiska.btnModyfikujClick(Sender: TObject);
 begin
   //okno modyfikacji grupy
   if ZQStanowiska.IsEmpty then exit;
