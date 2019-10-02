@@ -34,6 +34,7 @@ type
     btnUsunStanowisko: TBitBtn;
     BitBtn8: TBitBtn;
     BitBtn9: TBitBtn;
+    cbMiejsce: TComboBox;
     cbSystem: TComboBox;
     cbForma: TComboBox;
     cbDoDruku: TCheckBox;
@@ -68,6 +69,7 @@ type
     Label12: TLabel;
     Label13: TLabel;
     Label14: TLabel;
+    Label15: TLabel;
     Label16: TLabel;
     Label17: TLabel;
     Label2: TLabel;
@@ -175,8 +177,8 @@ uses UZatAddStanowiska, LR_DSet, UZatrudnienieGrafik, UZatAddZatrudnienie, UZatr
 
 procedure TZatStanowiska.FormCreate(Sender: TObject);
 begin
-  btnDodajStanowisko.Enabled            := DM.uprawnienia[15];  // zatrudnienie
-  btnModyfikuj.Enabled            := DM.uprawnienia[15];  // zatrudnienie
+  btnDodajStanowisko.Enabled := DM.uprawnienia[15];  // zatrudnienie
+  btnModyfikuj.Enabled       := DM.uprawnienia[15];  // zatrudnienie
   btnUsunStanowisko.Enabled  := DM.uprawnienia[15];  // zatrudnienie
   MenuItemDodajSt.Enabled    := DM.uprawnienia[15];
   MenuItemModyfikujSt.Enabled:= DM.uprawnienia[15];
@@ -223,6 +225,14 @@ begin
   begin
     ZQStanowiska.SQL.Text:= ZQStanowiska.SQL.Text + 'AND(System = :system)';
     ZQStanowiska.ParamByName('system').AsString:= cbSystem.Text;
+  end;
+  if cbMiejsce.ItemIndex>0 then
+  begin
+    case cbMiejsce.ItemIndex of
+         1: ZQStanowiska.SQL.Text:= ZQStanowiska.SQL.Text + 'AND(miejsce LIKE :miejsce)';      // na rzecz jednostki
+         2: ZQStanowiska.SQL.Text:= ZQStanowiska.SQL.Text + 'AND(miejsce NOT LIKE :miejsce)';  // na rzecz innych podmiotów
+    end;
+    ZQStanowiska.ParamByName('miejsce').AsString:= 'DZIAŁ%';
   end;
 
   ZQStanowiska.ParamByName('nazwa').AsString:= snazwa;

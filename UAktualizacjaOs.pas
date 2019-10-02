@@ -130,7 +130,7 @@ begin
                         ZQPom.FieldByName('POC').AsString:= MemDataset1.FieldByName('POC').AsString;
                         Zma:=1;
                       end;
-              //if FieldByName('URODZ').AsDateTime <>dane[i].Urodzony then begin FieldByName('URODZ').AsDateTime :=dane[i].Urodzony; Zma:=1; end;
+              if ZQPom.FieldByName('URODZ').AsDateTime <>MemDataset1.FieldByName('URODZ').AsDateTime then begin ZQPom.FieldByName('URODZ').AsDateTime := MemDataset1.FieldByName('URODZ').AsDateTime; Zma:=1; end;
               if ZQPom.FieldByName('PRZYJ').AsDateTime <>MemDataset1.FieldByName('PRZYJ').AsDateTime then begin ZQPom.FieldByName('PRZYJ').AsDateTime := MemDataset1.FieldByName('PRZYJ').AsDateTime; Zma:=1; end;
               if ZQPom.FieldByName('STATUS').AsString  <>MemDataset1.FieldByName('STATUS').AsString  then begin ZQPom.FieldByName('STATUS').AsString  := MemDataset1.FieldByName('STATUS').AsString;  Zma:=1; end;
 

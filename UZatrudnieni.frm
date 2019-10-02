@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 368
+  Left = 86
   Height = 856
-  Top = 364
+  Top = 85
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -903,11 +903,11 @@ object Zatrudnieni: TZatrudnieni
       Height = 684
       Top = 0
       Width = 506
-      ActivePage = tabSzczegolyOs
+      ActivePage = tabWydruki
       Align = alRight
       Images = DM.ImageList1
       TabHeight = 25
-      TabIndex = 0
+      TabIndex = 2
       TabOrder = 1
       object tabSzczegolyOs: TTabSheet
         Caption = 'Szczegóły osadzonego'
@@ -2176,7 +2176,7 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabWydruki: TTabSheet
         Caption = 'Wydruki'
-        ClientHeight = 813
+        ClientHeight = 651
         ClientWidth = 498
         ImageIndex = 4
         object lblDruk_OsadzeniAll: TLabel

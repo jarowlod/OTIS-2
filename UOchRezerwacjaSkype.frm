@@ -1,7 +1,7 @@
 object OchRezerwacjaSkype: TOchRezerwacjaSkype
-  Left = 180
+  Left = 368
   Height = 558
-  Top = 178
+  Top = 364
   Width = 1238
   Caption = 'Rezerwacja rozmów przez Skype'
   ClientHeight = 558
@@ -169,6 +169,20 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
       ClientHeight = 239
       ClientWidth = 143
       TabOrder = 0
+      object plGradient1: TplGradient
+        Left = 0
+        Height = 24
+        Top = 148
+        Width = 142
+        BevelWidth = 1
+        BevelStyle = bvLowered
+        Buffered = True
+        Direction = gdDownRight
+        ColorStart = 15066597
+        ColorEnd = 11316396
+        StepWidth = 1
+        Style = gsHorizontal
+      end
       object btnZaplanuj: TBitBtn
         Left = 8
         Height = 30
@@ -201,6 +215,30 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
         ImageIndex = 4
         OnClick = btnDrukujClick
         TabOrder = 2
+      end
+      object lblNazwisko: TLabel
+        Left = 16
+        Height = 15
+        Top = 152
+        Width = 63
+        Caption = 'lblNazwisko'
+        Font.CharSet = EASTEUROPE_CHARSET
+        Font.Color = clGray
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object CheckBox1: TCheckBox
+        Left = 16
+        Height = 19
+        Top = 128
+        Width = 85
+        Caption = 'Wybrany os.'
+        OnChange = CheckBox1Change
+        TabOrder = 3
       end
     end
     object RxDBGrid1: TRxDBGrid
@@ -443,6 +481,7 @@ object OchRezerwacjaSkype: TOchRezerwacjaSkype
       TabOrder = 1
       TitleStyle = tsNative
       OnDblClick = btnZaplanujClick
+      OnPrepareCanvas = RxDBGrid1PrepareCanvas
     end
   end
   object YearPlanner1: TYearPlanner

@@ -300,6 +300,29 @@ object ZatStanowiska: TZatStanowiska
       Caption = 'Forma:'
       ParentColor = False
     end
+    object Label15: TLabel
+      Left = 712
+      Height = 15
+      Top = 13
+      Width = 43
+      Caption = 'Miejsce:'
+      ParentColor = False
+    end
+    object cbMiejsce: TComboBox
+      Left = 760
+      Height = 23
+      Top = 8
+      Width = 200
+      ItemHeight = 15
+      Items.Strings = (
+        ''
+        'Na rzecz jednostki'
+        'Na rzecz innych podmiotów'
+      )
+      OnSelect = Edit1Change
+      Style = csDropDownList
+      TabOrder = 4
+    end
   end
   object Panel3: TPanel
     Left = 0
@@ -501,11 +524,11 @@ object ZatStanowiska: TZatStanowiska
       Height = 529
       Top = 0
       Width = 620
-      ActivePage = TabSheet4
+      ActivePage = TabSheet3
       Align = alRight
       Images = DM.ImageList1
       TabHeight = 25
-      TabIndex = 2
+      TabIndex = 3
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Szczegóły stanowiska'

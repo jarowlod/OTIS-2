@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="1899-12-30 00:00:00"/>
-    <ReportLastChange Value="2017-07-18 10:02:51"/>
+    <ReportLastChange Value="2019-09-04 12:31:53"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -2587,7 +2587,7 @@
           <Data>
             <Format Value="67371054"/>
             <FormatStr Value="NIE;TAK"/>
-            <Memo Value="[ZQZatrudnieni.&quot;alimety&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQZatrudnieni.&quot;alimenty&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>

@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-06-12 09:47:59"/>
-    <ReportLastChange Value="2017-06-12 11:10:05"/>
+    <ReportLastChange Value="2019-09-04 13:32:56"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -163,7 +163,7 @@
             <Width Value="752"/>
             <Height Value="40"/>
           </Size>
-          <Flags Value="112"/>
+          <Flags Value="113"/>
           <Data>
             <Script Value=""/>
             <GapX Value="0"/>
@@ -874,7 +874,7 @@
             <HighlightStr Value=""/>
           </Highlight>
           <Alignment Value="taLeftJustify"/>
-          <Layout Value="tlCenter"/>
+          <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
           <Cursor Value="0"/>

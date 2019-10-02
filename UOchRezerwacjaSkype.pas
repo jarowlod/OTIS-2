@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   StdCtrls, Buttons, TplGradientUnit, YearPlanner, rxdbgrid, rxmemds,
-  datamodule, LR_Class, LR_DBSet, BGRABitmap, UOchRezerwacjaWidzen;
+  datamodule, LR_Class, LR_DBSet, BGRABitmap, UOchRezerwacjaWidzen, Grids, DBGrids;
 
 type
   { TTerminySkypeEvent }
@@ -30,14 +30,17 @@ type
     btnDrukuj: TBitBtn;
     btnUsun: TBitBtn;
     btnZaplanuj: TBitBtn;
+    CheckBox1: TCheckBox;
     DSMemWidzenia: TDataSource;
     frDBDataSet1: TfrDBDataSet;
     frReport1: TfrReport;
     Image1: TImage;
     Label1: TLabel;
+    lblNazwisko: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel5: TPanel;
+    plGradient1: TplGradient;
     plGradient2: TplGradient;
     RxDBGrid1: TRxDBGrid;
     MemWidzenia: TRxMemoryData;
@@ -46,13 +49,16 @@ type
     procedure btnDrukujClick(Sender: TObject);
     procedure btnUsunClick(Sender: TObject);
     procedure btnZaplanujClick(Sender: TObject);
+    procedure CheckBox1Change(Sender: TObject);
     procedure DSMemWidzeniaDataChange(Sender: TObject; Field: TField);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure RxDBGrid1PrepareCanvas(sender: TObject; DataCol: Integer; Column: TColumn; AState: TGridDrawState);
     procedure YearPlanner1DrawCell(Sender: TCustomControl; TheCanvas: TCanvas; Rect: TRect; CellData: TCellData; CellText: String);
     procedure YearPlanner1SelectionEnd(Sender: TObject);
     procedure YearPlanner1YearChanged(Sender: TObject);
   private
+    SelectIDO: integer;
     Terminy: TTerminySkypeEvents;
     bookmarkWidzenia: TBookMark;
     procedure WczytajDane(StartDate, EndDate: TDateTime);
@@ -108,6 +114,24 @@ begin
      YearPlanner1.EndDate:= Date;
    // ---
    WczytajDane(Date, Date);                // wyświetla dane bieżącej daty
+
+  if DM.ZQOsadzeni.IsEmpty then
+  begin
+    SelectIDO:= 0;
+    lblNazwisko.Caption:= 'brak';
+  end else
+  begin
+    SelectIDO:= DM.ZQOsadzeni.FieldByName('IDO').AsInteger;
+    lblNazwisko.Caption:= DM.ZQOsadzeni.FieldByName('NAZWISKO').AsString;
+  end;
+end;
+
+procedure TOchRezerwacjaSkype.RxDBGrid1PrepareCanvas(sender: TObject; DataCol: Integer; Column: TColumn; AState: TGridDrawState);
+begin
+  if not CheckBox1.Checked then exit;
+  if Column.Field.DataSet.IsEmpty then exit;
+  if Column.Field.DataSet.FieldByName('IDO').AsInteger = SelectIDO then
+     TRxDBGrid(Sender).Canvas.Brush.Color:= $008080FF;
 end;
 
 procedure TOchRezerwacjaSkype.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -147,6 +171,14 @@ begin
       SetToBookmark(MemWidzenia, bookmarkWidzenia);
     Free;
   end;
+end;
+
+procedure TOchRezerwacjaSkype.CheckBox1Change(Sender: TObject);
+begin
+  WczytajDaneTerminarza;
+  bookmarkWidzenia:= MemWidzenia.GetBookmark;
+  WczytajDane(YearPlanner1.StartDate, YearPlanner1.EndDate);
+  SetToBookmark(MemWidzenia, bookmarkWidzenia);
 end;
 
 procedure TOchRezerwacjaSkype.DSMemWidzeniaDataChange(Sender: TObject; Field: TField);
@@ -279,10 +311,17 @@ begin
     // wczytujemy zakres dni bez uzupełniania wakatów
     begin
       RxDBGrid1.ColumnByFieldName('DataGodz').DisplayFormat:= 'yyyy/mm/dd hh:nn';
-      ZQPom.SQL.Add('WHERE Date(DataGodz) BETWEEN :StartDate AND :EndDate'); // warunek od StartDate do EndDate
-      ZQPom.SQL.Add('ORDER BY DataGodz');
+      ZQPom.SQL.Add('WHERE (Date(DataGodz) BETWEEN :StartDate AND :EndDate)'); // warunek od StartDate do EndDate
       ZQPom.ParamByName('StartDate').AsDate:= StartDate;
       ZQPom.ParamByName('EndDate').AsDate:= EndDate;
+
+      if CheckBox1.Checked then
+      begin
+        ZQPom.SQL.Add('AND(IDO = :ido)');
+        ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
+      end;
+
+      ZQPom.SQL.Add('ORDER BY DataGodz');
       ZQPom.Open;
 
       while not ZQPom.EOF do
@@ -325,9 +364,16 @@ begin
   Terminy.ZaznaczSwieta(YearPlanner1.Year);
   try
     ZQPom:= TZQueryPom.Create(Self);
-    ZQPom.SQL.Text:= 'SELECT * FROM widzenia_skype WHERE Date(DataGodz) BETWEEN :StartDate AND :EndDate';
+    ZQPom.SQL.Text:= 'SELECT * FROM widzenia_skype WHERE (Date(DataGodz) BETWEEN :StartDate AND :EndDate)';
     ZQPom.ParamByName('StartDate').AsDate:= EncodeDate( YearPlanner1.Year ,1,1);
     ZQPom.ParamByName('EndDate').AsDate  := EncodeDate( YearPlanner1.Year ,12,31);
+
+    if CheckBox1.Checked then
+    begin
+      ZQPom.SQL.Add('AND(IDO = :ido)');
+      ZQPom.ParamByName('ido').AsInteger:= SelectIDO;
+    end;
+
     ZQPom.Open;
 
     while not ZQPom.Eof do
