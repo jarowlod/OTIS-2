@@ -34,6 +34,7 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
     lblNrSesji: TLabel;
     Label8: TLabel;
     memZat: TMemo;
@@ -421,7 +422,7 @@ begin
     // uaktualniamy informację o alimentach przy aktualnie zatrudnionych
     ZQ.SQL.Text:= 'UPDATE zat_zatrudnieni z INNER JOIN os_info i ON (z.IDO=i.IDO)'+
                   ' SET z.alimenty = i.alimenty'+
-                  ' WHERE (z.status_zatrudnienia="zatrudniony") AND ((z.alimenty<>i.alimenty)OR(z.alimenty is null))';
+                  ' WHERE (z.status_zatrudnienia="zatrudniony") AND ((z.alimenty=0)OR(z.alimenty is null))';
     ZQ.ExecSQL;
 
     ShowMessage('OK');

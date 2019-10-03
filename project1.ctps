@@ -702,8 +702,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="551"/>
-        <CursorPos X="19" Y="567"/>
+        <TopLine Value="403"/>
+        <CursorPos X="71" Y="420"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -921,7 +921,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="31" Y="65"/>
-        <UsageCount Value="134"/>
+        <UsageCount Value="135"/>
       </Unit76>
       <Unit77>
         <Filename Value="UKwatSprzetRTVWydruk.pas"/>
@@ -933,7 +933,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="123"/>
+        <UsageCount Value="124"/>
       </Unit77>
       <Unit78>
         <Filename Value="UKwatPlanWyjazdowSamochody.pas"/>
@@ -945,7 +945,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="57" Y="78"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="96"/>
       </Unit78>
       <Unit79>
         <Filename Value="UWeekView.pas"/>
@@ -954,7 +954,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="401"/>
         <CursorPos X="31" Y="416"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="78"/>
       </Unit79>
       <Unit80>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -1868,7 +1868,7 @@
         <UsageCount Value="8"/>
       </Unit196>
     </Units>
-    <JumpHistory Count="3" HistoryIndex="2">
+    <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
         <Filename Value="UPenitForm.pas"/>
         <Caret Line="10" Column="45"/>
@@ -1881,6 +1881,14 @@
         <Filename Value="UPenitNoeNetTest.pas"/>
         <Caret Line="481" Column="39" TopLine="459"/>
       </Position3>
+      <Position4>
+        <Filename Value="UPenitNoeNetTest.pas"/>
+        <Caret Line="567" Column="19" TopLine="551"/>
+      </Position4>
+      <Position5>
+        <Filename Value="UPenitNoeNetTest.pas"/>
+        <Caret Line="419" Column="71" TopLine="402"/>
+      </Position5>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

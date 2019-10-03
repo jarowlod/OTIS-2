@@ -51,9 +51,9 @@ object PenitNoeNetTest: TPenitNoeNetTest
     Height = 593
     Top = 48
     Width = 1024
-    ActivePage = TabSheet7
+    ActivePage = TabSheet3
     Align = alClient
-    TabIndex = 4
+    TabIndex = 2
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Sesje'
@@ -937,6 +937,16 @@ object PenitNoeNetTest: TPenitNoeNetTest
         ParentColor = False
         ParentFont = False
         Transparent = False
+      end
+      object Label6: TLabel
+        Left = 856
+        Height = 128
+        Top = 256
+        Width = 152
+        AutoSize = False
+        Caption = 'Aktualizacja wprowadza informację do os_info (nadpisuje), oraz dopisuje do aktualnie zatrudnionych jeśli nie mają wprowadzonej informacji o alimentacji.'
+        ParentColor = False
+        WordWrap = True
       end
     end
     object TabSheet6: TTabSheet
