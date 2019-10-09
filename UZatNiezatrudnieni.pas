@@ -131,7 +131,7 @@ begin
   if ZQPom.RecNo = 1 then
     s:= 'Nr'+#09+'IDO'+#09+'POC'+#09+'Nazwisko'+#09+'Imię'+#09+'Ojciec'+#09+'Klasyfikacja'+#09+'Uwagi'+#09+'GR'+#09+
         'Przyjęty'+#09+'Koniec Kary'+#09+'Archiwalne'+#09+'Wywiad'+#09+'WPZ'+#09+'ułamek'+#09+
-        'Wychowawca'+#09+'Autoryzacja'+#09+'Data autoryzacji'+#09;
+        'Wychowawca'+#09+'Autoryzacja'+#09+'Data autoryzacji'+LineEnding;
   // --------------------------------------------------
 
   s:= s+ ZQPom.RecNo.ToString;   // nr w arkuszu

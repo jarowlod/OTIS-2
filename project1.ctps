@@ -33,7 +33,6 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="176"/>
         <CursorPos X="21" Y="194"/>
         <UsageCount Value="200"/>
@@ -155,8 +154,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="148"/>
-        <CursorPos X="12" Y="111"/>
+        <TopLine Value="145"/>
+        <CursorPos X="64" Y="162"/>
         <UsageCount Value="200"/>
       </Unit12>
       <Unit13>
@@ -166,7 +165,7 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="114"/>
         <CursorPos X="3" Y="405"/>
         <UsageCount Value="201"/>
@@ -180,7 +179,7 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="359"/>
         <CursorPos X="39" Y="381"/>
         <UsageCount Value="200"/>
@@ -408,10 +407,13 @@
         <ComponentName Value="ZatNieZatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="43"/>
-        <CursorPos X="3" Y="56"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="124"/>
+        <CursorPos X="73" Y="134"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit33>
       <Unit34>
         <Filename Value="UDrukWykazOsadz.pas"/>
@@ -701,7 +703,7 @@
         <ComponentName Value="PenitNoeNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="403"/>
         <CursorPos X="71" Y="420"/>
         <UsageCount Value="200"/>
@@ -921,7 +923,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="31" Y="65"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="136"/>
       </Unit76>
       <Unit77>
         <Filename Value="UKwatSprzetRTVWydruk.pas"/>
@@ -933,7 +935,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="124"/>
+        <UsageCount Value="125"/>
       </Unit77>
       <Unit78>
         <Filename Value="UKwatPlanWyjazdowSamochody.pas"/>
@@ -945,7 +947,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="57" Y="78"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="97"/>
       </Unit78>
       <Unit79>
         <Filename Value="UWeekView.pas"/>
@@ -954,7 +956,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="401"/>
         <CursorPos X="31" Y="416"/>
-        <UsageCount Value="78"/>
+        <UsageCount Value="79"/>
       </Unit79>
       <Unit80>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -1868,7 +1870,7 @@
         <UsageCount Value="8"/>
       </Unit196>
     </Units>
-    <JumpHistory Count="5" HistoryIndex="4">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="UPenitForm.pas"/>
         <Caret Line="10" Column="45"/>
@@ -1889,6 +1891,10 @@
         <Filename Value="UPenitNoeNetTest.pas"/>
         <Caret Line="419" Column="71" TopLine="402"/>
       </Position5>
+      <Position6>
+        <Filename Value="UZatNiezatrudnieni.pas"/>
+        <Caret Line="56" Column="3" TopLine="43"/>
+      </Position6>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
