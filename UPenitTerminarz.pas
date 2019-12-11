@@ -125,6 +125,7 @@ type
     ZQTerminarzArch: TSmallintField;
     ZQTerminarzAutoryzacja: TStringField;
     ZQTerminarzdata_autoryzacji: TDateTimeField;
+    ZQTerminarzdata_wywiadu: TDateField;
     ZQTerminarzGR: TSmallintField;
     ZQTerminarzID: TLargeintField;
     ZQTerminarzIDO: TLargeintField;
@@ -459,7 +460,15 @@ begin
         begin
           Background := $FFB3FF;
         end;
-      end;
+      end
+    else
+  if (Field.FieldName = 'data_wywiadu') then
+        begin
+          if (Field.AsDateTime < IncMonth(Date(),-11)) then
+          begin
+            Background := clRed;
+          end;
+        end;
 end;
 
 procedure TPenitTerminarz.DSTerminarzDataChange(Sender: TObject; Field: TField);
@@ -802,7 +811,7 @@ begin
   ZQTerminarz.First;
   // Nagłówek
   schowek:= 'IDO'+ #09 +'POC'+ #09 +'Nazwisko'+ #09 +'Imię'+ #09 +'Ojciec'+ #09 +'Klasyf'+ #09 +'GR'+ #09 +'ocena'+ #09 +'wpz'+ #09
-           +'KK'+ #09 +'postpenit'+ #09 +'terapia'+ #09 +'przepustki'+ #09 +'uwagi';
+           +'KK'+ #09 +'postpenit'+ #09 +'terapia'+ #09 +'przepustki'+ #09 +'data wywiadu'+ #09 +'uwagi';
 
   while not ZQTerminarz.EOF do
   begin
@@ -834,6 +843,7 @@ begin
   s:= s+ #09 +ZQPom.FieldByName('tpostpenitu').AsString;
   s:= s+ #09 +ZQPom.FieldByName('tterapii').AsString;
   s:= s+ #09 +ZQPom.FieldByName('tprzepustki').AsString;
+  s:= s+ #09 +ZQPom.FieldByName('data_wywiadu').AsString;
   s:= s+ #09 +ZQPom.FieldByName('zatrudnienie').AsString;
   Result:= s;
 end;

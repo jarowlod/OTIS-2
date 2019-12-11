@@ -385,7 +385,7 @@ object PenitForm: TPenitForm
       Left = 16
       Height = 23
       Top = 232
-      Width = 90
+      Width = 78
       Caption = 'Starszy celi'
       DataField = 'Starszy'
       DataSource = DSOsInfo
@@ -469,7 +469,7 @@ object PenitForm: TPenitForm
         32D535302E4F0000000000000000000000000000000000000000
       }
       OnClick = btnRejestrZatClick
-      TabOrder = 16
+      TabOrder = 17
     end
     object DBCheckBox4: TDBCheckBox
       Left = 352
@@ -484,7 +484,7 @@ object PenitForm: TPenitForm
       ValueUnchecked = '0'
     end
     object DBCheckBox5: TDBCheckBox
-      Left = 353
+      Left = 352
       Height = 23
       Top = 223
       Width = 90
@@ -594,7 +594,7 @@ object PenitForm: TPenitForm
       ClientWidth = 210
       Color = clBtnFace
       ParentColor = False
-      TabOrder = 17
+      TabOrder = 18
       object Image_os: TImage
         Left = 0
         Height = 270
@@ -626,14 +626,14 @@ object PenitForm: TPenitForm
       ClientWidth = 105
       DataSource = DSOsInfo
       Options = []
-      TabOrder = 18
+      TabOrder = 19
       VisibleButtons = [nbPost, nbCancel]
     end
     object DBCheckBox6: TDBCheckBox
-      Left = 120
+      Left = 96
       Height = 23
       Top = 232
-      Width = 90
+      Width = 71
       Caption = 'Grypsuje'
       DataField = 'GR'
       DataSource = DSOsInfo
@@ -650,7 +650,7 @@ object PenitForm: TPenitForm
       DataSource = DSOsInfo
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 15
+      TabOrder = 16
     end
     object lblCelaOchronna: TLabel
       AnchorSideLeft.Control = lblCelaPalaca
@@ -720,7 +720,7 @@ object PenitForm: TPenitForm
         61FF936C32FF0000000000000000000000000000000000000000
       }
       OnClick = btnRejestrProsbClick
-      TabOrder = 19
+      TabOrder = 20
     end
     object btnDodajDoKoszyka: TSpeedButton
       Left = 112
@@ -882,6 +882,32 @@ object PenitForm: TPenitForm
       OnClick = btnDodajKolejnyTerminOcenyClick
       ShowHint = True
       ParentShowHint = False
+    end
+    object DBDataWywiadu: TDBDateTimePicker
+      Left = 352
+      Height = 23
+      Hint = 'Naciśnij N aby wykasować datę.'
+      Top = 248
+      Width = 83
+      DataField = 'data_wywiadu'
+      DataSource = DSOsInfo
+      ReadOnly = False
+      CenturyFrom = 1941
+      MaxDate = 2958465
+      MinDate = -53780
+      TabOrder = 15
+      TrailingSeparator = False
+      TextForNullDate = 'BRAK'
+      LeadingZeros = True
+      ShowHint = True
+      ParentShowHint = False
+      Kind = dtkDate
+      TimeFormat = tf24
+      TimeDisplay = tdHMS
+      DateMode = dmComboBox
+      UseDefaultSeparators = True
+      HideDateTimeParts = []
+      MonthNames = 'Long'
     end
   end
   object PageControl1: TPageControl
@@ -1179,6 +1205,7 @@ object PenitForm: TPenitForm
       'KoniecKary,'
       'Arch,'
       'Wywiad,'
+      'data_wywiadu,'
       'Starszy,'
       'Zatrudnienie,'
       'toceny,'
@@ -1252,11 +1279,11 @@ object PenitForm: TPenitForm
     )
     InsertSQL.Strings = (
       'INSERT INTO os_info'
-      '  (IDO, Autoryzacja, data_autoryzacji, KoniecKary, Arch, Wywiad, Starszy, '
+      '  (IDO, Autoryzacja, data_autoryzacji, KoniecKary, Arch, Wywiad, data_wywiadu, Starszy, '
       '   Zatrudnienie, toceny, tprzepustki, tpostpenitu, tterapii, twpz, ulamek_wpz, '
       '   wpz_stanowisko, postpenit_notatka, GR, alimenty, zobowiazania, zob_info)'
       'VALUES'
-      '  (:IDOEd, :AutoryzacjaEd, Now(), :KoniecKary, :Arch, :Wywiad, '
+      '  (:IDOEd, :AutoryzacjaEd, Now(), :KoniecKary, :Arch, :Wywiad, :data_wywiadu,'
       '   :Starszy, :Zatrudnienie, :toceny, :tprzepustki, :tpostpenitu, :tterapii, '
       '   :twpz, :ulamek_wpz, :wpz_stanowisko, :postpenit_notatka, :GR, :alimenty, '
       '   :zobowiazania, :zob_info)'
@@ -1268,6 +1295,7 @@ object PenitForm: TPenitForm
       '  KoniecKary = :KoniecKary,'
       '  Arch = :Arch,'
       '  Wywiad = :Wywiad,'
+      '  data_wywiadu = :data_wywiadu,'
       '  Starszy = :Starszy,'
       '  Zatrudnienie = :Zatrudnienie,'
       '  toceny = :toceny,'
@@ -1307,6 +1335,11 @@ object PenitForm: TPenitForm
       item
         DataType = ftUnknown
         Name = 'Wywiad'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftDate
+        Name = 'data_wywiadu'
         ParamType = ptUnknown
       end    
       item

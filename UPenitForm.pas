@@ -22,6 +22,7 @@ type
     btnDrukWywiad: TBitBtn;
     DBCheckBox7: TDBCheckBox;
     DBCheckBox8: TDBCheckBox;
+    DBDataWywiadu: TDBDateTimePicker;
     DBEdit3: TDBEdit;
     DBEdit4: TDBEdit;
     DBEdit5: TDBEdit;

@@ -116,6 +116,8 @@ end;
 
 procedure TOchRezerwacjaWidzen.btnZaplanujClick(Sender: TObject);
 var ido: integer;
+    dzienTygodnia: integer;
+    godzWidzenia: integer;
 begin
   if not DM.uprawnienia[18] then exit;
   if MemWidzenia.IsEmpty then exit;
@@ -131,6 +133,16 @@ begin
     MessageDlg('Nie można zaplanować widzenia dla daty i godziny wcześniejszej niż bieżąca.', mtInformation, [mbOK],0);
     exit;
   end;
+
+  // OGRANICZENIE DLA WIDZEŃ gdy są widzenia TA
+  dzienTygodnia:= DayOfTheWeek(MemWidzenia.FieldByName('DataGodz').AsDateTime);
+  godzWidzenia:= HourOf(MemWidzenia.FieldByName('DataGodz').AsDateTime);
+  if ((dzienTygodnia = DayThursday)and(godzWidzenia=9)) OR
+     ((dzienTygodnia = DaySaturday)and(godzWidzenia<=10)) then
+  begin
+    MessageDlg('UWAGA!'+LineEnding+'W tych godzinach, widzenia dla TA.', mtWarning, [mbOK],0);
+  end;
+  // ------------------------------------------
 
   if DM.ZQOsadzeni.IsEmpty then
     ido:= 0

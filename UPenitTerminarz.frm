@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 86
+  Left = 180
   Height = 743
-  Top = 85
+  Top = 178
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -102,8 +102,8 @@ object PenitTerminarz: TPenitTerminarz
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
-      ClientHeight = 935
-      ClientWidth = 1912
+      ClientHeight = 660
+      ClientWidth = 1174
       ImageIndex = 16
       OnShow = TabSheet1Show
       object YearPlanner1: TYearPlanner
@@ -902,22 +902,6 @@ object PenitTerminarz: TPenitTerminarz
               Footers = <>
             end          
             item
-              ButtonStyle = cbsCheckboxColumn
-              Title.Alignment = taCenter
-              Title.Orientation = toHorizontal
-              Title.Caption = 'Starszy'
-              Width = 45
-              FieldName = 'Starszy'
-              EditButtons = <>
-              Filter.DropDownRows = 0
-              Filter.EmptyValue = '(Empty)'
-              Filter.NotEmptyValue = '(Not empty)'
-              Filter.AllValue = '(All values)'
-              Filter.EmptyFont.Style = [fsItalic]
-              Filter.ItemIndex = -1
-              Footers = <>
-            end          
-            item
               Alignment = taCenter
               Font.Color = clMaroon
               Title.Alignment = taCenter
@@ -1203,6 +1187,23 @@ object PenitTerminarz: TPenitTerminarz
               Footers = <>
             end          
             item
+              Alignment = taCenter
+              Font.Color = clMaroon
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'data wywiadu'
+              Width = 70
+              FieldName = 'data_wywiadu'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'ułamek wpz'
@@ -1346,7 +1347,8 @@ object PenitTerminarz: TPenitTerminarz
       'zat.zat_od,'
       'os_info.alimenty,'
       'os_info.ali_Zadluzenie,'
-      'os_info.zobowiazania'
+      'os_info.zobowiazania,'
+      'os_info.data_wywiadu'
       'FROM osadzeni os'
       'LEFT OUTER JOIN os_info ON (os.IDO = os_info.IDO)'
       'INNER JOIN typ_cel ON (os.POC = typ_cel.POC)'
@@ -1641,6 +1643,15 @@ object PenitTerminarz: TPenitTerminarz
       FieldKind = fkData
       FieldName = 'zobowiazania'
       Index = 30
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQTerminarzdata_wywiadu: TDateField
+      FieldKind = fkData
+      FieldName = 'data_wywiadu'
+      Index = 31
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

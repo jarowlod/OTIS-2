@@ -880,6 +880,7 @@ object OchRejestrWidzen: TOchRejestrWidzen
       ShowHint = True
       TabOrder = 2
       TitleStyle = tsNative
+      OnDblClick = RxDBGrid1DblClick
     end
   end
   object ZQWidzenia: TZQuery

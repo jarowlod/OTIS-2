@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="197">
+    <Units Count="199">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="779"/>
-        <CursorPos X="11" Y="782"/>
+        <TopLine Value="787"/>
+        <CursorPos Y="791"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -165,9 +165,9 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="114"/>
-        <CursorPos X="3" Y="405"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="45" Y="10"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -179,9 +179,9 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="359"/>
-        <CursorPos X="39" Y="381"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="439"/>
+        <CursorPos X="55" Y="467"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -229,10 +229,12 @@
         <ComponentName Value="AktualizacjaOs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="109"/>
-        <CursorPos X="40" Y="93"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="268"/>
+        <CursorPos X="39" Y="298"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="UAktualizacjaRejestr.pas"/>
@@ -407,8 +409,7 @@
         <ComponentName Value="ZatNieZatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="124"/>
         <CursorPos X="73" Y="134"/>
         <UsageCount Value="200"/>
@@ -703,7 +704,7 @@
         <ComponentName Value="PenitNoeNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="403"/>
         <CursorPos X="71" Y="420"/>
         <UsageCount Value="200"/>
@@ -765,10 +766,12 @@
         <ComponentName Value="OchRezerwacjaWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="10"/>
-        <CursorPos X="66" Y="37"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="127"/>
+        <CursorPos Y="143"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit63>
       <Unit64>
         <Filename Value="UZdjEdycja.pas"/>
@@ -860,10 +863,12 @@
         <ComponentName Value="OchRejestrWidzen"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="21"/>
-        <CursorPos X="29" Y="192"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="190"/>
+        <CursorPos X="71" Y="210"/>
         <UsageCount Value="206"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit71>
       <Unit72>
         <Filename Value="UAlerter.pas"/>
@@ -923,7 +928,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="31" Y="65"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="143"/>
       </Unit76>
       <Unit77>
         <Filename Value="UKwatSprzetRTVWydruk.pas"/>
@@ -935,7 +940,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="132"/>
       </Unit77>
       <Unit78>
         <Filename Value="UKwatPlanWyjazdowSamochody.pas"/>
@@ -947,7 +952,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="57" Y="78"/>
-        <UsageCount Value="97"/>
+        <UsageCount Value="104"/>
       </Unit78>
       <Unit79>
         <Filename Value="UWeekView.pas"/>
@@ -956,7 +961,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="401"/>
         <CursorPos X="31" Y="416"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="86"/>
       </Unit79>
       <Unit80>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -1278,7 +1283,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="626"/>
         <CursorPos X="3" Y="644"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="10"/>
       </Unit124>
       <Unit125>
         <Filename Value="C:\codetyphon\typhon\components\BaseUtils\utf8process.pp"/>
@@ -1869,32 +1874,116 @@
         <CursorPos X="14" Y="189"/>
         <UsageCount Value="8"/>
       </Unit196>
+      <Unit197>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\datih.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="108"/>
+        <CursorPos X="15" Y="125"/>
+        <UsageCount Value="10"/>
+      </Unit197>
+      <Unit198>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\dati.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="139"/>
+        <CursorPos Y="140"/>
+        <UsageCount Value="10"/>
+      </Unit198>
     </Units>
-    <JumpHistory Count="6" HistoryIndex="5">
+    <JumpHistory Count="23" HistoryIndex="22">
       <Position1>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="10" Column="45"/>
-      </Position1>
-      <Position2>
-        <Filename Value="UPenitTerminarz.pas"/>
-        <Caret Line="758" Column="12" TopLine="167"/>
-      </Position2>
-      <Position3>
-        <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="481" Column="39" TopLine="459"/>
-      </Position3>
-      <Position4>
-        <Filename Value="UPenitNoeNetTest.pas"/>
-        <Caret Line="567" Column="19" TopLine="551"/>
-      </Position4>
-      <Position5>
         <Filename Value="UPenitNoeNetTest.pas"/>
         <Caret Line="419" Column="71" TopLine="402"/>
-      </Position5>
-      <Position6>
+      </Position1>
+      <Position2>
         <Filename Value="UZatNiezatrudnieni.pas"/>
         <Caret Line="56" Column="3" TopLine="43"/>
+      </Position2>
+      <Position3>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Caret Line="193" Column="29" TopLine="158"/>
+      </Position3>
+      <Position4>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="782" Column="11" TopLine="779"/>
+      </Position4>
+      <Position5>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="679" Column="3" TopLine="677"/>
+      </Position5>
+      <Position6>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="273" Column="15" TopLine="256"/>
       </Position6>
+      <Position7>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="607" Column="54" TopLine="600"/>
+      </Position7>
+      <Position8>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="194" Column="15" TopLine="177"/>
+      </Position8>
+      <Position9>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Caret Line="210" Column="36" TopLine="200"/>
+      </Position9>
+      <Position10>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Caret Line="204" Column="9" TopLine="195"/>
+      </Position10>
+      <Position11>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Caret Line="77" Column="15" TopLine="60"/>
+      </Position11>
+      <Position12>
+        <Filename Value="UOchRejestrWidzen.pas"/>
+        <Caret Line="211" Column="43" TopLine="191"/>
+      </Position12>
+      <Position13>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="381" Column="39" TopLine="359"/>
+      </Position13>
+      <Position14>
+        <Filename Value="UPenitTerminarz.pas"/>
+        <Caret Line="947" Column="42" TopLine="361"/>
+      </Position14>
+      <Position15>
+        <Filename Value="UPenitForm.pas"/>
+        <Caret Line="405" Column="3" TopLine="114"/>
+      </Position15>
+      <Position16>
+        <Filename Value="UPenitForm.pas"/>
+        <Caret Line="406" Column="3"/>
+      </Position16>
+      <Position17>
+        <Filename Value="UPenitForm.pas"/>
+        <Caret Line="253" Column="31" TopLine="253"/>
+      </Position17>
+      <Position18>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Caret Line="37" Column="66" TopLine="10"/>
+      </Position18>
+      <Position19>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Caret Line="140" Column="62" TopLine="122"/>
+      </Position19>
+      <Position20>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Caret Line="152" Column="91" TopLine="127"/>
+      </Position20>
+      <Position21>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Caret Line="140" Column="29" TopLine="127"/>
+      </Position21>
+      <Position22>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Caret Line="138" Column="24" TopLine="127"/>
+      </Position22>
+      <Position23>
+        <Filename Value="UOchRezerwacjaWidzen.pas"/>
+        <Caret Line="138" Column="31" TopLine="127"/>
+      </Position23>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

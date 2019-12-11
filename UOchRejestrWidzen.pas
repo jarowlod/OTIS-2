@@ -66,6 +66,7 @@ type
     procedure DSWidzeniaDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure RadioGroup1SelectionChanged(Sender: TObject);
+    procedure RxDBGrid1DblClick(Sender: TObject);
     procedure ZQWidzeniaPozostaloGetText(Sender: TField; var aText: string;
       DisplayText: Boolean);
   private
@@ -80,7 +81,7 @@ type
 //  OchRejestrWidzen: TOchRejestrWidzen;
 
 implementation
-uses UOchAddWidzenie;
+uses UOchAddWidzenie, UOchForm;
 {$R *.frm}
 
 { TOchRejestrWidzen }
@@ -201,6 +202,18 @@ begin
   DisableNewSelect:= false;
 
   NewSelect;
+end;
+
+procedure TOchRejestrWidzen.RxDBGrid1DblClick(Sender: TObject);
+begin
+  if IsDataSetEmpty( DSWidzenia.DataSet ) then exit;
+  if DSWidzenia.DataSet.FieldByName('POC').AsString = 'ubył' then exit;
+  with TOchForm.Create(Self) do
+  begin
+    SetIDO( DSWidzenia.DataSet.FieldByName('ido').AsInteger );
+    ShowModal;
+    Free;
+  end;
 end;
 
 procedure TOchRejestrWidzen.ZQWidzeniaPozostaloGetText(Sender: TField;
