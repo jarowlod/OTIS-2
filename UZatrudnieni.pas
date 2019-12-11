@@ -163,6 +163,7 @@ type
     lblStawka: TLabel;
     lblOswiadczenieNieodplatna: TLabel;
     lblDaneOsadzonego: TLabel;
+    lblKartaSzkoleniaWstepnego: TLabel;
     lblWniosekUrlopowy: TLabel;
     lblKartaPracy: TLabel;
     lblZatZaswiadczenie: TLabel;
@@ -182,6 +183,7 @@ type
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
+    MenuItem15: TMenuItem;
     MenuItemDoKoszykaAll: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -307,6 +309,7 @@ type
     procedure lblActionMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure lblKartaPracyClick(Sender: TObject);
+    procedure lblKartaSzkoleniaWstepnegoClick(Sender: TObject);
     procedure lblOswiadczenieNieodplatnaClick(Sender: TObject);
     procedure lblSkierowanieNaBadaniaClick(Sender: TObject);
     procedure lblStawkaClick(Sender: TObject);
@@ -1105,6 +1108,13 @@ begin
 
   frDBDataSet1.RangeBegin:= rbFirst;
   frDBDataSet1.RangeEnd  := reLast;
+end;
+
+procedure TZatrudnieni.lblKartaSzkoleniaWstepnegoClick(Sender: TObject);
+begin
+  frReport1.LoadFromFile(DM.Path_Raporty + 'zat_KartaSzkoleniaWstepnego.lrf');
+  DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
+  frReport1.ShowReport;
 end;
 
 
