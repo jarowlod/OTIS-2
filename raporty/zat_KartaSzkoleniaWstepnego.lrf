@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-04-05 14:47:09"/>
-    <ReportLastChange Value="2019-12-11 14:09:19"/>
+    <ReportLastChange Value="2019-12-12 12:42:06"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -2171,7 +2171,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;stanowisko&quot;]&#xD;&#xA;"/>
+            <Memo Value=""/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -2507,7 +2507,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;stanowisko&quot;]&#xD;&#xA;"/>
+            <Memo Value=""/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -2619,7 +2619,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;Imie&quot;] [ZQZatrudnieni.&quot;Nazwisko&quot;]&#xD;&#xA;"/>
+            <Memo Value=""/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
