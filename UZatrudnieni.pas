@@ -105,6 +105,7 @@ type
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
+    GroupBox5: TGroupBox;
     Image1: TImage;
     Image2: TImage;
     Image3: TImage;
@@ -148,6 +149,10 @@ type
     Label40: TLabel;
     Label41: TLabel;
     Label42: TLabel;
+    lblPlanUrlopowOdplatniZK: TLabel;
+    lblPlanUrlopow90godzZK: TLabel;
+    lblPlanUrlopowEtatZK: TLabel;
+    lblPlanUrlopowKontrahenci: TLabel;
     lblSkierowanieNaBadania: TLabel;
     lblPoprzedniePOC: TLabel;
     lblPoprzedniaKlasyf: TLabel;
@@ -217,6 +222,7 @@ type
     tabInne: TTabSheet;
     tabWydruki: TTabSheet;
     ZQZatrudnieni: TZQuery;
+    ZQZatPom: TZQuery;
     ZQZatrudnieniadres: TStringField;
     ZQZatrudnienialimenty: TSmallintField;
     ZQZatrudnieniart: TStringField;
@@ -311,6 +317,10 @@ type
     procedure lblKartaPracyClick(Sender: TObject);
     procedure lblKartaSzkoleniaWstepnegoClick(Sender: TObject);
     procedure lblOswiadczenieNieodplatnaClick(Sender: TObject);
+    procedure lblPlanUrlopow90godzZKClick(Sender: TObject);
+    procedure lblPlanUrlopowEtatZKClick(Sender: TObject);
+    procedure lblPlanUrlopowKontrahenciClick(Sender: TObject);
+    procedure lblPlanUrlopowOdplatniZKClick(Sender: TObject);
     procedure lblSkierowanieNaBadaniaClick(Sender: TObject);
     procedure lblStawkaClick(Sender: TObject);
     procedure lblWniosekOZatrudnienieClick(Sender: TObject);
@@ -339,6 +349,7 @@ type
   public
     { public declarations }
     SQLZatrudnieni: string;       // ładujemy podczas Create z kontrolki ZQZatrudnieni.SQL
+    SQLZatPom: string;            // ładujemy podczas Create z kontrolki ZQZatPom.SQL
     Procedure NewSelect;
     Procedure ShowZatrudnienieOsadzonego(ido: integer; nazwisko: string);
   end;
@@ -374,6 +385,7 @@ begin
 
   DisableNewSelect := true;
   SQLZatrudnieni   := ZQZatrudnieni.SQL.Text; // podstawa zapytania
+  SQLZatPom        := ZQZatPom.SQL.Text;
   DateTimePicker1.Date:= IncMonth(Date(), -1);
   DateTimePicker2.Date:= Date();
   dtZatNaDzien.Date   := Date();
@@ -1031,6 +1043,100 @@ begin
 
   DM.SetMemoReport(frReport1,'memo_DataPisma1', 'Kłodzko, dn. '+DM.GetDateFormatPismo(Date, 'dd MMMM yyyy')+' r.' );
   frReport1.ShowReport;
+end;
+
+procedure TZatrudnieni.lblPlanUrlopow90godzZKClick(Sender: TObject);
+begin
+  ZQZatPom.SQL.Text:= SQLZatPom +
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="NIEODPŁATNIE") and'+
+        '       (zat.rodzaj_zatrudnienia="123a§1") and'+
+        '       (sta.miejsce LIKE "DZIAŁ%")'+
+        ' ORDER BY sta.stanowisko, zat.data_nastepnego_urlopu';
+  try
+    frDBDataSet1.DataSet:= ZQZatPom;
+
+    frReport1.LoadFromFile(DM.Path_Raporty + 'zat_Plan_urlopow.lrf');
+
+    DM.SetMemoReport(frReport1,'Memo_Tytul', 'PRZY PRACACH PORZĄDKOWYCH I POMOCNICZYCH NA RZECZ ZAKŁADU KARNEGO (123a§1)' );
+    frReport1.ShowReport;
+  finally
+    frDBDataSet1.DataSet:= ZQZatrudnieni;
+    ZQZatPom.Close;
+  end;
+end;
+
+procedure TZatrudnieni.lblPlanUrlopowEtatZKClick(Sender: TObject);
+begin
+  ZQZatPom.SQL.Text:= SQLZatPom +
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="NIEODPŁATNIE") and'+
+        '       (zat.rodzaj_zatrudnienia="123a§2") and'+
+        '       (sta.miejsce LIKE "DZIAŁ%")'+
+        ' ORDER BY sta.stanowisko, zat.data_nastepnego_urlopu';
+  try
+    frDBDataSet1.DataSet:= ZQZatPom;
+
+    frReport1.LoadFromFile(DM.Path_Raporty + 'zat_Plan_urlopow.lrf');
+
+    DM.SetMemoReport(frReport1,'Memo_Tytul', 'PRZY PRACACH PORZĄDKOWYCH I POMOCNICZYCH NA RZECZ ZAKŁADU KARNEGO (123a§2)' );
+    frReport1.ShowReport;
+  finally
+    frDBDataSet1.DataSet:= ZQZatrudnieni;
+    ZQZatPom.Close;
+  end;
+end;
+
+procedure TZatrudnieni.lblPlanUrlopowKontrahenciClick(Sender: TObject);
+begin
+  ZQZatPom.SQL.Text:= SQLZatPom +
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="ODPŁATNIE") and'+
+        '       (sta.miejsce NOT LIKE "DZIAŁ%")'+
+        ' ORDER BY sta.stanowisko, zat.data_nastepnego_urlopu';
+  try
+    frDBDataSet1.DataSet:= ZQZatPom;
+
+    frReport1.LoadFromFile(DM.Path_Raporty + 'zat_Plan_urlopow.lrf');
+
+    DM.SetMemoReport(frReport1,'Memo_Tytul', 'POZA TERENEM JEDNOSTKI (123§2' );
+    frReport1.ShowReport;
+  finally
+    frDBDataSet1.DataSet:= ZQZatrudnieni;
+    ZQZatPom.Close;
+  end;
+end;
+
+procedure TZatrudnieni.lblPlanUrlopowOdplatniZKClick(Sender: TObject);
+begin
+  ZQZatPom.SQL.Text:= SQLZatPom +
+        ' FROM zat_zatrudnieni as zat'+
+        '  LEFT OUTER JOIN zat_stanowiska as sta'+
+        '  ON zat.id_stanowiska = sta.id'+
+        ' WHERE (zat.status_zatrudnienia = "zatrudniony") and'+
+        '       (sta.forma="ODPŁATNIE") and'+
+        '       (sta.miejsce LIKE "DZIAŁ%")'+
+        ' ORDER BY sta.stanowisko, zat.data_nastepnego_urlopu';
+  try
+    frDBDataSet1.DataSet:= ZQZatPom;
+
+    frReport1.LoadFromFile(DM.Path_Raporty + 'zat_Plan_urlopow.lrf');
+
+    DM.SetMemoReport(frReport1,'Memo_Tytul', 'PRZY PRACACH PORZĄDKOWYCH I POMOCNICZYCH NA RZECZ ZAKŁADU KARNEGO (123§2)' );
+    frReport1.ShowReport;
+  finally
+    frDBDataSet1.DataSet:= ZQZatrudnieni;
+    ZQZatPom.Close;
+  end;
 end;
 
 procedure TZatrudnieni.lblSkierowanieNaBadaniaClick(Sender: TObject);

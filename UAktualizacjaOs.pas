@@ -32,6 +32,7 @@ type
     procedure AktualizujDane;
     procedure WczytajDaneMemo;
     function WczytajDaneHTML: Boolean;
+    function WczytajDaneXLS_Tab: Boolean;
     procedure DodajUzytkownikaSynchro;
   public
 
@@ -45,6 +46,8 @@ var
 implementation
 uses Clipbrd;
 {$R *.frm}
+
+const TabSeparator = #09;
 
 { TAktualizacjaOs }
 
@@ -70,7 +73,8 @@ end;
 procedure TAktualizacjaOs.btnWczytajSchowekClick(Sender: TObject);
 begin
   btnWczytajSchowek.Enabled:= false;
-  if WczytajDaneHTML then
+  // TODO: usunąć WczytajDaneHTML po przejściu na nową wersję Noe
+  if WczytajDaneHTML or WczytajDaneXLS_Tab then
     btnAktualizujOs.Enabled:= true
   else
     btnAktualizujOs.Enabled:= false;
@@ -279,7 +283,7 @@ begin
   Result:= false;
   MemDataset1.Clear(false);
 
-  Memo2.Lines.Add('Wczytywanie danych do pamięci tymczasowej...');
+  Memo2.Lines.Add('Wczytywanie danych HTML do pamięci tymczasowej...');
 
   //Wklej ze schowka jako HTML
   daneHTML.Clear;
@@ -287,7 +291,7 @@ begin
   // sprawdzamy nagłówek czy jest zgodny z oczekiwaniami
   if daneHTML[0] <> 'IDO Nazwisko Imię Imię o. Urodz. Klasyf. ST Przyj. Zdjęto JP POC TA ' then
   begin
-    Memo2.Lines.Add('Nieprawidłowe Dane.');
+    Memo2.Lines.Add('Nieprawidłowe Dane HTML.');
     exit;
   end;
   daneHTML.Clear;
@@ -305,7 +309,6 @@ begin
     Memo2.Lines.Add('Za mała liczba osadzonych do wstawienia. Żle wklejone dane.');
     exit;
   end;
-
 
   s:='';
   st:= TStringList.Create;
@@ -338,6 +341,86 @@ begin
 
   Memo2.Lines.Add('Wczytano pozycji: ' + IntToStr(MemDataset1.RecordCount));
   Result:= true;
+end;
+
+function TAktualizacjaOs.WczytajDaneXLS_Tab: Boolean;
+var st    : TStringList;
+    daneXML: TStringList;
+    i     : integer;
+    s     : string;
+    kol   : integer;
+    poz   : integer;
+begin
+  Result:= false;
+  MemDataset1.Clear(false);
+
+  try
+    Memo2.Lines.Add('Wczytywanie danych Excel do pamięci tymczasowej...');
+
+    //wklejamy ze schowka jako zwykły tekst oddzielony tabulatorami
+    daneXML:= TStringList.Create;
+    daneXML.Text:= Clipboard.AsText;
+
+    //sprawdzam nagłówek
+    if daneXML[0] <> 'IPO	IDO	Nazwisko	Imię	Imię ojca	Data urodzenia	Klasyfikacja	Status transportowy	Przyjęto	Zdjęto	JP	Rozmieszczenie	Grupy osób powiązanych' then
+    begin
+      Memo2.Lines.Add('Nieprawidłowe dane Excel.');
+      exit;
+    end;
+
+    Memo2.Lines.Add('Dane nagłówka poprawne...');
+    Memo1.Text:= daneXML.Text;
+
+    // dzielimy tekst po znaczniku, jest to liczba wierszy z danymi i zapisujemy do dane
+    poz:= daneXML.Count;
+    if poz<=100 then  // wartość 100 jest przykładowa, nie mniej niż 100 pozycji zapobiega omyłkowemu wklejenu danych
+    begin
+      Memo2.Lines.Add('Za mała liczba osadzonych do wstawienia. Żle wklejone dane.');
+      exit;
+    end;
+
+    i :=1;  // pomijamy nagłówek
+    st:= TStringList.Create;
+
+    MemDataset1.DisableControls;
+    while daneXML.Count>i do
+    begin
+      s:= daneXML.Strings[i];
+      st.Clear;
+      kol:= ExtractStrings([TabSeparator], [], PChar(s), st, true);  // liczba kolumn, prawidłowo powinno być 13
+
+      if kol >= 12 then // może nie być ostatniej kolumny
+      begin
+        MemDataset1.Append;
+        MemDataset1.FieldByName('IDO').AsString     := st[1];
+        MemDataset1.FieldByName('NAZWISKO').AsString:= st[2];
+        MemDataset1.FieldByName('IMIE').AsString    := st[3];
+        MemDataset1.FieldByName('OJCIEC').AsString  := st[4];
+        MemDataset1.FieldByName('URODZ').AsString   := st[5];
+        MemDataset1.FieldByName('KLASYF').AsString  := st[6];
+        MemDataset1.FieldByName('STATUS').AsString  := st[7];
+        MemDataset1.FieldByName('PRZYJ').AsString   := st[8];
+
+        // pobieramy POC jeśli jest i jest z KLO
+        s:= st[11];
+        st.Clear;
+        kol:= ExtractStrings([' '], [], PChar(s), st, true);
+        if (kol=2)and(st[0]='KLO') then MemDataset1.FieldByName('POC').AsString:= st[1];
+
+        MemDataset1.Post;
+      end;
+      inc(i);
+    end;
+    // linie które pozostały (bez nagłówka) zawierają inną liczbę kolumn (np. Nazwisko dwóczłonowe)
+
+    result:= true;
+    Memo2.Lines.Add('Wczytano pozycji: ' + IntToStr(MemDataset1.RecordCount));
+  finally
+    MemDataset1.EnableControls;
+    FreeAndNil(daneXML);
+    FreeAndNil(st);
+    Memo1.Clear;
+  end;
 end;
 
 Procedure TAktualizacjaOs.DodajUzytkownikaSynchro;

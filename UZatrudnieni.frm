@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 180
+  Left = 86
   Height = 856
-  Top = 178
+  Top = 85
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -2676,6 +2676,100 @@ object Zatrudnieni: TZatrudnieni
           OnMouseLeave = lblActionMouseLeave
           OnMouseUp = lblActionMouseUp
         end
+        object GroupBox5: TGroupBox
+          Left = 16
+          Height = 80
+          Top = 472
+          Width = 473
+          Caption = 'Wydruki planów urlopów'
+          ClientHeight = 60
+          ClientWidth = 469
+          TabOrder = 1
+          object lblPlanUrlopowOdplatniZK: TLabel
+            Cursor = crHandPoint
+            Left = 8
+            Height = 16
+            Top = 8
+            Width = 161
+            Caption = '123§2 Odpłatni na rzecz ZK'
+            Font.CharSet = EASTEUROPE_CHARSET
+            Font.Color = clHighlight
+            Font.Height = -13
+            Font.Name = 'Arial'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            ParentColor = False
+            ParentFont = False
+            OnClick = lblPlanUrlopowOdplatniZKClick
+            OnMouseDown = lblActionMouseDown
+            OnMouseEnter = lblActionMouseEnter
+            OnMouseLeave = lblActionMouseLeave
+            OnMouseUp = lblActionMouseUp
+          end
+          object lblPlanUrlopow90godzZK: TLabel
+            Cursor = crHandPoint
+            Left = 232
+            Height = 16
+            Top = 8
+            Width = 190
+            Caption = '123a§1 Do 90 godz. na rzecz ZK'
+            Font.CharSet = EASTEUROPE_CHARSET
+            Font.Color = clHighlight
+            Font.Height = -13
+            Font.Name = 'Arial'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            ParentColor = False
+            ParentFont = False
+            OnClick = lblPlanUrlopow90godzZKClick
+            OnMouseDown = lblActionMouseDown
+            OnMouseEnter = lblActionMouseEnter
+            OnMouseLeave = lblActionMouseLeave
+            OnMouseUp = lblActionMouseUp
+          end
+          object lblPlanUrlopowEtatZK: TLabel
+            Cursor = crHandPoint
+            Left = 232
+            Height = 16
+            Top = 36
+            Width = 162
+            Caption = '123a§2 Na etat na rzecz ZK'
+            Font.CharSet = EASTEUROPE_CHARSET
+            Font.Color = clHighlight
+            Font.Height = -13
+            Font.Name = 'Arial'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            ParentColor = False
+            ParentFont = False
+            OnClick = lblPlanUrlopowEtatZKClick
+            OnMouseDown = lblActionMouseDown
+            OnMouseEnter = lblActionMouseEnter
+            OnMouseLeave = lblActionMouseLeave
+            OnMouseUp = lblActionMouseUp
+          end
+          object lblPlanUrlopowKontrahenci: TLabel
+            Cursor = crHandPoint
+            Left = 8
+            Height = 16
+            Top = 36
+            Width = 108
+            Caption = '123§2 Kontrahenci'
+            Font.CharSet = EASTEUROPE_CHARSET
+            Font.Color = clHighlight
+            Font.Height = -13
+            Font.Name = 'Arial'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            ParentColor = False
+            ParentFont = False
+            OnClick = lblPlanUrlopowKontrahenciClick
+            OnMouseDown = lblActionMouseDown
+            OnMouseEnter = lblActionMouseEnter
+            OnMouseLeave = lblActionMouseLeave
+            OnMouseUp = lblActionMouseUp
+          end
+        end
       end
     end
     object Splitter1: TSplitter
@@ -4046,5 +4140,27 @@ object Zatrudnieni: TZatrudnieni
       C2F31967C7F31666CCF31064D0F31064D5F30C65DBF31973E0FB000000000000
       0000000000000000000000000000
     }
+  end
+  object ZQZatPom: TZQuery
+    Connection = DM.ZConnection1
+    SQL.Strings = (
+      'SELECT '
+      'zat.Nazwisko, '
+      'zat.Imie, '
+      'zat.Ojciec, '
+      'zat.nr_ewidencyjny,'
+      'zat.urlop_od,'
+      'zat.urlop_do,'
+      'zat.data_nastepnego_urlopu,'
+      'zat.etat, '
+      'sta.nazwa,'
+      'sta.miejsce,'
+      'sta.stanowisko, '
+      'sta.system, '
+      'sta.forma'
+    )
+    Params = <>
+    Left = 56
+    Top = 304
   end
 end
