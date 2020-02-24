@@ -848,6 +848,7 @@ end;
 procedure TWPZ.ParseFromDOC(value: string);
 var dane: TStringList;
     i: integer;
+    art: string;
 begin
   // dane z skopiowane z dokumentu wygenerowanego przez Noe.NET
   DefaultFormatSettings.ShortDateFormat:='dd/mm/yyyy';
@@ -863,10 +864,22 @@ begin
     begin
       SetLength(orzeczenia, Count+1);
 
-      orzeczenia[Count-1].art:= DeleteRepeatedSpaces(dane[i]); inc(i);
+//    orzeczenia[Count-1].art:= DeleteRepeatedSpaces(dane[i]); inc(i);
+// artykuły są teraz w wielu wierszach
+      art:= '';
+      while StrToIntDef(Trim(dane[i]),-1) = -1 do
+      begin
+        if art<>'' then art += ' ';
+        art+= DeleteRepeatedSpaces(dane[i]);
+        inc(i);
+      end;
+      orzeczenia[Count-1].art:= art;
+// -------- art
+
       orzeczenia[Count-1].lat:= StrToIntDef(Trim(dane[i]),0); inc(i);
-      orzeczenia[Count-1].msc:= StrToIntDef(Trim(dane[i]),0); inc(i,2);
-      orzeczenia[Count-1].dni:= StrToIntDef(Trim(dane[i]),0); inc(i,2);
+      orzeczenia[Count-1].msc:= StrToIntDef(Trim(dane[i]),0); inc(i,1);
+      orzeczenia[Count-1].dni:= 7 * StrToIntDef(Trim(dane[i]),0); inc(i,1); // tygodnie na dni
+      orzeczenia[Count-1].dni+= StrToIntDef(Trim(dane[i]),0); inc(i,2);
       orzeczenia[Count-1].koniec_kary:= StrToDateDef(Trim(dane[i]), NullDate); inc(i,2);
 
       orzeczenia[Count-1].Sdni:= WymiarKaryDni(orzeczenia[Count-1]);
@@ -918,10 +931,12 @@ end;
 function DeleteRepeatedSpaces(s: string):string;
 var i:integer;
 begin
-  Result := '';
   s:= Trim(s);
-  if Length(s)=0 then exit;
-  for i := 1 to Length(S)-1 do begin
+  Result := s;
+  if Length(s) <= 1 then exit;
+
+  Result:= s[1];
+  for i := 2 to Length(s) do begin
     if not ((s[i]=' ') and (s[i-1]=' ')) then begin
       Result := Result + s[i];
     end;

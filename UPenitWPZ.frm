@@ -1,7 +1,7 @@
 object PenitWPZ: TPenitWPZ
-  Left = 342
+  Left = 327
   Height = 819
-  Top = 242
+  Top = 225
   Width = 755
   Caption = 'PenitWPZ'
   ClientHeight = 819
@@ -779,8 +779,8 @@ object PenitWPZ: TPenitWPZ
       Left = 88
       Height = 30
       Top = 1
-      Width = 208
-      Caption = 'Wklej ze schowka dane z Noe'
+      Width = 248
+      Caption = 'Wklej ze schowka dane z CBDOPW'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         200000000000000400006400000064000000000000000000000000000000328B
