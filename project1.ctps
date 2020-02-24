@@ -19,7 +19,7 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="787"/>
         <CursorPos X="18" Y="790"/>
         <UsageCount Value="200"/>
@@ -33,6 +33,7 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="185"/>
         <CursorPos X="21" Y="194"/>
         <UsageCount Value="200"/>
@@ -82,7 +83,7 @@
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="1067"/>
         <CursorPos X="120" Y="1088"/>
         <UsageCount Value="200"/>
@@ -375,7 +376,7 @@
         <ComponentName Value="ZatStatystyka"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="255"/>
         <CursorPos X="48" Y="277"/>
         <UsageCount Value="202"/>
@@ -650,13 +651,10 @@
         <ComponentName Value="PenitWPZ"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="387"/>
         <CursorPos X="75" Y="396"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit53>
       <Unit54>
         <Filename Value="UKnowHow.pas"/>
@@ -709,7 +707,7 @@
         <ComponentName Value="PenitNoeNetTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="403"/>
         <CursorPos X="71" Y="420"/>
         <UsageCount Value="200"/>
@@ -1899,7 +1897,7 @@
         <UsageCount Value="9"/>
       </Unit199>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="UZatrudnieni.pas"/>
         <Caret Line="1052" Column="62" TopLine="1036"/>
@@ -1924,102 +1922,6 @@
         <Filename Value="UZatrudnieni.pas"/>
         <Caret Line="1050" TopLine="1039"/>
       </Position6>
-      <Position7>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="521" Column="3" TopLine="486"/>
-      </Position7>
-      <Position8>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="216" Column="3" TopLine="214"/>
-      </Position8>
-      <Position9>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="153" Column="15" TopLine="136"/>
-      </Position9>
-      <Position10>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="422" Column="3" TopLine="419"/>
-      </Position10>
-      <Position11>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="218" Column="14" TopLine="214"/>
-      </Position11>
-      <Position12>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="148" Column="15" TopLine="131"/>
-      </Position12>
-      <Position13>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="354" Column="3" TopLine="341"/>
-      </Position13>
-      <Position14>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="148" Column="15" TopLine="131"/>
-      </Position14>
-      <Position15>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="216" Column="3" TopLine="213"/>
-      </Position15>
-      <Position16>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="66" Column="17" TopLine="49"/>
-      </Position16>
-      <Position17>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="866" Column="40" TopLine="844"/>
-      </Position17>
-      <Position18>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="156" Column="12" TopLine="138"/>
-      </Position18>
-      <Position19>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="924" Column="23" TopLine="899"/>
-      </Position19>
-      <Position20>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="65" Column="24" TopLine="43"/>
-      </Position20>
-      <Position21>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="812" Column="3" TopLine="741"/>
-      </Position21>
-      <Position22>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="66" Column="17" TopLine="48"/>
-      </Position22>
-      <Position23>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="934" TopLine="910"/>
-      </Position23>
-      <Position24>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="935" TopLine="910"/>
-      </Position24>
-      <Position25>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="936" TopLine="910"/>
-      </Position25>
-      <Position26>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="937" TopLine="910"/>
-      </Position26>
-      <Position27>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="934" Column="15" TopLine="910"/>
-      </Position27>
-      <Position28>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="156" Column="12" TopLine="138"/>
-      </Position28>
-      <Position29>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="937" Column="3" TopLine="910"/>
-      </Position29>
-      <Position30>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="759" Column="15" TopLine="382"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
