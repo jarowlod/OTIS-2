@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
-  Left = 334
+  Left = 327
   Height = 795
-  Top = 226
+  Top = 225
   Width = 715
   Caption = 'Karta Penitencjarna'
   ClientHeight = 795
@@ -386,7 +386,7 @@ object PenitForm: TPenitForm
       Height = 23
       Top = 232
       Width = 78
-      Caption = 'Starszy celi'
+      Caption = 'KOZS'
       DataField = 'Starszy'
       DataSource = DSOsInfo
       ParentBiDiMode = False

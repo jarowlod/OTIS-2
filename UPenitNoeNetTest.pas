@@ -161,9 +161,11 @@ begin
 end;
 
 procedure TPenitNoeNetTest.btnAnalizaClick(Sender: TObject);
-var i,p1,ido: integer;
+var i,ido: integer;
+    //p1: integer;
     s,n: string;
     ZQPom: TZQueryPom;
+    sTab: TStringArray;
 begin
   if Memo1.Lines.Text='' then exit;
   if cmbOpis.Text='' then exit;
@@ -187,13 +189,16 @@ begin
          if Memo1.Lines.Strings[i]<>'' then
          begin
            s:= Memo1.Lines.Strings[i];
-           p1:= Pos(' ',s);
-           n:= copy(s,1,p1-1);
+           //p1:= Pos(' ',s);
+           //n:= copy(s,1,p1-1);
+           sTab:= s.Split([#32,#9], 2);
+           n:= sTab[0];
            if cbIDO_2Kolumna.Checked then //IDO w drugiej kolumnie
            begin
-             delete(s,1,p1);
-             p1:= Pos(' ',s);
-             n:= copy(s,1,p1-1);
+             n:= sTab[1];
+             //delete(s,1,p1);
+             //p1:= Pos(' ',s);
+             //n:= copy(s,1,p1-1);
            end;
            if TryStrToInt(n, ido) then //zapisz jeśli poprawne IDO
            begin

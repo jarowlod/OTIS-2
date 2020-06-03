@@ -1,7 +1,7 @@
 object PenitNoeNetTest: TPenitNoeNetTest
-  Left = 334
+  Left = 327
   Height = 641
-  Top = 226
+  Top = 225
   Width = 1024
   Caption = 'NoeNet - sprawdzanie poprwaności danych'
   ClientHeight = 641
@@ -51,9 +51,9 @@ object PenitNoeNetTest: TPenitNoeNetTest
     Height = 593
     Top = 48
     Width = 1024
-    ActivePage = TabSheet3
+    ActivePage = TabSheet2
     Align = alClient
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Sesje'

@@ -73,8 +73,7 @@ end;
 procedure TAktualizacjaOs.btnWczytajSchowekClick(Sender: TObject);
 begin
   btnWczytajSchowek.Enabled:= false;
-  // TODO: usunąć WczytajDaneHTML po przejściu na nową wersję Noe
-  if WczytajDaneHTML or WczytajDaneXLS_Tab then
+  if WczytajDaneXLS_Tab then
     btnAktualizujOs.Enabled:= true
   else
     btnAktualizujOs.Enabled:= false;
@@ -274,6 +273,7 @@ begin
   FreeAndNil(st);
 end;
 
+// Już nie jest aktualne, NoeNet
 Function TAktualizacjaOs.WczytajDaneHTML: boolean;
 var s: string;
     poz: integer;
@@ -343,6 +343,7 @@ begin
   Result:= true;
 end;
 
+// CBDOPW
 function TAktualizacjaOs.WczytajDaneXLS_Tab: Boolean;
 var st    : TStringList;
     daneXML: TStringList;

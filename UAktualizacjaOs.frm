@@ -1,7 +1,7 @@
 object AktualizacjaOs: TAktualizacjaOs
-  Left = 334
+  Left = 327
   Height = 515
-  Top = 226
+  Top = 225
   Width = 1163
   Caption = 'AktualizacjaOs'
   ClientHeight = 515

@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-02-06 15:03:52"/>
-    <ReportLastChange Value="2017-05-26 14:18:54"/>
+    <ReportLastChange Value="2020-03-12 07:33:19"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -47,9 +47,9 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="0"/>
-            <Top Value="40"/>
+            <Top Value="36"/>
             <Width Value="1064"/>
-            <Height Value="60"/>
+            <Height Value="112"/>
           </Size>
           <Flags Value="48"/>
           <Data>
@@ -75,7 +75,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="0"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="1064"/>
             <Height Value="28"/>
           </Size>
@@ -103,7 +103,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="0"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="1064"/>
             <Height Value="28"/>
           </Size>
@@ -187,7 +187,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="0"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="1064"/>
             <Height Value="28"/>
           </Size>
@@ -215,7 +215,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="68"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="214"/>
             <Height Value="28"/>
           </Size>
@@ -271,7 +271,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="36"/>
-            <Top Value="72"/>
+            <Top Value="120"/>
             <Width Value="60"/>
             <Height Value="16"/>
           </Size>
@@ -327,7 +327,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="768"/>
-            <Top Value="72"/>
+            <Top Value="120"/>
             <Width Value="60"/>
             <Height Value="16"/>
           </Size>
@@ -383,7 +383,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="100"/>
-            <Top Value="64"/>
+            <Top Value="112"/>
             <Width Value="660"/>
             <Height Value="24"/>
           </Size>
@@ -439,7 +439,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="828"/>
-            <Top Value="72"/>
+            <Top Value="120"/>
             <Width Value="108"/>
             <Height Value="16"/>
           </Size>
@@ -495,7 +495,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="36"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="32"/>
             <Height Value="28"/>
           </Size>
@@ -551,7 +551,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="68"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="214"/>
             <Height Value="28"/>
           </Size>
@@ -607,7 +607,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="282"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -663,7 +663,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="36"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="32"/>
             <Height Value="28"/>
           </Size>
@@ -831,7 +831,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="36"/>
-            <Top Value="40"/>
+            <Top Value="88"/>
             <Width Value="296"/>
             <Height Value="16"/>
           </Size>
@@ -887,7 +887,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="940"/>
-            <Top Value="72"/>
+            <Top Value="120"/>
             <Width Value="40"/>
             <Height Value="16"/>
           </Size>
@@ -943,7 +943,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="980"/>
-            <Top Value="72"/>
+            <Top Value="120"/>
             <Width Value="44"/>
             <Height Value="16"/>
           </Size>
@@ -999,7 +999,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="330"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1055,7 +1055,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="354"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1111,7 +1111,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="378"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1167,7 +1167,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="402"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1223,7 +1223,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="426"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1279,7 +1279,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="450"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1335,7 +1335,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="474"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1391,7 +1391,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="498"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1447,7 +1447,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="522"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1503,7 +1503,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="546"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1559,7 +1559,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="570"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1615,7 +1615,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="594"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1671,7 +1671,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="618"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1727,7 +1727,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="642"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1783,7 +1783,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="666"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1839,7 +1839,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="690"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1895,7 +1895,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="714"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -1951,7 +1951,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="738"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2007,7 +2007,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="762"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2063,7 +2063,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="786"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2119,7 +2119,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="810"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2175,7 +2175,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="834"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2231,7 +2231,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="858"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2287,7 +2287,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="882"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2343,7 +2343,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="906"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2399,7 +2399,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="930"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2455,7 +2455,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="954"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2511,7 +2511,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="978"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2567,7 +2567,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="282"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2623,7 +2623,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="306"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2679,7 +2679,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="330"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2735,7 +2735,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="354"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2791,7 +2791,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="378"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2847,7 +2847,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="402"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2903,7 +2903,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="426"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -2959,7 +2959,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="450"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3015,7 +3015,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="474"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3071,7 +3071,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="498"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3127,7 +3127,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="522"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3183,7 +3183,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="546"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3239,7 +3239,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="570"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3295,7 +3295,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="594"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3351,7 +3351,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="618"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3407,7 +3407,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="642"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3463,7 +3463,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="666"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3519,7 +3519,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="690"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3575,7 +3575,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="714"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3631,7 +3631,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="738"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3687,7 +3687,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="762"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3743,7 +3743,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="786"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3799,7 +3799,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="810"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3855,7 +3855,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="834"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3911,7 +3911,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="858"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -3967,7 +3967,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="882"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4023,7 +4023,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="906"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4079,7 +4079,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="930"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4135,7 +4135,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="954"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4191,7 +4191,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="978"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4247,7 +4247,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="1002"/>
-            <Top Value="184"/>
+            <Top Value="232"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4359,7 +4359,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="1002"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4415,7 +4415,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="282"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4471,7 +4471,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="306"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4527,7 +4527,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="330"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4583,7 +4583,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="354"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4639,7 +4639,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="378"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4695,7 +4695,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="402"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4751,7 +4751,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="426"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4807,7 +4807,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="450"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4863,7 +4863,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="474"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4919,7 +4919,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="498"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -4975,7 +4975,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="522"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5031,7 +5031,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="546"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5087,7 +5087,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="570"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5143,7 +5143,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="594"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5199,7 +5199,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="618"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5255,7 +5255,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="642"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5311,7 +5311,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="666"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5367,7 +5367,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="690"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5423,7 +5423,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="714"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5479,7 +5479,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="738"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5535,7 +5535,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="762"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5591,7 +5591,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="786"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5647,7 +5647,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="810"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5703,7 +5703,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="834"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5759,7 +5759,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="858"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5815,7 +5815,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="882"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5871,7 +5871,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="906"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5927,7 +5927,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="930"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -5983,7 +5983,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="954"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -6039,7 +6039,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="978"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -6095,7 +6095,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="1002"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -6151,7 +6151,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="36"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="32"/>
             <Height Value="28"/>
           </Size>
@@ -6207,7 +6207,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="68"/>
-            <Top Value="248"/>
+            <Top Value="284"/>
             <Width Value="214"/>
             <Height Value="28"/>
           </Size>
@@ -6263,7 +6263,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="306"/>
-            <Top Value="132"/>
+            <Top Value="180"/>
             <Width Value="24"/>
             <Height Value="28"/>
           </Size>
@@ -6319,7 +6319,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="224"/>
-            <Top Value="202"/>
+            <Top Value="250"/>
             <Width Value="56"/>
             <Height Value="10"/>
           </Size>
@@ -6367,7 +6367,63 @@
           <Justify Value="False"/>
           <Cursor Value="0"/>
         </Object116>
-        <ObjectCount Value="116"/>
+        <Object117>
+          <Name Value="Memo4"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="36"/>
+            <Top Value="64"/>
+            <Width Value="172"/>
+            <Height Value="16"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsDot"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value="frbTop"/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="558"/>
+            <FormatStr Value=""/>
+            <Memo Value="zatwierdzam&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Arial"/>
+            <Size Value="6"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taCenter"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object117>
+        <ObjectCount Value="117"/>
       </Page1>
       <FVal>
         <Count Value="1"/>

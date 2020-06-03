@@ -79,6 +79,7 @@ const
   SKYPE_OD_GODZ = 10;  // widzenie rozpoczynają się od godz 9:00
   SKYPE_PRZERWA = 10; // przerwa pomiędzy rozmowami w minutach
   SKYPE_CZAS    = 15; // czas trwania rozmowy w minutach
+  SKYPE_STANOWISK= 3; // liczba stanowisk ---- stanowiska są oddzielone od siebie sekundami
 
 { TTerminySkypeEvents }
 
@@ -94,7 +95,7 @@ end;
 
 constructor TTerminySkypeEvent.Create;
 begin
-  Widzen_dziennie:= SKYPE_DZIENNIE_MAX;
+  Widzen_dziennie:= SKYPE_DZIENNIE_MAX * SKYPE_STANOWISK;
 end;
 
 { TOchRezerwacjaSkype }
@@ -250,8 +251,8 @@ var
   ZQPom: TZQueryPom;
   i: Integer;
   godzW: TDateTime;
-  minutaW, Widzen_dziennie: integer;
-  m, d: Word;
+  minutaW: integer;
+  s: integer; // stanowisko 0...SKYPE_STANOWISK-1
 
   Procedure AppendToMemo;
   var j: integer;
@@ -284,28 +285,27 @@ begin
       ZQPom.ParamByName('StartDate').AsDate:= StartDate;
       ZQPom.Open;
 
-      m:= MonthOf( StartDate );
-      d:= DayOf( StartDate );
-      Widzen_dziennie:= Terminy[m,d].Widzen_dziennie;
-
-      for i:=0 to Widzen_dziennie-1 do
-      begin
-        minutaW:= i * (SKYPE_CZAS + SKYPE_PRZERWA);
-        godzW:= EncodeTime(SKYPE_OD_GODZ, 0, 0, 0);
-        godzW:= IncMinute(godzW, minutaW);
-        if MinuteOfTheDay(ZQPom.FieldByName('DataGodz').AsDateTime) = MinuteOfTheDay(godzW) then
-        begin
-          AppendToMemo;
-          ZQPom.Next;
-        end
-        else
-        begin
-          MemWidzenia.Append;
-          MemWidzenia.FieldByName('DataGodz').AsDateTime:= ComposeDateTime(StartDate, godzW);
-          MemWidzenia.FieldByName('IDO').AsInteger:= 0; // wakat oznaczamy IDO=0;
-          MemWidzenia.Post;
-        end;
-      end;
+      for i:=0 to SKYPE_DZIENNIE_MAX-1 do
+        for s:=0 to SKYPE_STANOWISK-1 do
+          begin
+            minutaW:= i * (SKYPE_CZAS + SKYPE_PRZERWA);
+            godzW:= EncodeTime(SKYPE_OD_GODZ, 0, 0, 0);
+            godzW:= IncMinute(godzW, minutaW);
+            godzW:= IncSecond(godzW, s);     // dodajemy po sekundzie do oznaczenia kolejnych stanowisk z skypem
+            //if MinuteOfTheDay(ZQPom.FieldByName('DataGodz').AsDateTime) = MinuteOfTheDay(godzW) then
+            if SecondOfTheDay(ZQPom.FieldByName('DataGodz').AsDateTime) = SecondOfTheDay(godzW) then
+            begin
+              AppendToMemo;
+              ZQPom.Next;
+            end
+            else
+            begin
+              MemWidzenia.Append;
+              MemWidzenia.FieldByName('DataGodz').AsDateTime:= ComposeDateTime(StartDate, godzW);
+              MemWidzenia.FieldByName('IDO').AsInteger:= 0; // wakat oznaczamy IDO=0;
+              MemWidzenia.Post;
+            end;
+          end;
     end
     else
     // wczytujemy zakres dni bez uzupełniania wakatów

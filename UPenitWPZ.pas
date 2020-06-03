@@ -148,6 +148,7 @@ type
     procedure WstawDaneDoTabeli;
     procedure TabelaDoWPZ;
     procedure Oblicz;
+    procedure CheckKoniecKaryAndSort;
   public
     Procedure SetIDO(ido: integer);
     procedure NoweObliczenia;
@@ -216,6 +217,7 @@ begin
   NoweObliczenia; // create WPZ
   WPZ.ParseFromDOC(Clipboard.AsText);
   WstawDaneDoTabeli;
+  CheckKoniecKaryAndSort;
   cbmUlamek.Text:=  WPZ.GetUlamekArt;
 
   if WPZ.Count>=1 then dtpKoniecKary.Date:= WPZ.orzeczenia[WPZ.Count-1].koniec_kary
@@ -384,6 +386,30 @@ begin
   end;
 end;
 
+procedure TPenitWPZ.CheckKoniecKaryAndSort;
+var lastDate: TDateTime;
+    currentDate: TDateTime;
+begin
+  lastDate:= NullDate;
+  RxMemoryOrzeczenia.First;
+
+  while not RxMemoryOrzeczenia.EOF do
+  begin
+    if RxMemoryOrzeczeniaKoniecKary.IsNull then currentDate:= NullDate
+                                           else currentDate:= RxMemoryOrzeczeniaKoniecKary.AsDateTime;
+
+    if lastDate<=currentDate then lastDate:= currentDate
+       else
+           begin
+             RxMemoryOrzeczenia.SortOnFields('KoniecKary');
+             TabelaDoWPZ;
+             exit;
+           end;
+
+    RxMemoryOrzeczenia.Next;
+  end;
+end;
+
 procedure TPenitWPZ.Oblicz;
 begin
   Memo1.Clear;
@@ -393,6 +419,7 @@ begin
   WPZ.OBS_obostrzenie:= cbOBS.Checked;
   WPZ.OBS_po_ilu     := edOBS_dni.Value;
   WPZ.ulamek         := cbmUlamek.Text;
+  CheckKoniecKaryAndSort;
   TabelaDoWPZ;   // przenosi dane z tabeli RxMemoryOrzeczenia do obiektu WPZ
   if WPZ.Count>=1 then dtpKoniecKary.Date:= WPZ.orzeczenia[WPZ.Count-1].koniec_kary
                   else dtpKoniecKary.Date:= NullDate;

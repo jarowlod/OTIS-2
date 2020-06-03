@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 334
+  Left = 327
   Height = 598
-  Top = 226
+  Top = 225
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1350,6 +1350,12 @@ object MasterForm: TMasterForm
       object MenuItem38: TMenuItem
         Action = ActionKomunikatDo
       end
+      object MenuItem82: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem83: TMenuItem
+        Action = ActionWypiska
+      end
     end
     object MenuItem20: TMenuItem
       Caption = 'Rejestr próśb'
@@ -1711,6 +1717,12 @@ object MasterForm: TMasterForm
       Caption = 'Wydruk Sprzętu RTV ...'
       ImageIndex = 4
       OnExecute = ActionSprzetRTVWydrukExecute
+    end
+    object ActionWypiska: TAction
+      Category = 'Dodatki'
+      Caption = 'Wypiska ...'
+      ImageIndex = 53
+      OnExecute = ActionWypiskaExecute
     end
   end
   object Timer2Komunikaty: TTimer

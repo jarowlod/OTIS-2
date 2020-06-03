@@ -792,7 +792,7 @@ begin
   ZQTerminarz.Filter:= 'Starszy = 1';
   ZQTerminarz.Filtered:= true;
 
-  frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_starszych_celi.lrf');
+  frReport1.LoadFromFile(DM.Path_Raporty + 'pen_wykaz_kozs.lrf');
   frReport1.ShowReport;
 
   ZQTerminarz.Filtered:= false;
