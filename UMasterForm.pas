@@ -15,6 +15,7 @@ type
   { TMasterForm }
 
   TMasterForm = class(TForm)
+    ActionKartaRzeczy: TAction;
     ActionWypiska: TAction;
     ActionSprzetRTVWydruk: TAction;
     ActionSprzetRTV: TAction;
@@ -118,6 +119,8 @@ type
     MenuItem81: TMenuItem;
     MenuItem82: TMenuItem;
     MenuItem83: TMenuItem;
+    MenuItem84: TMenuItem;
+    MenuItem85: TMenuItem;
     MenuItemTestAlarm: TMenuItem;
     MenuItemKoszykShow: TMenuItem;
     MenuItem54: TMenuItem;
@@ -204,6 +207,7 @@ type
     procedure ActionKopiujWszystkoExecute(Sender: TObject);
     procedure ActionKoszykExecute(Sender: TObject);
     procedure ActionKreatorWPZExecute(Sender: TObject);
+    procedure ActionKartaRzeczyExecute(Sender: TObject);
     procedure ActionNieZatrudnieniExecute(Sender: TObject);
     procedure ActionNoeNetTestExecute(Sender: TObject);
     procedure ActionNowyKoszykExecute(Sender: TObject);
@@ -294,7 +298,7 @@ uses UZatStanowiska, UZatrudnieni, UZatAddZatrudnienie, UUprawnienia, UUpr_Zmian
      UOchRejestrWidzen, UOchAddWidzenie, UKoszykNowy, UKoszyk, UOchForm, UOchAddOsobeWidzenie, UZdjAktualizacjaZdjec,
      UOchSalaWidzen, UPenitWPZ, UKnowHow, UPenitNoeNetTest, UOchRezerwacjaWidzen, UOchRezerwacjaSkype,
      UPaczkiZwroty, UPaczkiAdd, UPaczkiRejestr, UAlerterConfig, UKwatPlanWyjazdow, UKwatSprzetRTV, UKwatSprzetRTVWydruk,
-     UWypiska;
+     UWypiska, UKwatKartaRzeczy;
 {$R *.frm}
 
 { TMasterForm }
@@ -527,6 +531,16 @@ begin
   with TPenitWPZ.Create(Self) do
   begin
        SetIDO(DM.ZQOsadzeni.FieldByName('IDO').AsInteger);
+       ShowModal;
+       Free;
+  end;
+end;
+
+procedure TMasterForm.ActionKartaRzeczyExecute(Sender: TObject);
+begin
+  if IsDataSetEmpty(DM.ZQOsadzeni) then exit;
+  with TKwatKartaRzeczy.Create(Self) do
+  begin
        ShowModal;
        Free;
   end;

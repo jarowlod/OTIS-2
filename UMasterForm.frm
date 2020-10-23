@@ -1377,6 +1377,12 @@ object MasterForm: TMasterForm
       object MenuItem80: TMenuItem
         Action = ActionSprzetRTVWydruk
       end
+      object MenuItem84: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem85: TMenuItem
+        Action = ActionKartaRzeczy
+      end
     end
   end
   object Timer1Wyszukaj: TTimer
@@ -1723,6 +1729,12 @@ object MasterForm: TMasterForm
       Caption = 'Wypiska ...'
       ImageIndex = 53
       OnExecute = ActionWypiskaExecute
+    end
+    object ActionKartaRzeczy: TAction
+      Category = 'Kwaterunek'
+      Caption = 'Karta rzeczy osadzonego...'
+      ImageIndex = 30
+      OnExecute = ActionKartaRzeczyExecute
     end
   end
   object Timer2Komunikaty: TTimer

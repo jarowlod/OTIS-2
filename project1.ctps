@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="203">
+    <Units Count="204">
       <Unit0>
         <Filename Value="project1.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="408"/>
-        <CursorPos X="14" Y="297"/>
+        <TopLine Value="364"/>
+        <CursorPos X="32" Y="301"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,9 +33,8 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="183"/>
-        <CursorPos X="21" Y="194"/>
+        <TopLine Value="177"/>
+        <CursorPos X="39" Y="192"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -167,11 +166,9 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="10"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit13>
       <Unit14>
         <Filename Value="UPenitTerminarz.pas"/>
@@ -180,12 +177,10 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="440"/>
         <CursorPos X="55" Y="467"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit14>
       <Unit15>
         <Filename Value="UPenitAktaArch.pas"/>
@@ -651,12 +646,10 @@
         <ComponentName Value="PenitWPZ"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="214"/>
         <CursorPos X="12" Y="220"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit53>
       <Unit54>
         <Filename Value="UKnowHow.pas"/>
@@ -733,12 +726,10 @@
         <ComponentName Value="OchRezerwacjaSkype"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="273"/>
         <CursorPos X="65" Y="292"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit60>
       <Unit61>
         <Filename Value="UOchAddRezerwacjaSkype.pas"/>
@@ -929,7 +920,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="31" Y="65"/>
-        <UsageCount Value="172"/>
+        <UsageCount Value="174"/>
       </Unit76>
       <Unit77>
         <Filename Value="UKwatSprzetRTVWydruk.pas"/>
@@ -941,7 +932,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="163"/>
       </Unit77>
       <Unit78>
         <Filename Value="UKwatPlanWyjazdowSamochody.pas"/>
@@ -953,7 +944,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="57" Y="78"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="135"/>
       </Unit78>
       <Unit79>
         <Filename Value="UWeekView.pas"/>
@@ -962,7 +953,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="401"/>
         <CursorPos X="31" Y="416"/>
-        <UsageCount Value="115"/>
+        <UsageCount Value="117"/>
       </Unit79>
       <Unit80>
         <Filename Value="UWypiska.pas"/>
@@ -974,7 +965,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="47"/>
         <CursorPos X="23" Y="126"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit80>
       <Unit81>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -1369,8 +1360,8 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="762"/>
-        <CursorPos Y="777"/>
-        <UsageCount Value="8"/>
+        <CursorPos X="3" Y="777"/>
+        <UsageCount Value="10"/>
       </Unit134>
       <Unit135>
         <Filename Value="C:\codetyphon\typhon\lcl\include\control.inc"/>
@@ -1927,108 +1918,43 @@
         <CursorPos X="3" Y="33"/>
         <UsageCount Value="10"/>
       </Unit202>
+      <Unit203>
+        <Filename Value="UKwatKartaRzeczy.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="KwatKartaRzeczy"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit203>
     </Units>
-    <JumpHistory Count="25" HistoryIndex="24">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
-        <Filename Value="UOchRezerwacjaSkype.pas"/>
-        <Caret Line="288" Column="54" TopLine="55"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="414" Column="22" TopLine="408"/>
       </Position1>
       <Position2>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="396" Column="75" TopLine="387"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="415" Column="22" TopLine="409"/>
       </Position2>
       <Position3>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="221" Column="74" TopLine="214"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="416" Column="22" TopLine="410"/>
       </Position3>
       <Position4>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="263" Column="3" TopLine="261"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="418" Column="22" TopLine="412"/>
       </Position4>
       <Position5>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="150" Column="15" TopLine="133"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="492" Column="14" TopLine="488"/>
       </Position5>
       <Position6>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="396" Column="10" TopLine="383"/>
+        <Filename Value="UKwatKartaRzeczy.pas"/>
       </Position6>
-      <Position7>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="149" Column="22" TopLine="132"/>
-      </Position7>
-      <Position8>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="400" Column="19" TopLine="377"/>
-      </Position8>
-      <Position9>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="148" Column="21" TopLine="130"/>
-      </Position9>
-      <Position10>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="369" Column="10" TopLine="357"/>
-      </Position10>
-      <Position11>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="150" Column="15" TopLine="132"/>
-      </Position11>
-      <Position12>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="421" Column="40" TopLine="412"/>
-      </Position12>
-      <Position13>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="149" Column="15" TopLine="133"/>
-      </Position13>
-      <Position14>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="370" Column="26" TopLine="366"/>
-      </Position14>
-      <Position15>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="364" Column="27" TopLine="338"/>
-      </Position15>
-      <Position16>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="148" Column="23" TopLine="137"/>
-      </Position16>
-      <Position17>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="370" TopLine="342"/>
-      </Position17>
-      <Position18>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="150" Column="15" TopLine="132"/>
-      </Position18>
-      <Position19>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="421" Column="11" TopLine="411"/>
-      </Position19>
-      <Position20>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="148" Column="15" TopLine="133"/>
-      </Position20>
-      <Position21>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="364" Column="3" TopLine="342"/>
-      </Position21>
-      <Position22>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="220" Column="26" TopLine="215"/>
-      </Position22>
-      <Position23>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="151" Column="15" TopLine="120"/>
-      </Position23>
-      <Position24>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="365" TopLine="233"/>
-      </Position24>
-      <Position25>
-        <Filename Value="UPenitWPZ.pas"/>
-        <Caret Line="148" Column="15" TopLine="131"/>
-      </Position25>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
