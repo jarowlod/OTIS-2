@@ -515,7 +515,9 @@ begin
     begin
       if DM.Wychowawca = ZQPom.FieldByName('WYCHOWAWCA').AsString then Result:= True  // jeśli jest wychowawca właściwy
       else
-        if Pos(ZQPom.FieldByName('WYCHOWAWCA').AsString, DM.ZastepcyWych)>0 then Result:= true; // jeśli jest wych. w zastępstwie
+        if Pos(ZQPom.FieldByName('WYCHOWAWCA').AsString, DM.ZastepcyWych)>0 then Result:= true // jeśli jest wych. w zastępstwie
+        else
+          if ZQPom.FieldByName('POC').AsString.IsEmpty then Result:= true; // brak celi = każdy wychowawca może edytować
     end
   else
     Result:=true;                          // brak określenia celi = każdy może edytować

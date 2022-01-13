@@ -24,7 +24,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="43"/>
+      <BuildNr Value="47"/>
       <Language Value="0415"/>
       <StringTable CompanyName="ZK Kłodzko" LegalCopyright="Włodarczyk Jarosław" ProductVersion="0.0.0.0"/>
     </VersionInfo>
@@ -800,6 +800,7 @@
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="KwatKartaRzeczy"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit81>
     </Units>

@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 86
+  Left = 180
   Height = 856
-  Top = 85
+  Top = 178
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -911,7 +911,7 @@ object Zatrudnieni: TZatrudnieni
       TabOrder = 1
       object tabSzczegolyOs: TTabSheet
         Caption = 'Szczegóły osadzonego'
-        ClientHeight = 813
+        ClientHeight = 770
         ClientWidth = 498
         ImageIndex = 5
         object Panel5: TPanel
@@ -2138,7 +2138,7 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabNotatnik: TTabSheet
         Caption = 'Notatnik'
-        ClientHeight = 813
+        ClientHeight = 770
         ClientWidth = 498
         ImageIndex = 2
         object DBMemo2: TDBMemo
@@ -3629,8 +3629,8 @@ object Zatrudnieni: TZatrudnieni
     Options = [roSaveAndRestoreBookmarks]
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
-    Left = 530
-    Top = 178
+    Left = 528
+    Top = 176
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = ZQZatrudnieni

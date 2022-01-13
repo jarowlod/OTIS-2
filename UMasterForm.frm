@@ -1,7 +1,7 @@
 object MasterForm: TMasterForm
-  Left = 327
+  Left = 299
   Height = 598
-  Top = 225
+  Top = 259
   Width = 962
   Caption = 'OTIS 2 - System Zarządzania Informacją o Osadzonych'
   ClientHeight = 578
@@ -1746,7 +1746,7 @@ object MasterForm: TMasterForm
   object IdleTimerAntiFreeze: TIdleTimer
     AutoEnabled = True
     Enabled = False
-    Interval = 1200000
+    Interval = 480000
     OnTimer = IdleTimerAntiFreezeTimer
     Left = 694
     Top = 280

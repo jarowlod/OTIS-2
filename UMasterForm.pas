@@ -384,6 +384,8 @@ begin
 
   ActionPlanWyjazdow.Enabled   := DM.uprawnienia[20];
 
+  ActionKartaRzeczy.Visible    := DM.uprawnienia[8];          // testowo tylko dla admina, nowa funkcjonalność
+
   Timer2Komunikaty.Interval:= 1000; // możliwie szybko sprawdz pierwsze komunikaty potem ustaw nowy interwał.
 end;
 
@@ -1196,7 +1198,7 @@ end;
 
 procedure TMasterForm.IdleTimerAntiFreezeTimer(Sender: TObject);
 begin
-  // co 20 minut (1 200 000) bezczynności wciskamy SHIFT
+  // co 8 minut (480 000) bezczynności wciskamy SHIFT
   keybd_event(VK_SHIFT, MapVirtualKey(VK_SHIFT, 0), 0, 0);
   keybd_event(VK_SHIFT, MapVirtualKey(VK_SHIFT, 0), KEYEVENTF_KEYUP, 0);
 end;

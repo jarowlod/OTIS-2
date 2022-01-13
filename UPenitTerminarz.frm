@@ -1,7 +1,7 @@
 object PenitTerminarz: TPenitTerminarz
-  Left = 368
+  Left = 142
   Height = 743
-  Top = 364
+  Top = 85
   Width = 1182
   Caption = 'Terminarz Penitencjarny'
   ClientHeight = 743
@@ -102,8 +102,8 @@ object PenitTerminarz: TPenitTerminarz
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Kanlendarz'
-      ClientHeight = 935
-      ClientWidth = 1912
+      ClientHeight = 892
+      ClientWidth = 1672
       ImageIndex = 16
       OnShow = TabSheet1Show
       object YearPlanner1: TYearPlanner
@@ -1004,6 +1004,23 @@ object PenitTerminarz: TPenitTerminarz
               Footers = <>
             end          
             item
+              Alignment = taCenter
+              Font.Color = clMaroon
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'data wywiadu'
+              Width = 70
+              FieldName = 'data_wywiadu'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Hint = 'Przyczyny niezatrudnienia.'
@@ -1177,23 +1194,6 @@ object PenitTerminarz: TPenitTerminarz
               Title.Caption = 'Wywiad'
               Width = 50
               FieldName = 'Wywiad'
-              EditButtons = <>
-              Filter.DropDownRows = 0
-              Filter.EmptyValue = '(Empty)'
-              Filter.NotEmptyValue = '(Not empty)'
-              Filter.AllValue = '(All values)'
-              Filter.EmptyFont.Style = [fsItalic]
-              Filter.ItemIndex = -1
-              Footers = <>
-            end          
-            item
-              Alignment = taCenter
-              Font.Color = clMaroon
-              Title.Alignment = taCenter
-              Title.Orientation = toHorizontal
-              Title.Caption = 'data wywiadu'
-              Width = 70
-              FieldName = 'data_wywiadu'
               EditButtons = <>
               Filter.DropDownRows = 0
               Filter.EmptyValue = '(Empty)'
