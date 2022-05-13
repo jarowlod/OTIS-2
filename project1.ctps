@@ -19,10 +19,9 @@
         <ComponentName Value="MasterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="1184"/>
-        <CursorPos X="59" Y="1201"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="1252"/>
+        <CursorPos X="36" Y="1196"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -34,8 +33,8 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <TopLine Value="181"/>
-        <CursorPos X="66" Y="205"/>
+        <TopLine Value="229"/>
+        <CursorPos X="10" Y="243"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -83,9 +82,9 @@
         <ComponentName Value="Zatrudnieni"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="1206"/>
-        <CursorPos X="91" Y="1218"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="1195"/>
+        <CursorPos X="58" Y="1213"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -169,7 +168,7 @@
         <ComponentName Value="PenitForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="496"/>
         <CursorPos X="2" Y="528"/>
         <UsageCount Value="201"/>
@@ -183,7 +182,7 @@
         <ComponentName Value="PenitTerminarz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="440"/>
         <CursorPos X="55" Y="467"/>
         <UsageCount Value="200"/>
@@ -221,7 +220,7 @@
         <ComponentName Value="PenitWywiad"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="60"/>
         <CursorPos X="3" Y="95"/>
         <UsageCount Value="202"/>
@@ -235,9 +234,10 @@
         <ComponentName Value="AktualizacjaOs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="86"/>
-        <CursorPos X="24" Y="105"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="383"/>
+        <CursorPos X="45" Y="400"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
@@ -245,6 +245,8 @@
           <CursorPos X="13" Y="76"/>
         </ExtraEditor1>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="UAktualizacjaRejestr.pas"/>
@@ -265,7 +267,7 @@
         <ComponentName Value="RejestrProsbOs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="230"/>
         <CursorPos X="3" Y="187"/>
         <UsageCount Value="200"/>
@@ -457,7 +459,7 @@
         <ComponentName Value="OchAddWykaz"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="58"/>
         <CursorPos X="81" Y="9"/>
         <UsageCount Value="201"/>
@@ -920,10 +922,12 @@
         <ComponentName Value="KwatPlanWyjazdowAdd"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="136"/>
-        <CursorPos X="3" Y="141"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="177"/>
+        <CursorPos X="71" Y="211"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit75>
       <Unit76>
         <Filename Value="UKwatSprzetRTV.pas"/>
@@ -935,7 +939,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="31" Y="65"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="179"/>
       </Unit76>
       <Unit77>
         <Filename Value="UKwatSprzetRTVWydruk.pas"/>
@@ -947,7 +951,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="168"/>
       </Unit77>
       <Unit78>
         <Filename Value="UKwatPlanWyjazdowSamochody.pas"/>
@@ -959,7 +963,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="57" Y="78"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="140"/>
       </Unit78>
       <Unit79>
         <Filename Value="UWeekView.pas"/>
@@ -968,7 +972,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="401"/>
         <CursorPos X="31" Y="416"/>
-        <UsageCount Value="120"/>
+        <UsageCount Value="122"/>
       </Unit79>
       <Unit80>
         <Filename Value="UWypiska.pas"/>
@@ -980,7 +984,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="47"/>
         <CursorPos X="23" Y="126"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="40"/>
       </Unit80>
       <Unit81>
         <Filename Value="UKwatKartaRzeczy.pas"/>
@@ -989,10 +993,8 @@
         <ComponentName Value="KwatKartaRzeczy"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
-        <UsageCount Value="25"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="27"/>
       </Unit81>
       <Unit82>
         <Filename Value="C:\codetyphon\typhon\lcl\graphics.pp"/>
@@ -1946,7 +1948,7 @@
         <UsageCount Value="10"/>
       </Unit203>
     </Units>
-    <JumpHistory Count="17" HistoryIndex="16">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="UMasterForm.pas"/>
         <Caret Line="414" Column="22" TopLine="408"/>
@@ -1968,52 +1970,65 @@
         <Caret Line="492" Column="14" TopLine="488"/>
       </Position5>
       <Position6>
-        <Filename Value="UKwatKartaRzeczy.pas"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1343" Column="32" TopLine="357"/>
       </Position6>
       <Position7>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1343" Column="32" TopLine="357"/>
+        <Caret Line="387" Column="38" TopLine="360"/>
       </Position7>
       <Position8>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="387" Column="38" TopLine="360"/>
+        <Filename Value="UPenitForm.pas"/>
+        <Caret Line="253" Column="7" TopLine="239"/>
       </Position8>
       <Position9>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="253" Column="7" TopLine="239"/>
+        <Caret Line="512" Column="43" TopLine="494"/>
       </Position9>
       <Position10>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="512" Column="43" TopLine="494"/>
+        <Caret Line="514" TopLine="494"/>
       </Position10>
       <Position11>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="514" TopLine="494"/>
+        <Caret Line="516" TopLine="494"/>
       </Position11>
       <Position12>
         <Filename Value="UPenitForm.pas"/>
-        <Caret Line="516" TopLine="494"/>
+        <Caret Line="518" TopLine="494"/>
       </Position12>
       <Position13>
-        <Filename Value="UPenitForm.pas"/>
-        <Caret Line="518" TopLine="494"/>
+        <Filename Value="URejestrProsbOs.pas"/>
+        <Caret Line="187" Column="45" TopLine="171"/>
       </Position13>
       <Position14>
         <Filename Value="URejestrProsbOs.pas"/>
-        <Caret Line="187" Column="45" TopLine="171"/>
+        <Caret Line="62" Column="21" TopLine="45"/>
       </Position14>
       <Position15>
-        <Filename Value="URejestrProsbOs.pas"/>
-        <Caret Line="62" Column="21" TopLine="45"/>
+        <Filename Value="UMasterForm.pas"/>
+        <Caret Line="1199" Column="37" TopLine="1184"/>
       </Position15>
       <Position16>
         <Filename Value="UMasterForm.pas"/>
-        <Caret Line="1199" Column="37" TopLine="1184"/>
+        <Caret Line="239" Column="30" TopLine="222"/>
       </Position16>
       <Position17>
-        <Filename Value="UMasterForm.pas"/>
-        <Caret Line="239" Column="30" TopLine="222"/>
+        <Filename Value="UAktualizacjaOs.pas"/>
+        <Caret Line="105" Column="24" TopLine="86"/>
       </Position17>
+      <Position18>
+        <Filename Value="UAktualizacjaOs.pas"/>
+        <Caret Line="76" Column="15" TopLine="72"/>
+      </Position18>
+      <Position19>
+        <Filename Value="UAktualizacjaOs.pas"/>
+        <Caret Line="35" Column="23" TopLine="19"/>
+      </Position19>
+      <Position20>
+        <Filename Value="UAktualizacjaOs.pas"/>
+        <Caret Line="136" Column="93" TopLine="167"/>
+      </Position20>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

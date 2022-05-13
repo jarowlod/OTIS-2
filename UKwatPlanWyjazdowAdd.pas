@@ -189,7 +189,7 @@ begin
   ZQ:= TZQueryPom.Create(Self);
   try
 //    ZQ.SQL.Text:= 'SELECT Full_name, Dzial FROM uprawnienia WHERE Dzial="Kwat" ORDER BY Full_name';
-    ZQ.SQL.Text:= 'SELECT DISTINCT Kierowca FROM kwat_plan_wyjazdow ORDER BY Kierowca';
+    ZQ.SQL.Text:= 'SELECT DISTINCT Kierowca FROM kwat_plan_wyjazdow WHERE (data_wyjazdu > CURDATE() - interval 6 MONTH) ORDER BY Kierowca';
     ZQ.Open;
     while not ZQ.EOF do
     begin

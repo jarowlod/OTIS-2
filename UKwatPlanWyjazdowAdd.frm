@@ -1,5 +1,5 @@
 object KwatPlanWyjazdowAdd: TKwatPlanWyjazdowAdd
-  Left = 334
+  Left = 325
   Height = 303
   Top = 226
   Width = 617
