@@ -191,7 +191,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.2.52';
+  wersja = '0.0.2.54';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -219,6 +219,12 @@ const
   rp_HigOdziez   = 'hig/odzieżowa';
   rp_Inna        = 'inna';
 // END PACZKI
+
+// TELEFONY ----------------
+  st_Regulaminowy = 'Regulaminowy';
+  st_Dodatkowy    = 'Dodatkowy';
+  st_Omylkowy     = 'Omyłkowy';
+// END TELEFONY
 
 implementation
 uses strutils, UKoszykNowy, UMasterForm, ULogowanie;

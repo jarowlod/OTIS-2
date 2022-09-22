@@ -5,10 +5,10 @@ unit UOchForm;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  DbCtrls, StdCtrls, ComCtrls, Buttons, db, ZDataset, UViewUwagiOch,
-  UViewWykazy, UViewZatrudnienie, UViewWidzenia, UViewOsobyBliskie, UViewPaczki,
-  datamodule;
+  Classes, SysUtils, FileUtil, ueled, BGRACustomDrawn, Forms, Controls,
+  Graphics, Dialogs, ExtCtrls, DbCtrls, StdCtrls, ComCtrls, Buttons, db,
+  ZDataset, UViewUwagiOch, UViewWykazy, UViewZatrudnienie, UViewWidzenia,
+  UViewOsobyBliskie, UViewPaczki, UViewTelefony, datamodule;
 
 type
 
@@ -19,6 +19,7 @@ type
     btnDodajProsbe: TBitBtn;
     btnDodajWidzenie: TBitBtn;
     btnDodajPaczke: TBitBtn;
+    btnDodajTelefon: TBitBtn;
     btnDodajZwrotPaczki: TBitBtn;
     btnRejestrProsb: TBitBtn;
     btnRejestrZat: TBitBtn;
@@ -33,6 +34,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     lblCelaOchronna: TLabel;
     lblCelaPalaca: TLabel;
     lblCelaTA: TLabel;
@@ -42,7 +44,7 @@ type
     Panel3: TPanel;
     Panel_1: TPanel;
     sbtnWyslijWiad: TSpeedButton;
-    TabSheet1: TTabSheet;
+    TabSheetTelefony: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheetPaczki: TTabSheet;
     TabSheetOsobyBliskie: TTabSheet;
@@ -50,9 +52,11 @@ type
     TabSheetUwagi: TTabSheet;
     TabSheetWykazy: TTabSheet;
     TabSheetZatrudnienie: TTabSheet;
+    ledTelefonowal: TuELED;
     ZQOs: TZQuery;
     procedure btnDodajPaczkeClick(Sender: TObject);
     procedure btnDodajProsbeClick(Sender: TObject);
+    procedure btnDodajTelefonClick(Sender: TObject);
     procedure btnDodajWidzenieClick(Sender: TObject);
     procedure btnDodajZwrotPaczkiClick(Sender: TObject);
     procedure btnRejestrProsbClick(Sender: TObject);
@@ -72,9 +76,11 @@ type
     fViewWidzenia    : TViewWidzenia;
     fViewOsobyBliskie: TViewOsobyBliskie;
     fViewPaczki      : TViewPaczki;
+    fViewTelefony    : TViewTelefony;
 
     procedure WczytajTypCeli;
     procedure SetIdoToActiveTab;
+    procedure WczytajStatusTelefonu;
   public
     Procedure SetIDO(ido: integer);
   end;
@@ -124,6 +130,11 @@ begin
   fViewPaczki:= TViewPaczki.Create(Self);
   fViewPaczki.Parent:= TabSheetPaczki;
   fViewPaczki.Show;
+
+  fViewTelefony:= TViewTelefony.Create(Self);
+  fViewTelefony.Parent:= TabSheetTelefony;
+  fViewTelefony.Show;
+  fViewTelefony.SetStatusToChange(ledTelefonowal);
 end;
 
 procedure TOchForm.FormKeyDown(Sender: TObject; var Key: Word;
@@ -162,6 +173,7 @@ begin
   FreeAndNil(fViewWidzenia);
   FreeAndNil(fViewOsobyBliskie);
   FreeAndNil(fViewPaczki);
+  FreeAndNil(fViewTelefony);
 end;
 
 procedure TOchForm.SetIDO(ido: integer);
@@ -198,6 +210,10 @@ begin
 
   //typ celi dla określenia Ochronki i palenia
   WczytajTypCeli;
+
+  //Ustalenie czy korzystał z telefonu
+  WczytajStatusTelefonu;
+
 {
   //Uwagi i polecenia ochronne
   fViewUwagiOch.SetIDO(SelectIDO);
@@ -233,6 +249,7 @@ begin
     'TabSheetOsobyBliskie': fViewOsobyBliskie.SetIDO(SelectIDO);
     'TabSheetPaczki'      : fViewPaczki.SetIDO(SelectIDO);
     'TabSheetZatrudnienie': fViewZatrudnienie.SetIDO(SelectIDO);
+    'TabSheetTelefony'    : fViewTelefony.SetIDO(SelectIDO);
   end;
 end;
 
@@ -291,6 +308,11 @@ begin
   end;
 end;
 
+procedure TOchForm.btnDodajTelefonClick(Sender: TObject);
+begin
+  fViewTelefony.AddTelefon;
+end;
+
 procedure TOchForm.btnDodajPaczkeClick(Sender: TObject);
 begin
   with TPaczkiAdd.Create(Self) do
@@ -343,6 +365,12 @@ begin
   //----------------------------
 
   FreeAndNil(ZQPom);
+end;
+
+procedure TOchForm.WczytajStatusTelefonu;
+begin
+  fViewTelefony.SetIDO(SelectIDO);
+  fViewTelefony.RefreshStatusObject;
 end;
 
 end.

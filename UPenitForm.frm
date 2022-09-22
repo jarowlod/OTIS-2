@@ -1,7 +1,7 @@
 object PenitForm: TPenitForm
-  Left = 299
+  Left = 325
   Height = 795
-  Top = 259
+  Top = 234
   Width = 715
   Caption = 'Karta Penitencjarna'
   ClientHeight = 795
@@ -915,11 +915,11 @@ object PenitForm: TPenitForm
     Height = 347
     Top = 448
     Width = 715
-    ActivePage = TabSheetZobowiazania
+    ActivePage = TabSheetZatrudnienie
     Align = alClient
     Images = DM.ImageList1
     TabHeight = 25
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 0
     OnChange = PageControl1Change
     object TabSheetNotatnik: TTabSheet

@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-04-05 14:47:09"/>
-    <ReportLastChange Value="2019-05-23 09:17:50"/>
+    <ReportLastChange Value="2022-09-21 08:07:54"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -17,7 +17,7 @@
     <Pages>
       <PrintToDefault Value="False"/>
       <DoublePass Value="False"/>
-      <SelectedPrinter Value="HP LaserJet Professional P1566"/>
+      <SelectedPrinter Value="Microsoft XPS Document Writer"/>
       <PageCount Value="1"/>
       <Page1>
         <Name Value="Page1"/>
@@ -603,7 +603,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Podstawa prawna art. 123a§1,2 kkw&#xD;&#xA;"/>
+            <Memo Value="Podstawa prawna art. 123a§2 kkw&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>

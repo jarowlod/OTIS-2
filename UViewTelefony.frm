@@ -1,103 +1,32 @@
-object ViewPaczki: TViewPaczki
+object ViewTelefony: TViewTelefony
   Left = 325
-  Height = 467
+  Height = 499
   Top = 234
-  Width = 781
+  Width = 768
   Align = alClient
   BorderStyle = bsNone
-  Caption = 'ViewPaczki'
-  ClientHeight = 467
-  ClientWidth = 781
+  Caption = 'ViewTelefony'
+  ClientHeight = 499
+  ClientWidth = 768
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '6.6'
   object RxDBGrid2: TRxDBGrid
     Left = 0
-    Height = 467
+    Height = 499
     Top = 0
-    Width = 781
+    Width = 768
     ColumnDefValues.BlobText = '(blob)'
     TitleButtons = True
-    AutoSort = True
+    AutoSort = False
     Columns = <    
       item
-        Font.Color = clMaroon
         SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
-        Title.Caption = 'Data wydania'
-        Width = 115
-        FieldName = 'WYDANO'
-        EditButtons = <>
-        Filter.DropDownRows = 0
-        Filter.EmptyValue = '(Empty)'
-        Filter.NotEmptyValue = '(Not empty)'
-        Filter.AllValue = '(All values)'
-        Filter.EmptyFont.Style = [fsItalic]
-        Filter.ItemIndex = -1
-        Footer.Alignment = taCenter
-        Footer.ValueType = fvtCount
-        Footers = <>
-      end    
-      item
-        Alignment = taCenter
-        SizePriority = 0
-        Title.Alignment = taCenter
-        Title.Orientation = toHorizontal
-        Title.Caption = 'Rodzaj'
-        Width = 90
-        FieldName = 'RODZAJ'
-        EditButtons = <>
-        Filter.DropDownRows = 0
-        Filter.EmptyValue = '(Empty)'
-        Filter.NotEmptyValue = '(Not empty)'
-        Filter.AllValue = '(All values)'
-        Filter.EmptyFont.Style = [fsItalic]
-        Filter.ItemIndex = -1
-        Footers = <>
-      end    
-      item
-        Alignment = taCenter
-        Font.Color = clBlue
-        SizePriority = 0
-        Title.Alignment = taCenter
-        Title.Orientation = toHorizontal
-        Title.Caption = 'doda- tkowa'
-        Width = 45
-        FieldName = 'DODATKOWA'
-        EditButtons = <>
-        Filter.DropDownRows = 0
-        Filter.EmptyValue = '(Empty)'
-        Filter.NotEmptyValue = '(Not empty)'
-        Filter.AllValue = '(All values)'
-        Filter.EmptyFont.Style = [fsItalic]
-        Filter.ItemIndex = -1
-        Footers = <>
-      end    
-      item
-        Alignment = taCenter
-        Font.Color = clBlue
-        SizePriority = 0
-        Title.Alignment = taCenter
-        Title.Orientation = toHorizontal
-        Title.Caption = 'e-paka'
-        Width = 45
-        FieldName = 'KANTYNA'
-        EditButtons = <>
-        Filter.DropDownRows = 0
-        Filter.EmptyValue = '(Empty)'
-        Filter.NotEmptyValue = '(Not empty)'
-        Filter.AllValue = '(All values)'
-        Filter.EmptyFont.Style = [fsItalic]
-        Filter.ItemIndex = -1
-        Footers = <>
-      end    
-      item
-        Title.Alignment = taCenter
-        Title.Orientation = toHorizontal
-        Title.Caption = 'UWAGI'
+        Title.Caption = 'Data'
         Width = 120
-        FieldName = 'UWAGI'
+        FieldName = 'data_zap'
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
@@ -109,45 +38,62 @@ object ViewPaczki: TViewPaczki
       end    
       item
         Alignment = taCenter
-        Font.Color = clNavy
         SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
-        Title.Caption = 'Wydający'
-        Width = 120
-        FieldName = 'WYDAL'
-        EditButtons = <>
-        Filter.DropDownRows = 0
-        Filter.EmptyValue = '(Empty)'
-        Filter.NotEmptyValue = '(Not empty)'
-        Filter.AllValue = '(All values)'
-        Filter.EmptyFont.Style = [fsItalic]
-        Filter.ItemIndex = -1
-        Footers = <>
-      end    
-      item
-        SizePriority = 0
-        Title.Alignment = taCenter
-        Title.Orientation = toHorizontal
-        Title.Caption = 'Nadawca'
-        Width = 125
-        FieldName = 'NADAWCA'
-        EditButtons = <>
-        Filter.DropDownRows = 0
-        Filter.EmptyValue = '(Empty)'
-        Filter.NotEmptyValue = '(Not empty)'
-        Filter.AllValue = '(All values)'
-        Filter.EmptyFont.Style = [fsItalic]
-        Filter.ItemIndex = -1
-        Footers = <>
-      end    
-      item
-        SizePriority = 0
-        Title.Alignment = taCenter
-        Title.Orientation = toHorizontal
-        Title.Caption = 'Adres'
+        Title.Caption = 'Dzień tygodnia'
         Width = 100
-        FieldName = 'ADRES'
+        FieldName = 'day_name'
+        DisplayFormat = 'dddd'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Alignment = taCenter
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'Status'
+        Width = 140
+        FieldName = 'Status'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        SizePriority = 2
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'Uwagi'
+        Width = 223
+        FieldName = 'Uwagi'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'Użytkownik'
+        Width = 164
+        FieldName = 'User'
         EditButtons = <>
         Filter.DropDownRows = 0
         Filter.EmptyValue = '(Empty)'
@@ -215,14 +161,12 @@ object ViewPaczki: TViewPaczki
       end>
     FooterOptions.Active = True
     FooterOptions.Color = clSilver
-    FooterOptions.RowCount = 1
     FooterOptions.Style = tsNative
     FooterOptions.DrawFullLine = False
     SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
     SearchOptions.FromStart = False
     OptionsRx = [rdgAllowDialogFind, rdgFooterRows, rdgAllowQuickSearch, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgCaseInsensitiveSort, rdgWordWrap]
     FooterColor = clSilver
-    FooterRowCount = 1
     Align = alClient
     AlternateColor = 16055807
     AutoAdvance = aaNone
@@ -234,7 +178,7 @@ object ViewPaczki: TViewPaczki
     FixedHotColor = clNone
     SelectedColor = clHighlight
     GridLineStyle = psSolid
-    DataSource = DSPaczki
+    DataSource = DSTelefony
     DefaultRowHeight = 19
     FixedColor = clNone
     FixedCols = 0
@@ -247,30 +191,21 @@ object ViewPaczki: TViewPaczki
     TitleStyle = tsNative
     OnPrepareCanvas = RxDBGrid2PrepareCanvas
   end
-  object DSPaczki: TDataSource
-    DataSet = ZQPaczki
-    Left = 400
-    Top = 240
-  end
-  object ZQPaczki: TZQuery
+  object ZQTelefony: TZQuery
     Connection = DM.ZConnection1
-    ReadOnly = True
+    UpdateObject = ZUTelefony
     SQL.Strings = (
-      'SELECT '
-      'ID,'
-      'IDO,'
-      'WYDANO,'
-      'RODZAJ,'
-      'WAGA,'
-      'UWAGI,'
-      'DODATKOWA,'
-      'KANTYNA,'
-      'NADAWCA,'
-      'ADRES,'
-      'WYDAL'
-      'FROM paczki'
+      'SELECT id, '
+      'ido, '
+      'Status, '
+      'Uwagi, '
+      'User, '
+      'data_zap,'
+      'data_zap as day_name'
+      'FROM telefony'
       'WHERE IDO = :ido'
-      'ORDER BY WYDANO DESC'
+      'ORDER BY data_zap DESC'
+      'LIMIT 100'
     )
     Params = <    
       item
@@ -278,8 +213,8 @@ object ViewPaczki: TViewPaczki
         Name = 'ido'
         ParamType = ptUnknown
       end>
-    Left = 400
-    Top = 176
+    Left = 428
+    Top = 204
     ParamData = <    
       item
         DataType = ftUnknown
@@ -287,27 +222,85 @@ object ViewPaczki: TViewPaczki
         ParamType = ptUnknown
       end>
   end
+  object DSTelefony: TDataSource
+    DataSet = ZQTelefony
+    Left = 428
+    Top = 268
+  end
+  object ZUTelefony: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'DELETE FROM telefony'
+      'WHERE'
+      '  telefony.id = :OLD_id'
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO telefony'
+      '  (ido, Status, Uwagi, User, data_zap)'
+      'VALUES'
+      '  (:ido, :Status, :Uwagi, :User, now())'
+    )
+    ModifySQL.Strings = (
+      'UPDATE telefony SET'
+      '  Status = :Status,'
+      '  Uwagi = :Uwagi'
+      'WHERE'
+      '  telefony.id = :OLD_id'
+    )
+    RefreshSQL.Strings = (
+      ''
+    )
+    UseSequenceFieldForRefreshSQL = False
+    Left = 512
+    Top = 204
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'Status'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'Uwagi'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ido'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'User'
+        ParamType = ptUnknown
+      end>
+  end
   object PopupMenu1: TPopupMenu
     Images = DM.ImageList1
-    Left = 261
-    Top = 176
+    Left = 289
+    Top = 204
     object MenuItemDodaj: TMenuItem
-      Caption = 'Dodaj paczkę...'
-      ImageIndex = 48
+      Caption = 'Dodaj telefon'
+      ImageIndex = 54
       OnClick = MenuItemDodajClick
+    end
+    object MenuItemDodajDodatkowy: TMenuItem
+      Caption = 'Dodaj telefon dodatkowy'
+      ImageIndex = 50
+      OnClick = MenuItemDodajDodatkowyClick
     end
     object MenuItem4: TMenuItem
       Caption = '-'
     end
     object MenuItemUsun: TMenuItem
-      Caption = 'Usuń paczkę...'
+      Caption = 'Usuń...'
+      Hint = 'Jeżeli w tym samym dniu to usuwa, inaczej zmienia na wpis omyłkowy.'
       ImageIndex = 44
       OnClick = MenuItemUsunClick
-    end
-    object MenuItemModyfikuj: TMenuItem
-      Caption = 'Modyfikuj paczkę...'
-      ImageIndex = 39
-      OnClick = MenuItemModyfikujClick
     end
   end
 end
