@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-04-05 14:47:09"/>
-    <ReportLastChange Value="2022-09-21 08:07:54"/>
+    <ReportLastChange Value="2022-10-03 11:32:49"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -17,14 +17,14 @@
     <Pages>
       <PrintToDefault Value="False"/>
       <DoublePass Value="False"/>
-      <SelectedPrinter Value="Microsoft XPS Document Writer"/>
+      <SelectedPrinter Value="Default printer"/>
       <PageCount Value="1"/>
       <Page1>
         <Name Value="Page1"/>
         <ClassName Value="TfrPageReport"/>
         <Visible Value="True"/>
-        <Width Value="595"/>
-        <Height Value="842"/>
+        <Width Value="2100"/>
+        <Height Value="2970"/>
         <Script Value=""/>
         <PgSize Value="9"/>
         <Margins>
@@ -603,7 +603,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Podstawa prawna art. 123a§2 kkw&#xD;&#xA;"/>
+            <Memo Value="Podstawa prawna art. 123a§1,2 kkw&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>

@@ -84,6 +84,7 @@ type
     procedure RxDBGrid2GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
     procedure PanelZdjecResize(Sender: TObject);
+    procedure RxDBGrid2PrepareCanvas(sender: TObject; DataCol: Integer; Column: TColumn; AState: TGridDrawState);
     procedure TabSheet2Show(Sender: TObject);
     procedure ZQRozmieszczenieAfterPost(DataSet: TDataSet);
     procedure ZQRozmieszczenieBeforePost(DataSet: TDataSet);
@@ -239,6 +240,20 @@ begin
                   AFont.Color:= clWhite;
               end;
           end;
+
+  if Assigned(Field) and (Field.FieldName = 'tel') then
+  begin
+      if ((Field.DataSet.FieldByName('Zajete').AsInteger = 0) or (Field.DataSet.FieldByName('Zajete').AsInteger - Field.AsInteger > 0)) then
+                    begin
+                        Background := clGreen;
+                        AFont.Color:= clWhite;
+                    end
+               else
+                    begin
+                        Background := clRed;
+                        AFont.Color:= clWhite;
+                    end;
+  end;
 end;
 
 procedure TRozmieszczenie.RxDBGrid2DblClick(Sender: TObject);
@@ -305,6 +320,11 @@ begin
       AFont.Color:= clBlack;
     end;
   end;
+end;
+
+procedure TRozmieszczenie.RxDBGrid2PrepareCanvas(sender: TObject; DataCol: Integer; Column: TColumn; AState: TGridDrawState);
+begin
+  if ((Column.FieldName = 'tel') and (Column.Field.AsInteger > 0)) then TRxDBGrid(Sender).Canvas.Brush.Color:= clRed;
 end;
 
 // TRYB EDYCJI

@@ -14,6 +14,7 @@ type
 
   TViewTelefony = class(TForm)
     DSTelefony: TDataSource;
+    MenuItemDodajUrzedowy: TMenuItem;
     MenuItemDodajDodatkowy: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItemDodaj: TMenuItem;
@@ -26,12 +27,14 @@ type
     procedure FormCreate(Sender: TObject);
     procedure MenuItemDodajClick(Sender: TObject);
     procedure MenuItemDodajDodatkowyClick(Sender: TObject);
+    procedure MenuItemDodajUrzedowyClick(Sender: TObject);
     procedure MenuItemUsunClick(Sender: TObject);
     procedure RxDBGrid2PrepareCanvas(sender: TObject; DataCol: Integer; Column: TColumn; AState: TGridDrawState);
   private
     SelectIDO: integer;
     statusToChange: TObject;
     procedure AddTelefonDodatkowy;
+    procedure AddTelefonUrzedowy;
     procedure UsunTelefon;
   public
     procedure ZapiszZmiany;
@@ -67,6 +70,11 @@ end;
 procedure TViewTelefony.MenuItemDodajDodatkowyClick(Sender: TObject);
 begin
   AddTelefonDodatkowy;
+end;
+
+procedure TViewTelefony.MenuItemDodajUrzedowyClick(Sender: TObject);
+begin
+  AddTelefonUrzedowy;
 end;
 
 procedure TViewTelefony.MenuItemUsunClick(Sender: TObject);
@@ -131,7 +139,11 @@ begin
   czyTelefonWTygodniu:= isTelefonOnWeek;
 
   if czyTelefonWTygodniu then
-    if (MessageDlg('Osadzony korzystał z telefonu w tym tygodniu, czy dodać realizację kolejnego?', mtWarning, [mbOK, mbCancel], 0) = mrCancel) then exit;
+    if (MessageDlg('Osadzony korzystał z telefonu w tym tygodniu, czy dodać realizację dodatkowego?', mtWarning, [mbOK, mbCancel], 0) = mrOK) then
+    begin
+      AddTelefonDodatkowy;
+      exit;
+    end else exit;
 
   ZQTelefony.Append;
   ZQTelefony.FieldByName('IDO').AsInteger          := SelectIDO;
@@ -147,10 +159,14 @@ begin
 end;
 
 procedure TViewTelefony.AddTelefonDodatkowy;
+var uwagi: String;
 begin
+  if InputQuery('Czy dodać Telefon dodatkowy ?', 'Uwagi', uwagi) = false then exit;
+
   ZQTelefony.Append;
   ZQTelefony.FieldByName('IDO').AsInteger          := SelectIDO;
   ZQTelefony.FieldByName('Status').AsString        := st_Dodatkowy;
+  ZQTelefony.FieldByName('Uwagi').AsString         := uwagi;
   ZQTelefony.FieldByName('User').AsString          := DM.PelnaNazwa;
   ZQTelefony.Post;
 
@@ -159,6 +175,25 @@ begin
   RefreshStatusObject;
 
   DM.KomunikatPopUp(Self, 'Telefon', 'Dodano realizację telefonu dodatkowego.', nots_Info);
+end;
+
+procedure TViewTelefony.AddTelefonUrzedowy;
+var uwagi: String;
+begin
+  if InputQuery('Czy dodać Telefon urzędowy ?', 'Uwagi', uwagi) = false then exit;
+
+  ZQTelefony.Append;
+  ZQTelefony.FieldByName('IDO').AsInteger          := SelectIDO;
+  ZQTelefony.FieldByName('Status').AsString        := st_Urzedowy;
+  ZQTelefony.FieldByName('Uwagi').AsString         := uwagi;
+  ZQTelefony.FieldByName('User').AsString          := DM.PelnaNazwa;
+  ZQTelefony.Post;
+
+  RefreshQuery(ZQTelefony);
+
+  RefreshStatusObject;
+
+  DM.KomunikatPopUp(Self, 'Telefon', 'Dodano realizację telefonu urzędowego.', nots_Info);
 end;
 
 procedure TViewTelefony.UsunTelefon;
@@ -216,18 +251,20 @@ end;
 
 procedure TViewTelefony.RxDBGrid2PrepareCanvas(sender: TObject; DataCol: Integer; Column: TColumn; AState: TGridDrawState);
 begin
-    if Column.Field.DataSet.IsEmpty then exit;
+  if Column.Field.DataSet.IsEmpty then exit;
 
   if Column.FieldName = 'data_zap' then
     if Column.Field.AsDateTime >= StartOfTheWeek(Date()) then
     begin
       TRxDBGrid(Sender).Canvas.Brush.Color:= $008080FF;
     end;
+
   if Column.FieldName = 'Status' then
   begin
      case Column.Field.AsString of
        st_Regulaminowy : TRxDBGrid(Sender).Canvas.Brush.Color:= $008080FF;
        st_Dodatkowy    : TRxDBGrid(Sender).Canvas.Brush.Color:= clLime;
+       st_Urzedowy     : TRxDBGrid(Sender).Canvas.Brush.Color:= clAqua;
        st_Omylkowy     : TRxDBGrid(Sender).Canvas.Brush.Color:= clYellow;
      end;
     if (gdSelected in AState) then TRxDBGrid(Sender).Canvas.Font.Color:= $BB5E00;

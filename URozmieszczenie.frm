@@ -1,11 +1,11 @@
 object Rozmieszczenie: TRozmieszczenie
-  Left = 744
+  Left = 180
   Height = 760
-  Top = 736
-  Width = 1103
+  Top = 180
+  Width = 1164
   Caption = 'Rozmieszczenie'
   ClientHeight = 760
-  ClientWidth = 1103
+  ClientWidth = 1164
   Constraints.MinHeight = 490
   Constraints.MinWidth = 480
   OnClose = FormClose
@@ -455,7 +455,7 @@ object Rozmieszczenie: TRozmieszczenie
     Left = 162
     Height = 760
     Top = 0
-    Width = 869
+    Width = 930
     ActivePage = TabSheet1
     Align = alClient
     Images = ImageList1
@@ -467,23 +467,23 @@ object Rozmieszczenie: TRozmieszczenie
     object TabSheet1: TTabSheet
       Caption = 'Wolne Cele'
       ClientHeight = 727
-      ClientWidth = 861
+      ClientWidth = 922
       ImageIndex = 0
       object Panel2: TPanel
         Left = 0
         Height = 207
         Top = 520
-        Width = 861
+        Width = 922
         Align = alBottom
         BevelOuter = bvNone
         ClientHeight = 207
-        ClientWidth = 861
+        ClientWidth = 922
         TabOrder = 0
         object RxDBGrid2: TRxDBGrid
           Left = 0
           Height = 207
           Top = 0
-          Width = 861
+          Width = 922
           ColumnDefValues.BlobText = '(blob)'
           TitleButtons = True
           AutoSort = True
@@ -664,6 +664,22 @@ object Rozmieszczenie: TRozmieszczenie
               Filter.EmptyFont.Style = [fsItalic]
               Filter.ItemIndex = -1
               Footers = <>
+            end          
+            item
+              ButtonStyle = cbsCheckboxColumn
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'tel'
+              Width = 30
+              FieldName = 'tel'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Empty)'
+              Filter.NotEmptyValue = '(Not empty)'
+              Filter.AllValue = '(All values)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
             end>
           KeyStrokes = <          
             item
@@ -748,13 +764,14 @@ object Rozmieszczenie: TRozmieszczenie
           TabOrder = 0
           TitleStyle = tsNative
           OnDblClick = RxDBGrid2DblClick
+          OnPrepareCanvas = RxDBGrid2PrepareCanvas
         end
       end
       object RxDBGrid1: TRxDBGrid
         Left = 0
         Height = 515
         Top = 0
-        Width = 861
+        Width = 922
         ColumnDefValues.BlobText = '(blob)'
         TitleButtons = True
         AutoSort = True
@@ -1073,6 +1090,22 @@ object Rozmieszczenie: TRozmieszczenie
             Footer.FieldName = 'blokuje'
             Footer.ValueType = fvtSum
             Footers = <>
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'tel'
+            Width = 40
+            FieldName = 'tel'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Empty)'
+            Filter.NotEmptyValue = '(Not empty)'
+            Filter.AllValue = '(All values)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
           end>
         KeyStrokes = <        
           item
@@ -1162,7 +1195,7 @@ object Rozmieszczenie: TRozmieszczenie
         Left = 0
         Height = 5
         Top = 515
-        Width = 861
+        Width = 922
         Align = alBottom
         ResizeAnchor = akBottom
       end
@@ -1188,7 +1221,7 @@ object Rozmieszczenie: TRozmieszczenie
     end
   end
   object DodatkowyPanel: TPanel
-    Left = 1036
+    Left = 1097
     Height = 760
     Top = 0
     Width = 67
@@ -1198,7 +1231,7 @@ object Rozmieszczenie: TRozmieszczenie
     Visible = False
   end
   object Splitter2: TSplitter
-    Left = 1031
+    Left = 1092
     Height = 760
     Top = 0
     Width = 5
@@ -1214,7 +1247,7 @@ object Rozmieszczenie: TRozmieszczenie
     AfterPost = ZQRozmieszczenieAfterPost
     OnPostError = ZQRozmieszczeniePostError
     SQL.Strings = (
-      'SELECT '
+      'SELECT'
       'typ_cel.id,'
       'typ_cel.POC, '
       'count(osadzeni.POC) AS Zajete, '
@@ -1230,11 +1263,13 @@ object Rozmieszczenie: TRozmieszczenie
       'typ_cel.P, '
       'typ_cel.M,'
       'typ_cel.Przejsciowa,'
-      '( ifnull(count(osadzeni.POC), 0) - ifnull(sum(art110.status),0) ) as blokuje'
+      '( ifnull(count(osadzeni.POC), 0) - ifnull(sum(art110.status),0) ) as blokuje,'
+      'count(tel.IDO) AS tel'
       'FROM typ_cel '
       '  LEFT JOIN osadzeni ON (typ_cel.POC = osadzeni.POC) '
       '  LEFT JOIN art110 ON (art110.IDO = osadzeni.IDO) AND (art110.status = 1) AND (isnull( art110.data_do))'
       '  LEFT JOIN os_info ON (osadzeni.IDO = os_info.IDO)'
+      '  LEFT JOIN telefony tel ON (osadzeni.IDO = tel.IDO AND tel.`Status`="Regulaminowy" AND YEARWEEK(tel.data_zap, 1) = YEARWEEK(NOW(), 1))'
     )
     Params = <>
     IndexFieldNames = 'id Asc'
@@ -1269,10 +1304,15 @@ object Rozmieszczenie: TRozmieszczenie
       'data_od,'
       'data_do,'
       '(DATEDIFF(CURDATE(),data_do)) AS dni,'
-      'Przyj'
+      'Przyj,'
+      'count(t.IDO) AS tel'
       'FROM osadzeni'
       '  LEFT JOIN art110 ON (osadzeni.IDO = art110.IDO)'
-      '  LEFT JOIN os_info ON (osadzeni.IDO = os_info.IDO);'
+      '  LEFT JOIN os_info ON (osadzeni.IDO = os_info.IDO)'
+      '  LEFT JOIN telefony t ON (osadzeni.IDO = t.IDO '
+      '    AND t.`Status`="Regulaminowy" '
+      '    AND YEARWEEK(t.data_zap, 1) = YEARWEEK(NOW(), 1))'
+      'GROUP BY osadzeni.IDO;'
     )
     Params = <>
     MasterFields = 'POC'

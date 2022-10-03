@@ -191,7 +191,7 @@ var
   DM: TDM;
 
 const
-  wersja = '0.0.2.54';
+  wersja = '0.0.2.55';
 
 // ZATRUDNIENIE ----------------------
 const
@@ -223,6 +223,7 @@ const
 // TELEFONY ----------------
   st_Regulaminowy = 'Regulaminowy';
   st_Dodatkowy    = 'Dodatkowy';
+  st_Urzedowy     = 'Urzędowy';
   st_Omylkowy     = 'Omyłkowy';
 // END TELEFONY
 

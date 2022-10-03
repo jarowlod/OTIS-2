@@ -21,6 +21,7 @@ object ViewTelefony: TViewTelefony
     AutoSort = False
     Columns = <    
       item
+        ReadOnly = True
         SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
@@ -38,6 +39,7 @@ object ViewTelefony: TViewTelefony
       end    
       item
         Alignment = taCenter
+        ReadOnly = True
         SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
@@ -56,6 +58,7 @@ object ViewTelefony: TViewTelefony
       end    
       item
         Alignment = taCenter
+        ReadOnly = True
         SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
@@ -72,6 +75,7 @@ object ViewTelefony: TViewTelefony
         Footers = <>
       end    
       item
+        ReadOnly = False
         SizePriority = 2
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
@@ -88,6 +92,7 @@ object ViewTelefony: TViewTelefony
         Footers = <>
       end    
       item
+        ReadOnly = True
         SizePriority = 0
         Title.Alignment = taCenter
         Title.Orientation = toHorizontal
@@ -289,9 +294,14 @@ object ViewTelefony: TViewTelefony
       OnClick = MenuItemDodajClick
     end
     object MenuItemDodajDodatkowy: TMenuItem
-      Caption = 'Dodaj telefon dodatkowy'
+      Caption = 'Dodaj telefon dodatkowy...'
       ImageIndex = 50
       OnClick = MenuItemDodajDodatkowyClick
+    end
+    object MenuItemDodajUrzedowy: TMenuItem
+      Caption = 'Dodaj telefon urzędowy...'
+      ImageIndex = 29
+      OnClick = MenuItemDodajUrzedowyClick
     end
     object MenuItem4: TMenuItem
       Caption = '-'
