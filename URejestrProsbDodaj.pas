@@ -18,6 +18,7 @@ type
     cbDrukuj: TCheckBox;
     cbKategoria: TComboBox;
     cbStatus: TComboBox;
+    dtpWaznoscDo: TDateTimePicker;
     dtpWplywu: TDateTimePicker;
     dtpDecyzji: TDateTimePicker;
     edOpis: TEdit;
@@ -27,6 +28,7 @@ type
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
+    Label7: TLabel;
     lbl_Oznaczenie: TLabel;
     memUwagi: TMemo;
     Panel1: TPanel;
@@ -77,6 +79,9 @@ begin
 
   dtpDecyzji.Checked:= false;
   dtpDecyzji.Date:= Date();
+
+  dtpWaznoscDo.Checked:= false;
+  dtpWaznoscDo.Date:= IncMonth(Date(), 1);
 end;
 
 procedure TRejestrProsbDodaj.SetEdit(eID, eIDO: integer);
@@ -88,11 +93,12 @@ begin
   Caption:= 'Modyfikuj prośbę: '+DM.GetNazwiskoImieByIDO(ido);;
   WczytajKategorie;
   cbStatus.Items.Add('Zrealizowana'); // dodajemy status aby byl widoczny podczas modyfikacji
+  cbStatus.Items.Add('Przeterminowana'); // dodajemy status aby byl widoczny podczas modyfikacji
 
   cbDrukuj.Enabled:= true;
 
   ZQPom:= TZQueryPom.Create(Self);
-  ZQPom.SQL.Text:= 'SELECT ID, Oznaczenie, Data_Wplywu, ID_Kategoria, Opis, Status, Data_Decyzji, User, Uwagi, Wydruk'
+  ZQPom.SQL.Text:= 'SELECT ID, Oznaczenie, Data_Wplywu, ID_Kategoria, Opis, Status, Data_Decyzji, Data_Waznosc_Do, User, Uwagi, Wydruk'
                      +' FROM rej_prosb'
                      +' WHERE ID = :ID';
   ZQPom.ParamByName('ID').AsInteger:= id;
@@ -122,6 +128,16 @@ begin
      begin
        dtpDecyzji.Date := ZQPom.FieldByName('Data_Decyzji').AsDateTime;
        dtpDecyzji.Checked:= true;
+     end;
+
+  if ZQPom.FieldByName('Data_Waznosc_Do').IsNull then
+     begin
+       dtpWaznoscDo.Date := IncMonth(Date(), 1);
+       dtpWaznoscDo.Checked:= false;
+     end else
+     begin
+       dtpWaznoscDo.Date := ZQPom.FieldByName('Data_Waznosc_Do').AsDateTime;
+       dtpWaznoscDo.Checked:= true;
      end;
 
   memUwagi.Text:= ZQPom.FieldByName('Uwagi').AsString;
@@ -194,8 +210,8 @@ begin
   //------------ ZAPIS DO BAZY rejestr---------------------
   try
     ZQPom:= TZQueryPom.Create(Self);
-    ZQPom.SQL.Text:= 'INSERT INTO rej_prosb (IDO, Data_Wplywu, ID_Kategoria, Opis, Status, Data_Decyzji, User, Uwagi)'
-                    +' VALUES (:IDO, :dataW, :ID_K, :opis, :status, :dataD, :user, :uwagi)';
+    ZQPom.SQL.Text:= 'INSERT INTO rej_prosb (IDO, Data_Wplywu, ID_Kategoria, Opis, Status, Data_Decyzji, User, Uwagi, Data_Waznosc_Do)'
+                    +' VALUES (:IDO, :dataW, :ID_K, :opis, :status, :dataD, :user, :uwagi, :dataWDo)';
 
     ZQPom.ParamByName('IDO').AsInteger := IDO;
     ZQPom.ParamByName('dataW').AsDate  := dtpWplywu.Date;
@@ -204,6 +220,8 @@ begin
     ZQPom.ParamByName('status').AsInteger:= cbStatus.ItemIndex;
     if dtpDecyzji.Checked then ZQPom.ParamByName('dataD').AsDate:= dtpDecyzji.Date
                           else ZQPom.ParamByName('dataD').Value := Null;
+    if dtpWaznoscDo.Checked then ZQPom.ParamByName('dataWDo').AsDate:= dtpWaznoscDo.Date
+                            else ZQPom.ParamByName('dataWDo').Value := Null;
     ZQPom.ParamByName('user').AsString := DM.PelnaNazwa;
     ZQPom.ParamByName('uwagi').AsString:= memUwagi.Text;
     ZQPom.ExecSQL;
@@ -234,17 +252,22 @@ begin
           MessageDlg('Nie można zapisać modyfikacji o statusie prośby jako zrealizowana.', mtWarning, [mbOK], 0);
           exit;
         end;
+  if (cbStatus.ItemIndex=5) then // prośba przeterminowana
+        begin
+          MessageDlg('Nie można zapisać modyfikacji o statusie prośby jako przeterminowana.', mtWarning, [mbOK], 0);
+          exit;
+        end;
 
   if cbStatus.ItemIndex = 3 then cbDrukuj.Checked:=false; //jesli wpis omyłkowy to udajemy że wydrukowano potwierdzenie
 
   //------------ MODYFIKACJA DO BAZY rejestr---------------------
   try
     ZQPom:= TZQueryPom.Create(Self);
-    ZQPom.SQL.Text:= 'UPDATE rej_prosb SET Opis=:opis, Status=:status, Data_Decyzji=:dataD, User=:user, Uwagi=:uwagi, Wydruk=:wydruk'
+    ZQPom.SQL.Text:= 'UPDATE rej_prosb SET Opis=:opis, Status=:status, Data_Decyzji=:dataD, Data_Waznosc_Do=:Data_Waznosc_Do, User=:user, Uwagi=:uwagi, Wydruk=:wydruk'
                     +' WHERE ID=:ID';
 
     if cbStatus.ItemIndex<>4 then
-        ZQPom.SQL.Text:= 'UPDATE rej_prosb SET Opis=:opis, Status=:status, Data_Decyzji=:dataD, User=:user, Uwagi=:uwagi, Wydruk=:wydruk, Data_Realizacji=NULL, User_Realizacji=NULL'
+        ZQPom.SQL.Text:= 'UPDATE rej_prosb SET Opis=:opis, Status=:status, Data_Decyzji=:dataD, Data_Waznosc_Do=:Data_Waznosc_Do, User=:user, Uwagi=:uwagi, Wydruk=:wydruk, Data_Realizacji=NULL, User_Realizacji=NULL'
                         +' WHERE ID=:ID';
 
     ZQPom.ParamByName('ID').AsInteger := id;
@@ -252,6 +275,8 @@ begin
     ZQPom.ParamByName('status').AsInteger:= cbStatus.ItemIndex;
     if dtpDecyzji.Checked then ZQPom.ParamByName('dataD').AsDate:= dtpDecyzji.Date
                           else ZQPom.ParamByName('dataD').Value := Null;
+    if dtpWaznoscDo.Checked then ZQPom.ParamByName('Data_Waznosc_Do').AsDate:= dtpWaznoscDo.Date
+                            else ZQPom.ParamByName('Data_Waznosc_Do').Value := Null;
     ZQPom.ParamByName('user').AsString  := DM.PelnaNazwa;
     ZQPom.ParamByName('uwagi').AsString := memUwagi.Text;
     if cbDrukuj.Checked then ZQPom.ParamByName('wydruk').AsInteger := 1
@@ -279,6 +304,7 @@ begin
       2: kolor := clYellow;
       3: kolor := clGray;
       4: kolor := clLime;
+      5: kolor := clLime;
     end;
 
     FillRect(ARect);

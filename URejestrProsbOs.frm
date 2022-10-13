@@ -1,11 +1,11 @@
 object RejestrProsbOs: TRejestrProsbOs
-  Left = 334
+  Left = 325
   Height = 550
-  Top = 226
-  Width = 1271
+  Top = 234
+  Width = 1272
   Caption = 'Rejestr Próśb Osadzonego: '
   ClientHeight = 550
-  ClientWidth = 1271
+  ClientWidth = 1272
   KeyPreview = True
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
@@ -15,10 +15,10 @@ object RejestrProsbOs: TRejestrProsbOs
     Left = 0
     Height = 50
     Top = 0
-    Width = 1271
+    Width = 1272
     Align = alTop
     ClientHeight = 50
-    ClientWidth = 1271
+    ClientWidth = 1272
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -316,17 +316,17 @@ object RejestrProsbOs: TRejestrProsbOs
     Left = 144
     Height = 500
     Top = 50
-    Width = 1127
+    Width = 1128
     Align = alClient
     BevelOuter = bvNone
     ClientHeight = 500
-    ClientWidth = 1127
+    ClientWidth = 1128
     TabOrder = 2
     object DBMemo1: TDBMemo
       Left = 0
       Height = 82
       Top = 418
-      Width = 1127
+      Width = 1128
       Align = alBottom
       DataField = 'Uwagi'
       DataSource = DSRejestr
@@ -338,7 +338,7 @@ object RejestrProsbOs: TRejestrProsbOs
       Left = 0
       Height = 418
       Top = 0
-      Width = 1127
+      Width = 1128
       ColumnDefValues.BlobText = '(blob)'
       TitleButtons = True
       AutoSort = True
@@ -413,7 +413,7 @@ object RejestrProsbOs: TRejestrProsbOs
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'status'
-          Width = 80
+          Width = 100
           FieldName = 'status'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -432,6 +432,23 @@ object RejestrProsbOs: TRejestrProsbOs
           Title.Caption = 'Data Decyzji'
           Width = 75
           FieldName = 'Data_Decyzji'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Font.Color = clMaroon
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Ważność do'
+          Width = 72
+          FieldName = 'Data_Waznosc_Do'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -605,6 +622,7 @@ object RejestrProsbOs: TRejestrProsbOs
       'rej.Opis,'
       'rej.`status`,'
       'rej.Data_Decyzji,'
+      'rej.Data_Waznosc_Do,'
       'rej.User,'
       'rej.Wydruk,'
       'rej.Wydruk_user,'
@@ -740,21 +758,10 @@ object RejestrProsbOs: TRejestrProsbOs
       Required = False
       Size = 180
     end
-    object ZQRejestrUwagi: TMemoField
-      FieldKind = fkData
-      FieldName = 'Uwagi'
-      Index = 11
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      BlobType = ftMemo
-      Transliterate = False
-    end
     object ZQRejestrData_Realizacji: TDateTimeField
       FieldKind = fkData
       FieldName = 'Data_Realizacji'
-      Index = 12
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -763,7 +770,7 @@ object RejestrProsbOs: TRejestrProsbOs
     object ZQRejestrUser_Realizacji: TStringField
       FieldKind = fkData
       FieldName = 'User_Realizacji'
-      Index = 13
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -773,7 +780,7 @@ object RejestrProsbOs: TRejestrProsbOs
     object ZQRejestrNazwisko: TStringField
       FieldKind = fkData
       FieldName = 'Nazwisko'
-      Index = 14
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -783,7 +790,7 @@ object RejestrProsbOs: TRejestrProsbOs
     object ZQRejestrImie: TStringField
       FieldKind = fkData
       FieldName = 'Imie'
-      Index = 15
+      Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -793,7 +800,7 @@ object RejestrProsbOs: TRejestrProsbOs
     object ZQRejestrOjciec: TStringField
       FieldKind = fkData
       FieldName = 'Ojciec'
-      Index = 16
+      Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -803,12 +810,31 @@ object RejestrProsbOs: TRejestrProsbOs
     object ZQRejestrPOC: TStringField
       FieldKind = fkData
       FieldName = 'POC'
-      Index = 17
+      Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 40
+    end
+    object ZQRejestrData_Waznosc_Do: TDateField
+      FieldKind = fkData
+      FieldName = 'Data_Waznosc_Do'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQRejestrUwagi: TStringField
+      FieldKind = fkData
+      FieldName = 'Uwagi'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
     end
   end
   object DSRejestr: TDataSource

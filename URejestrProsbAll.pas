@@ -40,6 +40,7 @@ type
     ZQRejestr: TZQuery;
     ZQRejestrData_Decyzji: TDateField;
     ZQRejestrData_Realizacji: TDateTimeField;
+    ZQRejestrData_Waznosc_Do: TDateField;
     ZQRejestrData_Wplywu: TDateField;
     ZQRejestrID: TLargeintField;
     ZQRejestrIDO: TLargeintField;
@@ -53,7 +54,7 @@ type
     ZQRejestrstatus: TLargeintField;
     ZQRejestrUser: TStringField;
     ZQRejestrUser_Realizacji: TStringField;
-    ZQRejestrUwagi: TMemoField;
+    ZQRejestrUwagi: TStringField;
     ZQRejestrWydruk: TSmallintField;
     ZQRejestrWydruk_user: TStringField;
     ZURejestr: TZUpdateSQL;
@@ -96,6 +97,7 @@ begin
       2: aText:='Oczekuje';
       3: aText:='Wpis omyłkowy';
       4: aText:='Zrealizowana';
+      5: aText:='Przeterminowana';
   end;
 end;
 
@@ -288,7 +290,7 @@ begin
             Background := clGreen;
             AFont.Color:= clWhite;
         end else
-        if (Field.AsInteger = 4) then // zrealizowana
+        if (Field.AsInteger = 4) or (Field.AsInteger = 5) then // zrealizowana / przeterminowana
         begin
             Background := clLime;
             AFont.Color:= clBlack;

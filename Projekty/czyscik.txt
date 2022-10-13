@@ -1,4 +1,4 @@
-delimiter |
+﻿delimiter |
 
 CREATE DEFINER=`153202jwlo`@`%` EVENT `czyscik092017`
 	ON SCHEDULE
@@ -15,6 +15,9 @@ DELETE FROM osadzeni WHERE POC="ubył";
 
 #przedawniamy prosby starsze niz 2msc
 UPDATE prosby SET Zrealizowana=2 WHERE (Zrealizowana=0)AND((Data_DD + interval 6 MONTH) < CURDATE());
+
+#przedawniamy rej_prosb pozytywnych których termin waznosci minol
+UPDATE rej_prosb SET `status`=5 WHERE (`status`=1)AND(Data_Waznosc_Do < CURDATE());
 
 INSERT INTO arch_paczki (ID,IDO,WYDANO,WYDAL,RODZAJ,WAGA,UWAGI,DODATKOWA,KANTYNA,NADAWCA,ADRES,Data_ubycia) SELECT ID,IDO,WYDANO,WYDAL,RODZAJ,WAGA,UWAGI,DODATKOWA,KANTYNA,NADAWCA,ADRES,CURDATE() FROM paczki where IDO not in (select ido from osadzeni);
 DELETE FROM paczki where IDO not in (select ido from osadzeni);

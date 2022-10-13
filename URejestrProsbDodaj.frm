@@ -1,7 +1,7 @@
 object RejestrProsbDodaj: TRejestrProsbDodaj
-  Left = 334
+  Left = 325
   Height = 466
-  Top = 226
+  Top = 234
   Width = 661
   BorderStyle = bsDialog
   Caption = 'Zarejestruj prośbę'
@@ -213,6 +213,41 @@ object RejestrProsbDodaj: TRejestrProsbDodaj
     MaxDate = 2958465
     MinDate = -53780
     TabOrder = 5
+    DateSeparator = '-'
+    TrailingSeparator = False
+    TextForNullDate = 'NULL'
+    LeadingZeros = True
+    NullInputAllowed = False
+    Kind = dtkDate
+    TimeSeparator = ':'
+    TimeFormat = tf24
+    TimeDisplay = tdHMS
+    DateMode = dmComboBox
+    Date = 42877
+    Time = 0.578726759260462
+    UseDefaultSeparators = False
+    HideDateTimeParts = []
+    MonthNames = 'Long'
+    ShowMonthNames = True
+  end
+  object Label7: TLabel
+    Left = 432
+    Height = 15
+    Top = 196
+    Width = 67
+    Caption = 'Ważność do:'
+    ParentColor = False
+  end
+  object dtpWaznoscDo: TDateTimePicker
+    Left = 505
+    Height = 23
+    Top = 192
+    Width = 146
+    ShowCheckBox = True
+    CenturyFrom = 1941
+    MaxDate = 2958465
+    MinDate = -53780
+    TabOrder = 6
     DateSeparator = '-'
     TrailingSeparator = False
     TextForNullDate = 'NULL'

@@ -1,7 +1,7 @@
 object RejestrProsbAll: TRejestrProsbAll
-  Left = 86
+  Left = 368
   Height = 569
-  Top = 85
+  Top = 364
   Width = 1373
   Caption = 'Rejestr Próśb osadzonych'
   ClientHeight = 569
@@ -558,7 +558,7 @@ object RejestrProsbAll: TRejestrProsbAll
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
           Title.Caption = 'status'
-          Width = 80
+          Width = 100
           FieldName = 'status'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -577,6 +577,23 @@ object RejestrProsbAll: TRejestrProsbAll
           Title.Caption = 'Data Decyzji'
           Width = 72
           FieldName = 'Data_Decyzji'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Empty)'
+          Filter.NotEmptyValue = '(Not empty)'
+          Filter.AllValue = '(All values)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Alignment = taCenter
+          Font.Color = clMaroon
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Ważność do'
+          Width = 72
+          FieldName = 'Data_Waznosc_Do'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Empty)'
@@ -888,6 +905,7 @@ object RejestrProsbAll: TRejestrProsbAll
       'rej.Opis,'
       'rej.`status`,'
       'rej.Data_Decyzji,'
+      'rej.Data_Waznosc_Do,'
       'rej.User,'
       'rej.Wydruk,'
       'rej.Wydruk_user,'
@@ -1010,21 +1028,10 @@ object RejestrProsbAll: TRejestrProsbAll
       Required = False
       Size = 180
     end
-    object ZQRejestrUwagi: TMemoField
-      FieldKind = fkData
-      FieldName = 'Uwagi'
-      Index = 11
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      BlobType = ftMemo
-      Transliterate = False
-    end
     object ZQRejestrData_Realizacji: TDateTimeField
       FieldKind = fkData
       FieldName = 'Data_Realizacji'
-      Index = 12
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1033,7 +1040,7 @@ object RejestrProsbAll: TRejestrProsbAll
     object ZQRejestrUser_Realizacji: TStringField
       FieldKind = fkData
       FieldName = 'User_Realizacji'
-      Index = 13
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1043,7 +1050,7 @@ object RejestrProsbAll: TRejestrProsbAll
     object ZQRejestrNazwisko: TStringField
       FieldKind = fkData
       FieldName = 'Nazwisko'
-      Index = 14
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1053,7 +1060,7 @@ object RejestrProsbAll: TRejestrProsbAll
     object ZQRejestrImie: TStringField
       FieldKind = fkData
       FieldName = 'Imie'
-      Index = 15
+      Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1063,7 +1070,7 @@ object RejestrProsbAll: TRejestrProsbAll
     object ZQRejestrOjciec: TStringField
       FieldKind = fkData
       FieldName = 'Ojciec'
-      Index = 16
+      Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1073,12 +1080,31 @@ object RejestrProsbAll: TRejestrProsbAll
     object ZQRejestrPOC: TStringField
       FieldKind = fkData
       FieldName = 'POC'
-      Index = 17
+      Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 40
+    end
+    object ZQRejestrData_Waznosc_Do: TDateField
+      FieldKind = fkData
+      FieldName = 'Data_Waznosc_Do'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ZQRejestrUwagi: TStringField
+      FieldKind = fkData
+      FieldName = 'Uwagi'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
     end
   end
   object ZURejestr: TZUpdateSQL
