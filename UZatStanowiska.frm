@@ -1,7 +1,7 @@
 object ZatStanowiska: TZatStanowiska
-  Left = 334
+  Left = 325
   Height = 677
-  Top = 226
+  Top = 234
   Width = 1215
   Caption = 'Stanowiska / Grupy'
   ClientHeight = 677
@@ -524,11 +524,11 @@ object ZatStanowiska: TZatStanowiska
       Height = 529
       Top = 0
       Width = 620
-      ActivePage = TabSheet3
+      ActivePage = TabSheet2
       Align = alRight
       Images = DM.ImageList1
       TabHeight = 25
-      TabIndex = 3
+      TabIndex = 1
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Szczegóły stanowiska'
@@ -557,7 +557,7 @@ object ZatStanowiska: TZatStanowiska
             ReadOnly = True
             Anchors = [akTop, akLeft, akRight]
             CharCase = ecNormal
-            MaxLength = 400
+            MaxLength = 0
             TabOrder = 0
           end
           object DBEdit2: TDBEdit
@@ -570,7 +570,7 @@ object ZatStanowiska: TZatStanowiska
             ReadOnly = True
             Anchors = [akTop, akLeft, akRight]
             CharCase = ecNormal
-            MaxLength = 400
+            MaxLength = 0
             TabOrder = 2
           end
           object DBEdit3: TDBEdit
@@ -583,7 +583,7 @@ object ZatStanowiska: TZatStanowiska
             ReadOnly = True
             Anchors = [akTop, akLeft, akRight]
             CharCase = ecNormal
-            MaxLength = 80
+            MaxLength = 0
             TabOrder = 4
           end
           object DBEdit4: TDBEdit
@@ -596,7 +596,7 @@ object ZatStanowiska: TZatStanowiska
             ReadOnly = True
             Anchors = [akTop, akLeft, akRight]
             CharCase = ecNormal
-            MaxLength = 400
+            MaxLength = 0
             TabOrder = 1
           end
           object DBEdit5: TDBEdit
@@ -609,7 +609,7 @@ object ZatStanowiska: TZatStanowiska
             ReadOnly = True
             Anchors = [akTop, akLeft, akRight]
             CharCase = ecNormal
-            MaxLength = 400
+            MaxLength = 0
             TabOrder = 3
           end
           object DBEdit6: TDBEdit
@@ -721,7 +721,7 @@ object ZatStanowiska: TZatStanowiska
             ReadOnly = True
             Anchors = [akTop, akRight]
             CharCase = ecNormal
-            MaxLength = 200
+            MaxLength = 0
             TabOrder = 6
           end
           object DBEdit9: TDBEdit
@@ -734,7 +734,7 @@ object ZatStanowiska: TZatStanowiska
             ReadOnly = True
             Anchors = [akTop, akRight]
             CharCase = ecNormal
-            MaxLength = 200
+            MaxLength = 0
             TabOrder = 8
           end
           object Label12: TLabel
@@ -787,7 +787,7 @@ object ZatStanowiska: TZatStanowiska
             ReadOnly = True
             Anchors = [akTop, akRight]
             CharCase = ecNormal
-            MaxLength = 20
+            MaxLength = 0
             TabOrder = 10
           end
           object DBEdit11: TDBEdit
@@ -800,7 +800,7 @@ object ZatStanowiska: TZatStanowiska
             ReadOnly = True
             Anchors = [akTop, akRight]
             CharCase = ecNormal
-            MaxLength = 20
+            MaxLength = 0
             TabOrder = 11
           end
         end
@@ -2198,12 +2198,12 @@ object ZatStanowiska: TZatStanowiska
   end
   object DSStanowiska: TDataSource
     DataSet = ZQStanowiska
+    OnDataChange = DSStanowiskaDataChange
     Left = 32
     Top = 224
   end
   object ZQZatrudnieni: TZQuery
     Connection = DM.ZConnection1
-    SortedFields = 'NAZWISKO'
     UpdateObject = ZUZatrudnieni
     SQL.Strings = (
       'SELECT'
@@ -2227,15 +2227,23 @@ object ZatStanowiska: TZatStanowiska
       'JOIN osadzeni as os'
       'ON zat.ido = os.ido'
       'WHERE'
-      'zat.status_zatrudnienia =''zatrudniony'''
+      'zat.status_zatrudnienia =''zatrudniony'' AND'
+      'zat.id_stanowiska = :id_stanowiska'
     )
-    Params = <>
-    MasterFields = 'id'
-    MasterSource = DSStanowiska
-    LinkedFields = 'id_stanowiska'
-    IndexFieldNames = 'NAZWISKO Asc'
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_stanowiska'
+        ParamType = ptUnknown
+      end>
     Left = 302
     Top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_stanowiska'
+        ParamType = ptUnknown
+      end>
   end
   object DSZatrudnieni: TDataSource
     DataSet = ZQZatrudnieni
@@ -2883,8 +2891,6 @@ object ZatStanowiska: TZatStanowiska
   end
   object ZQWycofani: TZQuery
     Connection = DM.ZConnection1
-    SortedFields = 'zat_do'
-    SortType = stDescending
     ReadOnly = True
     SQL.Strings = (
       'SELECT'
@@ -2905,15 +2911,23 @@ object ZatStanowiska: TZatStanowiska
       'FROM zat_zatrudnieni as zat'
       'LEFT JOIN osadzeni as os ON zat.ido = os.ido'
       'WHERE'
-      'zat.status_zatrudnienia =''wycofany'''
+      'zat.status_zatrudnienia =''wycofany'' AND'
+      'zat.id_stanowiska = :id_stanowiska'
     )
-    Params = <>
-    MasterFields = 'id'
-    MasterSource = DSStanowiska
-    LinkedFields = 'id_stanowiska'
-    IndexFieldNames = 'zat_do Desc'
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_stanowiska'
+        ParamType = ptUnknown
+      end>
     Left = 496
     Top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id_stanowiska'
+        ParamType = ptUnknown
+      end>
   end
   object DSWycofani: TDataSource
     DataSet = ZQWycofani

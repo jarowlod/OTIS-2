@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-02-06 15:03:52"/>
-    <ReportLastChange Value="2017-11-20 10:25:08"/>
+    <ReportLastChange Value="2023-01-03 14:25:47"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -17,7 +17,7 @@
     <Pages>
       <PrintToDefault Value="False"/>
       <DoublePass Value="True"/>
-      <SelectedPrinter Value="HP LaserJet Professional P1566"/>
+      <SelectedPrinter Value="Microsoft XPS Document Writer"/>
       <PageCount Value="1"/>
       <Page1>
         <Name Value="Page1"/>
@@ -147,7 +147,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Nr ewidencyjny&#xD;&#xA;"/>
+            <Memo Value="IDO&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -2815,7 +2815,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;Nr_ewidencyjny&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQZatrudnieni.IDO]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>

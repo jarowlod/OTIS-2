@@ -1,7 +1,7 @@
 object Zatrudnieni: TZatrudnieni
-  Left = 180
+  Left = 368
   Height = 856
-  Top = 178
+  Top = 364
   Width = 1359
   Caption = 'Zatrudnieni'
   ClientHeight = 856
@@ -911,7 +911,7 @@ object Zatrudnieni: TZatrudnieni
       TabOrder = 1
       object tabSzczegolyOs: TTabSheet
         Caption = 'Szczegóły osadzonego'
-        ClientHeight = 770
+        ClientHeight = 885
         ClientWidth = 498
         ImageIndex = 5
         object Panel5: TPanel
@@ -2138,7 +2138,7 @@ object Zatrudnieni: TZatrudnieni
       end
       object tabNotatnik: TTabSheet
         Caption = 'Notatnik'
-        ClientHeight = 770
+        ClientHeight = 885
         ClientWidth = 498
         ImageIndex = 2
         object DBMemo2: TDBMemo

@@ -1037,7 +1037,7 @@ end;
 procedure TZatrudnieni.lblOswiadczenieNieodplatnaClick(Sender: TObject);
 begin
   if ZQZatrudnieni.FieldByName('rodzaj_zatrudnienia').AsString='123a§3' then
-       frReport1.LoadFromFile(DM.Path_Raporty + 'zat_OswiadczeniePracaZIGB.lrf')
+       frReport1.LoadFromFile(DM.Path_Raporty + 'zat_OswiadczeniePracaIGB.lrf')
      else
        frReport1.LoadFromFile(DM.Path_Raporty + 'zat_OswiadczeniePraca.lrf');
 

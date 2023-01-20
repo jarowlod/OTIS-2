@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2017-04-05 14:47:09"/>
-    <ReportLastChange Value="2019-05-23 09:16:10"/>
+    <ReportLastChange Value="2023-01-03 15:13:46"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -17,7 +17,7 @@
     <Pages>
       <PrintToDefault Value="False"/>
       <DoublePass Value="False"/>
-      <SelectedPrinter Value="HP LaserJet Professional P1566"/>
+      <SelectedPrinter Value="Microsoft XPS Document Writer"/>
       <PageCount Value="1"/>
       <Page1>
         <Name Value="Page1"/>
@@ -883,7 +883,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Nr ewidencyjny&#xD;&#xA;"/>
+            <Memo Value="Nr IDO&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1275,7 +1275,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="[ZQZatrudnieni.&quot;nr_ewidencyjny&quot;]&#xD;&#xA;"/>
+            <Memo Value="[ZQZatrudnieni.IDO]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1371,7 +1371,12 @@
       <ParentVars Value=""/>
     </Pages>
     <DetailReports>
-      <Count Value="0"/>
+      <Count Value="1"/>
+      <Detail0>
+        <ReportName Value="Memo34_DetailReport"/>
+        <ReportDescription Value=""/>
+        <ReportBody Value=""/>
+      </Detail0>
     </DetailReports>
   </LazReport>
 </CONFIG>

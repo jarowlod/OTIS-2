@@ -56,10 +56,12 @@
         <ComponentName Value="ZatStanowiska"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="468"/>
-        <CursorPos X="3" Y="489"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="312"/>
+        <CursorPos X="36" Y="329"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="UZatAddStanowiska.pas"/>
@@ -81,8 +83,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="630"/>
-        <CursorPos X="3" Y="580"/>
+        <TopLine Value="1037"/>
+        <CursorPos X="71" Y="1040"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -142,7 +144,7 @@
         <ComponentName Value="Rozmieszczenie"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="196"/>
         <CursorPos Y="327"/>
         <UsageCount Value="200"/>
@@ -228,7 +230,7 @@
         <ComponentName Value="AktualizacjaOs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="143"/>
         <CursorPos X="24" Y="160"/>
         <ExtraEditorCount Value="1"/>
@@ -528,7 +530,7 @@
         <ComponentName Value="ViewUwagiOch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="76"/>
         <CursorPos X="3" Y="75"/>
         <UsageCount Value="201"/>
@@ -589,7 +591,7 @@
         <ComponentName Value="OchForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="234"/>
         <CursorPos X="10" Y="134"/>
         <UsageCount Value="200"/>
@@ -850,7 +852,7 @@
         <ComponentName Value="ViewPaczki"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="55"/>
         <CursorPos Y="83"/>
         <UsageCount Value="201"/>
@@ -963,7 +965,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="57" Y="78"/>
-        <UsageCount Value="176"/>
+        <UsageCount Value="177"/>
       </Unit78>
       <Unit79>
         <Filename Value="UWeekView.pas"/>
@@ -972,7 +974,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="401"/>
         <CursorPos X="31" Y="416"/>
-        <UsageCount Value="158"/>
+        <UsageCount Value="159"/>
       </Unit79>
       <Unit80>
         <Filename Value="UWypiska.pas"/>
@@ -984,7 +986,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="47"/>
         <CursorPos X="23" Y="126"/>
-        <UsageCount Value="76"/>
+        <UsageCount Value="77"/>
       </Unit80>
       <Unit81>
         <Filename Value="UKwatKartaRzeczy.pas"/>
@@ -994,7 +996,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="64"/>
       </Unit81>
       <Unit82>
         <Filename Value="UViewTelefony.pas"/>
@@ -1003,10 +1005,10 @@
         <ComponentName Value="ViewTelefony"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="153"/>
         <CursorPos X="44" Y="183"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit82>
@@ -1978,124 +1980,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="UViewPaczki.pas"/>
-        <Caret Line="9" Column="47"/>
+        <Filename Value="UViewTelefony.pas"/>
+        <Caret Line="186" Column="19" TopLine="154"/>
       </Position1>
       <Position2>
         <Filename Value="UViewTelefony.pas"/>
-        <Caret Line="174" Column="10"/>
+        <Caret Line="183" Column="26" TopLine="171"/>
       </Position2>
       <Position3>
         <Filename Value="UViewTelefony.pas"/>
-        <Caret Line="9" Column="64"/>
+        <Caret Line="222" Column="48" TopLine="202"/>
       </Position3>
       <Position4>
         <Filename Value="UViewTelefony.pas"/>
-        <Caret Line="186" Column="19" TopLine="154"/>
+        <Caret Line="229" Column="70" TopLine="201"/>
       </Position4>
       <Position5>
         <Filename Value="UViewTelefony.pas"/>
-        <Caret Line="183" Column="26" TopLine="171"/>
+        <Caret Line="233" Column="82" TopLine="200"/>
       </Position5>
       <Position6>
         <Filename Value="UViewTelefony.pas"/>
-        <Caret Line="222" Column="48" TopLine="202"/>
+        <Caret Line="240" Column="82" TopLine="207"/>
       </Position6>
       <Position7>
         <Filename Value="UViewTelefony.pas"/>
-        <Caret Line="229" Column="70" TopLine="201"/>
+        <Caret Line="36" Column="27" TopLine="27"/>
       </Position7>
       <Position8>
-        <Filename Value="UViewTelefony.pas"/>
-        <Caret Line="233" Column="82" TopLine="200"/>
+        <Filename Value="URozmieszczenie.pas"/>
+        <Caret Line="376" Column="34" TopLine="352"/>
       </Position8>
       <Position9>
-        <Filename Value="UViewTelefony.pas"/>
-        <Caret Line="240" Column="82" TopLine="207"/>
+        <Filename Value="URozmieszczenie.pas"/>
+        <Caret Line="250" Column="23" TopLine="227"/>
       </Position9>
       <Position10>
-        <Filename Value="UViewTelefony.pas"/>
-        <Caret Line="36" Column="27" TopLine="27"/>
+        <Filename Value="URozmieszczenie.pas"/>
+        <Caret Line="245" Column="56" TopLine="115"/>
       </Position10>
       <Position11>
         <Filename Value="URozmieszczenie.pas"/>
-        <Caret Line="376" Column="34" TopLine="352"/>
+        <Caret Line="246" Column="64" TopLine="228"/>
       </Position11>
       <Position12>
         <Filename Value="URozmieszczenie.pas"/>
-        <Caret Line="250" Column="23" TopLine="227"/>
+        <Caret Line="245" Column="59" TopLine="226"/>
       </Position12>
       <Position13>
         <Filename Value="URozmieszczenie.pas"/>
-        <Caret Line="245" Column="56" TopLine="115"/>
+        <Caret Line="330" Column="3" TopLine="292"/>
       </Position13>
       <Position14>
-        <Filename Value="URozmieszczenie.pas"/>
-        <Caret Line="246" Column="64" TopLine="228"/>
-      </Position14>
-      <Position15>
-        <Filename Value="URozmieszczenie.pas"/>
-        <Caret Line="245" Column="59" TopLine="226"/>
-      </Position15>
-      <Position16>
-        <Filename Value="URozmieszczenie.pas"/>
-        <Caret Line="330" Column="3" TopLine="292"/>
-      </Position16>
-      <Position17>
         <Filename Value="UViewTelefony.pas"/>
         <Caret Line="169" Column="60" TopLine="147"/>
+      </Position14>
+      <Position15>
+        <Filename Value="URejestrProsbDodaj.pas"/>
+        <Caret Line="258" Column="76" TopLine="233"/>
+      </Position15>
+      <Position16>
+        <Filename Value="URejestrProsbDodaj.pas"/>
+        <Caret Line="260" Column="76" TopLine="235"/>
+      </Position16>
+      <Position17>
+        <Filename Value="URejestrProsbDodaj.pas"/>
+        <Caret Line="84" Column="31" TopLine="58"/>
       </Position17>
       <Position18>
         <Filename Value="URejestrProsbDodaj.pas"/>
-        <Caret Line="258" Column="76" TopLine="233"/>
+        <Caret Line="9" Column="75"/>
       </Position18>
       <Position19>
-        <Filename Value="URejestrProsbDodaj.pas"/>
-        <Caret Line="260" Column="76" TopLine="235"/>
-      </Position19>
-      <Position20>
-        <Filename Value="URejestrProsbDodaj.pas"/>
-        <Caret Line="84" Column="31" TopLine="58"/>
-      </Position20>
-      <Position21>
-        <Filename Value="URejestrProsbDodaj.pas"/>
-        <Caret Line="9" Column="75"/>
-      </Position21>
-      <Position22>
         <Filename Value="URejestrProsbAll.pas"/>
         <Caret Line="163" Column="3" TopLine="160"/>
-      </Position22>
-      <Position23>
+      </Position19>
+      <Position20>
         <Filename Value="URejestrProsbAll.pas"/>
         <Caret Line="292" Column="97" TopLine="138"/>
-      </Position23>
-      <Position24>
+      </Position20>
+      <Position21>
         <Filename Value="URejestrProsbOs.pas"/>
         <Caret Line="248" Column="51" TopLine="47"/>
-      </Position24>
-      <Position25>
+      </Position21>
+      <Position22>
         <Filename Value="URejestrProsbOs.pas"/>
         <Caret Line="249" Column="51" TopLine="211"/>
-      </Position25>
-      <Position26>
+      </Position22>
+      <Position23>
         <Filename Value="URejestrProsbOs.pas"/>
         <Caret Line="248" Column="51" TopLine="210"/>
+      </Position23>
+      <Position24>
+        <Filename Value="URejestrProsbAll.pas"/>
+        <Caret Line="293" Column="97" TopLine="255"/>
+      </Position24>
+      <Position25>
+        <Filename Value="URejestrProsbAll.pas"/>
+        <Caret Line="292" Column="97" TopLine="254"/>
+      </Position25>
+      <Position26>
+        <Filename Value="URejestrProsbAll.pas"/>
+        <Caret Line="293" Column="97" TopLine="255"/>
       </Position26>
       <Position27>
         <Filename Value="URejestrProsbAll.pas"/>
-        <Caret Line="293" Column="97" TopLine="255"/>
+        <Caret Line="292" Column="97" TopLine="254"/>
       </Position27>
       <Position28>
-        <Filename Value="URejestrProsbAll.pas"/>
-        <Caret Line="292" Column="97" TopLine="254"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="1198" Column="69" TopLine="1190"/>
       </Position28>
       <Position29>
-        <Filename Value="URejestrProsbAll.pas"/>
-        <Caret Line="293" Column="97" TopLine="255"/>
+        <Filename Value="UZatStanowiska.pas"/>
+        <Caret Line="495" Column="3" TopLine="474"/>
       </Position29>
       <Position30>
-        <Filename Value="URejestrProsbAll.pas"/>
-        <Caret Line="292" Column="97" TopLine="254"/>
+        <Filename Value="UZatrudnieni.pas"/>
+        <Caret Line="1169" Column="59" TopLine="1159"/>
       </Position30>
     </JumpHistory>
     <RunParams>

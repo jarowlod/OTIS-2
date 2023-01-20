@@ -144,6 +144,7 @@ type
     procedure btnModyfikujClick(Sender: TObject);
     procedure BitBtn6Click(Sender: TObject);
     procedure btnUsunStanowiskoClick(Sender: TObject);
+    procedure DSStanowiskaDataChange(Sender: TObject; Field: TField);
     procedure Edit1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure druk_przepustka_zbiorczaClick(Sender: TObject);
@@ -191,8 +192,8 @@ begin
   ZQZatrudnieni.ReadOnly     := not DM.uprawnienia[15];
 
   NewSelect; // ZatStanowiska open
-  ZQZatrudnieni.Open;
-  ZQWycofani.Open;
+  //ZQZatrudnieni.Open;
+  //ZQWycofani.Open;
   DateTimePicker2.Date:= Date;
   PageControl1.TabIndex:= 0;
 end;
@@ -320,6 +321,17 @@ begin
         RefreshQuery(ZQStanowiska);
       end;
     end;
+end;
+
+procedure TZatStanowiska.DSStanowiskaDataChange(Sender: TObject; Field: TField);
+begin
+  ZQZatrudnieni.Close;
+  ZQZatrudnieni.ParamByName('id_stanowiska').AsInteger:= ZQStanowiskaid.AsInteger;
+  ZQZatrudnieni.Open;
+
+  ZQWycofani.Close;
+  ZQWycofani.ParamByName('id_stanowiska').AsInteger:= ZQStanowiskaid.AsInteger;
+  ZQWycofani.Open;
 end;
 
 procedure TZatStanowiska.Edit1Change(Sender: TObject);
